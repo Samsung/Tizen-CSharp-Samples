@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="MusicPlayerUI.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MusicPlayerUI"
+    x:Name="Control">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="TizenDefault">#00A6C2</Color>
+
+            <Style x:Key="BaseSizeStyle" TargetType="View">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="200" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+
+    <Application.MainPage>
+        <NavigationPage>
+            <x:Arguments>
+                <local:MainPage IsPresented="{Binding IsMenuOpen, Mode=TwoWay, Source={x:Reference Control}}" />
+            </x:Arguments>
+        </NavigationPage>
+    </Application.MainPage>
+</Application>
