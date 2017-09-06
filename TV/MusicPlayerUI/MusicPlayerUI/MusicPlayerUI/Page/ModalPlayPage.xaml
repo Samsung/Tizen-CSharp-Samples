@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MusicPlayerUI.Page.ModalPlayPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:MusicPlayerUI.Behaviors"
+    xmlns:page="clr-namespace:MusicPlayerUI.Page;assmebly=MusicPlayerUI">
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" BackgroundColor="{StaticResource TizenDefault}">
+                <Label
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding SongTitle, Source={x:Static page:TabItemPage.MusicBar}}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+                <Button
+                    Margin="15,0,0,0"
+                    BackgroundColor="{StaticResource TizenDefault}"
+                    HorizontalOptions="Start"
+                    Image="back.png"
+                    Style="{StaticResource BaseSizeStyle}">
+                    <Button.Behaviors>
+                        <behaviors:ButtonToModalNavigationBackEventBehavior IsBackEvent="True" />
+                    </Button.Behaviors>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Image
+                    BackgroundColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Source="tizen.png"
+                    VerticalOptions="FillAndExpand" />
+                <Slider
+                    x:Name="slider"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="End"
+                    Value="{Binding SongValue, Source={x:Static page:TabItemPage.MusicBar}, Mode=TwoWay}" />
+            </Grid>
+
+            <Grid
+                Grid.Row="2"
+                BackgroundColor="{StaticResource TizenDefault}"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal"
+                    Spacing="50"
+                    VerticalOptions="Center">
+                    <Button
+                        BackgroundColor="{StaticResource TizenDefault}"
+                        Clicked="OnSongValueInit"
+                        Image="rewind.png"
+                        Style="{StaticResource BaseSizeStyle}" />
+                    <Button
+                        BackgroundColor="{StaticResource TizenDefault}"
+                        Command="{Binding PlayCommand, Source={x:Static page:TabItemPage.MusicBar}}"
+                        Style="{StaticResource BaseSizeStyle}">
+                        <Button.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsPlaying, Source={x:Static page:TabItemPage.MusicBar}}"
+                                TargetType="Button"
+                                Value="False">
+                                <Setter Property="Image" Value="play.png" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding IsPlaying, Source={x:Static page:TabItemPage.MusicBar}}"
+                                TargetType="Button"
+                                Value="True">
+                                <Setter Property="Image" Value="pause.png" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button
+                        BackgroundColor="{StaticResource TizenDefault}"
+                        Clicked="OnSongValueInit"
+                        Image="fastforward.png"
+                        Style="{StaticResource BaseSizeStyle}" />
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

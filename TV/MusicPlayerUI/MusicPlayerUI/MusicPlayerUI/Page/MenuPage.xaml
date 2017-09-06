@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MusicPlayerUI.Page.MenuPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Menu">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <x:Array x:Key="stringArray" Type="{x:Type x:String}">
+                <x:String>Library</x:String>
+                <x:String>Playlists</x:String>
+                <x:String>Settings</x:String>
+            </x:Array>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ListView
+        HorizontalOptions="FillAndExpand"
+        ItemsSource="{StaticResource stringArray}"
+        RowHeight="100"
+        SeparatorVisibility="Default"
+        VerticalOptions="FillAndExpand">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="StartAndExpand">
+                            <Image
+                                Margin="15,0,0,0"
+                                HorizontalOptions="Start"
+                                Source="tizen.png"
+                                VerticalOptions="Center" />
+                            <Label
+                                Margin="30,0,0,0"
+                                HorizontalOptions="FillAndExpand"
+                                Text="{Binding}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

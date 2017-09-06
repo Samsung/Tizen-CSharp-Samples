@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="MusicPlayerUI.View.MusicBar"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MusicPlayerUI"
+    x:Name="Control">
+
+    <ContentView.Content>
+        <StackLayout BackgroundColor="{DynamicResource TizenDefault}"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Horizontal">
+            <StackLayout
+                Margin="10,0,0,0"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                Spacing="20">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPlayModalPage" />
+                </StackLayout.GestureRecognizers>
+                <Image
+                    Margin="15,0,0,0"
+                    HorizontalOptions="Start"
+                    Source="tizen.png" />
+                <Label
+                    x:Name="lbSongTitle"
+                    HorizontalOptions="FillAndExpand"
+                    Text="{Binding SongTitle, Source={x:Reference Control}}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </StackLayout>
+
+            <Button
+                Margin="0,0,80,0"
+                BackgroundColor="{DynamicResource TizenDefault}"
+                Command="{Binding PlayCommand, Source={x:Reference Control}}"
+                HorizontalOptions="End" Style="{DynamicResource BaseSizeStyle}">
+                <Button.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference Control}, Path=IsPlaying}"
+                        TargetType="Button"
+                        Value="False">
+                        <Setter Property="Image" Value="play.png" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference Control}, Path=IsPlaying}"
+                        TargetType="Button"
+                        Value="True">
+                        <Setter Property="Image" Value="pause.png" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
