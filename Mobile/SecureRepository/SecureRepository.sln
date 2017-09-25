@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureRepository.Tizen", "SecureRepository\SecureRepository.Tizen\SecureRepository.Tizen.csproj", "{6791DE2D-E248-430C-892D-DA238999D5DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6791DE2D-E248-430C-892D-DA238999D5DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6791DE2D-E248-430C-892D-DA238999D5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6791DE2D-E248-430C-892D-DA238999D5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6791DE2D-E248-430C-892D-DA238999D5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {268E79D8-81E0-47B2-8B60-94D803ABEC3B}
+	EndGlobalSection
+EndGlobal
