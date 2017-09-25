@@ -1,0 +1,22 @@
+﻿{
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "debugType": "portable",
+    "platform": "AnyCPU",
+    "preserveCompilationContext": true
+  },
+  "dependencies": {
+    "Microsoft.NETCore.App": "2.0.0-preview2-25407-01",
+    "Xamarin.Forms.Platform.Tizen": "2.4.0-r266-006"
+  },
+  "runtimes": {
+    "tizen.4.0.0-armel": {}
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "imports": [
+        "portable-net45+wp80+win81+wpa81"
+      ]
+    }
+  }
+}

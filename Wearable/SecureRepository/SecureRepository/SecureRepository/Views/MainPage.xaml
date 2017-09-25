@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SecureRepository.MainPage"
+             x:Name="page">
+    <ContentPage.Content>
+        <Grid x:Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="16*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="listGrid"
+                  Grid.Row="0">
+                <ListView x:Name="listView" 
+                          GroupDisplayBinding="{Binding Title}" 
+                          GroupShortNameBinding="{Binding ShortName}"
+                          IsGroupingEnabled="True"
+                          SelectedItem="{Binding SelectedItem}"
+                          ItemsSource="{Binding Path=UIList}">
+
+                </ListView>
+            </Grid>
+
+            <Grid x:Name="optionsGrid"
+                  Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="10*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid x:Name="labelGrid"
+                      Grid.Column="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label x:Name="appInfo" 
+                           Grid.Row="0"
+                           LineBreakMode="WordWrap"
+                           Text="{Binding AppInfo, Mode=TwoWay}"/>
+                    <Label x:Name="contentPrefix"
+                           Grid.Row="1"
+                           LineBreakMode="CharacterWrap"
+                           Text="{Binding ContentPrefix, Mode=TwoWay}"/>
+                </Grid>
+
+                <Grid x:Name="gridBtn"
+                      Padding="10"
+                      Grid.Column="1"
+                      SizeChanged="GridBtnSizeChanged" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnAdd"
+                            Text="Add"
+                            Grid.Row="0"
+                            Command="{Binding CommandAdd, Mode=TwoWay}"/>
+                    <Button x:Name="btnRemove"
+                            Text="Remove"
+                            Grid.Row="1"
+                            Command="{Binding CommandRemove,Mode=TwoWay}"/>
+                    <Button x:Name="btnEncrypt"
+                            Text="Encrypt"
+                            Grid.Row="2"
+                            Command="{Binding CommandEncryptDecrypt,Mode=TwoWay}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
