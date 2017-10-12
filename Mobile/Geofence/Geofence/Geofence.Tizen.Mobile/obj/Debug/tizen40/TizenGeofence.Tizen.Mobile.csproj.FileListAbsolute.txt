@@ -1,0 +1,11 @@
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Core.dll
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Platform.dll
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Xaml.dll
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Platform.Tizen.dll
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Geofence.dll
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Geofence.pdb
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Geofence.Tizen.Mobile.dll
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Geofence.Tizen.Mobile.pdb
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\tpkroot\shared\res\Geofence.Tizen.Mobile.png
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\tpkroot\tizen-manifest.xml
+E:\source_code\csharp\SampleApp\Mobile\Geofence\Geofence\Geofence.Tizen.Mobile\bin\Debug\tizen40\org.tizen.example.Geofence.Tizen.Mobile-1.0.0.tpk
