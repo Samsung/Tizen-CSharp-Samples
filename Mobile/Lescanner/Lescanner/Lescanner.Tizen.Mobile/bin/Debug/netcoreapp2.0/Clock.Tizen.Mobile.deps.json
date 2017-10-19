@@ -1,0 +1,205 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.0",
+    "signature": "b6d200b22bb31fba2c6d5d6154727bb672485ab7"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.0": {
+      "Clock.Tizen.Mobile/1.0.0": {
+        "dependencies": {
+          "Clock": "1.0.0",
+          "Tizen.NET": "4.0.0-preview1-00117",
+          "Tizen.NET.Sdk": "0.9.17-pre1",
+          "Tizen.Xamarin.Forms.Extension": "2.4.0-v00003",
+          "Xamarin.Forms.Platform.Tizen": "2.4.0-r266-005"
+        },
+        "runtime": {
+          "Clock.Tizen.Mobile.dll": {}
+        }
+      },
+      "Tizen/1.0.2": {},
+      "Tizen.NET/4.0.0-preview1-00117": {
+        "runtime": {
+          "lib/netstandard1.6/ElmSharp.Wearable.dll": {},
+          "lib/netstandard1.6/ElmSharp.dll": {},
+          "lib/netstandard1.6/Tizen.Account.AccountManager.dll": {},
+          "lib/netstandard1.6/Tizen.Account.FidoClient.dll": {},
+          "lib/netstandard1.6/Tizen.Account.OAuth2.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.Alarm.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.Badge.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.Common.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.DataControl.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.MessagePort.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.Notification.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.NotificationEventListener.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.PackageManager.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.Preference.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.RemoteView.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.Service.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.ToastMessage.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.UI.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.WatchApplication.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.WidgetApplication.dll": {},
+          "lib/netstandard1.6/Tizen.Applications.WidgetControl.dll": {},
+          "lib/netstandard1.6/Tizen.Content.Download.dll": {},
+          "lib/netstandard1.6/Tizen.Content.MediaContent.dll": {},
+          "lib/netstandard1.6/Tizen.Content.MimeType.dll": {},
+          "lib/netstandard1.6/Tizen.Context.dll": {},
+          "lib/netstandard1.6/Tizen.Location.Geofence.dll": {},
+          "lib/netstandard1.6/Tizen.Location.dll": {},
+          "lib/netstandard1.6/Tizen.Log.dll": {},
+          "lib/netstandard1.6/Tizen.Maps.dll": {},
+          "lib/netstandard1.6/Tizen.Messaging.Push.dll": {},
+          "lib/netstandard1.6/Tizen.Messaging.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.AudioIO.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.Camera.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.MediaCodec.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.MediaPlayer.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.Metadata.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.Radio.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.Recorder.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.Remoting.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.StreamRecorder.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.Util.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.Vision.dll": {},
+          "lib/netstandard1.6/Tizen.Multimedia.dll": {},
+          "lib/netstandard1.6/Tizen.NUI.dll": {},
+          "lib/netstandard1.6/Tizen.Network.Bluetooth.dll": {},
+          "lib/netstandard1.6/Tizen.Network.Connection.dll": {},
+          "lib/netstandard1.6/Tizen.Network.IoTConnectivity.dll": {},
+          "lib/netstandard1.6/Tizen.Network.Nfc.dll": {},
+          "lib/netstandard1.6/Tizen.Network.Nsd.dll": {},
+          "lib/netstandard1.6/Tizen.Network.Smartcard.dll": {},
+          "lib/netstandard1.6/Tizen.Network.WiFi.dll": {},
+          "lib/netstandard1.6/Tizen.Network.WiFiDirect.dll": {},
+          "lib/netstandard1.6/Tizen.PhonenumberUtils.dll": {},
+          "lib/netstandard1.6/Tizen.Pims.Calendar.dll": {},
+          "lib/netstandard1.6/Tizen.Pims.Contacts.dll": {},
+          "lib/netstandard1.6/Tizen.Security.SecureRepository.dll": {},
+          "lib/netstandard1.6/Tizen.Security.TEEC.dll": {},
+          "lib/netstandard1.6/Tizen.Security.dll": {},
+          "lib/netstandard1.6/Tizen.Sensor.dll": {},
+          "lib/netstandard1.6/Tizen.System.Feedback.dll": {},
+          "lib/netstandard1.6/Tizen.System.Information.dll": {},
+          "lib/netstandard1.6/Tizen.System.MediaKey.dll": {},
+          "lib/netstandard1.6/Tizen.System.Storage.dll": {},
+          "lib/netstandard1.6/Tizen.System.SystemSettings.dll": {},
+          "lib/netstandard1.6/Tizen.System.dll": {},
+          "lib/netstandard1.6/Tizen.Telephony.dll": {},
+          "lib/netstandard1.6/Tizen.Tracer.dll": {},
+          "lib/netstandard1.6/Tizen.Uix.InputMethod.dll": {},
+          "lib/netstandard1.6/Tizen.Uix.InputMethodManager.dll": {},
+          "lib/netstandard1.6/Tizen.Uix.Stt.dll": {},
+          "lib/netstandard1.6/Tizen.Uix.Tts.dll": {},
+          "lib/netstandard1.6/Tizen.Uix.VoiceControl.dll": {},
+          "lib/netstandard1.6/Tizen.WebView.dll": {},
+          "lib/netstandard1.6/Tizen.dll": {}
+        }
+      },
+      "Tizen.NET.Sdk/0.9.17-pre1": {},
+      "Tizen.Network.Bluetooth/1.0.8": {
+        "dependencies": {
+          "Tizen": "1.0.2"
+        }
+      },
+      "Tizen.Xamarin.Forms.Extension/2.4.0-v00003": {
+        "dependencies": {
+          "Xamarin.Forms": "2.4.0.266-pre1",
+          "Xamarin.Forms.Platform.Tizen": "2.4.0-r266-005"
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/Tizen.Xamarin.Forms.Extension.Renderer.dll": {},
+          "lib/netcoreapp1.0/Tizen.Xamarin.Forms.Extension.dll": {}
+        }
+      },
+      "Xamarin.Forms/2.4.0.266-pre1": {
+        "runtime": {
+          "lib/netstandard1.0/Xamarin.Forms.Core.dll": {},
+          "lib/netstandard1.0/Xamarin.Forms.Platform.dll": {},
+          "lib/netstandard1.0/Xamarin.Forms.Xaml.dll": {}
+        }
+      },
+      "Xamarin.Forms.Platform.Tizen/2.4.0-r266-005": {
+        "dependencies": {
+          "Tizen.NET": "4.0.0-preview1-00117",
+          "Xamarin.Forms": "2.4.0.266-pre1"
+        },
+        "runtime": {
+          "lib/netstandard1.6/Xamarin.Forms.Platform.Tizen.dll": {}
+        }
+      },
+      "Clock/1.0.0": {
+        "dependencies": {
+          "Tizen.Network.Bluetooth": "1.0.8",
+          "Tizen.Xamarin.Forms.Extension": "2.4.0-v00003",
+          "Xamarin.Forms": "2.4.0.266-pre1"
+        },
+        "runtime": {
+          "Clock.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Clock.Tizen.Mobile/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tizen/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zW2pMGzgyu3uUs8vVQnk4Zc35Zp9L6nLgXhLO9Z0zystC9emB5tEHrdvwERNDJ7rlu7NzCfj7Fjied8vgxr7kQ==",
+      "path": "tizen/1.0.2",
+      "hashPath": "tizen.1.0.2.nupkg.sha512"
+    },
+    "Tizen.NET/4.0.0-preview1-00117": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tMiRP242CwE0UIkWvNweeSDlkQYb0PmtS/SmiESf5BhtpM1NEzlF7FI2Z5v/ZTNFTDmuihC3JvwFxeYTK0sDWQ==",
+      "path": "tizen.net/4.0.0-preview1-00117",
+      "hashPath": "tizen.net.4.0.0-preview1-00117.nupkg.sha512"
+    },
+    "Tizen.NET.Sdk/0.9.17-pre1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MiQtfr47jNatuI88NxEg7NZDLwQ4xszTqSmngJt1QZUAw3en1rBcT/hZoZcGbyjtfzDGrkbaCQyWL66hVqpyLw==",
+      "path": "tizen.net.sdk/0.9.17-pre1",
+      "hashPath": "tizen.net.sdk.0.9.17-pre1.nupkg.sha512"
+    },
+    "Tizen.Network.Bluetooth/1.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bDR8Xi1El8j7vZs4OdvdYTmSPxq6F643lE0eyxlohMAMsDQ556bAIJGl4Nf3JaExz+BImAeJm0lOPcx/qLJuyQ==",
+      "path": "tizen.network.bluetooth/1.0.8",
+      "hashPath": "tizen.network.bluetooth.1.0.8.nupkg.sha512"
+    },
+    "Tizen.Xamarin.Forms.Extension/2.4.0-v00003": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iJ3IHeOMsbHHj046b5z81HmeRYWr37vxvMVZnaQogSjFhiWze/Erb2CgEcNqI8tWna69iRo4KfzN8ystjYp0/A==",
+      "path": "tizen.xamarin.forms.extension/2.4.0-v00003",
+      "hashPath": "tizen.xamarin.forms.extension.2.4.0-v00003.nupkg.sha512"
+    },
+    "Xamarin.Forms/2.4.0.266-pre1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pMu+b01vdH1ul5EJo1opQjEcwisWT35DdZO6EuR9HNKfY1dWyKmAlWgRdGUtjtdbhjOAtCOQUxI7F3x4hvV8KA==",
+      "path": "xamarin.forms/2.4.0.266-pre1",
+      "hashPath": "xamarin.forms.2.4.0.266-pre1.nupkg.sha512"
+    },
+    "Xamarin.Forms.Platform.Tizen/2.4.0-r266-005": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UEIskIkPwLZvwPDLcr8OuBiWAdD4DGs11DIi+v+8TjVrQUTDxG3VTTIJGNLAxmQbHlNV63B1SAZZ++cbC00BEA==",
+      "path": "xamarin.forms.platform.tizen/2.4.0-r266-005",
+      "hashPath": "xamarin.forms.platform.tizen.2.4.0-r266-005.nupkg.sha512"
+    },
+    "Clock/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
