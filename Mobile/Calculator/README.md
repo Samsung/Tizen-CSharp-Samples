@@ -43,11 +43,6 @@ d:\> "C:\Program Files (x86)\Tizen\SDK\tools\sdb.exe" install Calculator.tpk
 
 * Visual Studio > Tools > Run StyleCop
 
-## Authors
-
-* **Chul Seung Kim** - *Initial work* [charles0.kim@samsung.com](mailto://charles0.kim@samsung.com)
-* **GeunSun Lee** - *Initial work* [gs86.lee@samsung.com](mailto://gs86.lee@samsung.com)
-
 ## License
 
 This project is licensed under the Flora License - see the [http://floralicense.org/license/](http://floralicense.org/license/) for details
