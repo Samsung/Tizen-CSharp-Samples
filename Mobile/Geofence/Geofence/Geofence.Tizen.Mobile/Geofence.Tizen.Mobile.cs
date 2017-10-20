@@ -27,6 +27,9 @@ namespace Geofence.Tizen.Mobile
         protected override void OnCreate()
         {
             base.OnCreate();
+            // Block the horizontal mode
+            MainWindow.AvailableRotations = ElmSharp.DisplayRotation.Degree_0;
+            // Load the App
             LoadApplication(new App());
         }
 
