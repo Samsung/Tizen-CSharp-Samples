@@ -41,7 +41,7 @@ namespace NetworkApp
     /// </summary>
     class WiFiResultPage : ContentPage
     {
-        Entry result;
+        Label result;
         Entry apEntry;
         Entry passwordEntry;
         ListView scanListView;
@@ -105,7 +105,7 @@ namespace NetworkApp
         /// </summary>
         private void CreateActivateView()
         {
-            result = CreateEntry("");
+            result = CreateLabel("");
             result.IsEnabled = false;
 
             // Create a Layout
@@ -127,7 +127,7 @@ namespace NetworkApp
             passwordEntry = CreateEntry("Password");
             Button connectButton = CreateButton("Connect");
             connectButton.Clicked += OnClicked;
-            result = CreateEntry("Select an AP to connect");
+            result = CreateLabel("Select an AP to connect");
             result.IsEnabled = false;
             scanListView = new ListView();
 
@@ -159,7 +159,7 @@ namespace NetworkApp
         /// </summary>
         private void CreateScanResultView()
         {
-            result = CreateEntry("");
+            result = CreateLabel("");
             result.IsEnabled = false;
             scanListView = new ListView();
 
@@ -185,7 +185,7 @@ namespace NetworkApp
             apEntry.Text = ShowConnectedAP();
             Button disconnectButton = CreateButton("Disconnect");
             disconnectButton.Clicked += OnClicked;
-            result = CreateEntry("");
+            result = CreateLabel("Insert the ESSID of AP");
             result.IsEnabled = false;
 
             switch (operation)
@@ -206,6 +206,21 @@ namespace NetworkApp
                     disconnectButton,
                     result,
                 }
+            };
+        }
+
+        /// <summary>
+        /// Create a Label instance
+        /// </summary>
+        /// <param name="str">Text of Label</param>
+        /// <returns></returns>
+        private Label CreateLabel(String str)
+        {
+            return new Label()
+            {
+                BackgroundColor = Color.White,
+                FontSize = 20,
+                Text = str,
             };
         }
 

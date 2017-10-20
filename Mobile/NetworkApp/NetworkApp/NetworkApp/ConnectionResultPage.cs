@@ -42,7 +42,7 @@ namespace NetworkApp
     /// </summary>
     class ConnectionResultPage : ContentPage
     {
-        Editor result;
+        Label result;
 
         ConnectionOperation operation;
         IConnection connection;
@@ -53,7 +53,7 @@ namespace NetworkApp
         /// <param name="op">ConnectionOperation</param>
         public ConnectionResultPage(ConnectionOperation op)
         {
-            result = CreateEditor();
+            result = CreateLabel();
 
             // Create a Layout
             Content = new StackLayout
@@ -73,13 +73,12 @@ namespace NetworkApp
         /// Create an Editor instance 
         /// </summary>
         /// <returns>Editor</returns>
-        private Editor CreateEditor()
+        private Label CreateLabel()
         {
-            return new Editor()
+            return new Label()
             {
                 BackgroundColor = Color.White,
                 FontSize = 20,
-                IsEnabled = false,
             };
         }
 
