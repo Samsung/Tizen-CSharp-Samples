@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushReceiver", "PushReceiver\PushReceiver\PushReceiver.csproj", "{1C72C9E8-197F-47EA-9632-37EDCAE01656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushReceiver.Tizen.Mobile", "PushReceiver\PushReceiver.Tizen.Mobile\PushReceiver.Tizen.Mobile.csproj", "{61F7A9CF-EACA-47B7-BFBA-093C3741271B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C72C9E8-197F-47EA-9632-37EDCAE01656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C72C9E8-197F-47EA-9632-37EDCAE01656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C72C9E8-197F-47EA-9632-37EDCAE01656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C72C9E8-197F-47EA-9632-37EDCAE01656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F7A9CF-EACA-47B7-BFBA-093C3741271B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F7A9CF-EACA-47B7-BFBA-093C3741271B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F7A9CF-EACA-47B7-BFBA-093C3741271B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F7A9CF-EACA-47B7-BFBA-093C3741271B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62E8DFEB-A4DC-4683-9ADC-D9AC3B9FC1BE}
+	EndGlobalSection
+EndGlobal
