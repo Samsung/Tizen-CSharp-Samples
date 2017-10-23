@@ -28,3 +28,8 @@ Tizen C# Samples for Mobile, Wearable, and TV profiles.
     ├── H
     └── I
 ```
+
+### Branch policy
+
+* master: ready applications for Preview #5
+* dev: for development
