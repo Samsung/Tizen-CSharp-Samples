@@ -1,0 +1,11 @@
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Core.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Platform.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Xaml.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Platform.Tizen.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\SampleAccount.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\SampleAccount.pdb
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\SampleAccount.Tizen.Mobile.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\SampleAccount.Tizen.Mobile.pdb
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\tpkroot\shared\res\SampleAccount.Tizen.Mobile.png
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\tpkroot\tizen-manifest.xml
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\org.tizen.example.SampleAccount.Tizen.Mobile-1.0.0.tpk

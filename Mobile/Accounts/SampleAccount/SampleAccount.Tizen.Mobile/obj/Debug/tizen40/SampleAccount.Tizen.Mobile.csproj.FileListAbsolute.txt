@@ -1,0 +1,11 @@
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\SampleAccount.Tizen.Mobile.deps.json
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\SampleAccount.Tizen.Mobile.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\SampleAccount.Tizen.Mobile.pdb
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\SampleAccount.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\bin\Debug\tizen40\SampleAccount.pdb
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\obj\Debug\tizen40\SampleAccount.Tizen.Mobile.csprojResolveAssemblyReference.cache
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\obj\Debug\tizen40\SampleAccount.Tizen.Mobile.csproj.CoreCompileInputs.cache
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\obj\Debug\tizen40\SampleAccount.Tizen.Mobile.AssemblyInfoInputs.cache
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\obj\Debug\tizen40\SampleAccount.Tizen.Mobile.AssemblyInfo.cs
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\obj\Debug\tizen40\SampleAccount.Tizen.Mobile.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount.Tizen.Mobile\obj\Debug\tizen40\SampleAccount.Tizen.Mobile.pdb

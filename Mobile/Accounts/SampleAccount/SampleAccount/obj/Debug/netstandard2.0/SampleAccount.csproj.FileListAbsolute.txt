@@ -1,0 +1,12 @@
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\bin\Debug\netstandard2.0\SampleAccount.deps.json
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\bin\Debug\netstandard2.0\SampleAccount.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\bin\Debug\netstandard2.0\SampleAccount.pdb
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\obj\Debug\netstandard2.0\SampleAccount.csproj.CoreCompileInputs.cache
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\obj\Debug\netstandard2.0\SampleAccount.SampleAccount.xaml.g.cs
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\obj\Debug\netstandard2.0\SampleAccount.Views.AccountSignIn.xaml.g.cs
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\obj\Debug\netstandard2.0\SampleAccount.Views.AccountSignOut.xaml.g.cs
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\obj\Debug\netstandard2.0\SampleAccount.AssemblyInfoInputs.cache
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\obj\Debug\netstandard2.0\SampleAccount.AssemblyInfo.cs
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\obj\Debug\netstandard2.0\SampleAccount.dll
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\obj\Debug\netstandard2.0\SampleAccount.pdb
+C:\Users\Sams\source\repos\SampleAccount\SampleAccount\SampleAccount\obj\Debug\netstandard2.0\SampleAccount.csprojResolveAssemblyReference.cache

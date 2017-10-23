@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SampleAccount.Views.AccountSignOut"
+             Title="Sample Account">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" BackgroundColor="White">
+            <Label x:Name="AccountLabel" Text="" TextColor="Black" FontSize = "20"/>
+            <Label Text="Sample Account ID" TextColor="Black" FontSize = "15"/>
+            <Button Text="SIGN OUT"
+                    Clicked="SignOutClicked"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="EndAndExpand"
+                    Font="Large" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
