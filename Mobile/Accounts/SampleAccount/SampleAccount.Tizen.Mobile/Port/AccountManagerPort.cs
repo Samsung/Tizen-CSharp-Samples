@@ -84,6 +84,11 @@ namespace AccountManager.Tizen.Port
         {
             try
             {
+                if (accountItem == null)
+                {
+                    throw new ArgumentNullException(nameof(accountItem));
+                }
+
                 // Create account instance with the account ID.
                 Account account = AccountService.GetAccountById(accountItem.AccountId);
 

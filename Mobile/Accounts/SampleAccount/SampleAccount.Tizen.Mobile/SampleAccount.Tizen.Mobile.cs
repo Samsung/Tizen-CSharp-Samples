@@ -14,7 +14,7 @@ namespace SampleAccount.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            // Register Tizen
+            // Register Tizen Account Manager API Port
             global::Xamarin.Forms.DependencyService.Register<AccountManagerPort>();
             global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
             app.Run(args);
