@@ -31,7 +31,7 @@ namespace PushReceiver.Tizen.Port
 
         public int PushConnect()
         {
-            string AppId = "7c58a4ac98388bba";
+            string AppId = "Your Push App ID";
             try
             {
                 PushClient.PushServiceConnect(AppId);
