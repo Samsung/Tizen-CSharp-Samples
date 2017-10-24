@@ -27,25 +27,32 @@ using AccountManager.Models;
 namespace SampleAccount.Views
 {
     /// <summary>
-    /// Contents page of account sign out
+    /// Content page of account sign out
     /// </summary>
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AccountSignOut : ContentPage
 	{
+        /// <summary>
+        ///  Interface variable of account manager
+        /// </summary>
         private static IAccountManagerAPIs accountAPIs;
-        AccountItem Account;
+
+        /// <summary>
+        /// Represents account Item
+        /// </summary>
+        private AccountItem account;
 
         /// <summary>
         /// Account sign out constructor. 
         /// </summary>
         /// <param name="accountId"> Account id from account manager</param>
         /// <param name="userId"> User id from user input</param>
-        public AccountSignOut (int accountId, string userId)
+        public AccountSignOut(int accountId, string userId)
 		{
-			InitializeComponent ();
+            InitializeComponent();
             AccountLabel.Text = userId;
 
-            Account = new AccountItem
+            account = new AccountItem
             {
                 AccountId = accountId,
                 UserId = userId
@@ -55,16 +62,16 @@ namespace SampleAccount.Views
         }
 
         /// <summary>
-        /// Event when "SIGN OUT" button is cliked.
+        /// Event when "SIGN OUT" button is clicked.
         /// </summary>
         /// <param name="sender"> Parameter about which object is invoked the current event. </param>
         /// <param name="args"> Event arguments. </param>
-        async void SignOutClicked(object sender, EventArgs args)
+        public async void SignOutClicked(object sender, EventArgs args)
         {
-            accountAPIs.AccountDelete(Account);
+            accountAPIs.AccountDelete(account);
 
             AccountSignIn accountSignIn = new AccountSignIn();
-            await DisplayAlert("Account Deleted","ID : " +  Account.UserId, "OK");
+            await DisplayAlert("Account Deleted", "ID : " + account.UserId, "OK");
             await Navigation.PushAsync(accountSignIn);
         }
     }

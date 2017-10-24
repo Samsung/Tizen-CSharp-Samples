@@ -33,11 +33,11 @@ namespace AccountManager.Tizen.Port
         /// </summary>
         public AccountManagerPort()
         {
-
+            // Constructor
         }
 
         /// <summary>
-        /// Add account with inputed id and password. You should get these from server communication in actual account provider.
+        /// Add account with received id and password. You should get these from server communication in actual account provider.
         /// </summary>
         /// <param name="accountItem"> Account item be added.</param>
         /// <returns> The account ID of the account instance </returns>
@@ -65,6 +65,7 @@ namespace AccountManager.Tizen.Port
                 account.SyncState = AccountSyncState.Idle;
 
                 // Insert account DB with the new account information.
+                // AddAccount retuerns account id.
                 id = AccountService.AddAccount(account);
 
                 return id;
@@ -90,6 +91,8 @@ namespace AccountManager.Tizen.Port
                 }
 
                 // Create account instance with the account ID.
+                // GetAccountByID retrieves the account with the account ID.
+                // GetAccountByID returened account instance with reference to the given ID
                 Account account = AccountService.GetAccountById(accountItem.AccountId);
 
                 // Deletes the account information from the account DB.

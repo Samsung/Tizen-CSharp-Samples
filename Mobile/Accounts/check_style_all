@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]||[ ! -d $1 ] 
+then
+	echo "No Target Folder. e.g. check_style [target_folder]"
+	exit;
+fi
+
+flist=`find $1 -type f`
+
+for file in `echo $flist`
+do
+	echo $file
+	perl ~/checkpatch_tizen.pl $file
+	echo 
+done

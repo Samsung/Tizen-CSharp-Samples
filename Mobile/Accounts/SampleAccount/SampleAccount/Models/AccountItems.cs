@@ -14,7 +14,6 @@
   * limitations under the License. 
   */
 
-
 namespace AccountManager.Models
 {
     /// <summary>

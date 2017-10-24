@@ -14,15 +14,14 @@
   * limitations under the License. 
   */
 
+using AccountManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using AccountManager.Models;
 
 namespace SampleAccount.Views
 {
@@ -32,46 +31,43 @@ namespace SampleAccount.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AccountSignIn : ContentPage
 	{
-        private static IAccountManagerAPIs accountAPIs;
-        string userId;
-        string userPass;
+        /// <summary>
+        ///  Interface variable of account manager
+        /// </summary>
+        private static IAccountManagerAPIs accountAPIs; 
 
         /// <summary>
-        /// Account sign in constructor.
+        /// User ID value
         /// </summary>
-        public AccountSignIn ()
+        private string userId;
+
+        /// <summary>
+        /// User password value
+        /// </summary>
+        private string userPass;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountSignIn"/> class.
+        /// </summary>
+        public AccountSignIn()
 		{
-			InitializeComponent ();
+            InitializeComponent();
 
             var entryId = new Entry();
             var entryPass = new Entry();
 
-            entryId.TextChanged += ID_TextChanged;
-            entryPass.TextChanged += Pass_TextChanged;
+            IdTextChange(entryId);
+            PassTextChange(entryPass);
 
             accountAPIs = DependencyService.Get<IAccountManagerAPIs>();
         }
 
         /// <summary>
-        /// Set user id received user input
-        /// </summary>
-        /// <param name="sender"> Parameter about which object is invoked the current event. </param>
-        /// <param name="e"> Event data of ID text changed </param>
-        void ID_TextChanged(object sender, TextChangedEventArgs e) => userId = e.NewTextValue;
-
-        /// <summary>
-        /// Set password received user input
-        /// </summary>
-        /// <param name="sender"> Parameter about which object is invoked the current event. </param>
-        /// <param name="e"> Event data of Password text changed </param>
-        void Pass_TextChanged(object sender, TextChangedEventArgs e) => userPass = e.NewTextValue;
-
-        /// <summary>
-        /// Event when "SIGN IN" button is cliked.
+        /// Event when "SIGN IN" button is clicked.
         /// </summary>
         /// <param name="sender"> Parameter about which object is invoked the current event. </param>
         /// <param name="args"> Event arguments</param>
-        async void CreateClicked(object sender, EventArgs args)
+        public async void CreateClicked(object sender, EventArgs args)
         {
             int id;
             Button button = (Button)sender;
@@ -81,11 +77,13 @@ namespace SampleAccount.Views
             account.UserId = userId;
             account.UserPassword = userPass;
 
-            if (String.IsNullOrEmpty(account.UserId) || String.IsNullOrEmpty(account.UserPassword)) { 
-                await DisplayAlert("Error!",
-                "Please Input ID / Password Correctly",
-                "OK");
-            } else {
+            if (string.IsNullOrEmpty(account.UserId) || string.IsNullOrEmpty(account.UserPassword))
+            {
+                // Check wrong Input parameter
+                await DisplayAlert("Error!", "Please Input ID / Password Correctly", "OK");
+            }
+            else
+            {
                 // Add account and receive account id.
                 id = accountAPIs.AccountAdd(account);
 
@@ -94,5 +92,31 @@ namespace SampleAccount.Views
                 await Navigation.PushAsync(accountSignOut);
             }
         }
+
+        /// <summary>
+        /// Received changed password in UI
+        /// </summary>
+        /// <param name="entryPass"> entry of password</param>
+        private void PassTextChange(Entry entryPass) => entryPass.TextChanged += Pass_TextChanged;
+
+        /// <summary>
+        /// Received changed id in UI
+        /// </summary>
+        /// <param name="entryId"> entry of id </param>
+        private void IdTextChange(Entry entryId) => entryId.TextChanged += ID_TextChanged;
+
+        /// <summary>
+        /// Set user id received user input
+        /// </summary>
+        /// <param name="sender"> Parameter about which object is invoked the current event. </param>
+        /// <param name="e"> Event data of ID text changed </param>
+        private void ID_TextChanged(object sender, TextChangedEventArgs e) => userId = e.NewTextValue;
+
+        /// <summary>
+        /// Set password received user input
+        /// </summary>
+        /// <param name="sender"> Parameter about which object is invoked the current event. </param>
+        /// <param name="e"> Event data of Password text changed </param>
+        private void Pass_TextChanged(object sender, TextChangedEventArgs e) => userPass = e.NewTextValue;
     }
 }
