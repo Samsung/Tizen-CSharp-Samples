@@ -1,0 +1,12 @@
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\bin\Tizen.dll
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\bin\Tizen.Applications.Common.dll
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\bin\Tizen.Log.dll
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\bin\Tizen.NUI.dll
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\bin\VisualSample.dll
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\bin\VisualSample.pdb
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\res\images\dog-anim.gif
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\res\images\focus_grid.9.png
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\res\images\gallery-1.jpg
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\res\images\Kid1.svg
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\tpkroot\tizen-manifest.xml
+X:\PushSample\nui\NUISamples\VisualSample\VisualSample\bin\Debug\netcoreapp2.0\org.tizen.example.VisualSample-1.0.0.tpk
