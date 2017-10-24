@@ -161,6 +161,10 @@ namespace Downloader.Tizen.Mobile
                 case DownloadState.Completed:
                     stateMsg = "Completed";
                     break;
+                /// Download is failed.
+                case DownloadState.Failed:
+                    stateMsg = "Failed";
+                    break;
                 default:
                     stateMsg = "";
                     break;
