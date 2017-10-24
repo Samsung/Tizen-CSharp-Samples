@@ -6,7 +6,7 @@ The Push Receiver sample application demonstrates how you can receive push notif
 <table>
 <tr>
 <td>
-<img src='push_receiver.png' height=400>
+<center><img src='push_receiver.png' height=400></center>
 </td>
 </tr>
 </table>
