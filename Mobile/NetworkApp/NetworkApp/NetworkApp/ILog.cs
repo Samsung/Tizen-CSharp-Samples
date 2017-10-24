@@ -21,14 +21,14 @@ using System.Text;
 namespace NetworkApp
 {
     /// <summary>
-    /// Interface to use Dlog
+    /// Interface to use log
     /// </summary>
     public interface ILog
     {
         /// <summary>
-        /// Print Dlog message
+        /// Print log message
         /// </summary>
-        /// <param name="msg">Log message</param>
-        void Log(String msg);
+        /// <param name="message">Log message</param>
+        void Log(String message);
     }
 }

@@ -1,0 +1,13 @@
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\bin\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.deps.json
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\bin\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.runtimeconfig.json
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\bin\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.runtimeconfig.dev.json
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\bin\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.dll
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\bin\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.pdb
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\bin\Debug\netcoreapp2.0\Downloader.dll
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\bin\Debug\netcoreapp2.0\Downloader.pdb
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\obj\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.csprojResolveAssemblyReference.cache
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\obj\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.csproj.CoreCompileInputs.cache
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\obj\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.AssemblyInfoInputs.cache
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\obj\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.AssemblyInfo.cs
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\obj\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.dll
+C:\Workspace\Downloader\Downloader\Downloader.Tizen.Mobile\obj\Debug\netcoreapp2.0\Downloader.Tizen.Mobile.pdb

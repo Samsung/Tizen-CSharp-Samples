@@ -106,7 +106,7 @@ namespace NetworkApp
                     case ConnectionOperation.CURRENT:
                         CurrentConnection();
                         break;
-					// Show the current WiFi State
+                    // Show the current Wi-Fi State
                     case ConnectionOperation.WIFISTATE:
                         WiFiState();
                         break;
@@ -118,8 +118,8 @@ namespace NetworkApp
 					case ConnectionOperation.IPADDRESS:
                         IPAddress();
                         break;
-                    // Show the MAC address of WiFi
-					case ConnectionOperation.WIFIMACADDRESS:
+                    // Show the MAC address of Wi-Fi
+                    case ConnectionOperation.WIFIMACADDRESS:
                         WiFiMACAddress();
                         break;
                     // Show the proxy address
@@ -144,21 +144,21 @@ namespace NetworkApp
         private void CurrentConnection()
         {
             // Update Current operation state
-            result.Text = "Current Connection";
+            result.Text = "Current Connection\n";
             // Network type
-            result.Text += "\nType: " + connection.CurrentType;
+            result.Text += "Type: " + connection.CurrentType + "\n";
             // Network state
-            result.Text += "\nState: " + connection.CurrentState;
+            result.Text += "State: " + connection.CurrentState;
 
         }
 
         /// <summary>
-        /// Show the current WiFi State
+        /// Show the current Wi-Fi State
         /// </summary>
         private void WiFiState()
         {
             // Update Current operation state
-            result.Text = "WiFi State: " + connection.WiFiState;
+            result.Text = "Wi-Fi State: " + connection.WiFiState;
         }
 
         /// <summary>
@@ -184,12 +184,12 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// Show the MAC address of WiFi
+        /// Show the MAC address of Wi-Fi
         /// </summary>
         private void WiFiMACAddress()
         {
             // Update Current operation state
-            result.Text = "WiFi MAC Address: " + connection.WiFiMACAddress;
+            result.Text = "Wi-Fi MAC Address: " + connection.WiFiMACAddress;
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace NetworkApp
         {
             // Update Current operation state
             result.Text = "Get profile list";
-            // Get a list of connectio profiles
+            // Get a list of connection profiles
             List<String> list = await connection.ProfileList();
             // Update profileListView
             ListView profileListView = new ListView()

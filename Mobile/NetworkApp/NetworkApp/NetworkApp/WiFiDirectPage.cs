@@ -85,7 +85,7 @@ namespace NetworkApp
         /// <param name="e">Event argument</param>
         private void OnClicked(object sender, EventArgs e)
         {
-            // Start to discover WiFiDirect devices
+            // Start to discover Wi-Fi Direct devices
             if (scanButton.Text.Equals("Start Scan"))
             {
                 // Update Current operation state
@@ -93,7 +93,7 @@ namespace NetworkApp
                 // Start to discover
                 wifidirect.StartScan();
             }
-            // Stop to discover WiFiDirect devices
+            // Stop to discover Wi-Fi Direct devices
             else
             {
                 // Update Current operation state
@@ -104,7 +104,7 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// Event handler when WiFiDirect devices are clicked
+        /// Event handler when a found device is clicked
         /// </summary>
         /// /// <param name="sender">Event sender</param>
         /// <param name="e">Event argument</param>
@@ -115,7 +115,7 @@ namespace NetworkApp
             {
                 log.Log(">> Found " + item);
             }
-            // Show the discovered WiFiDirect devices
+            // Show the discovered Wi-Fi Direct devices
             scanListView.ItemsSource = e.deviceList;
         }
 
@@ -127,7 +127,7 @@ namespace NetworkApp
         {
             return new Label()
             {
-                Text = "WiFiDirect Test",
+                Text = "Wi-Fi Direct Test",
                 TextColor = Color.White,
                 FontSize = 28,
                 HorizontalTextAlignment = TextAlignment.Center,

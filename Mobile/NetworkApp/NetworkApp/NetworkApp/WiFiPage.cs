@@ -42,7 +42,7 @@ namespace NetworkApp
         private void InitializeComponent()
         {
             // Set title
-            Title = "WiFi";
+            Title = "Wi-Fi";
             IsVisible = true;
 
             // Create Label
@@ -73,7 +73,7 @@ namespace NetworkApp
         {
             return new Label()
             {
-                Text = "WiFi Test",
+                Text = "Wi-Fi Test",
                 TextColor = Color.White,
                 FontSize = 28,
                 HorizontalTextAlignment = TextAlignment.Center,
@@ -86,20 +86,20 @@ namespace NetworkApp
         /// <returns>ListView</returns>
         private ListView CreateListView()
         {
-            // WiFi operations
+            // Wi-Fi operations
             var SourceList = new List<String>()
             {
-                // Activate WiFi
+                // Activate Wi-Fi
                 "Activate",
-                // Deactivate WiFi
+                // Deactivate Wi-Fi
                 "Deactivate",
                 // Scan
                 "Scan",
-                // Connect to the selected WiFi AP
+                // Connect to the selected Wi-Fi AP
                 "Connect",
-                // Disconnect the selected WiFi AP
+                // Disconnect the selected Wi-Fi AP
                 "Disconnect",
-                // Forget the selected WiFi AP
+                // Forget the selected Wi-Fi AP
                 "Forget",
             };
             // Create a ListView

@@ -42,23 +42,23 @@ namespace NetworkApp.Tizen.Mobile
         }
 
         /// <summary>
-        /// Call WiFiManager.ActivateAsync() to turn on WiFi
+        /// Call WiFiManager.ActivateAsync() to turn on Wi-Fi interface
         /// </summary>
         /// <returns>Task to do ActivateAsync</returns>
         public async Task Activate()
         {
-            LogImplementation.DLog("Activate");
+            LogImplementation.DLog("Activate()");
             // Call Tizen C# API
             await WiFiManager.ActivateAsync();
         }
 
         /// <summary>
-        /// Call WiFiManager.DeactivateAsync() to turn off WiFi
+        /// Call WiFiManager.DeactivateAsync() to turn off Wi-Fi interface
         /// </summary>
         /// <returns>Task to do DeactivateAsync</returns>
         public Task Deactivate()
         {
-            LogImplementation.DLog("Deactivate");
+            LogImplementation.DLog("Deactivate()");
             // Call Tizen C# API
             return WiFiManager.DeactivateAsync();
         }
@@ -69,23 +69,23 @@ namespace NetworkApp.Tizen.Mobile
         /// <returns>Task to do ScanAsync</returns>
         public Task Scan()
         {
-            LogImplementation.DLog("Scan");
+            LogImplementation.DLog("Scan()");
             // Call Tizen C# API
             return WiFiManager.ScanAsync();
         }
 
         /// <summary>
-        /// Call WiFiManager.GetFoundAPs() to get scan result and return a list that contains APInfo
+        /// Call WiFiManager.GetFoundAPs() to get scan result and return a list that contains Wi-Fi AP information
         /// </summary>
-        /// <returns>scan result by a list of APInfo</returns>
+        /// <returns>scan result by a list of Wi-Fi AP information</returns>
         public List<APInfo> ScanResult()
         {
-            LogImplementation.DLog("ScanResult");
+            LogImplementation.DLog("ScanResult()");
             try
             {
                 // Call Tizen C# API
                 apList = WiFiManager.GetFoundAPs();
-                // return a list that contains WiFi ESSIDs
+                // return a list that contains Wi-Fi ESSID
                 return GetAPList();
             }
             catch (Exception e)
@@ -97,15 +97,15 @@ namespace NetworkApp.Tizen.Mobile
         }
 
         /// <summary>
-        /// Call WiFiAP.ConnectAsync() to connect the WiFiAP        
+        /// Call WiFiAP.ConnectAsync() to connect the Wi-Fi AP        
         /// </summary>
-        /// <param name="essid">ESSID of AP to connect</param>
-        /// <param name="password">password of AP to connect</param>
+        /// <param name="essid">ESSID of Wi-Fi AP to connect</param>
+        /// <param name="password">password of Wi-Fi AP to connect</param>
         /// <returns>Task to do ConnectAsync</returns>
         public Task Connect(String essid, String password)
         {
-            LogImplementation.DLog("Connect: " + essid + " " + password);
-            // Get a WiFiAP instance with essid from apList
+            LogImplementation.DLog("Connect() " + essid + " " + password);
+            // Get a WiFiAP instance with essid from Wi-Fi AP list
             WiFiAP ap = FindAP(essid);
             // Set password
             if (password.Length > 0)
@@ -117,24 +117,24 @@ namespace NetworkApp.Tizen.Mobile
         }
 
         /// <summary>
-        /// Call WiFiAP.DisconnectAsync() to disconnect the WiFiAP        
+        /// Call WiFiAP.DisconnectAsync() to disconnect the Wi-Fi AP        
         /// </summary>
-        /// <param name="essid">ESSID of AP to disconnect</param>
+        /// <param name="essid">ESSID of Wi-Fi AP to disconnect</param>
         /// <returns>Task to do DisconnectAsync</returns>
         public Task Disconnect(String essid)
         {
-            LogImplementation.DLog("Disconnect: " + essid);
-            // Get a WiFiAP instance with essid from apList and disconnect it by calling Tizen C# API
+            LogImplementation.DLog("Disconnect() " + essid);
+            // Get a WiFiAP instance with essid from Wi-Fi AP list and disconnect it by calling Tizen C# API
             return FindAP(essid).DisconnectAsync();
         }
 
         /// <summary>
-        /// Call WiFiAP.ForgetAP() to forget the WiFiAP
+        /// Call WiFiAP.ForgetAP() to forget the Wi-Fi AP
         /// </summary>
-        /// <param name="essid">ESSID of AP to forget</param>
+        /// <param name="essid">ESSID of Wi-Fi AP to forget</param>
         public void Forget(String essid)
         {
-            LogImplementation.DLog("Forget: " + essid);
+            LogImplementation.DLog("Forget() " + essid);
             WiFiAP ap = FindAP(essid);
             if (ap == null)
             {
@@ -147,11 +147,11 @@ namespace NetworkApp.Tizen.Mobile
         /// <summary>
         /// Find a WiFiAP instance        
         /// </summary>
-        /// <param name="essid">ESSID of AP to find from apList</param>
-        /// <returns>WiFiAP instance with essid</returns>
+        /// <param name="essid">ESSID of Wi-Fi AP to find from apList</param>
+        /// <returns>WiFiAP instance with the ESSID</returns>
         private WiFiAP FindAP(String essid)
         {
-            LogImplementation.DLog("FindAP: " + essid);
+            LogImplementation.DLog("FindAP() " + essid);
             ScanResult();
             foreach (var item in apList)
             {
@@ -166,9 +166,9 @@ namespace NetworkApp.Tizen.Mobile
         }
 
         /// <summary>
-        /// Check if WiFi is powered on 
+        /// Check if Wi-Fi is powered on 
         /// </summary>
-        /// <returns>True if WIFi is on. False, otherwise</returns>
+        /// <returns>True if Wi-Fi is on. False, otherwise</returns>
         public bool IsActive()
         {
             // Call Tizen C# API
@@ -178,7 +178,7 @@ namespace NetworkApp.Tizen.Mobile
         /// <summary>
         /// Get the ESSID of the AP that this device is connected to
         /// </summary>
-        /// <returns>ESSID of the connected AP</returns>
+        /// <returns>ESSID of the connected Wi-Fi AP</returns>
         public String ConnectedAP()
         {
             // Call Tizen C# API
@@ -186,9 +186,9 @@ namespace NetworkApp.Tizen.Mobile
         }
 
         /// <summary>
-        /// Get a list of scanned APs
+        /// Get a list of scanned Wi-Fi APs
         /// </summary>
-        /// <returns>List of APInfo</returns>
+        /// <returns>List of Wi-Fi AP infomation</returns>
         public List<APInfo> GetAPList()
         {
             List<APInfo> apInfoList = new List<APInfo>();
