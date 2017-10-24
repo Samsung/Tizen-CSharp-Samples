@@ -1,0 +1,11 @@
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Core.dll
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Platform.dll
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Xaml.dll
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Platform.Tizen.dll
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\SampleSync.dll
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\SampleSync.pdb
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\SampleSync.Tizen.Mobile.dll
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\SampleSync.Tizen.Mobile.pdb
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\tpkroot\shared\res\SampleSync.png
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\tpkroot\tizen-manifest.xml
+Z:\SampleSync\SampleSync\SampleSync\SampleSync.Tizen.Mobile\bin\Debug\tizen40\org.tizen.example.SampleSync.Tizen.Mobile-1.0.0.tpk
