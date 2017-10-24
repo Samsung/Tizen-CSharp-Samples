@@ -39,9 +39,13 @@ namespace Downloader.Tizen.Mobile
         /// <param name="url">The URL to download</param>
         public void StartDownload(string url)
         {
+            // Set the URL
             req.Url = url;
+            // Register state changed event handler
             req.StateChanged += StateChanged;
+            // Register progress changed event handler
             req.ProgressChanged += ProgressChanged;
+            // Start download content
             req.Start();
         }
 
@@ -125,12 +129,13 @@ namespace Downloader.Tizen.Mobile
         }
 
         /// <summary>
-        /// Print log
+        /// Show log message
         /// </summary>
-        /// <param name="msg">Log message</param>
-        public void DownloadLog(String msg)
+        /// <param name="message">Log message</param>
+        public void DownloadLog(String message)
         {
-            Log.Info("DOWNLOADER", msg);
+            // Show received message as DLOG
+            Log.Info("DOWNLOADER", message);
         }
 
         /// <summary>
@@ -161,6 +166,7 @@ namespace Downloader.Tizen.Mobile
                     break;
             }
 
+            // Send current state to event handler
             DownloadStateChanged(sender, new DownloadStateChangedEventArgs(stateMsg));
         }
 
@@ -171,6 +177,7 @@ namespace Downloader.Tizen.Mobile
         /// <param name="e">Progress changed event arguments</param>
         private void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            // If received data is exist, send data size to event handler
             if (e.ReceivedDataSize > 0)
             {
                 DownloadProgress(sender, new DownloadProgressEventArgs(e.ReceivedDataSize));

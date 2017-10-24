@@ -43,6 +43,7 @@ namespace Downloader
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            // Update a download information list when this page is focused
             UpdateDownloadInfoList();
         }
 
@@ -68,17 +69,22 @@ namespace Downloader
         }
 
         /// <summary>
-        /// Update download information list.
-        /// This method is only called when download is completed.
+        /// Update a download information list.
         /// </summary>
         private void UpdateDownloadInfoList()
         {
+            // Update a download information list when download is completed
             if (!isUpdatedInfoList && (State)DependencyService.Get<IDownload>().GetDownloadState() == State.Completed)
             {
+                // Add downloaded URL to list
                 downloadInfoList.Add(new DownloadInfo("URL", DependencyService.Get<IDownload>().GetUrl()));
+                // Add downloaded content name to list
                 downloadInfoList.Add(new DownloadInfo("Content Name", DependencyService.Get<IDownload>().GetContentName()));
+                // Add downloaded content size to list
                 downloadInfoList.Add(new DownloadInfo("Content Size", DependencyService.Get<IDownload>().GetContentSize().ToString()));
+                // Add downloaded MIME type to list
                 downloadInfoList.Add(new DownloadInfo("MIME Type", DependencyService.Get<IDownload>().GetMimeType()));
+                // Add downloaded path to list
                 downloadInfoList.Add(new DownloadInfo("Download Path", DependencyService.Get<IDownload>().GetDownloadedPath()));
 
                 isUpdatedInfoList = true;
@@ -103,7 +109,7 @@ namespace Downloader
 
         /// <summary>
         /// Create a new ListView
-        /// This "ListView" shows download information list.
+        /// This ListView shows download information list.
         /// </summary>
         /// <returns>ListView</returns>
         private ListView CreateListView()

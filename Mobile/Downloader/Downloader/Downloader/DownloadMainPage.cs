@@ -222,12 +222,15 @@ namespace Downloader
             DependencyService.Get<IDownload>().DownloadLog("Start Download: " + downloadUrl);
             try
             {
+                // Start to download content
                 DependencyService.Get<IDownload>().StartDownload(downloadUrl);
+                // Disable a button to avoid duplicated request.
                 ((Button)sender).IsEnabled = false;
             }
             catch (Exception ex)
             {
                 DependencyService.Get<IDownload>().DownloadLog("Request.Start() is failed" + ex);
+                // In case download is failed, enable a button.
                 ((Button)sender).IsEnabled = true;
             }
         }

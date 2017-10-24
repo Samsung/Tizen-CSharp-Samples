@@ -28,7 +28,9 @@ namespace Downloader
         /// </summary>
         public App()
         {
+            // Download main page
             Page Download = new DownloadMainPage();
+            // Download information page
             Page DownloadInfo = new DownloadInfoPage();
 
             // The root page of your application
