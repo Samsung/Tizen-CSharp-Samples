@@ -1,0 +1,8 @@
+X:\PushSample\nui\NUISamples\TextSample\TextSample\bin\Debug\netcoreapp2.0\tpkroot\bin\Tizen.dll
+X:\PushSample\nui\NUISamples\TextSample\TextSample\bin\Debug\netcoreapp2.0\tpkroot\bin\Tizen.Applications.Common.dll
+X:\PushSample\nui\NUISamples\TextSample\TextSample\bin\Debug\netcoreapp2.0\tpkroot\bin\Tizen.Log.dll
+X:\PushSample\nui\NUISamples\TextSample\TextSample\bin\Debug\netcoreapp2.0\tpkroot\bin\Tizen.NUI.dll
+X:\PushSample\nui\NUISamples\TextSample\TextSample\bin\Debug\netcoreapp2.0\tpkroot\bin\TextSample.dll
+X:\PushSample\nui\NUISamples\TextSample\TextSample\bin\Debug\netcoreapp2.0\tpkroot\bin\TextSample.pdb
+X:\PushSample\nui\NUISamples\TextSample\TextSample\bin\Debug\netcoreapp2.0\tpkroot\tizen-manifest.xml
+X:\PushSample\nui\NUISamples\TextSample\TextSample\bin\Debug\netcoreapp2.0\org.tizen.example.TextSample-1.0.0.tpk
