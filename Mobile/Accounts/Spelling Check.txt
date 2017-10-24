@@ -1,0 +1,35 @@
+\SampleAccount\SampleAccount\SampleAccount.xaml.cs
+	SampleAccount.xaml.cs		www		8: 12		Comment
+\SampleAccount\SampleAccount\Models\AccountItems.cs
+	AccountItems.cs		www		8: 12		Comment
+\SampleAccount\SampleAccount\Models\IAccountManagerAPIs.cs
+	IAccountManagerAPIs.cs		www		8: 12		Comment
+	IAccountManagerAPIs.cs		accountItem		30: 26		Comment
+	IAccountManagerAPIs.cs		accountItem		37: 26		Comment
+\SampleAccount\SampleAccount\Views\AccountSignIn.xaml.cs
+	AccountSignIn.xaml.cs		www		8: 12		Comment
+	AccountSignIn.xaml.cs		AccountSignIn		50: 58		Comment
+	AccountSignIn.xaml.cs		args		69: 26		Comment
+	AccountSignIn.xaml.cs		entryPass		99: 26		Comment
+	AccountSignIn.xaml.cs		entryId		105: 26		Comment
+\SampleAccount\SampleAccount\Views\AccountSignOut.xaml.cs
+	AccountSignOut.xaml.cs		www		8: 12		Comment
+	AccountSignOut.xaml.cs		accountId		48: 26		Comment
+	AccountSignOut.xaml.cs		userId		49: 26		Comment
+	AccountSignOut.xaml.cs		args		68: 26		Comment
+\SampleAccount\SampleAccount.Tizen.Mobile\SampleAccount.Tizen.Mobile.cs
+	SampleAccount.Tizen.Mobile.cs		xamarin		7: 20		Comment
+	SampleAccount.Tizen.Mobile.cs		tizen		7: 37		Comment
+	SampleAccount.Tizen.Mobile.cs		tizen		21: 43		Comment
+	SampleAccount.Tizen.Mobile.cs		args		23: 26		Comment
+	SampleAccount.Tizen.Mobile.cs		Tizen		28: 25		Comment
+	SampleAccount.Tizen.Mobile.cs		Initiailize		31: 16		Comment
+\SampleAccount\SampleAccount.Tizen.Mobile\Port\AccountManagerPort.cs
+	AccountManagerPort.cs		www		8: 12		Comment
+	AccountManagerPort.cs		APIs		27: 40		Comment
+	AccountManagerPort.cs		AccountManagerPort		32: 13		Comment
+	AccountManagerPort.cs		accountItem		42: 26		Comment
+	AccountManagerPort.cs		AddAccount		68: 20		Comment
+	AccountManagerPort.cs		accountItem		83: 26		Comment
+	AccountManagerPort.cs		GetAccountByID		94: 20		Comment
+	AccountManagerPort.cs		GetAccountByID		95: 20		Comment
