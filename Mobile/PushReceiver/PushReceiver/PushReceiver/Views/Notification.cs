@@ -26,7 +26,7 @@ namespace PushReceiver.Views
 
         public string Detail { get; set; }
 
-        public Notification (string text, string detail)
+        public Notification(string text, string detail)
         {
             Text = text;
             Detail = detail;

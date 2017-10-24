@@ -29,6 +29,9 @@ using PushReceiver.Utils;
 
 namespace PushReceiver.Views
 {
+    /// <summary>
+    /// PushReceiver app main UI page
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
@@ -57,16 +60,22 @@ namespace PushReceiver.Views
                     foreach (string temp in val)
                     {
                         if (temp.Contains("action"))
+                        {
                             msg1 = temp.Substring(temp.IndexOf("=") + 1);
+                        }
+
                         if (temp.Contains("alertMessage"))
+                        {
                             msg2 = temp.Substring(temp.IndexOf("=") + 1);
+                        }
+
                     }
 
                     Console.WriteLine("Notification Received : " + e.message);
 
                     //Add your code here when push messages arrive
 
-                    // Example UI : add notification to UI 
+                    // Example UI : add notification to UI
                     // "Type : ALERT / Message : 1st Push"
                     // "20171019 11:20:22 PM"
                     notification.Add(new Notification("Type : " + msg1 + " / Message : " + msg2, e.receiveTime.ToString()));
@@ -88,10 +97,13 @@ namespace PushReceiver.Views
         /// <summary>
         /// This method will be called when the clear button is pressed
         /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="args">args</param>
         async void OnClearClicked(object sender, EventArgs args)
         {
             // Remove all the UI list items
             notification.Clear();
+            await DisplayAlert("Push Receiver", "Removed all the notification list", "OK");
         }
     }
 }

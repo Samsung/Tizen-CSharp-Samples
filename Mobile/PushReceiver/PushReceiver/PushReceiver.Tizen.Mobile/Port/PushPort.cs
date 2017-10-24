@@ -54,7 +54,7 @@ namespace PushReceiver.Tizen.Port
                         // 0 is for registered state
                         pEvent.OnStateChanged(0);
 
-                        // Get the registration id 
+                        // Get the registration id
                         string id = PushClient.GetRegistrationId();
                         Console.WriteLine("RegId: [" + id + "]");
 
@@ -65,7 +65,8 @@ namespace PushReceiver.Tizen.Port
                         // which are sent during the disconnected state
                         // handlerNotification method is called if there are unread notifications
                         PushClient.GetUnreadNotifications();
-                    } else if (e.State == PushConnectionStateEventArgs.PushState.Unregistered)
+                    }
+                    else if (e.State == PushConnectionStateEventArgs.PushState.Unregistered)
                     {
                         // 1 is for registered state
                         pEvent.OnStateChanged(1);
@@ -74,7 +75,8 @@ namespace PushReceiver.Tizen.Port
 
                         // Send a registration request to the push service
                         Task<ServerResponse> tr = PushClient.PushServerRegister();
-                        tr.GetAwaiter().OnCompleted(() => {
+                        tr.GetAwaiter().OnCompleted(() => 
+                        {
                             // You will get result for register API
                             ServerResponse res = tr.Result;
                             Console.WriteLine("ServerResult: [" + res.ServerResult + "], ServerMessage: [" + res.ServerMessage + "]");
@@ -82,11 +84,11 @@ namespace PushReceiver.Tizen.Port
                     }
                 };
 
-                // When push notification is received, this handler will be called 
+                // When push notification is received, this handler will be called
                 EventHandler<PushMessageEventArgs> handlerNotification = (object sender, PushMessageEventArgs e) =>
                 {
                     Console.WriteLine("========================== Notification Received ==========================");
-                    // App data loaded on the notification 
+                    // App data loaded on the notification
                     Console.WriteLine("AppData: [" + e.AppData + "]");
                     // Notification message
                     Console.WriteLine("Message: [" + e.Message + "]");
@@ -113,17 +115,29 @@ namespace PushReceiver.Tizen.Port
             {
                 Console.WriteLine("Caught Exception: " + e.ToString());
             }
+
             return 0;
         }
 
         /// <summary>
         /// Used to disconnect from Push Service
         /// </summary>
+        /// <returns>0 for success, other values for failure</returns>
         public int PushDisconnect()
         {
             Console.WriteLine("Push Disconnect");
-            PushClient.PushServiceDisconnect();
+            try
+            {
+                PushClient.PushServiceDisconnect();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Caught Exception: " + e.ToString());
+                return -1;
+            }
+
             return 0;
+
         }
 
         /// <summary>

@@ -14,9 +14,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding Text}" 
+                                <Label Text="{Binding Text}"
                                         Style="{DynamicResource ListItemDetailTextStyle}" />
-                                <Label Text="{Binding Detail}" 
+                                <Label Text="{Binding Detail}"
                                         Style="{DynamicResource ListItemDetailTextStyle}"/>
                             </StackLayout>
                         </ViewCell>

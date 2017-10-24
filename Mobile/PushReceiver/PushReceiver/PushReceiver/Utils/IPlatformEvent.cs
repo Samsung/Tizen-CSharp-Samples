@@ -26,11 +26,20 @@ namespace PushReceiver.Utils
         /// <summary>
         /// A method will be called when push notification is received.
         /// </summary>
+        /// <param name="appData">App data loaded on the notification</param>
+        /// <param name="message">Notification message</param>
+        /// <param name="receiveTime">Time when the noti is generated</param>
+        /// <param name="sender">Optional sender information</param>
+        /// <param name="sessionInfo">Optional session information</param>
+        /// <param name="requestId">Optional request ID</param>
+        /// <param name="type">Optional type/param>
+        /// <returns></returns>
         int OnNotificationReceived(string appData, string message, DateTime receiveTime, string sender, string sessionInfo, string requestId, int type);
 
         /// <summary>
         /// A method will be called when registration state is changed.
         /// </summary>
-        int OnStateChanged(int state);
+        /// <param name="state">registration state</param>
+        void OnStateChanged(int state);
     }
 }

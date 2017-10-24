@@ -18,12 +18,12 @@
     <Folder Include="res\" />
   </ItemGroup>
 
-  
+
   <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
     <ProjectReference Include="..\PushReceiver\PushReceiver.csproj" />
   </ItemGroup>
-  
+
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>

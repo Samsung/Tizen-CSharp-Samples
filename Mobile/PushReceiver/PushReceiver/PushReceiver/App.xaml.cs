@@ -89,9 +89,18 @@ namespace PushReceiver
         /// <summary>
         /// A method will be called when push notification is received.
         /// </summary>
+        /// <param name="_appData">App data loaded on the notification</param>
+        /// <param name="_message">Notification message</param>
+        /// <param name="_receiveTime">Time when the noti is generated</param>
+        /// <param name="_sender">Optional sender information</param>
+        /// <param name="_sessionInfo">Optional session information</param>
+        /// <param name="_requestId">Optional request ID</param>
+        /// <param name="_type">Optional type/param>
+        /// <returns></returns>
         public int OnNotificationReceived(string _appData, string _message, DateTime _receiveTime, string _sender, string _sessionInfo, string _requestId, int _type)
         {
-            NotificationReceivedListener?.Invoke(this, new NotificationReceivedEventArgs {
+            NotificationReceivedListener?.Invoke(this, new NotificationReceivedEventArgs
+            {
                 appData = _appData,
                 message = _message,
                 receiveTime = _receiveTime,
@@ -106,12 +115,13 @@ namespace PushReceiver
         /// <summary>
         /// A method will be called when registration state is changed.
         /// </summary>
-        public int OnStateChanged(int _state)
+        /// <param name="_state">rgistration state</param>
+        public void OnStateChanged(int _state)
         {
-            RegistrationStateChangedListener?.Invoke(this, new RegistrationStateChangedListener {
+            RegistrationStateChangedListener?.Invoke(this, new RegistrationStateChangedListener
+            {
                 state = _state,
             });
-            return 0;
         }
     }
 }
