@@ -21,15 +21,15 @@ using System.Text;
 namespace NetworkApp
 {
     /// <summary>
-    /// The WiFi AP information
+    /// The Wi-Fi AP information
     /// </summary>
     public class APInfo
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="Name">ESSID of WiFi AP</param>
-        /// <param name="State">State of WiFi AP</param>
+        /// <param name="Name">ESSID of Wi-Fi AP</param>
+        /// <param name="State">State of Wi-Fi AP</param>
         public APInfo(String Name, String State)
         {
             this.Name = Name;
@@ -37,11 +37,11 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// ESSID of WiFi AP
+        /// ESSID of Wi-Fi AP
         /// </summary>
         public String Name;
         /// <summary>
-        /// State of WiFi AP
+        /// State of Wi-Fi AP
         /// </summary>
         public String State;
     }

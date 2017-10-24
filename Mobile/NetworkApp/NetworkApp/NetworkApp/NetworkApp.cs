@@ -29,7 +29,7 @@ namespace NetworkApp
     public class App : Application
     {
         /// <summary>
-        /// There are three TabbedPage for Connection, WiFi, WiFiDirect respectively
+        /// There are three TabbedPage for Connection, Wi-Fi, Wi-Fi Direct respectively
         /// </summary>
         public App()
         {

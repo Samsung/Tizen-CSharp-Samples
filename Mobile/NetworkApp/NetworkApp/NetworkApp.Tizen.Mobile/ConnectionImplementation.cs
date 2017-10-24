@@ -42,7 +42,7 @@ namespace NetworkApp.Tizen.Mobile
         }
 
         /// <summary>
-        /// The type of the current profile for data connection (Disconnected, WiFi, Cellular, etc.)
+        /// The type of the current profile for data connection (Disconnected, Wi-Fi, Cellular, etc.)
         /// </summary>
         public String CurrentType
         {

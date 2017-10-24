@@ -88,14 +88,14 @@ namespace NetworkApp
             {
                 // Show the current connected network
                 "Current Connection",
-                // Show the current WiFi State
-                "WiFi State",
+                // Show the current Wi-Fi State
+                "Wi-Fi State",
                 // Show the current Cellular state
                 "Cellular State",
                 // Show the IPv4 address and the IPv6 address of the current connection
                 "IP Address",
-                // Show the MAC address of WiFi
-                "WiFi MAC Address",
+                // Show the MAC address of Wi-Fi
+                "Wi-Fi MAC Address",
                 // Show the proxy address
                 "Proxy Address",
                 // Show the connection profiles
@@ -125,8 +125,8 @@ namespace NetworkApp
                     // Switch to WiFiResultPage to show the result of ConnectionOperation.CURRENT
                     await Navigation.PushModalAsync(new ConnectionResultPage(ConnectionOperation.CURRENT));
                 }
-                // Item is "WiFi State"
-                else if (a.Item.ToString().Equals("WiFi State"))
+                // Item is "Wi-Fi State"
+                else if (a.Item.ToString().Equals("Wi-Fi State"))
                 {
                     // Switch to WiFiResultPage to show the result of ConnectionOperation.WIFISTATE
                     await Navigation.PushModalAsync(new ConnectionResultPage(ConnectionOperation.WIFISTATE));
@@ -143,8 +143,8 @@ namespace NetworkApp
                     // Switch to WiFiResultPage to show the result of ConnectionOperation.IPADDRESS
                     await Navigation.PushModalAsync(new ConnectionResultPage(ConnectionOperation.IPADDRESS));
                 }
-                // Item is "WiFi MAC Address"
-                else if (a.Item.ToString().Equals("WiFi MAC Address"))
+                // Item is "Wi-Fi MAC Address"
+                else if (a.Item.ToString().Equals("Wi-Fi MAC Address"))
                 {
                     // Switch to WiFiResultPage to show the result of ConnectionOperation.WIFIMACADDRESS
                     await Navigation.PushModalAsync(new ConnectionResultPage(ConnectionOperation.WIFIMACADDRESS));

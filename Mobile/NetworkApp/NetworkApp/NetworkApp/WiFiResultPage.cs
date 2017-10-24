@@ -56,8 +56,6 @@ namespace NetworkApp
         /// <param name="op">WiFiOperation</param>
         public WiFiResultPage(WiFiOperation op)
         {
-            // Dlog message
-            log.Log("WiFiOpPage " + op);
             operation = op;
             CreateLayout();
         }
@@ -67,8 +65,6 @@ namespace NetworkApp
         /// </summary>
         private void CreateLayout()
         {
-            // Dlog message
-            log.Log("CreateLayout");
             switch (operation)
             {
                 // Tizen.Network.WiFi.WiFiAP.ConnectAsync()
@@ -131,7 +127,7 @@ namespace NetworkApp
             result.IsEnabled = false;
             scanListView = new ListView();
 
-            // Show a list of WiFi AP
+            // Show a list of Wi-Fi AP
             ShowScanList();
 
             // Add event
@@ -266,7 +262,7 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// Show the WiFi AP list as a scan result. The list contains AP name and state
+        /// Show the Wi-Fi AP list as a scan result. The list contains AP name and state
         /// </summary>
         private void ShowScanList()
         {
@@ -277,7 +273,7 @@ namespace NetworkApp
             List<APInfo> apList = wifi.GetAPList();
             foreach (var item in apList)
             {
-                // Show WiFi AP name and current state
+                // Show Wi-Fi AP name and current state
                 SourceList.Add(item.Name + " (" + item.State + ")");
             }
             
@@ -318,24 +314,24 @@ namespace NetworkApp
             {
                 switch (operation)
                 {
-					// Activate WiFi
+                    // Activate Wi-Fi
                     case WiFiOperation.ACTIVATE:
                         Activate();
                         break;
-					// Dectivate WiFi
+                    // Dectivate Wi-Fi
                     case WiFiOperation.DEACTIVATE:
                         Deactivate();
                         break;
-                    // Connet to the selected WiFi AP
-					case WiFiOperation.CONNECT:
+                    // Connet to the selected Wi-Fi AP
+                    case WiFiOperation.CONNECT:
                         Connect();
                         break;
-                    // Disconnect the selected WiFi AP
-					case WiFiOperation.DISCONNECT:
+                    // Disconnect the selected Wi-Fi AP
+                    case WiFiOperation.DISCONNECT:
                         Disconnect();
                         break;
-                    // Forget the selected WiFi AP
-					case WiFiOperation.FORGET:
+                    // Forget the selected Wi-Fi AP
+                    case WiFiOperation.FORGET:
                         Forget();
                         break;
                 }
@@ -348,32 +344,32 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// Show the current connected WiFi AP
+        /// Show the current connected Wi-Fi AP
         /// </summary>
-        /// <returns>ESSID of the connect WiFi AP</returns>
+        /// <returns>ESSID of the connect Wi-Fi AP</returns>
         private String ShowConnectedAP()
         {
             try
             {
-                // Get the current connected WiFi AP
+                // Get the current connected Wi-Fi AP
                 return wifi.ConnectedAP();
             }
             catch (Exception e)
             {
-                // Fail to get the current connected WiFi AP
+                // Fail to get the current connected Wi-Fi AP
                 log.Log(e.ToString());
                 return "No AP connected";
             }
         }
 
         /// <summary>
-        /// Activate WiFi
+        /// Activate Wi-Fi
         /// </summary>
         private async void Activate()
         {
             try
             {
-                // Check if WiFi is activated
+                // Check if Wi-Fi is activated
                 if (wifi.IsActive())
                 {
                     // Update Current operation state
@@ -383,7 +379,7 @@ namespace NetworkApp
                 {
                     // Update Current operation state
                     result.Text = "Try to activate";
-                    // Activate WiFi
+                    // Activate Wi-Fi
                     await wifi.Activate();
                     // Update Current operation state
                     result.Text = "Activated";
@@ -399,18 +395,18 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// Deactivate WiFi
+        /// Deactivate Wi-Fi
         /// </summary>
         private async void Deactivate()
         {
             try
             {
-                // Check if WiFi is activated
+                // Check if Wi-Fi is activated
                 if (wifi.IsActive())
                 {
                     // Update Current operation state
                     result.Text = "Try to deactivate";
-                    // Deactivate WiFi
+                    // Deactivate Wi-Fi
                     await wifi.Deactivate();
                     // Update Current operation state
                     result.Text = "Deactivated";
@@ -473,7 +469,7 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// Connect to the selected WiFi AP
+        /// Connect to the selected Wi-Fi AP
         /// </summary>
         private async void Connect()
         {
@@ -481,9 +477,9 @@ namespace NetworkApp
             {
                 // Update Current operation state
                 result.Text = "Try to connect to " + apEntry.Text;
-                // Try to connect to the WiFi AP
+                // Try to connect to the Wi-Fi AP
                 await wifi.Connect(apEntry.Text, passwordEntry.Text);
-                // No exception. WiFi is connected.
+                // No exception. Wi-Fi is connected.
                 // Scan request
                 Scan();
                 // Get scan result
@@ -501,7 +497,7 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// Disconnect the selected WiFi AP
+        /// Disconnect the selected Wi-Fi AP
         /// </summary>
         private async void Disconnect()
         {
@@ -509,7 +505,7 @@ namespace NetworkApp
             {
                 // Update Current operation state
                 result.Text = "Try to disconnect to " + apEntry.Text;
-                // Try to disconnect the WiFi AP
+                // Try to disconnect the Wi-Fi AP
                 await wifi.Disconnect(apEntry.Text);
                 // Update Current operation state
                 result.Text = "Disconnected";
@@ -524,13 +520,13 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// Forget the selected WiFi AP
+        /// Forget the selected Wi-Fi AP
         /// </summary>
         private void Forget()
         {
             try
             {
-                // Try to forget the WiFi AP
+                // Try to forget the Wi-Fi AP
                 wifi.Forget(apEntry.Text);
                 // Update Current operation state
                 result.Text = "Forgotten";

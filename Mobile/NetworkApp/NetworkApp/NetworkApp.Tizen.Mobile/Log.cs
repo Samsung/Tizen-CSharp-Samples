@@ -29,7 +29,7 @@ namespace NetworkApp.Tizen.Mobile
     public class LogImplementation : ILog
     {
         /// <summary>
-        /// Dlog tag
+        /// Log tag
         /// </summary>
         private const String LOGTAG = "NetworkApp";
 
@@ -43,19 +43,19 @@ namespace NetworkApp.Tizen.Mobile
         /// <summary>
         /// Print DEBUG mode log
         /// </summary>
-        /// <param name="msg">Log message</param>
-        public void Log(String msg)
+        /// <param name="message">Log message</param>
+        public void Log(String message)
         {
-            global::Tizen.Log.Debug(LOGTAG, msg);
+            global::Tizen.Log.Debug(LOGTAG, message);
         }
 
         /// <summary>
         /// Print DEBUG mode log
         /// </summary>
-        /// <param name="msg">Log message</param>
-        public static void DLog(String msg)
+        /// <param name="message">Log message</param>
+        public static void DLog(String message)
         {
-            global::Tizen.Log.Debug(LOGTAG, msg);
+            global::Tizen.Log.Debug(LOGTAG, message);
         }
     }
 }

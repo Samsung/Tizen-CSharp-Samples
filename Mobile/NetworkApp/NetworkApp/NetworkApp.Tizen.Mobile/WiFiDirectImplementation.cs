@@ -38,9 +38,8 @@ namespace NetworkApp.Tizen.Mobile
 
         public void StartScan()
         {
-            // Print Dlog
-            LogImplementation.DLog("StartScan");
-            // Check if the WiFiDirect is deactivated
+            LogImplementation.DLog("StartScan()");
+            // Check if the Wi-Fi Direct is deactivated
             if (WiFiDirectManager.State == WiFiDirectState.Deactivated)
             {
                 // Add DeviceStateChanged event
@@ -50,7 +49,7 @@ namespace NetworkApp.Tizen.Mobile
             }
             else
             {
-                // Start to discover the WiFiDirect devices
+                // Start to discover Wi-Fi Direct devices
                 StartDiscovery();
             }
                     
@@ -60,18 +59,15 @@ namespace NetworkApp.Tizen.Mobile
         {
             // Add DiscoveryStateChanged event
             WiFiDirectManager.DiscoveryStateChanged += EventHandlerDiscoveryStateChanged;
-            // Print Dlog
-            LogImplementation.DLog("StartDiscovery");
+            LogImplementation.DLog("StartDiscovery()");
             // Call Tizen C# API
             WiFiDirectManager.StartDiscovery(false, 0);
-            // Print Dlog
-            LogImplementation.DLog("StartDiscovery done");
+            LogImplementation.DLog("StartDiscovery() done");
         }
 
         public void StopScan()
         {
-            // Print Dlog
-            LogImplementation.DLog("StopScan");
+            LogImplementation.DLog("StopScan()");
             // Call Tizen C# API
             WiFiDirectManager.CancelDiscovery();
             // Remove DiscoveryStateChanged event
@@ -80,19 +76,17 @@ namespace NetworkApp.Tizen.Mobile
 
         private void EventHandlerDiscoveryStateChanged(object s, DiscoveryStateChangedEventArgs e)
         {
-            // Print Dlog
             LogImplementation.DLog("EventHandlerDiscoveryStateChanged");
             if (e.DiscoveryState == WiFiDirectDiscoveryState.Found)
             {
                 LogImplementation.DLog("Found");
-                // Get the found WiFiDirect peer list
+                // Get the found Wi-Fi Direct peer list
                 IEnumerable<WiFiDirectPeer> peerList = WiFiDirectManager.GetDiscoveredPeers();
                 List<String> deviceList = new List<String>();
                 foreach (WiFiDirectPeer peer in peerList)
                 {
-                    // Print Dlog
                     LogImplementation.DLog("Peer " + peer.Name);
-                    // Add name of the found device to deviceList
+                    // Add name of the found device to device list
                     deviceList.Add(peer.Name);                    
                 }
                 // Generate the DeviceDiscovered event
@@ -106,7 +100,6 @@ namespace NetworkApp.Tizen.Mobile
             // Check if the device is activated
             if (e.DeviceState == WiFiDirectDeviceState.Activated)
             {
-                // Print Dlog
                 LogImplementation.DLog("Activated");
                 // Start to discover
                 StartDiscovery();
