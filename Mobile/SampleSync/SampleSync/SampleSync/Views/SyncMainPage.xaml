@@ -82,7 +82,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Subscirbe Calendar DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                <Label Text="Subscribe Calendar DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
                 <Label Text="" x:Name="calendardate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
                 <Button Text="Off" x:Name="calendarbutton" BackgroundColor="Red" Clicked="CalendarClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
             </Grid>
@@ -97,7 +97,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Subscirbe Contact DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                <Label Text="Subscribe Contact DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
                 <Label Text="" x:Name="contactdate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
                 <Button Text="Off" x:Name="contactbutton" BackgroundColor="Red" Clicked="ContactClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
             </Grid>
@@ -112,7 +112,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Subscirbe Image DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                <Label Text="Subscribe Image DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
                 <Label Text="" x:Name="imagedate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
                 <Button Text="Off" x:Name="imagebutton" BackgroundColor="Red" Clicked="ImageClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
             </Grid>
@@ -127,7 +127,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Subscirbe Music DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                <Label Text="Subscribe Music DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
                 <Label Text="" x:Name="musicdate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
                 <Button Text="Off" x:Name="musicbutton" BackgroundColor="Red" Clicked="MusicClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
             </Grid>
@@ -142,7 +142,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Subscirbe Sound DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                <Label Text="Subscribe Sound DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
                 <Label Text="" x:Name="sounddate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
                 <Button Text="Off" x:Name="soundbutton" BackgroundColor="Red" Clicked="SoundClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
             </Grid>
@@ -157,7 +157,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Subscirbe Video DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                <Label Text="Subscribe Video DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
                 <Label Text="" x:Name="videodate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
                 <Button Text="Off" x:Name="videobutton" BackgroundColor="Red" Clicked="VideoClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
             </Grid>
