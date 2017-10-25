@@ -4,7 +4,7 @@
              x:Class="PushReceiver.Views.MainPage"
              Title="Push Receiver">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" BackgroundColor="White">
+        <StackLayout Orientation="Vertical">
             <ListView x:Name="MyListView"
                     ItemsSource="{Binding}"
                     CachingStrategy="RecycleElement">
