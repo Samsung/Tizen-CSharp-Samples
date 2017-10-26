@@ -37,7 +37,7 @@ namespace NetworkApp
     }
 
     /// <summary>
-    /// The ContentPage to show the result of operation tabbed on ListView of WiFIPage
+    /// The ContentPage to show the result of operation tabbed on ListView of WiFiPage
     /// </summary>
     class WiFiResultPage : ContentPage
     {
@@ -204,30 +204,30 @@ namespace NetworkApp
         /// <summary>
         /// Create a Label instance
         /// </summary>
-        /// <param name="str">Text of Label</param>
+        /// <param name="text">Text of Label</param>
         /// <returns>Label</returns>
-        private Label CreateLabel(String str)
+        private Label CreateLabel(String text)
         {
             return new Label()
             {
                 BackgroundColor = Color.White,
                 FontSize = 20,
-                Text = str,
+                Text = text,
             };
         }
 
         /// <summary>
         /// Create an Entry instance
         /// </summary>
-        /// <param name="str">Placeholder of Entry</param>
+        /// <param name="text">Placeholder of Entry</param>
         /// <returns>Entry</returns>
-        private Entry CreateEntry(String str)
+        private Entry CreateEntry(String text)
         {
             return new Entry()
             {   
                 BackgroundColor = Color.White,
                 FontSize = 20,
-                Placeholder = str,
+                Placeholder = text,
             };
         }
 
@@ -280,12 +280,12 @@ namespace NetworkApp
         /// <summary>
         /// Get AP name from item (that contains AP name and state) of scanListView
         /// </summary>
-        /// <param name="str">AP information that contains AP name and state</param>
+        /// <param name="name">AP information that contains AP name and state</param>
         /// <returns>AP name</returns>
-        private String GetAPName(String str)
+        private String GetAPName(String name)
         {
             char[] del = { '(' };
-            return str.Split(del)[0].TrimEnd();
+            return name.Split(del)[0].TrimEnd();
         }
 
         /// <summary>
@@ -303,7 +303,6 @@ namespace NetworkApp
         /// </summary>
         private void Operate()
         {
-            // Dlog message
             log.Log("Operate");
             // Operate for each requested WiFiOperation
             try
@@ -314,11 +313,11 @@ namespace NetworkApp
                     case WiFiOperation.ACTIVATE:
                         Activate();
                         break;
-                    // Dectivate Wi-Fi
+                    // Deactivate Wi-Fi
                     case WiFiOperation.DEACTIVATE:
                         Deactivate();
                         break;
-                    // Connet to the selected Wi-Fi AP
+                    // Connect to the selected Wi-Fi AP
                     case WiFiOperation.CONNECT:
                         Connect();
                         break;

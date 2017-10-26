@@ -136,7 +136,7 @@ namespace NetworkApp
         /// <param name="e">Event argument</param>
         private void OnDiscovered(object sender, DiscoveryEventArgs e)
         {
-            log.Log("OnDiscovered");
+            log.Log("OnDiscovered()");
             foreach (var item in e.deviceList)
             {
                 log.Log(">> Found " + item);
