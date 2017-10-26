@@ -28,10 +28,10 @@ namespace Location
         private static CircleBoundary circle = null;
 
         private static Button buttonStart;
+        private static Button buttonBoundary;
         private static Button buttonGetLocation;
         private static Button buttonTrack;
         private static Button buttonSatellite;
-        private static Button buttonBoundary;
         private static Button buttonStop;
         private static Label textStatus;
         private static Label textTrack;
@@ -69,6 +69,12 @@ namespace Location
                     Text = "Get Location"
                 };
 
+                /// Create new Button for boundary
+                buttonBoundary = new Button
+                {
+                    Text = "Location boundary"
+                };
+
                 /// Create new Button for route tracking
                 buttonTrack = new Button
                 {
@@ -81,12 +87,6 @@ namespace Location
                     Text = "Satellite information"
                 };
 
-                /// Create new Button for boundary
-                buttonBoundary = new Button
-                {
-                    Text = "Location boundary"
-                };
-
                 /// Create new Button to stop location service
                 buttonStop = new Button
                 {
@@ -97,6 +97,7 @@ namespace Location
                 textStatus = new Label();
                 textTrack = new Label();
                 textMessage = new Label();
+                textStatus.Text = "[Status]";
 
                 /// Content view of this page
                 Content = new StackLayout
@@ -120,9 +121,9 @@ namespace Location
                         /// Add buttons to the StackLayout
                         buttonStart,
                         buttonGetLocation,
+                        buttonBoundary,
                         buttonTrack,
                         buttonSatellite,
-                        buttonBoundary,
                         buttonStop,
 
                         /// Add Label to show status message
@@ -135,16 +136,16 @@ namespace Location
                 /// Add button clicked event
                 buttonStart.Clicked += ButtonStartClicked;
                 buttonGetLocation.Clicked += ButtonGetLocationClicked;
+                buttonBoundary.Clicked += ButtonBoundaryClicked;
                 buttonTrack.Clicked += ButtonTrackClicked;
                 buttonSatellite.Clicked += ButtonSatelliteClicked;
-                buttonBoundary.Clicked += ButtonBoundaryClicked;
                 buttonStop.Clicked += ButtonStopClicked;
 
                 /// Set initial state of button enabled
                 buttonGetLocation.IsEnabled = false;
+                buttonBoundary.IsEnabled = false;
                 buttonTrack.IsEnabled = false;
                 buttonSatellite.IsEnabled = false;
-                buttonBoundary.IsEnabled = false;
                 buttonStop.IsEnabled = false;
             }
 
@@ -320,9 +321,16 @@ namespace Location
                 else
                 {
                     /// Add SatelliteStatusUpdated event
-                    satellite.SatelliteStatusUpdated += Satellite_SatelliteStatusUpdated;
-                    buttonSatellite.Text = "Cancel satellite information";
-                    isSatellite = true;
+                    try
+                    {
+                        satellite.SatelliteStatusUpdated += Satellite_SatelliteStatusUpdated;
+                        buttonSatellite.Text = "Cancel satellite information";
+                        isSatellite = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        textMessage.Text = "[Satellite]\n  Exception : " + ex.Message;
+                    }
                 }
             }
 
@@ -489,9 +497,9 @@ namespace Location
 
                     /// Disable buttons when location in not available.
                     buttonTrack.IsEnabled = false;
+                    buttonBoundary.IsEnabled = false;
                     buttonGetLocation.IsEnabled = false;
                     buttonSatellite.IsEnabled = false;
-                    buttonBoundary.IsEnabled = false;
                     buttonStop.IsEnabled = false;
                     textStatus.Text = "[Status] Stop location service";
                 }
