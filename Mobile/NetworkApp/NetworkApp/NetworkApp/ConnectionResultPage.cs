@@ -132,6 +132,11 @@ namespace NetworkApp
                         break;
                 }
             }
+            // C# API throws NotSupportedException if the API is not supported
+            catch (NotSupportedException)
+            {
+                result.Text = "The operation is not supported on this device";
+            }
             catch (Exception e)
             {
                 result.Text = e.ToString();
@@ -149,7 +154,6 @@ namespace NetworkApp
             result.Text += "Type: " + connection.CurrentType + "\n";
             // Network state
             result.Text += "State: " + connection.CurrentState;
-
         }
 
         /// <summary>

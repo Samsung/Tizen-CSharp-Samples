@@ -102,7 +102,6 @@ namespace NetworkApp
         private void CreateActivateView()
         {
             result = CreateLabel("");
-            result.IsEnabled = false;
 
             // Create a Layout
             Content = new StackLayout
@@ -124,7 +123,6 @@ namespace NetworkApp
             Button connectButton = CreateButton("Connect");
             connectButton.Clicked += OnClicked;
             result = CreateLabel("Select an AP to connect");
-            result.IsEnabled = false;
             scanListView = new ListView();
 
             // Show a list of Wi-Fi AP
@@ -156,7 +154,6 @@ namespace NetworkApp
         private void CreateScanResultView()
         {
             result = CreateLabel("");
-            result.IsEnabled = false;
             scanListView = new ListView();
 
             // Create a Layout
@@ -182,7 +179,6 @@ namespace NetworkApp
             Button disconnectButton = CreateButton("Disconnect");
             disconnectButton.Clicked += OnClicked;
             result = CreateLabel("Insert the ESSID of AP");
-            result.IsEnabled = false;
 
             switch (operation)
             {
@@ -209,7 +205,7 @@ namespace NetworkApp
         /// Create a Label instance
         /// </summary>
         /// <param name="str">Text of Label</param>
-        /// <returns></returns>
+        /// <returns>Label</returns>
         private Label CreateLabel(String str)
         {
             return new Label()
@@ -335,6 +331,11 @@ namespace NetworkApp
                         Forget();
                         break;
                 }
+            }
+            // C# API throws NotSupportedException if the API is not supported
+            catch (NotSupportedException)
+            {
+                result.Text = "The operation is not supported on this device";
             }
             catch (Exception e)
             {

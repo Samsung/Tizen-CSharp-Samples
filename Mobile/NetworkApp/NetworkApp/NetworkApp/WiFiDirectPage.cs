@@ -31,6 +31,9 @@ namespace NetworkApp
         IWiFiDirect wifidirect = DependencyService.Get<IWiFiDirect>();
         ILog log = DependencyService.Get<ILog>();
 
+        // On an exception occurs, the result shows the message of exception
+        Label result;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -63,6 +66,12 @@ namespace NetworkApp
 
             scanListView = new ListView();
 
+            result = new Label()
+            {
+                BackgroundColor = Color.White,
+                FontSize = 20,
+            };
+
             // Create a Layout
             Content = new StackLayout
             {
@@ -71,11 +80,20 @@ namespace NetworkApp
                    title,
                    scanButton,
                    scanListView,
+                   result,
                 }
             };
 
-            // Add DeviceDiscovered events
-            wifidirect.DeviceDiscovered += OnDiscovered; 
+            try
+            {
+                // Add DeviceDiscovered events
+                wifidirect.DeviceDiscovered += OnDiscovered;
+            }
+            // C# API throws NotSupportedException if the API is not supported
+            catch (NotSupportedException)
+            {
+                result.Text = "The operation is not supported on this device";
+            }
         }
 
         /// <summary>
@@ -85,22 +103,30 @@ namespace NetworkApp
         /// <param name="e">Event argument</param>
         private void OnClicked(object sender, EventArgs e)
         {
-            // Start to discover Wi-Fi Direct devices
-            if (scanButton.Text.Equals("Start Scan"))
+            try
             {
-                // Update Current operation state
-                scanButton.Text = "Stop Scanning";
-                // Start to discover
-                wifidirect.StartScan();
+                // Start to discover Wi-Fi Direct devices
+                if (scanButton.Text.Equals("Start Scan"))
+                {
+                    // Update Current operation state
+                    scanButton.Text = "Stop Scanning";
+                    // Start to discover
+                    wifidirect.StartScan();
+                }
+                // Stop to discover Wi-Fi Direct devices
+                else
+                {
+                    // Update Current operation state
+                    scanButton.Text = "Start Scan";
+                    // Stop to discover
+                    wifidirect.StopScan();
+                }
             }
-            // Stop to discover Wi-Fi Direct devices
-            else
+            // C# API throws NotSupportedException if the API is not supported
+            catch (NotSupportedException)
             {
-                // Update Current operation state
-                scanButton.Text = "Start Scan";
-                // Stop to discover
-                wifidirect.StopScan();
-            }            
+                result.Text = "The operation is not supported on this device";
+            }
         }
 
         /// <summary>
