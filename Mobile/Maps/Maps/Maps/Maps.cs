@@ -131,14 +131,14 @@ namespace Maps
         public double SEOUL_LON = 127.022782;
 
         /// <summary>
-        /// The latitude value for the new delhi.
+        /// The default latitude value.
         /// </summary>
-        public double NEWDELHI_LAT = 12.971940;
+        public double DEFAULT_LAT = 28.64362;
 
         /// <summary>
-        /// The longitude value for the new delhi.
+        /// The default longitude value.
         /// </summary>
-        public double NEWDELHI_LON = 77.593690;
+        public double DEFAULT_LON = 77.19865;
 
         /// <summary>
         /// The coordinate for the starting position.
@@ -179,13 +179,18 @@ namespace Maps
             if (s_maps.UserConsented != true)
             {
                 // Terminate this application if user doesn't agree the user consent popup
-                CloseApp(this.MainPage);
-                return;
-            }
+				CloseApp(this.MainPage);
+			}
 
-            // Create the window
-            win = new Window("MapView");
-            win.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, false);
+			// Create the window
+			win = new Window("MapView")
+			{
+				AlignmentX = -1,
+				AlignmentY = -1,
+				WeightX = 1,
+				WeightY = 1
+			};
+			win.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, false);
             win.KeyUp += (s, e) =>
             {
                 if (e.KeyName == EvasKeyEventArgs.PlatformBackButtonName)
@@ -199,17 +204,17 @@ namespace Maps
 
             // Create the MapView
             s_mapview = new MapView(win, s_maps);
-            // Move the MapView
-            s_mapview.Move(0, 0);
+			// Move the MapView
+			s_mapview.Move(0, 0);
             // Resize the MapView
             s_mapview.Resize(720, 1280);
-            // Set the latitude and longitude for the center position of the MapView
-            //s_mapview.Center = new Geocoordinates(SEOUL_LAT, SEOUL_LON);
-            s_mapview.Center = new Geocoordinates(NEWDELHI_LAT, NEWDELHI_LON);
-            // Show the MapView
-            s_mapview.Show();
+			// Show the MapView
+			s_mapview.Show();
+			// Set the latitude and longitude for the center position of the MapView
+			//s_mapview.Center = new Geocoordinates(SEOUL_LAT, SEOUL_LON);
+			s_mapview.Center = new Geocoordinates(DEFAULT_LAT, DEFAULT_LON);
 			// Set the zoom level
-			s_mapview.ZoomLevel = 15;
+			s_mapview.ZoomLevel = 9;
 			// Add the handler for the longpress event on MapView
 			s_mapview.LongPressed += MapViewLongPressed;
 
@@ -229,8 +234,10 @@ namespace Maps
             {
                 // Remove all the map object from the map view
                 s_mapview.RemoveAll();
-                // Move to the longpressed position
-                s_mapview.Center = e.Geocoordinates;
+				// Set the zoom level
+				s_mapview.ZoomLevel = 13;
+				// Move to the longpressed position
+				s_mapview.Center = e.Geocoordinates;
                 // Add the pin to the center positon of the map view
                 s_mapview.Add(new global::Tizen.Maps.Pin(s_mapview.Center));
                 // Request the address by the center position of the map view and display the address to the label of the starting position
@@ -238,8 +245,10 @@ namespace Maps
             }
             else if (view == ViewPage.ROUTE)
             {
-                // Check the text of the fromLabel and the toLabel. The route is being displayed if the text of the labels is not empty.
-                if (fromLabel.Text != "" && toLabel.Text != "")
+				// Set the zoom level
+				s_mapview.ZoomLevel = 13;
+				// Check the text of the fromLabel and the toLabel. The route is being displayed if the text of the labels is not empty.
+				if (fromLabel.Text != "" && toLabel.Text != "")
                 {
                     // Remove all the map object from the map view
                     s_mapview.RemoveAll();
@@ -568,12 +577,15 @@ namespace Maps
             PlaceList = null;
 
             // Remove all the map object from the map view
-            s_mapview.RemoveAll();
+			if (s_mapview != null)
+				s_mapview.RemoveAll();
             fromPosition = null;
             toPosition = null;
             // Clear the label's text
-            fromLabel.Text = "";
-            toLabel.Text = "";
+			if (fromLabel != null)
+				fromLabel.Text = "";
+			if (toLabel != null)
+				toLabel.Text = "";
         }
 
         /// <summary>
@@ -636,7 +648,8 @@ namespace Maps
             ClearData();
 
             // Remove the handler for the ViewPage hoversel
-            viewHoversel.ItemSelected -= ViewPageSelected;
+			if (viewHoversel != null)
+				viewHoversel.ItemSelected -= ViewPageSelected;
 
             if (win != null)
             {
