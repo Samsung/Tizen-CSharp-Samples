@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailUI", "EmailUI\EmailUI\EmailUI.csproj", "{B8D80982-3294-4406-834D-A949D46D34FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailUI.Tizen.Mobile", "EmailUI\EmailUI.Tizen.Mobile\EmailUI.Tizen.Mobile.csproj", "{F06E2717-DE4D-4DEA-86EB-FFECACA83F89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8D80982-3294-4406-834D-A949D46D34FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8D80982-3294-4406-834D-A949D46D34FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8D80982-3294-4406-834D-A949D46D34FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8D80982-3294-4406-834D-A949D46D34FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F06E2717-DE4D-4DEA-86EB-FFECACA83F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F06E2717-DE4D-4DEA-86EB-FFECACA83F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F06E2717-DE4D-4DEA-86EB-FFECACA83F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F06E2717-DE4D-4DEA-86EB-FFECACA83F89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F6FAA8F-352E-4EFB-BA59-33FC76663357}
+	EndGlobalSection
+EndGlobal
