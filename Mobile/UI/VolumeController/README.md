@@ -21,7 +21,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-* Build SampleSync source codes by the Visual Studio.
+* Build VolumeController source codes by the Visual Studio.
 * Run Tizen mobile emulator.
 * Install build output tpk file to the Tizen mobile emulator.
 

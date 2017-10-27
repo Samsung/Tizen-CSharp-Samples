@@ -1,6 +1,6 @@
 # Tizen .NET Settings UI Sample
 
-This Settings UI sample application demonstrates how to configure the screen using a variety of objects. This sample is only a reference for constructing an application's UI layout. menus and UI components do not provide real application's fucntions.
+This Settings UI sample application demonstrates how to configure the screen using a variety of objects. This sample is only a reference for constructing an application's UI layout. Menus and UI components do not provide real application's functions.
 
 <table>
 <tr>
@@ -21,7 +21,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-* Build SampleSync source codes by the Visual Studio.
+* Build Settings source codes by the Visual Studio.
 * Run Tizen mobile emulator.
 * Install build output tpk file to the Tizen mobile emulator.
 

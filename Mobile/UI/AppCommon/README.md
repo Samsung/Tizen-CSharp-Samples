@@ -1,6 +1,6 @@
 # Tizen .NET AppCommon Sample
 
-The AppCommon application demonstrates how to work with app-common API in order to obtain applicaiton-specific information.
+The AppCommon application demonstrates how to work with app-common API in order to obtain application-specific information.
 
 <table>
 <tr>
@@ -21,7 +21,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-* Build SampleSync source codes by the Visual Studio.
+* Build AppCommon source codes by the Visual Studio.
 * Run Tizen mobile emulator.
 * Install build output tpk file to the Tizen mobile emulator.
 

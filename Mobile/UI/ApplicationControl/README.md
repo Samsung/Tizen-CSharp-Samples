@@ -1,11 +1,11 @@
-# Tizen .NET Puzzle Sample
+# Tizen .NET ApplicationControl Sample
 
-This is the basic UI sample application
+The ApplicationControl application demonstrates how you can find applications supporting certain classes of operations and run them using those operations contexts. It uses Application control API.
 
 <table>
 <tr>
 <td>
-<center><img src='Puzzle.png' height=400></center>
+<center><img src='ApplicationControl.png' height=400></center>
 </td>
 </tr>
 </table>
@@ -21,12 +21,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-* Build Puzzle source codes by the Visual Studio.
+* Build ApplicationControl source codes by the Visual Studio.
 * Run Tizen mobile emulator.
 * Install build output tpk file to the Tizen mobile emulator.
 
 ```
-d:\> "C:\Program Files (x86)\Tizen\SDK\tools\sdb.exe" install org.tizen.example.Puzzle.Tizen.Mobile-1.0.0.tpk
+d:\> "C:\Program Files (x86)\Tizen\SDK\tools\sdb.exe" install org.tizen.example.ApplicationControl.Tizen.Mobile-1.0.0.tpk
 ```
 
 ## Running the tests
