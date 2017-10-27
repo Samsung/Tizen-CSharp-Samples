@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSUI", "SNSUI\SNSUI\SNSUI.csproj", "{47076C46-1624-468A-8966-ACEF11C62EA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSUI.Tizen.Mobile", "SNSUI\SNSUI.Tizen.Mobile\SNSUI.Tizen.Mobile.csproj", "{12C1886D-7BA9-415D-8551-5C70C3A964A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47076C46-1624-468A-8966-ACEF11C62EA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47076C46-1624-468A-8966-ACEF11C62EA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47076C46-1624-468A-8966-ACEF11C62EA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47076C46-1624-468A-8966-ACEF11C62EA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12C1886D-7BA9-415D-8551-5C70C3A964A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12C1886D-7BA9-415D-8551-5C70C3A964A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12C1886D-7BA9-415D-8551-5C70C3A964A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12C1886D-7BA9-415D-8551-5C70C3A964A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EDE1B707-2789-40E5-BCA6-3D6F7C03E6F0}
+	EndGlobalSection
+EndGlobal
