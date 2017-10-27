@@ -32,11 +32,14 @@ namespace Clock.Alarm
         // Content page which WorldclockCityListDeleteCell's added to
         AlarmDeletePage currentPage = null;
 
+        // Constructor
         public AlarmDeleteListCell() : base()
         {
+            // Set current page
             currentPage = ((AlarmDeletePage)AlarmPageController.GetInstance(AlarmPages.DeletePage));
         }
 
+        // Construct alarm list cell's UI
         protected override RelativeLayout Draw()
         {
             RelativeLayout alarmItemDeleteLayout = base.Draw();
@@ -80,6 +83,7 @@ namespace Clock.Alarm
             // In case that Switch in ListView's ItemCell is off,
             if (!e.Value && currentPage.deleteAllSwitch.IsToggled)
             {
+                // Set delete to false
                 currentPage.deleteAllSwitch.IsToggled = false;
             }
 
@@ -91,7 +95,7 @@ namespace Clock.Alarm
             {
                 currentPage.deleteAllSwitch.IsToggled = true;
             }
-
+            // Set all deleted none
             currentPage.OnAlldeleted = SwitchType.None;
         }
 
@@ -101,6 +105,7 @@ namespace Clock.Alarm
         private void UpdateTitle()
         {
             int count = 0;
+            // Iterate items to count marked deleted
             foreach (AlarmRecord item in AlarmModel.ObservableAlarmList)
             {
                 if (item.Delete)
@@ -108,12 +113,15 @@ namespace Clock.Alarm
                     count++;
                 }
             }
-
+            // Change title label text
             currentPage.titleBar.TitleLabel.Text = count + " selected";
             currentPage.selectedItems = count;
             return;
         }
 
+        /// <summary>
+        /// Binding context callback
+        /// </summary>
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();

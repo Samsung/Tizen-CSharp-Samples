@@ -42,6 +42,14 @@ namespace Clock.Data
         /// </summary>
         public int Y;
 
+        /// <summary>
+        /// Location constructor
+        /// </summary>
+        /// <param name="_name">Location name</param>
+        /// <param name="_country">Country info</param>
+        /// <param name="_gmtOffset">GMT offset</param>
+        /// <param name="_x">X coordinate</param>
+        /// <param name="_y">Y coordinate</param>
         public Location(string _name, string _country, int _gmtOffset, int _x, int _y)
         {
             Name = _name;
@@ -51,6 +59,9 @@ namespace Clock.Data
             Y = _y;
         }
 
+        /// <summary>
+        /// Return location string
+        /// </summary>
         public override string ToString()
         {
             return Name + " - " + Country;

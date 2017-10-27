@@ -32,15 +32,22 @@ namespace Clock.Stopwatch
         private static System.Diagnostics.Stopwatch stopWatch;
         private SWTimerState tmState = SWTimerState.init;
 
+        /// <summary>
+        /// Shows stopwatch page
+        /// </summary>
         public void ShowPage()
         {
+            // Check main view null or not
             if (mainView == null)
             {
+                // If null, create a new stopwatch page
                 Content = CreateStopWatchPage();
             }
 
+            // Check stopwatch null or not
             if (stopWatch == null)
             {
+                // If null, create a stopwatch
                 stopWatch = new System.Diagnostics.Stopwatch();
             }
         }
@@ -183,10 +190,16 @@ namespace Clock.Stopwatch
         }
     }
 
+    /// <summary>
+    /// Defines stopwatch timer states
+    /// </summary>
     internal enum SWTimerState
     {
+        // Timer initialized
         init,
+        // Timer started
         started,
+        // Timer stopped
         stopped
     }
 }

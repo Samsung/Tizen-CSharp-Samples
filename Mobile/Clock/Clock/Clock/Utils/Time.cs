@@ -18,12 +18,32 @@ using System;
 
 namespace Clock.Utils
 {
+    /// <summary>
+    /// Defines time info (H,M,S)
+    /// </summary>
     public struct Time
     {
+        /// <summary>
+        /// Hour
+        /// </summary>
         public int Hour;
+
+        /// <summary>
+        /// Minute
+        /// </summary>
         public int Min;
+
+        /// <summary>
+        /// Second
+        /// </summary>
         public int Sec;
 
+        /// <summary>
+        /// Time constructor
+        /// </summary>
+        /// <param name="h">Hour</param>
+        /// <param name="m">Minute</param>
+        /// <param name="s">Second</param>
         public Time(int h, int m, int s)
         {
             this.Hour = h;

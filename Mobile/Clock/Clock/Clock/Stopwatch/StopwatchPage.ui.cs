@@ -31,11 +31,16 @@ namespace Clock.Stopwatch
     /// </summary>
     public partial class StopwatchPage : ContentPage
     {
+        // Main view
         StackLayout mainView;
+        // Main layout
         RelativeLayout rLayout;
+        // Lap list
         ListView listView;
         BoxView pdBox;
+        // Buttons
         Button startButton, stopButton, lapButton;
+        // Counter view
         CounterView counterview;
         internal static int index = 1;
         LapListObservableCollection listItems;

@@ -27,6 +27,7 @@ namespace Clock.Alarm
     /// </summary>
     public enum SwitchType
     {
+        // no type
         None,
         // in case of turning on a switch to delete all items
         WholeSwitch,
@@ -44,12 +45,24 @@ namespace Clock.Alarm
         /// </summary>
         StackLayout mainLayout;
 
+        /// <summary>
+        /// Title bar
+        /// </summary>
         public TitleBar titleBar;
 
+        /// <summary>
+        /// Switch type
+        /// </summary>
         public SwitchType OnAlldeleted = SwitchType.None;
 
+        /// <summary>
+        /// Delete all switches
+        /// </summary>
         public Switch deleteAllSwitch;
 
+        /// <summary>
+        /// Count items selected
+        /// </summary>
         public int selectedItems = 0;
 
         /// <summary>

@@ -38,6 +38,7 @@ namespace Clock.Alarm
         /// <returns>Returns converted string</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            // Check alarm type
             if (value.GetType() == typeof(AlarmTypes))
             {
                 AlarmTypes modelValue = (AlarmTypes)value;
@@ -45,12 +46,15 @@ namespace Clock.Alarm
 
                 switch (modelValue)
                 {
+                    // case of sound type
                     case AlarmTypes.Sound:
                         s = "Sound";
                         break;
+                    // case of vibration type
                     case AlarmTypes.Vibration:
                         s = "Vibration";
                         break;
+                    // case of sound and vibration
                     case AlarmTypes.SoundVibration:
                         s = "Vibration and sound";
                         break;
@@ -58,6 +62,7 @@ namespace Clock.Alarm
 
                 return s;
             }
+            // Check alarm tone type
             else if (value.GetType() == typeof(AlarmToneTypes))
             {
                 AlarmToneTypes modelValue = (AlarmToneTypes)value;
@@ -65,12 +70,15 @@ namespace Clock.Alarm
 
                 switch (modelValue)
                 {
+                    // case of default
                     case AlarmToneTypes.Default:
                         s = "Default";
                         break;
+                    // case of alarm mp3
                     case AlarmToneTypes.AlarmMp3:
                         s = "alarm.mp3";
                         break;
+                    // case of rington sdk
                     case AlarmToneTypes.RingtoneSdk:
                         s = "ringtone_sdk.mp3";
                         break;
@@ -82,14 +90,19 @@ namespace Clock.Alarm
             {
                 string s = "";
                 AlarmWeekFlag flag = (AlarmWeekFlag)value;
+                // case of week flag never
                 if (flag == AlarmWeekFlag.Never)
                 {
+                    // case of never
                     s = "Never";
                 }
+                // case of all days
                 else if (flag == AlarmWeekFlag.AllDays)
                 {
+                    // case of everyday
                     s = "Everyday";
                 }
+                // case of week other
                 else
                 {
                     for (int i = 1; i < 7; i++)

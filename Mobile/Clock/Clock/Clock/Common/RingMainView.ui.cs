@@ -28,19 +28,28 @@ namespace Clock.Common
     /// </summary>
     public partial class RingPage : ContentPage
     {
+        // Internal type
         RingType type_;
+        // Snooze flag
         bool SnoozeOn = false;
-
         private RelativeLayout rLayout;
+        // Swipe area layout
         private AbsoluteLayout swipeAreaLayout;
+        // Image used to show dismiss UI
         private SwipeImage dismissImage;
+        // Image used to show snooze UI
         private SwipeImage snoozeImage;
+        // Image used to show snooze UI
         private Image ringImage;
+        // Image used to show snooze ring UI
         private Image snoozeRingImage;
+        // Image used to show snooze background UI
         private Image snoozeBackgroundRingImage;
-
+        // Counter view
         private CounterView counterview;
+        // Counter layout
         private RelativeLayout counterLayout;
+        // hour, min, second labels
         private Label hLabel, mLabel, sLabel;
         private Label _mLabel, _sLabel;
         private Image minusImage, _minusImage;

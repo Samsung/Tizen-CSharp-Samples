@@ -20,8 +20,14 @@ using Xamarin.Forms;
 
 namespace Clock.Utils
 {
+    /// <summary>
+    /// Defines Key listener for menu key press.
+    /// </summary>
     public class MenuKeyListener
     {
+        /// <summary>
+        /// Key menu used in Tizen
+        /// </summary>
         public const string KEY_MENU = "XF86Menu";
 
         /// <summary>
