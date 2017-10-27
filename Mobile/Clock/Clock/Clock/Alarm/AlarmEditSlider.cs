@@ -26,7 +26,13 @@ namespace Clock.Alarm
     /// </summary>
     class AlarmEditSlider : RelativeLayout
     {
+        /// <summary>
+        /// Slider widget
+        /// </summary>
         internal Slider slider;
+        /// <summary>
+        /// Image for volume 
+        /// </summary>
         internal Image volumeImage;
 
         /// <summary>

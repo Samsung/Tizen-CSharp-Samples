@@ -62,6 +62,7 @@ namespace Clock.Data
         /// <summary>
         /// Return location string
         /// </summary>
+        /// <returns>Returns location string</returns>
         public override string ToString()
         {
             return Name + " - " + Country;
