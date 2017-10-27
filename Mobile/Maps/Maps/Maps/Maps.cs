@@ -183,13 +183,7 @@ namespace Maps
 			}
 
 			// Create the window
-			win = new Window("MapView")
-			{
-				AlignmentX = -1,
-				AlignmentY = -1,
-				WeightX = 1,
-				WeightY = 1
-			};
+			win = new Window("MapView");
 			win.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, false);
             win.KeyUp += (s, e) =>
             {
@@ -202,8 +196,23 @@ namespace Maps
             // Show the window
             win.Show();
 
-            // Create the MapView
-            s_mapview = new MapView(win, s_maps);
+			var box = new Box(win)
+			{
+				AlignmentX = -1,
+				AlignmentY = -1,
+				WeightX = 1,
+				WeightY = 1,
+			};
+			box.Show();
+
+			var bg = new Background(win)
+			{
+				Color = ElmSharp.Color.White
+			};
+			bg.SetContent(box);
+
+			// Create the MapView
+			s_mapview = new MapView(win, s_maps);
 			// Move the MapView
 			s_mapview.Move(0, 0);
             // Resize the MapView
