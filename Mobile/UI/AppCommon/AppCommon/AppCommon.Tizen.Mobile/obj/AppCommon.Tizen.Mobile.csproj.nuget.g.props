@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\AppFW\AppCommon\AppCommon\AppCommon.Tizen.Mobile\obj\project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Samsung\.nuget\packages\;C:\Program Files\dotnet\sdk\NuGetFallbackFolder</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">4.3.0</NuGetToolVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)xamarin.forms\2.4.0.282\build\netstandard1.0\Xamarin.Forms.props" Condition="Exists('$(NuGetPackageRoot)xamarin.forms\2.4.0.282\build\netstandard1.0\Xamarin.Forms.props')" />
+    <Import Project="$(NuGetPackageRoot)tizen.net\4.0.0-preview1-00304\build\tizen40\Tizen.NET.props" Condition="Exists('$(NuGetPackageRoot)tizen.net\4.0.0-preview1-00304\build\tizen40\Tizen.NET.props')" />
+    <Import Project="$(NuGetPackageRoot)tizen.net.sdk\1.0.0-pre4\build\Tizen.NET.Sdk.props" Condition="Exists('$(NuGetPackageRoot)tizen.net.sdk\1.0.0-pre4\build\Tizen.NET.Sdk.props')" />
+  </ImportGroup>
+</Project>

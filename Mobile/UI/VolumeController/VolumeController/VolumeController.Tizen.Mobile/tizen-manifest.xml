@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.VolumeController.Tizen.Mobile" version="1.0.0">
+	<profile name="mobile" />
+	<ui-application appid="org.tizen.example.VolumeController.Tizen.Mobile"
+					exec="VolumeController.Tizen.Mobile.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+  <label>VolumeController.Tizen.Mobile</label>
+	<icon>VolumeController.Tizen.Mobile.png</icon>
+	</ui-application>
+  <shortcut-list />
+  <privileges>
+    <privilege>http://tizen.org/privilege/volume.set</privilege>
+  </privileges>
+</manifest>

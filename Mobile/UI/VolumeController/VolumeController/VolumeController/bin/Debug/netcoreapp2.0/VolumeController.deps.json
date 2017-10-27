@@ -1,0 +1,40 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.0",
+    "signature": "09582d92d2dc90e0d8f72cb540b8c89b2ad15a39"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.0": {
+      "VolumeController/1.0.0": {
+        "dependencies": {
+          "Xamarin.Forms": "2.4.0.282"
+        },
+        "runtime": {
+          "VolumeController.dll": {}
+        }
+      },
+      "Xamarin.Forms/2.4.0.282": {
+        "runtime": {
+          "lib/netstandard1.0/Xamarin.Forms.Core.dll": {},
+          "lib/netstandard1.0/Xamarin.Forms.Platform.dll": {},
+          "lib/netstandard1.0/Xamarin.Forms.Xaml.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "VolumeController/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Xamarin.Forms/2.4.0.282": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XhgWe/d5wwWD2vZe0t0QfE+kJPqzjc01GSuSWjzbX37MNn0JunXO22js3FRSRuDMbXLE3FlwBngazxpFP0x5qA==",
+      "path": "xamarin.forms/2.4.0.282",
+      "hashPath": "xamarin.forms.2.4.0.282.nupkg.sha512"
+    }
+  }
+}

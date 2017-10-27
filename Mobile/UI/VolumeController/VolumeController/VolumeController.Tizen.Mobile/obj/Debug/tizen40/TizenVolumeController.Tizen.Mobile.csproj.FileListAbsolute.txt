@@ -1,0 +1,11 @@
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Core.dll
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Platform.dll
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Xaml.dll
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Platform.Tizen.dll
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\VolumeController.dll
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\VolumeController.pdb
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\VolumeController.Tizen.Mobile.dll
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\tpkroot\bin\VolumeController.Tizen.Mobile.pdb
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\tpkroot\shared\res\VolumeController.Tizen.Mobile.png
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\tpkroot\tizen-manifest.xml
+\\10.113.63.172\tizen\4.0\sample_app\xamarin-forms-tizen-samples\Mobile\Multimedia\VolumeController\VolumeController\VolumeController.Tizen.Mobile\bin\Debug\tizen40\org.tizen.example.VolumeController.Tizen.Mobile-1.0.0.tpk

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCommon", "AppCommon\AppCommon\AppCommon.csproj", "{13C9A932-3EC9-4435-BE25-65AD9C2DA657}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCommon.Tizen.Mobile", "AppCommon\AppCommon.Tizen.Mobile\AppCommon.Tizen.Mobile.csproj", "{E4FE2ADD-EAF4-4152-BC2F-3DFF44C2443E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13C9A932-3EC9-4435-BE25-65AD9C2DA657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13C9A932-3EC9-4435-BE25-65AD9C2DA657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13C9A932-3EC9-4435-BE25-65AD9C2DA657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13C9A932-3EC9-4435-BE25-65AD9C2DA657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4FE2ADD-EAF4-4152-BC2F-3DFF44C2443E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4FE2ADD-EAF4-4152-BC2F-3DFF44C2443E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4FE2ADD-EAF4-4152-BC2F-3DFF44C2443E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4FE2ADD-EAF4-4152-BC2F-3DFF44C2443E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC210600-66CB-4C43-94CE-4713D9FA403A}
+	EndGlobalSection
+EndGlobal
