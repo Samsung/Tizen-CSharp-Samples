@@ -156,14 +156,14 @@ namespace Maps
         public double SEOUL_LON = 127.022782;
 
         /// <summary>
-        /// The latitude value for the new delhi.
+        /// The default latitude value.
         /// </summary>
-        public double NEWDELHI_LAT = 12.971940;
+        public double DEFAULT_LAT = 28.64362;
 
         /// <summary>
-        /// The longitude value for the new delhi.
+        /// The default longitude value.
         /// </summary>
-        public double NEWDELHI_LON = 77.593690;
+        public double DEFAULT_LON = 77.19865;
 
         /// <summary>
         /// The coordinate for the starting position.
@@ -205,7 +205,6 @@ namespace Maps
             {
                 // Terminate this application if user doesn't agree the user consent popup
                 CloseApp(this.MainPage);
-                return;
             }
 
             // Create the window
@@ -230,7 +229,7 @@ namespace Maps
             s_mapview.Resize(1580, 1070);
             // Set the latitude and longitude for the center position of the MapView
             //s_mapview.Center = new Geocoordinates(SEOUL_LAT, SEOUL_LON);
-            s_mapview.Center = new Geocoordinates(NEWDELHI_LAT, NEWDELHI_LON);
+            s_mapview.Center = new Geocoordinates(DEFAULT_LAT, DEFAULT_LON);
             // Set the zoom level
             s_mapview.ZoomLevel = 10;
             // Show the MapView
@@ -478,7 +477,7 @@ namespace Maps
                 // Move the category buttons
                 POIBtnList[i].Move(50, 400 + (i * 80));
                 // Resize the category buttons
-                POIBtnList[i].Resize(250, 100);
+                POIBtnList[i].Resize(250, 80);
                 // Add the handler for the category buttons
                 POIBtnList[i].Clicked += (sender, e) =>
                 {
@@ -711,12 +710,15 @@ namespace Maps
             PlaceList = null;
 
             // Remove all the map object from the map view
-            s_mapview.RemoveAll();
+			if (s_mapview != null)
+				s_mapview.RemoveAll();
             fromPosition = null;
             toPosition = null;
             // Clear the button's text
-            fromBtn.Text = "";
-            toBtn.Text = "";
+			if (fromBtn != null)
+				fromBtn.Text = "";
+			if (toBtn != null)
+				toBtn.Text = "";
         }
 
         /// <summary>
