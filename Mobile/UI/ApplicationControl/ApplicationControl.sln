@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationControl", "ApplicationControl\ApplicationControl\ApplicationControl.csproj", "{79934E05-AC0A-4EB4-A670-0769E942C881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationControl.Tizen.Mobile", "ApplicationControl\ApplicationControl.Tizen.Mobile\ApplicationControl.Tizen.Mobile.csproj", "{ECC6B993-E617-4D8E-8789-026A99CE3C86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79934E05-AC0A-4EB4-A670-0769E942C881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79934E05-AC0A-4EB4-A670-0769E942C881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79934E05-AC0A-4EB4-A670-0769E942C881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79934E05-AC0A-4EB4-A670-0769E942C881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC6B993-E617-4D8E-8789-026A99CE3C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC6B993-E617-4D8E-8789-026A99CE3C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC6B993-E617-4D8E-8789-026A99CE3C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC6B993-E617-4D8E-8789-026A99CE3C86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A37209D3-A9C7-4D51-A0C2-4F7F760481F4}
+	EndGlobalSection
+EndGlobal
