@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.Location.Geofence;
 using Xamarin.Forms;
+using Tizen.Security;
 
 namespace Geofence
 {
@@ -166,7 +167,38 @@ namespace Geofence
                 }
             });
             page = (NavigationPage)MainPage;
+
+			PrivilegeCheck();
         }
+
+		/// <summary>
+		/// Permission check 
+		/// </summary>
+		private void PrivilegeCheck()
+		{
+			try
+			{
+				/// Check location permission
+				CheckResult result = PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location");
+
+				switch (result)
+				{
+					case CheckResult.Allow:
+						break;
+					case CheckResult.Deny:
+						break;
+					case CheckResult.Ask:
+						/// Request to privacy popup
+						PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/location");
+						break;
+				}
+			}
+			catch (Exception ex)
+			{
+				/// Exception handling
+				InfoLabelList[1].Text = "[Status] Privilege : " + ex.Message;
+			}
+		}
 
         /// <summary>
         /// Handle when your app starts.
