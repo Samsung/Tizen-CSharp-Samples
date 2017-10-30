@@ -73,6 +73,7 @@ namespace Downloader
         string GetUrl();
         
         void StartDownload(String url);
+        void Dispose();
         void DownloadLog(String msg);
     }
 

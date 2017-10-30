@@ -159,23 +159,11 @@ namespace Downloader
         /// </summary>
         private void AddEvent()
         {
-            urlEntryCell.Completed += OnEntryCellCompleted;
             downloadButton.Clicked += OnButtonClicked;
             DependencyService.Get<IDownload>().DownloadStateChanged += OnStateChanged;
             DependencyService.Get<IDownload>().DownloadProgress += OnProgressbarChanged;
         }
-
-        /// <summary>
-        /// Event handler when EntryCell is completed.
-        /// </summary>
-        /// <param name="sender">Event sender</param>
-        /// <param name="e">Event Arguments</param>
-        private void OnEntryCellCompleted(object sender, EventArgs e)
-        {
-            DependencyService.Get<IDownload>().DownloadLog("OnEntryCellCompleted()");
-            downloadButton.Text = "Download Start";
-        }
-
+ 
         /// <summary>
         /// Event handler when download state is changed.
         /// </summary>
@@ -186,8 +174,18 @@ namespace Downloader
             if (e.stateMsg.Length > 0)
             {
                 DependencyService.Get<IDownload>().DownloadLog("State: " + e.stateMsg);
-                if (e.stateMsg != downloadButton.Text)
+
+                if (e.stateMsg == "Failed")
                 {
+                    downloadButton.Text = e.stateMsg + "! Please start download again.";
+                    // If download is failed, dispose a request
+                    DependencyService.Get<IDownload>().Dispose();
+                    // Enable a donwload button
+                    downloadButton.IsEnabled = true;
+                }
+                else if (e.stateMsg != downloadButton.Text)
+                {
+                    // Update a download state
                     downloadButton.Text = e.stateMsg;
                 }
             }
@@ -225,13 +223,13 @@ namespace Downloader
                 // Start to download content
                 DependencyService.Get<IDownload>().StartDownload(downloadUrl);
                 // Disable a button to avoid duplicated request.
-                ((Button)sender).IsEnabled = false;
+                downloadButton.IsEnabled = false;
             }
             catch (Exception ex)
             {
                 DependencyService.Get<IDownload>().DownloadLog("Request.Start() is failed" + ex);
                 // In case download is failed, enable a button.
-                ((Button)sender).IsEnabled = true;
+                downloadButton.IsEnabled = true;
             }
         }
     }

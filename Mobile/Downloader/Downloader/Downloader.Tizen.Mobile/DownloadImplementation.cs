@@ -31,20 +31,24 @@ namespace Downloader.Tizen.Mobile
         public event EventHandler<DownloadStateChangedEventArgs> DownloadStateChanged;
         public event EventHandler<DownloadProgressEventArgs> DownloadProgress;
 
-        private Request req = new Request("empty");
-  
+        private Request req;
+        
+        // Flag to check download is started or not
+        private bool is_started = false;
+
         /// <summary>
         /// Register event handler and call Request.Start() to start download
         /// </summary>
         /// <param name="url">The URL to download</param>
         public void StartDownload(string url)
         {
-            // Set the URL
-            req.Url = url;
+            // Create new Request with URL
+            req = new Request(url);
             // Register state changed event handler
             req.StateChanged += StateChanged;
             // Register progress changed event handler
             req.ProgressChanged += ProgressChanged;
+            is_started = true;
             // Start download content
             req.Start();
         }
@@ -55,7 +59,7 @@ namespace Downloader.Tizen.Mobile
         /// <returns>The URL</returns>
         public string GetUrl()
         {
-            if (req.Url == "empty")
+            if (!is_started)
             {
                 return "";
             }
@@ -69,7 +73,7 @@ namespace Downloader.Tizen.Mobile
         /// <returns>The content name</returns>
         public string GetContentName()
         {
-            if (req.Url == "empty")
+            if (!is_started)
             {
                 return "";
             }
@@ -83,7 +87,7 @@ namespace Downloader.Tizen.Mobile
         /// <returns>The content size</returns>
         public ulong GetContentSize()
         {
-            if (req.Url == "empty")
+            if (!is_started)
             {
                 return 0;
             }
@@ -97,7 +101,7 @@ namespace Downloader.Tizen.Mobile
         /// <returns>The downloaded path</returns>
         public string GetDownloadedPath()
         {
-            if (req.Url == "empty")
+            if (!is_started)
             {
                 return "";
             }
@@ -111,7 +115,7 @@ namespace Downloader.Tizen.Mobile
         /// <returns>The MIME type</returns>
         public string GetMimeType()
         {
-            if (req.Url == "empty")
+            if (!is_started)
             {
                 return "";
             }
@@ -125,7 +129,24 @@ namespace Downloader.Tizen.Mobile
         /// <returns>The download state</returns>
         public int GetDownloadState()
         {
-            return (int)req.State;
+            if (!is_started)
+            {
+                return 0;
+            }
+               
+             return (int)req.State;
+        }
+
+        /// <summary>
+        /// Dispose the request
+        /// </summary>
+        public void Dispose()
+        {
+            if (is_started)
+            {
+                req.Dispose();
+                is_started = false;
+            }
         }
 
         /// <summary>
