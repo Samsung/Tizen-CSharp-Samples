@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-using TAS = Tizen.Account.SyncManager;
 using SampleSync.Models;
 using SampleSync.Utils;
 using System;
 using System.Collections.Generic;
+using TAS = Tizen.Account.SyncManager;
+using Tizen.Security;
 
 namespace SampleSync.Tizen.Port
 {
@@ -28,7 +29,7 @@ namespace SampleSync.Tizen.Port
 
         static IPlatformEvent pEvent;
 
-		// int variables to store each sync job ides
+        // int variables to store each sync job ides
         private static int Periodic { get; set; }
         private static int Calendar { get; set; }
         private static int Contact { get; set; }
@@ -50,49 +51,49 @@ namespace SampleSync.Tizen.Port
             if (request.SyncJobName == "RequestOnDemand")
             {
                 // Synchronize data with a server here
-				// Update when the OnDemand sync job is completed
+                // Update when the OnDemand sync job is completed
                 pEvent.UpdateOnDemandDate(DateTime.Now.ToString());
             }
             else if (request.SyncJobName == "AddPeriodic")
             {
                 // Synchronize data with a server here
-				// Update when the Periodic sync job is completed
+                // Update when the Periodic sync job is completed
                 pEvent.UpdatePeriodicDate(DateTime.Now.ToString());
             }
             else if (request.SyncJobName == TAS.SyncJobData.CalendarCapability)
             {
                 // Synchronize data with a server here
-				// Update when the Calendar data change sync job is completed
+                // Update when the Calendar data change sync job is completed
                 pEvent.UpdateCalendarDate(DateTime.Now.ToString());
             }
             else if (request.SyncJobName == TAS.SyncJobData.ContactCapability)
             {
                 // Synchronize data with a server here
-				// Update when the Contact data change sync job is completed
+                // Update when the Contact data change sync job is completed
                 pEvent.UpdateContactDate(DateTime.Now.ToString());
             }
             else if (request.SyncJobName == TAS.SyncJobData.ImageCapability)
             {
                 // Synchronize data with a server here
-				// Update when the Image data change sync job is completed
+                // Update when the Image data change sync job is completed
                 pEvent.UpdateImageDate(DateTime.Now.ToString());
             }
             else if (request.SyncJobName == TAS.SyncJobData.MusicCapability)
             {
                 // Synchronize data with a server here
-				// Update when the Music data change sync job is completed
+                // Update when the Music data change sync job is completed
                 pEvent.UpdateMusicDate(DateTime.Now.ToString());
             }
             else if (request.SyncJobName == TAS.SyncJobData.SoundCapability)
             {
                 // Synchronize data with a server here
-				// Update when the Sound data change sync job is completed
+                // Update when the Sound data change sync job is completed
                 pEvent.UpdateSoundDate(DateTime.Now.ToString());
             }
             else if (request.SyncJobName == TAS.SyncJobData.VideoCapability)
             {
                 // Synchronize data with a server here
-				// Update when the Video data change sync job is completed
+                // Update when the Video data change sync job is completed
                 pEvent.UpdateVideoDate(DateTime.Now.ToString());
             }
 
@@ -200,7 +201,7 @@ namespace SampleSync.Tizen.Port
         {
             TAS.SyncJobData request = new TAS.SyncJobData();
             request.SyncJobName = TAS.SyncJobData.CalendarCapability;
-			// If some data related with calendar is changed, you can know the time by using below API
+            // If some data related with calendar is changed, you can know the time by using below API
             Calendar = TAS.SyncClient.AddDataChangeSyncJob(request, TAS.SyncOption.Expedited);
         }
 
@@ -211,7 +212,7 @@ namespace SampleSync.Tizen.Port
         {
             TAS.SyncJobData request = new TAS.SyncJobData();
             request.SyncJobName = TAS.SyncJobData.ContactCapability;
-			// If some data related with contact is changed, you can know the time by using below API
+            // If some data related with contact is changed, you can know the time by using below API
             Contact = TAS.SyncClient.AddDataChangeSyncJob(request, TAS.SyncOption.Expedited);
         }
 
@@ -222,7 +223,7 @@ namespace SampleSync.Tizen.Port
         {
             TAS.SyncJobData request = new TAS.SyncJobData();
             request.SyncJobName = TAS.SyncJobData.ImageCapability;
-			// If some data related with image is changed, you can know the time by using below API
+            // If some data related with image is changed, you can know the time by using below API
             Image = TAS.SyncClient.AddDataChangeSyncJob(request, TAS.SyncOption.Expedited);
         }
 
@@ -233,7 +234,7 @@ namespace SampleSync.Tizen.Port
         {
             TAS.SyncJobData request = new TAS.SyncJobData();
             request.SyncJobName = TAS.SyncJobData.MusicCapability;
-			// If some data related with music is changed, you can know the time by using below API
+            // If some data related with music is changed, you can know the time by using below API
             Music = TAS.SyncClient.AddDataChangeSyncJob(request, TAS.SyncOption.Expedited);
         }
 
@@ -244,7 +245,7 @@ namespace SampleSync.Tizen.Port
         {
             TAS.SyncJobData request = new TAS.SyncJobData();
             request.SyncJobName = TAS.SyncJobData.SoundCapability;
-			// If some data related with sound is changed, you can know the time by using below API
+            // If some data related with sound is changed, you can know the time by using below API
             Sound = TAS.SyncClient.AddDataChangeSyncJob(request, TAS.SyncOption.Expedited);
         }
 
@@ -255,7 +256,7 @@ namespace SampleSync.Tizen.Port
         {
             TAS.SyncJobData request = new TAS.SyncJobData();
             request.SyncJobName = TAS.SyncJobData.VideoCapability;
-			// If some data related with video is changed, you can know the time by using below API
+            // If some data related with video is changed, you can know the time by using below API
             Video = TAS.SyncClient.AddDataChangeSyncJob(request, TAS.SyncOption.Expedited);
         }
 
@@ -356,6 +357,105 @@ namespace SampleSync.Tizen.Port
         }
 
         /// <summary>
+        /// Used to check alarm.set privilege
+        /// </summary>
+        public void CheckAlarmSetPrivileges()
+        {
+            CheckResult result = PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/alarm.set");
+            switch (result)
+            {
+                case CheckResult.Allow:
+                    // Privilege can be used
+                    pEvent.NoticeAlarmSetPrivilege("Allow");
+                    break;
+                case CheckResult.Deny:
+                    // Privilege can't be used
+                    pEvent.NoticeAlarmSetPrivilege("Deny");
+                    break;
+                case CheckResult.Ask:
+                    // User permission request required
+                    pEvent.NoticeAlarmSetPrivilege("Ask");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Used to check calendar.read privilege
+        /// </summary>
+        public void CheckCalendarReadPrivileges()
+        {
+            CheckResult result = PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/calendar.read");
+            switch (result)
+            {
+                case CheckResult.Allow:
+                    // Privilege can be used
+                    pEvent.NoticeCalendarReadPrivilege("Allow");
+                    break;
+                case CheckResult.Deny:
+                    // Privilege can't be used
+                    pEvent.NoticeCalendarReadPrivilege("Deny");
+                    break;
+                case CheckResult.Ask:
+                    // User permission request required
+                    pEvent.NoticeCalendarReadPrivilege("Ask");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Used to check contact.read privilege
+        /// </summary>
+        public void CheckContactReadPrivileges()
+        {
+            CheckResult result = PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/contact.read");
+            switch (result)
+            {
+                case CheckResult.Allow:
+                    // Privilege can be used
+                    pEvent.NoticeContactReadPrivilege("Allow");
+                    break;
+                case CheckResult.Deny:
+                    // Privilege can't be used
+                    pEvent.NoticeContactReadPrivilege("Deny");
+                    break;
+                case CheckResult.Ask:
+                    // User permission request required
+                    pEvent.NoticeContactReadPrivilege("Ask");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Used to request alarm.set privilege
+        /// </summary>
+        public void RequestAlarmSetPrivileges()
+        {
+            PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/alarm.set");
+        }
+
+        /// <summary>
+        /// Used to request calendar.read privilege
+        /// </summary>
+        public void RequestCalendarReadPrivileges()
+        {
+            PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/calendar.read");
+        }
+
+        /// <summary>
+        /// Used to request contact.read privilege
+        /// </summary>
+        public void RequestContactReadPrivileges()
+        {
+            PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/contact.read");
+        }
+
+        /// <summary>
         /// Used to register platform event
         /// </summary>
         /// <param name="_pEvent">platform event</param>
@@ -365,4 +465,3 @@ namespace SampleSync.Tizen.Port
         }
     }
 }
-

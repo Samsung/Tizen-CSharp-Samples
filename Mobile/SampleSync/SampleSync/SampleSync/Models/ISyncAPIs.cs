@@ -19,89 +19,119 @@ namespace SampleSync.Models
     public interface ISyncAPIs
     {
         /// <summary>
-		/// An interface to remove all sync jobs and unset sync callbacks.
+        /// An interface to remove all sync jobs and unset sync callbacks.
         /// </summary>
         void RemoveAll();
 
         /// <summary>
-		/// An interface to set sync callbacks.
+        /// An interface to set sync callbacks.
         /// </summary>
         void SetCallbacks();
 
         /// <summary>
-		/// An interface to request On Demand sync job.
+        /// An interface to request On Demand sync job.
         /// </summary>
         void OnDemand();
 
         /// <summary>
-		/// An interface to add Periodic sync job.
+        /// An interface to add Periodic sync job.
         /// </summary>
         void AddPeriodic();
 
         /// <summary>
-		/// An interface to remove Periodic sync job.
+        /// An interface to remove Periodic sync job.
         /// </summary>
         void RemovePeriodic();
 
         /// <summary>
-		/// An interface to add Calendar data change sync job.
+        /// An interface to add Calendar data change sync job.
         /// </summary>
         void AddCalendarDataChange();
 
         /// <summary>
-		/// An interface to add Contact data change sync job.
+        /// An interface to add Contact data change sync job.
         /// </summary>
         void AddContactDataChange();
 
         /// <summary>
-		/// An interface to add Image data change sync job.
+        /// An interface to add Image data change sync job.
         /// </summary>
         void AddImageDataChange();
 
         /// <summary>
-		/// An interface to add Music data change sync job.
+        /// An interface to add Music data change sync job.
         /// </summary>
         void AddMusicDataChange();
 
         /// <summary>
-		/// An interface to add Sound data change sync job.
+        /// An interface to add Sound data change sync job.
         /// </summary>
         void AddSoundDataChange();
 
         /// <summary>
-		/// An interface to add Video data change sync job.
+        /// An interface to add Video data change sync job.
         /// </summary>
         void AddVideoDataChange();
 
         /// <summary>
-		/// An interface to remove Calendar data change sync job.
+        /// An interface to remove Calendar data change sync job.
         /// </summary>
         void RemoveCalendarDataChange();
 
         /// <summary>
-		/// An interface to remove Contact data change sync job.
+        /// An interface to remove Contact data change sync job.
         /// </summary>
         void RemoveContactDataChange();
 
         /// <summary>
-		/// An interface to remove Image data change sync job.
+        /// An interface to remove Image data change sync job.
         /// </summary>
         void RemoveImageDataChange();
 
         /// <summary>
-		/// An interface to remove Music data change sync job.
+        /// An interface to remove Music data change sync job.
         /// </summary>
         void RemoveMusicDataChange();
 
         /// <summary>
-		/// An interface to remove Sound data change sync job.
+        /// An interface to remove Sound data change sync job.
         /// </summary>
         void RemoveSoundDataChange();
 
         /// <summary>
-		/// An interface to remove Video data change sync job.
+        /// An interface to remove Video data change sync job.
         /// </summary>
         void RemoveVideoDataChange();
+
+        /// <summary>
+        /// An interface to check alarm.set privilege.
+        /// </summary>
+        void CheckAlarmSetPrivileges();
+
+        /// <summary>
+        /// An interface to check calendar.read privilege.
+        /// </summary>
+        void CheckCalendarReadPrivileges();
+
+        /// <summary>
+        /// An interface to check contact.read privilege.
+        /// </summary>
+        void CheckContactReadPrivileges();
+
+        /// <summary>
+        /// An interface to request alarm.set privilege.
+        /// </summary>
+        void RequestAlarmSetPrivileges();
+
+        /// <summary>
+        /// An interface to request calendar.read privilege.
+        /// </summary>
+        void RequestCalendarReadPrivileges();
+
+        /// <summary>
+        /// An interface to request contact.read privilege.
+        /// </summary>
+        void RequestContactReadPrivileges();
     }
 }
 

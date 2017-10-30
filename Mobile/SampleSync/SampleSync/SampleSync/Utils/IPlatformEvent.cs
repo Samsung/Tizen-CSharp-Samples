@@ -57,6 +57,21 @@ namespace SampleSync.Utils
         /// A method will be called when Video data change sync operation is finished.
         /// </summary>
         void UpdateVideoDate(string time);
+
+        /// <summary>
+        /// An method will be called when API which is related to alarm.set privilege is used.
+        /// </summary>
+        void NoticeAlarmSetPrivilege(string result);
+
+        /// <summary>
+        /// An method will be called when API which is related to calendar.read privilege is used.
+        /// </summary>
+        void NoticeCalendarReadPrivilege(string result);
+
+        /// <summary>
+        /// An method will be called when API which is related to contact.read privilege is used.
+        /// </summary>
+        void NoticeContactReadPrivilege(string result);
     }
 }
 

@@ -32,10 +32,10 @@ namespace SampleSync.Tizen.Mobile
         protected override void OnCreate()
         {
             base.OnCreate();
-			var app = new App();
+            var app = new App();
 
             // To send event to UI
-			pEvent = app;
+            pEvent = app;
             LoadApplication(app);
             SampleSyncPort.EventRegister(pEvent);
         }
@@ -49,4 +49,3 @@ namespace SampleSync.Tizen.Mobile
         }
     }
 }
-

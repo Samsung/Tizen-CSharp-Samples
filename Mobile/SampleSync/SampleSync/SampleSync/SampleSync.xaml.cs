@@ -27,6 +27,11 @@ namespace SampleSync
         public string dateTime;
     }
 
+    public class PrivacyPrivilegeListener
+    {
+        public string checkResult;
+    }
+
     public partial class App : Application, IPlatformEvent
     {
         private static ISyncAPIs ISA;
@@ -39,6 +44,9 @@ namespace SampleSync
         public static event EventHandler<UpdateSyncDateListener> UpdateMusicDateListener;
         public static event EventHandler<UpdateSyncDateListener> UpdateSoundDateListener;
         public static event EventHandler<UpdateSyncDateListener> UpdateVideoDateListener;
+        public static event EventHandler<PrivacyPrivilegeListener> AlarmSetPrivilegeListener;
+        public static event EventHandler<PrivacyPrivilegeListener> CalendarReadPrivilegeListener;
+        public static event EventHandler<PrivacyPrivilegeListener> ContactReadPrivilegeListener;
 
         public App()
         {
@@ -69,7 +77,7 @@ namespace SampleSync
         }
 
         /// <summary>
-		/// An interface to update the time when On Demand sync operation is finished.
+        /// An interface to update the time when On Demand sync operation is finished.
         /// </summary>
         public void UpdateOnDemandDate(string time)
         {
@@ -80,7 +88,7 @@ namespace SampleSync
         }
 
         /// <summary>
-		/// An interface to update the time when Periodic sync operation is finished.
+        /// An interface to update the time when Periodic sync operation is finished.
         /// </summary>
         public void UpdatePeriodicDate(string time)
         {
@@ -91,7 +99,7 @@ namespace SampleSync
         }
 
         /// <summary>
-		/// An interface to update the time when Calendar data change sync operation is finished.
+        /// An interface to update the time when Calendar data change sync operation is finished.
         /// </summary>
         public void UpdateCalendarDate(string time)
         {
@@ -102,7 +110,7 @@ namespace SampleSync
         }
 
         /// <summary>
-		/// An interface to update the time when Contact data change sync operation is finished.
+        /// An interface to update the time when Contact data change sync operation is finished.
         /// </summary>
         public void UpdateContactDate(string time)
         {
@@ -113,7 +121,7 @@ namespace SampleSync
         }
 
         /// <summary>
-		/// An interface to update the time when Image data change sync operation is finished.
+        /// An interface to update the time when Image data change sync operation is finished.
         /// </summary>
         public void UpdateImageDate(string time)
         {
@@ -124,7 +132,7 @@ namespace SampleSync
         }
 
         /// <summary>
-		/// An interface to update the time when Music data change sync operation is finished.
+        /// An interface to update the time when Music data change sync operation is finished.
         /// </summary>
         public void UpdateMusicDate(string time)
         {
@@ -135,7 +143,7 @@ namespace SampleSync
         }
 
         /// <summary>
-		/// An interface to update the time when Sound data change sync operation is finished.
+        /// An interface to update the time when Sound data change sync operation is finished.
         /// </summary>
         public void UpdateSoundDate(string time)
         {
@@ -146,7 +154,7 @@ namespace SampleSync
         }
 
         /// <summary>
-		/// An interface to update the time when Video data change sync operation is finished.
+        /// An interface to update the time when Video data change sync operation is finished.
         /// </summary>
         public void UpdateVideoDate(string time)
         {
@@ -155,6 +163,38 @@ namespace SampleSync
                 dateTime = time
             });
         }
+
+        /// <summary>
+        /// An interface to notify the privilege when API which is related to alarm.set privilege is used.
+        /// </summary>
+        public void NoticeAlarmSetPrivilege(string result)
+        {
+            AlarmSetPrivilegeListener?.Invoke(this, new PrivacyPrivilegeListener
+            {
+                checkResult = result
+            });
+        }
+
+        /// <summary>
+        /// An interface to notify the privilege when API which is related to calendar.read privilege is used.
+        /// </summary>
+        public void NoticeCalendarReadPrivilege(string result)
+        {
+            CalendarReadPrivilegeListener?.Invoke(this, new PrivacyPrivilegeListener
+            {
+                checkResult = result
+            });
+        }
+
+        /// <summary>
+        /// An interface to notify the privilege when API which is related to contact.read privilege is used.
+        /// </summary>
+        public void NoticeContactReadPrivilege(string result)
+        {
+            ContactReadPrivilegeListener?.Invoke(this, new PrivacyPrivilegeListener
+            {
+                checkResult = result
+            });
+        }
     }
 }
-

@@ -21,62 +21,101 @@ using Xamarin.Forms.Xaml;
 
 namespace SampleSync.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SyncMainPage : ContentPage
     {
         private static ISyncAPIs ISA;
 
         public SyncMainPage()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
             ISA = DependencyService.Get<ISyncAPIs>();
 
-			// A listener to update date directly for On Demand sync job
+            // A listener to update date directly for On Demand sync job
             App.UpdateOnDemandDateListener += (s, e) =>
             {
                 ondemanddate.Text = e.dateTime;
             };
 
-			// A listener to update date directly for Periodic sync job
+            // A listener to update date directly for Periodic sync job
             App.UpdatePeriodicDateListener += (s, e) =>
             {
                 periodicdate.Text = e.dateTime;
             };
 
-			// A listener to update date directly for Calendar data
+            // A listener to update date directly for Calendar data
             App.UpdateCalendarDateListener += (s, e) =>
             {
                 calendardate.Text = e.dateTime;
             };
 
-			// A listener to update date directly for Contact data
+            // A listener to update date directly for Contact data
             App.UpdateContactDateListener += (s, e) =>
             {
                 contactdate.Text = e.dateTime;
             };
 
-			// A listener to update date directly for Image data
+            // A listener to update date directly for Image data
             App.UpdateImageDateListener += (s, e) =>
             {
                 imagedate.Text = e.dateTime;
             };
 
-			// A listener to update date directly for Music data
+            // A listener to update date directly for Music data
             App.UpdateMusicDateListener += (s, e) =>
             {
                 musicdate.Text = e.dateTime;
             };
 
-			// A listener to update date directly for Sound data
+            // A listener to update date directly for Sound data
             App.UpdateSoundDateListener += (s, e) =>
             {
                 sounddate.Text = e.dateTime;
             };
 
-			// A listener to update date directly for Video data
+            // A listener to update date directly for Video data
             App.UpdateVideoDateListener += (s, e) =>
             {
                 videodate.Text = e.dateTime;
+            };
+
+            // A listener to notify alarm.set privilege directly to pop-up message
+            App.AlarmSetPrivilegeListener += (s, e) =>
+            {
+                if (e.checkResult == "Allow")
+                {
+                    ExecutePeriodic();
+                }
+                else if (e.checkResult == "Ask")
+                {
+                    NotifyPeriodic();
+                }
+            };
+
+            // A listener to notify calendar.read privilege directly to pop-up message
+            App.CalendarReadPrivilegeListener += (s, e) =>
+            {
+                if (e.checkResult == "Allow")
+                {
+                    ExecuteCalendar();
+                }
+                else if (e.checkResult == "Ask")
+                {
+                    NotifyCalendar();
+                }
+            };
+
+            // A listener to notify contact.read privilege directly to pop-up message
+            App.ContactReadPrivilegeListener += (s, e) =>
+            {
+                if (e.checkResult == "Allow")
+                {
+                    ExecuteContact();
+                }
+                else if (e.checkResult == "Ask")
+                {
+                    NotifyContact();
+                }
             };
         }
 
@@ -93,14 +132,42 @@ namespace SampleSync.Views
         }
 
         /// <summary>
+        /// A method will be called when the ALLOW button on the Privilege notice.
+        /// </summary>
+        void ExecutePeriodic()
+        {
+            periodicbutton.Text = "Unset";
+            ISA.AddPeriodic();
+        }
+
+        /// <summary>
+        /// A method will notice privilege through its pop-up message.
+        /// </summary>
+        async void NotifyPeriodic()
+        {
+            var answer = await DisplayAlert("Privilege Notice", "Do you allow to set alarm for this app?", "ALLOW", "DENY");
+            if (answer == true)
+            {
+                ISA.RequestAlarmSetPrivileges();
+                ExecutePeriodic();
+            }
+            else
+            {
+                await DisplayAlert("Notice", "You can't use this feature unless allow the permission", "CLOSE");
+            }
+        }
+
+        /// <summary>
         /// A method will be called when the Set/Unset button.
         /// </summary>
         void PeriodicClicked(object sender, EventArgs args)
         {
+            // This button is toggled its text
+            // Its function also changes
             if (periodicbutton.Text == "Set")
             {
-                periodicbutton.Text = "Unset";
-                ISA.AddPeriodic();
+                // Check Privacy Privilege for alarm.set
+                ISA.CheckAlarmSetPrivileges();
             }
             else
             {
@@ -108,7 +175,33 @@ namespace SampleSync.Views
                 periodicbutton.Text = "Set";
                 ISA.RemovePeriodic();
             }
+        }
 
+        /// <summary>
+        /// A method will be called when the ALLOW button on the Privilege notice.
+        /// </summary>
+        void ExecuteCalendar()
+        {
+            calendarbutton.Text = "On";
+            calendarbutton.BackgroundColor = Color.LightGreen;
+            ISA.AddCalendarDataChange();
+        }
+
+        /// <summary>
+        /// A method will notice privilege through its pop-up message.
+        /// </summary>
+        async void NotifyCalendar()
+        {
+            var answer = await DisplayAlert("Privilege Notice", "Do you allow to read calendar data for this app?", "ALLOW", "DENY");
+            if (answer == true)
+            {
+                ISA.RequestCalendarReadPrivileges();
+                ExecuteCalendar();
+            }
+            else
+            {
+                await DisplayAlert("Notice", "You can't use this feature unless allow the permission", "CLOSE");
+            }
         }
 
         /// <summary>
@@ -116,13 +209,12 @@ namespace SampleSync.Views
         /// </summary>
         void CalendarClicked(object sender, EventArgs args)
         {
-			// This button is toggled its text and color
-			// Its function also changes
+            // This button is toggled its text and color
+            // Its function also changes
             if (calendarbutton.Text == "Off")
             {
-                calendarbutton.Text = "On";
-                calendarbutton.BackgroundColor = Color.LightGreen;
-                ISA.AddCalendarDataChange();
+                // Check Privacy Privilege for calendar.read
+                ISA.CheckCalendarReadPrivileges();
             }
             else
             {
@@ -134,17 +226,43 @@ namespace SampleSync.Views
         }
 
         /// <summary>
+        /// A method will be called when the ALLOW button on the Privilege notice.
+        /// </summary>
+        void ExecuteContact()
+        {
+            contactbutton.Text = "On";
+            contactbutton.BackgroundColor = Color.LightGreen;
+            ISA.AddContactDataChange();
+        }
+
+        /// <summary>
+        /// A method will notice privilege through its pop-up message.
+        /// </summary>
+        async void NotifyContact()
+        {
+            var answer = await DisplayAlert("Privilege Notice", "Do you allow to read contact data for this app?", "ALLOW", "DENY");
+            if (answer == true)
+            {
+                ISA.RequestContactReadPrivileges();
+                ExecuteContact();
+            }
+            else
+            {
+                await DisplayAlert("Notice", "You can't use this feature unless allow the permission", "CLOSE");
+            }
+        }
+
+        /// <summary>
         /// A method will be called when the On/Off button beside the Contact.
         /// </summary>
         void ContactClicked(object sender, EventArgs args)
         {
-			// This button is toggled its text and color
-			// Its function also changes
+            // This button is toggled its text and color
+            // Its function also changes
             if (contactbutton.Text == "Off")
             {
-                contactbutton.Text = "On";
-                contactbutton.BackgroundColor = Color.LightGreen;
-                ISA.AddContactDataChange();
+                // Check Privacy Privilege for contact.read
+                ISA.CheckContactReadPrivileges();
             }
             else
             {
@@ -160,8 +278,8 @@ namespace SampleSync.Views
         /// </summary>
         void ImageClicked(object sender, EventArgs args)
         {
-			// This button is toggled its text and color
-			// Its function also changes
+            // This button is toggled its text and color
+            // Its function also changes
             if (imagebutton.Text == "Off")
             {
                 imagebutton.Text = "On";
@@ -182,8 +300,8 @@ namespace SampleSync.Views
         /// </summary>
         void MusicClicked(object sender, EventArgs args)
         {
-			// This button is toggled its text and color
-			// Its function also changes
+            // This button is toggled its text and color
+            // Its function also changes
             if (musicbutton.Text == "Off")
             {
                 musicbutton.Text = "On";
@@ -204,8 +322,8 @@ namespace SampleSync.Views
         /// </summary>
         void SoundClicked(object sender, EventArgs args)
         {
-			// This button is toggled its text and color
-			// Its function also changes
+            // This button is toggled its text and color
+            // Its function also changes
             if (soundbutton.Text == "Off")
             {
                 soundbutton.Text = "On";
@@ -226,8 +344,8 @@ namespace SampleSync.Views
         /// </summary>
         void VideoClicked(object sender, EventArgs args)
         {
-			// This button is toggled its text and color
-			// Its function also changes
+            // This button is toggled its text and color
+            // Its function also changes
             if (videobutton.Text == "Off")
             {
                 videobutton.Text = "On";
