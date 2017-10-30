@@ -113,6 +113,7 @@ namespace PushReceiver.Tizen.Port
             }
             catch (Exception e)
             {
+                // Exception handling
                 Console.WriteLine("Caught Exception: " + e.ToString());
             }
 
