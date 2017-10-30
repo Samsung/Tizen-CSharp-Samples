@@ -1,0 +1,9 @@
+<StyleCopSettings Version="105">
+  <GlobalSettings>
+    <CollectionProperty Name="RecognizedWords">
+      <Value>Aes</Value>
+      <Value>Pkcs</Value>
+      <Value>Rsa</Value>
+    </CollectionProperty>
+  </GlobalSettings>
+</StyleCopSettings>
