@@ -3,6 +3,7 @@ using System.Linq;
 
 using Xamarin.Forms;
 using Tizen.Location;
+using Tizen.Security;
 
 
 namespace Location
@@ -28,8 +29,8 @@ namespace Location
         private static CircleBoundary circle = null;
 
         private static Button buttonStart;
-        private static Button buttonBoundary;
         private static Button buttonGetLocation;
+        private static Button buttonBoundary;
         private static Button buttonTrack;
         private static Button buttonSatellite;
         private static Button buttonStop;
@@ -147,6 +148,38 @@ namespace Location
                 buttonTrack.IsEnabled = false;
                 buttonSatellite.IsEnabled = false;
                 buttonStop.IsEnabled = false;
+
+                /// Check location permission
+                PrivilegeCheck();
+            }
+
+            /// <summary>
+            /// Permission check
+            /// </summary>
+            private void PrivilegeCheck()
+            {
+                try
+                {
+                    /// Check location permission
+                    CheckResult result = PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location");
+
+                    switch (result)
+                    {
+                        case CheckResult.Allow:
+                            break;
+                        case CheckResult.Deny:
+                            break;
+                        case CheckResult.Ask:
+                            /// Request to privacy popup
+                            PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/location");
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    /// Exception handling
+                    textStatus.Text = "[Status] Privilege : " + ex.Message;
+                }
             }
 
             /// <summary>
@@ -158,38 +191,46 @@ namespace Location
             {
                 if (locator == null)
                 {
-                    /// <summary>
-                    /// Create Locator instance, sets LocationType to GPS
-                    /// </summary>
-                    /// <param name="Hybrid">This method selects the best method available at the moment.</param>
-                    /// <param name="Gps">This method uses Global Positioning System.</param>
-                    /// <param name="Wps">This method uses WiFi Positioning System.</param>
-                    /// <param name="Passive">This method uses passive mode.</param>
-                    locator = new Locator(LocationType.Gps);
-
-                    /// Create GpsSatellite instance
-                    satellite = new GpsSatellite(locator);
-
-                    if (locator != null)
+                    try
                     {
-                        /// Starts the Locator which has been created using the specified method.
-                        locator.Start();
-                        textStatus.Text = "[Status] Start location service, GPS searching ...";
+                        /// <summary>
+                        /// Create Locator instance, sets LocationType to GPS
+                        /// </summary>
+                        /// <param name="Hybrid">This method selects the best method available at the moment.</param>
+                        /// <param name="Gps">This method uses Global Positioning System.</param>
+                        /// <param name="Wps">This method uses WiFi Positioning System.</param>
+                        /// <param name="Passive">This method uses passive mode.</param>
+                        locator = new Locator(LocationType.Gps);
 
-                        /// Add ServiceStateChanged event to receive the event regarding service state
-                        locator.ServiceStateChanged += Locator_ServiceStateChanged;
+                        /// Create GpsSatellite instance
+                        satellite = new GpsSatellite(locator);
 
-                        /// Disable start button to avoid duplicated call.
-                        buttonStart.IsEnabled = false;
+                        if (locator != null)
+                        {
+                            /// Starts the Locator which has been created using the specified method.
+                            locator.Start();
+                            textStatus.Text = "[Status] Start location service, GPS searching ...";
 
-                        // Enable available buttons
-                        buttonSatellite.IsEnabled = true;
-                        buttonStop.IsEnabled = true;
+                            /// Add ServiceStateChanged event to receive the event regarding service state
+                            locator.ServiceStateChanged += Locator_ServiceStateChanged;
+
+                            /// Disable start button to avoid duplicated call.
+                            buttonStart.IsEnabled = false;
+
+                            // Enable available buttons
+                            buttonSatellite.IsEnabled = true;
+                            buttonStop.IsEnabled = true;
+                        }
+                        else
+                        {
+                            /// Locator creation failed
+                            textStatus.Text = "[Status] Location initialize .. Failed";
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        /// Locator creation failed
-                        textStatus.Text = "[Status] Location initialize .. Failed";
+                        /// Exception handling
+                        textStatus.Text = "[Status] Location Initialize : " + ex.Message;
                     }
                 }
             }
@@ -329,6 +370,7 @@ namespace Location
                     }
                     catch (Exception ex)
                     {
+                        /// Exception handling
                         textMessage.Text = "[Satellite]\n  Exception : " + ex.Message;
                     }
                 }
