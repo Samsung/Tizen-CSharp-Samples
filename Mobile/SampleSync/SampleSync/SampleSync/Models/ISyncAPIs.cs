@@ -104,11 +104,6 @@ namespace SampleSync.Models
         void RemoveVideoDataChange();
 
         /// <summary>
-        /// An interface to check alarm.set privilege.
-        /// </summary>
-        void CheckAlarmSetPrivileges();
-
-        /// <summary>
         /// An interface to check calendar.read privilege.
         /// </summary>
         void CheckCalendarReadPrivileges();
@@ -117,21 +112,5 @@ namespace SampleSync.Models
         /// An interface to check contact.read privilege.
         /// </summary>
         void CheckContactReadPrivileges();
-
-        /// <summary>
-        /// An interface to request alarm.set privilege.
-        /// </summary>
-        void RequestAlarmSetPrivileges();
-
-        /// <summary>
-        /// An interface to request calendar.read privilege.
-        /// </summary>
-        void RequestCalendarReadPrivileges();
-
-        /// <summary>
-        /// An interface to request contact.read privilege.
-        /// </summary>
-        void RequestContactReadPrivileges();
     }
 }
-

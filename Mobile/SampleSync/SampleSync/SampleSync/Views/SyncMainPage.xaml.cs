@@ -79,43 +79,16 @@ namespace SampleSync.Views
                 videodate.Text = e.dateTime;
             };
 
-            // A listener to notify alarm.set privilege directly to pop-up message
-            App.AlarmSetPrivilegeListener += (s, e) =>
-            {
-                if (e.checkResult == "Allow")
-                {
-                    ExecutePeriodic();
-                }
-                else if (e.checkResult == "Ask")
-                {
-                    NotifyPeriodic();
-                }
-            };
-
-            // A listener to notify calendar.read privilege directly to pop-up message
+            // A listener to notify calendar.read privilege is allowed
             App.CalendarReadPrivilegeListener += (s, e) =>
             {
-                if (e.checkResult == "Allow")
-                {
-                    ExecuteCalendar();
-                }
-                else if (e.checkResult == "Ask")
-                {
-                    NotifyCalendar();
-                }
+                ExecuteCalendar();
             };
 
-            // A listener to notify contact.read privilege directly to pop-up message
+            // A listener to notify contact.read privilege is allowed
             App.ContactReadPrivilegeListener += (s, e) =>
             {
-                if (e.checkResult == "Allow")
-                {
-                    ExecuteContact();
-                }
-                else if (e.checkResult == "Ask")
-                {
-                    NotifyContact();
-                }
+                ExecuteContact();
             };
         }
 
@@ -132,32 +105,6 @@ namespace SampleSync.Views
         }
 
         /// <summary>
-        /// A method will be called when the ALLOW button on the Privilege notice.
-        /// </summary>
-        void ExecutePeriodic()
-        {
-            periodicbutton.Text = "Unset";
-            ISA.AddPeriodic();
-        }
-
-        /// <summary>
-        /// A method will notice privilege through its pop-up message.
-        /// </summary>
-        async void NotifyPeriodic()
-        {
-            var answer = await DisplayAlert("Privilege Notice", "Do you allow to set alarm for this app?", "ALLOW", "DENY");
-            if (answer == true)
-            {
-                ISA.RequestAlarmSetPrivileges();
-                ExecutePeriodic();
-            }
-            else
-            {
-                await DisplayAlert("Notice", "You can't use this feature unless allow the permission", "CLOSE");
-            }
-        }
-
-        /// <summary>
         /// A method will be called when the Set/Unset button.
         /// </summary>
         void PeriodicClicked(object sender, EventArgs args)
@@ -166,8 +113,8 @@ namespace SampleSync.Views
             // Its function also changes
             if (periodicbutton.Text == "Set")
             {
-                // Check Privacy Privilege for alarm.set
-                ISA.CheckAlarmSetPrivileges();
+                periodicbutton.Text = "Unset";
+                ISA.AddPeriodic();
             }
             else
             {
@@ -178,30 +125,13 @@ namespace SampleSync.Views
         }
 
         /// <summary>
-        /// A method will be called when the ALLOW button on the Privilege notice.
+        /// A method will be called after allowing the calendar.read privilege.
         /// </summary>
         void ExecuteCalendar()
         {
             calendarbutton.Text = "On";
             calendarbutton.BackgroundColor = Color.LightGreen;
             ISA.AddCalendarDataChange();
-        }
-
-        /// <summary>
-        /// A method will notice privilege through its pop-up message.
-        /// </summary>
-        async void NotifyCalendar()
-        {
-            var answer = await DisplayAlert("Privilege Notice", "Do you allow to read calendar data for this app?", "ALLOW", "DENY");
-            if (answer == true)
-            {
-                ISA.RequestCalendarReadPrivileges();
-                ExecuteCalendar();
-            }
-            else
-            {
-                await DisplayAlert("Notice", "You can't use this feature unless allow the permission", "CLOSE");
-            }
         }
 
         /// <summary>
@@ -226,30 +156,13 @@ namespace SampleSync.Views
         }
 
         /// <summary>
-        /// A method will be called when the ALLOW button on the Privilege notice.
+        /// A method will be called after allowing the contact.read privilege.
         /// </summary>
         void ExecuteContact()
         {
             contactbutton.Text = "On";
             contactbutton.BackgroundColor = Color.LightGreen;
             ISA.AddContactDataChange();
-        }
-
-        /// <summary>
-        /// A method will notice privilege through its pop-up message.
-        /// </summary>
-        async void NotifyContact()
-        {
-            var answer = await DisplayAlert("Privilege Notice", "Do you allow to read contact data for this app?", "ALLOW", "DENY");
-            if (answer == true)
-            {
-                ISA.RequestContactReadPrivileges();
-                ExecuteContact();
-            }
-            else
-            {
-                await DisplayAlert("Notice", "You can't use this feature unless allow the permission", "CLOSE");
-            }
         }
 
         /// <summary>

@@ -4,7 +4,7 @@
              x:Class="SampleSync.Views.SyncMainPage"
              Title="SampleSync" >
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White" Padding="40, 0">
+        <StackLayout BackgroundColor="White" Padding="40, 0" >
             <Label></Label>
             <Grid>
                 <Grid.RowDefinitions>

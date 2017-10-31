@@ -29,6 +29,8 @@ namespace SampleSync.Tizen.Port
 
         static IPlatformEvent pEvent;
 
+        static PrivacyPrivilegeManager.ResponseContext context = null;
+
         // int variables to store each sync job ides
         private static int Periodic { get; set; }
         private static int Calendar { get; set; }
@@ -357,32 +359,62 @@ namespace SampleSync.Tizen.Port
         }
 
         /// <summary>
-        /// Used to check alarm.set privilege
+        /// Used to set privilege event listener and request the privilege.
         /// </summary>
-        public void CheckAlarmSetPrivileges()
+        private static void PPM_RequestResponse(object sender, RequestResponseEventArgs e)
         {
-            CheckResult result = PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/alarm.set");
-            switch (result)
+            if (e.cause == CallCause.Answer)
             {
-                case CheckResult.Allow:
-                    // Privilege can be used
-                    pEvent.NoticeAlarmSetPrivilege("Allow");
-                    break;
-                case CheckResult.Deny:
-                    // Privilege can't be used
-                    pEvent.NoticeAlarmSetPrivilege("Deny");
-                    break;
-                case CheckResult.Ask:
-                    // User permission request required
-                    pEvent.NoticeAlarmSetPrivilege("Ask");
-                    break;
-                default:
-                    break;
+                switch (e.result)
+                {
+                    // Allow clicked case
+                    case RequestResult.AllowForever:
+                        if (e.privilege == "http://tizen.org/privilege/calendar.read")
+                        {
+                            pEvent.AllowCalendarReadPrivilege();
+                        }
+                        else if (e.privilege == "http://tizen.org/privilege/contact.read")
+                        {
+                            pEvent.AllowContactReadPrivilege();
+                        }
+                        break;
+                    case RequestResult.DenyForever:
+                        break;
+                    case RequestResult.DenyOnce:
+                        break;
+                };
+
+                // Unset event listener for privilege
+                PrivacyPrivilegeManager.GetResponseContext(e.privilege).TryGetTarget(out context);
+                if (context != null)
+                {
+                    context.ResponseFetched -= PPM_RequestResponse;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error occurs during requesting permission for {0}", e.privilege);
             }
         }
 
         /// <summary>
-        /// Used to check calendar.read privilege
+        /// Used to set privilege event listener and request the privilege.
+        /// </summary>
+        void AskPrivacyPrivilege(string privilege)
+        {
+            // Set event listener for privilege
+            PrivacyPrivilegeManager.GetResponseContext(privilege).TryGetTarget(out context);
+            if (context != null)
+            {
+                context.ResponseFetched += PPM_RequestResponse;
+            }
+
+            // Request pop-up message for privileges
+            PrivacyPrivilegeManager.RequestPermission(privilege);
+        }
+
+        /// <summary>
+        /// Used to check calendar.read privilege.
         /// </summary>
         public void CheckCalendarReadPrivileges()
         {
@@ -391,15 +423,14 @@ namespace SampleSync.Tizen.Port
             {
                 case CheckResult.Allow:
                     // Privilege can be used
-                    pEvent.NoticeCalendarReadPrivilege("Allow");
+                    pEvent.AllowCalendarReadPrivilege();
                     break;
                 case CheckResult.Deny:
                     // Privilege can't be used
-                    pEvent.NoticeCalendarReadPrivilege("Deny");
                     break;
                 case CheckResult.Ask:
                     // User permission request required
-                    pEvent.NoticeCalendarReadPrivilege("Ask");
+                    AskPrivacyPrivilege("http://tizen.org/privilege/calendar.read");
                     break;
                 default:
                     break;
@@ -407,7 +438,7 @@ namespace SampleSync.Tizen.Port
         }
 
         /// <summary>
-        /// Used to check contact.read privilege
+        /// Used to check contact.read privilege.
         /// </summary>
         public void CheckContactReadPrivileges()
         {
@@ -416,15 +447,14 @@ namespace SampleSync.Tizen.Port
             {
                 case CheckResult.Allow:
                     // Privilege can be used
-                    pEvent.NoticeContactReadPrivilege("Allow");
+                    pEvent.AllowContactReadPrivilege();
                     break;
                 case CheckResult.Deny:
                     // Privilege can't be used
-                    pEvent.NoticeContactReadPrivilege("Deny");
                     break;
                 case CheckResult.Ask:
                     // User permission request required
-                    pEvent.NoticeContactReadPrivilege("Ask");
+                    AskPrivacyPrivilege("http://tizen.org/privilege/contact.read");
                     break;
                 default:
                     break;
@@ -432,31 +462,7 @@ namespace SampleSync.Tizen.Port
         }
 
         /// <summary>
-        /// Used to request alarm.set privilege
-        /// </summary>
-        public void RequestAlarmSetPrivileges()
-        {
-            PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/alarm.set");
-        }
-
-        /// <summary>
-        /// Used to request calendar.read privilege
-        /// </summary>
-        public void RequestCalendarReadPrivileges()
-        {
-            PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/calendar.read");
-        }
-
-        /// <summary>
-        /// Used to request contact.read privilege
-        /// </summary>
-        public void RequestContactReadPrivileges()
-        {
-            PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/contact.read");
-        }
-
-        /// <summary>
-        /// Used to register platform event
+        /// Used to register platform event.
         /// </summary>
         /// <param name="_pEvent">platform event</param>
         public static void EventRegister(IPlatformEvent _pEvent)

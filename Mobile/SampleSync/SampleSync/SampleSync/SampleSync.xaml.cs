@@ -29,7 +29,6 @@ namespace SampleSync
 
     public class PrivacyPrivilegeListener
     {
-        public string checkResult;
     }
 
     public partial class App : Application, IPlatformEvent
@@ -44,7 +43,6 @@ namespace SampleSync
         public static event EventHandler<UpdateSyncDateListener> UpdateMusicDateListener;
         public static event EventHandler<UpdateSyncDateListener> UpdateSoundDateListener;
         public static event EventHandler<UpdateSyncDateListener> UpdateVideoDateListener;
-        public static event EventHandler<PrivacyPrivilegeListener> AlarmSetPrivilegeListener;
         public static event EventHandler<PrivacyPrivilegeListener> CalendarReadPrivilegeListener;
         public static event EventHandler<PrivacyPrivilegeListener> ContactReadPrivilegeListener;
 
@@ -165,36 +163,19 @@ namespace SampleSync
         }
 
         /// <summary>
-        /// An interface to notify the privilege when API which is related to alarm.set privilege is used.
+        /// An interface to notify the privilege when API which is related to calendar.read.
         /// </summary>
-        public void NoticeAlarmSetPrivilege(string result)
+        public void AllowCalendarReadPrivilege()
         {
-            AlarmSetPrivilegeListener?.Invoke(this, new PrivacyPrivilegeListener
-            {
-                checkResult = result
-            });
+            CalendarReadPrivilegeListener?.Invoke(this, new PrivacyPrivilegeListener{});
         }
 
         /// <summary>
-        /// An interface to notify the privilege when API which is related to calendar.read privilege is used.
+        /// An interface to notify the privilege when API which is related to contact.read.
         /// </summary>
-        public void NoticeCalendarReadPrivilege(string result)
+        public void AllowContactReadPrivilege()
         {
-            CalendarReadPrivilegeListener?.Invoke(this, new PrivacyPrivilegeListener
-            {
-                checkResult = result
-            });
-        }
-
-        /// <summary>
-        /// An interface to notify the privilege when API which is related to contact.read privilege is used.
-        /// </summary>
-        public void NoticeContactReadPrivilege(string result)
-        {
-            ContactReadPrivilegeListener?.Invoke(this, new PrivacyPrivilegeListener
-            {
-                checkResult = result
-            });
+            ContactReadPrivilegeListener?.Invoke(this, new PrivacyPrivilegeListener{});
         }
     }
 }
