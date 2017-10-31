@@ -60,6 +60,8 @@ namespace SampleAccount.Views
             PassTextChange(entryPass);
 
             accountAPIs = DependencyService.Get<IAccountManagerAPIs>();
+
+            accountAPIs.CheckAccountPrivilege();
         }
 
         /// <summary>

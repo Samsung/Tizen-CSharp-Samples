@@ -36,5 +36,7 @@ namespace AccountManager.Models
         /// </summary>
         /// <param name="accountItem"> The account handle.</param>
         void AccountDelete(AccountItem accountItem);
+
+        void CheckAccountPrivilege();
     }
 }
