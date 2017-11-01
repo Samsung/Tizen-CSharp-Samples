@@ -56,10 +56,10 @@ namespace Geofence
         /// </summary>
         NavigationPage page = null;
 
-        /// <summary>
-        /// Create the view and add event handlers
-        /// </summary>
-        public App()
+		/// <summary>
+		/// Create the view and add event handlers
+		/// </summary>
+		public App()
         {
             // Create a list for Information labels
             InfoLabelList = new List<Label>();
@@ -168,8 +168,9 @@ namespace Geofence
             });
             page = (NavigationPage)MainPage;
 
+			// Check the privilege
 			PrivilegeCheck();
-        }
+		}
 
 		/// <summary>
 		/// Permission check 
@@ -212,12 +213,16 @@ namespace Geofence
         /// </summary>
         protected override void OnSleep()
         {
-            // Remove the handle for GeofenceEventChanged
-            geofence.GeofenceEventChanged -= GeofenceEventChanged;
-            // Remove the handle for StateChanged
-            geofence.StateChanged -= StateChanged;
-            // Remove the handle for ProximityChanged
-            geofence.ProximityChanged -= ProximityChanged;
+			// Check the permission for location privilege
+			if (PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location") == CheckResult.Allow)
+			{
+				// Remove the handle for GeofenceEventChanged
+				geofence.GeofenceEventChanged -= GeofenceEventChanged;
+				// Remove the handle for StateChanged
+				geofence.StateChanged -= StateChanged;
+				// Remove the handle for ProximityChanged
+				geofence.ProximityChanged -= ProximityChanged;
+			}
 
             // Dispose the GeofenceManager object
             if (geofence != null)
@@ -253,12 +258,16 @@ namespace Geofence
                 // Set the value to label
                 InfoLabelList[1].Text = "Success";
 
-                // Add a handle for GeofenceEventChanged
-                geofence.GeofenceEventChanged += GeofenceEventChanged;
-                // Add a handle for StateChanged
-                geofence.StateChanged += StateChanged;
-                // Add a handle for ProximityChanged
-                geofence.ProximityChanged += ProximityChanged;
+				// Check the permission for location privilege
+				if (PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location") == CheckResult.Allow)
+				{
+					// Add a handle for GeofenceEventChanged
+					geofence.GeofenceEventChanged += GeofenceEventChanged;
+					// Add a handle for StateChanged
+					geofence.StateChanged += StateChanged;
+					// Add a handle for ProximityChanged
+					geofence.ProximityChanged += ProximityChanged;
+				}
             }
             catch (Exception e)
             {
@@ -387,8 +396,14 @@ namespace Geofence
             /// <param name="sender">Specifies the sender of this event</param>
             public InsertInfoPage(object sender)
             {
-                CreatePage(-1, FenceType.GeoPoint, sender);
-            }
+				if (PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location") != CheckResult.Allow)
+				{
+					ShowNoPermissionAlert();
+					return;
+				}
+
+				CreatePage(-1, FenceType.GeoPoint, sender);
+			}
 
             /// <summary>
             /// Constructor of InsertInfoPage class.
@@ -562,7 +577,18 @@ namespace Geofence
 
                 Content = parent;
             }
-        }
+
+			/// <summary>
+			/// Display an alert for no permission.
+			/// </summary>
+			public async void ShowNoPermissionAlert()
+			{
+				// Display a alert
+				await this.DisplayAlert("Alert", "NoPermission", "OK");
+				// Move to the main page
+				await Navigation.PopToRootAsync();
+			}
+		}
 
         /// <summary>
         /// Geofence application sub class.
@@ -629,8 +655,14 @@ namespace Geofence
             /// <param name="sender">Specifies the object of selected button in main page</param>
             public SelectIDPage(object sender)
             {
-                // Clear some labels if button4 is selected.
-                if (sender != ButtonList[4])
+				if (PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location") != CheckResult.Allow)
+				{
+					ShowNoPermissionAlert();
+					return;
+				}
+
+				// Clear some labels if button4 is selected.
+				if (sender != ButtonList[4])
                 {
                     InfoLabelList[2].Text = "";
                     InfoLabelList[3].Text = "";
@@ -757,6 +789,17 @@ namespace Geofence
                 // Move to the main page
                 await Navigation.PopToRootAsync();
             }
-        }
+
+			/// <summary>
+			/// Display an alert for no permission.
+			/// </summary>
+			public async void ShowNoPermissionAlert()
+			{
+				// Display a alert
+				await this.DisplayAlert("Alert", "NoPermission", "OK");
+				// Move to the main page
+				await Navigation.PopToRootAsync();
+			}
+		}
     }
 }
