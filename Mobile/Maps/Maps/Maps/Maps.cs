@@ -150,25 +150,27 @@ namespace Maps
         /// </summary>
         public Geocoordinates toPosition = null;
 
-        /// <summary>
-        /// Create a MapService, MapView and Window object.
-        /// </summary>
-        /// <param name="provider">Specifies the provider</param>
-        public async void CreateMapService(string provider)
-        {
-            // Set the provider to the selected provider
-            selectedProvider = provider;
+		/// <summary>
+		/// Create a MapService, MapView and Window object.
+		/// </summary>
+		/// <param name="selectedTC">The selected TextCell</param>
+		public async void CreateMapService(TextCell selectedTC)
+		{
+			// Set the disable for the selected TextCell
+			selectedTC.IsEnabled = false;
+			// Set the provider to the selected provider
+			selectedProvider = selectedTC.Text;
 
-            // check the provider
-            if (provider == "HERE")
+			// check the provider
+			if (selectedProvider == "HERE")
             {
                 // Create the MapService for the HERE provider
-                s_maps = new MapService(provider, HERE_KEY);
+                s_maps = new MapService(selectedProvider, HERE_KEY);
             }
-            else if (provider == "MAPZEN")
+            else if (selectedProvider == "MAPZEN")
             {
                 // Create the MapService for the MAPZEN provider
-                s_maps = new MapService(provider, MAPZEN_KEY);
+                s_maps = new MapService(selectedProvider, MAPZEN_KEY);
             }
 
             // Request the user consent
@@ -178,8 +180,10 @@ namespace Maps
             // Check the user's choice in the user consent popup
             if (s_maps.UserConsented != true)
             {
-                // Terminate this application if user doesn't agree the user consent popup
-				CloseApp(this.MainPage);
+				// Set the enable for the selected TextCell
+				selectedTC.IsEnabled = true;
+				// return to the view for the provider selection
+				return;
 			}
 
 			// Create the window
@@ -602,9 +606,9 @@ namespace Maps
         /// </summary>
         public App()
         {
-            // Create a TableSelection
-            TableSection selection = new TableSection("PROVIDERS") { };
-            for (int i = 0; i < MapService.Providers.Count(); i++)
+			// Create a TableSelection
+			TableSection selection = new TableSection("PROVIDERS") { };
+			for (int i = 0; i < MapService.Providers.Count(); i++)
             {
                 // Create a TextCell
                 TextCell tc = new TextCell()
@@ -612,10 +616,10 @@ namespace Maps
                     // Set the Text to the provider
                     Text = MapService.Providers.ElementAt(i),
                 };
-                // Create a Command for the selection of the TextCell
-                tc.Command = new Command(() => { CreateMapService(tc.Text); });
-                // Add the TextCell to the TableSelection
-                selection.Add(tc);
+				// Create a Command for the selection of the TextCell
+				tc.Command = new Command(() => { CreateMapService(tc); });
+				// Add the TextCell to the TableSelection
+				selection.Add(tc);
             }
 
             // Create a ContentPage for the MainPage

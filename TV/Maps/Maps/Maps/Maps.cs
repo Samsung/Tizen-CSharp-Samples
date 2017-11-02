@@ -175,25 +175,27 @@ namespace Maps
         /// </summary>
         public Geocoordinates toPosition = null;
 
-        /// <summary>
-        /// Create a MapService, MapView and Window object.
-        /// </summary>
-        /// <param name="provider">Specifies the provider</param>
-        public async void CreateMapService(string provider)
+		/// <summary>
+		/// Create a MapService, MapView and Window object.
+		/// </summary>
+		/// <param name="selectedTC">The selected TextCell</param>
+		public async void CreateMapService(TextCell selectedTC)
         {
-            // Set the provider to the selected provider
-            selectedProvider = provider;
+			// Set the disable for the selected TextCell
+			selectedTC.IsEnabled = false;
+			// Set the provider to the selected provider
+			selectedProvider = selectedTC.Text;
 
             // check the provider
-            if (provider == "HERE")
+            if (selectedProvider == "HERE")
             {
                 // Create the MapService for the HERE provider
-                s_maps = new MapService(provider, HERE_KEY);
+                s_maps = new MapService(selectedProvider, HERE_KEY);
             }
-            else if (provider == "MAPZEN")
+            else if (selectedProvider == "MAPZEN")
             {
                 // Create the MapService for the MAPZEN provider
-                s_maps = new MapService(provider, MAPZEN_KEY);
+                s_maps = new MapService(selectedProvider, MAPZEN_KEY);
             }
 
             // Request the user consent
@@ -203,8 +205,10 @@ namespace Maps
             // Check the user's choice in the user consent popup
             if (s_maps.UserConsented != true)
             {
-                // Terminate this application if user doesn't agree the user consent popup
-                CloseApp(this.MainPage);
+				// Set the enable for the selected TextCell
+				selectedTC.IsEnabled = true;
+				// return to the view for the provider selection
+				return;
             }
 
             // Create the window
@@ -737,7 +741,7 @@ namespace Maps
                     Text = MapService.Providers.ElementAt(i),
                 };
                 // Create a Command for the selection of the TextCell
-                tc.Command = new Command(() => { CreateMapService(tc.Text); });
+                tc.Command = new Command(() => { CreateMapService(tc); });
                 // Add the TextCell to the TableSelection
                 selection.Add(tc);
             }
