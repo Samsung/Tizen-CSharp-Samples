@@ -4,7 +4,8 @@
              x:Class="SampleAccount.Views.AccountSignIn"
              Title="Sample Account" >
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" BackgroundColor="White">
+        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
             <Grid Padding="150,25,150,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -56,5 +57,6 @@
                     Font="Large" />
             </Grid>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

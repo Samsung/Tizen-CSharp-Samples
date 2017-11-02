@@ -74,5 +74,16 @@ namespace SampleAccount.Views
             await DisplayAlert("Account Deleted", "ID : " + account.UserId, "OK");
             await Navigation.PushAsync(accountSignIn);
         }
+
+        /// <summary>
+        /// Back button event
+        /// </summary>
+        /// <returns> true if navigation pushasync is succeed</returns>
+        protected override bool OnBackButtonPressed()
+        {
+            AccountSignIn accountSignIn = new AccountSignIn();
+            Navigation.PushAsync(accountSignIn);
+            return true;
+        }
     }
 }

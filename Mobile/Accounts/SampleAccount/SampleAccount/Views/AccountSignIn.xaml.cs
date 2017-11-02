@@ -16,10 +16,6 @@
 
 using AccountManager.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -93,6 +89,16 @@ namespace SampleAccount.Views
                 AccountSignOut accountSignOut = new AccountSignOut(id, userId);
                 await Navigation.PushAsync(accountSignOut);
             }
+        }
+
+        /// <summary>
+        /// Back button event
+        /// </summary>
+        /// <returns> true if event is succeed.</returns>
+        protected override bool OnBackButtonPressed()
+        {
+            System.Environment.Exit(1);
+            return true;
         }
 
         /// <summary>
