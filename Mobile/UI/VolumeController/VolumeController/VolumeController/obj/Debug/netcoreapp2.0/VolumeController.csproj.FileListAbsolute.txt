@@ -1,8 +1,0 @@
-E:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController\bin\Debug\netcoreapp2.0\VolumeController.deps.json
-E:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController\bin\Debug\netcoreapp2.0\VolumeController.dll
-E:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController\bin\Debug\netcoreapp2.0\VolumeController.pdb
-E:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController\obj\Debug\netcoreapp2.0\VolumeController.csproj.CoreCompileInputs.cache
-E:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController\obj\Debug\netcoreapp2.0\VolumeController.AssemblyInfoInputs.cache
-E:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController\obj\Debug\netcoreapp2.0\VolumeController.AssemblyInfo.cs
-E:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController\obj\Debug\netcoreapp2.0\VolumeController.dll
-E:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController\obj\Debug\netcoreapp2.0\VolumeController.pdb

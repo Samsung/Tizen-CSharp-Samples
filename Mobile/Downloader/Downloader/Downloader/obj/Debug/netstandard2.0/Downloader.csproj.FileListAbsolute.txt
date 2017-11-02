@@ -1,8 +1,0 @@
-C:\Workspace\Downloader\Downloader\Downloader\bin\Debug\netstandard2.0\Downloader.deps.json
-C:\Workspace\Downloader\Downloader\Downloader\bin\Debug\netstandard2.0\Downloader.dll
-C:\Workspace\Downloader\Downloader\Downloader\bin\Debug\netstandard2.0\Downloader.pdb
-C:\Workspace\Downloader\Downloader\Downloader\obj\Debug\netstandard2.0\Downloader.csproj.CoreCompileInputs.cache
-C:\Workspace\Downloader\Downloader\Downloader\obj\Debug\netstandard2.0\Downloader.AssemblyInfoInputs.cache
-C:\Workspace\Downloader\Downloader\Downloader\obj\Debug\netstandard2.0\Downloader.AssemblyInfo.cs
-C:\Workspace\Downloader\Downloader\Downloader\obj\Debug\netstandard2.0\Downloader.dll
-C:\Workspace\Downloader\Downloader\Downloader\obj\Debug\netstandard2.0\Downloader.pdb

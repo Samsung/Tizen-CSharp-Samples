@@ -1,4 +1,0 @@
-e:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController.Tizen.Mobile\obj\Debug\netcoreapp2.0\VolumeController.Tizen.Mobile.csprojResolveAssemblyReference.cache
-e:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController.Tizen.Mobile\obj\Debug\netcoreapp2.0\VolumeController.Tizen.Mobile.csproj.CoreCompileInputs.cache
-e:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController.Tizen.Mobile\obj\Debug\netcoreapp2.0\VolumeController.Tizen.Mobile.AssemblyInfoInputs.cache
-e:\csharp\xamarin_sample\CPS\VolumeController\VolumeController\VolumeController.Tizen.Mobile\obj\Debug\netcoreapp2.0\VolumeController.Tizen.Mobile.AssemblyInfo.cs
