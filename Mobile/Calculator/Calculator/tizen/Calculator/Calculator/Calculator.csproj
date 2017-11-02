@@ -41,6 +41,9 @@
     <Compile Include="Controls\ElementButton.xaml.cs">
       <DependentUpon>ElementButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CustomScrollView.xaml.cs">
+      <DependentUpon>CustomScrollView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IAppConfigurationChanged.cs" />
     <Compile Include="Impl\CalculatorImpl.cs" />
     <Compile Include="Impl\DebuggingUtils.cs" />
@@ -95,6 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Settings.StyleCop" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\CustomScrollView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

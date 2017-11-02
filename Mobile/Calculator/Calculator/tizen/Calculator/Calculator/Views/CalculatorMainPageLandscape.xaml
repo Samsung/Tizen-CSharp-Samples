@@ -7,10 +7,6 @@
              BackgroundImage="bg_l.png"
              Padding="0, 0, 0, 0">
 
-    <ContentPage.BindingContext>
-        <local:MainPageViewModel />
-    </ContentPage.BindingContext>
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:StringToColorConverter x:Key="StringToColorConverter"/>
@@ -100,12 +96,12 @@
                            HorizontalOptions="Start"
                            VerticalOptions="Start"/>
 
-                    <ScrollView x:Name="ExpressionScrollView" Grid.Row="0" Grid.Column="1">
+                    <control:CustomScrollView x:Name="ExpressionScrollView" Grid.Row="0" Grid.Column="1">
                         <Label x:Name="ExpressionLabel"
                                PropertyChanged="ExpressionLabelPropertyChanged"
                                Style="{StaticResource inputString}"
                                FormattedText="{Binding ExpressionText}"/>
-                    </ScrollView>
+                    </control:CustomScrollView>
 
                     <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource sumString}"
                            TextColor="{Binding ResultColor, Converter={StaticResource StringToColorConverter}}"

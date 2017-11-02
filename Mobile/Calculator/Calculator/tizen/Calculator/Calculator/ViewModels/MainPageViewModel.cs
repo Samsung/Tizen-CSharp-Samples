@@ -53,8 +53,19 @@ namespace Calculator.ViewModels
     /// </summary>
     /// <seealso cref="Views.CalculatorMainPage">
     /// <seealso cref="Views.CalculatorMainPageLandscape">
-    class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        /// A instance of MainPageViewModel which is wrapped as lazy<T> type.
+        /// </summary>
+        private static readonly Lazy<MainPageViewModel> lazy =
+                new Lazy<MainPageViewModel>(() => new MainPageViewModel());
+
+        /// <summary>
+        /// A property to provide MainPageViewModel instance.
+        /// </summary>
+        public static MainPageViewModel Instance { get { return lazy.Value; } }
+
         /// <summary>
         /// Property changing event handler</summary>
         public event PropertyChangedEventHandler PropertyChanged;
@@ -128,7 +139,7 @@ namespace Calculator.ViewModels
         /// <summary>
         /// MainPageViewModel constructor.
         /// In this constructor, The view initialization and commands bindings are completed. </summary>
-        public MainPageViewModel()
+        private MainPageViewModel()
         {
             SetDisplayEmpty();
             SetDegreeButton(true);

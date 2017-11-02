@@ -7,10 +7,6 @@
              BackgroundImage="bg_p.png"
              Padding="0, 0, 0, 0">
 
-    <ContentPage.BindingContext>
-        <local:MainPageViewModel />
-    </ContentPage.BindingContext>
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:StringToColorConverter x:Key="StringToColorConverter"/>
@@ -91,12 +87,12 @@
                         <RowDefinition Height="86*" />
                     </Grid.RowDefinitions>
 
-                    <ScrollView x:Name="ExpressionScrollView" Grid.Row="0">
+                    <control:CustomScrollView x:Name="ExpressionScrollView" Grid.Row="0">
                         <Label x:Name="ExpressionLabel"
                                PropertyChanged="ExpressionLabelPropertyChanged"
                                Style="{StaticResource inputString}"
                                FormattedText="{Binding ExpressionText}"/>
-                    </ScrollView>
+                    </control:CustomScrollView>
 
                     <BoxView Grid.Row="1" />
 
