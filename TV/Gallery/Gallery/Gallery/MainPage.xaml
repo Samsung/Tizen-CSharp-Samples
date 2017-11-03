@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Gallery.MainPage" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:Gallery.Controls"
+    xmlns:local="clr-namespace:Gallery" xmlns:viewModel="clr-namespace:Gallery.ViewModel"
+    Title="Gallery" BackgroundColor="White">
+    <ContentPage.BindingContext>
+        <viewModel:MainViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <controls:Panel
+            HorizontalOptions="FillAndExpand" ItemsHeight="240"
+            ItemsSource="{Binding ImageSource}"
+            ItemsWidth="360" Spacing="5"
+            TappedCommand="{Binding FullScreenShowCommand}"
+            VerticalOptions="FillAndExpand">
+            <controls:Panel.ItemTemplate>
+                <DataTemplate>
+                    <Image Aspect="Fill" Source="{Binding}" />
+                </DataTemplate>
+            </controls:Panel.ItemTemplate>
+        </controls:Panel>
+    </ContentPage.Content>
+</ContentPage>
