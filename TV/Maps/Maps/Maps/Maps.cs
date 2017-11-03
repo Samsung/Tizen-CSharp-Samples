@@ -31,7 +31,8 @@ namespace Maps
     {
         MAP,
         ROUTE,
-        POI
+        POI,
+		POISELECTED,
     };
 
     /// <summary>
@@ -238,8 +239,8 @@ namespace Maps
             s_mapview.ZoomLevel = 10;
             // Show the MapView
             s_mapview.Show();
-
-            CreateButton();
+			// Display the buttons.
+			CreateButton();
         }
 
         /// <summary>
@@ -252,6 +253,8 @@ namespace Maps
         {
             try
             {
+				// clear the text
+				btn.Text = "";
                 // Request an address with the latitude and longitude
                 var response = await s_maps.CreateReverseGeocodeRequest(latitude, longitude).GetResponseAsync();
                 // Set the address to the button
@@ -279,8 +282,9 @@ namespace Maps
                 IEnumerator<Route> route = response.GetEnumerator();
                 while (route.MoveNext())
                 {
-                    // Display the polylines after making it from the path of the route
-                    s_mapview.Add(new Polyline((List<Geocoordinates>)route.Current.Path, ElmSharp.Color.Red, 5));
+					// Display the polylines after making it from the path of the route
+					if (view == ViewPage.ROUTE)
+						s_mapview.Add(new Polyline((List<Geocoordinates>)route.Current.Path, ElmSharp.Color.Red, 5));
                 }
             }
             catch (Exception e)
@@ -321,18 +325,24 @@ namespace Maps
                     // Create pins with the places and add it to marker list
                     MarkerList.Add(new global::Tizen.Maps.Pin(PlaceList[i].Coordinates));
                     // Show the markers
-                    s_mapview.Add(MarkerList[i]);
+					if (view == ViewPage.POI)
+						s_mapview.Add(MarkerList[i]);
                 }
 
-                // Set the current marker
-                SetCurrentMarker(CurrentMarker);
+				// Set the current marker
+				if (view == ViewPage.POI)
+					SetCurrentMarker(CurrentMarker);
             }
             catch (Exception e)
             {
                 // Display logs with the error message
                 Log.Debug("Map", e.Message.ToString());
             }
-        }
+			// Set the viewpage
+			if (view == ViewPage.POI)
+				view = ViewPage.POISELECTED;
+
+		}
 
         /// <summary>
         /// Display the current marker.
@@ -485,14 +495,14 @@ namespace Maps
                 // Add the handler for the category buttons
                 POIBtnList[i].Clicked += (sender, e) =>
                 {
-                    // Remove the used data
-                    ClearData();
+					// Set the viewpage
+					view = ViewPage.POI;
+					// Remove the used data
+					ClearData();
                     // Hide the button for the end position
                     toBtn.Hide();
                     // Request the pois with the center position
                     RequestPOI(new Geocoordinates(s_mapview.Center.Latitude, s_mapview.Center.Longitude), ((ElmSharp.Button)sender).Text);
-                    // Set the viewpage
-                    view = ViewPage.POI;
                 };
             }
 
@@ -540,7 +550,9 @@ namespace Maps
                     // Show the category buttons
                     POIBtnList[i].Show();
                 }
-            };
+				// Set the viewpage
+				view = ViewPage.POI;
+			};
 
             // Create the list for the direction buttons
             DirectionBtnList = new List<ElmSharp.Button>();
@@ -604,19 +616,14 @@ namespace Maps
                         }
                         else if (view == ViewPage.ROUTE)
                         {
-                            // Check the text of the from button and the to button. The route is being displayed if the text of the buttons is not empty.
-                            if (fromBtn.Text != "" && toBtn.Text != "")
-                            {
-                                // Remove all the map object from the map view
-                                s_mapview.RemoveAll();
-                                // Remove the text of the from button
-                                fromBtn.Text = "";
-                                // Remove the text of the to button
-                                toBtn.Text = "";
+							// Check the text of the from button and the to button. The route is being displayed if the text of the buttons is not empty.
+							if ((fromBtn.Text == "" && toBtn.Text == "") || (fromBtn.Text != "" && toBtn.Text != ""))
+							{
+								ClearData();
                             }
 
                             // Check the text of the from button
-                            if (fromBtn.Text == "")
+                            if (fromPosition == null)
                             {
                                 // Add a marker to the center position
                                 s_mapview.Add(new global::Tizen.Maps.Pin(s_mapview.Center));
@@ -625,7 +632,7 @@ namespace Maps
                                 // Create the Geocoordinates from the center position
                                 fromPosition = new Geocoordinates(s_mapview.Center.Latitude, s_mapview.Center.Longitude);
                             }
-                            else
+                            else if (fromBtn.Text != "" && toPosition == null)
                             {
                                 // Add a marker to the center position
                                 s_mapview.Add(new global::Tizen.Maps.Sticker(s_mapview.Center));
@@ -637,7 +644,7 @@ namespace Maps
                                 RequestRoute(fromPosition, toPosition);
                             }
                         }
-                        else if (view == ViewPage.POI)
+                        else if (view == ViewPage.POISELECTED)
                         {
                             // Increase the index of the current marker
                             CurrentMarker = CurrentMarker + 1;

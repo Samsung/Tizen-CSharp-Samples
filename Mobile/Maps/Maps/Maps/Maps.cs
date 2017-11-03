@@ -31,7 +31,8 @@ namespace Maps
     {
         MAP,
         ROUTE,
-        POI
+        POI,
+		POISELECTED,
     };
 
     /// <summary>
@@ -261,21 +262,17 @@ namespace Maps
 				// Set the zoom level
 				s_mapview.ZoomLevel = 13;
 				// Check the text of the fromLabel and the toLabel. The route is being displayed if the text of the labels is not empty.
-				if (fromLabel.Text != "" && toLabel.Text != "")
-                {
-                    // Remove all the map object from the map view
-                    s_mapview.RemoveAll();
-                    // Remove the text of the fromLabel
-                    fromLabel.Text = "";
-                    // Remove the text of the toLabel
-                    toLabel.Text = "";
-                }
+				if ((fromLabel.Text != "" && toLabel.Text != "") || (fromLabel.Text == "" && toLabel.Text == ""))
+				{
+					// Remove the used resource
+					ClearData();
+				}
 
                 // Move to the longpressed position
                 s_mapview.Center = e.Geocoordinates;
 
                 // Check the text of the from the label
-                if (fromLabel.Text == "")
+                if (fromPosition == null)
                 {
                     // Add a marker to the center position
                     s_mapview.Add(new global::Tizen.Maps.Pin(s_mapview.Center));
@@ -284,8 +281,8 @@ namespace Maps
                     // Create the Geocoordinates from the center position
                     fromPosition = new Geocoordinates(s_mapview.Center.Latitude, s_mapview.Center.Longitude);
                 }
-                else
-                {
+                else if (fromLabel.Text != "" && toPosition == null)
+				{
                     // Add a marker to the center position
                     s_mapview.Add(new global::Tizen.Maps.Sticker(s_mapview.Center));
                     // Request an address with the center position
@@ -308,6 +305,8 @@ namespace Maps
         {
             try
             {
+				// clear the text
+				label.Text = "";
                 // Request an address with the latitude and longitude
                 var response = await s_maps.CreateReverseGeocodeRequest(latitude, longitude).GetResponseAsync();
                 // Set the address to the label
@@ -336,7 +335,8 @@ namespace Maps
                 while (route.MoveNext())
                 {
                     // Display the polylines after making it from the path of the route
-                    s_mapview.Add(new Polyline((List<Geocoordinates>)route.Current.Path, ElmSharp.Color.Red, 5));
+					if (view == ViewPage.ROUTE)
+						s_mapview.Add(new Polyline((List<Geocoordinates>)route.Current.Path, ElmSharp.Color.Red, 5));
                 }
             }
             catch (Exception e)
@@ -376,19 +376,24 @@ namespace Maps
                     // Create pins with the places and add it to marker list
                     MarkerList.Add(new global::Tizen.Maps.Pin(PlaceList[i].Coordinates));
                     // Show the markers
-                    s_mapview.Add(MarkerList[i]);
+					if (view == ViewPage.POI)
+						s_mapview.Add(MarkerList[i]);
                     // Add a handler to click the marker
                     MarkerList[i].Clicked += (sender, e) => { SetCurrentMarker((Marker)sender); };
                 }
 
                 // Set the current marker
-                SetCurrentMarker(MarkerList[0]);
+				if (view == ViewPage.POI)
+                    SetCurrentMarker(MarkerList[0]);
             }
             catch (Exception e)
             {
                 // Display logs with the error message
                 Log.Debug("Map", e.Message.ToString());
             }
+			// Set the viewpage
+			if (view == ViewPage.POI)
+				view = ViewPage.POISELECTED;
         }
 
         /// <summary>
@@ -525,8 +530,12 @@ namespace Maps
             {
                 // Set the hoversel's text to the selected item
                 categoryHoversel.Text = e.Item.Label.ToString();
-                // Remove the used data
+				// Set the viewpage
+				view = ViewPage.POI;
+				// Remove the used data
                 ClearData();
+                // Hide the button for the end position
+                toLabel.Hide();
                 // Request the pois with the center position
                 RequestPOI(new Geocoordinates(s_mapview.Center.Latitude, s_mapview.Center.Longitude), e.Item.Label.ToString());
             };
