@@ -6,12 +6,12 @@ Tizen C# Samples for Mobile, Wearable, and TV profiles.
 ### Visual Studio 2017
 * [Download Visual Studio 2017](https://www.visualstudio.com/downloads/)
 
-### Visual Studio Plugin (Preview)
-* [Download Plugin](https://developer.tizen.org/development/tizen-.net-preview/visual-studio-tools-tizen)
+### Visual Studio Tools for Tizen
+* [Download Plugin](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen)
 
 ### Reference
-* [Tizen .NET Preview](https://developer.tizen.org/development/tizen-.net-preview/introduction)
-* [Preview API Reference(Preview)](https://developer.tizen.org/development/tizen-.net-preview/api)
+* [Tizen .NET](https://developer.tizen.org/development/api-reference/.net-application)
+* [TizenFX API Reference](https://developer.tizen.org/dev-guide/csapi/index.html)
 
 ### Sample structure
 ```
@@ -31,5 +31,5 @@ Tizen C# Samples for Mobile, Wearable, and TV profiles.
 
 ### Branch policy
 
-* master: ready applications for Preview #5
+* master: ready applications for Tizen 4.0 M2
 * dev: for development
