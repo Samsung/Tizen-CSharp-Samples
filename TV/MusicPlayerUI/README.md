@@ -2,8 +2,8 @@
 MusicPlayerUI is the sample UI application that shows how you can compose the music player application.
 UI is written in [XAML](https://developer.xamarin.com/guides/xamarin-forms/xaml/). [Behaviors](https://developer.xamarin.com/guides/xamarin-forms/application-fundamentals/behaviors/) and [Binding](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_binding_basics/) features are mainly used.
 
-![Main](./Screenshots/Tizen.TV/main.png)
-![Player](./Screenshots/Tizen.TV/detail.png)
+![Main](./Screenshots/Tizen/main.png)
+![Player](./Screenshots/Tizen/detail.png)
 
 
 ### Verified Version
