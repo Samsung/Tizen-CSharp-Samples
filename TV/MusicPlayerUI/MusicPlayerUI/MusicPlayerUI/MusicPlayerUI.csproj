@@ -6,44 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="App.xaml" />
-    <None Remove="MainPage.xaml" />
-    <None Remove="Page\DetailPage.xaml" />
-    <None Remove="Page\MenuPage.xaml" />
-    <None Remove="Page\ModalPlayPage.xaml" />
-    <None Remove="Page\TabItemPage.xaml" />
-    <None Remove="View\MusicBar.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="App.xaml">
-      <CustomToolNamespace>MSBuild:UpdateDesignTimeXaml</CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainPage.xaml">
-      <CustomToolNamespace>MSBuild:UpdateDesignTimeXaml</CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Page\DetailPage.xaml">
-      <CustomToolNamespace>MSBuild:UpdateDesignTimeXaml</CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Page\MenuPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Page\ModalPlayPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Page\TabItemPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="View\MusicBar.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.4.0.269-pre2" />
+    <PackageReference Include="Xamarin.Forms" Version="2.4.0.18342" />
   </ItemGroup>
 
   <!-- Include Nuget Package for Xamarin building -->
