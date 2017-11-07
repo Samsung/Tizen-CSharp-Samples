@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System_info", "System-info\System_info\System_info.csproj", "{F85E6A96-F87C-44C6-B155-9A8784B2D710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System_info.Tizen.Mobile", "System-info\System_info.Tizen.Mobile\System_info.Tizen.Mobile.csproj", "{42515A21-1B22-47EC-BE42-CD861B48F671}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F85E6A96-F87C-44C6-B155-9A8784B2D710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F85E6A96-F87C-44C6-B155-9A8784B2D710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F85E6A96-F87C-44C6-B155-9A8784B2D710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F85E6A96-F87C-44C6-B155-9A8784B2D710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42515A21-1B22-47EC-BE42-CD861B48F671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42515A21-1B22-47EC-BE42-CD861B48F671}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42515A21-1B22-47EC-BE42-CD861B48F671}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42515A21-1B22-47EC-BE42-CD861B48F671}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {773299BF-FDF7-485F-81CA-148B265CCC49}
+	EndGlobalSection
+EndGlobal

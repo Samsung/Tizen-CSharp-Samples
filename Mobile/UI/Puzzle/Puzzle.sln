@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle", "Puzzle\Puzzle\Puzzle.csproj", "{F17BBE1A-AC8F-49D9-BAF8-CA54F651BB72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.Tizen.Mobile", "Puzzle\Puzzle.Tizen.Mobile\Puzzle.Tizen.Mobile.csproj", "{52C00417-C950-417B-9004-2B4CBA2A5284}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F17BBE1A-AC8F-49D9-BAF8-CA54F651BB72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F17BBE1A-AC8F-49D9-BAF8-CA54F651BB72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F17BBE1A-AC8F-49D9-BAF8-CA54F651BB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F17BBE1A-AC8F-49D9-BAF8-CA54F651BB72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52C00417-C950-417B-9004-2B4CBA2A5284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52C00417-C950-417B-9004-2B4CBA2A5284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52C00417-C950-417B-9004-2B4CBA2A5284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52C00417-C950-417B-9004-2B4CBA2A5284}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D58DE9B0-E057-4F9C-B739-523CDAC5E85F}
+	EndGlobalSection
+EndGlobal

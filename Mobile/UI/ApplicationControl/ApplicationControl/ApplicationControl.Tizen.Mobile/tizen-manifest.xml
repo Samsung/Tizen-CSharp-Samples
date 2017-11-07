@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.ApplicationControl.Tizen.Mobile" version="1.0.0">
+	<profile name="mobile" />
+	<ui-application appid="org.tizen.example.ApplicationControl.Tizen.Mobile"
+					exec="ApplicationControl.Tizen.Mobile.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+  <label>ApplicationControl.Tizen.Mobile</label>
+	<icon>ApplicationControl.Tizen.Mobile.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+	</ui-application>
+  <shortcut-list />
+  <privileges>
+    <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+    <privilege>http://tizen.org/privilege/contact.write</privilege>
+  </privileges>
+</manifest>

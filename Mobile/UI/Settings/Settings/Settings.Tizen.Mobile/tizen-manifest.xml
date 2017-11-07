@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.Settings.Tizen.Mobile" version="1.0.0">
+	<profile name="mobile" />
+	<ui-application appid="org.tizen.example.Settings.Tizen.Mobile"
+					exec="Settings.Tizen.Mobile.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+  <label>Settings.Tizen.Mobile</label>
+	<icon>Settings.Tizen.Mobile.png</icon>
+	</ui-application>
+</manifest>
