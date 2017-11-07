@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="Calendar.Views.InsertPage"
+             Title="Add Event" >
+
+
+    <StackLayout Orientation="Vertical">
+        <ScrollView
+                  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.3}"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.95}"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+            <Grid x:Name="gridName" Padding="10, 10, 10, 10" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text=" " VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+
+                <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" OutlineColor="Accent">
+                    <Entry x:Name="SummaryEntry" Placeholder="Insert event's summary" />
+                </Frame>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Start" VerticalOptions="Center" HorizontalOptions="Start" />
+				<DatePicker x:Name="StartDate" Format="yyyy/MM/dd" Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+				<TimePicker x:Name="StartTime" Grid.Row="2" Grid.Column="2" VerticalOptions="Center" />
+
+                <Label Grid.Row="3" Grid.Column="0" Text="End" VerticalOptions="Center" HorizontalOptions="Start" />
+				<DatePicker x:Name="EndDate" Format="yyyy/MM/dd" Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+				<TimePicker x:Name="EndTime" Grid.Row="3" Grid.Column="2" VerticalOptions="Center" />
+
+                <Label Grid.Row="4" Grid.Column="0" Text="TimeZone" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Button x:Name="TimeZoneText" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="Center" />
+
+                <Label Grid.Row="5" Grid.Column="0" Text="All Day" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Switch x:Name="AlldaySwitch" Grid.Row="5" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+                <Frame Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" OutlineColor="Accent">
+                    <Entry x:Name="LocationEntry" Placeholder = "Insert event's location" />
+                </Frame>
+
+                <Frame Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" OutlineColor="Accent">
+                    <Entry x:Name="DescriptionEntry" Placeholder = "Insert event's description" />
+                </Frame>
+
+                <Label Grid.Row="8" Grid.Column="0" Text="Reminder" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker x:Name="ReminderPicker" Grid.Row="8" Grid.Column="2" Title="Select a Reminder">
+                    <Picker.Items>
+                        <x:String>None</x:String>
+                        <x:String>At start time</x:String>
+                        <x:String>5mins before</x:String>
+                        <x:String>15mins before</x:String>
+                        <x:String>30mins before</x:String>
+                        <x:String>1hour before</x:String>
+                        <x:String>1day before</x:String>
+                        <x:String>1week before</x:String>
+                    </Picker.Items>
+                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+                <Label Grid.Row="9" Grid.Column="0" Text="Recurrence" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker x:Name="RepeatPicker" Grid.Row="9" Grid.Column="2" >
+                    <Picker.Items>
+                        <x:String>None</x:String>
+                        <x:String>Daily</x:String>
+                        <x:String>Weekly</x:String>
+                        <x:String>Monthly</x:String>
+                        <x:String>Yearly</x:String>
+                    </Picker.Items>
+                    <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+                <Label x:Name="RepeatUntilLabel" Grid.Row="10" Grid.Column="0" TextColor="Green" Text="Repeat Until" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker x:Name="RepeatUntilPicker" Grid.Row="10" Grid.Column="2" IsVisible="False" >
+                    <Picker.Items>
+                        <x:String>Count</x:String>
+                        <x:String>Until</x:String>
+                    </Picker.Items>
+                    <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+                <Label x:Name="CountLabel" Grid.Row="11" Grid.Column="0" TextColor="Green" Text="Count" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Entry x:Name="CountEntry" Grid.Row="11" Grid.Column="2" IsVisible="False" Placeholder = "Insert repeat count" />
+
+                <Label x:Name="UntilLabel" Grid.Row="12" Grid.Column="0" TextColor="Green" Text="Until" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Start" />
+                <DatePicker x:Name="UntilDate" Grid.Row="12" Grid.Column="1" IsVisible="False" Format="yyyy/MM/dd" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                <TimePicker x:Name="UntilTime" Grid.Row="12" Grid.Column="2" IsVisible="False" VerticalOptions="Center" />
+
+                <Label Grid.Row="13" Grid.Column="0" Text="Priority" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker x:Name="PriorityPicker" Grid.Row="13" Grid.Column="2" Title="Select a priority">
+                    <Picker.Items>
+                        <x:String>Low</x:String>
+                        <x:String>Normal</x:String>
+                        <x:String>High</x:String>
+                    </Picker.Items>
+                    <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+                <Label Grid.Row="14" Grid.Column="0" Text="Sensitivity" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker x:Name="SensitivityPicker" Grid.Row="14" Grid.Column="2" Title="Select a sensitivity">
+                    <Picker.Items>
+                        <x:String>Public</x:String>
+                        <x:String>Private</x:String>
+                        <x:String>Confidential</x:String>
+                    </Picker.Items>
+                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+                <Label Grid.Row="15" Grid.Column="0" Text="Status" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker x:Name="StatusPicker" Grid.Row="15" Grid.Column="2" Title="Select a status">
+                    <Picker.Items>
+                        <x:String>None</x:String>
+                        <x:String>Tentative</x:String>
+                        <x:String>Confirmed</x:String>
+                        <x:String>Canceled</x:String>
+                    </Picker.Items>
+                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+            </Grid>
+        </ScrollView>
+        <Button x:Name="ButtonName"
+                Clicked="OnSaveClicked"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End"
+                BorderWidth="3"
+                TextColor="Red"
+                Font="Large" />
+    </StackLayout>
+</ContentPage>
