@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MusicPlayerUI.Page.TabItemPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:page="clr-namespace:MusicPlayerUI.Page"
+    x:Name="Control">
+
+    <ContentPage.Content>
+        <Grid x:Name="root">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.85*" />
+                <RowDefinition Height="0.15*" />
+            </Grid.RowDefinitions>
+            <ListView
+                x:Name="lvMusicList"
+                Grid.Row="0"
+                HorizontalOptions="FillAndExpand"
+                ItemTapped="OnItemTapped"
+                ItemsSource="{Binding MusicSource, Source={x:Reference Control}}"
+                VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

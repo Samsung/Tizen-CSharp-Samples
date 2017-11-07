@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="MusicPlayerUI.Page.DetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:page="clr-namespace:MusicPlayerUI.Page"
+    Title="Music Player"
+    CurrentPageChanged="OnCurrentPageChanged">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <x:Array x:Key="GenresFake" Type="{x:Type x:String}">
+                <x:String>Genre1</x:String>
+                <x:String>Genre2</x:String>
+                <x:String>Genre3</x:String>
+                <x:String>Genre4</x:String>
+                <x:String>Genre5</x:String>
+                <x:String>Genre6</x:String>
+                <x:String>Genre7</x:String>
+                <x:String>Genre8</x:String>
+                <x:String>Genre9</x:String>
+            </x:Array>
+            <x:Array x:Key="ArtistsFake" Type="{x:Type x:String}">
+                <x:String>Artist Name1</x:String>
+                <x:String>Artist Name2</x:String>
+                <x:String>Artist Name3</x:String>
+                <x:String>Artist Name4</x:String>
+                <x:String>Artist Name5</x:String>
+                <x:String>Artist Name6</x:String>
+                <x:String>Artist Name7</x:String>
+                <x:String>Artist Name8</x:String>
+                <x:String>Artist Name9</x:String>
+            </x:Array>
+            <x:Array x:Key="AlbumsFake" Type="{x:Type x:String}">
+                <x:String>Album Title1</x:String>
+                <x:String>Album Title2</x:String>
+                <x:String>Album Title3</x:String>
+                <x:String>Album Title4</x:String>
+                <x:String>Album Title5</x:String>
+                <x:String>Album Title6</x:String>
+                <x:String>Album Title7</x:String>
+                <x:String>Album Title8</x:String>
+                <x:String>Album Title9</x:String>
+            </x:Array>
+            <x:Array x:Key="SongsFake" Type="{x:Type x:String}">
+                <x:String>Song Title1</x:String>
+                <x:String>Song Title2</x:String>
+                <x:String>Song Title3</x:String>
+                <x:String>Song Title4</x:String>
+                <x:String>Song Title5</x:String>
+                <x:String>Song Title6</x:String>
+                <x:String>Song Title7</x:String>
+                <x:String>Song Title8</x:String>
+                <x:String>Song Title9</x:String>
+            </x:Array>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Clicked="OnExcuteToolbarMenu" Order="Secondary" />
+    </TabbedPage.ToolbarItems>
+
+    <page:TabItemPage Title="Genres" MusicSource="{StaticResource GenresFake}" />
+    <page:TabItemPage Title="Artists" MusicSource="{StaticResource ArtistsFake}" />
+    <page:TabItemPage Title="Albums" MusicSource="{StaticResource AlbumsFake}" />
+    <page:TabItemPage Title="Songs" MusicSource="{StaticResource SongsFake}" />
+</TabbedPage>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Gallery.ImageViewer" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:Gallery.Controls"
+    Title="Image Viewer">
+    <ContentPage.Content>
+        <StackLayout>
+            <controls:Panel
+                x:Name="panel" AllowedFocused="False"
+                HorizontalOptions="FillAndExpand" IsAnimation="False"
+                ItemsSource="{Binding ImageSource}"
+                ListOrientation="Horizontal" Spacing="0"
+                VerticalOptions="FillAndExpand">
+                <controls:Panel.ItemTemplate>
+                    <DataTemplate>
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="{Binding Height, Mode=TwoWay, Source={x:Reference panel}}"
+                            Source="{Binding}"
+                            WidthRequest="{Binding Width, Mode=TwoWay, Source={x:Reference panel}}" />
+                    </DataTemplate>
+                </controls:Panel.ItemTemplate>
+            </controls:Panel>
+            <Button
+                Clicked="Button_Clicked"
+                Command="{Binding PlaySlideShowCommand}"
+                CommandParameter="{x:Reference panel}"
+                Text="Play Slide Show" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
