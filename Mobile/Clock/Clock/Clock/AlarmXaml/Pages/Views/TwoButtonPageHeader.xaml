@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Clock.Pages.Views.TwoButtonPageHeader"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    HeightRequest="110">
+    <ContentView.Content>
+        <RelativeLayout>
+            <Button
+                x:Name="LeftButton"
+                Clicked="LeftButton_Clicked"
+                HeightRequest="94"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Factor=0,
+                                                                  Property=X,
+                                                                  Constant=+8}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Factor=0,
+                                                                  Property=Y,
+                                                                  Constant=+8}"
+                WidthRequest="167" />
+            <Label
+                x:Name="CenterTitle"
+                HeightRequest="67"
+                HorizontalTextAlignment="Center"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Factor=0,
+                                                                  Property=X,
+                                                                  Constant=+176}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Factor=0,
+                                                                  Property=Y,
+                                                                  Constant=+21}"
+                Style="{StaticResource LabelHeadingStyle4}"
+                VerticalTextAlignment="Center"
+                WidthRequest="368" />
+            <Button
+                x:Name="RightButton"
+                HeightRequest="94"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Factor=1,
+                                                                  Property=Width,
+                                                                  Constant=-175}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Factor=0,
+                                                                  Property=Y,
+                                                                  Constant=+8}"
+                WidthRequest="167" />
+        </RelativeLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="Clock.Tizen.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:Clock.Converters;assembly=TizenClock.Tizen">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--  Colors  -->
+            <Color x:Key="BasePageBackgroundColor">Yellow</Color>
+            <Color x:Key="HeadingTextColor">Black</Color>
+            <Color x:Key="NormalTextColor">Blue</Color>
+            <Color x:Key="NormalTextColor2">Red</Color>
+            <Color x:Key="NormalTextColorHeader">White</Color>
+            <!--<Color x:Key="RegularPageHeader">#FF0000FF</Color>-->
+
+            <!--  Fonts  -->
+            <OnPlatform
+                x:Key="MontserratRegular"
+                x:TypeArguments="x:String"
+                Android="Montserrat-Regular.ttf#Montserrat"
+                WinPhone="Assets/Fonts/Montserrat-Regular.ttf#Montserrat"
+                iOS="Montserrat-Regular" />
+
+            <!--  Font Sizes  -->
+            <OnPlatform
+                x:Key="LargeSize"
+                x:TypeArguments="x:Double"
+                Android="25"
+                WinPhone="25"
+                iOS="24" />
+            <OnPlatform
+                x:Key="MediumSize"
+                x:TypeArguments="x:Double"
+                Android="18"
+                WinPhone="18"
+                iOS="17" />
+            <OnPlatform
+                x:Key="LittleSize"
+                x:TypeArguments="x:Double"
+                Android="12"
+                WinPhone="12"
+                iOS="11" />
+
+            <!--  Converters  -->
+            <converters:DateTimeConverter x:Key="DateTimeConverter" />
+            <converters:StringToDecoratedStringConverter x:Key="StringToStringConverter" />
+            <converters:DateTimeToHourMinStringConverter x:Key="DateTimeToHourMinStringConverter" />
+            <converters:DateTimeToAmPmConverter x:Key="DateTimeToAmPmConverter" />
+            <converters:WeekdayFlagToStringConverter x:Key="WeekdayFlagToStringConverter" />
+            <converters:AlarmTypeToStringConverter x:Key="AlarmTypeToStringConverter" />
+            <converters:AlarmToneTypeToStringConverter x:Key="AlarmToneTypeToStringConverter" />
+            <converters:AlarmDateTimeToTimeSpanConverter x:Key="AlarmDateTimeToTimeSpanConverter" />
+
+            <!--  Styles  -->
+            <Style x:Key="LabelHeadingStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource HeadingTextColor}" />
+            </Style>
+            <Style x:Key="LabelHeadingStyle2" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource NormalTextColor}" />
+            </Style>
+            <Style x:Key="LabelHeadingStyle3" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource NormalTextColor2}" />
+            </Style>
+            <Style x:Key="LabelHeadingStyle4" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="{StaticResource LargeSize}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource NormalTextColorHeader}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

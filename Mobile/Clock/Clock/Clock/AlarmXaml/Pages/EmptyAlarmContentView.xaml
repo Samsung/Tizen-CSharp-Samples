@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Clock.Pages.EmptyAlarmContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentView.Content>
+        <AbsoluteLayout>
+            <AbsoluteLayout.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="LabelNormalStyle" TargetType="Label">
+                        <Setter Property="TextColor" Value="{StaticResource NormalTextColor}" />
+                    </Style>
+                    <Style x:Key="MediumBoldText" TargetType="Label">
+                        <Setter Property="FontSize" Value="Medium" />
+                        <Setter Property="FontAttributes" Value="Bold" />
+                    </Style>
+                </ResourceDictionary>
+            </AbsoluteLayout.Resources>
+            <RelativeLayout AbsoluteLayout.LayoutBounds=".5,.5,1.0,.25" AbsoluteLayout.LayoutFlags="All">
+                <Label
+                    x:Name="TopLabel"
+                    HorizontalTextAlignment="Center"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Constant=0}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Constant=0}"
+                    Style="{StaticResource LabelNormalStyle}"
+                    Text="No alarms"
+                    WidthRequest="720" />
+                <Label
+                    x:Name="LowLabel"
+                    HorizontalTextAlignment="Center"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=TopLabel,
+                                                                      Property=X,
+                                                                      Constant=0}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=TopLabel,
+                                                                      Property=Y,
+                                                                      Constant=50}"
+                    Text="After you create alarms, they will"
+                    WidthRequest="720" />
+
+                <Label
+                    x:Name="LowLabel2"
+                    HorizontalTextAlignment="Center"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=LowLabel,
+                                                                      Property=X,
+                                                                      Constant=0}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=LowLabel,
+                                                                      Property=Y,
+                                                                      Constant=50}"
+                    Style="{StaticResource MediumBoldText}"
+                    Text="be shown here"
+                    WidthRequest="720" />
+                <Label
+                    x:Name="LowLabel3"
+                    HorizontalTextAlignment="Center"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=LowLabel2,
+                                                                      Property=X,
+                                                                      Constant=0}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=LowLabel2,
+                                                                      Property=Y,
+                                                                      Constant=50}"
+                    Style="{StaticResource MediumBoldText}"
+                    Text="{Binding Name, Mode=TwoWay}"
+                    WidthRequest="720" />
+                <Label
+                    x:Name="LowLabel4"
+                    HorizontalTextAlignment="Center"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=LowLabel3,
+                                                                      Property=X,
+                                                                      Constant=0}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=LowLabel3,
+                                                                      Property=Y,
+                                                                      Constant=50}"
+                    Style="{StaticResource MediumBoldText}"
+                    Text="{Binding AlarmDate, Converter={StaticResource DateTimeConverter}}"
+                    WidthRequest="720" />
+            </RelativeLayout>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>
