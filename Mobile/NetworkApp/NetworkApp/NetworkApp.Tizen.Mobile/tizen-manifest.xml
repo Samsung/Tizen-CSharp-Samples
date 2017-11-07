@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.NetworkApp.Tizen.Mobile" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.example.NetworkApp.Tizen.Mobile" exec="NetworkApp.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>
+            NetworkApp.Tizen.Mobile
+            NetworkApp.Tizen.Mobile
+        </label>
+        <icon>NetworkApp.Tizen.Mobile.png</icon>
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/network.set</privilege>
+        <privilege>http://tizen.org/privilege/network.get</privilege>
+        <privilege>http://tizen.org/privilege/network.profile</privilege>
+        <privilege>http://tizen.org/privilege/wifidirect</privilege>
+    </privileges>
+</manifest>
