@@ -10,28 +10,15 @@ This EmailUI application demonstrates how to write and send mail.
 </tr>
 </table>
 
-## Getting Started
+### Verified Version
+* Xamarin.Forms : 2.4.0.18342
+* Xamarin.Platform.Tizen : 2.4.0.18342
+* Tizen.NET : 4.0.0
+* Tizen.NET.SDK : 1.0.0
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project.
 
-### Prerequisites
+### Supported Profile
+* Mobile
 
-* [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/tizen-.net-preview/visual-studio-tools-tizen) - Visual Studio plugin for Tizen .net app development.
-
-### Installing
-
-* Build EmailUI source codes by the Visual Studio.
-* Run Tizen mobile emulator.
-* Install build output tpk file to the Tizen mobile emulator.
-
-```
-d:\> "C:\Program Files (x86)\Tizen\SDK\tools\sdb.exe" install org.tizen.example.EmailUI.Tizen.Mobile-1.0.0.tpk
-```
-
-## Running the tests
-
-* Build source codes by Visual Studio
-* Visual Studio > Test > Run > All Tests
-
-## Acknowledgments
+### Author
+* Hyunjin Park
