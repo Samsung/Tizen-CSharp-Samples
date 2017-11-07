@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PushReceiver.Views.MainPage"
+             Title="Push Receiver">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <ListView x:Name="MyListView"
+                    ItemsSource="{Binding}"
+                    CachingStrategy="RecycleElement">
+
+                <!--Custom View Cells-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Text}"
+                                        Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Text="{Binding Detail}"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Clear"
+                    Clicked="OnClearClicked"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    Font="Large" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
