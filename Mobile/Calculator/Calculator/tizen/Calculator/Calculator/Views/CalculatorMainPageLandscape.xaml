@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Calculator.ViewModels"
+             xmlns:control="clr-namespace:Calculator.Controls"
+             x:Class="Calculator.Views.CalculatorMainPageLandscape"
+             BackgroundImage="bg_l.png"
+             Padding="0, 0, 0, 0">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringToColorConverter x:Key="StringToColorConverter"/>
+
+            <Style x:Key="font1" TargetType="Label" >
+                <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="FontFamily" Value="Samsung sans" />
+            </Style>
+            <Style x:Key="font3" TargetType="Label" >
+                <Setter Property="TextColor" Value="#7F000000" />
+                <Setter Property="FontFamily" Value="Samsung sans" />
+            </Style>
+            <Style x:Key="font4" TargetType="Label" >
+                <Setter Property="TextColor" Value="#59B03A" />
+                <Setter Property="FontFamily" Value="Samsung sans" />
+            </Style>
+
+            <Style x:Key="inputString" TargetType="Label" BasedOn="{StaticResource font1}">
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+            </Style>
+
+            <Style x:Key="sumString" TargetType="Label" BasedOn="{StaticResource font3}">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="38" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+            </Style>
+
+            <Style x:Key="alertString" TargetType="Label" BasedOn="{StaticResource font3}">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="BackgroundColor" Value="#DDFFFFFF" />
+            </Style>
+
+            <!-- Style is not set to CustomRenderer. Same with Android. -->
+            <Style x:Key="backButton" TargetType="Image">
+                <Setter Property="HeightRequest" Value="47"/>
+                <Setter Property="WidthRequest" Value="80"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <RelativeLayout>
+        <Grid RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1,Constant=0}"
+              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height, Factor=1,Constant=0}"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand"
+              RowSpacing="0"
+              ColumnSpacing="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35*" />
+                <RowDefinition Height="65*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  Padding="32,18,32,28"
+                  BackgroundColor="#FAFAFA" >
+
+                <Grid HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      RowSpacing="0"
+                      ColumnSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="452*" />
+                        <RowDefinition Height="270*" />
+                        <RowDefinition Height="67*" />
+                        <RowDefinition Height="211*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0"  Style="{StaticResource sumString}"
+                           FormattedText="Rad" IsVisible="{Binding IsRadUsing}"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"/>
+
+                    <control:CustomScrollView x:Name="ExpressionScrollView" Grid.Row="0" Grid.Column="1">
+                        <Label x:Name="ExpressionLabel"
+                               PropertyChanged="ExpressionLabelPropertyChanged"
+                               Style="{StaticResource inputString}"
+                               FormattedText="{Binding ExpressionText}"/>
+                    </control:CustomScrollView>
+
+                    <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource sumString}"
+                           TextColor="{Binding ResultColor, Converter={StaticResource StringToColorConverter}}"
+                           FormattedText="{Binding ResultText}" />
+
+                    <BoxView Grid.Row="2"/>
+
+                    <control:CommandButton Grid.Row="3" Grid.Column="1"
+                                           Style="{StaticResource backButton}"
+                                           Source="btn_delete.png"
+                                           Command="{Binding RemoveLast}"
+                                           LongTabCommand="{Binding Clear}"/>
+                </Grid>
+            </StackLayout>
+
+            <Grid Grid.Row="1"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand"
+                  RowSpacing="0"
+                  ColumnSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <control:ElementButton Grid.Row="0" Grid.Column="0"
+                               Source="{Binding DegreeMetricImageFileName}"
+                               BackgroundColor="#1F000000"
+                               Command="{Binding ChangeDegreeMetric}"/>
+                <control:ElementButton Grid.Row="0" Grid.Column="1"
+                               Source="calculator_button_l_09.png"
+                               BackgroundColor="#0F000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="F"/>
+                <control:ElementButton Grid.Row="0" Grid.Column="2"
+                               Source="calculator_button_l_10.png"
+                               BackgroundColor="#00000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="Q"/>
+                <control:ElementButton Grid.Row="0" Grid.Column="3"
+                               Source="calculator_button_l_01.png"
+                               BackgroundColor="#2E000000"
+                               Command="{Binding Clear}"/>
+                <control:ElementButton Grid.Row="0" Grid.Column="4"
+                               Source="calculator_button_l_02.png"
+                               BackgroundColor="#1F000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="("/>
+                <control:ElementButton Grid.Row="0" Grid.Column="5"
+                               Source="calculator_button_l_03.png"
+                               BackgroundColor="#0F000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="%"/>
+                <control:ElementButton Grid.Row="0" Grid.Column="6"
+                               Source="calculator_button_l_04.png"
+                               BackgroundColor="#5B000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="/"/>
+
+                <control:ElementButton Grid.Row="1" Grid.Column="0"
+                               Source="calculator_button_l_12.png"
+                               BackgroundColor="#2E000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="S"/>
+                <control:ElementButton Grid.Row="1" Grid.Column="1"
+                               Source="calculator_button_l_13.png"
+                               BackgroundColor="#1F000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="C"/>
+                <control:ElementButton Grid.Row="1" Grid.Column="2"
+                               Source="calculator_button_l_14.png"
+                               BackgroundColor="#0F000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="T"/>
+                <control:ElementButton Grid.Row="1" Grid.Column="3"
+                               Source="calculator_button_l_number_07.png"
+                               BackgroundColor="#2EFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="7"/>
+                <control:ElementButton Grid.Row="1" Grid.Column="4"
+                               Source="calculator_button_l_number_08.png"
+                               BackgroundColor="#3DFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="8"/>
+                <control:ElementButton Grid.Row="1" Grid.Column="5"
+                               Source="calculator_button_l_number_09.png"
+                               BackgroundColor="#4CFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="9"/>
+                <control:ElementButton Grid.Row="1" Grid.Column="6"
+                               Source="calculator_button_l_05.png"
+                               BackgroundColor="#0F000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="*"/>
+
+                <control:ElementButton Grid.Row="2" Grid.Column="0"
+                               Source="calculator_button_l_15.png"
+                               BackgroundColor="#3D000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="N"/>
+                <control:ElementButton Grid.Row="2" Grid.Column="1"
+                               Source="calculator_button_l_16.png"
+                               BackgroundColor="#2E000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="G"/>
+                <control:ElementButton Grid.Row="2" Grid.Column="2"
+                               Source="calculator_button_l_17.png"
+                               BackgroundColor="#1F000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="O"/>
+                <control:ElementButton Grid.Row="2" Grid.Column="3"
+                               Source="calculator_button_l_number_04.png"
+                               BackgroundColor="#1FFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="4"/>
+                <control:ElementButton Grid.Row="2" Grid.Column="4"
+                               Source="calculator_button_l_number_05.png"
+                               BackgroundColor="#2EFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="5"/>
+                <control:ElementButton Grid.Row="2" Grid.Column="5"
+                               Source="calculator_button_l_number_06.png"
+                               BackgroundColor="#3DFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="6"/>
+                <control:ElementButton Grid.Row="2" Grid.Column="6"
+                               Source="calculator_button_l_06.png"
+                               BackgroundColor="#1F000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="-"/>
+
+                <control:ElementButton Grid.Row="3" Grid.Column="0"
+                               Source="calculator_button_l_18.png"
+                               BackgroundColor="#4C000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="U"/>
+                <control:ElementButton Grid.Row="3" Grid.Column="1"
+                               Source="calculator_button_l_19.png"
+                               BackgroundColor="#3D000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="P"/>
+                <control:ElementButton Grid.Row="3" Grid.Column="2"
+                               Source="calculator_button_l_20.png"
+                               BackgroundColor="#2E000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="W"/>
+                <control:ElementButton Grid.Row="3" Grid.Column="3"
+                               Source="calculator_button_l_number_01.png"
+                               BackgroundColor="#0FFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="1"/>
+                <control:ElementButton Grid.Row="3" Grid.Column="4"
+                               Source="calculator_button_l_number_02.png"
+                               BackgroundColor="#1FFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="2"/>
+                <control:ElementButton Grid.Row="3" Grid.Column="5"
+                               Source="calculator_button_l_number_03.png"
+                               BackgroundColor="#2EFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="3"/>
+                <control:ElementButton Grid.Row="3" Grid.Column="6"
+                               Source="calculator_button_l_07.png"
+                               BackgroundColor="#2E000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="+"/>
+
+                <control:ElementButton Grid.Row="4" Grid.Column="0"
+                               Source="calculator_button_l_21.png"
+                               BackgroundColor="#5C000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="A"/>
+                <control:ElementButton Grid.Row="4" Grid.Column="1"
+                               Source="calculator_button_l_22.png"
+                               BackgroundColor="#4C000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="I"/>
+                <control:ElementButton Grid.Row="4" Grid.Column="2"
+                               Source="calculator_button_l_23.png"
+                               BackgroundColor="#3D000000"
+                               Command="{Binding PressButton}"
+                               CommandParameter="E"/>
+                <control:ElementButton Grid.Row="4" Grid.Column="3"
+                               Source="calculator_button_l_number_00.png"
+                               BackgroundColor="#00FAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="0"/>
+                <control:ElementButton Grid.Row="4" Grid.Column="4"
+                               Source="calculator_button_l_number_10.png"
+                               BackgroundColor="#0FFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding PressButton}"
+                               CommandParameter="."/>
+                <control:ElementButton Grid.Row="4" Grid.Column="5"
+                               Source="calculator_button_l_number_11.png"
+                               BackgroundColor="#1FFAFAFA"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding Reverse}"/>
+                <control:ElementButton Grid.Row="4" Grid.Column="6"
+                               Source="calculator_button_l_08.png"
+                               BackgroundColor="#59B03A"
+                               BlendingPressedColor="#3DB9CC"
+                               Command="{Binding Equal}"/>
+            </Grid>
+        </Grid>
+
+        <Grid RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+              RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.7, Constant=0}"
+              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1,Constant=0}"
+              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height, Factor=0.3,Constant=0}"
+              HorizontalOptions="CenterAndExpand"
+              VerticalOptions="CenterAndExpand"
+              RowSpacing="0"
+              ColumnSpacing="0">
+
+            <Label x:Name="AlertToast"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   Style="{StaticResource alertString}"
+                   IsVisible="false"/>
+
+        </Grid>
+    </RelativeLayout>
+</ContentPage>
