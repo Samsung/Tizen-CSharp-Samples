@@ -30,6 +30,7 @@ namespace Calendar.Models
         /// Inserts record.
         /// <param name="item">The RecordItem that is includes InsertPage properties.</param>
         /// </summary>
+        /// <returns>Event id</returns>
         int Insert(RecordItem item);
 
         /// <summary>
@@ -40,11 +41,13 @@ namespace Calendar.Models
         /// <summary>
         /// Gets all list of records files.
         /// </summary>
+        /// <returns>Record item list.</returns>
         List<RecordItem> GetAll();
 
         /// <summary>
         /// Get a day's list of records files.
         /// </summary>
+        /// <returns>Record item list.</returns>
         List<RecordItem> GetMonthRecords(DateTime dateTime);
     }
 }

@@ -32,7 +32,6 @@ namespace Calendar.Views
 
         /// <summary>
         /// A event handler for the Allday toggle.
-        /// This event handler changes the value of the Allday.
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
         /// </summary>
@@ -51,7 +50,6 @@ namespace Calendar.Views
 
         /// <summary>
         /// A event handler for the Repeat picker.
-        /// This event handler changes the value of the repeat properties.
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
         /// </summary>
@@ -108,7 +106,6 @@ namespace Calendar.Views
 
         /// <summary>
         /// A event handler for the RepeatUntil picker.
-        /// This event handler changes the value of the repeat until properties.
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
         /// </summary>
@@ -134,7 +131,6 @@ namespace Calendar.Views
 
         /// <summary>
         /// A event handler for the Save button.
-        /// This event handler changes the value of the save button.
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
         /// </summary>
@@ -177,8 +173,11 @@ namespace Calendar.Views
         }
 
         /// <summary>
-        /// <param name="inItem"></param>
-        /// <param name="inItem"></param>
+        /// A Constructor.
+        /// Shows event properties to modify data.
+        /// <param name="inItem">The item to be shown.</param>
+        /// <param name="ButtonText">The name of button.</param>
+        /// <param name="index">The selected event id if it exists.</param>
         /// </summary>
         public InsertPage(RecordItem inItem, string ButtonText, int index)
         {
