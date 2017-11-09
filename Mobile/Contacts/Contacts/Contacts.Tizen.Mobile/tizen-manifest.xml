@@ -12,4 +12,8 @@
 	<icon>Contacts.Tizen.Mobile.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
 	</ui-application>
+    <privileges>
+        <privilege>http://tizen.org/privilege/contacts.read</privilege>
+        <privilege>http://tizen.org/privilege/contacts.write</privilege>
+    </privileges>
 </manifest>
