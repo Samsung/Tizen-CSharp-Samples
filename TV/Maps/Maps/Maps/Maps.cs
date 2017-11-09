@@ -203,11 +203,15 @@ namespace Maps
             // The user consent popup will be displayed if the value is false
             await s_maps.RequestUserConsent();
 
+			// Set the enable for the selected TextCell
+			selectedTC.IsEnabled = true;
+
             // Check the user's choice in the user consent popup
             if (s_maps.UserConsented != true)
             {
-				// Set the enable for the selected TextCell
-				selectedTC.IsEnabled = true;
+				// Dispose the MapService
+				s_maps.Dispose();
+				s_maps = null;
 				// return to the view for the provider selection
 				return;
             }
@@ -219,8 +223,8 @@ namespace Maps
             {
                 if (e.KeyName == EvasKeyEventArgs.PlatformBackButtonName)
                 {
-                    // Terminate this application if the back key is selected
-                    CloseApp(this.MainPage);
+                    // Close the Map if the back key is selected
+                    CloseMap();
                 }
             };
             // Show the window
@@ -783,10 +787,9 @@ namespace Maps
         }
 
         /// <summary>
-        /// Remove the used resource and terminate this application.
+        /// Remove the used resource and Close the Map.
         /// </summary>
-        /// <param name="MainPage">Specifies the main page</param>
-        public void CloseApp(Page MainPage)
+        public void CloseMap()
         {
             // Remove the used resource
             ClearData();
@@ -798,8 +801,21 @@ namespace Maps
                 win = null;
             }
 
-            // Quit the main loop for terminating this application
-            EcoreMainloop.Quit();
-        }
+			// check the s_mapview
+			if (s_mapview != null)
+			{
+				// Dispose the MapView
+				s_mapview.Dispose();
+				s_mapview = null;
+			}
+
+			// check the s_maps
+			if (s_maps != null)
+			{
+				// Dispose the MapService
+				s_maps.Dispose();
+				s_maps = null;
+			}
+		}
     }
 }
