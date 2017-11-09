@@ -69,7 +69,7 @@ namespace Maps
 		/// <summary>
 		/// The Window object.
 		/// </summary>
-		public Window win = null;
+		public Window window = null;
 
         /// <summary>
         /// The selected provider.
@@ -91,20 +91,20 @@ namespace Maps
         /// </summary>
         public ElmSharp.Label toLabel = null;
 
-        /// <summary>
-        /// The hoversel for the ViewPage.
-        /// </summary>
-        public Hoversel viewHoversel = null;
+		/// <summary>
+		/// The context popup for the ViewPage.
+		/// </summary>
+		public ContextPopup viewCtxPopup = null;
 
-        /// <summary>
-        /// The hoversel for the POI category.
-        /// </summary>
-        public Hoversel categoryHoversel = null;
+		/// <summary>
+		/// The context popup for the POI category.
+		/// </summary>
+		public ContextPopup categoryCtxPopup = null;
 
-        /// <summary>
-        /// The list for the place.
-        /// </summary>
-        public List<Place> PlaceList = null;
+		/// <summary>
+		/// The list for the place.
+		/// </summary>
+		public List<Place> PlaceList = null;
 
         /// <summary>
         /// The list for the marker.
@@ -178,30 +178,52 @@ namespace Maps
             // The user consent popup will be displayed if the value is false
             await s_maps.RequestUserConsent();
 
-            // Check the user's choice in the user consent popup
-            if (s_maps.UserConsented != true)
+			// Set the enable for the selected TextCell
+			selectedTC.IsEnabled = true;
+
+			// Check the user's choice in the user consent popup
+			if (s_maps.UserConsented != true)
             {
-				// Set the enable for the selected TextCell
-				selectedTC.IsEnabled = true;
+				// Dispose the MapService
+				s_maps.Dispose();
+				s_maps = null;
+
 				// return to the view for the provider selection
 				return;
 			}
 
 			// Create the window
-			win = new Window("MapView");
-			win.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, false);
-            win.KeyUp += (s, e) =>
+			window = new Window("MapView");
+			window.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, false);
+			window.KeyUp += (s, e) =>
             {
                 if (e.KeyName == EvasKeyEventArgs.PlatformBackButtonName)
                 {
-                    // Terminate this application if the back key is selected
-                    CloseApp(this.MainPage);
+                    // Close the map if the back key is selected
+                    CloseMap();
                 }
+				else if (e.KeyName == EvasKeyEventArgs.PlatformMenuButtonName)
+				{
+					// Create the ContextPopup for the ViewPage selection
+					viewCtxPopup = new ContextPopup(window)
+					{
+						// Set the AutoHide value
+						AutoHide = true,
+					};
+					// Append items for the ContextPopup and add event handlers
+					(viewCtxPopup.Append("Map")).Selected += ViewPageSelected;
+					(viewCtxPopup.Append("POI")).Selected += ViewPageSelected;
+					(viewCtxPopup.Append("Route")).Selected += ViewPageSelected;
+					// Move the ContextPopup
+					viewCtxPopup.Move(0, window.ScreenSize.Height);
+					// Show the ContextPopup
+					viewCtxPopup.Show();
+				}
             };
-            // Show the window
-            win.Show();
+			// Show the window
+			window.Show();
 
-			var box = new Box(win)
+			var box = new Box(window)
 			{
 				AlignmentX = -1,
 				AlignmentY = -1,
@@ -210,18 +232,18 @@ namespace Maps
 			};
 			box.Show();
 
-			var bg = new Background(win)
+			var bg = new Background(window)
 			{
 				Color = ElmSharp.Color.White
 			};
 			bg.SetContent(box);
 
 			// Create the MapView
-			s_mapview = new MapView(win, s_maps);
+			s_mapview = new MapView(window, s_maps);
 			// Move the MapView
 			s_mapview.Move(0, 0);
-            // Resize the MapView
-            s_mapview.Resize(720, 1280);
+			// Resize the MapView
+			s_mapview.Resize(window.ScreenSize.Width, window.ScreenSize.Height);
 			// Show the MapView
 			s_mapview.Show();
 			// Set the latitude and longitude for the center position of the MapView
@@ -232,8 +254,8 @@ namespace Maps
 			// Add the handler for the longpress event on MapView
 			s_mapview.LongPressed += MapViewLongPressed;
 
-            // Create the UI
-            CreateUI();
+			// Create the labels
+			CreateLabel();
         }
 
         /// <summary>
@@ -353,7 +375,7 @@ namespace Maps
         /// <param name="Category">Specifies the end position</param>
         public async void RequestPOI(Geocoordinates coordinate, string Category)
         {
-            try
+			try
             {
                 // Set the category
                 s_maps.PlaceSearchFilter.Category.Id = Category;
@@ -428,12 +450,12 @@ namespace Maps
         }
 
         /// <summary>
-        /// Create the UI.
+        /// Create the labels.
         /// </summary>  
-        public void CreateUI()
+        public void CreateLabel()
         {
             // Create the label for the starting position
-            fromLabel = new ElmSharp.Label(win)
+            fromLabel = new ElmSharp.Label(window)
             {
                 // Set the default text
                 Text = "",
@@ -452,7 +474,7 @@ namespace Maps
             fromLabel.Focused += (sender, e) => { ((ElmSharp.Label)sender).SetFocus(false); };
 
             // Create the label for the end position
-            toLabel = new ElmSharp.Label(win)
+            toLabel = new ElmSharp.Label(window)
             {
                 // Set the default text
                 Text = "",
@@ -467,125 +489,104 @@ namespace Maps
             toLabel.Resize(710, 70);
             // Add the handler for this label. The focus of the label will be removed if it is clicked
             toLabel.Focused += (sender, e) => { ((ElmSharp.Label)sender).SetFocus(false); };
-
-            // Create the Hoversel for the ViewPage selection
-            viewHoversel = new Hoversel(win)
-            {
-                // Set the default text
-                Text = "Map",
-                // Set the background color
-                BackgroundColor = ElmSharp.Color.Silver,
-            };
-            viewHoversel.AddItem("Map");
-            viewHoversel.AddItem("Route");
-            viewHoversel.AddItem("POI");
-            // Move the label
-            viewHoversel.Move(5, 155);
-            // Resize the label
-            viewHoversel.Resize(150, 70);
-            // Set the parent of the Hoversel
-            viewHoversel.HoverParent = win;
-            // Show the label
-            viewHoversel.Show();
-            // Add the handler for the HoverSel
-            viewHoversel.ItemSelected += ViewPageSelected;
-
-            // Create the Hoversel for the POI category
-            categoryHoversel = new Hoversel(win)
-            {
-                // Set the default text
-                Text = "",
-                // Set the background color
-                BackgroundColor = ElmSharp.Color.Silver,
-            };
-            // Move the label
-            categoryHoversel.Move(5, 230);
-            // Resize the label
-            categoryHoversel.Resize(150, 70);
-            // Set the parent of the Hoversel
-            categoryHoversel.HoverParent = win;
-
-            // Check the selected provider
-            if (selectedProvider == "HERE")
-            {
-                // Get the categories of the here provider
-                foreach (string category in HereCategory)
-                {
-                    // Add the category to the hoversel
-                    categoryHoversel.AddItem("<font_size=25>" + category + "</font>");
-                }
-            }
-            else if (selectedProvider == "MAPZEN")
-            {
-                // Get the categories of the mapzen provider
-                foreach (string category in MapzenCategory)
-                {
-                    // Add the category to the hoversel
-                    categoryHoversel.AddItem("<font_size=25>" + category + "</font>");
-                }
-            }
-
-            // Add the handler for the HoverSel
-            categoryHoversel.ItemSelected += (sender, e) =>
-            {
-                // Set the hoversel's text to the selected item
-                categoryHoversel.Text = e.Item.Label.ToString();
-				// Set the viewpage
-				view = ViewPage.POI;
-				// Remove the used data
-                ClearData();
-                // Hide the button for the end position
-                toLabel.Hide();
-                // Request the pois with the center position
-                RequestPOI(new Geocoordinates(s_mapview.Center.Latitude, s_mapview.Center.Longitude), e.Item.Label.ToString());
-            };
         }
 
-        /// <summary>
-        /// Handle the event of the view selection in the Hoversel.
-        /// </summary>
-        /// <param name="sender">Specifies the sender object</param>
-        /// <param name="e">Specifies the occured event</param>
-        private void ViewPageSelected(object sender, HoverselItemEventArgs e)
+		/// <summary>
+		/// Handle the event of the view selection in the ContextPopup.
+		/// </summary>
+		/// <param name="sender">Specifies the sender object</param>
+		/// <param name="e">Specifies the occured event</param>
+		private void ViewPageSelected(object sender, EventArgs e)
         {
-            // Set the hoversel's text to the selected item
-            viewHoversel.Text = e.Item.Label.ToString();
+			
             // Remove the used data
             ClearData();
 
-            if (viewHoversel.Text == "Route")
-            {
-                // Show the label for the end position
-                toLabel.Show();
-                // Hide the category hoversel
-                categoryHoversel.Hide();
-                // Set the viewpage
-                view = ViewPage.ROUTE;
-            }
-            else if (viewHoversel.Text == "POI")
-            {
+			if (((ContextPopupItem)sender).Text == "Map")
+			{
+				// Hide the label for the end position
+				toLabel.Hide();
+				// Set the viewpage
+				view = ViewPage.MAP;
+			}
+			else if (((ContextPopupItem)sender).Text == "POI")
+			{
                 // Hide the label for the end position
                 toLabel.Hide();
-                // Show the category hoversel
-                categoryHoversel.Show();
                 // Set the viewpage
                 view = ViewPage.POI;
-            }
-            else
-            {
-                // Hide the label for the end position
-                toLabel.Hide();
-                // Hide the category hoversel
-                categoryHoversel.Hide();
-                // Set the viewpage
-                view = ViewPage.MAP;
-            }
-        }
 
-        /// <summary>
-        /// Remove the used resource.
-        /// </summary>
-        public void ClearData()
+				// Create the ContextPopup for the category selection
+				categoryCtxPopup = new ContextPopup(window)
+				{
+					// Set the AutoHide value
+					AutoHide = true,
+				};
+
+				// Check the selected provider
+				if (selectedProvider == "HERE")
+				{
+					// Get the categories of the here provider
+					foreach (string category in HereCategory)
+					{
+						// Append items for the ContextPopup and add event handlers
+						(categoryCtxPopup.Append(category)).Selected += CategorySelected;
+					}
+				}
+				else if (selectedProvider == "MAPZEN")
+				{
+					// Get the categories of the mapzen provider
+					foreach (string category in MapzenCategory)
+					{
+						// Append items for the ContextPopup and add event handlers
+						(categoryCtxPopup.Append(category)).Selected += CategorySelected;
+					}
+				}
+				// Move the ContextPopup
+				categoryCtxPopup.Move(0, window.ScreenSize.Height);
+				// Show the ContextPopup
+				categoryCtxPopup.Show();
+			}
+			else if (((ContextPopupItem)sender).Text == "Route")
+			{
+				// Show the label for the end position
+				toLabel.Show();
+				// Set the viewpage
+				view = ViewPage.ROUTE;
+			}
+
+			if (viewCtxPopup != null)
+			{
+				// Dismiss the ContextPopup object
+				viewCtxPopup.Dismiss();
+				viewCtxPopup = null;
+			}
+		}
+
+		/// <summary>
+		/// Handle the event of the category selection in the ContextPopup.
+		/// </summary>
+		/// <param name="sender">Specifies the sender object</param>
+		/// <param name="e">Specifies the occured event</param>
+		private void CategorySelected(object sender, EventArgs e)
+		{
+			// Remove the used data
+			ClearData();
+			// Request the pois with the center position
+			RequestPOI(new Geocoordinates(s_mapview.Center.Latitude, s_mapview.Center.Longitude), ((ContextPopupItem)sender).Text);
+
+			if (categoryCtxPopup != null)
+			{
+				// Dismiss the ContextPopup object
+				categoryCtxPopup.Dismiss();
+				categoryCtxPopup = null;
+			}
+		}
+
+		/// <summary>
+		/// Remove the used resource.
+		/// </summary>
+		public void ClearData()
         {
             // Clear the marker list
             MarkerList.Clear();
@@ -661,27 +662,52 @@ namespace Maps
         }
 
         /// <summary>
-        /// Remove the used resource and terminate this application.
+        /// Remove the used resource and close the map.
         /// </summary>
-        /// <param name="MainPage">Specifies the main page</param>
-        public void CloseApp(Page MainPage)
+        public void CloseMap()
         {
             // Remove the used resource
             ClearData();
 
-            // Remove the handler for the ViewPage hoversel
-			if (viewHoversel != null)
-				viewHoversel.ItemSelected -= ViewPageSelected;
+			// check the viewCtxPopup
+			if (viewCtxPopup != null)
+			{
+				// Dismiss the ContextPopup object
+				viewCtxPopup.Dismiss();
+				viewCtxPopup = null;
+			}
 
-            if (win != null)
+			// check the categoryCtxPopup
+			if (categoryCtxPopup != null)
+			{
+				// Dismiss the ContextPopup object
+				categoryCtxPopup.Dismiss();
+				categoryCtxPopup = null;
+			}
+
+			// check the window
+			if (window != null)
             {
-                // Unrealize the Window object
-                win.Unrealize();
-                win = null;
+				// Unrealize the Window object
+				window.Unrealize();
+				window = null;
             }
 
-            // Quit the main loop for terminating this application
-            EcoreMainloop.Quit();
-        }
+			// check the s_mapview
+			if (s_mapview != null)
+			{
+				// Dispose the MapView
+				s_mapview.Dispose();
+				s_mapview = null;
+			}
+
+			// check the s_maps
+			if (s_maps != null)
+			{
+				// Dispose the MapService
+				s_maps.Dispose();
+				s_maps = null;
+			}
+		}
     }
 }

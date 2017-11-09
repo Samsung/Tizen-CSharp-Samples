@@ -36,8 +36,8 @@
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0-pre2" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0-r266-006" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
+    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.5.0.19271-pre2" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
