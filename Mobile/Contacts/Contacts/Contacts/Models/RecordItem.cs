@@ -33,7 +33,8 @@ namespace Contacts.Models
         public string Email { get; set; }
         public string Url { get; set; }
         public string Company { get; set; }
-        public int Event { get; set; }
         public string Note { get; set; }
+        public string DisplayName { get; set; }
+        public int Event { get; set; }
     }
 }

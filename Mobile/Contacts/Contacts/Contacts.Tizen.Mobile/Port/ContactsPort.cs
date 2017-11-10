@@ -62,6 +62,8 @@ namespace Contacts.Tizen.Port
 
         private void RecordToItem(TPC.ContactsRecord record, RecordItem item)
         {
+            item.DisplayName = record.Get<string>(Contact.DisplayName);
+
             var name = record.GetChildRecord(Contact.Name, 0);
             item.First = name.Get<string>(Name.First);
             item.Last = name.Get<string>(Name.Last);
@@ -90,7 +92,6 @@ namespace Contacts.Tizen.Port
             var record = new TPC.ContactsRecord(Contact.Uri);
             ItemToRecord(item, record);
             int recordId = manager.Database.Insert(record);
-            record.Dispose();
             return recordId;
         }
 
@@ -99,7 +100,6 @@ namespace Contacts.Tizen.Port
             var record = manager.Database.Get(Contact.Uri, item.Index);
             ItemToRecord(item, record);
             manager.Database.Update(record);
-            record.Dispose();
         }
 
         public void Delete(RecordItem item)
@@ -110,7 +110,8 @@ namespace Contacts.Tizen.Port
         public List<RecordItem> GetAll()
         {
             var itemList = new List<RecordItem>();
-            var list = manager.Database.GetAll(Contact.Uri, 0, 0);
+            TPC.ContactsList list = null;
+            list = manager.Database.GetAll(Contact.Uri, 0, 0);
             int i;
             for (i = 0; i < list.Count; i++)
             {
@@ -120,7 +121,7 @@ namespace Contacts.Tizen.Port
                 itemList.Add(item);
                 list.MoveNext();
             }
-            list.Dispose();
+            list?.Dispose();
             return itemList;
         }
 

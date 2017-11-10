@@ -17,13 +17,13 @@
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
-//using Contacts.Models;
+using Contacts.Models;
 
 namespace Contacts.Views
 {
     public partial class ItemPage : ContentPage
     {
-        public ItemPage()
+        public ItemPage(RecordItem inItem, string ButtonText, int index)
         {
             InitializeComponent();
         }

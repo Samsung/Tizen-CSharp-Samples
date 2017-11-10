@@ -56,15 +56,6 @@ namespace Contacts.Models
         public List<RecordItem> ItemList { get => itemList; }
 
         /// <summary>
-        /// RecordItemProvider Constructor.
-        /// A Constructor which will initialize the RecordItemProvider instance.
-        /// </summary>
-        public RecordItemProvider()
-        {
-            contactsAPIs = DependencyService.Get<IContactsAPIs>();
-        }
-
-        /// <summary>
         /// Inserts item.
         /// </summary>
         public int Insert(RecordItem item)
@@ -94,6 +85,15 @@ namespace Contacts.Models
         public void GetAll()
         {
             itemList = contactsAPIs.GetAll();
+        }
+
+        /// <summary>
+        /// RecordItemProvider Constructor.
+        /// A Constructor which will initialize the RecordItemProvider instance.
+        /// </summary>
+        public RecordItemProvider()
+        {
+            contactsAPIs = DependencyService.Get<IContactsAPIs>();
         }
     }
 }

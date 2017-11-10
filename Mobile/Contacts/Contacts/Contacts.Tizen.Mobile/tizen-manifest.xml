@@ -15,5 +15,7 @@
     <privileges>
         <privilege>http://tizen.org/privilege/contacts.read</privilege>
         <privilege>http://tizen.org/privilege/contacts.write</privilege>
+        <privilege>http://tizen.org/privilege/callhistory.read</privilege>
+        <privilege>http://tizen.org/privilege/callhistory.write</privilege>
     </privileges>
 </manifest>
