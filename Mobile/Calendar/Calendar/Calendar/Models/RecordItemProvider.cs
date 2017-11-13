@@ -81,6 +81,14 @@ namespace Calendar.Models
         }
 
         /// <summary>
+        /// Delete item.
+        /// </summary>
+        public void Delete(RecordItem item)
+        {
+            calendarAPIs.Delete(item);
+        }
+
+        /// <summary>
         /// Gets all records from database.
         /// </summary>
         public void GetAll()

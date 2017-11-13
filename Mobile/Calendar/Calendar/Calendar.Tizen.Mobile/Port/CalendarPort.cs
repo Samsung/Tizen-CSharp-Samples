@@ -245,9 +245,13 @@ namespace Calendar.Tizen.Port
             return index;
         }
 
-        public CalendarPort()
+        private void CleanChildRecord(TPC.CalendarRecord record)
         {
-            manager = new TPC.CalendarManager();
+            if (record.GetChildRecordCount(Event.Alarm) > 0)
+            {
+                var alarm = record.GetChildRecord(Event.Alarm, 0);
+                record.RemoveChildRecord(Event.Alarm, alarm);
+            }
         }
 
         private void ItemToRecord(RecordItem item, TPC.CalendarRecord record)
@@ -261,9 +265,9 @@ namespace Calendar.Tizen.Port
             if (item.IsAllday)
             {
                 start = new TPC.CalendarTime(item.StartTime.Year, item.StartTime.Month, item.StartTime.Day,
-                    item.StartTime.Hour, item.StartTime.Minute, item.StartTime.Second);
+                        item.StartTime.Hour, item.StartTime.Minute, item.StartTime.Second);
                 end = new TPC.CalendarTime(item.EndTime.Year, item.EndTime.Month, item.EndTime.Day,
-                    item.EndTime.Hour, item.EndTime.Minute, item.EndTime.Second);
+                        item.EndTime.Hour, item.EndTime.Minute, item.EndTime.Second);
             }
             else
             {
@@ -287,26 +291,15 @@ namespace Calendar.Tizen.Port
             record.Set<int>(Event.EventStatus, getStatus(item.Status));
         }
 
-        public int Insert(RecordItem item)
-        {
-            TPC.CalendarRecord record = new TPC.CalendarRecord(Event.Uri);
-            ItemToRecord(item, record);
-            return manager.Database.Insert(record);
-        }
-
-        public void Update(RecordItem item)
-        {
-            TPC.CalendarRecord record = manager.Database.Get(Event.Uri, item.Index);
-            ItemToRecord(item, record);
-            manager.Database.Update(record);
-       }
-
-        private void ConvertRecordToItem(TPC.CalendarRecord record, RecordItem item, TPC.CalendarTime start, TPC.CalendarTime end, bool isAllday)
+        private void RecordToItem(TPC.CalendarRecord record, RecordItem item, TPC.CalendarTime start, TPC.CalendarTime end, bool isAllday)
         {
             item.Index = record.Get<int>(Event.Id);
             item.Summary = record.Get<string>(Event.Summary);
             item.Location = record.Get<string>(Event.Location);
             item.Description = record.Get<string>(Event.Description);
+            item.Priority = getPriorityIndex(record.Get<int>(Event.Priority));
+            item.Sensitivity = getSensitivityIndex(record.Get<int>(Event.Sensitivity));
+            item.Status = getStatusIndex(record.Get<int>(Event.EventStatus));
 
             item.StartTime = isAllday == true ? start.LocalTime : start.UtcTime;
             item.EndTime = isAllday == true ? end.LocalTime : end.UtcTime;
@@ -314,30 +307,48 @@ namespace Calendar.Tizen.Port
 
             if (record.Get<int>(Event.HasAlarm) > 0)
             {
-                TPC.CalendarRecord alarm = record.GetChildRecord(Event.Alarm, 0);
+                var alarm = record.GetChildRecord(Event.Alarm, 0);
                 item.Reminder = getReminderIndex(alarm.Get<int>(Alarm.Tick),  alarm.Get<int>(Alarm.TickUnit));
             }
+        }
 
-            item.Priority = getPriorityIndex(record.Get<int>(Event.Priority));
-            item.Sensitivity = getSensitivityIndex(record.Get<int>(Event.Sensitivity));
-            item.Status = getStatusIndex(record.Get<int>(Event.EventStatus));
+        public int Insert(RecordItem item)
+        {
+            var record = new TPC.CalendarRecord(Event.Uri);
+            ItemToRecord(item, record);
+            int recordId = manager.Database.Insert(record);
+            record.Dispose();
+            return recordId;
+        }
+
+        public void Update(RecordItem item)
+        {
+            var record = manager.Database.Get(Event.Uri, item.Index);
+            CleanChildRecord(record);
+            ItemToRecord(item, record);
+            manager.Database.Update(record);
+            record.Dispose();
+        }
+
+        public void Delete(RecordItem item)
+        {
+            manager.Database.Delete(Event.Uri, item.Index);
         }
 
         public List<RecordItem> GetAll()
         {
             var itemList = new List<RecordItem>();
-
-            TPC.CalendarList list;
-            list = manager.Database.GetAll(Event.Uri, 0, 0);
+            var list = manager.Database.GetAll(Event.Uri, 0, 0);
             int i;
             for (i = 0; i < list.Count; i++)
             {
-                TPC.CalendarRecord record = list.GetCurrentRecord();
+                var record = list.GetCurrentRecord();
                 var item = new RecordItem();
-                //ConvertRecordToItem(record, item);
+                //RecordToItem(record, item);
                 itemList.Add(item);
                 list.MoveNext();
             }
+            list.Dispose();
             return itemList;
         }
 
@@ -397,11 +408,11 @@ namespace Calendar.Tizen.Port
             list.MoveFirst();
             for (i = 0; i < list.Count; i++)
             {
-                TPC.CalendarRecord instance = list.GetCurrentRecord();
-                TPC.CalendarRecord record = manager.Database.Get(Event.Uri, instance.Get<int>(InstanceLocaltimeBook.EventId));
+                var instance = list.GetCurrentRecord();
+                var record = manager.Database.Get(Event.Uri, instance.Get<int>(InstanceLocaltimeBook.EventId));
 
                 var item = new RecordItem();
-                ConvertRecordToItem(record, item,
+                RecordToItem(record, item,
                         instance.Get<TPC.CalendarTime>(InstanceLocaltimeBook.Start),
                         instance.Get<TPC.CalendarTime>(InstanceLocaltimeBook.End), true);
                 itemList.Add(item);
@@ -414,11 +425,11 @@ namespace Calendar.Tizen.Port
             list.MoveFirst();
             for (i = 0; i < list.Count; i++)
             {
-                TPC.CalendarRecord instance = list.GetCurrentRecord();
-                TPC.CalendarRecord record = manager.Database.Get(Event.Uri, instance.Get<int>(InstanceUtimeBook.EventId));
+                var instance = list.GetCurrentRecord();
+                var record = manager.Database.Get(Event.Uri, instance.Get<int>(InstanceUtimeBook.EventId));
 
                 var item = new RecordItem();
-                ConvertRecordToItem(record, item,
+                RecordToItem(record, item,
                         instance.Get<TPC.CalendarTime>(InstanceUtimeBook.Start),
                         instance.Get<TPC.CalendarTime>(InstanceUtimeBook.End), false);
                 itemList.Add(item);
@@ -428,6 +439,11 @@ namespace Calendar.Tizen.Port
             list.Dispose();
 
             return itemList;
+        }
+
+        public CalendarPort()
+        {
+            manager = new TPC.CalendarManager();
         }
     }
 }

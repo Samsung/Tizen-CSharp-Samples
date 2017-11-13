@@ -173,6 +173,17 @@ namespace Calendar.Views
         }
 
         /// <summary>
+        /// A event handler for the Delete button.
+        /// <param name="sender">The object what got the event</param>
+        /// <param name="e">Data of the event</param>
+        /// </summary>
+        public void OnRightClicked(object sender, EventArgs e)
+        {
+            RecordItemProvider.Instance.Delete(item);
+            Navigation.PopAsync();
+        }
+
+        /// <summary>
         /// A Constructor.
         /// Shows event properties to modify data.
         /// <param name="inItem">The item to be shown.</param>
@@ -222,6 +233,9 @@ namespace Calendar.Views
             PriorityPicker.SelectedIndex = inItem.Priority;
             SensitivityPicker.SelectedIndex = inItem.Sensitivity;
             StatusPicker.SelectedIndex = inItem.Status;
+
+            Title = (index == 0) ? "Create Event" : inItem.Summary;
+            xRight.IsVisible = (index == 0) ? false : true;
             ButtonName.Text = ButtonText;
         }
     }

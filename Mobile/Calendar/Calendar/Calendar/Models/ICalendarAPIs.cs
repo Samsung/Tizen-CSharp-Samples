@@ -39,6 +39,11 @@ namespace Calendar.Models
         void Update(RecordItem item);
 
         /// <summary>
+        /// Delete record.
+        /// </summary>
+        void Delete(RecordItem item);
+
+        /// <summary>
         /// Gets all list of records files.
         /// </summary>
         /// <returns>Record item list.</returns>

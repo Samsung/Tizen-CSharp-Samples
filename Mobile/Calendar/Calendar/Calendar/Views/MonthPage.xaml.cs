@@ -80,24 +80,6 @@ namespace Calendar.Views
         }
 
         /// <summary>
-        /// A Constructor.
-        /// Adds PropertyChanged event handler.
-        /// Adds event handler for MonthPageListView.ItemSelected to move InsertPage with selected item.
-        /// </summary>
-        public MonthPage()
-        {
-            InitializeComponent();
-            PropertyChanged += OnPropertyChanged;
-            MonthPageListView.ItemSelected += async (o, e) =>
-            {
-                RecordItem item = e.SelectedItem as RecordItem;
-                InsertPage insertPage = new InsertPage(item, "Update", item.Index);
-                await Navigation.PushAsync(insertPage);
-            };
-
-        }
-
-        /// <summary>
         /// The event handler of the click event.
         /// When a user clicks a create button in order to create event, this event handler would be invoked.
         /// This handler would create an instance of the InsertPaget.xaml
@@ -121,6 +103,23 @@ namespace Calendar.Views
         {
             base.OnAppearing();
             UpdateListCommand.Execute(null);
+        }
+
+        /// <summary>
+        /// A Constructor.
+        /// Adds PropertyChanged event handler.
+        /// Adds event handler for MonthPageListView.ItemSelected to move InsertPage with selected item.
+        /// </summary>
+        public MonthPage()
+        {
+            InitializeComponent();
+            PropertyChanged += OnPropertyChanged;
+            MonthPageListView.ItemSelected += async (o, e) =>
+            {
+                RecordItem item = e.SelectedItem as RecordItem;
+                InsertPage insertPage = new InsertPage(item, "Update", item.Index);
+                await Navigation.PushAsync(insertPage);
+            };
         }
     }
 }

@@ -142,6 +142,7 @@
 
             </Grid>
         </ScrollView>
+        <StackLayout Orientation="Horizontal">
         <Button x:Name="ButtonName"
                 Clicked="OnSaveClicked"
                 HorizontalOptions="FillAndExpand"
@@ -149,5 +150,13 @@
                 BorderWidth="3"
                 TextColor="Red"
                 Font="Large" />
+        <Button Text="Delete"
+                x:Name="xRight"
+                Clicked="OnRightClicked"
+                HorizontalOptions="FillAndExpand"
+                BorderWidth="3"
+                TextColor="Red"
+                Font="Large" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

@@ -95,6 +95,7 @@ namespace Calendar.ViewModels
         }
 
         /// <summary>
+        /// A command for update list.
         /// </summary>
         private Command updateListCommand;
         /// <summary>
