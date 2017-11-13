@@ -68,23 +68,41 @@ namespace Contacts.Tizen.Port
             item.First = name.Get<string>(Name.First);
             item.Last = name.Get<string>(Name.Last);
 
-            var number = record.GetChildRecord(Contact.Number, 0);
-            item.Number = number.Get<string>(Number.NumberData);
+            if (record.GetChildRecordCount(Contact.Number) > 0)
+            {
+                var number = record.GetChildRecord(Contact.Number, 0);
+                item.Number = number.Get<string>(Number.NumberData);
+            }
 
-            var email = record.GetChildRecord(Contact.Email, 0);
-            item.Email = email.Get<string>(Email.Address);
+            if (record.GetChildRecordCount(Contact.Email) > 0)
+            {
+                var email = record.GetChildRecord(Contact.Email, 0);
+                item.Email = email.Get<string>(Email.Address);
+            }
 
-            var url = record.GetChildRecord(Contact.URL, 0);
-            item.Url = url.Get<string>(URL.URLData);
+            if (record.GetChildRecordCount(Contact.URL) > 0)
+            {
+                var url = record.GetChildRecord(Contact.URL, 0);
+                item.Url = url.Get<string>(URL.URLData);
 
-            var company = record.GetChildRecord(Contact.Company, 0);
-            item.Company = company.Get<string>(Company.Label);
+            }
+            if (record.GetChildRecordCount(Contact.Company) > 0)
+            {
+                var company = record.GetChildRecord(Contact.Company, 0);
+                item.Company = company.Get<string>(Company.Label);
+            }
 
-            var ievent = record.GetChildRecord(Contact.Event, 0);
-            item.Event = ievent.Get<int>(Event.Date);
+            if (record.GetChildRecordCount(Contact.Event) > 0)
+            {
+                var ievent = record.GetChildRecord(Contact.Event, 0);
+                item.Event = ievent.Get<int>(Event.Date);
+            }
 
-            var note = record.GetChildRecord(Contact.Note, 0);
-            item.Note = note.Get<string>(Note.Contents);
+            if (record.GetChildRecordCount(Contact.Note) > 0)
+            {
+                var note = record.GetChildRecord(Contact.Note, 0);
+                item.Note = note.Get<string>(Note.Contents);
+            }
         }
 
         public int Insert(RecordItem item)
@@ -110,8 +128,10 @@ namespace Contacts.Tizen.Port
         public List<RecordItem> GetAll()
         {
             var itemList = new List<RecordItem>();
+
             TPC.ContactsList list = null;
             list = manager.Database.GetAll(Contact.Uri, 0, 0);
+
             int i;
             for (i = 0; i < list.Count; i++)
             {
@@ -121,7 +141,6 @@ namespace Contacts.Tizen.Port
                 itemList.Add(item);
                 list.MoveNext();
             }
-            list?.Dispose();
             return itemList;
         }
 

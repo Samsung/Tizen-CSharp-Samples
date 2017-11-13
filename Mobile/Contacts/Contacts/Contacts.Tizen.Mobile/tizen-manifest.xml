@@ -13,8 +13,8 @@
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
 	</ui-application>
     <privileges>
-        <privilege>http://tizen.org/privilege/contacts.read</privilege>
-        <privilege>http://tizen.org/privilege/contacts.write</privilege>
+        <privilege>http://tizen.org/privilege/contact.read</privilege>
+        <privilege>http://tizen.org/privilege/contact.write</privilege>
         <privilege>http://tizen.org/privilege/callhistory.read</privilege>
         <privilege>http://tizen.org/privilege/callhistory.write</privilege>
     </privileges>
