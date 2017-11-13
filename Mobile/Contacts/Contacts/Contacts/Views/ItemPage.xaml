@@ -35,13 +35,13 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                     <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Keyboard="Default"
-                        x:Name="xFirstName" Placeholder="First Name" PlaceholderColor="Color.Gray"
+                        x:Name="xFirst" Placeholder="First Name" PlaceholderColor="Color.Gray"
                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                     <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Keyboard="Default"
-                        x:Name="xLastName" Placeholder="Last Name" PlaceholderColor="Color.Gray"
+                        x:Name="xLast" Placeholder="Last Name" PlaceholderColor="Color.Gray"
                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                     <Entry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Keyboard="Telephone"
-                        x:Name="xPhoneNumber" Placeholder="Phone Number" PlaceholderColor="Color.Gray"
+                        x:Name="xNumber" Placeholder="Phone Number" PlaceholderColor="Color.Gray"
                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                     <Entry Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Keyboard="Email"
                         x:Name="xEmail" Placeholder="Email" PlaceholderColor="Color.Gray"
@@ -55,6 +55,7 @@
                     <Label Grid.Row="13" Grid.Column="0" Text="Event"
                         VerticalOptions="Center" HorizontalOptions="Start"/>
                     <DatePicker Grid.Row="13" Grid.Column="1" Format="yyyy/MM/dd"
+                        x:Name="xEvent"
                         HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
                     <Entry Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"
                         x:Name="xNote" Placeholder="Note" PlaceholderColor="Color.Gray"
@@ -71,11 +72,14 @@
         </ScrollView>
         <StackLayout Orientation="Horizontal">
         <Button Text="Save"
+                x:Name="xLeft"
+                Clicked="OnLeftClicked"
                 HorizontalOptions="FillAndExpand"
                 BorderWidth="3"
                 TextColor="Red"
                 Font="Large" />
         <Button Text="Delete"
+                Clicked="OnRightClicked"
                 HorizontalOptions="FillAndExpand"
                 BorderWidth="3"
                 TextColor="Red"

@@ -27,6 +27,7 @@ namespace Contacts.Models
         /// A integer for representing the record index.
         /// </summary>
         public int Index { get; set; }
+        public string DisplayName { get; set; }
         public string First { get; set; }
         public string Last { get; set; }
         public string Number { get; set; }
@@ -34,7 +35,6 @@ namespace Contacts.Models
         public string Url { get; set; }
         public string Company { get; set; }
         public string Note { get; set; }
-        public string DisplayName { get; set; }
         public int Event { get; set; }
     }
 }

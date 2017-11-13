@@ -23,9 +23,56 @@ namespace Contacts.Views
 {
     public partial class ItemPage : ContentPage
     {
+        public RecordItem item;
+
+        public void OnLeftClicked(object sender, EventArgs e)
+        {
+            item.First = xFirst.Text;
+            item.Last = xLast.Text;
+            item.Number = xNumber.Text;
+            item.Email = xEmail.Text;
+            item.Url = xUrl.Text;
+            item.Company = xCompany.Text;
+            item.Note = xNote.Text;
+            item.Event = xEvent.Date.Year * 10000 + xEvent.Date.Month * 100 + xEvent.Date.Day;
+
+            if (xLeft.Text.CompareTo("Save") == 0)
+            {
+                RecordItemProvider.Instance.Insert(item);
+            }
+            else
+            {
+                RecordItemProvider.Instance.Update(item);
+            }
+            Navigation.PopAsync();
+        }
+
+        public void OnRightClicked(object sender, EventArgs e)
+        {
+            RecordItemProvider.Instance.Delete(item);
+            Navigation.PopAsync();
+        }
+
         public ItemPage(RecordItem inItem, string ButtonText, int index)
         {
             InitializeComponent();
+
+            item = inItem;
+
+            Title = xLeft.Text.CompareTo("Save") == 0 ? inItem.DisplayName : "Create contact";
+            xFirst.Text = inItem.First;
+            xLast.Text = inItem.Last;
+            xNumber.Text = inItem.Number;
+            xEmail.Text = inItem.Email;
+            xUrl.Text = inItem.Url;
+            xCompany.Text = inItem.Company;
+            xNote.Text = inItem.Note;
+            if (inItem.Event != 0)
+            {
+                xEvent.Date = new DateTime(inItem.Event / 10000, (inItem.Event % 10000) / 100,
+                        inItem.Event % 100, 0, 0, 0, DateTimeKind.Local);
+            }
+            xLeft.Text = ButtonText;
         }
     }
 }
