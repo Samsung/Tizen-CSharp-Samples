@@ -28,6 +28,51 @@ namespace Contacts.Tizen.Port
     {
         private TPC.ContactsManager manager;
 
+        private void CleanChildRecord(TPC.ContactsRecord record)
+        {
+            if (record.GetChildRecordCount(Contact.Name) > 0)
+            {
+                var name = record.GetChildRecord(Contact.Name, 0);
+                record.RemoveChildRecord(Contact.Name, name);
+            }
+
+            if (record.GetChildRecordCount(Contact.Number) > 0)
+            {
+                var number = record.GetChildRecord(Contact.Number, 0);
+                record.RemoveChildRecord(Contact.Number, number);
+            }
+
+            if (record.GetChildRecordCount(Contact.Email) > 0)
+            {
+                var email = record.GetChildRecord(Contact.Email, 0);
+                record.RemoveChildRecord(Contact.Email, email);
+            }
+
+            if (record.GetChildRecordCount(Contact.URL) > 0)
+            {
+                var url = record.GetChildRecord(Contact.URL, 0);
+                record.RemoveChildRecord(Contact.URL, url);
+            }
+
+            if (record.GetChildRecordCount(Contact.Company) > 0)
+            {
+                var company = record.GetChildRecord(Contact.Company, 0);
+                record.RemoveChildRecord(Contact.Company, company);
+            }
+
+            if (record.GetChildRecordCount(Contact.Event) > 0)
+            {
+                var ievent = record.GetChildRecord(Contact.Event, 0);
+                record.RemoveChildRecord(Contact.Event, ievent);
+            }
+
+            if (record.GetChildRecordCount(Contact.Note) > 0)
+            {
+                var note = record.GetChildRecord(Contact.Note, 0);
+                record.RemoveChildRecord(Contact.Note, note);
+            }
+        }
+
         private void ItemToRecord(RecordItem item, TPC.ContactsRecord record)
         {
             var name = new TPC.ContactsRecord(Name.Uri);
@@ -64,9 +109,14 @@ namespace Contacts.Tizen.Port
         {
             item.DisplayName = record.Get<string>(Contact.DisplayName);
 
-            var name = record.GetChildRecord(Contact.Name, 0);
-            item.First = name.Get<string>(Name.First);
-            item.Last = name.Get<string>(Name.Last);
+            item.Index = record.Get<int>(Contact.Id);
+
+            if (record.GetChildRecordCount(Contact.Name) > 0)
+            {
+                var name = record.GetChildRecord(Contact.Name, 0);
+                item.First = name.Get<string>(Name.First);
+                item.Last = name.Get<string>(Name.Last);
+            }
 
             if (record.GetChildRecordCount(Contact.Number) > 0)
             {
@@ -84,8 +134,8 @@ namespace Contacts.Tizen.Port
             {
                 var url = record.GetChildRecord(Contact.URL, 0);
                 item.Url = url.Get<string>(URL.URLData);
-
             }
+
             if (record.GetChildRecordCount(Contact.Company) > 0)
             {
                 var company = record.GetChildRecord(Contact.Company, 0);
@@ -116,13 +166,14 @@ namespace Contacts.Tizen.Port
         public void Update(RecordItem item)
         {
             var record = manager.Database.Get(Contact.Uri, item.Index);
+            CleanChildRecord(record);
             ItemToRecord(item, record);
             manager.Database.Update(record);
         }
 
         public void Delete(RecordItem item)
         {
-
+            manager.Database.Delete(Contact.Uri, item.Index);
         }
 
         public List<RecordItem> GetAll()

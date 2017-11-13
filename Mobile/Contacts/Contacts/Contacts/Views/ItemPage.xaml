@@ -28,6 +28,7 @@
                     <RowDefinition Height="1" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="1" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -57,8 +58,11 @@
                     <DatePicker Grid.Row="13" Grid.Column="1" Format="yyyy/MM/dd"
                         x:Name="xEvent"
                         HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
-                    <Entry Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"
-                        x:Name="xNote" Placeholder="Note" PlaceholderColor="Color.Gray"
+                    <Label Grid.Row="14" Grid.Column="0" Text="Note"
+                        VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <Editor Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"
+                        x:Name="xNote"
+                        TextChanged="OnTextChanged"
                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
                     <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
@@ -67,7 +71,7 @@
                     <Entry Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                     <Entry Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                     <Entry Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-                    <Entry Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             </Grid>
         </ScrollView>
         <StackLayout Orientation="Horizontal">
@@ -79,6 +83,7 @@
                 TextColor="Red"
                 Font="Large" />
         <Button Text="Delete"
+                x:Name="xRight"
                 Clicked="OnRightClicked"
                 HorizontalOptions="FillAndExpand"
                 BorderWidth="3"

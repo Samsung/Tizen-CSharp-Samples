@@ -36,7 +36,7 @@ namespace Contacts.Views
             item.Note = xNote.Text;
             item.Event = xEvent.Date.Year * 10000 + xEvent.Date.Month * 100 + xEvent.Date.Day;
 
-            if (xLeft.Text.CompareTo("Save") == 0)
+            if (item.Index == 0)
             {
                 RecordItemProvider.Instance.Insert(item);
             }
@@ -53,13 +53,17 @@ namespace Contacts.Views
             Navigation.PopAsync();
         }
 
+        public void OnTextChanged(object sender, EventArgs e)
+        {
+            InvalidateMeasure();
+        }
+
         public ItemPage(RecordItem inItem, string ButtonText, int index)
         {
             InitializeComponent();
 
             item = inItem;
 
-            Title = xLeft.Text.CompareTo("Save") == 0 ? inItem.DisplayName : "Create contact";
             xFirst.Text = inItem.First;
             xLast.Text = inItem.Last;
             xNumber.Text = inItem.Number;
@@ -72,6 +76,8 @@ namespace Contacts.Views
                 xEvent.Date = new DateTime(inItem.Event / 10000, (inItem.Event % 10000) / 100,
                         inItem.Event % 100, 0, 0, 0, DateTimeKind.Local);
             }
+            Title = (index == 0) ? "Create contact" : inItem.DisplayName;
+            xRight.IsVisible = (index == 0) ? false : true;
             xLeft.Text = ButtonText;
         }
     }
