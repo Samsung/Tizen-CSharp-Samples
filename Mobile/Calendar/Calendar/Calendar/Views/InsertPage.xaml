@@ -14,7 +14,7 @@
                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
             <Grid x:Name="gridName" Padding="10, 10, 10, 10" ColumnSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10" />
+                    <RowDefinition Height="1" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -25,7 +25,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -103,7 +103,7 @@
                 </Picker>
 
                 <Label x:Name="CountLabel" Grid.Row="11" Grid.Column="0" TextColor="Green" Text="Count" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Start" />
-                <Entry x:Name="CountEntry" Grid.Row="11" Grid.Column="2" IsVisible="False" Placeholder = "Insert repeat count" />
+                <Entry x:Name="CountEntry" Grid.Row="11" Grid.Column="2" IsVisible="False" Placeholder = "Insert repeat count" Keyboard="Numeric"/>
 
                 <Label x:Name="UntilLabel" Grid.Row="12" Grid.Column="0" TextColor="Green" Text="Until" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Start" />
                 <DatePicker x:Name="UntilDate" Grid.Row="12" Grid.Column="1" IsVisible="False" Format="yyyy/MM/dd" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />

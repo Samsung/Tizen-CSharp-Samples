@@ -60,6 +60,18 @@ namespace Calendar.Models
         /// </summary>
         public int Recurrence { get; set; }
         /// <summary>
+        /// A integer for recurrence until type.
+        /// </summary>
+        public int UntilType { get; set; }
+        /// <summary>
+        /// A integer for recurrence until count.
+        /// </summary>
+        public int UntilCount { get; set; }
+        /// <summary>
+        /// A datetime for recurrence until range.
+        /// </summary>
+        public DateTime UntilTime { get; set; }
+        /// <summary>
         /// A integer for representing the priority index.
         /// </summary>
         public int Priority { get; set; }

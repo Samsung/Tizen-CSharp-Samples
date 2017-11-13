@@ -155,12 +155,30 @@ namespace Calendar.Views
                     DateTimeKind.Local);
             item.IsAllday = AlldaySwitch.IsToggled;
             item.Reminder = ReminderPicker.SelectedIndex;
-//            item.Recurrence = RecurrencePicker.SelectedIndex;
+            item.Recurrence = RepeatPicker.SelectedIndex;
+            item.UntilType = RepeatUntilPicker.SelectedIndex;
+            switch (RepeatUntilPicker.SelectedIndex)
+            {
+            default:
+            case 0: /// Count
+                item.UntilCount = Int32.Parse(CountEntry.Text);
+                break;
+            case 1: /// Until
+                item.UntilTime = new DateTime(UntilDate.Date.Year,
+                        UntilDate.Date.Month,
+                        UntilDate.Date.Day,
+                        UntilTime.Time.Hours,
+                        UntilTime.Time.Minutes,
+                        0,
+                        DateTimeKind.Local);
+                break;
+            }
+
             item.Priority = PriorityPicker.SelectedIndex;
             item.Sensitivity = SensitivityPicker.SelectedIndex;
             item.Status = StatusPicker.SelectedIndex;
 
-            if (ButtonName.Text.CompareTo("Save") == 0)
+            if (item.Index == 0)
             {
                 RecordItemProvider.Instance.Insert(item);
             }
@@ -200,7 +218,7 @@ namespace Calendar.Views
             LocationEntry.Text = inItem.Location;
             DescriptionEntry.Text = inItem.Description;
 
-            if (ButtonText.CompareTo("Save") == 0)
+            if (index == 0)
             {
                 inItem.Index = index;
                 inItem.StartTime = CacheData.CurrentDateTime;

@@ -277,6 +277,39 @@ namespace Calendar.Tizen.Port
             record.Set<TPC.CalendarTime>(Event.Start, start);
             record.Set<TPC.CalendarTime>(Event.End, end);
 
+            switch (item.Recurrence)
+            {
+            default:
+            case 0: /// none
+                break;
+            case 1: /// daily
+                record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.Daily);
+                break;
+            case 2: /// weekly
+                record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.Weekly);
+                break;
+            case 3: /// monthly
+                record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.Monthly);
+                break;
+            case 4: /// yearly
+                record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.Yearly);
+                break;
+            }
+            switch (item.UntilType)
+            {
+            default:
+            case 0: /// count
+                record.Set<int>(Event.RangeType, (int)TPC.CalendarTypes.RangeType.Count);
+                record.Set<int>(Event.Count, item.UntilCount);
+                break;
+            case 1: /// until
+                record.Set<int>(Event.RangeType, (int)TPC.CalendarTypes.RangeType.Until);
+                var until = new TPC.CalendarTime(item.UntilTime.Year, item.UntilTime.Month, item.UntilTime.Day,
+                        item.UntilTime.Hour, item.UntilTime.Minute, item.UntilTime.Second);
+                record.Set<TPC.CalendarTime>(Event.Until, until);
+                break;
+            }
+
             if (item.Reminder > 0)
             {
                 TPC.CalendarRecord alarm;
