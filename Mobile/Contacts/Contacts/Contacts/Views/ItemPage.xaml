@@ -62,7 +62,6 @@
                         VerticalOptions="Center" HorizontalOptions="Start"/>
                     <Editor Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"
                         x:Name="xNote"
-                        TextChanged="OnTextChanged"
                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
                     <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>

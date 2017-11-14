@@ -76,6 +76,14 @@ namespace Contacts.Views
             UpdateList();
         }
 
+        /// <summary>
+        /// The event handler of the click event.
+        /// When a user clicks a create button in order to create contact, this event handler would be invoked.
+        /// This handler would create an instance of the InsertPaget.xaml
+        /// and push the instance to the navigation stack in an asynchronous manner.
+        /// <param name="sender">The object what got the event</param>
+        /// <param name="e">Data of the event</param>
+        /// </summary>
         async void OnButtonClicked(object sender, EventArgs e)
         {
             RecordItem item = new RecordItem();
@@ -94,6 +102,11 @@ namespace Contacts.Views
             UpdateListCommand.Execute(null);
         }
 
+        /// <summary>
+        /// A Constructor.
+        /// Adds PropertyChanged event handler.
+        /// Adds event handler for ListPageListView.ItemSelected to move InsertPage with selected item.
+        /// </summary>
         public ListPage()
         {
             InitializeComponent();

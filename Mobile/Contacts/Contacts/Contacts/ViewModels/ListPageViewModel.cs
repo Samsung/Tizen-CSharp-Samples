@@ -32,6 +32,7 @@ namespace Contacts.ViewModels
         /// A RecordItem list for displaying Items in ListPage.
         /// </summary>
         private List<RecordItem> recordList;
+
         /// <summary>
         /// Gets or sets the recordList.
         /// </summary>
@@ -49,6 +50,7 @@ namespace Contacts.ViewModels
         /// A command for update list.
         /// </summary>
         private Command updateListCommand;
+
         /// <summary>
         /// Gets or sets the updateListCommand.
         /// </summary>
@@ -61,12 +63,19 @@ namespace Contacts.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// A method for getting RecordItem list from RecordItemProvider.
+        /// </summary>
         private void UpdateList()
         {
             RecordItemProvider.Instance.GetAll();
             RecordList = RecordItemProvider.Instance.ItemList;
         }
 
+        /// <summary>
+        /// A Constructor of ListPageViewModel.
+        /// </summary>
         public ListPageViewModel()
         {
             UpdateListCommand = new Command(() => UpdateList());

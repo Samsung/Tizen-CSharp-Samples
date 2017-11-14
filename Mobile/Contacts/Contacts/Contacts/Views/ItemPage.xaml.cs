@@ -21,10 +21,21 @@ using Contacts.Models;
 
 namespace Contacts.Views
 {
+    /// <summary>
+    /// A custom layout for displaying the text and buttons to input event properties.
+    /// </summary>
     public partial class ItemPage : ContentPage
     {
+        /// <summary>
+        /// A RecordItem property sets to or gets form the source.
+        /// </summary>
         public RecordItem item;
 
+        /// <summary>
+        /// A event handler for the save or update button.
+        /// <param name="sender">The object what got the event</param>
+        /// <param name="e">Data of the event</param>
+        /// </summary>
         public void OnLeftClicked(object sender, EventArgs e)
         {
             item.First = xFirst.Text;
@@ -47,17 +58,24 @@ namespace Contacts.Views
             Navigation.PopAsync();
         }
 
+        /// <summary>
+        /// A event handler for the Delete button.
+        /// <param name="sender">The object what got the event</param>
+        /// <param name="e">Data of the event</param>
+        /// </summary>
         public void OnRightClicked(object sender, EventArgs e)
         {
             RecordItemProvider.Instance.Delete(item);
             Navigation.PopAsync();
         }
 
-        public void OnTextChanged(object sender, EventArgs e)
-        {
-            InvalidateMeasure();
-        }
-
+        /// <summary>
+        /// A Constructor.
+        /// Shows event properties to modify data.
+        /// <param name="inItem">The item to be shown.</param>
+        /// <param name="ButtonText">The name of button.</param>
+        /// <param name="index">The selected event id if it exists.</param>
+        /// </summary>
         public ItemPage(RecordItem inItem, string ButtonText, int index)
         {
             InitializeComponent();

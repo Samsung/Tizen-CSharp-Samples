@@ -27,14 +27,41 @@ namespace Contacts.Models
         /// A integer for representing the record index.
         /// </summary>
         public int Index { get; set; }
+        /// <summary>
+        /// A string for representing the display name of the record.
+        /// </summary>
         public string DisplayName { get; set; }
+        /// <summary>
+        /// A string for representing the first name of the record.
+        /// </summary>
         public string First { get; set; }
+        /// <summary>
+        /// A string for representing the last name of the record.
+        /// </summary>
         public string Last { get; set; }
+        /// <summary>
+        /// A string for representing the phone number of the record.
+        /// </summary>
         public string Number { get; set; }
+        /// <summary>
+        /// A string for representing the email of the record.
+        /// </summary>
         public string Email { get; set; }
+        /// <summary>
+        /// A string for representing the url of the record.
+        /// </summary>
         public string Url { get; set; }
+        /// <summary>
+        /// A string for representing the company of the record.
+        /// </summary>
         public string Company { get; set; }
+        /// <summary>
+        /// A string for representing the note of the record.
+        /// </summary>
         public string Note { get; set; }
+        /// <summary>
+        /// A string for representing the event of the record.
+        /// </summary>
         public int Event { get; set; }
     }
 }
