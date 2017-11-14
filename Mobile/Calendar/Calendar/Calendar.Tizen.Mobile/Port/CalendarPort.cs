@@ -245,6 +245,31 @@ namespace Calendar.Tizen.Port
             return index;
         }
 
+        private int getRecurrenceIndex(int recurrence)
+        {
+            int index;
+            switch (recurrence)
+            {
+            default:
+            case (int)TPC.CalendarTypes.Recurrence.None:
+                index = 0;
+                break;
+            case (int)TPC.CalendarTypes.Recurrence.Daily:
+                index = 1;
+                break;
+            case (int)TPC.CalendarTypes.Recurrence.Weekly:
+                index = 2;
+                break;
+            case (int)TPC.CalendarTypes.Recurrence.Monthly:
+                index = 3;
+                break;
+            case (int)TPC.CalendarTypes.Recurrence.Yearly:
+                index = 4;
+                break;
+            }
+            return index;
+        }
+
         private void CleanChildRecord(TPC.CalendarRecord record)
         {
             if (record.GetChildRecordCount(Event.Alarm) > 0)
@@ -295,6 +320,7 @@ namespace Calendar.Tizen.Port
                 record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.Yearly);
                 break;
             }
+
             switch (item.UntilType)
             {
             default:
@@ -304,8 +330,8 @@ namespace Calendar.Tizen.Port
                 break;
             case 1: /// until
                 record.Set<int>(Event.RangeType, (int)TPC.CalendarTypes.RangeType.Until);
-                var until = new TPC.CalendarTime(item.UntilTime.Year, item.UntilTime.Month, item.UntilTime.Day,
-                        item.UntilTime.Hour, item.UntilTime.Minute, item.UntilTime.Second);
+                var until = new TPC.CalendarTime(new DateTime(item.UntilTime.Year, item.UntilTime.Month, item.UntilTime.Day,
+                        item.UntilTime.Hour, item.UntilTime.Minute, item.UntilTime.Second, DateTimeKind.Local).Ticks);
                 record.Set<TPC.CalendarTime>(Event.Until, until);
                 break;
             }
@@ -337,6 +363,24 @@ namespace Calendar.Tizen.Port
             item.StartTime = isAllday == true ? start.LocalTime : start.UtcTime;
             item.EndTime = isAllday == true ? end.LocalTime : end.UtcTime;
             item.IsAllday = isAllday;
+            item.Recurrence = getRecurrenceIndex(record.Get<int>(Event.Freq));
+
+            if (item.Recurrence > 0)
+            {
+                switch (record.Get<int>(Event.RangeType))
+                {
+                default:
+                case (int)TPC.CalendarTypes.RangeType.Count:
+                    item.UntilType = 0;
+                    item.UntilCount = record.Get<int>(Event.Count);
+                    break;
+                case (int)TPC.CalendarTypes.RangeType.Until:
+                    item.UntilType = 1;
+                    var until = record.Get<TPC.CalendarTime>(Event.Until);
+                    item.UntilTime = until.UtcTime;
+                    break;
+                }
+            }
 
             if (record.Get<int>(Event.HasAlarm) > 0)
             {

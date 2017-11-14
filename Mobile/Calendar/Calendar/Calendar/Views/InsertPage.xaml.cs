@@ -30,12 +30,21 @@ namespace Calendar.Views
         /// </summary>
         public RecordItem item;
 
+        private void RepeatVisible(bool countVisible, bool untilVisible)
+        {
+            CountLabel.IsVisible = countVisible;
+            CountEntry.IsVisible = countVisible;
+            UntilLabel.IsVisible = untilVisible;
+            UntilDate.IsVisible = untilVisible;
+            UntilTime.IsVisible = untilVisible;
+        }
+
         /// <summary>
         /// A event handler for the Allday toggle.
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
         /// </summary>
-        void OnAlldayToggled(object sender, EventArgs e)
+        public void OnAlldayToggled(object sender, EventArgs e)
         {
             Switch s = (Switch)sender;
             int columnSpan = (s.IsToggled == true) ? 2 : 1;
@@ -48,12 +57,13 @@ namespace Calendar.Views
             EndTime.IsVisible = isVisible;
         }
 
+
         /// <summary>
         /// A event handler for the Repeat picker.
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
         /// </summary>
-        void OnRepeatPickerChanged(object sender, EventArgs e)
+        public void OnRepeatPickerChanged(object sender, EventArgs e)
         {
             bool showUntil = false;
             switch (RepeatPicker.SelectedIndex)
@@ -78,29 +88,17 @@ namespace Calendar.Views
             {
                 if (RepeatUntilPicker.SelectedIndex == 0)
                 {
-                    CountLabel.IsVisible = true;
-                    CountEntry.IsVisible = true;
-                    UntilLabel.IsVisible = false;
-                    UntilDate.IsVisible = false;
-                    UntilTime.IsVisible = false;
+                    RepeatVisible(true, false);
                 }
                 else
                 {
-                    CountLabel.IsVisible = false;
-                    CountEntry.IsVisible = false;
-                    UntilLabel.IsVisible = true;
-                    UntilDate.IsVisible = true;
-                    UntilTime.IsVisible = true;
+                    RepeatVisible(false, true);
                 }
             }
             else
             {
                 RepeatUntilPicker.SelectedIndex = 0;
-                CountLabel.IsVisible = false;
-                CountEntry.IsVisible = false;
-                UntilLabel.IsVisible = false;
-                UntilDate.IsVisible = false;
-                UntilTime.IsVisible = false;
+                RepeatVisible(false, false);
             }
         }
 
@@ -109,23 +107,15 @@ namespace Calendar.Views
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
         /// </summary>
-        void OnRepeatUntilPickerChanged(object sender, EventArgs e)
+        public void OnRepeatUntilPickerChanged(object sender, EventArgs e)
         {
             if (RepeatUntilPicker.SelectedIndex == 0)
             {
-                CountLabel.IsVisible = true;
-                CountEntry.IsVisible = true;
-                UntilLabel.IsVisible = false;
-                UntilDate.IsVisible = false;
-                UntilTime.IsVisible = false;
+                RepeatVisible(true, false);
             }
             else
             {
-                CountLabel.IsVisible = false;
-                CountEntry.IsVisible = false;
-                UntilLabel.IsVisible = true;
-                UntilDate.IsVisible = true;
-                UntilTime.IsVisible = true;
+                RepeatVisible(false, true);
             }
         }
 
@@ -134,7 +124,7 @@ namespace Calendar.Views
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
         /// </summary>
-        void OnSaveClicked(object sender, EventArgs e)
+        public void OnSaveClicked(object sender, EventArgs e)
         {
             item.Summary = SummaryEntry.Text;
             item.Location = LocationEntry.Text;
@@ -156,22 +146,26 @@ namespace Calendar.Views
             item.IsAllday = AlldaySwitch.IsToggled;
             item.Reminder = ReminderPicker.SelectedIndex;
             item.Recurrence = RepeatPicker.SelectedIndex;
-            item.UntilType = RepeatUntilPicker.SelectedIndex;
-            switch (RepeatUntilPicker.SelectedIndex)
+
+            if (item.Recurrence > 0)
             {
-            default:
-            case 0: /// Count
-                item.UntilCount = Int32.Parse(CountEntry.Text);
-                break;
-            case 1: /// Until
-                item.UntilTime = new DateTime(UntilDate.Date.Year,
-                        UntilDate.Date.Month,
-                        UntilDate.Date.Day,
-                        UntilTime.Time.Hours,
-                        UntilTime.Time.Minutes,
-                        0,
-                        DateTimeKind.Local);
-                break;
+                item.UntilType = RepeatUntilPicker.SelectedIndex;
+                switch (RepeatUntilPicker.SelectedIndex)
+                {
+                default:
+                case 0: /// Count
+                    item.UntilCount = Int32.Parse(CountEntry.Text);
+                    break;
+                case 1: /// Until
+                    item.UntilTime = new DateTime(UntilDate.Date.Year,
+                            UntilDate.Date.Month,
+                            UntilDate.Date.Day,
+                            UntilTime.Time.Hours,
+                            UntilTime.Time.Minutes,
+                            0,
+                            DateTimeKind.Local);
+                    break;
+                }
             }
 
             item.Priority = PriorityPicker.SelectedIndex;
@@ -241,6 +235,35 @@ namespace Calendar.Views
                 EndTime.Time = new TimeSpan(inItem.EndTime.ToLocalTime().Hour,
                         inItem.EndTime.ToLocalTime().Minute, 0);
             }
+
+            RepeatPicker.SelectedIndex = inItem.Recurrence;
+            if (RepeatPicker.SelectedIndex > 0)
+            {
+                RepeatUntilLabel.IsVisible = true;
+                RepeatUntilPicker.IsVisible = true;
+                RepeatUntilPicker.SelectedIndex = inItem.UntilType;
+                switch (RepeatUntilPicker.SelectedIndex)
+                {
+                default:
+                case 0:
+                    RepeatVisible(true, false);
+                    CountEntry.Text = item.UntilCount.ToString();
+                    break;
+                case 1:
+                    RepeatVisible(false, true);
+                    UntilDate.Date = inItem.UntilTime.ToLocalTime();
+                    UntilTime.Time = new TimeSpan(inItem.UntilTime.ToLocalTime().Hour,
+                            inItem.UntilTime.ToLocalTime().Minute, 0);
+                    break;
+                }
+            }
+            else
+            {
+                RepeatUntilLabel.IsVisible = false;
+                RepeatUntilPicker.IsVisible = false;
+                RepeatVisible(false, false);
+            }
+
 
             TimeZoneText.Text = TimeZoneInfo.Local.DisplayName;
             AlldaySwitch.Toggled += OnAlldayToggled;
