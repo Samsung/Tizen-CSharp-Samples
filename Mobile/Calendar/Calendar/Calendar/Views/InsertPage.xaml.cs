@@ -32,9 +32,22 @@ namespace Calendar.Views
 
         private void RepeatVisible(bool countVisible, bool untilVisible)
         {
-            CountLabel.IsVisible = countVisible;
-            CountEntry.IsVisible = countVisible;
-            UntilLabel.IsVisible = untilVisible;
+            if (countVisible == true)
+            {
+                xRange.IsVisible = true;
+                xRange.Text= "  Count";
+            }
+            else if (untilVisible == true)
+            {
+                xRange.IsVisible = true;
+                xRange.Text= "  Until";
+            }
+            else
+            {
+                xRange.IsVisible = false;
+            }
+
+            xCount.IsVisible = countVisible;
             UntilDate.IsVisible = untilVisible;
             UntilTime.IsVisible = untilVisible;
         }
@@ -154,7 +167,7 @@ namespace Calendar.Views
                 {
                 default:
                 case 0: /// Count
-                    item.UntilCount = Int32.Parse(CountEntry.Text);
+                    item.UntilCount = Int32.Parse(xCount.Text);
                     break;
                 case 1: /// Until
                     item.UntilTime = new DateTime(UntilDate.Date.Year,
@@ -247,7 +260,7 @@ namespace Calendar.Views
                 default:
                 case 0:
                     RepeatVisible(true, false);
-                    CountEntry.Text = item.UntilCount.ToString();
+                    xCount.Text = item.UntilCount.ToString();
                     break;
                 case 1:
                     RepeatVisible(false, true);
