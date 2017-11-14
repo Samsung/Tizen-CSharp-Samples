@@ -306,6 +306,7 @@ namespace Calendar.Tizen.Port
             {
             default:
             case 0: /// none
+                record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.None);
                 break;
             case 1: /// daily
                 record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.Daily);
