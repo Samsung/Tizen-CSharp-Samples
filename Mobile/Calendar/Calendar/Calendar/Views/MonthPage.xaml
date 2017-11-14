@@ -49,7 +49,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Summary}"
-                              Detail="{Binding Location}" />
+                              Detail="{Binding DisplayTime}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -411,6 +411,15 @@ namespace Calendar.Tizen.Port
             item.IsAllday = isAllday;
             item.Recurrence = getRecurrenceIndex(record.Get<int>(Event.Freq));
 
+            if (item.IsAllday == true)
+            {
+                item.DisplayTime = String.Format("{0:yyyy/MM/dd} - {1:yyyy/MM/dd}", item.StartTime, item.EndTime);
+            }
+            else
+            {
+                item.DisplayTime = String.Format("{0:yyyy/MM/dd HH:mm} - {1:yyyy/MM/dd HH:mm}", item.StartTime, item.EndTime);
+            }
+
             if (item.Recurrence > 0)
             {
                 switch (record.Get<int>(Event.RangeType))

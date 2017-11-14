@@ -28,6 +28,10 @@ namespace Calendar.Models
         /// </summary>
         public int Index { get; set; }
         /// <summary>
+        /// A string for representing the datetime of the record.
+        /// </summary>
+        public string DisplayTime { get; set; }
+        /// <summary>
         /// A string for representing the summary of the record.
         /// </summary>
         public string Summary { get; set; }
