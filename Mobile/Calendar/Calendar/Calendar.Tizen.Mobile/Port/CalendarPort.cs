@@ -24,10 +24,19 @@ namespace Calendar.Tizen.Port
 {
     using TPC.CalendarViews;
 
+    /// <summary>
+    /// Represents the Calendar APIs for connecting Sample Calendar app.
+    /// </summary>
     public class CalendarPort : ICalendarAPIs
     {
+        /// <summary>
+        /// Calendar manager.
+        /// </summary>
         private TPC.CalendarManager manager;
 
+        /// <summary>
+        /// Get tick from reminder index.
+        /// </summary>
         private int getTick(int reminder)
         {
             int tick = 0;
@@ -58,6 +67,9 @@ namespace Calendar.Tizen.Port
             return tick;
         }
 
+        /// <summary>
+        /// Get unit from reminder index.
+        /// </summary>
         private int getUnit(int reminder)
         {
             int unit = 0;
@@ -88,6 +100,9 @@ namespace Calendar.Tizen.Port
             return unit;
         }
 
+        /// <summary>
+        /// Get priority from priority index.
+        /// </summary>
         private int getPriority(int inPriority)
         {
             int priority;
@@ -107,6 +122,9 @@ namespace Calendar.Tizen.Port
             return priority;
         }
 
+        /// <summary>
+        /// Get sensitivity from sensitivity index.
+        /// </summary>
         private int getSensitivity(int inSensitivity)
         {
             int sensitivity;
@@ -126,6 +144,9 @@ namespace Calendar.Tizen.Port
             return sensitivity;
         }
 
+        /// <summary>
+        /// Get status from status index.
+        /// </summary>
         private int getStatus(int inStatus)
         {
             int status;
@@ -148,6 +169,9 @@ namespace Calendar.Tizen.Port
             return status;
         }
 
+        /// <summary>
+        /// Get reminder index from tick and unit.
+        /// </summary>
         private int getReminderIndex(int tick, int unit)
         {
             int index;
@@ -185,6 +209,9 @@ namespace Calendar.Tizen.Port
             return index;
         }
 
+        /// <summary>
+        /// Get priority index from priority value.
+        /// </summary>
         private int getPriorityIndex(int priority)
         {
             int index;
@@ -204,6 +231,9 @@ namespace Calendar.Tizen.Port
             return index;
         }
 
+        /// <summary>
+        /// Get sensitivity index from sensitivity value.
+        /// </summary>
         private int getSensitivityIndex(int sensitivity)
         {
             int index;
@@ -223,6 +253,9 @@ namespace Calendar.Tizen.Port
             return index;
         }
 
+        /// <summary>
+        /// Get status index from status value.
+        /// </summary>
         private int getStatusIndex(int status)
         {
             int index;
@@ -245,6 +278,9 @@ namespace Calendar.Tizen.Port
             return index;
         }
 
+        /// <summary>
+        /// Get recurrence index from recurrence value.
+        /// </summary>
         private int getRecurrenceIndex(int recurrence)
         {
             int index;
@@ -270,6 +306,9 @@ namespace Calendar.Tizen.Port
             return index;
         }
 
+        /// <summary>
+        /// Clean child record.
+        /// </summary>
         private void CleanChildRecord(TPC.CalendarRecord record)
         {
             if (record.GetChildRecordCount(Event.Alarm) > 0)
@@ -279,6 +318,9 @@ namespace Calendar.Tizen.Port
             }
         }
 
+        /// <summary>
+        /// Get record from item.
+        /// </summary>
         private void ItemToRecord(RecordItem item, TPC.CalendarRecord record)
         {
             record.Set<string>(Event.Summary, item.Summary);
@@ -351,6 +393,9 @@ namespace Calendar.Tizen.Port
             record.Set<int>(Event.EventStatus, getStatus(item.Status));
         }
 
+        /// <summary>
+        /// Get item from record.
+        /// </summary>
         private void RecordToItem(TPC.CalendarRecord record, RecordItem item, TPC.CalendarTime start, TPC.CalendarTime end, bool isAllday)
         {
             item.Index = record.Get<int>(Event.Id);
@@ -390,6 +435,9 @@ namespace Calendar.Tizen.Port
             }
         }
 
+        /// <summary>
+        /// Insert item.
+        /// </summary>
         public int Insert(RecordItem item)
         {
             var record = new TPC.CalendarRecord(Event.Uri);
@@ -399,6 +447,9 @@ namespace Calendar.Tizen.Port
             return recordId;
         }
 
+        /// <summary>
+        /// Update item.
+        /// </summary>
         public void Update(RecordItem item)
         {
             var record = manager.Database.Get(Event.Uri, item.Index);
@@ -408,11 +459,17 @@ namespace Calendar.Tizen.Port
             record.Dispose();
         }
 
+        /// <summary>
+        /// Delete item.
+        /// </summary>
         public void Delete(RecordItem item)
         {
             manager.Database.Delete(Event.Uri, item.Index);
         }
 
+        /// <summary>
+        /// Get all list.
+        /// </summary>
         public List<RecordItem> GetAll()
         {
             var itemList = new List<RecordItem>();
@@ -430,6 +487,9 @@ namespace Calendar.Tizen.Port
             return itemList;
         }
 
+        /// <summary>
+        /// Get utc instance list.
+        /// </summary>
         private TPC.CalendarList GetUtcInstances(DateTime dt)
         {
             TPC.CalendarList list;
@@ -453,6 +513,9 @@ namespace Calendar.Tizen.Port
             return list;
         }
 
+        /// <summary>
+        /// Get allday instance list.
+        /// </summary>
         private TPC.CalendarList GetAlldayInstances(DateTime dt)
         {
             TPC.CalendarList list;
@@ -475,6 +538,9 @@ namespace Calendar.Tizen.Port
             return list;
         }
 
+        /// <summary>
+        /// Get a month instance.
+        /// </summary>
         public List<RecordItem> GetMonthRecords(DateTime dt)
         {
             TPC.CalendarList list;
@@ -519,6 +585,9 @@ namespace Calendar.Tizen.Port
             return itemList;
         }
 
+        /// <summary>
+        /// A constructor.
+        /// </summary>
         public CalendarPort()
         {
             manager = new TPC.CalendarManager();
