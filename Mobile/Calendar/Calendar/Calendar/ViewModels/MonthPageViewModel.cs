@@ -81,6 +81,7 @@ namespace Calendar.ViewModels
         /// A RecordItem list for displaying Items in MonthPage.
         /// </summary>
         private List<RecordItem> recordList;
+
         /// <summary>
         /// Gets or sets the recordList.
         /// </summary>
@@ -98,6 +99,7 @@ namespace Calendar.ViewModels
         /// A command for update list.
         /// </summary>
         private Command updateListCommand;
+
         /// <summary>
         /// Gets or sets the updateListCommand.
         /// </summary>

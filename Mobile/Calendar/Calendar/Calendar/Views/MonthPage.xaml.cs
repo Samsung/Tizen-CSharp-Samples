@@ -87,7 +87,7 @@ namespace Calendar.Views
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
         /// </summary>
-        async void CreateClicked(object sender, EventArgs e)
+        async void OnButtonClicked(object sender, EventArgs e)
         {
             RecordItem item = new RecordItem();
             InsertPage insertPage = new InsertPage(item, "Save", 0);

@@ -30,6 +30,9 @@ namespace Calendar.Views
         /// </summary>
         public RecordItem item;
 
+        /// <summary>
+        /// Set visiblity of range properties.
+        /// </summary>
         private void RepeatVisible(bool countVisible, bool untilVisible)
         {
             if (countVisible == true)
@@ -137,7 +140,7 @@ namespace Calendar.Views
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
         /// </summary>
-        public void OnSaveClicked(object sender, EventArgs e)
+        public void OnLeftClicked(object sender, EventArgs e)
         {
             item.Summary = SummaryEntry.Text;
             item.Location = LocationEntry.Text;

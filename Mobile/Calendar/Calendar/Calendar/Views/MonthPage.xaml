@@ -55,7 +55,7 @@
         </ListView>
 
         <Button Text="Create"
-                Clicked="CreateClicked"
+                Clicked="OnButtonClicked"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="End"
                 BorderWidth="3"
