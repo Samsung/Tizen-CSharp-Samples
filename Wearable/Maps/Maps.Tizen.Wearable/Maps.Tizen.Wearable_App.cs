@@ -64,7 +64,6 @@ namespace Maps.Tizen.Wearable
 		/// You can see the guide about getting the key in https://developer.tizen.org/development/guides/native-application/location-and-sensors/maps-and-maps-service/getting-mapzen-api-key.
 		/// </summary>
 		public string MAPZEN_KEY = "MAPZEN-KEY";
-		public string MAPZEN_KEY = "tizen-internal-ivdz94orc";
 
 		/// <summary>
 		/// The list for the place.
