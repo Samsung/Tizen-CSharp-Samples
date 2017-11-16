@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maps.Tizen.Wearable", "Maps.Tizen.Wearable\Maps.Tizen.Wearable.csproj", "{379B463C-0AD5-4BD2-A910-F91097DABB0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{379B463C-0AD5-4BD2-A910-F91097DABB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379B463C-0AD5-4BD2-A910-F91097DABB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379B463C-0AD5-4BD2-A910-F91097DABB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379B463C-0AD5-4BD2-A910-F91097DABB0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25E0D7FD-B9A4-4B56-ABD0-E6665A04E2EB}
+	EndGlobalSection
+EndGlobal
