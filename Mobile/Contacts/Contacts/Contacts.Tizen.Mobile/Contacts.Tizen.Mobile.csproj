@@ -27,12 +27,12 @@
     <Folder Include="res\" />
   </ItemGroup>
 
-  
+
   <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
     <ProjectReference Include="..\Contacts\Contacts.csproj" />
   </ItemGroup>
-  
+
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
