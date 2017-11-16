@@ -57,12 +57,13 @@ namespace Maps.Tizen.Wearable
 		/// The key of HERE provider. Please get the key from https://developer.here.com/.
 		/// You can see the guide about getting the key in https://developer.tizen.org/development/guides/native-application/location-and-sensors/maps-and-maps-service/getting-here-maps-credentials.
 		/// </summary>
-		public string HERE_KEY = "57l3m35FktUN4sBpDTcJ/ckFerp2t5bCVjouh9v2HCw";
+		public string HERE_KEY = "HERE-KEY";
 
 		/// <summary>
 		/// The key of MAPZEN provider. Please get the key from https://mapzen.com/developers.
 		/// You can see the guide about getting the key in https://developer.tizen.org/development/guides/native-application/location-and-sensors/maps-and-maps-service/getting-mapzen-api-key.
 		/// </summary>
+		public string MAPZEN_KEY = "MAPZEN-KEY";
 		public string MAPZEN_KEY = "tizen-internal-ivdz94orc";
 
 		/// <summary>
