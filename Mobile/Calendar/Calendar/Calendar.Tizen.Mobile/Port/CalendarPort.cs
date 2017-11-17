@@ -43,24 +43,31 @@ namespace Calendar.Tizen.Port
             switch (reminder)
             {
             case 1:
+            /// start time
                 tick = 0;
                 break;
             case 2:
+            /// 5mins before
                 tick = 5;
                 break;
             case 3:
+            /// 15mins before
                 tick = 15;
                 break;
             case 4:
+            /// 30 mins before
                 tick = 30;
                 break;
             case 5:
+            /// 1hour before
                 tick = 1;
                 break;
             case 6:
+            /// 1 day before
                 tick = 1;
                 break;
             case 7:
+            /// 1 week before
                 tick = 1;
                 break;
             }
@@ -76,24 +83,31 @@ namespace Calendar.Tizen.Port
             switch (reminder)
             {
             case 1:
+            /// start time
                 unit = (int)TPC.CalendarTypes.TickUnit.Minute;
                 break;
             case 2:
+            /// 5mins before
                 unit = (int)TPC.CalendarTypes.TickUnit.Minute;
                 break;
             case 3:
+            /// 15mins before
                 unit = (int)TPC.CalendarTypes.TickUnit.Minute;
                 break;
             case 4:
+            /// 30mins before
                 unit = (int)TPC.CalendarTypes.TickUnit.Minute;
                 break;
             case 5:
+            /// 1hour before
                 unit = (int)TPC.CalendarTypes.TickUnit.Hour;
                 break;
             case 6:
+            /// 1day before
                 unit = (int)TPC.CalendarTypes.TickUnit.Day;
                 break;
             case 7:
+            /// 1week before
                 unit = (int)TPC.CalendarTypes.TickUnit.Week;
                 break;
             }
@@ -110,12 +124,15 @@ namespace Calendar.Tizen.Port
             {
             default:
             case 0:
+            /// low priority
                 priority = (int)TPC.CalendarTypes.Priority.Low;
                 break;
             case 1:
+            /// normal priority
                 priority = (int)TPC.CalendarTypes.Priority.Normal;
                 break;
             case 2:
+            /// high priority
                 priority = (int)TPC.CalendarTypes.Priority.High;
                 break;
             }
@@ -132,12 +149,15 @@ namespace Calendar.Tizen.Port
             {
             default:
             case 0:
+            /// public sensitivity
                 sensitivity = (int)TPC.CalendarTypes.Sensitivity.Public;
                 break;
             case 1:
+            /// private sensitivity
                 sensitivity = (int)TPC.CalendarTypes.Sensitivity.Private;
                 break;
             case 2:
+            /// confidential sensitivity
                 sensitivity = (int)TPC.CalendarTypes.Sensitivity.Confidential;
                 break;
             }
@@ -154,15 +174,19 @@ namespace Calendar.Tizen.Port
             {
             default:
             case 0:
+            /// none status
                 status = (int)TPC.CalendarTypes.EventStatus.None;
                 break;
             case 1:
+            /// Tentative status
                 status = (int)TPC.CalendarTypes.EventStatus.Tentative;
                 break;
             case 2:
+            /// Confirmed status
                 status = (int)TPC.CalendarTypes.EventStatus.Confirmed;
                 break;
             case 3:
+            /// Cancelled status
                 status = (int)TPC.CalendarTypes.EventStatus.Cancelled;
                 break;
             }
@@ -182,26 +206,33 @@ namespace Calendar.Tizen.Port
                 switch (tick)
                 {
                 default:
+                /// start time
                 case 0:
                     index = 1;
                     break;
+                /// 5mins before
                 case 5:
                     index = 2;
                     break;
+                /// 15mins before
                 case 15:
                     index = 3;
                     break;
+                /// 30mins before
                 case 30:
                     index = 4;
                     break;
                 }
                 break;
+            /// Hour unit
             case (int)TPC.CalendarTypes.TickUnit.Hour:
                 index = 5;
                 break;
+            /// Day unit
             case (int)TPC.CalendarTypes.TickUnit.Day:
                 index = 6;
                 break;
+            /// Week unit
             case (int)TPC.CalendarTypes.TickUnit.Week:
                 index = 7;
                 break;
@@ -218,12 +249,15 @@ namespace Calendar.Tizen.Port
             switch (priority)
             {
             default:
+            /// Low priority
             case (int)TPC.CalendarTypes.Priority.Low:
                 index = 0;
                 break;
+            /// Normal priority
             case (int)TPC.CalendarTypes.Priority.Normal:
                 index = 1;
                 break;
+            /// High priority
             case (int)TPC.CalendarTypes.Priority.High:
                 index = 2;
                 break;
@@ -240,12 +274,15 @@ namespace Calendar.Tizen.Port
             switch (sensitivity)
             {
             default:
+            /// Public sensitivity
             case (int)TPC.CalendarTypes.Sensitivity.Public:
                 index = 0;
                 break;
+            /// Private sensitivity
             case (int)TPC.CalendarTypes.Sensitivity.Private:
                 index = 1;
                 break;
+            /// Confidential sensitivity
             case (int)TPC.CalendarTypes.Sensitivity.Confidential:
                 index = 2;
                 break;
@@ -262,15 +299,19 @@ namespace Calendar.Tizen.Port
             switch (status)
             {
             default:
+            /// None status
             case (int)TPC.CalendarTypes.EventStatus.None:
                 index = 0;
                 break;
+            /// Tentative status
             case (int)TPC.CalendarTypes.EventStatus.Tentative:
                 index = 0;
                 break;
+            /// Confirmed status
             case (int)TPC.CalendarTypes.EventStatus.Confirmed:
                 index = 0;
                 break;
+            /// Cancelled status
             case (int)TPC.CalendarTypes.EventStatus.Cancelled:
                 index = 0;
                 break;
@@ -287,18 +328,23 @@ namespace Calendar.Tizen.Port
             switch (recurrence)
             {
             default:
+            /// None recurrence
             case (int)TPC.CalendarTypes.Recurrence.None:
                 index = 0;
                 break;
+            /// Daily recurrence
             case (int)TPC.CalendarTypes.Recurrence.Daily:
                 index = 1;
                 break;
+            /// Weekly recurrence
             case (int)TPC.CalendarTypes.Recurrence.Weekly:
                 index = 2;
                 break;
+            /// Monthly recurrence
             case (int)TPC.CalendarTypes.Recurrence.Monthly:
                 index = 3;
                 break;
+            /// Yearly recurrence
             case (int)TPC.CalendarTypes.Recurrence.Yearly:
                 index = 4;
                 break;
@@ -308,6 +354,7 @@ namespace Calendar.Tizen.Port
 
         /// <summary>
         /// Clean child record.
+        /// <param name="record">The record to be cleared</param>
         /// </summary>
         private void CleanChildRecord(TPC.CalendarRecord record)
         {
@@ -320,6 +367,8 @@ namespace Calendar.Tizen.Port
 
         /// <summary>
         /// Get record from item.
+        /// <param name="item">The item</param>
+        /// <param name="record">The record to be converted from item.</param>
         /// </summary>
         private void ItemToRecord(RecordItem item, TPC.CalendarRecord record)
         {
@@ -347,19 +396,24 @@ namespace Calendar.Tizen.Port
             switch (item.Recurrence)
             {
             default:
-            case 0: /// none
+            case 0:
+            /// none
                 record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.None);
                 break;
-            case 1: /// daily
+            case 1:
+            /// daily
                 record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.Daily);
                 break;
-            case 2: /// weekly
+            case 2:
+            /// weekly
                 record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.Weekly);
                 break;
-            case 3: /// monthly
+            case 3:
+            /// monthly
                 record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.Monthly);
                 break;
-            case 4: /// yearly
+            case 4:
+            /// yearly
                 record.Set<int>(Event.Freq, (int)TPC.CalendarTypes.Recurrence.Yearly);
                 break;
             }
@@ -367,11 +421,13 @@ namespace Calendar.Tizen.Port
             switch (item.UntilType)
             {
             default:
-            case 0: /// count
+            /// count
+            case 0:
                 record.Set<int>(Event.RangeType, (int)TPC.CalendarTypes.RangeType.Count);
                 record.Set<int>(Event.Count, item.UntilCount);
                 break;
-            case 1: /// until
+            /// until
+            case 1:
                 record.Set<int>(Event.RangeType, (int)TPC.CalendarTypes.RangeType.Until);
                 var until = new TPC.CalendarTime(new DateTime(item.UntilTime.Year, item.UntilTime.Month, item.UntilTime.Day,
                         item.UntilTime.Hour, item.UntilTime.Minute, item.UntilTime.Second, DateTimeKind.Local).Ticks);
@@ -395,6 +451,8 @@ namespace Calendar.Tizen.Port
 
         /// <summary>
         /// Get item from record.
+        /// <param name="record">The record</param>
+        /// <param name="item">The item to be converted from record.</param>
         /// </summary>
         private void RecordToItem(TPC.CalendarRecord record, RecordItem item, TPC.CalendarTime start, TPC.CalendarTime end, bool isAllday)
         {
@@ -411,24 +469,21 @@ namespace Calendar.Tizen.Port
             item.IsAllday = isAllday;
             item.Recurrence = getRecurrenceIndex(record.Get<int>(Event.Freq));
 
-            if (item.IsAllday == true)
-            {
-                item.DisplayTime = String.Format("{0:yyyy/MM/dd} - {1:yyyy/MM/dd}", item.StartTime, item.EndTime);
-            }
-            else
-            {
-                item.DisplayTime = String.Format("{0:yyyy/MM/dd HH:mm} - {1:yyyy/MM/dd HH:mm}", item.StartTime, item.EndTime);
-            }
+            item.DisplayTime = String.Format("{0} - {1}",
+                    item.IsAllday == true ? item.StartTime.ToLocalTime().ToString("yyyy/MM/dd") : item.StartTime.ToLocalTime().ToString("yyyy/MM/dd HH:mm"),
+                    item.IsAllday == true ? item.EndTime.ToLocalTime().ToString("yyyy/MM/dd") : item.EndTime.ToLocalTime().ToString("yyyy/MM/dd HH:mm"));
 
             if (item.Recurrence > 0)
             {
                 switch (record.Get<int>(Event.RangeType))
                 {
                 default:
+                /// count
                 case (int)TPC.CalendarTypes.RangeType.Count:
                     item.UntilType = 0;
                     item.UntilCount = record.Get<int>(Event.Count);
                     break;
+                /// until
                 case (int)TPC.CalendarTypes.RangeType.Until:
                     item.UntilType = 1;
                     var until = record.Get<TPC.CalendarTime>(Event.Until);
@@ -446,6 +501,7 @@ namespace Calendar.Tizen.Port
 
         /// <summary>
         /// Insert item.
+        /// <param name="item">The item to be inserted.</param>
         /// </summary>
         public int Insert(RecordItem item)
         {
@@ -458,6 +514,8 @@ namespace Calendar.Tizen.Port
 
         /// <summary>
         /// Update item.
+        /// Before updating item, item should be clean.
+        /// <param name="item">The item to be updated.</param>
         /// </summary>
         public void Update(RecordItem item)
         {
@@ -470,6 +528,7 @@ namespace Calendar.Tizen.Port
 
         /// <summary>
         /// Delete item.
+        /// <param name="item">The item to be deleted.</param>
         /// </summary>
         public void Delete(RecordItem item)
         {
@@ -477,27 +536,11 @@ namespace Calendar.Tizen.Port
         }
 
         /// <summary>
-        /// Get all list.
-        /// </summary>
-        public List<RecordItem> GetAll()
-        {
-            var itemList = new List<RecordItem>();
-            var list = manager.Database.GetAll(Event.Uri, 0, 0);
-            int i;
-            for (i = 0; i < list.Count; i++)
-            {
-                var record = list.GetCurrentRecord();
-                var item = new RecordItem();
-                //RecordToItem(record, item);
-                itemList.Add(item);
-                list.MoveNext();
-            }
-            list.Dispose();
-            return itemList;
-        }
-
-        /// <summary>
         /// Get utc instance list.
+        /// To get not-allday instance list, InstanceUtimeBook uri must be used.
+        /// This does not include allday instances.
+        /// Range is set from the first day of selected date to the last day of selected data.
+        /// <param name="dt">The selected datetime</param>
         /// </summary>
         private TPC.CalendarList GetUtcInstances(DateTime dt)
         {
@@ -509,11 +552,9 @@ namespace Calendar.Tizen.Port
 
             TPC.CalendarQuery query = new TPC.CalendarQuery(InstanceUtimeBook.Uri);
             TPC.CalendarFilter filter = new TPC.CalendarFilter(InstanceUtimeBook.Uri,
-                    InstanceUtimeBook.Start, TPC.CalendarFilter.IntegerMatchType.GreaterThanOrEqual,
-                    from);
+                    InstanceUtimeBook.Start, TPC.CalendarFilter.IntegerMatchType.GreaterThanOrEqual, from);
             filter.AddCondition(TPC.CalendarFilter.LogicalOperator.And,
-                    InstanceUtimeBook.Start, TPC.CalendarFilter.IntegerMatchType.LessThan,
-                    to);
+                    InstanceUtimeBook.Start, TPC.CalendarFilter.IntegerMatchType.LessThan, to);
             query.SetFilter(filter);
             list = manager.Database.GetRecordsWithQuery(query, 0, 0);
             filter.Dispose();
@@ -524,6 +565,9 @@ namespace Calendar.Tizen.Port
 
         /// <summary>
         /// Get allday instance list.
+        /// To get allday instance list, InstanceLocaltimeBook uri must be used.
+        /// Range is set from the first day of selected date to the last day of selected data.
+        /// <param name="dt">The selected datetime</param>
         /// </summary>
         private TPC.CalendarList GetAlldayInstances(DateTime dt)
         {
@@ -534,11 +578,9 @@ namespace Calendar.Tizen.Port
 
             TPC.CalendarQuery query = new TPC.CalendarQuery(InstanceLocaltimeBook.Uri);
             TPC.CalendarFilter filter = new TPC.CalendarFilter(InstanceLocaltimeBook.Uri,
-                    InstanceLocaltimeBook.Start, TPC.CalendarFilter.IntegerMatchType.GreaterThanOrEqual,
-                    from);
+                    InstanceLocaltimeBook.Start, TPC.CalendarFilter.IntegerMatchType.GreaterThanOrEqual, from);
             filter.AddCondition(TPC.CalendarFilter.LogicalOperator.And,
-                    InstanceLocaltimeBook.Start, TPC.CalendarFilter.IntegerMatchType.LessThan,
-                    to);
+                    InstanceLocaltimeBook.Start, TPC.CalendarFilter.IntegerMatchType.LessThan, to);
             query.SetFilter(filter);
             list = manager.Database.GetRecordsWithQuery(query, 0, 0);
             filter.Dispose();
@@ -549,6 +591,10 @@ namespace Calendar.Tizen.Port
 
         /// <summary>
         /// Get a month instance.
+        /// To display allday and not-allday list, combine list together into itemList.
+        /// This will shows allday list on the top of the list.
+        /// Range is set from the first day of selected date to the last day of selected data.
+        /// <param name="dt">The selected datetime</param>
         /// </summary>
         public List<RecordItem> GetMonthRecords(DateTime dt)
         {
@@ -565,11 +611,9 @@ namespace Calendar.Tizen.Port
                 var record = manager.Database.Get(Event.Uri, instance.Get<int>(InstanceLocaltimeBook.EventId));
 
                 var item = new RecordItem();
-                RecordToItem(record, item,
-                        instance.Get<TPC.CalendarTime>(InstanceLocaltimeBook.Start),
+                RecordToItem(record, item, instance.Get<TPC.CalendarTime>(InstanceLocaltimeBook.Start),
                         instance.Get<TPC.CalendarTime>(InstanceLocaltimeBook.End), true);
                 itemList.Add(item);
-
                 list.MoveNext();
             }
             list.Dispose();
@@ -582,11 +626,9 @@ namespace Calendar.Tizen.Port
                 var record = manager.Database.Get(Event.Uri, instance.Get<int>(InstanceUtimeBook.EventId));
 
                 var item = new RecordItem();
-                RecordToItem(record, item,
-                        instance.Get<TPC.CalendarTime>(InstanceUtimeBook.Start),
+                RecordToItem(record, item, instance.Get<TPC.CalendarTime>(InstanceUtimeBook.Start),
                         instance.Get<TPC.CalendarTime>(InstanceUtimeBook.End), false);
                 itemList.Add(item);
-
                 list.MoveNext();
             }
             list.Dispose();
