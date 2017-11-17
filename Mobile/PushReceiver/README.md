@@ -1,15 +1,8 @@
-# Tizen .NET Push Receiver Sample
+# Push Receiver
 
 The Push Receiver sample application demonstrates how you can receive push notification from application server through push server. This sample is following Portable Class Libraries (PCL) application model and using some Xamarin.Forms features such as XAML files for GUI, and subsystem ports by using the Dependency Service.
 
-
-<table>
-<tr>
-<td>
-<center><img src='push_receiver.png' height=400></center>
-</td>
-</tr>
-</table>
+![PushReceiver](./push_receiver.png)
 
 ## Getting Started
 
@@ -19,7 +12,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
 * [Visual Studio Tools for Tizen](https://developer.tizen.org/development/tizen-.net-preview/visual-studio-tools-tizen) - Visual Studio plugin for Tizen .net app development.
-* [StyleCop](https://github.com/StyleCop/StyleCop) - Coding Rule Checker
 
 ### Installing
 
@@ -36,8 +28,17 @@ d:\> "C:\Program Files (x86)\Tizen\SDK\tools\sdb.exe" install org.tizen.example.
 * Build source codes by Visual Studio
 * Visual Studio > Test > Run > All Tests
 
-### And coding style tests
 
-* Visual Studio > Tools > Run StyleCop
+### Verified Version
+* Xamarin.Forms : 2.4.0.18342
+* Xamarin.Platform.Tizen : 2.4.0.18342
+* Tizen.NET : 4.0.0
+* Tizen.NET.SDK : 1.0.0
 
-## Acknowledgments
+### Supported Profile
+
+* Mobile
+
+### Author
+
+* Younho Park
