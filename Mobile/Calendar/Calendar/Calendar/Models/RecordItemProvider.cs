@@ -66,6 +66,7 @@ namespace Calendar.Models
 
         /// <summary>
         /// Inserts item.
+        /// <param name="item">The item to be inserted.</param>
         /// </summary>
         public int Insert(RecordItem item)
         {
@@ -74,6 +75,7 @@ namespace Calendar.Models
 
         /// <summary>
         /// Updates item.
+        /// <param name="item">The item to be updated.</param>
         /// </summary>
         public void Update(RecordItem item)
         {
@@ -82,6 +84,7 @@ namespace Calendar.Models
 
         /// <summary>
         /// Delete item.
+        /// <param name="item">The item to be deleted.</param>
         /// </summary>
         public void Delete(RecordItem item)
         {
@@ -89,16 +92,8 @@ namespace Calendar.Models
         }
 
         /// <summary>
-        /// Gets all records from database.
-        /// </summary>
-        public void GetAll()
-        {
-            itemList = calendarAPIs.GetAll();
-        }
-
-        /// <summary>
         /// Gets day's list which specific datetime included.
-        /// <param name="dateTime">The name of property that is changed.</param>
+        /// <param name="dateTime">The datetime to be selected.</param>
         /// </summary>
         public void GetMonthRecords(DateTime dateTime)
         {

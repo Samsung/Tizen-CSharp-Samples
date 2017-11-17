@@ -11,7 +11,6 @@
         <ViewModels:MonthPageViewModel/>
     </ContentPage.BindingContext>
 
-
     <StackLayout Orientation="Vertical">
         <StackLayout Orientation="Horizontal">
             <Button x:Name="PreButton"
