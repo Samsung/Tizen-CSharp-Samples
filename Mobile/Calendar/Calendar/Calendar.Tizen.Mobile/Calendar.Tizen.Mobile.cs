@@ -25,6 +25,7 @@ namespace Calendar.Tizen.Mobile
         {
             var app = new Program();
             global::Xamarin.Forms.DependencyService.Register<CalendarPort>();
+            global::Xamarin.Forms.DependencyService.Register<SecurityPort>();
             global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
             app.Run(args);
         }

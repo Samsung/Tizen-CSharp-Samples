@@ -113,6 +113,7 @@ namespace Calendar.Views
         public MonthPage()
         {
             InitializeComponent();
+            SecurityProvider.Instance.CheckPrivilege();
             PropertyChanged += OnPropertyChanged;
             MonthPageListView.ItemSelected += async (o, e) =>
             {
