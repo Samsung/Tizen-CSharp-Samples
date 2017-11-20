@@ -35,6 +35,7 @@ namespace Contacts.Models
         /// Instance for lazy initialization of RecordItemProvider.
         /// </summary>
         private static readonly Lazy<RecordItemProvider> lazy = new Lazy<RecordItemProvider>(() => new RecordItemProvider());
+
         /// <summary>
         /// A Record Item Provider class instance which provides Record Items.
         /// When it is called for the first time, RecordItemProvider will be created.

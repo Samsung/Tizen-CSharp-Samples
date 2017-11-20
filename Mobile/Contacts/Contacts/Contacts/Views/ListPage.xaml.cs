@@ -110,6 +110,7 @@ namespace Contacts.Views
         public ListPage()
         {
             InitializeComponent();
+            SecurityProvider.Instance.CheckPrivilege();
             PropertyChanged += OnPropertyChanged;
             ListPageListView.ItemSelected += async (o, e) =>
             {
