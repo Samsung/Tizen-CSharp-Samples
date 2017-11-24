@@ -26,8 +26,8 @@ namespace Contacts.Models
     public interface ISecurityAPIs
     {
         /// <summary>
-        /// <param name="privilege">The string for privilege.</param>
+        /// Check privilege.
         /// </summary>
-        void CheckPrivilege(string privilege);
+        void CheckPrivilege();
     }
 }

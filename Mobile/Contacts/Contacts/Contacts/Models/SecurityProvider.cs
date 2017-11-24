@@ -38,24 +38,12 @@ namespace Contacts.Models
         private static ISecurityAPIs securityAPIs;
 
         /// <summary>
-        /// contact read privilege.
-        /// </summary>
-        private const string privilegeRead = "http://tizen.org/privilege/contact.read";
-
-        /// <summary>
-        /// contact write privilege.
-        /// </summary>
-        private const string privilegeWrite = "http://tizen.org/privilege/contact.write";
-
-        /// <summary>
         /// SecurityProvider Constructor.
         /// A Constructor which will initialize the SecurityProvider instance.
-        /// </summary>
-        public void CheckPrivilege()
+        public void CheckContactsPrivilege()
         {
             securityAPIs = DependencyService.Get<ISecurityAPIs>();
-            securityAPIs.CheckPrivilege(privilegeRead);
-            securityAPIs.CheckPrivilege(privilegeWrite);
+            securityAPIs.CheckPrivilege();
         }
     }
 }
