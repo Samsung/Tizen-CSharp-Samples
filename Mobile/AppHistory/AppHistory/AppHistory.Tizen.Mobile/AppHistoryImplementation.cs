@@ -39,7 +39,7 @@ namespace AppHistory.Tizen.Mobile
         /// <summary>
         /// Query top 5 recently used applications during the last 5 hours
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of application history information</returns>
         public List<StatsInfoItem> QueryRecentlyUsedApplications()
         {
             try
@@ -79,6 +79,7 @@ namespace AppHistory.Tizen.Mobile
         /// <summary>
         /// Query top 10 frequently used applications during the last 3 days
         /// </summary>
+        /// <returns>List of application history information</returns>
         public List<StatsInfoItem> QueryFrequentlyUsedApplications()
         {
             try
@@ -118,6 +119,7 @@ namespace AppHistory.Tizen.Mobile
         /// <summary>
         /// Query top 10 battery consuming applications since the last time when the device has fully charged
         /// </summary>
+        /// <returns>List of application history information</returns>
         public List<StatsInfoItem> QueryBatteryConsumingApplications()
         {
             try

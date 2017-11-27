@@ -26,20 +26,20 @@ namespace AppHistory
         /// <summary>
         /// Query top 5 recently used applications during the last 5 hours.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of application history information</returns>
         List<StatsInfoItem> QueryRecentlyUsedApplications();
 
         /// <summary>
         /// Query top 10 frequently used applications during the last 3 days.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of application history information</returns>
         List<StatsInfoItem> QueryFrequentlyUsedApplications();
 
         /// <summary>
         /// Query top 10 battery consuming applications
         /// since the last time when the device has fully charged.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of application history information</returns>
         List<StatsInfoItem> QueryBatteryConsumingApplications();
     }
 }

@@ -24,6 +24,7 @@ namespace AppHistory
         /// <summary>
         /// Print debug log message
         /// </summary>
+        /// <param name="message">Log message</param>
         void Log(string message);
     }
 }

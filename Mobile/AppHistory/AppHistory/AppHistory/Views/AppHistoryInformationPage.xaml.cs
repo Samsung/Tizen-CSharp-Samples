@@ -22,6 +22,9 @@ using Xamarin.Forms.Xaml;
 
 namespace AppHistory
 {
+    /// <summary>
+    /// The ContentPage to show the retrieved application history result
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppHistoryInformationPage : ContentPage
     {
@@ -29,7 +32,7 @@ namespace AppHistory
         /// Interface for using AppHistory APIs
         /// </summary>
         private static IAppHistoryAPIs appHistoryAPIs;
-        
+
         /// <summary>
         /// Queried result of application history
         /// </summary>
@@ -77,7 +80,7 @@ namespace AppHistory
                     Query(QueryType.BatteryConsumingApplications);
                 }
 
-                
+
 
 
                 // Set the item source of list view

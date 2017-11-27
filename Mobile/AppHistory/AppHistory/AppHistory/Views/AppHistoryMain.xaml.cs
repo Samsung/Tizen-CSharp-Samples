@@ -22,8 +22,10 @@ using Xamarin.Forms.Xaml;
 
 namespace AppHistory
 {
+    /// <summary>
+    /// The main page of the appHistoy application
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-
     public partial class AppHistoryMain : ContentPage
     {
         /// <summary>

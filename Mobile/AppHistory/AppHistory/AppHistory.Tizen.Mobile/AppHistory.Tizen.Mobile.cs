@@ -33,7 +33,7 @@ namespace AppHistory.Tizen.Mobile
         /// <summary>
         /// The entry point of the application
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">The arguments</param>
         static void Main(string[] args)
         {
             var app = new Program();
