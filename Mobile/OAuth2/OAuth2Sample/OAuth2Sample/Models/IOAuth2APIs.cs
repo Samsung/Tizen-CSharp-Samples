@@ -1,4 +1,4 @@
-/* 
+﻿/* 
   * Copyright (c) 2016 Samsung Electronics Co., Ltd 
   * 
   * Licensed under the Flora License, Version 1.1 (the "License"); 
@@ -22,12 +22,34 @@ using Tizen.Account.OAuth2;
 
 namespace OAuth2Sample.Models
 {
+    /// <summary>
+    /// OAuth2 Sample Interfaces
+    /// </summary>
     public interface IOAuth2APIs
     {
+        /// <summary>
+        /// OAuth2 Sample Interface for Salesforce Get Access TokenTest
+        /// </summary>
         Task<string> SalesforceGetAccessTokenTest();
+
+        /// <summary>
+        /// OAuth2 Sample Interface for Google Refresh Access TokenTest
+        /// </summary>
         Task<string> GoogleRefreshAccessTokenTest();
+
+        /// <summary>
+        /// OAuth2 Sample Interface for Google Get Access TokenTest
+        /// </summary>
         Task<string> GoogleGetAccessTokenTest();
+
+        /// <summary>
+        /// OAuth2 Sample Interface for Twitter Get Access TokenTest
+        /// </summary>
         Task<string> TwitterGetAccessTokenTest();
+
+        /// <summary>
+        /// OAuth2 Sample Interface for Authorization RequestTest
+        /// </summary>
         string AuthorizationRequestTest();
     }
 }

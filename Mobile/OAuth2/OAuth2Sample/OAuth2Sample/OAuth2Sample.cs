@@ -27,6 +27,9 @@ using Tizen.Security;
 
 namespace OAuth2Sample
 {
+    /// <summary>
+    /// OAuth2 Sample Application Class
+    /// </summary>
     public class App : Application
     {
         private static IOAuth2APIs oauth2APIs;
@@ -50,6 +53,7 @@ namespace OAuth2Sample
         {
             oauth2APIs = DependencyService.Get<IOAuth2APIs>();
 
+            // Didplay App Title
             lableTitle = new Label
             {
                 Text = "OAuth2 Sample",
@@ -65,6 +69,7 @@ namespace OAuth2Sample
             };
             labelEmpty30.FontSize = 30;
 
+            // Draw Button for Google Get Access Token Test
             Button buttonGoogle1 = new Button
             {
                 Text = "  Google Get Access Token Test  ",
@@ -87,6 +92,7 @@ namespace OAuth2Sample
             };
             labelEmpty10_1_1.FontSize = 10;
 
+            // Draw Button for Google Refresh Access Token Test
             Button buttonGoogle2 = new Button
             {
                 Text = "  Google Refresh Access Token Test  ",
@@ -109,6 +115,7 @@ namespace OAuth2Sample
             };
             labelEmpty10_1.FontSize = 10;
 
+            // Draw Button for Twitter Get Access Token Test
             Button buttonTwitter = new Button
             {
                 Text = "    Twitter Get Access Token Test    ",
@@ -131,6 +138,7 @@ namespace OAuth2Sample
             };
             labelEmpty10_2.FontSize = 10;
 
+            // Draw Button for Salesforce Get Access Token Test
             Button buttonSalesforce = new Button
             {
                 Text = " Salesforce Get Access Token Test ",
@@ -153,13 +161,7 @@ namespace OAuth2Sample
             };
             labelEmpty10_3.FontSize = 10;
 
-            Button buttonLinkedin = new Button
-            {
-                Text = "        LinkedIn OAuth2 Test        ",
-                FontAttributes = FontAttributes.Bold,
-                BackgroundColor = Color.Blue,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-            };
+            // Draw Button forAuthorization Request Test
             Button buttonAuthorizationReqeust = new Button
             {
                 Text = " Authorization Request Test ",
@@ -220,6 +222,10 @@ namespace OAuth2Sample
                 }
             };
         }
+
+        /// <summary>
+        /// A method will be called when user clicks Google Get Access Token Test.
+        /// </summary>
         async void OnButtonGoogle1Clicked(object s, EventArgs e)
         {
             string response;
@@ -227,6 +233,10 @@ namespace OAuth2Sample
             response = await oauth2APIs.GoogleGetAccessTokenTest();
             labelGoogleButton1Clicked.Text = String.Format("result : {0}", response);
         }
+
+        /// <summary>
+        /// A method will be called when user clicks Google Refresh Access Token Test.
+        /// </summary>
         async void OnButtonGoogle2Clicked(object s, EventArgs e)
         {
             string response;
@@ -234,6 +244,10 @@ namespace OAuth2Sample
             response = await oauth2APIs.GoogleRefreshAccessTokenTest();
             labelGoogleButton2Clicked.Text = String.Format("result : {0}", response);
         }
+
+        /// <summary>
+        /// A method will be called when user clicks Twitter Get Access Token Test.
+        /// </summary>
         async void OnButtonTwitterClicked(object s, EventArgs e)
         {
             string response;
@@ -241,6 +255,10 @@ namespace OAuth2Sample
             response = await oauth2APIs.TwitterGetAccessTokenTest();
             labelTwitterButtonClicked.Text = String.Format("result : {0}", response);
         }
+
+        /// <summary>
+        /// A method will be called when user clicks Salesforce Get Access Token Test.
+        /// </summary>
         async void OnButtonSalesforceClicked(object s, EventArgs e)
         {
             string response;
@@ -248,6 +266,10 @@ namespace OAuth2Sample
             response = await oauth2APIs.SalesforceGetAccessTokenTest();
             labelSalesforceButtonClicked.Text = String.Format("result : {0}", response);
         }
+
+        /// <summary>
+        /// A method will be called when user clicks Authorization Request Test.
+        /// </summary>
         void OnButtonAuthorizationReqeustClicked(object s, EventArgs e)
         {
             string response;
@@ -255,13 +277,17 @@ namespace OAuth2Sample
             response = oauth2APIs.AuthorizationRequestTest();
             labelAuthorizationRequestlicked.Text = String.Format("result : {0}", response);
         }
+
+        /// <summary>
+        /// A method will be called when user clicks Reset Button.
+        /// </summary>
         void OnButtonResetClicked(object s, EventArgs e)
         {
             labelGoogleButton1Clicked.Text = String.Format("Google Button unclicked");
             labelGoogleButton2Clicked.Text = String.Format("Google Button unclicked");
             labelTwitterButtonClicked.Text = String.Format("Twitter Button unclicked");
             labelSalesforceButtonClicked.Text = String.Format("Salesforce Button unclicked");
-            labelAuthorizationRequestlicked.Text = String.Format("AuthorizationRequest Button unclicked");
+            labelAuthorizationRequestlicked.Text = String.Format("Authorization Request Button unclicked");
         }
         protected override void OnStart()
         {
