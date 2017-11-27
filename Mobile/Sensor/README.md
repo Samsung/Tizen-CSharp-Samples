@@ -1,46 +1,28 @@
-# Tizen .NET Sensor Sample
-
-The Sensor sample application demonstrates how you can managing sensors and receiving sensor data from the sensor device. This sample is following Portable Class Libraries (PCL) application model and using some Xamarin.Forms features such as XAML files for GUI, and subsystem ports by using the Dependency Service.
+# Sensor
+The Sensor sample application demonstrates how you can manage sensors and retrieve sensor data from various tizen sensor types, such as acceleration, device orientation and gravity sensor.
+This sample is following Portable Class Libraries (PCL) application model and using some Xamarin.Forms features such as XAML files for GUI, and subsystem ports by using the [Dependency Service](https://developer.xamarin.com/guides/xamarin-forms/application-fundamentals/dependency-service/) and the [Binding](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_binding_basics/).
 
 
 <table>
 <tr>
 <td>
-<center><img src='Sensor.Tizen.Mobile.png' height=400></center>
+<center><img src='./Screenshots/Tizen/Main.png' height=400></center>
 </td>
 <td>
-<center><img src='Sensor.Tizen.Mobile.png' height=400></center>
+<center><img src='./Screenshots/Tizen/Accelerometer.png' height=400></center>
 </td>
 </tr>
 </table>
 
-## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project.
+### Verified Version
+* Xamarin.Forms : 2.4.0.18342
+* Xamarin.Platform.Tizen : 2.4.0.18342
+* Tizen.NET : 4.0.0
+* Tizen.NET.SDK : 1.0.0
 
-### Prerequisites
+### Supported Profile
+* Mobile
 
-* [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/tizen-.net-preview/visual-studio-tools-tizen) - Visual Studio plugin for Tizen .net app development.
-* [StyleCop](https://github.com/StyleCop/StyleCop) - Coding Rule Checker
-
-### Installing
-
-* Build Sensor codes by the Visual Studio.
-* Run Tizen mobile emulator.
-* Install build output tpk file to the Tizen mobile emulator.
-
-```
-d:\> "C:\Program Files (x86)\Tizen\SDK\tools\sdb.exe" install org.tizen.example.Sensor.Tizen.Mobile-1.0.0.tpk
-```
-
-## Running the tests
-
-* Build source codes by Visual Studio
-* Visual Studio > Test > Run > All Tests
-
-### And coding style tests
-
-* Visual Studio > Tools > Run StyleCop
-
-## Acknowledgments
+### Author
+* Kibak Yoon(kibak.yoon@samsung.com)
