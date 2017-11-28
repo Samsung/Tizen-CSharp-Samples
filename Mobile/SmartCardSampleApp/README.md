@@ -1,4 +1,4 @@
-# Gallery
+# Smartcard
 The Smartcard service allows you to send a command to the SE (Secure Element), and receive a response to the command.
 Smartcard sample is mainly designed for Tizen Mobile profile and it is written in [Developer Site](https://developer.tizen.org/development/guides/native-application/connectivity-and-wireless/smartcard).
 
