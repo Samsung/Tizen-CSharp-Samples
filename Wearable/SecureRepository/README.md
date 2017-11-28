@@ -39,9 +39,9 @@ and the second one text before encryption and after decryption.
 
 ## Screenshots
 ### Mobile
-![Main screen Mobile](./SecureRepository/Screenshots/Tizen/main_screen_Mobile.png)
-![Main screen Mobile vertical orientation](./SecureRepository/Screenshots/Tizen/main_screen_Mobile_vertical.png)
+![Main screen Mobile](./Screenshots/Tizen/main_screen_Mobile.png)
+![Main screen Mobile vertical orientation](./Screenshots/Tizen/main_screen_Mobile_vertical.png)
 ### TV
-![Main screen TV](./SecureRepository/Screenshots/Tizen/main_screen_TV.png)
+![Main screen TV](./Screenshots/Tizen/main_screen_TV.png)
 ### Wearable
-![Main screen Wearable](./SecureRepository/Screenshots/Tizen/main_screen_Wearable.png)
+![Main screen Wearable](./Screenshots/Tizen/main_screen_Wearable.png)
