@@ -6,7 +6,7 @@
 
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.4.0.18342" />
+    <PackageReference Include="Xamarin.Forms" Version="2.4.0.91020" />
   </ItemGroup>
 
 </Project>
