@@ -54,7 +54,12 @@ namespace SmartCardSampleApp
             Label title_found = CreateLable("Select Secure Element");
             title_found.VerticalOptions = LayoutOptions.Start;
 
-            smartcard.Initialize();
+            if (smartcard.Initialize() == false)
+            {
+                layout.Children.Add(title);
+                Content = layout;
+                return;
+            }
 
             bool supportSE = smartcard.IsSecureElementPresent();
             log.Log("Secure Element Present : " + supportSE.ToString());
