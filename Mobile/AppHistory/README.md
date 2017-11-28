@@ -35,9 +35,16 @@ These instructions will get you a copy of the project up and running on your loc
 d:\> "C:\Program Files (x86)\Tizen\SDK\tools\sdb.exe" install org.tizen.example.AppHistory.Tizen.Mobile-1.0.0.tpk
 ```
 
-### And coding style tests
+### Coding style tests
 
 * Visual Studio > Tools > Run StyleCop
+
+
+### Verified Version
+* Xamarin.Forms : 2.4.0.74863
+* Xamarin.Platform.Tizen : 2.4.0.74863
+* Tizen.NET : 4.0.0
+* Tizen.NET.SDK : 1.0.0
 
 
 ### Supported Profile

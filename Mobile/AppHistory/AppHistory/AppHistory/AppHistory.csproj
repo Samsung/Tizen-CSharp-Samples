@@ -5,32 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ViewModels\**" />
-    <EmbeddedResource Remove="ViewModels\**" />
-    <None Remove="ViewModels\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Views\AppHistoryMain.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="StyleCop.Cache" />
-    <None Remove="Views\AppHistoryMain.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Views\AppHistoryInformationPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\AppHistoryMain.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.4.0.269-pre2" />
+    <PackageReference Include="Xamarin.Forms" Version="2.4.0.74863" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\AppHistoryInformationPage.xaml.cs">
