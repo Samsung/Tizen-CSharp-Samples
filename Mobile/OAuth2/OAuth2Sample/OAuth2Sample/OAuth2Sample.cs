@@ -80,7 +80,7 @@ namespace OAuth2Sample
             buttonGoogle1.Clicked += OnButtonGoogle1Clicked;
             labelGoogleButton1Clicked = new Label
             {
-                Text = "Google Button unclicked ",
+                Text = "Google Get Button unclicked ",
                 HorizontalOptions = LayoutOptions.Center,
             };
             labelGoogleButton1Clicked.FontSize = clickedFontSize;
@@ -103,7 +103,7 @@ namespace OAuth2Sample
             buttonGoogle2.Clicked += OnButtonGoogle2Clicked;
             labelGoogleButton2Clicked = new Label
             {
-                Text = "Google Button unclicked ",
+                Text = "Google Refresh Button unclicked ",
                 HorizontalOptions = LayoutOptions.Center,
             };
             labelGoogleButton2Clicked.FontSize = clickedFontSize;
@@ -184,6 +184,7 @@ namespace OAuth2Sample
             };
             labelEmpty10_5.FontSize = 10;
 
+            // Draw Rest button
             Button buttonReset = new Button
             {
                 Text = "    Reset    ",

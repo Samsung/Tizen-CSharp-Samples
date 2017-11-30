@@ -24,6 +24,7 @@ namespace OAuth2Sample.Tizen.Mobile.Port
 {
     internal static class TestHelper
     {
+        // Predefined information for testing
         internal const string CODE_GRANT_RESPONSE_TYPE_SPEC = "code";
         internal const string IMPLICIT_GRANT_RESPONSE_TYPE_SPEC = "token";
 
