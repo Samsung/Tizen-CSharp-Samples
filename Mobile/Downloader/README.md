@@ -2,9 +2,9 @@
 The Downloader application demonstrates how user can download contents and get the download information.
 This sample is mainly designed for Tizen Mobile profile.
 
-![MainPage](./Screenshots/Tizen/DownloadMainPage_Screenshot.png)
-![MainPage2](./Screenshots/Tizen/DownloadMainPage2_Screenshot.png)
-![DownloadInfoPage](./Screenshots/Tizen/DownloadInfoPage_Screenshot.png)
+![MainPage](./Screenshots/Tizen/DownloadMainPage.png)
+![MainPage2](./Screenshots/Tizen/DownloadMainPage2.png)
+![DownloadInfoPage](./Screenshots/Tizen/DownloadInfoPage.png)
 
 
 ### Verified Version
