@@ -100,7 +100,7 @@ namespace RadioSample
         /// <summary>
         /// Gets the display text of the current frequency.
         /// </summary>
-        public string CurrentFrequencyText => $"Current frequency : {RadioController.Frequency}";
+        public string CurrentFrequencyText => $"Current frequency : {RadioController.Frequency} Hz";
 
         #region Commands
 
