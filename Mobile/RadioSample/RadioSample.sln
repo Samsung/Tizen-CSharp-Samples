@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RadioSample", "RadioSample\RadioSample\RadioSample.csproj", "{9B4E6933-174A-465D-9C32-88EBEBF7307F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RadioSample.Tizen.Mobile", "RadioSample\RadioSample.Tizen.Mobile\RadioSample.Tizen.Mobile.csproj", "{01AC7EED-D507-44D2-93FC-05FE603D6A07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B4E6933-174A-465D-9C32-88EBEBF7307F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4E6933-174A-465D-9C32-88EBEBF7307F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4E6933-174A-465D-9C32-88EBEBF7307F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4E6933-174A-465D-9C32-88EBEBF7307F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01AC7EED-D507-44D2-93FC-05FE603D6A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01AC7EED-D507-44D2-93FC-05FE603D6A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01AC7EED-D507-44D2-93FC-05FE603D6A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01AC7EED-D507-44D2-93FC-05FE603D6A07}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {266EB3AC-5E91-45BF-AF0F-652AF8AF2CB0}
+	EndGlobalSection
+EndGlobal
