@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetadataExtractorSample", "MetadataExtractorSample\MetadataExtractorSample\MetadataExtractorSample.csproj", "{EFD4D40C-D932-4A67-AC7E-2B6144FA0C11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetadataExtractorSample.Tizen.Mobile", "MetadataExtractorSample\MetadataExtractorSample.Tizen.Mobile\MetadataExtractorSample.Tizen.Mobile.csproj", "{75CB68E3-995B-4C2E-9C6E-0BA8398EBCF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFD4D40C-D932-4A67-AC7E-2B6144FA0C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFD4D40C-D932-4A67-AC7E-2B6144FA0C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFD4D40C-D932-4A67-AC7E-2B6144FA0C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFD4D40C-D932-4A67-AC7E-2B6144FA0C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75CB68E3-995B-4C2E-9C6E-0BA8398EBCF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75CB68E3-995B-4C2E-9C6E-0BA8398EBCF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75CB68E3-995B-4C2E-9C6E-0BA8398EBCF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75CB68E3-995B-4C2E-9C6E-0BA8398EBCF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C76AFC6-5CA0-40C7-A55D-35AC7610CB27}
+	EndGlobalSection
+EndGlobal
