@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MetadataEditorSample"
+             x:Class="MetadataEditorSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Select file" Command="{Binding FileCommand}"/>
+
+            <ListView x:Name="List" ItemsSource="{Binding Items}"
+                      SelectedItem="{Binding SelectedItem}"
+                      VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <AbsoluteLayout>
+                                <Label Text="{Binding Name}"
+                                       AbsoluteLayout.LayoutBounds="-1,-1,.5,-1"
+                                       AbsoluteLayout.LayoutFlags="WidthProportional" />
+                                <Entry Text="{Binding Value}"
+                                       BackgroundColor="White"
+                                       AbsoluteLayout.LayoutBounds="1,0,.5,1"
+                                       AbsoluteLayout.LayoutFlags="All"/>
+                            </AbsoluteLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Save" Command="{Binding SaveCommand}"
+                    IsEnabled="{Binding IsFileSelected}"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
