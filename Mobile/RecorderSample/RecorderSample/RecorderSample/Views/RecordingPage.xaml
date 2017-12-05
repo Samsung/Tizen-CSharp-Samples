@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RecorderSample"
+             x:Class="RecorderSample.RecordingPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InverseBoolConverter x:Key="boolInverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="{Binding PrepareText}" Command="{Binding PrepareCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="{Binding IsPlaying, Converter={StaticResource boolInverter}}"/>
+
+            <Button Text="{Binding StartText}" Command="{Binding StartCommand}"
+                    HorizontalOptions="FillAndExpand"/>
+
+            <Button Text="{Binding PauseText}" Command="{Binding PauseCommand}"
+                    HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{Binding State}" HorizontalOptions="FillAndExpand" />
+            <Label Text="{Binding Size}" />
+        </StackLayout>
+
+        <Button Text="{Binding PlayText}" Command="{Binding PlayCommand}"/>
+
+        <local:VideoView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                         IsVisible="{Binding IsPlaying, Converter={StaticResource boolInverter}}"
+                         NativeView="{Binding CameraView, Mode=OneWayToSource}"/>
+
+        <local:VideoView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                         IsVisible="{Binding IsPlaying}"
+                         NativeView="{Binding PlayerView, Mode=OneWayToSource}"/>
+
+    </StackLayout>
+</ContentPage>
