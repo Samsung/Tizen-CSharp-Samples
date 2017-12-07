@@ -37,6 +37,10 @@ namespace ServiceDiscovery
         /// Entry to input the port number of DNS-SD Service
         /// </summary>
         private EntryCell portEntryCell;
+        /// <summary>
+        /// Button to register the service
+        /// </summary>
+        private Button registerButton;
 
         /// <summary>
         /// Constructor
@@ -59,7 +63,7 @@ namespace ServiceDiscovery
             nameEntryCell = CreateEntryCell("Service Name", "Enter service name");
             portEntryCell = CreateEntryCell("Port Number", "Enter port number");
             portEntryCell.Keyboard = Keyboard.Numeric;
-            Button registerButton = CreateButton("Register");
+            registerButton = CreateButton("Register");
 
             // Add components
             Content = new StackLayout
@@ -159,7 +163,10 @@ namespace ServiceDiscovery
             catch (Exception ex)
             {
                 DisplayAlert("Unexpected Error", ex.Message.ToString(), "OK");
+                return;
             }
+            registerButton.IsEnabled = false;
+            DisplayAlert("Success", "Service is Registered", "OK");
         }
     }
 }

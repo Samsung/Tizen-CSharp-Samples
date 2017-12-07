@@ -40,15 +40,14 @@ namespace ServiceDiscovery.Tizen.Mobile
         /// <param name="port">Port Number</param>
         public void RegisterDNSSDService(string type, string name, int port)
         {
-            using (DnssdService service = new DnssdService(type))
-            {
-                // Set service properties
-                service.Name = name;
-                service.Port = port;
+            DnssdService service = new DnssdService(type);
 
-                // Register the service
-                service.RegisterService();
-            }
+            // Set service properties
+            service.Name = name;
+            service.Port = port;
+
+            // Register the service
+            service.RegisterService();
         }
 
         /// <summary>
