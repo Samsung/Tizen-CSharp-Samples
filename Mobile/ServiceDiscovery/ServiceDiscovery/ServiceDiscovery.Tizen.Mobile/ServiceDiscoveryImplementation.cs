@@ -68,7 +68,7 @@ namespace ServiceDiscovery.Tizen.Mobile
 
         /// <summary>
         /// Event handler when a DNS-SD service is found
-        /// Service informations such as state, name, type, port, ip address are delivered
+        /// Service informations such as state, name, type, port, IP address are delivered
         /// </summary>
         /// <param name="s">Event sender</param>
         /// <param name="e">Event argument</param>

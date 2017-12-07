@@ -45,7 +45,7 @@ namespace ServiceDiscovery
     }
 
     /// <summary>
-    /// The EventARgs for the ServiceFound event
+    /// The EventArgs for the ServiceFound event
     /// </summary>
     public class DNSSDDiscoveryEventArgs : EventArgs
     {
