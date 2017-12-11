@@ -15,7 +15,6 @@
  */
 
 using System.Collections.Generic;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PlayerSample
@@ -27,9 +26,25 @@ namespace PlayerSample
     {
         public IEnumerable<MediaItem> Items { get; protected set; }
 
-        public MediaItem SelectedItem { get; set; }
+        private MediaItem _selecetdItem;
 
-        public ICommand OpenCommand { get; protected set; }
+        public MediaItem SelectedItem
+        {
+            get => _selecetdItem;
+            set
+            {
+                if (_selecetdItem != value)
+                {
+                    _selecetdItem = value;
+
+                    OnPropertyChanged(nameof(SelectedItem));
+
+                    OpenCommand?.ChangeCanExecute();
+                }
+            }
+        }
+
+        public Command OpenCommand { get; protected set; }
     }
 
     /// <summary>
@@ -41,18 +56,8 @@ namespace PlayerSample
         {
             Items = DependencyService.Get<IMediaContentDatabase>().SelectAllPlayable();
 
-            OpenCommand = new Command(async () =>
-            {
-                if (SelectedItem == null)
-                {
-                    return;
-                }
-
-                await Application.Current.MainPage.Navigation.PushAsync(new PlayPage()
-                {
-                    BindingContext = new PlayPageViewModel(SelectedItem.Path)
-                });
-            });
+            OpenCommand = new NavigationCommand<PlayPage>(() => new PlayPageViewModel(SelectedItem.Path),
+                () => SelectedItem != null);
         }
     }
 
@@ -67,15 +72,10 @@ namespace PlayerSample
 
             OpenCommand = new Command(async () =>
             {
-                if (SelectedItem == null)
-                {
-                    return;
-                }
-
                 DependencyService.Get<IMediaPlayer>().SetSubtile(SelectedItem.Path);
 
                 await Application.Current.MainPage.Navigation.PopAsync();
-            });
+            }, () => SelectedItem != null);
         }
     }
 }

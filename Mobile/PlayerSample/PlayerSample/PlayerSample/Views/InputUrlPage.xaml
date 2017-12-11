@@ -15,7 +15,7 @@
                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                     BackgroundColor="White"/>
 
-            <Button Text="Done" Command="{Binding DoneCommand}" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Open" Command="{Binding OpenCommand}" HorizontalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </local:PageBase>
