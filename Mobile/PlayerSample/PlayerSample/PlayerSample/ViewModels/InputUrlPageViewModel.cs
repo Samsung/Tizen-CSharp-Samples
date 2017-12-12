@@ -25,7 +25,7 @@ namespace PlayerSample
     {
         public InputUrlPageViewModel()
         {
-            DoneCommand = new NavigationCommand<PlayPage>(() => new PlayPageViewModel(UrlText),
+            OpenCommand = new NavigationCommand<PlayPage>(() => new PlayPageViewModel(UrlText),
                 () => !string.IsNullOrEmpty(UrlText));
         }
 
@@ -42,11 +42,11 @@ namespace PlayerSample
 
                     OnPropertyChanged(nameof(UrlText));
 
-                    DoneCommand.ChangeCanExecute();
+                    OpenCommand.ChangeCanExecute();
                 }
             }
         }
 
-        public Command DoneCommand { get; protected set; }
+        public Command OpenCommand { get; protected set; }
     }
 }
