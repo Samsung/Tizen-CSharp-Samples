@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ImageUtilSample"
+             x:Class="ImageUtilSample.MainPage">
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Select Image File" Command="{Binding SelectCommand}"/>
+            <Button Text="Decode" Command="{Binding DecodeCommand}"
+                    IsEnabled="{Binding IsFileSelected}"/>
+            <Label Text="{Binding DecodeResultText}"/>
+
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" IsEnabled="{Binding IsDecodeSucceeded}">
+                    <Button Text="Rotate" Command="{Binding RotateCommand}"/>
+                    <Button Text="Flip" Command="{Binding FlipCommand}"/>
+                    <Button Text="Resize" Command="{Binding ResizeCommand}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" IsEnabled="{Binding IsDecodeSucceeded}">
+                    <Button Text="Crop" Command="{Binding CropCommand}"/>
+                    <Button Text="Change ColorSpace" Command="{Binding ColorSpaceCommand}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <Label Text="{Binding CommandText}"/>
+            <Label Text="{Binding ErrorText}"/>
+
+            <Image VerticalOptions="FillAndExpand"  Source="{Binding ResultSource}"
+                  Aspect="AspectFit"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
