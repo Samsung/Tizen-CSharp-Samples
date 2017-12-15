@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification", "Notification\Notification\Notification.csproj", "{D057E22F-22E8-4BA5-B156-24263D725E9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Tizen", "Notification\Notification.Tizen\Notification.Tizen.csproj", "{6157B8A6-45BB-4A0B-91C6-59E14C828AA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D057E22F-22E8-4BA5-B156-24263D725E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D057E22F-22E8-4BA5-B156-24263D725E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D057E22F-22E8-4BA5-B156-24263D725E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D057E22F-22E8-4BA5-B156-24263D725E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6157B8A6-45BB-4A0B-91C6-59E14C828AA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6157B8A6-45BB-4A0B-91C6-59E14C828AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6157B8A6-45BB-4A0B-91C6-59E14C828AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6157B8A6-45BB-4A0B-91C6-59E14C828AA8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02C814A3-09A0-47C8-A458-2E10616C8603}
+	EndGlobalSection
+EndGlobal
