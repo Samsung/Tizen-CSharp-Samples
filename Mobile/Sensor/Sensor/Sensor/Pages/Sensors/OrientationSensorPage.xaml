@@ -16,36 +16,33 @@
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Azimuth : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=Azimuth}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Pitch : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=Pitch}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Roll : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=Roll}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 

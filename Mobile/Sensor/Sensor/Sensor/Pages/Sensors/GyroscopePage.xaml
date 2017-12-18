@@ -16,36 +16,33 @@
                 <StackLayout Orientation="Horizontal">
                     <Label Text="X : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=X}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Y : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=Y}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Z : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=Z}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 

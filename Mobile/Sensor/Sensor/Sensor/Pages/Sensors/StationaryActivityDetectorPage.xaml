@@ -16,12 +16,11 @@
                 <StackLayout Orientation="Horizontal">
                     <Label Text="State : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=State}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 

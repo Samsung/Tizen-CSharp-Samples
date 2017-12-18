@@ -16,12 +16,11 @@
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Temperature : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=Temperature}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 

@@ -16,84 +16,77 @@
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Step Count : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=StepCount}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Walk Step Count : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=WalkStepCount}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Run Step Count : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=RunStepCount}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Moving Distance : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=MovingDistance}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Last Speed : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=LastSpeed}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Last Stepping Frequency : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=LastSteppingFrequency}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Last Step Status : "
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
-                           HorizontalTextAlignment="End"
-                           WidthRequest="300"/>
+                           HorizontalOptions="EndAndExpand"
+                           HorizontalTextAlignment="End"/>
                     <Label Text="{Binding Path=LastStepStatus}"
                            VerticalOptions="CenterAndExpand"
-                           HorizontalOptions="Start"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"/>
                 </StackLayout>
 
