@@ -197,10 +197,13 @@ namespace OAuth2Sample
             // The root page of your application
             MainPage = new ContentPage
             {
-                Content = new StackLayout
+                // Sets Scroll View
+                Content = new ScrollView
                 {
-                    VerticalOptions = LayoutOptions.StartAndExpand,
-                    Children = {
+                    Content = new StackLayout
+                    {
+                        VerticalOptions = LayoutOptions.StartAndExpand,
+                        Children = {
                         lableTitle,
                         labelEmpty30,
                         buttonAuthorizationReqeust,
@@ -219,6 +222,7 @@ namespace OAuth2Sample
                         labelSalesforceButtonClicked,
                         labelEmpty10_3,
                         buttonReset
+                    }
                     }
                 }
             };
