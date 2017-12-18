@@ -144,10 +144,18 @@ namespace ServiceDiscovery
             string type = typeEntryCell.Text;
             string name = nameEntryCell.Text;
             int port = 0;
+
             try
             {
                 // convert string to integer
                 port = Int32.Parse(portEntryCell.Text);
+                // check port number
+                // port number should be an integer value between 0 and 65535
+                if (port < 0 || port > 65535)
+                {
+                        DisplayAlert("Alert", "Invalid Port Number", "OK");
+                        return;
+                    }
             }
             catch (FormatException)
             {
@@ -160,9 +168,13 @@ namespace ServiceDiscovery
                 // Actually register DNS-SD service
                 DependencyService.Get<IServiceDiscovery>().RegisterDNSSDService(type, name, port);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                DisplayAlert("Unexpected Error", ex.Message.ToString(), "OK");
+                // Service type is a form _<service protocol>._<transport protocol>
+                // Transport protocol must be tcp or udp
+                string usage = "The type must be a form of _<protocol>._tcp or _<protocol>._udp.\n"
+                    + "protocol must consist of alphabets, numbers and hyphens.";
+                DisplayAlert("Invalid Service Type", usage, "OK");
                 return;
             }
             registerButton.IsEnabled = false;
