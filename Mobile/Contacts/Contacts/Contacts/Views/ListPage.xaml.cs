@@ -99,7 +99,7 @@ namespace Contacts.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            UpdateListCommand.Execute(null);
+//            UpdateListCommand.Execute(null);
         }
 
         /// <summary>
@@ -109,8 +109,8 @@ namespace Contacts.Views
         /// </summary>
         public ListPage()
         {
-            InitializeComponent();
             SecurityProvider.Instance.CheckContactsPrivilege();
+            InitializeComponent();
             PropertyChanged += OnPropertyChanged;
             ListPageListView.ItemSelected += async (o, e) =>
             {
