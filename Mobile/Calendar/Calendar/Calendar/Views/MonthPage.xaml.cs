@@ -102,7 +102,7 @@ namespace Calendar.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            UpdateListCommand.Execute(null);
+//            UpdateListCommand.Execute(null);
         }
 
         /// <summary>
@@ -112,8 +112,8 @@ namespace Calendar.Views
         /// </summary>
         public MonthPage()
         {
-            InitializeComponent();
             SecurityProvider.Instance.CheckPrivilege();
+            InitializeComponent();
             PropertyChanged += OnPropertyChanged;
             MonthPageListView.ItemSelected += async (o, e) =>
             {
