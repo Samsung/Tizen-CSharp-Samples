@@ -22,6 +22,8 @@ namespace ThumbnailExtractorSample.Tizen.Mobile
         {
             base.OnCreate();
             LoadApplication(new App());
+
+            MainWindow.AvailableRotations = ElmSharp.DisplayRotation.Degree_0;
         }
 
         static void Main(string[] args)
