@@ -15,20 +15,16 @@
  */
 
 using System;
-using System.Collections.Generic;
-using Tizen.Applications;
 using System.Linq;
+using System.Collections.Generic;
 using ElmSharp;
-using ElmSharp.Wearable;
-using Tizen.Maps;
 using Tizen;
+using Tizen.Applications;
+using Tizen.Maps;
 
-namespace Maps.Tizen.Wearable
+namespace Maps.Tizen.Mobile
 {
-	/// <summary>
-	/// Maps application main class.
-	/// </summary>
-	class App : CoreUIApplication
+    class App : CoreUIApplication
     {
 		/// <summary>
 		/// The enum type for view page.
@@ -36,11 +32,9 @@ namespace Maps.Tizen.Wearable
 		public enum ViewPage
 		{
 			MAP,
-			MAP_IN_PROGRESS,
 			ROUTE,
-			ROUTE_IN_PROGRESS,
 			POI,
-			POI_IN_PROGRESS,
+			POISELECTED,
 		};
 
 		/// <summary>
@@ -60,6 +54,36 @@ namespace Maps.Tizen.Wearable
 		public string HERE_KEY = "57l3m35FktUN4sBpDTcJ/ckFerp2t5bCVjouh9v2HCw";
 
 		/// <summary>
+		/// The Window object.
+		/// </summary>
+		public Window window = null;
+
+		/// <summary>
+		/// The current view.
+		/// </summary>
+		public ViewPage view = ViewPage.MAP;
+
+		/// <summary>
+		/// The label for the information of the starting position.
+		/// </summary>
+		public Label fromLabel = null;
+
+		/// <summary>
+		/// The label for the information of the end position.
+		/// </summary>
+		public Label toLabel = null;
+
+		/// <summary>
+		/// The context popup for the ViewPage.
+		/// </summary>
+		public ContextPopup viewCtxPopup = null;
+
+		/// <summary>
+		/// The context popup for the POI category.
+		/// </summary>
+		public ContextPopup categoryCtxPopup = null;
+
+		/// <summary>
 		/// The list for the place.
 		/// </summary>
 		public List<Place> PlaceList = null;
@@ -73,11 +97,6 @@ namespace Maps.Tizen.Wearable
 		/// The categories for the HERE provider.
 		/// </summary>
 		public string[] HereCategory = { "eat-drink", "transport", "accommodation", "shopping", "leisure-outdoor" };
-
-		/// <summary>
-		/// The current view.
-		/// </summary>
-		public ViewPage view = ViewPage.MAP;
 
 		/// <summary>
 		/// The latitude value for the seoul.
@@ -100,16 +119,6 @@ namespace Maps.Tizen.Wearable
 		public double DEFAULT_LON = 77.19865;
 
 		/// <summary>
-		/// The Window object.
-		/// </summary>
-		public Window window = null;
-
-		/// <summary>
-		/// The Naviframe object.
-		/// </summary>
-		public Naviframe navi = null;
-
-		/// <summary>
 		/// The coordinate for the starting position.
 		/// </summary>
 		public Geocoordinates fromPosition = null;
@@ -127,7 +136,7 @@ namespace Maps.Tizen.Wearable
             base.OnCreate();
 			//Request the user consent
 			RequestUserConsent();
-        }
+		}
 
 		/// <summary>
 		/// Request the user consent.
@@ -163,44 +172,62 @@ namespace Maps.Tizen.Wearable
 		/// </summary>
 		void Initialize()
         {
-			// Create a Window
-			window = new Window("ElmSharpApp")
+			// Create the window
+			window = new Window("MapApp");
+			window.KeyGrab(EvasKeyEventArgs.PlatformBackButtonName, false);
+			window.KeyUp += (s, e) =>
 			{
-				AvailableRotations = DisplayRotation.Degree_0 | DisplayRotation.Degree_180 | DisplayRotation.Degree_270 | DisplayRotation.Degree_90,
-				AutoDeletion = true,
-            };
-            window.Deleted += (s, e) => Exit();
-            window.Show();
-
-			// Create a Conformant
-			var conf = new Conformant(window)
-			{
-				WeightX = 1.0,
-				WeightY = 1.0,
+				if (e.KeyName == EvasKeyEventArgs.PlatformBackButtonName)
+				{
+					// Close the map if the back key is selected
+					CloseApp();
+				}
+				else if (e.KeyName == EvasKeyEventArgs.PlatformMenuButtonName)
+				{
+					// Create the ContextPopup for the ViewPage selection
+					viewCtxPopup = new ContextPopup(window)
+					{
+						// Set the AutoHide value
+						AutoHide = true,
+					};
+					// Append items for the ContextPopup and add event handlers
+					(viewCtxPopup.Append("Map")).Selected += ViewPageSelected;
+					(viewCtxPopup.Append("POI")).Selected += ViewPageSelected;
+					(viewCtxPopup.Append("Route")).Selected += ViewPageSelected;
+					// Move the ContextPopup
+					viewCtxPopup.Move(0, window.ScreenSize.Height);
+					// Show the ContextPopup
+					viewCtxPopup.Show();
+				}
 			};
-			window.AddResizeObject(conf);
-			conf.Show();
+			// Show the window
+			window.Show();
 
-			// Create a Naviframe
-			navi = new Naviframe(window);
-			conf.SetContent(navi);
-			navi.BackButtonPressed += (s, e) => CloseApp();
+			var box = new Box(window)
+            {
+                AlignmentX = -1,
+                AlignmentY = -1,
+                WeightX = 1,
+                WeightY = 1,
+            };
+            box.Show();
 
-			CreateMap();
-		}
+            var bg = new Background(window)
+            {
+                Color = Color.White
+            };
+            bg.SetContent(box);
 
-		/// <summary>
-		/// Create a MapView object.
-		/// </summary>
-		public void CreateMap()
-		{
+            var conformant = new Conformant(window);
+            conformant.Show();
+            conformant.SetContent(bg);
+
 			// Create the MapView
-			var layout = new Layout(navi);
-			s_mapview = new MapView(layout, s_maps);
+			s_mapview = new MapView(window, s_maps);
 			// Move the MapView
 			s_mapview.Move(0, 0);
 			// Resize the MapView
-			s_mapview.Resize(360, 360);
+			s_mapview.Resize(window.ScreenSize.Width, window.ScreenSize.Height);
 			// Show the MapView
 			s_mapview.Show();
 			// Set the latitude and longitude for the center position of the MapView
@@ -211,95 +238,49 @@ namespace Maps.Tizen.Wearable
 			// Add the handler for the longpress event on MapView
 			s_mapview.LongPressed += MapViewLongPressed;
 
-			// Create the MoreOption
-			var viewOption = new MoreOption(window)
-			{
-				AlignmentX = -1,
-				AlignmentY = -1,
-				WeightX = 1,
-				WeightY = 1,
-				Direction = MoreOptionDirection.Right
-			};
-			// Move the viewOption
-			viewOption.Move(180, 180);
-			// Show the viewOption
-			viewOption.Show();
-			viewOption.Clicked += ViewOptionSelected;
-
-			// Create and add items of the MoreOption
-			viewOption.Items.Add(new MoreOptionItem() { MainText = "Map" });
-			viewOption.Items.Add(new MoreOptionItem() { MainText = "POI" });
-			viewOption.Items.Add(new MoreOptionItem() { MainText = "Route" });
-
-			RotaryEventManager.Rotated += (e) =>
-			{
-				if (viewOption.IsOpened == false)
-				{
-					if (e.IsClockwise)
-					{
-						s_mapview.ZoomLevel += 1;
-					}
-					else
-					{
-						s_mapview.ZoomLevel -= 1;
-					}
-				}
-			};
-
-			var mapPage = navi.Push(layout, null, "empty");
-			navi.Popped += (s, e) => { viewOption.Unrealize(); };
+			CreateLabel();
 		}
 
 		/// <summary>
-		/// Handle the event of the longpress on the MapView.
-		/// </summary>
-		/// <param name="sender">Specifies the sender object</param>
-		/// <param name="oe">Specifies the occured event</param>
-		private void ViewOptionSelected(object sender, MoreOptionItemEventArgs oe)
+		/// Create the labels.
+		/// </summary>  
+		public void CreateLabel()
 		{
-			// Remove the used data
-			ClearData();
-
-			if (oe.Item.MainText == "Map")
+			// Create the label for the starting position
+			fromLabel = new Label(window)
 			{
-				view = ViewPage.MAP;
-				((MoreOption)sender).IsOpened = false;
-			}
-			else if (oe.Item.MainText == "POI")
+				// Set the default text
+				Text = "",
+				// Set the default color
+				Color = Color.Silver,
+				// Set the default background color
+				BackgroundColor = Color.White
+			};
+			// Move the label
+			fromLabel.Move(5, 5);
+			// Resize the label
+			fromLabel.Resize(710, 70);
+			// Show the label
+			fromLabel.Show();
+			// Set the handler for the label. Remove the focus from the label when it is focused
+			fromLabel.Focused += (sender, e) => { ((Label)sender).SetFocus(false); };
+
+			// Create the label for the end position
+			toLabel = new Label(window)
 			{
-				view = ViewPage.POI;
-
-				// Create the RotarySelector for the category
-				var poiSelector = new RotarySelector(window)
-				{
-					AlignmentX = -1,
-					AlignmentY = -1,
-					WeightX = 1,
-					WeightY = 1
-				};
-				foreach (string category in HereCategory)
-				{
-					poiSelector.Items.Add(new RotarySelectorItem() { MainText = category });
-				}
-
-				poiSelector.Show();
-
-				poiSelector.Clicked += (s, e) => 
-				{
-					// Request the pois with the center position
-					RequestPOI(new Geocoordinates(s_mapview.Center.Latitude, s_mapview.Center.Longitude), e.Item.MainText);
-
-					poiSelector.Unrealize();
-
-					((MoreOption)sender).IsOpened = false;
-				};
-				poiSelector.BackButtonPressed += (s, e) => { poiSelector.Unrealize(); };
-			}
-			else if (oe.Item.MainText == "Route")
-			{
-				view = ViewPage.ROUTE;
-				((MoreOption)sender).IsOpened = false;
-			}
+				// Set the default text
+				Text = "",
+				// Set the default color
+				Color = Color.Silver,
+				// Set the default background color
+				BackgroundColor = Color.White
+			};
+			// Move the label
+			toLabel.Move(5, 80);
+			// Resize the label
+			toLabel.Resize(710, 70);
+			// Add the handler for this label. The focus of the label will be removed if it is clicked
+			toLabel.Focused += (sender, e) => { ((Label)sender).SetFocus(false); };
 		}
 
 		/// <summary>
@@ -309,29 +290,28 @@ namespace Maps.Tizen.Wearable
 		/// <param name="e">Specifies the occured event</param>
 		private void MapViewLongPressed(object sender, MapGestureEventArgs e)
 		{
-			// Set the zoom level
-			if (s_mapview.ZoomLevel < 13)
-			{
-				s_mapview.ZoomLevel = 13;
-			}
-
 			// Check the viewpage
 			if (view == ViewPage.MAP)
 			{
-				// Remove the used data
-				ClearData();
+				// Remove all the map object from the map view
+				s_mapview.RemoveAll();
+				// Set the zoom level
+				s_mapview.ZoomLevel = 13;
 				// Move to the longpressed position
 				s_mapview.Center = e.Geocoordinates;
 				// Add the pin to the center positon of the map view
-				s_mapview.Add(new Pin(s_mapview.Center));
+				s_mapview.Add(new global::Tizen.Maps.Pin(s_mapview.Center));
 				// Request the address by the center position of the map view and display the address to the label of the starting position
-				RequestAddress(s_mapview.Center.Latitude, s_mapview.Center.Longitude);
+				RequestAddress(fromLabel, s_mapview.Center.Latitude, s_mapview.Center.Longitude);
 			}
 			else if (view == ViewPage.ROUTE)
 			{
-				if (fromPosition != null && toPosition != null)
+				// Set the zoom level
+				s_mapview.ZoomLevel = 13;
+				// Check the text of the fromLabel and the toLabel. The route is being displayed if the text of the labels is not empty.
+				if ((fromLabel.Text != "" && toLabel.Text != "") || (fromLabel.Text == "" && toLabel.Text == ""))
 				{
-					// Remove the used data
+					// Remove the used resource
 					ClearData();
 				}
 
@@ -342,14 +322,18 @@ namespace Maps.Tizen.Wearable
 				if (fromPosition == null)
 				{
 					// Add a marker to the center position
-					s_mapview.Add(new Pin(s_mapview.Center));
+					s_mapview.Add(new global::Tizen.Maps.Pin(s_mapview.Center));
+					// Request an address with the center position
+					RequestAddress(fromLabel, s_mapview.Center.Latitude, s_mapview.Center.Longitude);
 					// Create the Geocoordinates from the center position
 					fromPosition = new Geocoordinates(s_mapview.Center.Latitude, s_mapview.Center.Longitude);
 				}
-				else
+				else if (fromLabel.Text != "" && toPosition == null)
 				{
 					// Add a marker to the center position
-					s_mapview.Add(new Sticker(s_mapview.Center));
+					s_mapview.Add(new global::Tizen.Maps.Sticker(s_mapview.Center));
+					// Request an address with the center position
+					RequestAddress(toLabel, s_mapview.Center.Latitude, s_mapview.Center.Longitude);
 					// Create the Geocoordinates from the center position
 					toPosition = new Geocoordinates(s_mapview.Center.Latitude, s_mapview.Center.Longitude);
 					// Request a route with the fromPosition and the toPosition
@@ -361,21 +345,19 @@ namespace Maps.Tizen.Wearable
 		/// <summary>
 		/// Request an address with the latitude and longitude.
 		/// </summary>
+		/// <param name="label">Specifies the label for displaying the result</param>
 		/// <param name="latitude">Specifies the latitude for getting the address</param>
 		/// <param name="longitude">Specifies the longitude for getting the address</param>
-		public async void RequestAddress(double latitude, double longitude)
+		public async void RequestAddress(Label label, double latitude, double longitude)
 		{
 			try
 			{
-				view = ViewPage.MAP_IN_PROGRESS;
+				// clear the text
+				label.Text = "";
 				// Request an address with the latitude and longitude
 				var response = await s_maps.CreateReverseGeocodeRequest(latitude, longitude).GetResponseAsync();
-				// Set the address to the popup
-				if (view == ViewPage.MAP_IN_PROGRESS)
-				{
-					CreatePopup(response.First().Building.ToString() + " " + response.First().Street + " " + response.First().City + " " + response.First().State + " " + response.First().Country);
-					view = ViewPage.MAP;
-				}
+				// Set the address to the label
+				label.Text = response.First().Building.ToString() + " " + response.First().Street + " " + response.First().City + " " + response.First().State + " " + response.First().Country;
 			}
 			catch (Exception e)
 			{
@@ -393,34 +375,17 @@ namespace Maps.Tizen.Wearable
 		{
 			try
 			{
-				view = ViewPage.ROUTE_IN_PROGRESS;
 				// Request a route with between two positions
 				var response = await s_maps.CreateRouteSearchRequest(from, to).GetResponseAsync();
 				// Get the route
 				IEnumerator<Route> route = response.GetEnumerator();
-
-				route.MoveNext();
-
-				if (view == ViewPage.ROUTE_IN_PROGRESS)
+				while (route.MoveNext())
 				{
 					// Display the polylines after making it from the path of the route
-					s_mapview.Add(new Polyline((List<Geocoordinates>)route.Current.Path, ElmSharp.Color.Red, 5));
-
-					string distance;
-					if (route.Current.Unit == DistanceUnit.Kilometer)
+					if (view == ViewPage.ROUTE)
 					{
-						distance = string.Format("{0,10:N2}", route.Current.Distance);
+						s_mapview.Add(new Polyline((List<Geocoordinates>)route.Current.Path, Color.Red, 5));
 					}
-					else
-					{
-						distance = string.Format("{0,10:N2}", route.Current.Distance / 1000);
-					}
-
-					string duration = string.Format("{0,10:N2}", route.Current.Duration / 60);
-
-					CreatePopup(distance + " km / " + duration + " min by car");
-
-					view = ViewPage.ROUTE;
 				}
 			}
 			catch (Exception e)
@@ -439,7 +404,6 @@ namespace Maps.Tizen.Wearable
 		{
 			try
 			{
-				view = ViewPage.POI_IN_PROGRESS;
 				// Set the category
 				s_maps.PlaceSearchFilter.Category.Id = Category;
 				/// Request pois with the position and the category.
@@ -456,28 +420,34 @@ namespace Maps.Tizen.Wearable
 
 				// Sort by distance
 				PlaceList = PlaceList.OrderBy(x => x.Distance).ToList();
-				if (view == ViewPage.POI_IN_PROGRESS)
+				for (int i = 0; i < PlaceList.Count; i++)
 				{
-					for (int i = 0; i < PlaceList.Count; i++)
+					// Create pins with the places and add it to marker list
+					MarkerList.Add(new global::Tizen.Maps.Pin(PlaceList[i].Coordinates));
+					// Show the markers
+					if (view == ViewPage.POI)
 					{
-						// Create pins with the places and add it to marker list
-						MarkerList.Add(new Pin(PlaceList[i].Coordinates));
-						// Show the markers
 						s_mapview.Add(MarkerList[i]);
-						// Add a handler to click the marker
-						MarkerList[i].Clicked += (sender, e) => { SetCurrentMarker((Marker)sender); };
 					}
+					// Add a handler to click the marker
+					MarkerList[i].Clicked += (sender, e) => { SetCurrentMarker((Marker)sender); };
+				}
 
-					// Set the current marker
+				// Set the current marker
+				if (view == ViewPage.POI)
+				{
 					SetCurrentMarker(MarkerList[0]);
-
-					view = ViewPage.POI;
 				}
 			}
 			catch (Exception e)
 			{
 				// Display logs with the error message
 				Log.Debug("Map", e.Message.ToString());
+			}
+			// Set the viewpage
+			if (view == ViewPage.POI)
+			{
+				view = ViewPage.POISELECTED;
 			}
 		}
 
@@ -494,7 +464,7 @@ namespace Maps.Tizen.Wearable
 				// Set the zorder of the other markers
 				MarkerList[i].ZOrder = 0;
 				// Set the size of the other markers
-				MarkerList[i].Resize(new ElmSharp.Size(30, 30));
+				MarkerList[i].Resize(new Size(30, 30));
 
 				if (MarkerList[i] == marker)
 				{
@@ -505,42 +475,91 @@ namespace Maps.Tizen.Wearable
 			// Set the zorder of the current marker
 			marker.ZOrder = 100;
 			// Set the size of the current marker
-			marker.Resize(new ElmSharp.Size(60, 60));
+			marker.Resize(new Size(60, 60));
 			// Set the center position to the current marker's position
 			s_mapview.Center = marker.Coordinates;
-			// Display the current marker's name to the popup
-			CreatePopup(PlaceList[currentIndex].Name);
+			// Display the current marker's name to the label
+			fromLabel.Text = PlaceList[currentIndex].Name;
 		}
 
 		/// <summary>
-		/// Create the toast popup
+		/// Handle the event of the view selection in the ContextPopup.
 		/// </summary>
-		/// <param name="text">Specifies the text</param>
-		private void CreatePopup(string text)
+		/// <param name="sender">Specifies the sender object</param>
+		/// <param name="e">Specifies the occured event</param>
+		private void ViewPageSelected(object sender, EventArgs e)
 		{
-			// Create a popup
-			Popup popup = new Popup(window)
+
+			// Remove the used data
+			ClearData();
+
+			if (((ContextPopupItem)sender).Text == "Map")
 			{
-				WeightX = 1,
-				WeightY = 1,
-				Style = "toast/circle",
-				Timeout = 2.0,
-				Text = text,
-			};
-			popup.Show();
+				// Hide the label for the end position
+				toLabel.Hide();
+				// Set the viewpage
+				view = ViewPage.MAP;
+			}
+			else if (((ContextPopupItem)sender).Text == "POI")
+			{
+				// Hide the label for the end position
+				toLabel.Hide();
+				// Set the viewpage
+				view = ViewPage.POI;
 
-			popup.BackButtonPressed += PopupDismiss;
-			popup.TimedOut += PopupDismiss;
+				// Create the ContextPopup for the category selection
+				categoryCtxPopup = new ContextPopup(window)
+				{
+					// Set the AutoHide value
+					AutoHide = true,
+				};
+
+				// Get the categories of the here provider
+				foreach (string category in HereCategory)
+				{
+					// Append items for the ContextPopup and add event handlers
+					(categoryCtxPopup.Append(category)).Selected += CategorySelected;
+				}
+
+				// Move the ContextPopup
+				categoryCtxPopup.Move(0, window.ScreenSize.Height);
+				// Show the ContextPopup
+				categoryCtxPopup.Show();
+			}
+			else if (((ContextPopupItem)sender).Text == "Route")
+			{
+				// Show the label for the end position
+				toLabel.Show();
+				// Set the viewpage
+				view = ViewPage.ROUTE;
+			}
+
+			if (viewCtxPopup != null)
+			{
+				// Dismiss the ContextPopup object
+				viewCtxPopup.Dismiss();
+				viewCtxPopup = null;
+			}
 		}
 
 		/// <summary>
-		/// Dismiss the toast popup
+		/// Handle the event of the category selection in the ContextPopup.
 		/// </summary>
-		/// <param name="sender">Specifies the object</param>
-		/// <param name="e">Specifies the EventArgs</param>
-		private void PopupDismiss(object sender, EventArgs e)
+		/// <param name="sender">Specifies the sender object</param>
+		/// <param name="e">Specifies the occured event</param>
+		private void CategorySelected(object sender, EventArgs e)
 		{
-			((Popup)sender).Dismiss();
+			// Remove the used data
+			ClearData();
+			// Request the pois with the center position
+			RequestPOI(new Geocoordinates(s_mapview.Center.Latitude, s_mapview.Center.Longitude), ((ContextPopupItem)sender).Text);
+
+			if (categoryCtxPopup != null)
+			{
+				// Dismiss the ContextPopup object
+				categoryCtxPopup.Dismiss();
+				categoryCtxPopup = null;
+			}
 		}
 
 		/// <summary>
@@ -551,46 +570,78 @@ namespace Maps.Tizen.Wearable
 			// Clear the marker list
 			MarkerList.Clear();
 
+			// Clear the place list
 			if (PlaceList != null)
 			{
-				// Clear the place list
 				PlaceList.Clear();
 			}
-
-			PlaceList = null;
-
 			// Remove all the map object from the map view
 			if (s_mapview != null)
 			{
 				s_mapview.RemoveAll();
 			}
+			// Clear the fromLabel's text
+			if (fromLabel != null)
+			{
+				fromLabel.Text = "";
+			}
+			// Clear the toLabel's text
+			if (toLabel != null)
+			{
+				toLabel.Text = "";
+			}
 
+			PlaceList = null;
 			fromPosition = null;
 			toPosition = null;
 		}
 
 		/// <summary>
-		/// Remove the used resource and terminate this application.
+		/// Remove the used resource and close the app.
 		/// </summary>
 		public void CloseApp()
 		{
-			// Remove the used data
+			// Remove the used resource
 			ClearData();
 
-			// Remove all the map object from the map view
+			// check the viewCtxPopup
+			if (viewCtxPopup != null)
+			{
+				// Dismiss the ContextPopup object
+				viewCtxPopup.Dismiss();
+				viewCtxPopup = null;
+			}
+
+			// check the categoryCtxPopup
+			if (categoryCtxPopup != null)
+			{
+				// Dismiss the ContextPopup object
+				categoryCtxPopup.Dismiss();
+				categoryCtxPopup = null;
+			}
+
+			// check the s_mapview
 			if (s_mapview != null)
 			{
-				s_mapview.RemoveAll();
-				s_mapview.LongPressed -= MapViewLongPressed;
+				// Dispose the MapView
 				s_mapview.Dispose();
 				s_mapview = null;
 			}
 
-			// Remove all the map object from the map view
+			// check the s_maps
 			if (s_maps != null)
 			{
+				// Dispose the MapService
 				s_maps.Dispose();
-				s_mapview = null;
+				s_maps = null;
+			}
+
+			// check the window
+			if (window != null)
+			{
+				// Unrealize the Window object
+				window.Unrealize();
+				window = null;
 			}
 
 			Exit();

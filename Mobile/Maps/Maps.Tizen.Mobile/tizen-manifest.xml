@@ -8,8 +8,8 @@
 					taskmanage="true"
 					nodisplay="false"
 					launch_mode="single">
-		<label>Maps.Tizen.Mobile</label>
-		<icon>Maps.Tizen.Mobile.png</icon>
+    	<label>Maps</label>
+    	<icon>Maps.png</icon>
 	</ui-application>
 	<privileges>
 		<privilege>http://tizen.org/privilege/mapservice</privilege>
