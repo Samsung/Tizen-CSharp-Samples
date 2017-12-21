@@ -30,14 +30,33 @@ namespace AnimationSample
     /// </summary>
     class AnimationSample : NUIApplication
     {
-        private View view;
+        private ImageView view;
+        //This animation change the size of the view during the animation.
         private Animation sizeAnimation;
+        //This animation change the position of the view during the animation.
         private Animation positionAnimation;
+        //This animation change the scale of the view during the animation.
         private Animation scaleAnimation;
-        private Animation visibleAnimation;
+        //This animation change the opacity of the view during the animation.
+        private Animation opacityAnimation;
+        //This animation change the orientation of the view during the animation.
         private Animation orientationAnimation;
-        private Animation colorAnimation;
+        //This animation change the pixelAreal of the imageView during the animation.
+        private Animation pixelArealAnimation;
         private TextLabel guide;
+        private PushButton _positionButton;
+        private PushButton _sizeButton;
+        private PushButton _scaleButton;
+        private PushButton _orientationButton;
+        private PushButton _opacityButton;
+        private PushButton _pixelAreaButton;
+        private PushButton _PositionSizeOpacity;
+
+        private const string resources = "/home/owner/apps_rw/org.tizen.example.AnimationSample/res/images";
+        private string normalImagePath = resources + "/Button/btn_bg_25_25_25_95.9.png";
+        private string focusImagePath = resources + "/Button/btn_bg_255_255_255_200.9.png";
+        private string pressImagePath = resources + "/Button/btn_bg_0_129_198_100.9.png";
+
 
         /// <summary>
         /// The constructor with null
@@ -63,60 +82,9 @@ namespace AnimationSample
             sizeAnimation.Stop();
             positionAnimation.Stop();
             scaleAnimation.Stop();
-            visibleAnimation.Stop();
+            opacityAnimation.Stop();
             orientationAnimation.Stop();
-            colorAnimation.Stop();
-        }
-
-        /// <summary>
-        /// The event will be triggered when have key clicked
-        /// </summary>
-        /// <param name="source">view</param>
-        /// <param name="e">event</param>
-        /// <returns>The consume flag</returns>
-        private bool OnKeyPressed(object source, View.KeyEventArgs e)
-        {
-            if (e.Key.State == Key.StateType.Down)
-            {
-                // Only do the position animation.
-                if (e.Key.KeyPressedName == "1")
-                {
-                    AllStop();
-                    positionAnimation.Play();
-                }
-                // Only do the size animation.
-                else if (e.Key.KeyPressedName == "2")
-                {
-                    AllStop();
-                    sizeAnimation.Play();
-                }
-                // Only do the scale animation.
-                else if (e.Key.KeyPressedName == "3")
-                {
-                    AllStop();
-                    scaleAnimation.Play();
-                }
-                // Only do the orientation animation.
-                else if (e.Key.KeyPressedName == "4")
-                {
-                    AllStop();
-                    orientationAnimation.Play();
-                }
-                // Only do the visible animation.
-                else if (e.Key.KeyPressedName == "5")
-                {
-                    AllStop();
-                    visibleAnimation.Play();
-                }
-                // Only do the color animation.
-                else if (e.Key.KeyPressedName == "6")
-                {
-                    AllStop();
-                    colorAnimation.Play();
-                }
-            }
-
-            return false;
+            pixelArealAnimation.Stop();
         }
 
         /// <summary>
@@ -124,40 +92,70 @@ namespace AnimationSample
         /// </summary>
         private void Initialize()
         {
-            Window.Instance.BackgroundColor = new Color(1.0f, 0.92f, 0.80f, 1.0f);
+            Window.Instance.BackgroundColor = Color.Black;
             View focusIndicator = new View();
             FocusManager.Instance.FocusIndicator = focusIndicator;
 
-            // Create the guide describes how to use this sample application.
-            // KEY 1: Play Position animation.
-            // KEY 2: Play Size animation.
-            // KEY 3: Play Scale animation.
-            // KEY 4: Play Orientation animation.
-            // KEY 5: Play Visible animation.
-            // KEY 6: Play Color animation.
+            _positionButton = CreateButton("Position", "PositionAnimation");
+            _sizeButton = CreateButton("Size", "SizeAnimation");
+            _scaleButton = CreateButton("Scale", "ScaleAnimation");
+            _orientationButton = CreateButton("Orientation", "OrientationAnimation");
+            _opacityButton = CreateButton("Opacity", "OpacityAnimation");
+            _pixelAreaButton = CreateButton("PixelArea", "PixelAreaAnimation");
+            _PositionSizeOpacity = CreateButton("PositionSizeOpacity", "Position + Size + Opacity animation at same time!");
+            _PositionSizeOpacity.Size2D = new Size2D(1400, 80);
+            //Set the callback of button's clicked event
+            _positionButton.Clicked += ButtonClick;
+            _sizeButton.Clicked += ButtonClick;
+            _scaleButton.Clicked += ButtonClick;
+            _orientationButton.Clicked += ButtonClick;
+            _opacityButton.Clicked += ButtonClick;
+            _pixelAreaButton.Clicked += ButtonClick;
+            _PositionSizeOpacity.Clicked += ButtonClick;
+
+            //Create a tableView as the container of the pushButton.
+            TableView tableView = new TableView(3, 3);
+            tableView.Size2D = new Size2D(1500, 440);
+            tableView.PivotPoint = PivotPoint.TopLeft;
+            tableView.ParentOrigin = ParentOrigin.TopLeft;
+            tableView.Position2D = new Position2D(300, 630);
+
+            tableView.AddChild(_positionButton, new TableView.CellPosition(0, 0));
+            tableView.AddChild(_sizeButton, new TableView.CellPosition(0, 1));
+            tableView.AddChild(_scaleButton, new TableView.CellPosition(0, 2));
+            tableView.AddChild(_orientationButton, new TableView.CellPosition(1, 0));
+            tableView.AddChild(_opacityButton, new TableView.CellPosition(1, 1));
+            tableView.AddChild(_pixelAreaButton, new TableView.CellPosition(1, 2));
+            tableView.AddChild(_PositionSizeOpacity, new TableView.CellPosition(2, 0, 1, 3));
+
+            Window.Instance.GetDefaultLayer().Add(tableView);
+            FocusManager.Instance.SetCurrentFocusView(_positionButton);
+
+            //This textLable is used to show the title.
             guide = new TextLabel();
+            guide.HorizontalAlignment = HorizontalAlignment.Center;
+            guide.VerticalAlignment = VerticalAlignment.Center;
+            guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            guide.TextColor = Color.White;
             guide.PositionUsesPivotPoint = true;
-            guide.ParentOrigin = ParentOrigin.BottomRight;
-            guide.PivotPoint = PivotPoint.BottomRight;
-            guide.MultiLine = true;
-            guide.PointSize = 9.0f;
-            guide.Text = "Animation Sample Guide\n" +
-                            "KEY 1: Play Position animation.\n" +
-                            "KEY 2: Play Size animation.\n" +
-                            "KEY 3: Play Scale animation.\n" +
-                            "KEY 4: Play Orientation animation.\n" +
-                            "KEY 5: Play Visible animation.\n" +
-                            "KEY 6: Play Color animation.";
+            guide.ParentOrigin = ParentOrigin.TopLeft;
+            guide.PivotPoint = PivotPoint.TopLeft;
+            guide.Size2D = new Size2D(1920, 100);
+            guide.FontFamily = "Samsung One 600";
+            guide.Position2D = new Position2D(0, 0);
+            guide.MultiLine = false;
+            guide.PointSize = 15.0f;
+            guide.Text = "Animation Sample";
             Window.Instance.GetDefaultLayer().Add(guide);
 
             // Create the view to animate.
-            view = new View();
+            view = new ImageView();
             view.Size2D = new Size2D(200, 200);
-            view.Position = new Position(0, 0, 0);
+            view.Position = new Position(860, 250, 0);
             view.PositionUsesPivotPoint = true;
-            view.PivotPoint = PivotPoint.Center;
-            view.ParentOrigin = ParentOrigin.Center;
-            view.BackgroundColor = Color.Red;
+            view.PivotPoint = PivotPoint.TopLeft;
+            view.ParentOrigin = ParentOrigin.TopLeft;
+            view.ResourceUrl = resources + "/gallery-2.jpg";
 
             // Add view on Window.
             Window.Instance.GetDefaultLayer().Add(view);
@@ -169,46 +167,32 @@ namespace AnimationSample
             // Sets the default alpha function for the animation.
             positionAnimation.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
             // To reset the view's position.
-            positionAnimation.AnimateTo(view, "Position", new Position(0, 0, 0), 0, 0);
+            positionAnimation.AnimateTo(view, "Position", new Position(100, 150, 0), 0, 0);
+            positionAnimation.AnimateTo(view, "Position", new Position(300, 200, 0), 0, 300);
+            positionAnimation.AnimateTo(view, "Position", new Position(500, 200, 0), 0, 800);
+            positionAnimation.AnimateTo(view, "Position", new Position(600, 250, 0), 0, 1000);
+            positionAnimation.AnimateTo(view, "Position", new Position(860, 300, 0), 0, 1500);
+            //StopFinal: If the animation is stopped, the animated property values are saved as if the animation had run to completion
+            positionAnimation.EndAction = Animation.EndActions.StopFinal;
 
-            // Create the position animation using AnimateBy.
-            // Animates a property value by relative amount.
-            positionAnimation.AnimateBy(view, "Position", new Position(200, 300, 0), 0, 125);
-            positionAnimation.AnimateBy(view, "PositionX", -200, 125, 250);
-            positionAnimation.AnimateBy(view, "PositionY", -300, 250, 375);
-            positionAnimation.AnimateBy(view, "PositionZ", 0, 375, 500);
-
-            // Create the position animation using AnimatePath.
-            // Animates an view's position through a predefined path.
-            Path path = new Path();
-            path.AddPoint(new Position(300, 0, 0));
-            path.AddPoint(new Position(300, 400, 0));
-            path.AddPoint(new Position(0, 0, 0));
-            path.GenerateControlPoints(0.5f);
-            positionAnimation.AnimatePath(view, path, new Vector3(0, 0, 0), 500, 1000);
-
-            // Create the position animation using AnimateBetween.
-            // Animates position between keyframes.
-            KeyFrames keyFrames = new KeyFrames();
-            keyFrames.Add(0.0f, new Vector3(0, 0, 0));
-            keyFrames.Add(0.3f, new Vector3(100, 200, 0));
-            keyFrames.Add(0.6f, new Vector3(100, 0, 0));
-            keyFrames.Add(1.0f, new Vector3(0, 0, 0));
-            positionAnimation.AnimateBetween(view, "Position", keyFrames, 1000, 1500);
-
-            // Create the size animation using AnimateTo.
-            sizeAnimation = new Animation(1000);
+             // Create the size animation using AnimateTo.
+             sizeAnimation = new Animation(1000);
             sizeAnimation.AnimateTo(view, "size", new Vector3(view.SizeWidth, view.SizeHeight, 0));
             sizeAnimation.AnimateTo(view, "sizeWidth", view.SizeWidth * 1.25f);
             sizeAnimation.AnimateTo(view, "sizeHeight", view.SizeHeight * 1.25f);
             sizeAnimation.AnimateTo(view, "sizeDepth", 0);
+            //StopFinal: If the animation is stopped, the animated property values are saved as if the animation had run to completion
+            sizeAnimation.EndAction = Animation.EndActions.StopFinal;
 
             // Create the scale animation using AnimateTo.
-            scaleAnimation = new Animation(1000);
+            scaleAnimation = new Animation(1500);
             scaleAnimation.AnimateTo(view, "scale", new Vector3(1.2f, 1.2f, 1.0f), 0, 200, new AlphaFunction(AlphaFunction.BuiltinFunctions.Sin));
-            scaleAnimation.AnimateTo(view, "scaleX", 1.5f, 200, 400, new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear));
-            scaleAnimation.AnimateTo(view, "ScaleY", 1.5f, 400, 700, new AlphaFunction(AlphaFunction.BuiltinFunctions.Bounce));
-            scaleAnimation.AnimateTo(view, "ScaleZ", 1.0f, 700, 1000, new AlphaFunction(AlphaFunction.BuiltinFunctions.Count));
+            scaleAnimation.AnimateTo(view, "scaleX", 1.5f, 200, 500, new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear));
+            scaleAnimation.AnimateTo(view, "ScaleY", 1.5f, 500, 800, new AlphaFunction(AlphaFunction.BuiltinFunctions.Bounce));
+            scaleAnimation.AnimateTo(view, "scaleX", 1.0f, 800, 1200, new AlphaFunction(AlphaFunction.BuiltinFunctions.Bounce));
+            scaleAnimation.AnimateTo(view, "scaleX", 1.0f, 1200, 1500, new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear));
+            //StopFinal: If the animation is stopped, the animated property values are saved as if the animation had run to completion
+            scaleAnimation.EndAction = Animation.EndActions.StopFinal;
 
             // Create the orientation animation using AnimateTo.
             orientationAnimation = new Animation();
@@ -218,24 +202,178 @@ namespace AnimationSample
             orientationAnimation.AnimateTo(view, "Orientation", new Rotation(new Radian(0.0f), PositionAxis.X), 1000, 1400);
             orientationAnimation.AnimateTo(view, "Orientation", new Rotation(new Radian(0.0f), PositionAxis.Y), 1400, 1800);
             orientationAnimation.AnimateTo(view, "Orientation", new Rotation(new Radian(0.0f), PositionAxis.Z), 1800, 2200);
+            //StopFinal: If the animation is stopped, the animated property values are saved as if the animation had run to completion
+            orientationAnimation.EndAction = Animation.EndActions.StopFinal;
 
-            // Create the visible animation using AnimateTo.
-            visibleAnimation = new Animation();
-            visibleAnimation.AnimateTo(view, "Visible", false, 0, 500);
-            visibleAnimation.AnimateTo(view, "Visible", true, 500, 1000);
+            // Create the Opacity animation using AnimateTo.
+            opacityAnimation = new Animation(1500);
+            opacityAnimation.AnimateTo(view, "Opacity", 0.5f, 0, 400);
+            opacityAnimation.AnimateTo(view, "Opacity", 0.0f, 400, 800);
+            opacityAnimation.AnimateTo(view, "Opacity", 0.5f, 800, 1250);
+            opacityAnimation.AnimateTo(view, "Opacity", 1.0f, 1250, 1500);
+            //StopFinal: If the animation is stopped, the animated property values are saved as if the animation had run to completion
+            opacityAnimation.EndAction = Animation.EndActions.StopFinal;
 
-            // Create the color animation using AnimateTo.
-            colorAnimation = new Animation();
-            colorAnimation.AnimateTo(view, "color", Color.Blue, 0, 200);
-            colorAnimation.AnimateTo(view, "colorRed", Color.Red.R, 200, 400);
-            colorAnimation.AnimateTo(view, "colorGreen", Color.Red.G, 400, 600);
-            colorAnimation.AnimateTo(view, "colorBlue", Color.Red.B, 600, 800);
-            colorAnimation.AnimateTo(view, "colorAlpha", Color.Red.A, 800, 100000);
+            // Create the pixelArea animation using AnimateTo.
+            pixelArealAnimation = new Animation(2000);
+            RelativeVector4 vec1 = new RelativeVector4(0.0f, 0.0f, 0.5f, 0.5f);
+            RelativeVector4 vec2 = new RelativeVector4(0.0f, 0.0f, 0.0f, 0.0f);
+            RelativeVector4 vec3 = new RelativeVector4(0.0f, 0.0f, 1.0f, 1.0f);
+            pixelArealAnimation.AnimateTo(view, "pixelArea", vec1, 0, 500);
+            pixelArealAnimation.AnimateTo(view, "pixelArea", vec2, 500, 1000);
+            pixelArealAnimation.AnimateTo(view, "pixelArea", vec1, 1000, 1500);
+            pixelArealAnimation.AnimateTo(view, "pixelArea", vec3, 1500, 2000);
+            //StopFinal: If the animation is stopped, the animated property values are saved as if the animation had run to completion
+            pixelArealAnimation.EndAction = Animation.EndActions.StopFinal;
 
-            view.KeyEvent += OnKeyPressed;
             view.Focusable = true;
-            FocusManager.Instance.SetCurrentFocusView(view);
             Window.Instance.KeyEvent += AppBack;
+        }
+
+        /// <summary>
+        /// Called by buttons
+        /// </summary>
+        /// <param name="source">The clicked button</param>
+        /// <param name="e">event</param>
+        /// <returns>The consume flag</returns>
+        private bool ButtonClick(object source, EventArgs e)
+        {
+            PushButton button = source as PushButton;
+            if (button.Name == "Position")
+            {
+                //Stop all the animation and Play position Animation.
+                AllStop();
+                positionAnimation.Play();
+            }
+            else if(button.Name == "Size")
+            {
+                //Stop all the animation and Play position Animation.
+                AllStop();
+                sizeAnimation.Play();
+            }
+            else if (button.Name == "Scale")
+            {
+                //Stop all the animation and Play position Animation.
+                AllStop();
+                scaleAnimation.Play();
+            }
+            else if (button.Name == "Orientation")
+            {
+                //Stop all the animation and Play position Animation.
+                AllStop();
+                orientationAnimation.Play();
+            }
+            else if (button.Name == "Opacity")
+            {
+                //Stop all the animation and Play position Animation.
+                AllStop();
+                opacityAnimation.Play();
+            }
+            else if (button.Name == "PixelArea")
+            {
+                //Stop all the animation and Play position Animation.
+                AllStop();
+                pixelArealAnimation.Play();
+            }
+            else if(button.Name == "PositionSizeOpacity")
+            {
+                //Stop all the animation and Play position, scale opacitity Animation at the same time.
+                AllStop();
+                positionAnimation.Play();
+                scaleAnimation.Play();
+                opacityAnimation.Play();
+
+            }
+            return false;
+        }
+        /// <summary>
+        /// Create an Text visual.
+        /// </summary>
+        /// <param name="text">The text of the Text visual</param>
+        /// <param name="color">The color of the text</param>
+        private PropertyMap CreateTextVisual(string text, Color color)
+        {
+            PropertyMap map = new PropertyMap();
+            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
+            map.Add(TextVisualProperty.Text, new PropertyValue(text));
+            map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
+            map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
+            map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
+            map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
+            return map;
+        }
+
+        /// <summary>
+        /// Create an Image visual.
+        /// </summary>
+        /// <param name="imagePath">The url of the image</param>
+        private PropertyMap CreateImageVisual(string imagePath)
+        {
+            PropertyMap map = new PropertyMap();
+            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
+            map.Add(ImageVisualProperty.URL, new PropertyValue(imagePath));
+            return map;
+        }
+
+        private PushButton CreateButton(string name, string text)
+        {
+            PushButton button = new PushButton();
+            button.Focusable = true;
+            button.Size2D = new Size2D(400, 80);
+            button.Focusable = true;
+            button.Name = name;
+            // Create the label which will show when _pushbutton focused.
+            PropertyMap _focusText = CreateTextVisual(text, Color.Black);
+
+            // Create the label which will show when _pushbutton unfocused.
+            PropertyMap _unfocusText = CreateTextVisual(text, Color.White);
+            button.Label = _unfocusText;
+
+            // Create normal background visual.
+            PropertyMap normalMap = CreateImageVisual(normalImagePath);
+
+            // Create focused background visual.
+            PropertyMap focusMap = CreateImageVisual(focusImagePath);
+
+            // Create pressed background visual.
+            PropertyMap pressMap = CreateImageVisual(pressImagePath);
+            button.SelectedVisual = pressMap;
+            button.UnselectedBackgroundVisual = normalMap;
+
+            // Chang background Visual and Label when focus gained.
+            button.FocusGained += (obj, e) =>
+            {
+                button.UnselectedBackgroundVisual = focusMap;
+                button.Label = _focusText;
+            };
+
+            // Chang background Visual and Label when focus lost.
+            button.FocusLost += (obj, e) =>
+            {
+                button.UnselectedBackgroundVisual = normalMap;
+                button.Label = _unfocusText;
+            };
+
+            // Chang background Visual when pressed.
+            button.KeyEvent += (obj, ee) =>
+            {
+                if ("Return" == ee.Key.KeyPressedName)
+                {
+                    if (Key.StateType.Down == ee.Key.State)
+                    {
+                        button.UnselectedBackgroundVisual = pressMap;
+                        Tizen.Log.Fatal("NUI", "Press in pushButton sample!!!!!!!!!!!!!!!!");
+                    }
+                    else if (Key.StateType.Up == ee.Key.State)
+                    {
+                        button.UnselectedBackgroundVisual = focusMap;
+                        Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
+                    }
+                }
+                return false;
+            };
+            return button;
         }
 
         /// <summary>
