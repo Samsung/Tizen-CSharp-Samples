@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.Geofence.Tizen.Mobile" version="1.0.0">
+	<profile name="mobile" />
+	<ui-application appid="org.tizen.example.Geofence.Tizen.Mobile"
+					exec="Geofence.Tizen.Mobile.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+  <label>Geofence.Tizen.Mobile</label>
+	<icon>Geofence.Tizen.Mobile.png</icon>
+	</ui-application>
+	<privileges>
+		<privilege>http://tizen.org/privilege/location</privilege>
+	</privileges>
+</manifest>
