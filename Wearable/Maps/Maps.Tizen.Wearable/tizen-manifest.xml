@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.Maps.Tizen.Wearable" version="1.0.0">
+	<profile name="wearable" />
+	<ui-application appid="org.tizen.example.Maps.Tizen.Wearable"
+					exec="Maps.Tizen.Wearable.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+    	<label>Maps</label>
+    	<icon>Maps.png</icon>
+	</ui-application>
+	<privileges>
+		<privilege>http://tizen.org/privilege/mapservice</privilege>
+		<privilege>http://tizen.org/privilege/internet</privilege>
+		<privilege>http://tizen.org/privilege/network.get</privilege>
+	</privileges>
+</manifest>
