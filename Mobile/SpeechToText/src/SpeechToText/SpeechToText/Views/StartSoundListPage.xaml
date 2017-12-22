@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpeechToText.Views.StartSoundListPage"
+             Title="Sound list">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Secondary"
+                     Text="CANCEL"
+                     Command="{Binding NavigateBackCommand}" />
+        <ToolbarItem Order="Primary"
+                     Text="DONE"
+                     Command="{Binding WizardUpdateStartSoundCommand}"
+                     CommandParameter="{Binding Source={x:Reference SoundsList}, Path=SelectedItem}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding AvailableStartEndSounds}"
+                  x:Name="SoundsList"
+                  SelectedItem="{Binding WizardStartSound, Mode=OneWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding ., Converter={StaticResource SoundPathToNameConverter}}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

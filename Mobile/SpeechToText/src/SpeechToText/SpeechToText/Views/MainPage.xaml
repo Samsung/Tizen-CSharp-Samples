@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:SpeechToText.Behaviors"
+             xmlns:controls="clr-namespace:SpeechToText.Controls"
+             xmlns:converters="clr-namespace:SpeechToText.Converters"
+             xmlns:views="clr-namespace:SpeechToText.Views"
+             x:Class="SpeechToText.Views.MainPage"
+             Title="Speech to text"
+             NavigationPage.HasBackButton="False"
+             BackgroundImage="images/bg.png">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToStringConverter x:Key="RecognitionStateToTipTextConverter">
+                <x:Arguments>
+                    <x:String>Tap to pause</x:String>
+                    <x:String>Tap on mic to speak</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <controls:DialogOK x:Key="SettingsUnavailableDialog"
+                               Title="Settings unavailable"
+                               Message="Cannot change settings while recording."
+                               ExecuteCommand="{Binding Source={x:Static Application.Current}, Path=AppViewModel.SettingsUnavailableInfoCommand}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="images/settings.png"
+                     Order="Secondary"
+                     Command="{Binding NavigateToSettingsCommand}"
+                     CommandParameter="{x:Type views:SettingsPage}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     Padding="0, 68, 0, 0">
+            <ScrollView HeightRequest="756"
+                        x:Name="ResultScrollView">
+                <StackLayout Padding="25, 0, 25, 0">
+                    <Label Text="{Binding ResultText}"
+                           FontSize="26"
+                           TextColor="{StaticResource TextColor}" />
+                </StackLayout>
+            </ScrollView>
+
+            <AbsoluteLayout>
+                <Label FontSize="20"
+                       AbsoluteLayout.LayoutBounds="0, 71, 720, 40"
+                       VerticalTextAlignment="Start"
+                       HorizontalTextAlignment="Center"
+                       AbsoluteLayout.LayoutFlags="None"
+                       TextColor="{StaticResource TipColor}"
+                       Text="{Binding RecognitionActive, Converter={StaticResource RecognitionStateToTipTextConverter}}" />
+                <Image AbsoluteLayout.LayoutBounds="0.2, 167, 77, 77"
+                       AbsoluteLayout.LayoutFlags="XProportional">
+                    <Image.Behaviors>
+                        <behaviors:ImageActiveBehavior OriginalSource="images/clear_default.png"
+                                                       ActiveSource="images/clear_pressed.png" />
+                    </Image.Behaviors>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClearResultCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <controls:MicButtonControl AbsoluteLayout.LayoutBounds="0.5, 122, 168, 168"
+                                           AbsoluteLayout.LayoutFlags="XProportional"
+                                           Recording="{Binding RecognitionActive}"
+                                           TurnOnCommand="{Binding RecognitionStartCommand}"
+                                           TurnOffCommand="{Binding RecognitionPauseCommand}" />
+                <Image AbsoluteLayout.LayoutBounds="0.8, 167, 77, 77"
+                       AbsoluteLayout.LayoutFlags="XProportional">
+                    <Image.Behaviors>
+                        <behaviors:ImageActiveBehavior OriginalSource="images/stop_default.png"
+                                                       ActiveSource="images/stop_pressed.png" />
+                    </Image.Behaviors>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RecognitionStopCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

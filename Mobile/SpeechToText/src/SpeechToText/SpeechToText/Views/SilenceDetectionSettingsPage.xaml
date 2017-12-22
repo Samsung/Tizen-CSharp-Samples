@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpeechToText.Views.SilenceDetectionSettingsPage"
+             xmlns:model="clr-namespace:SpeechToText.Model"
+             Title="Silence detection">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <x:Array Type="{x:Type model:SilenceDetection}" x:Key="AvailableSilenceDetectionValues">
+                <model:SilenceDetection>Auto</model:SilenceDetection>
+                <model:SilenceDetection>True</model:SilenceDetection>
+                <model:SilenceDetection>False</model:SilenceDetection>
+            </x:Array>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Secondary"
+                     Text="CANCEL"
+                     Command="{Binding NavigateBackCommand}" />
+        <ToolbarItem Order="Primary"
+                     Text="DONE"
+                     Command="{Binding ChangeSilenceDetectionCommand}"
+                     CommandParameter="{Binding Source={x:Reference SilenceDetectionList}, Path=SelectedItem}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView ItemsSource="{StaticResource AvailableSilenceDetectionValues}"
+                  SelectedItem="{Binding SilenceDetection, Mode=OneWay}"
+                  x:Name="SilenceDetectionList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding ., Converter={StaticResource SilenceDetectionConverter}}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
