@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpeechToText.Views.RecognitionTypeSettingsPage"
+             Title="Recognition type">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Secondary"
+                     Text="CANCEL"
+                     Command="{Binding NavigateBackCommand}" />
+        <ToolbarItem Order="Primary"
+                     Text="DONE"
+                     Command="{Binding ChangeRecognitionTypeCommand}"
+                     CommandParameter="{Binding Source={x:Reference TypesList}, Path=SelectedItem}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding SupportedRecognitionTypes}"
+                  SelectedItem="{Binding RecognitionType, Mode=OneWay}"
+                  x:Name="TypesList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding ., Converter={StaticResource RecognitionTypeConverter}}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
