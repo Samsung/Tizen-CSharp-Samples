@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SampleSync.Views.SyncMainPage"
+             Title="SampleSync" >
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <StackLayout BackgroundColor="White" Padding="40, 0">
+                <Label></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="On demand" Grid.Row="0" Grid.Column="0" TextColor="Indigo" Font="Bold" FontSize="Large" />
+                    <Label Grid.Row="0" Grid.Column="1"/>
+                </Grid>
+                <Label HeightRequest="3"></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Synchronize immediately" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                    <Label Text="" x:Name="ondemanddate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
+                    <Button Clicked="OnDemandClicked" Text="Sync" ClassId="ondemand" FontSize="Medium" BackgroundColor="Coral" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
+                </Grid>
+                <Label ></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Periodic" Grid.Row="0" Grid.Column="0" TextColor="Indigo" Font="Bold" FontSize="Large" />
+                    <Label Grid.Row="0" Grid.Column="1"/>
+                </Grid>
+                <Label HeightRequest="3"></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Synchronize periodically" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                    <Label Text="" x:Name="periodicdate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
+                    <Button Text="Set" x:Name="periodicbutton" BackgroundColor="Coral" Clicked="PeriodicClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
+                </Grid>
+                <Label></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Data change" Grid.Row="0" Grid.Column="0" TextColor="Indigo" Font="Bold" FontSize="Large" />
+                    <Label Grid.Row="0" Grid.Column="1"/>
+                </Grid>
+                <Label HeightRequest="3"></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Subscribe Calendar DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                    <Label Text="" x:Name="calendardate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
+                    <Button Text="Off" x:Name="calendarbutton" BackgroundColor="Red" Clicked="CalendarClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
+                </Grid>
+                <Label HeightRequest="10"></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Subscribe Contact DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                    <Label Text="" x:Name="contactdate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
+                    <Button Text="Off" x:Name="contactbutton" BackgroundColor="Red" Clicked="ContactClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
+                </Grid>
+                <Label HeightRequest="10"></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Subscribe Image DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                    <Label Text="" x:Name="imagedate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
+                    <Button Text="Off" x:Name="imagebutton" BackgroundColor="Red" Clicked="ImageClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
+                </Grid>
+                <Label HeightRequest="10"></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Subscribe Music DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                    <Label Text="" x:Name="musicdate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
+                    <Button Text="Off" x:Name="musicbutton" BackgroundColor="Red" Clicked="MusicClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
+                </Grid>
+                <Label HeightRequest="10"></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Subscribe Sound DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                    <Label Text="" x:Name="sounddate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
+                    <Button Text="Off" x:Name="soundbutton" BackgroundColor="Red" Clicked="SoundClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
+                </Grid>
+                <Label HeightRequest="10"></Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Subscribe Video DB changes" Grid.Row="0" Grid.Column="0" XAlign="Center" YAlign="Center" />
+                    <Label Text="" x:Name="videodate" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextColor="SlateGray" FontSize="16" />
+                    <Button Text="Off" x:Name="videobutton" BackgroundColor="Red" Clicked="VideoClicked" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"></Button>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

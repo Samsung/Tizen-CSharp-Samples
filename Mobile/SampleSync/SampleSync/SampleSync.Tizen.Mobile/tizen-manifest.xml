@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.SampleSync.Tizen.Mobile" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.example.SampleSync.Tizen.Mobile" exec="SampleSync.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>SampleSync</label>
+        <icon>SampleSync.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+    </ui-application>
+    <shortcut-list />
+    <account>
+        <account-provider appid="org.tizen.example.SampleSync.Tizen.Mobile" multiple-accounts-support="false" providerid="http://www.tizen.org">
+            <icon section="account">SampleSync.png</icon>
+			<icon section="account-small">SampleSync.png</icon>
+            <label xml:lang="en-gb">SampleSync</label>
+            <label>SampleSync</label>
+            <capability>http://tizen.org/account/capability/calendar</capability>
+            <capability>http://tizen.org/account/capability/contact</capability>
+            <capability>http://tizen.org/account/capability/image</capability>
+            <capability>http://tizen.org/account/capability/music</capability>
+            <capability>http://tizen.org/account/capability/sound</capability>
+            <capability>http://tizen.org/account/capability/video</capability>
+        </account-provider>
+    </account>
+    <privileges>
+        <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        <privilege>http://tizen.org/privilege/calendar.read</privilege>
+        <privilege>http://tizen.org/privilege/contact.read</privilege>
+        <privilege>http://tizen.org/privilege/haptic</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
+</manifest>
