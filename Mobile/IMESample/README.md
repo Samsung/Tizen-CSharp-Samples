@@ -1,4 +1,4 @@
-# Telephony
+# IMESample
 This is a simple project for C# IME(Input Method Editor) Application, which lets you create your own IME.
 SampleIME is mainly designed for Tizen Mobile profile.
 
