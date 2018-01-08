@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Badges.ViewModels;assembly=Badges"
+             x:Class="Badges.Tizen.Mobile.Views.MobileMainPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:BadgesViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Spacing="0">
+        <Label Text="Badges"
+               TextColor="White"
+               FontSize="32"
+               BackgroundColor="#3DB9CC"
+               HeightRequest="110"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center">
+        </Label>
+        <StackLayout BackgroundColor="#FAFAFA">
+            <Stepper Value="{Binding StepperValue}"
+                     Minimum="0"
+                     Maximum="999"
+                     Margin="15"
+                     IsEnabled="{Binding ModificationEnabled}"
+                     HorizontalOptions="Center"
+                     HeightRequest="240"
+                     BackgroundColor="#FAFAFA" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal"
+                     Padding="25"
+                     Spacing="20"
+                     BackgroundColor="#FAFAFA">
+            <Button Text="Apply"
+                    FontSize="26"
+                    Command="{Binding ApplyCommand}"
+                    IsEnabled="{Binding ModificationEnabled}"
+                    HorizontalOptions="FillAndExpand" />
+            <Button Text="Reset"
+                    FontSize="26"
+                    Command="{Binding ResetCommand}"
+                    IsEnabled="{Binding ModificationEnabled}"
+                    HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+        <ListView x:Name="AppListView"
+                  ItemsSource="{Binding GroupedItems}"
+                  GroupDisplayBinding="{Binding Name}"
+                  GroupShortNameBinding="{Binding ShortName}"
+                  IsGroupingEnabled="True"
+                  SelectedItem="{Binding ItemSelected}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell IsEnabled="{Binding IsAvailable}">
+                        <RelativeLayout HeightRequest="100"
+                                        VerticalOptions="Center">
+                            <Label Text="{Binding ApplicationName}"
+                                   FontSize="26"
+                                   VerticalOptions="Center"
+                                   TextColor="Gray"
+                                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,
+                                                     Factor=1, Constant=-104}"
+                                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,
+                                                      Factor=1}"
+                                   Margin="26,0,0,0">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding IsAvailable, StringFormat='{0}'}"
+                                                 Value="True">
+                                        <Setter Property="TextColor"
+                                                Value="Black" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Image x:Name="counterBackgroundImage"
+                                   Source="badge_dimmed.png"
+                                   VerticalOptions="Center"
+                                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,
+                                                 Factor=1, Constant=-94}"
+                                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,
+                                                      Factor=1}"
+                                   Margin="5">
+                                <Image.Triggers>
+                                    <DataTrigger TargetType="Image"
+                                                 Binding="{Binding IsAvailable, StringFormat='{0}'}"
+                                                 Value="True">
+                                        <Setter Property="Source"
+                                                Value="badge.png" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                            <Label Text="{Binding BadgeCounterString}"
+                                   TextColor="White"
+                                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                 ElementName=counterBackgroundImage, Property=X, Factor=1,
+                                                 Constant=1}"
+                                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                 ElementName=counterBackgroundImage, Property=Y, Factor=1,
+                                                 Constant=0}"
+                                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView,
+                                                     ElementName=counterBackgroundImage, Property=Width, Factor=1,
+                                                     Constant=0}"
+                                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView,
+                                                      ElementName=counterBackgroundImage, Property=Height, Factor=1,
+                                                      Constant=0}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+                        </RelativeLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

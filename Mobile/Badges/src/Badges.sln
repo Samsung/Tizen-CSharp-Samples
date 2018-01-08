@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Badges", "Badges\Badges\Badges.csproj", "{F6B4BBF0-FF55-45D1-A003-49302F8069BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Badges.Tizen.Mobile", "Badges\Badges.Tizen.Mobile\Badges.Tizen.Mobile.csproj", "{2698F917-418C-4A32-85BC-280AD14AA91A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6B4BBF0-FF55-45D1-A003-49302F8069BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6B4BBF0-FF55-45D1-A003-49302F8069BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6B4BBF0-FF55-45D1-A003-49302F8069BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6B4BBF0-FF55-45D1-A003-49302F8069BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B909AB24-F13E-4606-99D7-1F17FFAA853F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B909AB24-F13E-4606-99D7-1F17FFAA853F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B909AB24-F13E-4606-99D7-1F17FFAA853F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B909AB24-F13E-4606-99D7-1F17FFAA853F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2698F917-418C-4A32-85BC-280AD14AA91A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2698F917-418C-4A32-85BC-280AD14AA91A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2698F917-418C-4A32-85BC-280AD14AA91A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2698F917-418C-4A32-85BC-280AD14AA91A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A82DFCC-162E-4845-921B-6DB4C6F52576}
+	EndGlobalSection
+EndGlobal
