@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Maps.Views;assembly=Maps"
+             x:Class="Maps.Tizen.Mobile.Views.AppPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="White" />
+                <Setter Property="TextColor"
+                        Value="Black" />
+                <Setter Property="FontSize"
+                        Value="36" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <AbsoluteLayout x:Name="AppLayout"
+                            Grid.Row="0"
+                            BackgroundColor="White">
+                <StackLayout x:Name="MapContainerWrapper"
+                             AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                             AbsoluteLayout.LayoutFlags="All" />
+                <Button Text="+"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds=".95, .80, .1, .1"
+                        Command="{Binding ZoomInCommand}" />
+                <Button Text="-"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds=".95, .95, .1, .1"
+                        Command="{Binding ZoomOutCommand}" />
+            </AbsoluteLayout>
+            <views:PinsList />
+        </Grid>
+    </StackLayout>
+</ContentPage>
