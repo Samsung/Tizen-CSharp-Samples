@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="Maps.Tizen.TV.Views.MapWrapper"
+             VerticalOptions="FillAndExpand"
+             HorizontalOptions="FillAndExpand">
+    <maps:Map VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand"
+              x:Name="MapComponent"
+              MapType="Hybrid"
+              HasZoomEnabled="False" />
+</ContentView>

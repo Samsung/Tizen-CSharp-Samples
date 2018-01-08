@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Maps.Views;assembly=Maps"
+             x:Class="Maps.Tizen.TV.Views.AppPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="#555555" />
+                <Setter Property="TextColor"
+                        Value="White" />
+                <Setter Property="FontSize"
+                        Value="152" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="540" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <AbsoluteLayout x:Name="AppLayout"
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            BackgroundColor="Black"
+                            VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="MapContainerWrapper"
+                             AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                             AbsoluteLayout.LayoutFlags="All" />
+                <Button Text="+"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds=".95, .80, .1, .1"
+                        Command="{Binding ZoomInCommand}" />
+                <Button Text="-"
+                        AbsoluteLayout.LayoutFlags="All"
+                        AbsoluteLayout.LayoutBounds=".95, .95, .1, .1"
+                        Command="{Binding ZoomOutCommand}" />
+            </AbsoluteLayout>
+            <views:PinsList Grid.Column="1"
+                            Grid.Row="0" />
+        </Grid>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.Maps.Tizen.TV" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="tv" />
+    <ui-application appid="org.tizen.example.Maps.Tizen.TV" exec="Maps.Tizen.TV.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>Maps.Tizen.TV</label>
+        <icon>Maps.Tizen.TV.png</icon>
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/mapservice</privilege>
+        <privilege>http://tizen.org/privilege/internet</privilege>
+    </privileges>
+</manifest>
