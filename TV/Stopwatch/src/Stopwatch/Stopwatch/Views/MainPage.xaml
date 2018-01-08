@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Stopwatch.ViewModels"
+             xmlns:converters="clr-namespace:Stopwatch.Converters"
+             x:Class="Stopwatch.Views.MainPage"
+             Title="MainPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:StopwatchViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TimeSpanToStopwatchString x:Key="StopwatchTimeConverter" />
+
+            <converters:BoolToStringConverter x:Key="RunningStateToText">
+                <x:Arguments>
+                    <x:String>START</x:String>
+                    <x:String>PAUSE</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Orientation="Vertical">
+        <StackLayout HeightRequest="400">
+            <Label Text="{Binding ElapsedTime, Converter={StaticResource StopwatchTimeConverter}, Mode=OneWay}"
+                   FontSize="500"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Spacing="0">
+            <StackLayout WidthRequest="400">
+                <Button Text="{Binding Paused, Converter={StaticResource RunningStateToText}}"
+                        Command="{Binding ToggleStartPauseCommand}" />
+                <Button Text="LAP"
+                        Command="{Binding LapCommand}" />
+                <Button Text="RESET"
+                        Command="{Binding ResetCommand}" />
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding Laps}"
+                      SelectedItem="{Binding ActiveLap, Mode=TwoWay}"
+                      x:Name="LapsListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"
+                                         Padding="20">
+                                <Label Text="{Binding Number, Mode=OneWay, StringFormat='Lap no. {0}'}"
+                                       FontSize="100"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="CenterAndExpand" />
+                                <Label Text="{Binding ElapsedTime, Converter={StaticResource StopwatchTimeConverter}, Mode=OneWay}"
+                                       FontSize="100"
+                                       HorizontalOptions="EndAndExpand"
+                                       VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
