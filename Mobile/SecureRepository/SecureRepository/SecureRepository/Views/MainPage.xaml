@@ -12,8 +12,8 @@
 
             <Grid x:Name="listGrid"
                   Grid.Row="0">
-                <ListView x:Name="listView" 
-                          GroupDisplayBinding="{Binding Title}" 
+                <ListView x:Name="listView"
+                          GroupDisplayBinding="{Binding Title}"
                           GroupShortNameBinding="{Binding ShortName}"
                           IsGroupingEnabled="True"
                           SelectedItem="{Binding SelectedItem}"
@@ -35,7 +35,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label x:Name="appInfo" 
+                    <Label x:Name="appInfo"
                            Grid.Row="0"
                            LineBreakMode="WordWrap"
                            Text="{Binding AppInfo, Mode=TwoWay}"/>
