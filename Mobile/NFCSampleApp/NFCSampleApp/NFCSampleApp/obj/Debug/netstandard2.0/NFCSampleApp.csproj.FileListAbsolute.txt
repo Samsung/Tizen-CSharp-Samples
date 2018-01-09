@@ -1,0 +1,16 @@
+Z:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\bin\Debug\netstandard2.0\NFCSampleApp.deps.json
+Z:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\bin\Debug\netstandard2.0\NFCSampleApp.dll
+Z:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\bin\Debug\netstandard2.0\NFCSampleApp.pdb
+Z:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\obj\Debug\netstandard2.0\NFCSampleApp.csproj.CoreCompileInputs.cache
+Z:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\obj\Debug\netstandard2.0\NFCSampleApp.AssemblyInfoInputs.cache
+Z:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\obj\Debug\netstandard2.0\NFCSampleApp.AssemblyInfo.cs
+Z:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\obj\Debug\netstandard2.0\NFCSampleApp.dll
+Z:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\obj\Debug\netstandard2.0\NFCSampleApp.pdb
+Y:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\bin\Debug\netstandard2.0\NFCSampleApp.deps.json
+Y:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\bin\Debug\netstandard2.0\NFCSampleApp.dll
+Y:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\bin\Debug\netstandard2.0\NFCSampleApp.pdb
+Y:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\obj\Debug\netstandard2.0\NFCSampleApp.csproj.CoreCompileInputs.cache
+Y:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\obj\Debug\netstandard2.0\NFCSampleApp.AssemblyInfoInputs.cache
+Y:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\obj\Debug\netstandard2.0\NFCSampleApp.AssemblyInfo.cs
+Y:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\obj\Debug\netstandard2.0\NFCSampleApp.dll
+Y:\workspace\sampleapp\NFCSampleApp\NFCSampleApp\NFCSampleApp\obj\Debug\netstandard2.0\NFCSampleApp.pdb
