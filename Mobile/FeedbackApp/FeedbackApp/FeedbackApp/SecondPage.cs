@@ -35,7 +35,9 @@ namespace FeedbackApp
                     ret = feedback.IsSupportedPattern(FeedbackType.Sound, pattern);
                     // If pattern is supported, play feedback
                     if (ret)
+                    {
                         feedback.Play(FeedbackType.Sound, pattern);
+                    }
 
                     // Create ResultPage with pattern and supported information
                     // If pattern is not supported, there is no sound feedback
@@ -59,7 +61,9 @@ namespace FeedbackApp
                     ret = feedback.IsSupportedPattern(FeedbackType.Vibration, pattern);
                     // If pattern is supported, play feedback
                     if (ret)
+                    {
                         feedback.Play(FeedbackType.Vibration, pattern);
+                    }
 
                     // Create ResultPage with pattern and supported information
                     // If pattern is not supported, there is no vibration feedback
