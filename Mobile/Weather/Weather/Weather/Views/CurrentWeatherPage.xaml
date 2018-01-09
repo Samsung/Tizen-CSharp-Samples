@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
+             xmlns:behaviors="clr-namespace:Weather.Behaviors;assembly=Weather"
+             xmlns:converters="clr-namespace:Weather.Converters;assembly=Weather"
+             xmlns:location="clr-namespace:Weather.Models.Location;assembly=Weather"
+             xmlns:controls="clr-namespace:Weather.Controls;assembly=Weather"
+             xmlns:views="clr-namespace:Weather.Views;assembly=Weather"
+             x:Class="Weather.Views.CurrentWeatherPage"
+             x:Name="Root"
+             Title="Current Weather"
+             BackgroundColor="White">
+
+    <ContentPage.BindingContext>
+        <viewModels:CurrentWeatherViewModel x:Name="ViewModel"
+                                            CityData="{Binding Source={x:Reference Name=Root}, Path=CityData}"
+                                            Navigation="{Binding Source={x:Reference Name=Root}, Path=Navigation}" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Behaviors>
+        <behaviors:CurrentWeatherPageBehavior
+            AppearingCommand="{Binding Source={x:Reference Name=ViewModel}, Path=InitializeCommand}" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TimeStampToDateConverter x:Key="TimeStampToDateConverter" />
+            <converters:TimeStampToTimeConverter x:Key="TimeStampToTimeConverter" />
+            <converters:DegreeToCardinalDirectionConverter x:Key="CardinalDirectionConverter" />
+            <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
+            <converters:ReverseBoolConverter x:Key="ReverseBoolConverter" />
+            <converters:MeasurementSystemConverter x:Key="MeasurementSystemConverter" />
+            <location:TimeZone x:Key="TimeZone"
+                               Offset="{Binding Source={x:Reference Name=ViewModel}, Path=CityTimeZone.Result.Offset}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <AbsoluteLayout>
+        <ActivityIndicator
+            IsVisible="{Binding InitializationCompleted, Converter={StaticResource ReverseBoolConverter}}"
+            IsRunning="{Binding InitializationCompleted, Converter={StaticResource ReverseBoolConverter}}"
+            AbsoluteLayout.LayoutBounds="0, 0, 720, 1130" />
+
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 720, 1130"
+                     Spacing="25"
+                     IsVisible="{Binding InitializationCompleted}">
+
+            <Label Text="{Binding CurrentWeather.Result.CityName}"
+                   FontSize="50"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 80, 0, 50" />
+
+            <controls:DoubleLabel
+                MainText="{Binding CurrentWeather.Result.TimeStamp, Converter={StaticResource TimeStampToDateConverter}}"
+                SubText="Time of measurement." />
+
+            <StackLayout Orientation="Horizontal">
+                <controls:DoubleLabel
+                    MainText="{Binding CurrentWeather.Result.SunData.SunriseTimeStamp,
+                          Converter={StaticResource TimeStampToTimeConverter}, ConverterParameter={StaticResource TimeZone}}"
+                    SubText="Sunrise" />
+                <controls:DoubleLabel
+                    MainText="{Binding CurrentWeather.Result.SunData.SunsetTimeStamp,
+                          Converter={StaticResource TimeStampToTimeConverter}, ConverterParameter={StaticResource TimeZone}}"
+                    SubText="Sunset" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <Image
+                    Source="{Binding CurrentWeather.Result.Weather[0].Icon, Converter={StaticResource ImageSourceConverter}}"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Aspect="AspectFit" />
+                <Label
+                    Text="{Binding CurrentWeather.Result.Weather[0].Description}"
+                    HeightRequest="100"
+                    HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Center"
+                    FontSize="20" />
+            </StackLayout>
+
+            <Label
+                HorizontalOptions="Center"
+                FontSize="30"
+                HeightRequest="100"
+                HorizontalTextAlignment="Start"
+                VerticalTextAlignment="Center"
+                Text="{Binding CurrentWeather.Result.WeatherData.Temperature, Converter={StaticResource MeasurementSystemConverter}, ConverterParameter='temp'}" />
+
+            <StackLayout Orientation="Horizontal">
+                <controls:DoubleLabel
+                    MainText="{Binding CurrentWeather.Result.Clouds.Percent, StringFormat='{0}%'}"
+                    SubText="Clouds percent" />
+                <controls:DoubleLabel
+                    MainText="{Binding CurrentWeather.Result.WeatherData.Pressure, StringFormat='{0} hPa'}"
+                    SubText="Pressure" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <controls:DoubleLabel
+                    MainText="{Binding CurrentWeather.Result.Wind.Speed, Converter={StaticResource MeasurementSystemConverter}, ConverterParameter='speed'}"
+                    SubText="Wind speed" />
+                <controls:DoubleLabel
+                    MainText="{Binding CurrentWeather.Result.Wind.Degree, Converter={StaticResource CardinalDirectionConverter}}"
+                    SubText="Wind direction" />
+            </StackLayout>
+        </StackLayout>
+
+        <Button Text="Check Forecast"
+
+                AbsoluteLayout.LayoutBounds="20, 995, 680, 90"
+                Command="{Binding CheckForecastCommand}"
+                IsVisible="{Binding InitializationCompleted}">
+            <Button.CommandParameter>
+                <views:ForecastPage>
+                    <views:ForecastPage.BindingContext>
+                        <viewModels:ForecastViewModel
+                            Forecast="{Binding Source={x:Reference Name=ViewModel}, Path=Forecast.Result}"
+                            Offset="{Binding Source={x:Reference Name=ViewModel}, Path=CityTimeZone.Result.Offset}"
+                            CityName="{Binding Source={x:Reference Name=ViewModel}, Path=CityData.Name}" />
+                    </views:ForecastPage.BindingContext>
+                </views:ForecastPage>
+            </Button.CommandParameter>
+        </Button>
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,96 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>NU1701;1701;1702;1705</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Controls\DoubleLabel.xaml" />
+    <None Remove="Data\city.list.json" />
+    <None Remove="Data\country.list.json" />
+    <None Remove="Views\ApiErrorPage.xaml" />
+    <None Remove="Views\CurrentWeatherPage.xaml" />
+    <None Remove="Views\ForecastPage.xaml" />
+    <None Remove="Views\MainPage.xaml" />
+    <None Remove="Views\MissingKeyErrorPage.xaml" />
+    <None Remove="Controls\PageIndicator.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\DoubleLabel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\city.list.json" />
+    <EmbeddedResource Include="Data\country.list.json" />
+    <EmbeddedResource Include="Views\ApiErrorPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CurrentWeatherPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ForecastPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MissingKeyErrorPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PageIndicator.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- Include Nuget Package for Xamarin building -->
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="System.Net.Http" Version="4.3.3" />
+    <PackageReference Include="Xamarin.Forms" Version="2.4.0.269-pre2" />
+    <PackageReference Include="Xamarin.Forms.CarouselView" Version="2.3.0-pre2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Controls\DoubleLabel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MainPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ForecastPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CurrentWeatherPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ApiErrorPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ApiErrorPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\CurrentWeatherPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ForecastPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MainPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MissingKeyErrorPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PageIndicator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

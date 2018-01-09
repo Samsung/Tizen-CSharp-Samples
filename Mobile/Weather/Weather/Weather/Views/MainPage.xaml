@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
+             xmlns:behaviors="clr-namespace:Weather.Behaviors;assembly=Weather"
+             xmlns:views="clr-namespace:Weather.Views;assembly=Weather"
+             x:Class="Weather.Views.MainPage"
+             x:Name="Root">
+
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel x:Name="ViewModel"
+                                      Navigation="{Binding Source={x:Reference Name=Root}, Path=Navigation}" />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <AbsoluteLayout>
+
+            <Label Text="Weather App"
+                   FontSize="40"
+                   AbsoluteLayout.LayoutFlags="None"
+                   AbsoluteLayout.LayoutBounds="20, 0, 680, 200"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+
+            <Label Text="Enter city name and 2-letter country code in ISO-3166 format"
+                   FontSize="20"
+                   AbsoluteLayout.LayoutFlags="None"
+                   AbsoluteLayout.LayoutBounds="20, 250, 680, 500"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+
+            <Entry BackgroundColor="White"
+                   AbsoluteLayout.LayoutFlags="None"
+                   AbsoluteLayout.LayoutBounds="20, 800, 50, 50"
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding EnteredCountry, Mode=OneWayToSource}">
+                <Entry.Behaviors>
+                    <behaviors:CountryCodeValidatorBehavior MaxLength="2" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <Entry x:Name="CityEntry"
+                   BackgroundColor="White"
+                   AbsoluteLayout.LayoutFlags="None"
+                   AbsoluteLayout.LayoutBounds="90, 800, 610, 50"
+                   Text="{Binding EnteredCity, Mode=TwoWay}">
+                <Entry.Behaviors>
+                    <behaviors:CityNameValidatorBehavior
+                        City="{Binding Source={x:Reference Name=ViewModel}, Path=SelectedCity}"
+                        OnInputCompleted="{Binding Source={x:Reference Name=ViewModel}, Path=OnCityEnteredCommand}" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <ListView ItemsSource="{Binding Cities}"
+                      SelectedItem="{Binding SelectedCity, Mode=TwoWay}"
+                      IsVisible="{Binding Source={x:Reference Name=CityEntry}, Path=IsFocused}"
+                      AbsoluteLayout.LayoutFlags="None"
+                      AbsoluteLayout.LayoutBounds="90, 450, 610, 350"
+                      BackgroundColor="White">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}"
+                                  Detail="{Binding CountryCode}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Check Weather"
+                    AbsoluteLayout.LayoutFlags="None"
+                    AbsoluteLayout.LayoutBounds="20, 945, 680, 90"
+                    Command="{Binding CheckWeatherCommand}">
+                <Button.CommandParameter>
+                    <views:CurrentWeatherPage
+                        CityData="{Binding Source={x:Reference Name=ViewModel}, Path=SelectedCity}" />
+                </Button.CommandParameter>
+            </Button>
+
+        </AbsoluteLayout>
+    </ScrollView>
+</ContentPage>
