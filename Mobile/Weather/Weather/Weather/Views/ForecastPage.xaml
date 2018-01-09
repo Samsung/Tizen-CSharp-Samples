@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xf="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:controls="clr-namespace:Weather.Controls;assembly=Weather"
+             xmlns:converters="clr-namespace:Weather.Converters;assembly=Weather"
+             xmlns:utils="clr-namespace:Weather.Utils;assembly=Weather"
+             x:Class="Weather.Views.ForecastPage"
+             BackgroundColor="White"
+             Title="Forecast"
+             x:Name="Page">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TimeStampWithOffsetAndTimezoneConverter x:Key="TimeStampWithOffsetAndTimezoneConverter" />
+            <converters:TimeStampWithOffsetConverter x:Key="TimeStampWithOffsetConverter" />
+            <converters:DegreeToCardinalDirectionConverter x:Key="CardinalDirectionConverter" />
+            <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
+            <converters:MeasurementSystemConverter x:Key="MeasurementSystemConverter" />
+            <utils:BindableString x:Key="Offset"
+                                  Value="{Binding Offset}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <AbsoluteLayout>
+
+        <xf:CarouselView x:Name="CarouselView"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         AbsoluteLayout.LayoutFlags="All"
+                         ItemsSource="{Binding PagesViewModels}">
+            <xf:CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Spacing="25">
+
+                        <controls:DoubleLabel
+                            MainText="{Binding CurrentWeather.TimeStamp, Converter={StaticResource TimeStampWithOffsetAndTimezoneConverter}, ConverterParameter={StaticResource Offset}}"
+                            SubText="Time of forecast."
+                            Margin="0, 261, 0, 0" />
+
+                        <StackLayout Orientation="Horizontal">
+                            <controls:DoubleLabel
+                                MainText="{Binding CurrentWeather.WeatherData.MinimumTemperature, Converter={StaticResource MeasurementSystemConverter}, ConverterParameter='temp'}"
+                                SubText="Minimum Temperature" />
+                            <controls:DoubleLabel
+                                MainText="{Binding CurrentWeather.WeatherData.MaximumTemperature, Converter={StaticResource MeasurementSystemConverter}, ConverterParameter='temp'}"
+                                SubText="Maximum Temperature" />
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center">
+                            <Image
+                                Source="{Binding CurrentWeather.Weather[0].Icon, Converter={StaticResource ImageSourceConverter}}"
+                                HeightRequest="100"
+                                WidthRequest="100"
+                                Aspect="AspectFit" />
+                            <Label
+                                Text="{Binding CurrentWeather.Weather[0].Description}"
+                                HeightRequest="100"
+                                HorizontalTextAlignment="Start"
+                                VerticalTextAlignment="Center"
+                                FontSize="20" />
+                        </StackLayout>
+
+                        <Label
+                            HorizontalOptions="Center"
+                            FontSize="30"
+                            HeightRequest="100"
+                            HorizontalTextAlignment="Start"
+                            VerticalTextAlignment="Center"
+                            Text="{Binding CurrentWeather.WeatherData.Temperature, Converter={StaticResource MeasurementSystemConverter}, ConverterParameter='temp'}" />
+
+                        <StackLayout Orientation="Horizontal">
+                            <controls:DoubleLabel
+                                MainText="{Binding CurrentWeather.Clouds.Percent, StringFormat='{0}%'}"
+                                SubText="Clouds percent" />
+                            <controls:DoubleLabel
+                                MainText="{Binding CurrentWeather.WeatherData.Pressure, StringFormat='{0} hPa'}"
+                                SubText="Pressure" />
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <controls:DoubleLabel
+                                MainText="{Binding CurrentWeather.Wind.Speed, Converter={StaticResource MeasurementSystemConverter}, ConverterParameter='speed'}"
+                                SubText="Wind speed" />
+                            <controls:DoubleLabel
+                                MainText="{Binding CurrentWeather.Wind.Degree, Converter={StaticResource CardinalDirectionConverter}}"
+                                SubText="Wind direction" />
+                        </StackLayout>
+                        <controls:StepSlider Maximum="{Binding Count}"
+                                             Value="{Binding TimeValue}"
+                                             Margin="50, 50 ,50 ,0" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="StartAndExpand"
+                                   Margin="50, 0, 0, 0"
+                                   Text="{Binding FirstTime, Converter={StaticResource TimeStampWithOffsetConverter}, ConverterParameter={StaticResource Offset}}"
+                                   TextColor="LightSlateGray"
+                                   FontSize="12" />
+                            <Label HorizontalOptions="End"
+                                   Margin="0, 0, 50, 0"
+                                   Text="{Binding LastTime, Converter={StaticResource TimeStampWithOffsetConverter}, ConverterParameter={StaticResource Offset}}"
+                                   TextColor="LightSlateGray"
+                                   FontSize="12" />
+                        </StackLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </xf:CarouselView.ItemTemplate>
+        </xf:CarouselView>
+
+        <Label Text="{Binding CityName}"
+               FontSize="50"
+               HorizontalTextAlignment="Center"
+               AbsoluteLayout.LayoutBounds="0, 80, 720, 150"
+               AbsoluteLayout.LayoutFlags="None" />
+
+        <controls:PageIndicator Position="{Binding Source={x:Reference Name=CarouselView}, Path=Position}"
+                                AbsoluteLayout.LayoutBounds="0, 1, 1, 106"
+                                AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" />
+    </AbsoluteLayout>
+
+</ContentPage>

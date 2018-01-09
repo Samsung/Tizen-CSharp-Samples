@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
+             x:Class="Weather.Views.MissingKeyErrorPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:ApiErrorViewModel />
+    </ContentPage.BindingContext>
+
+    <AbsoluteLayout>
+        <Label
+            Text="API key is not set. &#x0a; Please, define the key in &quot;ApiConfig.cs&quot; file and rebuild application."
+            AbsoluteLayout.LayoutFlags="None"
+            FontSize="23"
+            AbsoluteLayout.LayoutBounds="32, 250, 656, 200"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center" />
+        <Button Text="Exit Application"
+                FontSize="23"
+                Command="{Binding ExitAppCommand}"
+                AbsoluteLayout.LayoutFlags="None"
+                AbsoluteLayout.LayoutBounds="32, 1006, 656, 90" />
+    </AbsoluteLayout>
+</ContentPage>

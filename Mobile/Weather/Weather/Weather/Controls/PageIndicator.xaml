@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="Weather.Controls.PageIndicator">
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <StackLayout Grid.Column="1"
+                 Orientation="Horizontal"
+                 x:Name="IndicatorsStack">
+        <Image Source="dot_empty.png" />
+        <Image Source="dot_empty.png" />
+        <Image Source="dot_empty.png" />
+        <Image Source="dot_empty.png" />
+        <Image Source="dot_empty.png" />
+    </StackLayout>
+
+</Grid>
