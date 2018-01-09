@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constants="clr-namespace:HeartRateMonitor.Constants"
+             x:Class="HeartRateMonitor.Views.SettingsPage"
+             Title="Settings"
+             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppMainViewModel}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseLabel"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.BASE_LABEL_FONT_SIZE}" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+            <Style x:Key="MessageMainLabel"
+                   BasedOn="{StaticResource BaseLabel}"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.MESSAGE_LABEL_FONT_SIZE}" />
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.PAGE_MESSAGE_TEXT_COLOR}" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="{x:Static constants:ColorConstants.BASE_APP_COLOR}" />
+                <Setter Property="HorizontalOptions"
+                        Value="FillAndExpand" />
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.BUTTON_TEXT_COLOR}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- Main container -->
+    <AbsoluteLayout BackgroundColor="{x:Static constants:ColorConstants.PAGE_BACKGROUND_COLOR}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+
+        <!-- Slider area -->
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 720, 320">
+            <Label AbsoluteLayout.LayoutBounds="0, 76, 720, 58"
+                   Style="{StaticResource BaseLabel}"
+                   Text="Set heart rate limit:" />
+            <Label AbsoluteLayout.LayoutBounds="0, 166, 720, 48"
+                   Style="{StaticResource MessageMainLabel}"
+                   Text="{Binding HeartRateLimitBufferValue}" />
+            <Slider AbsoluteLayout.LayoutBounds="112, 225, 496, 64"
+                    Value="{Binding HeartRateLimitSliderBufferValue}" />
+        </AbsoluteLayout>
+
+        <!-- Image area -->
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 320, 720, 363">
+            <Image AbsoluteLayout.LayoutBounds=".5, .5, 378, 330"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   Source="heart_settings.png" />
+        </AbsoluteLayout>
+
+        <!-- Footer button area -->
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 1, 720, AutoSize"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Orientation="Horizontal"
+                     Padding="32, 0, 32, 34"
+                     Spacing="32">
+            <Button Command="{Binding AppPageNavigation.NavigateBackCommand}"
+                    Text="Cancel" />
+            <Button Command="{Binding UpdateHeartRateLimitCommand}"
+                    Text="Done" />
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>
