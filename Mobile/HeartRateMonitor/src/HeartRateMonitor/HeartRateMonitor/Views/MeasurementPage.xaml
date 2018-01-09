@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constants="clr-namespace:HeartRateMonitor.Constants"
+             xmlns:controls="clr-namespace:HeartRateMonitor.Controls"
+             xmlns:views="clr-namespace:HeartRateMonitor.Views"
+             x:Class="HeartRateMonitor.Views.MeasurementPage"
+             Title="Heart Rate Monitor"
+             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppMainViewModel}"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="{Binding IsStarted}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ShowSettingsCommand}"
+                     CommandParameter="{x:Type views:SettingsPage}"
+                     Icon="settings.png"
+                     Order="Primary" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseLabel"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.BASE_LABEL_FONT_SIZE}" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+            <Style x:Key="TitleWelcomeLabel"
+                   BasedOn="{StaticResource BaseLabel}"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.WELCOME_TEXT_COLOR}" />
+            </Style>
+            <Style x:Key="MessageWelcomeLabel"
+                   BasedOn="{StaticResource TitleWelcomeLabel}"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.MESSAGE_LABEL_FONT_SIZE}" />
+            </Style>
+            <Style x:Key="TitleMainLabel"
+                   BasedOn="{StaticResource BaseLabel}"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.PAGE_TITLE_TEXT_COLOR}" />
+            </Style>
+            <Style x:Key="MessageMainLabel"
+                   BasedOn="{StaticResource TitleWelcomeLabel}"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.MESSAGE_LABEL_FONT_SIZE}" />
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.PAGE_MESSAGE_TEXT_COLOR}" />
+            </Style>
+            <Style x:Key="HeartRateValueText"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.HEART_RATE_VALUE_TEXT_FONT_SIZE}" />
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.HEART_RATE_VALUE_TEXT_COLOR}" />
+            </Style>
+            <Style x:Key="HeartRateValueDisabledText"
+                   BasedOn="{StaticResource HeartRateValueText}"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.HEART_RATE_VALUE_DISABLED_TEXT_COLOR}" />
+            </Style>
+            <Style x:Key="HeartRateAlertValueText"
+                   BasedOn="{StaticResource HeartRateValueText}"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.BASE_APP_COLOR}" />
+            </Style>
+            <Style x:Key="HeartRateValueUnitText"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.HEART_RATE_VALUE_UNIT_FONT_SIZE}" />
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.HEART_RATE_VALUE_UNIT_COLOR}" />
+            </Style>
+            <Style x:Key="HeartRateLimitLabel"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.HEART_RATE_LIMIT_LABEL_FONT_SIZE}" />
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.HEART_RATE_LIMIT_LABEL_COLOR}" />
+            </Style>
+
+            <controls:DialogOK x:Key="PrivilegeDeniedDialog"
+                               Title="Privilege denied"
+                               Message="Application will be closed due to required privilege denied."
+                               ExecuteCommand="{Binding PrivilegeDeniedInfoCommand}"
+                               ConfirmCommand="{Binding PrivilegeDeniedConfirmedCommand}" />
+            <controls:DialogOK x:Key="NotSupportedDialog"
+                               Title="Sensor not supported"
+                               Message="Heart rate sensor is not supported. Application will be closed."
+                               ExecuteCommand="{Binding NotSupportedInfoCommand}"
+                               ConfirmCommand="{Binding NotSupportedConfirmedCommand}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- Main container -->
+    <AbsoluteLayout BackgroundColor="{x:Static constants:ColorConstants.PAGE_BACKGROUND_COLOR}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+
+        <!-- Main layout -->
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        IsVisible="False">
+
+            <AbsoluteLayout.Triggers>
+                <DataTrigger Binding="{Binding IsStarted, StringFormat='{0}'}"
+                             TargetType="AbsoluteLayout"
+                             Value="True">
+                    <Setter Property="IsVisible"
+                            Value="True" />
+                </DataTrigger>
+            </AbsoluteLayout.Triggers>
+
+            <!-- Message area -->
+            <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 720, 320">
+                <StackLayout AbsoluteLayout.LayoutBounds="0, 76, 720, 58">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="0"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Label Style="{StaticResource TitleMainLabel}"
+                               Text="{x:Static constants:MessageConstants.READY_TITLE}">
+                            <Label.Triggers>
+                                <DataTrigger Binding="{Binding IsMeasuring, StringFormat='{0}'}"
+                                             TargetType="Label"
+                                             Value="True">
+                                    <Setter Property="Text"
+                                            Value="{x:Static constants:MessageConstants.MEASURING_TITLE}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsFinished, StringFormat='{0}'}"
+                                             TargetType="Label"
+                                             Value="True">
+                                    <Setter Property="Text"
+                                            Value="{x:Static constants:MessageConstants.FINISHED_TITLE}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Label IsVisible="False"
+                               Style="{StaticResource TitleMainLabel}"
+                               Text="{Binding MeasurementCountdown}">
+                            <Label.Triggers>
+                                <DataTrigger Binding="{Binding IsMeasuring, StringFormat='{0}'}"
+                                             TargetType="Label"
+                                             Value="True">
+                                    <Setter Property="IsVisible"
+                                            Value="True" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+                <Label AbsoluteLayout.LayoutBounds="0, 158, 720, 96"
+                       Style="{StaticResource MessageMainLabel}"
+                       Text="{x:Static constants:MessageConstants.READY_CONTENT}">
+                    <Label.Triggers>
+                        <DataTrigger Binding="{Binding IsMeasuring, StringFormat='{0}'}"
+                                     TargetType="Label"
+                                     Value="True">
+                            <Setter Property="Text"
+                                    Value="{x:Static constants:MessageConstants.MEASURING_CONTENT}" />
+                        </DataTrigger>
+                        <MultiTrigger TargetType="Label">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition Binding="{Binding IsFinished, StringFormat='{0}'}"
+                                                  Value="True" />
+                                <BindingCondition Binding="{Binding MeasurementResultRange, StringFormat='{0}'}"
+                                                  Value="-1" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Text"
+                                    Value="{x:Static constants:MessageConstants.FINISHED_CONTENT_WITHIN_AVERAGE}" />
+                        </MultiTrigger>
+                        <MultiTrigger TargetType="Label">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition Binding="{Binding IsFinished, StringFormat='{0}'}"
+                                                  Value="True" />
+                                <BindingCondition Binding="{Binding MeasurementResultRange, StringFormat='{0}'}"
+                                                  Value="0" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Text"
+                                    Value="{x:Static constants:MessageConstants.FINISHED_CONTENT_WITHIN_LIMIT}" />
+                        </MultiTrigger>
+                        <MultiTrigger TargetType="Label">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition Binding="{Binding IsFinished, StringFormat='{0}'}"
+                                                  Value="True" />
+                                <BindingCondition Binding="{Binding MeasurementResultRange, StringFormat='{0}'}"
+                                                  Value="1" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Text"
+                                    Value="{x:Static constants:MessageConstants.FINISHED_CONTENT_ABOVE_LIMIT}" />
+                            <Setter Property="TextColor"
+                                    Value="{x:Static constants:ColorConstants.BASE_APP_COLOR}" />
+                        </MultiTrigger>
+                    </Label.Triggers>
+                </Label>
+            </AbsoluteLayout>
+
+            <!-- Animation area -->
+            <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 320, 720, 363">
+                <Image x:Name="chart"
+                       AbsoluteLayout.LayoutBounds="0, 88, 960, 154"
+                       Source="chart.png" />
+                <Image x:Name="heart3"
+                       AbsoluteLayout.LayoutBounds=".5, .5, 378, 330"
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       Source="heart_3.png" />
+                <Image x:Name="heart2"
+                       AbsoluteLayout.LayoutBounds=".5, .5, 252, 220"
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       Source="heart_2.png" />
+                <Image x:Name="heart1"
+                       AbsoluteLayout.LayoutBounds=".5, .5, 125, 110"
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       Source="heart_1.png">
+                    <Image.Triggers>
+                        <DataTrigger Binding="{Binding IsMeasurementResultAlert, StringFormat='{0}'}"
+                                     TargetType="Image"
+                                     Value="True">
+                            <Setter Property="Source"
+                                    Value="heart_4.png" />
+                        </DataTrigger>
+                    </Image.Triggers>
+                </Image>
+            </AbsoluteLayout>
+
+            <!-- Progress area -->
+            <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 683, 720, 275">
+                <StackLayout AbsoluteLayout.LayoutBounds=".5, 0, AutoSize, 137"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             Orientation="Horizontal"
+                             Spacing="0">
+                    <Label Style="{StaticResource HeartRateValueText}"
+                           Text="{Binding CurrentHeartRateFirstNumber}">
+                        <Label.Triggers>
+                            <DataTrigger Binding="{Binding IsMeasurementResultAlert, StringFormat='{0}'}"
+                                         TargetType="Label"
+                                         Value="True">
+                                <Setter Property="Style"
+                                        Value="{Binding HeartRateAlertValueText}" />
+                            </DataTrigger>
+                            <MultiTrigger TargetType="Label">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition Binding="{Binding IsMeasurementResultAlert, StringFormat='{0}'}"
+                                                      Value="False" />
+                                    <BindingCondition Binding="{Binding CurrentHeartRateFirstNumber, StringFormat='{0}'}"
+                                                      Value="0" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Style"
+                                        Value="{StaticResource HeartRateValueDisabledText}" />
+                            </MultiTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Label Style="{StaticResource HeartRateValueText}"
+                           Text="{Binding CurrentHeartRateSecondNumber}">
+                        <Label.Triggers>
+                            <DataTrigger Binding="{Binding IsMeasurementResultAlert, StringFormat='{0}'}"
+                                         TargetType="Label"
+                                         Value="True">
+                                <Setter Property="Style"
+                                        Value="{Binding HeartRateAlertValueText}" />
+                            </DataTrigger>
+                            <MultiTrigger TargetType="Label">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition Binding="{Binding IsMeasurementResultAlert, StringFormat='{0}'}"
+                                                      Value="False" />
+                                    <BindingCondition Binding="{Binding CurrentHeartRateFirstNumber, StringFormat='{0}'}"
+                                                      Value="0" />
+                                    <BindingCondition Binding="{Binding CurrentHeartRateSecondNumber, StringFormat='{0}'}"
+                                                      Value="0" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Style"
+                                        Value="{StaticResource HeartRateValueDisabledText}" />
+                            </MultiTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Label Style="{StaticResource HeartRateValueText}"
+                           Text="{Binding CurrentHeartRateThirdNumber}">
+                        <Label.Triggers>
+                            <DataTrigger Binding="{Binding IsMeasurementResultAlert, StringFormat='{0}'}"
+                                         TargetType="Label"
+                                         Value="True">
+                                <Setter Property="Style"
+                                        Value="{Binding HeartRateAlertValueText}" />
+                            </DataTrigger>
+                            <MultiTrigger TargetType="Label">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition Binding="{Binding IsMeasurementResultAlert, StringFormat='{0}'}"
+                                                      Value="False" />
+                                    <BindingCondition Binding="{Binding CurrentHeartRateFirstNumber, StringFormat='{0}'}"
+                                                      Value="0" />
+                                    <BindingCondition Binding="{Binding CurrentHeartRateSecondNumber, StringFormat='{0}'}"
+                                                      Value="0" />
+                                    <BindingCondition Binding="{Binding CurrentHeartRateThirdNumber, StringFormat='{0}'}"
+                                                      Value="0" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Style"
+                                        Value="{StaticResource HeartRateValueDisabledText}" />
+                            </MultiTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </StackLayout>
+                <Label AbsoluteLayout.LayoutBounds="450, 64, AutoSize, AutoSize"
+                       Style="{StaticResource HeartRateValueUnitText}"
+                       Text="bpm" />
+                <AbsoluteLayout AbsoluteLayout.LayoutBounds="87, 126, 546, 60">
+                    <ProgressBar AbsoluteLayout.LayoutBounds="25, 14, 496, 8"
+                                 Progress="{Binding HeartRateProgress}" />
+                    <AbsoluteLayout AbsoluteLayout.LayoutBounds="{Binding HeartRateLimitIndicatorLayoutBounds}"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <BoxView AbsoluteLayout.LayoutBounds="22, 5, 6, 26"
+                                 BackgroundColor="Black" />
+                        <Label AbsoluteLayout.LayoutBounds=".5, 1, AutoSize, AutoSize"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               Style="{StaticResource HeartRateLimitLabel}"
+                               Text="{Binding HeartRateLimitValue}" />
+                    </AbsoluteLayout>
+                </AbsoluteLayout>
+            </AbsoluteLayout>
+
+            <!-- Footer button area -->
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 1, 720, AutoSize"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         Padding="112, 0, 112, 34">
+                <Button BackgroundColor="{x:Static constants:ColorConstants.BASE_APP_COLOR}"
+                        Command="{Binding ToggleMeasurementCommand}"
+                        Text="Start measurement"
+                        TextColor="{x:Static constants:ColorConstants.BUTTON_TEXT_COLOR}">
+                    <Button.Triggers>
+                        <DataTrigger Binding="{Binding IsMeasuring, StringFormat='{0}'}"
+                                     TargetType="Button"
+                                     Value="True">
+                            <Setter Property="Text"
+                                    Value="Cancel measurement" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
+        </AbsoluteLayout>
+
+        <!-- Welcome layout -->
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        AbsoluteLayout.LayoutFlags="All">
+
+            <AbsoluteLayout.Triggers>
+                <DataTrigger Binding="{Binding IsStarted, StringFormat='{0}'}"
+                             TargetType="AbsoluteLayout"
+                             Value="True">
+                    <Setter Property="IsVisible"
+                            Value="False" />
+                </DataTrigger>
+            </AbsoluteLayout.Triggers>
+
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Source="bg_heart.png"
+                   Aspect="AspectFill"/>
+            <Label AbsoluteLayout.LayoutBounds="0, 446, 720, 67"
+                   Style="{StaticResource TitleWelcomeLabel}"
+                   Text="Welcome" />
+            <Label AbsoluteLayout.LayoutBounds="0, 571, 720, 140"
+                   Style="{StaticResource MessageWelcomeLabel}"
+                   Text="Heart Rate Monitor is a sample&#10;tool for monitoring your heart rate&#10;during every-day actions." />
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 1, 720, AutoSize"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         Padding="112, 0, 112, 34">
+                <Button BackgroundColor="{x:Static constants:ColorConstants.BUTTON_TEXT_COLOR}"
+                        Command="{Binding GetStartedCommand}"
+                        Text="Get started"
+                        TextColor="{x:Static constants:ColorConstants.BASE_APP_COLOR}">
+                    <Button.Triggers>
+                        <DataTrigger Binding="{Binding IsStarted, StringFormat='{0}'}"
+                                     TargetType="Button"
+                                     Value="True">
+                            <Setter Property="IsEnabled"
+                                    Value="False" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
+        </AbsoluteLayout>
+    </AbsoluteLayout>
+</ContentPage>
