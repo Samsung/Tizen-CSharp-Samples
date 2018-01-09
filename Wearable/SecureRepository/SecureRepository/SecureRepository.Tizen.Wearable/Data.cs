@@ -162,7 +162,7 @@ namespace SecureRepository.Tizen
             return "byte[]"; // All Data saved using DataManger is saved as byte[]. Developer has to decode / encode it to their needs.
         }
 
-        #endregion 
+        #endregion
 
         /// <summary>
         /// Adds data from file to DataManager.

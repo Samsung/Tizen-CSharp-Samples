@@ -162,7 +162,7 @@ namespace SecureRepository
                     MainGrid.Children.Add(this.optionsGrid, 0, 1);
                 }
                 //// Changes Buttons and Labels size to fit in new UI.
-                this.GridBtnSizeChanged(null, null); 
+                this.GridBtnSizeChanged(null, null);
             }
         }
 

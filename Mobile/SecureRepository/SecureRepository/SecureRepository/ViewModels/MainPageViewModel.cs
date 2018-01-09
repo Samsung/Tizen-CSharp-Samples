@@ -219,7 +219,7 @@ namespace SecureRepository
             string content;
             content = this.dep.GetSelectedItemPrefix(selectedItem);
             ////Check if result is not empty.
-            if (content != null && content != string.Empty) 
+            if (content != null && content != string.Empty)
             {
                 this.ContentPrefix = "Item prefix: " + content;
             }

@@ -74,7 +74,7 @@ namespace SecureRepository.Tizen
                 foreach (string alias_ in aliases)
                 {
                     shortAlises.Add(alias_.Split(null).Last()); // WE are splitting alias_ by "space".
-                    // alias: "App.name ALIAS" Alias has two parts App.name and actual ALIAS, 
+                    // alias: "App.name ALIAS" Alias has two parts App.name and actual ALIAS,
                     // It`s done this way beacause you can share Keys,Certificates,Data with other apps so *Manager adds App.name prefix to avoid alias conflicts between diffrent Apps.
                     // You don`t have to do it. It`s done automatically.
                 }

@@ -18,12 +18,10 @@
     <Folder Include="res\" />
   </ItemGroup>
 
-  
   <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
     <ProjectReference Include="..\SecureRepository\SecureRepository.csproj" />
   </ItemGroup>
-  
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
@@ -33,5 +31,4 @@
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
     <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0.91020" />
   </ItemGroup>
-
 </Project>
