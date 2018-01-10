@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piano", "Piano\Piano\Piano.csproj", "{B99A786D-E74B-4DBA-B7DD-B5AE4DDF455F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piano.Tizen.Mobile", "Piano\Piano.Tizen.Mobile\Piano.Tizen.Mobile.csproj", "{88E15381-DFC8-41CA-9D73-078B77F8A6BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B99A786D-E74B-4DBA-B7DD-B5AE4DDF455F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B99A786D-E74B-4DBA-B7DD-B5AE4DDF455F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B99A786D-E74B-4DBA-B7DD-B5AE4DDF455F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B99A786D-E74B-4DBA-B7DD-B5AE4DDF455F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E15381-DFC8-41CA-9D73-078B77F8A6BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E15381-DFC8-41CA-9D73-078B77F8A6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E15381-DFC8-41CA-9D73-078B77F8A6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E15381-DFC8-41CA-9D73-078B77F8A6BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20650979-F309-4E7A-A3F4-836C2B3E9834}
+	EndGlobalSection
+EndGlobal

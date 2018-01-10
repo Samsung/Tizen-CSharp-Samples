@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Image xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:viewModels="clr-namespace:Piano.ViewModels;assembly=Piano"
+       x:Class="Piano.Controls.Key"
+       AbsoluteLayout.LayoutFlags="All"
+       Aspect="Fill"
+       x:Name="Root">
+    <Image.BindingContext>
+        <viewModels:KeyViewModel SoundNumber="{Binding Source={x:Reference Name='Root'}, Path=SoundNumber}"
+                                 PlaySoundCommand="{Binding Source={x:Reference Name='Root'}, Path=OnClickedCommand, Mode=OneWayToSource}" />
+    </Image.BindingContext>
+</Image>
