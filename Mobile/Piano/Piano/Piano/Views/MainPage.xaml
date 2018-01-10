@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:Piano.Controls;assembly=Piano"
+             x:Class="Piano.Views.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="whiteKeyStyle" TargetType="control:Key">
+                <Setter Property="UnPressedImageSource"
+                        Value="white.png" />
+                <Setter Property="PressedImageSource"
+                        Value="white_pressed.png" />
+            </Style>
+            <Style x:Key="blackKeyStyle" TargetType="control:Key">
+                <Setter Property="UnPressedImageSource"
+                        Value="black.png" />
+                <Setter Property="PressedImageSource"
+                        Value="black_pressed.png" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+      <AbsoluteLayout>
+            <control:Key SoundNumber="0"
+                         AbsoluteLayout.LayoutBounds="0.0,0.0,0.125,1.0"
+                         Style="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="2"
+                         AbsoluteLayout.LayoutBounds="0.1429,0.0,0.125,1.0"
+                         Style="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="4"
+                         AbsoluteLayout.LayoutBounds="0.2857,0.0,0.125,1.0"
+                         Style="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="5"
+                         AbsoluteLayout.LayoutBounds="0.4286,0.0,0.125,1.0"
+                         Style="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="7"
+                         AbsoluteLayout.LayoutBounds="0.5714,0.0,0.125,1.0"
+                         Style="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="9"
+                         AbsoluteLayout.LayoutBounds="0.7143,0.0,0.125,1.0"
+                         Style="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="11"
+                         AbsoluteLayout.LayoutBounds="0.8571,0.0,0.125,1.0"
+                         Style="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="12"
+                         AbsoluteLayout.LayoutBounds="1.0,0.0,0.125,1.0"
+                         Style="{StaticResource whiteKeyStyle}" />
+
+            <control:Key SoundNumber="1"
+                         AbsoluteLayout.LayoutBounds="0.0946,0,0.075,0.6694"
+                         Style="{StaticResource blackKeyStyle}" />
+            <control:Key SoundNumber="3"
+                         AbsoluteLayout.LayoutBounds="0.2297,0,0.075,0.6694"
+                         Style="{StaticResource blackKeyStyle}" />
+            <control:Key SoundNumber="6"
+                         AbsoluteLayout.LayoutBounds="0.5,0,0.075,0.6694"
+                         Style="{StaticResource blackKeyStyle}" />
+            <control:Key SoundNumber="8"
+                         AbsoluteLayout.LayoutBounds="0.6351,0,0.075,0.6694"
+                         Style="{StaticResource blackKeyStyle}" />
+            <control:Key SoundNumber="10"
+                         AbsoluteLayout.LayoutBounds="0.7703,0,0.075,0.6694"
+                         Style="{StaticResource blackKeyStyle}" />
+            <control:Key SoundNumber="13"
+                         AbsoluteLayout.LayoutBounds="1.0405,0,0.075,0.6694"
+                         Style="{StaticResource blackKeyStyle}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
