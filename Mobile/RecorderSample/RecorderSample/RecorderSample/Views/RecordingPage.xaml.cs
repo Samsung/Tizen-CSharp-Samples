@@ -32,9 +32,9 @@ namespace RecorderSample
 
         protected override void OnDisappearing()
         {
-            base.OnDisappearing();
-
             (BindingContext as RecordingViewModel).OnDisappearing();
+
+            base.OnDisappearing();
         }
     }
 }

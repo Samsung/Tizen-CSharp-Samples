@@ -37,7 +37,7 @@ namespace RecorderSample
         {
             PrepareCommand = new Command(() =>
             {
-                if (Controller.State == RecorderState.Idle)
+                if (State == RecorderState.Idle)
                 {
                     Controller.Prepare();
                 }
@@ -53,7 +53,7 @@ namespace RecorderSample
 
             StartCommand = new Command(() =>
             {
-                if (Controller.State == RecorderState.Ready)
+                if (State == RecorderState.Ready)
                 {
                     Controller.Start();
 
@@ -73,7 +73,7 @@ namespace RecorderSample
 
             PauseCommand = new Command(() =>
             {
-                if (Controller.State == RecorderState.Paused)
+                if (State == RecorderState.Paused)
                 {
                     Controller.Resume();
                 }
@@ -109,15 +109,14 @@ namespace RecorderSample
         /// The button is available when the recorder is prepared and the media player is not playing.
         /// </summary>
         /// <returns>The value indicating whether the start button be enabled.</returns>
-        private bool CanStart() => Controller.State != RecorderState.Idle && !MediaPlayer.IsPlaying;
+        private bool CanStart() => State != RecorderState.Idle && !MediaPlayer.IsPlaying;
 
         /// <summary>
         /// Gets the value indicating whether the resume button be enabled.
         /// The button is available when the recorder is recording or paused..
         /// </summary>
         /// <returns>The value indicating whether the resume button be enabled.</returns>
-        private bool CanPause() => Controller.State == RecorderState.Recording ||
-            Controller.State == RecorderState.Paused;
+        private bool CanPause() => State == RecorderState.Recording || State == RecorderState.Paused;
 
         /// <summary>
         /// Gets the value indicating whether the play button be enabled.
@@ -128,8 +127,8 @@ namespace RecorderSample
         {
             _saveFileInfo.Refresh();
 
-            return _saveFileInfo.Exists && Controller.State != RecorderState.Recording &&
-                Controller.State != RecorderState.Paused;
+            return _saveFileInfo.Exists && State != RecorderState.Recording &&
+                State != RecorderState.Paused;
         }
-}
+    }
 }

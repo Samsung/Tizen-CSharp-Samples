@@ -91,17 +91,17 @@ namespace RecorderSample
         /// <summary>
         /// Gets the display text of the prepare button.
         /// </summary>
-        public string PrepareText => Controller.State == RecorderState.Idle ? "Prepare" : "Unprepare";
+        public string PrepareText => State == RecorderState.Idle ? "Prepare" : "Unprepare";
 
         /// <summary>
         /// Gets the display text of the start button.
         /// </summary>
-        public string StartText => Controller.State == RecorderState.Ready ? "Start" : "Stop";
+        public string StartText => State == RecorderState.Ready ? "Start" : "Stop";
 
         /// <summary>
         /// Gets the display text of the pause button.
         /// </summary>
-        public string PauseText => Controller.State == RecorderState.Paused ? "Resume" : "Pause";
+        public string PauseText => State == RecorderState.Paused ? "Resume" : "Pause";
 
         /// <summary>
         /// Gets the display text of the play button.

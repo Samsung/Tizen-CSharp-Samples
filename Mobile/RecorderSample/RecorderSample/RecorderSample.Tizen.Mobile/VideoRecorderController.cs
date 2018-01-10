@@ -30,7 +30,9 @@ namespace RecorderSample.Tizen.Mobile
         {
             _camera = new Camera(CameraDevice.Rear);
 
-            var videoCodec = RecorderVideoCodec.H264;
+            // Here, we avoid using H263 because there is a restriction on resolution.
+            var videoCodec = VideoRecorder.GetSupportedVideoCodecs().First(
+                codec => codec != RecorderVideoCodec.H263);
 
             Recorder = new VideoRecorder(_camera, videoCodec,
                 Recorder.GetSupportedAudioCodecs().First(),
