@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AudioIOSample"
+             x:Class="AudioIOSample.MainPage">
+    <ContentPage.BindingContext>
+        <local:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding CaptureState, StringFormat='Capture [{0}]'}" />
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="{Binding CaptureText}" Command="{Binding CaptureCommand}"
+                        HorizontalOptions="FillAndExpand"/>
+                <Button Text="{Binding CapturePauseText}" Command="{Binding CapturePauseCommand}"
+                        HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+            <Label Text="{Binding Size, StringFormat='Captured data size : {0} Bytes'}" />
+
+            <Label Text="{Binding PlaybackState, StringFormat='Playback [{0}]'}"
+                   Margin="0, 20, 0, 0"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="{Binding PlaybackText}" Command="{Binding PlaybackCommand}"
+                        HorizontalOptions="FillAndExpand"/>
+                <Button Text="{Binding PlaybackPauseText}" Command="{Binding PlaybackPauseCommand}"
+                        HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
