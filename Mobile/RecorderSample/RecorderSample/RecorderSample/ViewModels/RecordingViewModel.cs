@@ -35,6 +35,9 @@ namespace RecorderSample
         public RecordingViewModel(IRecorderController controller)
         {
             Controller = controller;
+
+            Title = controller is IAudioRecorderController ? "AudioRecorder" : "VideoRecorder";
+
             _saveFileInfo = new FileInfo(Controller.SavePath);
 
             if (_saveFileInfo.Exists)
@@ -76,6 +79,11 @@ namespace RecorderSample
             StartCommand.ChangeCanExecute();
             PlayCommand.ChangeCanExecute();
         }
+
+        /// <summary>
+        /// Gets the title of the page.
+        /// </summary>
+        public string Title { get; }
 
         /// <summary>
         /// Gets the controller for recorder.

@@ -26,20 +26,27 @@ namespace RecorderSample.Tizen.Mobile
     {
         private readonly Camera _camera;
 
-        public VideoRecorderController()
+        private static Recorder CreateVideoRecorder(Camera camera)
         {
-            _camera = new Camera(CameraDevice.Rear);
-
             // Here, we avoid using H263 because there is a restriction on resolution.
             var videoCodec = VideoRecorder.GetSupportedVideoCodecs().First(
                 codec => codec != RecorderVideoCodec.H263);
 
-            Recorder = new VideoRecorder(_camera, videoCodec,
+            return new VideoRecorder(camera, videoCodec,
                 Recorder.GetSupportedAudioCodecs().First(),
                 videoCodec.GetSupportedFileFormats().First());
         }
 
-        public override Recorder Recorder { get; }
+        private VideoRecorderController(Camera camera) :
+            base(CreateVideoRecorder(camera))
+        {
+            _camera = camera;
+        }
+
+        public VideoRecorderController() :
+            this(new Camera(CameraDevice.Rear))
+        {
+        }
 
         public void SetDisplay(object nativeView)
         {

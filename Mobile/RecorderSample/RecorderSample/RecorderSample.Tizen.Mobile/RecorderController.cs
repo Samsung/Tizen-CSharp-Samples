@@ -22,7 +22,12 @@ namespace RecorderSample.Tizen.Mobile
 {
     abstract class RecorderController
     {
-        public abstract Recorder Recorder { get; }
+        public Recorder Recorder { get; }
+
+        protected RecorderController(Recorder recorder)
+        {
+            Recorder = recorder;
+        }
 
         public void Prepare()
         {

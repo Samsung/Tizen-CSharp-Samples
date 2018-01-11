@@ -24,13 +24,16 @@ namespace RecorderSample.Tizen.Mobile
 {
     class AudioRecorderController : RecorderController, IAudioRecorderController
     {
-        public AudioRecorderController()
+        private static Recorder CreateAudioRecorder()
         {
-            Recorder = new AudioRecorder(Recorder.GetSupportedAudioCodecs().First(),
+            return new AudioRecorder(Recorder.GetSupportedAudioCodecs().First(),
                 Recorder.GetSupportedFileFormats().First());
         }
 
-        public override Recorder Recorder { get; }
+        public AudioRecorderController() :
+            base(CreateAudioRecorder())
+        {
+        }
 
         // No display is needed for audio recorder.
         public View CreateDisplayView() => null;
