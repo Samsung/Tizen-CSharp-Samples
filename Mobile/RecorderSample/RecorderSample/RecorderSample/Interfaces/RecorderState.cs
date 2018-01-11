@@ -1,7 +1,7 @@
 ﻿namespace RecorderSample
 {
     /// <summary>
-    /// Specifies radio states.
+    /// Specifies recorder states.
     /// </summary>
     public enum RecorderState
     {
