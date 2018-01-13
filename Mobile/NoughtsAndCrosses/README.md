@@ -1,10 +1,19 @@
 # Noughts and crosses
 
+<style>
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+</style>
 
 <table>
 <tr>
 <td>
-<center><img src='./NoughtsAndCrosses/Screenshots/IMG_0241.JPG' height=400></center>
+<center><img src='./NoughtsAndCrosses/Screenshots/IMG_0241.JPG' height=400 class="rotate90"></center>
 </td>
 </tr>
 </table>
