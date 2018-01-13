@@ -4,7 +4,7 @@
 <table>
 <tr>
 <td>
-<center><img src='./NoughtsAndCrosses/Screenshots/IMG_0241.JPG' height="400" width="240"></center>
+<center><img src='./NoughtsAndCrosses/Screenshots/IMG_0241.JPG' height=400></center>
 </td>
 </tr>
 </table>
