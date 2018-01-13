@@ -9,18 +9,19 @@ namespace NoughtsAndCrosses
 {
     public class App : Application
     {
+        public MainLayout mainLayout;
         public App()
         {
             // The root page of your application
-            MainPage = new MainLayout
-            {
-                
-            };
+            mainLayout = new MainLayout { };
+
+            MainPage = mainLayout;
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
+            mainLayout.SetLabelHelloWorld("Noughts and crosses");
         }
 
         protected override void OnSleep()

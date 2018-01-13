@@ -16,5 +16,10 @@ namespace NoughtsAndCrosses
 		{
 			InitializeComponent ();
 		}
+
+        public void SetLabelHelloWorld(string text)
+        {
+            labelHelloWorld.Text = text;
+        }
 	}
 }
