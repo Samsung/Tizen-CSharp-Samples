@@ -13,7 +13,7 @@ namespace NoughtsAndCrosses
         public App()
         {
             // The root page of your application
-            mainLayout = new MainLayout { };
+            mainLayout = new MainLayout(this) { };
 
             MainPage = mainLayout;
         }
@@ -32,6 +32,16 @@ namespace NoughtsAndCrosses
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        public void ChangeGameBoardBtnText(Button button, int row, int col)
+        {
+            button.Text = "(" + row + ", " + col + ")";
+        }
+
+        public void ChangeResetBtnText(Button button)
+        {
+            button.Text = "Resetting...";
         }
     }
 }

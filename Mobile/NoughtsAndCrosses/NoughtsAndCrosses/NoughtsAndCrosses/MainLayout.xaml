@@ -34,38 +34,56 @@
                 <Button
                     Grid.Row="0"
                     Grid.Column="0"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
                     />
                 <Button
                     Grid.Row="0"
                     Grid.Column="1"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
                     />
                 <Button
                     Grid.Row="0"
                     Grid.Column="2"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
                     />
                 <Button
                     Grid.Row="1"
                     Grid.Column="0"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
                     />
                 <Button
                     Grid.Row="1"
                     Grid.Column="1"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
                     />
                 <Button
                     Grid.Row="1"
                     Grid.Column="2"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
                     />
                 <Button
                     Grid.Row="2"
                     Grid.Column="0"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
                     />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
                     />
                 <Button
                     Grid.Row="2"
                     Grid.Column="2"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
                     />
             </Grid>
             <Button
@@ -73,6 +91,8 @@
                 Text="Reset"
                 AbsoluteLayout.LayoutFlags="All"
                 AbsoluteLayout.LayoutBounds=".0,1,1,.1"
+                Clicked="HandleGameResetBtnClick"
+                FontSize="Large"
                 />
         </AbsoluteLayout>
     </ContentPage.Content>
