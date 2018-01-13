@@ -13,11 +13,12 @@
 </table>
 
 
-### Verified Version
-* Xamarin.Forms : 
-* Xamarin.Platform.Tizen : 
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.0
+### Features
+* 간단 삼목게임
+
+### Prerequisites
+* [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
+* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/tizen-.net-preview/visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
 
 
 ### Supported Profile
