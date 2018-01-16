@@ -14,6 +14,7 @@ Tizen C# Samples for Mobile, Wearable, and TV profiles.
 ### Branch policy
 * master: ready applications for Tizen 4.0 M2
 * dev: for development
+* use LF line endings. For more infomation about automatic conversion from CRLF to LF see [Tip section](#tip)
 
 ### Sample Requirements
 * Screenshots - A folder where screen shots for the sample application are located. It is better to take screenshots for all pages and main features of the sample application (at least one screen shot of the sample). When the sample is a CrossPlatform application, you should have the another folder which is named with the platform, for example, iOS, Android, Windows or Tizen. [See here](https://github.com/Samsung/Tizen-CSharp-Samples/tree/dev/TV/Gallery/Screenshots/) for an example.
