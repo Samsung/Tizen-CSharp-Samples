@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoughtsAndCrosses.MainLayout">
+    <ContentPage.Content>
+        <AbsoluteLayout
+            BackgroundColor="White"
+            >
+            <Label
+                x:Name="labelHelloWorld"
+                AbsoluteLayout.LayoutBounds=".25,.0,.5,.1"
+                AbsoluteLayout.LayoutFlags="All"
+                Text="Hello world!"
+                FontSize="Large"
+                TextColor="Black"
+                />
+            <Grid 
+                x:Name="gameboard"
+                RowSpacing="1"
+                ColumnSpacing="1"
+                AbsoluteLayout.LayoutBounds=".5,.5,600,600"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="200" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
+                    />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
+                    />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
+                    />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
+                    />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
+                    />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
+                    />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
+                    />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
+                    />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Clicked="HandleGameBoardBtnClick"
+                    FontSize="Large"
+                    />
+            </Grid>
+            <Button
+                x:Name="btnReset"
+                Text="Reset"
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds=".0,1,1,.1"
+                Clicked="HandleGameResetBtnClick"
+                FontSize="Large"
+                />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
