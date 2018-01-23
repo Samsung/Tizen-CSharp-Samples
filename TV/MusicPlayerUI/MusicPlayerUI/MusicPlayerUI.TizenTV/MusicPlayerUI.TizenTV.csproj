@@ -39,8 +39,8 @@
     <PackageReference Include="Tizen.NET" Version="4.0.0">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0.18342" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0.91020" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MusicPlayerUI\MusicPlayerUI.csproj" />
