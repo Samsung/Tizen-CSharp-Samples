@@ -12,10 +12,13 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-
   <ItemGroup>
-    <Folder Include="Debug\" />
-    <Folder Include="lib\" />
+    <Compile Remove="Debug\**" />
+    <Compile Remove="lib\**" />
+    <EmbeddedResource Remove="Debug\**" />
+    <EmbeddedResource Remove="lib\**" />
+    <None Remove="Debug\**" />
+    <None Remove="lib\**" />
   </ItemGroup>
 
 
@@ -26,8 +29,8 @@
     <PackageReference Include="Tizen.NET" Version="4.0.0">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0.18342" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0.91020" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gallery\Gallery.csproj" />
