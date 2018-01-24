@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:SystemInfo.ViewModel;assembly=SystemInfo"
+             xmlns:utils="clr-namespace:SystemInfo.Utils;assembly=SystemInfo"
+             xmlns:converter="clr-namespace:SystemInfo.Converter;assembly=SystemInfo"
+             x:Class="SystemInfo.Tizen.TV.View.BatteryPage"
+             Title="Battery">
+
+    <ContentPage.BindingContext>
+        <viewModel:BatteryViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <converter:PercentToDoubleConverter x:Key="PercentToDoubleConverter" />
+            <converter:NumberToDisplayPercentConverter x:Key="NumberToDisplayPercentConverter" />
+
+            <DataTemplate x:Key="StandardTemplate">
+                <ViewCell IsEnabled="False">
+                    <Grid HeightRequest="162">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label Text="{Binding Title}"
+                               Grid.Column="0"
+                               Grid.Row="1"
+                               Margin="10"
+                               TextColor="White" />
+                        <Label Text="{Binding Description}"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               Margin="10"
+                               TextColor="White" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="ProgressBarTemplate">
+                <ViewCell IsEnabled="False">
+                    <AbsoluteLayout HeightRequest="162">
+                        <Label Text="{Binding Title}"
+                               FontFamily="BreezeSans-Light"
+                               TextColor="White"
+                               AbsoluteLayout.LayoutBounds="10,24,406,54" />
+                        <Label x:Name="DescLabel"
+                               Text="{Binding Description, Converter={StaticResource NumberToDisplayPercentConverter}}"
+                               AbsoluteLayout.LayoutBounds="742,24,218,54"
+                               HorizontalTextAlignment="End"
+                               FontFamily="BreezeSans-Regular"
+                               TextColor="White" />
+                        <ProgressBar AbsoluteLayout.LayoutBounds="32,90,956,43"
+                                     Progress="{Binding Description, Converter={StaticResource PercentToDoubleConverter}}" />
+                    </AbsoluteLayout>
+                </ViewCell>
+            </DataTemplate>
+
+            <utils:ListItemTemplateSelector x:Key="ListItemTemplateSelector"
+                                            StandardTemplate="{StaticResource StandardTemplate}"
+                                            ProgressBarTemplate="{StaticResource ProgressBarTemplate}" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ListView ItemTemplate="{StaticResource ListItemTemplateSelector}"
+              ItemsSource="{Binding ItemList}" />
+
+</ContentPage>

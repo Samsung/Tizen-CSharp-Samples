@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:SystemInfo.ViewModel;assembly=SystemInfo"
+             xmlns:control="clr-namespace:SystemInfo.Tizen.TV.Control;assembly=SystemInfo.Tizen.TV"
+             x:Class="SystemInfo.Tizen.TV.View.OtherPage"
+             Title="Other">
+    <ContentPage.BindingContext>
+        <viewModel:OtherViewModel />
+    </ContentPage.BindingContext>
+    <Grid RowSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1440" />
+            <ColumnDefinition Width="480" />
+        </Grid.ColumnDefinitions>
+
+        <ListView ItemsSource="{Binding PropertiesCollection}"
+                  Grid.Row="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}"
+                              Command="{Binding OnTap}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <control:SideStatusControl Grid.Column="1" />
+    </Grid>
+
+</ContentPage>
