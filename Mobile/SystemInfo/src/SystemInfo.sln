@@ -1,0 +1,35 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemInfo", "SystemInfo\SystemInfo\SystemInfo.csproj", "{296E8D9C-231F-4992-B55D-120495C75333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemInfo.Tizen.Mobile", "SystemInfo\SystemInfo.Tizen.Mobile\SystemInfo.Tizen.Mobile.csproj", "{95CA2A91-A2DF-46CE-A7F5-A182B1B13A04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{296E8D9C-231F-4992-B55D-120495C75333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{296E8D9C-231F-4992-B55D-120495C75333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{296E8D9C-231F-4992-B55D-120495C75333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{296E8D9C-231F-4992-B55D-120495C75333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15AB0B98-EDE5-4649-A703-B97FE773574E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15AB0B98-EDE5-4649-A703-B97FE773574E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15AB0B98-EDE5-4649-A703-B97FE773574E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15AB0B98-EDE5-4649-A703-B97FE773574E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95CA2A91-A2DF-46CE-A7F5-A182B1B13A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95CA2A91-A2DF-46CE-A7F5-A182B1B13A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95CA2A91-A2DF-46CE-A7F5-A182B1B13A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95CA2A91-A2DF-46CE-A7F5-A182B1B13A04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4865663-77A6-49FF-BEFA-759E6C558CFC}
+	EndGlobalSection
+EndGlobal
