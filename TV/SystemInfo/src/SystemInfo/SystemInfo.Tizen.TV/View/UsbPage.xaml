@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:SystemInfo.ViewModel;assembly=SystemInfo"
+             x:Class="SystemInfo.Tizen.TV.View.UsbPage"
+             Title="Usb">
+
+    <ContentPage.BindingContext>
+        <viewModel:UsbViewModel />
+    </ContentPage.BindingContext>
+
+    <ListView ItemsSource="{Binding ItemList}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell IsEnabled="False">
+                    <Grid HeightRequest="162">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label Text="{Binding Title}"
+                               Grid.Column="0"
+                               Grid.Row="1"
+                               Margin="10"
+                               TextColor="White" />
+                        <Label Text="{Binding Description}"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               Margin="10"
+                               TextColor="White" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>

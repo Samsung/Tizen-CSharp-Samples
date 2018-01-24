@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:SystemInfo.Control;assembly=SystemInfo"
+             xmlns:viewModel="clr-namespace:SystemInfo.ViewModel;assembly=SystemInfo"
+             x:Class="SystemInfo.Tizen.TV.Control.SideStatusControl">
+    <ContentView.BindingContext>
+        <viewModel:FooterViewModel />
+    </ContentView.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <control:ImageIndicatorControl Grid.Row="0"
+                                       ImageSource="icon_01.png"
+                                       Title="Battery"
+                                       Value="{Binding BatteryPercent}" />
+        <control:ImageIndicatorControl Grid.Row="1"
+                                       ImageSource="icon_02.png"
+                                       Title="Brightness"
+                                       Value="{Binding DisplayPercent}" />
+    </Grid>
+</ContentView>
