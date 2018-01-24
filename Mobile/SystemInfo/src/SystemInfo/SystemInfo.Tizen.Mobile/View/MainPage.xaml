@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:view="clr-namespace:SystemInfo.Tizen.Mobile.View;assembly=SystemInfo.Tizen.Mobile"
+            x:Class="SystemInfo.Tizen.Mobile.View.MainPage"
+            Title="System Info">
+    <view:PropertyPage />
+    <view:OtherPage />
+</TabbedPage>

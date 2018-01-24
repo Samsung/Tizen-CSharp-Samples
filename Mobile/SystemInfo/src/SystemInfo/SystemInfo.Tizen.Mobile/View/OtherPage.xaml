@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:SystemInfo.Control;assembly=SystemInfo"
+             xmlns:viewModel="clr-namespace:SystemInfo.ViewModel;assembly=SystemInfo"
+             x:Class="SystemInfo.Tizen.Mobile.View.OtherPage"
+             Title="Other">
+  <ContentPage.BindingContext>
+    <viewModel:OtherViewModel />
+  </ContentPage.BindingContext>
+  <Label Text="Other Page"
+         VerticalOptions="Center"
+         HorizontalOptions="Center" />
+  <Grid RowSpacing="0">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="77*" />
+      <RowDefinition Height="25*" />
+    </Grid.RowDefinitions>
+
+    <ListView ItemsSource="{Binding PropertiesCollection}"
+              Grid.Row="0">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding Title}"
+                    Command="{Binding OnTap}" />
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+    <control:FooterControl Grid.Row="1" />
+  </Grid>
+</ContentPage>
