@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2008
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScreenMirroringSample", "ScreenMirroringSample\ScreenMirroringSample\ScreenMirroringSample.csproj", "{15936489-3CA9-4324-95F3-995032C28912}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScreenMirroringSample.Tizen.Mobile", "ScreenMirroringSample\ScreenMirroringSample.Tizen.Mobile\ScreenMirroringSample.Tizen.Mobile.csproj", "{424F583A-CE22-4D5C-BCDE-FB28A22B2D87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15936489-3CA9-4324-95F3-995032C28912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15936489-3CA9-4324-95F3-995032C28912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15936489-3CA9-4324-95F3-995032C28912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15936489-3CA9-4324-95F3-995032C28912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{424F583A-CE22-4D5C-BCDE-FB28A22B2D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{424F583A-CE22-4D5C-BCDE-FB28A22B2D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{424F583A-CE22-4D5C-BCDE-FB28A22B2D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{424F583A-CE22-4D5C-BCDE-FB28A22B2D87}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7019D96-0868-4BC9-A913-8F2A02117F89}
+	EndGlobalSection
+EndGlobal
