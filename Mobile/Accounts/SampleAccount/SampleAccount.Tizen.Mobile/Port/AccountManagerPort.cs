@@ -125,7 +125,8 @@ namespace AccountManager.Tizen.Port
             // Account sample need 2 privilege, account read and account write
             ArrayList PrivilegeList = new ArrayList();
             PrivilegeList.Add("http://tizen.org/privilege/account.read");
-            PrivilegeList.Add("http://tizen.org/privilege/account.write");
+            // Account.read and account.write is same ppm. So if we use both, appear same pop up 2 times. So security team guide use just one.
+            //PrivilegeList.Add("http://tizen.org/privilege/account.write");
 
             // Check and request privacy privilege if app is needed
             foreach (string list in PrivilegeList)
@@ -161,7 +162,6 @@ namespace AccountManager.Tizen.Port
         /// <param name="e"></param>
         private static void PPM_RequestResponse(object sender, RequestResponseEventArgs e)
         {
-            Console.WriteLine("[SJS TEST][Tizen] PPM_RequestResponse");
             if (e.cause == CallCause.Answer)
             {
                 switch (e.result)
