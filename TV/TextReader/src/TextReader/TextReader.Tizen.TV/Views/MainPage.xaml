@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TextReader.ViewModels;assembly=TextReader"
+             xmlns:converters="clr-namespace:TextReader.Converters;assembly=TextReader"
+             xmlns:controls="clr-namespace:TextReader.Controls;assembly=TextReader"
+             x:Class="TextReader.Tizen.TV.Views.MainPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:TextReaderViewModel x:Name="MainContext" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ActiveColor"
+                   x:FactoryMethod="FromRgb">
+                <x:Arguments>
+                    <x:Int32>74</x:Int32>
+                    <x:Int32>164</x:Int32>
+                    <x:Int32>178</x:Int32>
+                </x:Arguments>
+            </Color>
+
+            <Color x:Key="TextColor"
+                   x:FactoryMethod="FromRgb">
+                <x:Arguments>
+                    <x:Int32>115</x:Int32>
+                    <x:Int32>115</x:Int32>
+                    <x:Int32>115</x:Int32>
+                </x:Arguments>
+            </Color>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="White"></Setter>
+            </Style>
+
+            <Style x:Key="Paragraph"
+                   TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="White"></Setter>
+                <Setter Property="Padding"
+                        Value="32, 50, 32, 50"></Setter>
+            </Style>
+
+            <Style x:Key="ParagraphLabel"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="90"></Setter>
+                <Setter Property="TextColor"
+                        Value="{StaticResource TextColor}"></Setter>
+            </Style>
+
+            <converters:BoolToStringConverter x:Key="ActiveStateToRepeatUnitText">
+                <x:Arguments>
+                    <x:String>Repeat unit: On</x:String>
+                    <x:String>Repeat unit: Off</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <converters:BoolToStringConverter x:Key="ActiveStateToRepeatAllText">
+                <x:Arguments>
+                    <x:String>Repeat all: On</x:String>
+                    <x:String>Repeat all: Off</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <converters:BoolToStringConverter x:Key="PlayStateToPlayPauseText">
+                <x:Arguments>
+                    <x:String>Pause</x:String>
+                    <x:String>Play</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <controls:DialogConfirm x:Key="ResetConfirmationDialog"
+                                    Title="Reset Confirmation"
+                                    Message="Are you sure you want to reset this app to default screen?"
+                                    ExecuteCommand="{Binding ResetConfirmationDialogCommand}"
+                                    ConfirmCommand="{Binding ResetConfirmedCommand}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Orientation="Horizontal">
+        <StackLayout WidthRequest="400"
+                     Padding="20, 20, 20, 20"
+                     BackgroundColor="#ededed">
+            <Button Text="{Binding Playing, Converter={StaticResource PlayStateToPlayPauseText}}"
+                    Command="{Binding TogglePlayStateCommand}" />
+            <Button Text="Previous paragraph"
+                    Command="{Binding GoToPreviousUnitCommand}" />
+            <Button Text="Next paragraph"
+                    Command="{Binding GoToNextUnitCommand}" />
+            <Button Text="{Binding RepeatUnitActive, Converter={StaticResource ActiveStateToRepeatUnitText}}"
+                    Command="{Binding ToggleRepeatUnitCommand}" />
+            <Button Text="{Binding RepeatAllActive, Converter={StaticResource ActiveStateToRepeatAllText}}"
+                    Command="{Binding ToggleRepeatAllCommand}" />
+            <Button Text="Reset"
+                    Command="{Binding ResetCommand}" />
+        </StackLayout>
+        <ListView ItemsSource="{Binding Paragraphs}"
+                  IsPullToRefreshEnabled="False"
+                  x:Name="ParagraphsListView"
+                  SeparatorVisibility="None"
+                  HasUnevenRows="True"
+                  SelectedItem="{Binding ActiveParagraph, Mode=TwoWay}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Style="{StaticResource Paragraph}">
+                            <Label Style="{StaticResource ParagraphLabel}" Text="{Binding Text, Mode=OneWay}">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding Active, StringFormat='{0}'}" Value="True">
+                                        <Setter Property="TextColor" Value="{StaticResource ActiveColor}"></Setter>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
