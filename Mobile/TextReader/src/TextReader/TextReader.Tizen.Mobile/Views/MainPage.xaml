@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:TextReader.ViewModels;assembly=TextReader"
+             xmlns:behaviors="clr-namespace:TextReader.Behaviors;assembly=TextReader"
+             xmlns:converters="clr-namespace:TextReader.Converters;assembly=TextReader"
+             xmlns:controls="clr-namespace:TextReader.Controls;assembly=TextReader"
+             x:Class="TextReader.Tizen.Mobile.Views.MainPage"
+             Title="Text Reader"
+             NavigationPage.HasBackButton="False">
+
+    <ContentPage.BindingContext>
+        <viewmodels:TextReaderViewModel x:Name="MainContext" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="MainColor"
+                   x:FactoryMethod="FromRgb">
+                <x:Arguments>
+                    <x:Int32>74</x:Int32>
+                    <x:Int32>164</x:Int32>
+                    <x:Int32>178</x:Int32>
+                </x:Arguments>
+            </Color>
+
+            <Color x:Key="TextColor"
+                   x:FactoryMethod="FromRgb">
+                <x:Arguments>
+                    <x:Int32>115</x:Int32>
+                    <x:Int32>115</x:Int32>
+                    <x:Int32>115</x:Int32>
+                </x:Arguments>
+            </Color>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="White"></Setter>
+            </Style>
+
+            <Style x:Key="Paragraph"
+                   TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="White"></Setter>
+                <Setter Property="Padding"
+                        Value="32, 0, 32, 0"></Setter>
+            </Style>
+
+            <Style x:Key="ParagraphLabel"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="26"></Setter>
+                <Setter Property="TextColor"
+                        Value="{StaticResource TextColor}"></Setter>
+            </Style>
+
+            <Style x:Key="UnitLineImage"
+                   TargetType="Image">
+                <Setter Property="Source"
+                        Value="images/active_unit_line.png"></Setter>
+                <Setter Property="HorizontalOptions"
+                        Value="Start"></Setter>
+            </Style>
+
+            <converters:BoolToStringConverter x:Key="PlayStateToButtonImage">
+                <x:Arguments>
+                    <x:String>images/pause.png</x:String>
+                    <x:String>images/play.png</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <converters:BoolToStringConverter x:Key="PlayStateToButtonHoverImage">
+                <x:Arguments>
+                    <x:String>images/play_hover.png</x:String>
+                    <x:String>images/pause_hover.png</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <converters:BoolToStringConverter x:Key="ActiveStateToRepeatUnitImage">
+                <x:Arguments>
+                    <x:String>images/repeat_unit_hover.png</x:String>
+                    <x:String>images/repeat_unit.png</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <converters:BoolToStringConverter x:Key="ActiveStateToRepeatAllImage">
+                <x:Arguments>
+                    <x:String>images/repeat_all_hover.png</x:String>
+                    <x:String>images/repeat_all.png</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <controls:DialogConfirm x:Key="ResetConfirmationDialog"
+                                    Title="Reset Confirmation"
+                                    Message="Are you sure you want to reset this app to default screen?"
+                                    ExecuteCommand="{Binding ResetConfirmationDialogCommand}"
+                                    ConfirmCommand="{Binding ResetConfirmedCommand}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="ResetToolbarItem"
+                     Text="RESET"
+                     Command="{Binding ResetCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Spacing="0">
+        <ListView ItemsSource="{Binding Paragraphs}"
+                  IsPullToRefreshEnabled="False"
+                  x:Name="ParagraphsListView"
+                  SeparatorVisibility="None"
+                  HasUnevenRows="True"
+                  SelectedItem="{Binding ActiveParagraph, Mode=TwoWay}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Style="{StaticResource Paragraph}">
+                            <Label Style="{StaticResource ParagraphLabel}" Text="{Binding Text, Mode=OneWay}">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding Active, StringFormat='{0}'}" Value="True">
+                                        <Setter Property="TextColor" Value="{StaticResource MainColor}"></Setter>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+
+                            <StackLayout HeightRequest="54">
+                                <Image IsVisible="{Binding Active, Mode=OneWay}"
+                                       Style="{StaticResource UnitLineImage}"></Image>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.Header>
+                <StackLayout HeightRequest="32"></StackLayout>
+            </ListView.Header>
+            <ListView.Footer>
+                <StackLayout HeightRequest="32"></StackLayout>
+            </ListView.Footer>
+        </ListView>
+
+        <StackLayout HeightRequest="166"
+                     Orientation="Horizontal"
+                     BackgroundColor="{StaticResource MainColor}"
+                     Padding="32, 11, 32, 11">
+
+            <Image WidthRequest="122"
+                   Source="{Binding RepeatUnitActive, Mode=OneWay, Converter={StaticResource ActiveStateToRepeatUnitImage}}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToggleRepeatUnitCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image WidthRequest="134">
+                <Image.Behaviors>
+                    <behaviors:ImageActiveBehavior OriginalSource="images/back.png"
+                                                   ActiveSource="images/back_hover.png" />
+                </Image.Behaviors>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToPreviousUnitCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image WidthRequest="144">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TogglePlayStateCommand}" />
+                </Image.GestureRecognizers>
+                <Image.Behaviors>
+                    <behaviors:ImageActiveBehavior
+                        BindingContext="{x:Reference MainContext}"
+                        OriginalSource="{Binding Playing, Mode=OneWay, Converter={StaticResource PlayStateToButtonImage}}"
+                        ActiveSource="{Binding Playing, Mode=OneWay, Converter={StaticResource PlayStateToButtonHoverImage}}">
+                    </behaviors:ImageActiveBehavior>
+                </Image.Behaviors>
+            </Image>
+
+            <Image WidthRequest="134">
+                <Image.Behaviors>
+                    <behaviors:ImageActiveBehavior OriginalSource="images/forward.png"
+                                                   ActiveSource="images/forward_hover.png" />
+                </Image.Behaviors>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToNextUnitCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image WidthRequest="122"
+                   Source="{Binding RepeatAllActive, Mode=OneWay, Converter={StaticResource ActiveStateToRepeatAllImage}}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToggleRepeatAllCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>
