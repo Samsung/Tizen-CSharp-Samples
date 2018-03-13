@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:view-model="clr-namespace:AppInfo.ViewModels"
+             xmlns:local="clr-namespace:AppInfo.Controls"
+             xmlns:converters="clr-namespace:AppInfo.Converters"
+             x:Class="AppInfo.Views.MainPage"
+             Title="Application Info"
+             NavigationPage.HasBackButton="False">
+
+    <ContentPage.BindingContext>
+        <view-model:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:EmptyTextConverter x:Key="EmptyTextConverter" />
+            <converters:FileExistenceConverter x:Key="FileExistenceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid ColumnSpacing="0"
+          RowSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Grid.Column="0"
+                     Spacing="0">
+            <ListView ItemsSource="{Binding ApplicationCollection}"
+                      RowHeight="100"
+                      SelectedItem="{Binding SelectedApp, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell Detail="{Binding AppPackageViewModel.Version}"
+                                   ImageSource="{Binding IconPath, Converter={StaticResource FileExistenceConverter},
+                                                         ConverterParameter='default_app_icon.png', Mode=OneWay}"
+                                   Text="{Binding Label, Converter={StaticResource EmptyTextConverter},
+                                                  ConverterParameter='Unknown', Mode=OneWay}"
+                                   TextColor="White" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+
+        <AbsoluteLayout Grid.Column="1">
+            <StackLayout AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         Opacity="0"
+                         Padding="30">
+
+                <StackLayout.Triggers>
+                    <MultiTrigger TargetType="StackLayout">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding IsAppSelected, StringFormat='{0}'}"
+                                              Value="False" />
+                            <BindingCondition Binding="{Binding IsListOfAppsLoaded, StringFormat='{0}'}"
+                                              Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Opacity"
+                                Value="1" />
+                    </MultiTrigger>
+                </StackLayout.Triggers>
+
+                <Label HorizontalTextAlignment="Center"
+                       TextColor="White"
+                       VerticalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Use UP/DOWN remote control buttons to select application&#10;" />
+                            <Span Text="and press OK button to display its properties." />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <StackLayout AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         Opacity="0"
+                         Padding="30"
+                         Spacing="0">
+
+                <StackLayout.Triggers>
+                    <DataTrigger Binding="{Binding IsAppSelected, StringFormat='{0}'}"
+                                 TargetType="StackLayout"
+                                 Value="True">
+                        <Setter Property="Opacity"
+                                Value="1" />
+                    </DataTrigger>
+                </StackLayout.Triggers>
+
+                <local:ApplicationPropertyControl HasBackground="True"
+                                                  Label="Application name:"
+                                                  Value="{Binding SelectedApp.Label, Converter={StaticResource EmptyTextConverter},
+                                                                  ConverterParameter='Unknown', Mode=OneWay}" />
+                <local:ApplicationPropertyControl Label="Application ID:"
+                                                  Value="{Binding SelectedApp.ApplicationId, Mode=OneWay}" />
+                <local:ApplicationPropertyControl HasBackground="True"
+                                                  Label="Package ID:"
+                                                  Value="{Binding AppPackageViewModel.PackageId, Mode=OneWay}" />
+                <local:ApplicationPropertyControl Label="Package version:"
+                                                  Value="{Binding AppPackageViewModel.Version, Mode=OneWay}" />
+                <local:ApplicationPropertyControl HasBackground="True"
+                                                  Label="Package type:"
+                                                  Value="{Binding AppPackageViewModel.PackageType, Mode=OneWay}" />
+                <local:ApplicationPropertyControl Label="Installed storage type:"
+                                                  Value="{Binding AppPackageViewModel.InstalledStorageType, Mode=OneWay}" />
+                <local:ApplicationPropertyControl HasBackground="True"
+                                                  Label="Root path:"
+                                                  Value="{Binding AppPackageViewModel.RootPath, Mode=OneWay}" />
+                <local:ApplicationPropertyControl Label="Data size:"
+                                                  Value="{Binding AppPackageSizeInfoViewModel.PackageDataSize, Mode=OneWay}" />
+                <local:ApplicationPropertyControl HasBackground="True"
+                                                  Label="Cache size:"
+                                                  Value="{Binding AppPackageSizeInfoViewModel.PackageCacheSize, Mode=OneWay}" />
+                <local:ApplicationPropertyControl Label="Application size:"
+                                                  Value="{Binding AppPackageSizeInfoViewModel.PackageAppSize, Mode=OneWay}" />
+                <local:ApplicationPropertyControl HasBackground="True"
+                                                  Label="External data size:"
+                                                  Value="{Binding AppPackageSizeInfoViewModel.PackageExternalDataSize, Mode=OneWay}" />
+                <local:ApplicationPropertyControl Label="External cache size:"
+                                                  Value="{Binding AppPackageSizeInfoViewModel.PackageExternalCacheSize, Mode=OneWay}" />
+                <local:ApplicationPropertyControl HasBackground="True"
+                                                  Label="External application size:"
+                                                  Value="{Binding AppPackageSizeInfoViewModel.PackageExternalAppSize, Mode=OneWay}" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </Grid>
+</ContentPage>

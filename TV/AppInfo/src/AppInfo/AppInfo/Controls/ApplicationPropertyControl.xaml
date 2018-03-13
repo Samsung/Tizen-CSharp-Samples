@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppInfo.Controls.ApplicationPropertyControl">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <AbsoluteLayout>
+        <BoxView x:Name="PropertyBackground"
+                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                 AbsoluteLayout.LayoutFlags="All"
+                 BackgroundColor="White"
+                 Opacity="0" />
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     Orientation="Horizontal"
+                     Padding="6"
+                     Spacing="0">
+            <Label x:Name="LabelStr"
+                   HorizontalOptions="StartAndExpand" />
+            <Label x:Name="LabelValue"
+                   HorizontalOptions="EndAndExpand" />
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentView>
