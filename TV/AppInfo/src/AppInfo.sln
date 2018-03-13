@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppInfo", "AppInfo\AppInfo\AppInfo.csproj", "{5E930CB5-653F-4E25-94F4-EA42E3072DD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppInfo.Tizen.TV", "AppInfo\AppInfo.Tizen.TV\AppInfo.Tizen.TV.csproj", "{BB307284-BDEF-45BF-B259-491491EBB3D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E930CB5-653F-4E25-94F4-EA42E3072DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E930CB5-653F-4E25-94F4-EA42E3072DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E930CB5-653F-4E25-94F4-EA42E3072DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E930CB5-653F-4E25-94F4-EA42E3072DD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB307284-BDEF-45BF-B259-491491EBB3D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB307284-BDEF-45BF-B259-491491EBB3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB307284-BDEF-45BF-B259-491491EBB3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB307284-BDEF-45BF-B259-491491EBB3D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B8D4369-CCFD-48B8-B742-7613C35DD504}
+	EndGlobalSection
+EndGlobal
