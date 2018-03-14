@@ -7,13 +7,13 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
+            <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal" >
-                                    <Label Text="{Binding DisplayText}" HorizontalOptions="FillAndExpand" TextColor="#503026" />
+                                    <Label Text="{Binding DisplayText}" HorizontalOptions="FillAndExpand" TextColor="#503026" LineBreakMode="CharacterWrap"/>
                                     <Label Text="{Binding FileSize}" TextColor="#503026"/>
                                 </StackLayout>
                                 <Label Text="{Binding Type}" TextColor="#503026"/>
