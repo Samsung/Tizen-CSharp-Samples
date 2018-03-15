@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,13 @@
  * limitations under the License.
  */
 
-using Xamarin.Forms.Xaml;
-
 namespace PlayerSample
 {
-    /// <summary>
-    /// ContentPage for list.
-    /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListPage : PageBase
+    public interface IMediaPlayerSecurity
     {
-        public ListPage()
-        {
-            SecurityProvider.Instance.CheckPrivilege();
-            InitializeComponent();
-        }
+        /// <summary>
+        /// Check privilege.
+        /// </summary>
+        void CheckPrivilege(string privilege);
     }
 }
