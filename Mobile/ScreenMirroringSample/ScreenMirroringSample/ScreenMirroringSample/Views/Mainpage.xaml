@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ScreenMirroringSample"
+             x:Class="ScreenMirroringSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#324D5C">
+            <StackLayout>
+                <!-- Title -->
+                <StackLayout Padding="20,20,40,20">
+                    <Label TextColor="#F0CA4D" FontSize = "40" Text="ScreenMirroring Sample Application" />
+                </StackLayout>
+                <StackLayout Padding="20">
+                    <!-- Precondition -->
+                    <Label TextColor="#E37B40" FontSize = "40" Text="Precondition." />
+                    <Label FontSize="20">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Connect to source device with" ForegroundColor="#46B29D"/>
+                                <Span Text=" Wi-Fi Direct." ForegroundColor="#F53855" FontAttributes="Bold" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <!-- Step -->
+                    <Label TextColor="#E37B40" FontSize = "40" Text="Step." />
+                    <Label TextColor="#46B29D" FontSize = "20" Text="1. Touch 'PrepareCommand' Button." />
+                    <Button BackgroundColor="#F0CA4D" TextColor="#46B29D" Text="Prepare"  Command="{Binding PrepareCommand}"/>
+                    <Label TextColor="#46B29D" FontSize = "20" Text="2. Touch 'StartCommand' Button." />
+                    <Button BackgroundColor="#F0CA4D" TextColor="#46B29D" Text="Start ScreenMirroring" Command="{Binding StartCommand}" />
+                    <Label TextColor="#46B29D" FontSize = "20" Text="You can watch mirrorred screen soon." />
+                    <Label TextColor="#46B29D" FontSize = "20" Text="It is terminated within" />
+                    <Label TextColor="#F53855" FontSize = "40" Text="5seconds" />
+                    <Label TextColor="#46B29D" FontSize = "20" Text="with exit process." />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.ScreenMirroringSample.Tizen.Mobile" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.example.ScreenMirroringSample.Tizen.Mobile" exec="ScreenMirroringSample.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="false" type="dotnet" launch_mode="single">
+        <label>ScreenMirroringSample.Tizen.Mobile</label>
+        <icon>ScreenMirroringSample.Tizen.Mobile.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/wifidirect</privilege>
+        <privilege>http://tizen.org/privilege/internet</privilege>
+        <privilege>http://tizen.org/privilege/network.get</privilege>
+        <privilege>http://tizen.org/privilege/network.profile</privilege>
+        <privilege>http://tizen.org/privilege/network.set</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
+    <feature name="http://tizen.org/feature/network.wifi.direct">true</feature>
+    <feature name="http://tizen.org/feature/network.wifi.direct.display">true</feature>
+    <feature name="http://tizen.org/feature/network.wifi">true</feature>
+    <feature name="http://tizen.org/feature/network.wifi.direct.service_discovery">true</feature>
+    <feature name="http://tizen.org/feature/network.net_proxy">true</feature>
+    <feature name="http://tizen.org/feature/multimedia.raw_video">true</feature>
+</manifest>
