@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MediaContent.Controls"
+             x:Class="MediaContent.Views.FileInfoPage"
+             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppMediaContentViewModel}"
+             NavigationPage.HasNavigationBar="false"
+             Title="FileInformation">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="DeviceTitleFontSize"
+                   TargetType="Label">
+                <Setter Property="FontSize">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="40"
+                             TV="120" />
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout BackgroundColor="#3DB9CC">
+        <Label Text="FileInformation"
+               HorizontalOptions="Center"
+               Style="{StaticResource DeviceTitleFontSize}"
+               Margin="0,30,0,30" />
+        <local:FileInfoTable File="{Binding Path=SelectedFile}" />
+    </StackLayout>
+
+</ContentPage>

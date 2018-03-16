@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AbsoluteLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MediaContent.Controls;assembly=MediaContent"
+             x:Class="MediaContent.Controls.HorizontalListWithSwipe">
+
+    <ScrollView x:Name="ScrollStorages"
+                HeightRequest="200"
+                Orientation="Horizontal"
+                BackgroundColor="White"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="SizeProportional">
+        <AbsoluteLayout HorizontalOptions="Start">
+            <StackLayout x:Name="StoragesList"
+                         Orientation="Horizontal"
+                         BackgroundColor="#3DB9CC" />
+        </AbsoluteLayout>
+    </ScrollView>
+
+</AbsoluteLayout>
