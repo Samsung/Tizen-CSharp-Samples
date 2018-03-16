@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.MediaContent.Tizen.TV" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="tv" />
+    <ui-application appid="org.tizen.example.MediaContent.Tizen.TV" exec="MediaContent.Tizen.TV.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>MediaContent.Tizen.TV</label>
+        <icon>MediaContent.Tizen.TV.png</icon>
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/content.write</privilege>
+        <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        <privilege>http://tizen.org/privilege/mediastorage</privilege>
+    </privileges>
+</manifest>
