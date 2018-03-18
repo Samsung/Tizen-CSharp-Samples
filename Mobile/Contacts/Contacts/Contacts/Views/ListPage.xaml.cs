@@ -99,7 +99,7 @@ namespace Contacts.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-//            UpdateListCommand.Execute(null);
+            UpdateListCommand.Execute(null);
         }
 
         /// <summary>
