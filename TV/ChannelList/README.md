@@ -1,5 +1,5 @@
 # ChannelList
-ChannelList is a sample which demonstrates the channel list on the TV.
+ChannelList is a sample which demonstrate the channel list on the TV.
 
 ![MainPage](./Screenshots/channelMain.png)
 ![AllChannels](./Screenshots/allChannels.png)
