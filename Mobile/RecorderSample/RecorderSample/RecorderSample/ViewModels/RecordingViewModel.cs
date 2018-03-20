@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -136,6 +136,7 @@ namespace RecorderSample
             get
             {
                 _saveFileInfo.Refresh();
+
                 if (!_saveFileInfo.Exists)
                 {
                     return null;
@@ -165,9 +166,9 @@ namespace RecorderSample
         public object CameraView
         {
             set
-        {
-                if (value != null)
             {
+                if (value != null)
+                {
                     (Controller as IVideoRecorderController)?.SetDisplay(value);
                 }
             }
@@ -178,7 +179,7 @@ namespace RecorderSample
             set
             {
                 if (value != null)
-        {
+                {
                     MediaPlayer.SetDisplay(value);
                 }
             }

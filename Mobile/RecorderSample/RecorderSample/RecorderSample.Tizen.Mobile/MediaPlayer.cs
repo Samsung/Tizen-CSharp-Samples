@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -27,6 +27,8 @@ namespace RecorderSample.Tizen.Mobile
     {
         private readonly Player _player = new Player();
 
+        private MediaView _playerView;
+
         public event EventHandler Stopped;
 
         public MediaPlayer()
@@ -44,6 +46,11 @@ namespace RecorderSample.Tizen.Mobile
         {
             _player.SetSource(new MediaUriSource(path));
 
+            if (_playerView != null)
+            {
+                SetDisplay();
+            }
+
             await _player.PrepareAsync();
         }
 
@@ -56,9 +63,15 @@ namespace RecorderSample.Tizen.Mobile
             Stopped?.Invoke(this, EventArgs.Empty);
         }
 
+        private void SetDisplay()
+        {
+            _player.Display = new Display(_playerView);
+        }
+
         public void SetDisplay(object nativeView)
         {
-            _player.Display = new Display(nativeView as MediaView);
+            _playerView = nativeView as MediaView;
+            SetDisplay();
         }
 
         public int Duration => _player.StreamInfo.GetDuration();
