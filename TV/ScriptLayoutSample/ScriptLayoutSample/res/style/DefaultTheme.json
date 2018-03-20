@@ -1,0 +1,94 @@
+{
+  "constants":
+  {
+    "STYLE_DIR":"/home/owner/apps_rw/org.tizen.example.ScriptLayoutSample/res/"
+  },
+  "styles":
+  {
+    // Change an icon size, see if it gets properly re-sized
+    "RadioButton":{
+     "unselectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/RadioButton/Unselected.png"
+      },
+      "selectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/RadioButton/Selected.png"
+      },
+	  "label":
+       {
+         "visualType": "TEXT",
+         "horizontalAlignment": "CENTER",
+         "pointSize" : 8.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       }
+    },
+    "CheckBoxButton":{
+     "unselectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CheckBox/Unselected.png"
+      },
+      "selectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CheckBox/Selected.png"
+      },
+	  "label":
+       {
+         "visualType": "TEXT",
+         "horizontalAlignment": "CENTER",
+         "pointSize" : 8.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       }
+    },
+	"PushButton":
+    {
+      "autoRepeating":false,
+      "togglable":false,
+      "labelPadding":[ 12.0, 12.0, 12.0, 12.0 ],
+      "label":
+       {
+         "visualType": "TEXT",
+         "horizontalAlignment": "CENTER",
+         "pointSize" : 8.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       },
+      "unselectedBackgroundVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_25_25_25_95.9.png"
+       },
+	   "unselectedVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_25_25_25_95.9.png"
+       },
+       "selectedVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_0_129_198_100.9.png"
+       },
+	   "selectedBackgroundVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_0_129_198_100.9.png"
+       }
+    },
+    "TextLabel":
+    {
+      //"pointSize":15,
+      //"enableAutoScroll":false
+    },
+	"Title":{
+      "textColor":[ 1.0, 1.0, 1.0, 1.0],
+      "background":
+      {
+        "visualType":"COLOR",
+        "mixColor": [ 0.168, 0.568, 0.686, 1.0]
+      }
+    }
+  }
+}
