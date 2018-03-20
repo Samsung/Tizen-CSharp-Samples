@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -31,6 +31,11 @@ namespace RecorderSample.Tizen.Mobile
 
         public void Prepare()
         {
+            if (Recorder is VideoRecorder)
+            {
+                ((VideoRecorder)Recorder).VideoOrientationTag = Rotation.Rotate90;
+            }
+
             Recorder.Prepare();
         }
 
