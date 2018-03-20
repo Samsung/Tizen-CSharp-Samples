@@ -2,6 +2,8 @@
 This sample demonstrates how to use show image in Tizen.NUI. NUI supports many kinds of format of image, such as ".png", ".jpg", ".9.png", ".gif", and ".svg" files. And Mask, FittingMode and PixelArea feature are also supported in NUI ImageView.
 
 ![MainPage](./Screenshots/ImageMain.png)
+![PixelArea](./Screenshots/pixelArea.png)
+![Mask](./Screenshots/mask.png)
 
 ## License
 Copyright (c) 2017 Samsung Electronics Co., Ltd.
