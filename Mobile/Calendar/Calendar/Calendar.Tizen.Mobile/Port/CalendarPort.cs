@@ -571,7 +571,7 @@ namespace Calendar.Tizen.Port
         /// </summary>
         private TPC.CalendarList GetAlldayInstances(DateTime dt)
         {
-            TPC.CalendarList list;
+            TPC.CalendarList list = null;
 
             TPC.CalendarTime from = new TPC.CalendarTime(dt.Year, dt.Month, dt.Day, 0, 0, 0);
             TPC.CalendarTime to = new TPC.CalendarTime(dt.AddDays(1).Year, dt.AddDays(1).Month, dt.AddDays(1).Day, 0, 0, 0);
@@ -582,7 +582,14 @@ namespace Calendar.Tizen.Port
             filter.AddCondition(TPC.CalendarFilter.LogicalOperator.And,
                     InstanceLocaltimeBook.Start, TPC.CalendarFilter.IntegerMatchType.LessThan, to);
             query.SetFilter(filter);
-            list = manager.Database.GetRecordsWithQuery(query, 0, 0);
+            try
+            {
+                list = manager.Database.GetRecordsWithQuery(query, 0, 0);
+            }
+            catch (Exception)
+            {
+
+            }
             filter.Dispose();
             query.Dispose();
 

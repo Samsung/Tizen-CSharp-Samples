@@ -38,24 +38,13 @@ namespace Calendar.Models
         private static ISecurityAPIs securityAPIs;
 
         /// <summary>
-        /// calendar read privilege.
-        /// </summary>
-        private const string privilegeRead = "http://tizen.org/privilege/calendar.read";
-
-        /// <summary>
-        /// calendar write privilege.
-        /// </summary>
-        private const string privilegeWrite = "http://tizen.org/privilege/calendar.write";
-
-        /// <summary>
         /// SecurityProvider Constructor.
         /// A Constructor which will initialize the SecurityProvider instance.
         /// </summary>
-        public void CheckPrivilege()
+        public bool CheckPrivilege()
         {
             securityAPIs = DependencyService.Get<ISecurityAPIs>();
-            securityAPIs.CheckPrivilege(privilegeRead);
-            securityAPIs.CheckPrivilege(privilegeWrite);
+            return securityAPIs.CheckPrivilege();
         }
     }
 }
