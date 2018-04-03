@@ -28,6 +28,7 @@ namespace Contacts.Models
         /// <summary>
         /// Check privilege.
         /// </summary>
-        void CheckPrivilege();
+        bool CheckPrivilege();
+        event EventHandler<EventArgs> PrivilageAccepted;
     }
 }
