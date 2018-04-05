@@ -21,7 +21,7 @@ namespace RecorderSample
         /// <summary>
         /// Check privilege.
         /// </summary>
-        /// <param name="privilege"></param>
+        /// <param name="privilege">The string for privilege.</param>
         void CheckPrivilege(string privilege);
     }
 }
