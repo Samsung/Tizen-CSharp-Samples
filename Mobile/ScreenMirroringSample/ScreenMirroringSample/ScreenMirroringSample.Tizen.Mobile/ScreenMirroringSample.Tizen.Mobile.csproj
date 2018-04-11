@@ -12,13 +12,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Renderers\VideoViewRenderer.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="lib\" />
-    <Folder Include="Renderers\" />
   </ItemGroup>
 
   

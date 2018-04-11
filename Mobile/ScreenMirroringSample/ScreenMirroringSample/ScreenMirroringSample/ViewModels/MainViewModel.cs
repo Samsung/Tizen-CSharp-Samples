@@ -16,19 +16,20 @@
  using System;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using System.Threading.Tasks;
 namespace ScreenMirroringSample
 {
     
     class MainViewModel : ViewModelBase
     {
+        NavigationPage AppMainPage;
         public ICommand PrepareCommand { get; protected set; }
         public ICommand StartCommand { get; protected set; }
 
+
+
         public MainViewModel()
         {
-            ScreenMirroring.StateChanged += OnStateChanged;
             PrepareCommand = new Command(() =>
             {
                 ScreenMirroring.Prepare();
@@ -38,28 +39,10 @@ namespace ScreenMirroringSample
                 await ScreenMirroring.ConnectAsync(WiFiDirect.SourceIp);   
             });
         }
-        private async void OnStateChanged(object sender, StateEventArgs e)
-        {
-            MirroringState = (ScreenMirroringState)e.State;
-
-            switch (MirroringState)
-            {
-                case ScreenMirroringState.Connected:
-                    await ScreenMirroring.StartAsync();
-
-                    await Task.Delay(7000);
-                    ScreenMirroring.Disconnect();
-                    break;
-
-                case ScreenMirroringState.Disconnected:
-                    ScreenMirroring.Unprepare();
-                    ScreenMirroring.Dispose();
-                    break;
-            }
-        }
-
+        public View Display { get; set; }
         protected IScreenMirroring ScreenMirroring => DependencyService.Get<IScreenMirroring>();
         protected IWiFiDirect WiFiDirect => DependencyService.Get<IWiFiDirect>();
+
         private ScreenMirroringState _screenMirroringState;
         public ScreenMirroringState MirroringState
         {
@@ -69,23 +52,37 @@ namespace ScreenMirroringSample
                 if (_screenMirroringState != value)
                 {
                     _screenMirroringState = value;
-                    ScreenMirroring.State = _screenMirroringState;
+
                     OnPropertyChanged(nameof(MirroringState));
                 }
             }
         }
+        public object PlayerView
+        {
+            set
+            {                       
+                if (value != null)
+                {
+                  ScreenMirroring.SetDisplay(value);
+                }
+            }
+        }
+        public bool IsPlaying => ScreenMirroring.IsPlaying;
+        private void UpdatePage()
+        {
+            OnPropertyChanged(nameof(IsPlaying));
+        }
+
         internal async Task OnDisappearing()
         {
             if(ScreenMirroring.State == ScreenMirroringState.Playing)
-            { 
-                ScreenMirroring.StateChanged -= OnStateChanged;
+            {
                 ScreenMirroring.Disconnect();
-                var ss = Task.Run(async () => {await Task.Delay(1000); });
-                ss.Wait();
+                var timer = Task.Run(async () => { await Task.Delay(1000); });
+                timer.Wait();
                 ScreenMirroring.Unprepare();
                 ScreenMirroring.Dispose();
             }
         }
-        
     }
 }

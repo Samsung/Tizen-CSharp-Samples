@@ -21,26 +21,50 @@ using Tizen.Multimedia.Remoting;
 using System;
 using System.Threading.Tasks;
 using Tizen;
+using XamarinTizen = Xamarin.Forms.Platform.Tizen;
+using XamarinExt = Tizen.Xamarin.Forms.Extension;
 using ElmSharp;
 
 
 [assembly: Dependency(typeof(ScreenMirroringController))]
 namespace ScreenMirroringSample.Tizen.Mobile
 {
-    class ScreenMirroringController : IScreenMirroring
+    class ScreenMirroringController : EventArgs, IScreenMirroring
     {
         private const string LogTag = "Tizen.Multimedia.ScreenMirroring";
         private readonly ScreenMirroring _screenMirroring = new ScreenMirroring();
         private static Display _display;
         private Window _win;
-        private bool _flag;
+        private bool _flag = false;
         private ScreenMirroringState _state;
-
         public ScreenMirroringController()
         {
+            Log.Error(LogTag, "start ScreenMirroringController");
             _screenMirroring.StateChanged += (s, e) => StateChanged?.Invoke(this, new StateEventArgs((int)e.State));
-        }
+            this.StateChanged += OnStateChanged;
+            Log.Error(LogTag, "end ScreenMirroringController");
             
+        }
+        public async void OnStateChanged(object sender, StateEventArgs e)
+        {
+            Log.Error(LogTag, "in OnStateChanged : "+e.State);
+            _state = (ScreenMirroringState)e.State;
+
+            switch (_state)
+            {
+                case ScreenMirroringState.Connected:
+                    await StartAsync();
+
+                    await Task.Delay(7000);
+                    Disconnect();
+                    break;
+
+                case ScreenMirroringState.Disconnected:
+                    Unprepare();
+                    Dispose();
+                    break;
+            }
+        }
         public bool StateFlag
         {
             get => _flag;
@@ -49,7 +73,6 @@ namespace ScreenMirroringSample.Tizen.Mobile
                 _flag = value;
             }
         }
-
         public ScreenMirroringState State
         {
             get => _state;
@@ -58,14 +81,24 @@ namespace ScreenMirroringSample.Tizen.Mobile
                 _state = value;
             }
         }
+        public Object GetDisplay()
+        {
+            return _display;
+        }
         public event EventHandler<StateEventArgs> StateChanged;
-        
 
         public async Task ConnectAsync(string sourceIp)
         {
+            Log.Error(LogTag, "start ConnectAsync");
             await _screenMirroring.ConnectAsync(sourceIp);
+            Log.Error(LogTag, "end ConnectAsync");
         }
-        
+
+        public void SetDisplay(object nativeView)
+        {
+            Log.Error(LogTag, "start SetDisplay");
+            _display = new Display(nativeView as MediaView);
+        }
 
         public static Display Display
         {
@@ -76,20 +109,39 @@ namespace ScreenMirroringSample.Tizen.Mobile
         {
             try
             {
-                _win = new ElmSharp.Window("Overlay_Window");
+                Log.Error(LogTag, "start Prepare");
+                _win = new Window("OverlayDisplay");
                 _display = new Multimedia.Display(_win);
+                if (_display == null)
+                {
+                    Log.Error(LogTag,"Display cannot be null!");
+                }
                 _screenMirroring.Prepare(_display);
+                Log.Error(LogTag, "Display2::::::" + _display);
+                Log.Error(LogTag, "end Prepare");
             }
             catch (Exception e)
             {
                 Log.Error(LogTag, "PrePare error : " + e.Message);
             }
         }
+        public void Destroy()
+        {
+            Log.Error(LogTag, "start Destroy");
+            _screenMirroring.Dispose();
+            Log.Error(LogTag, "end Destroy");
 
+        }
+        public void Dispose()
+        {
+            _screenMirroring.Dispose();
+            _win.Hide();
+        }
         public void Disconnect()
         {
             try
             {
+                Log.Error(LogTag, "start Disconnects");
                 _screenMirroring.Disconnect();
             }
             catch(Exception e)
@@ -97,18 +149,15 @@ namespace ScreenMirroringSample.Tizen.Mobile
                 Log.Error(LogTag, e.ToString());
             }
         }
-        public void Dispose()
-        {
-            _screenMirroring.Dispose();
-            _win.Hide();
 
-        }
         public async Task StartAsync()
         {
             try
             { 
+                Log.Error(LogTag, "start StartAsync");
                 await _screenMirroring.StartAsync();
                 _win.Show();
+                Log.Error(LogTag, "end StartAsync");
             }
             catch (Exception e)
             {
@@ -120,17 +169,15 @@ namespace ScreenMirroringSample.Tizen.Mobile
         {
             try
             {
-                _screenMirroring.Unprepare();
-            }
-            catch (Exception e)
+            Log.Error(LogTag, "start Unprepare");
+            _screenMirroring.Unprepare();
+            Log.Error(LogTag, "end Unprepare");
+            }catch(Exception e)
             {
                 Log.Error(LogTag, "Unprepare error : " + e.Message);
             }
         }
-        public void PrintStateLog(string name)
-        {
-            Log.Error(LogTag, "API: " + name + "State: " + State);
-        }
+
         public bool IsPlaying => _flag;
     }
 }

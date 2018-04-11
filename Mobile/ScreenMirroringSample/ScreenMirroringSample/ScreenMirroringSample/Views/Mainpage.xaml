@@ -37,6 +37,17 @@
                     <Label TextColor="#46B29D" FontSize = "20" Text="It is terminated within" />
                     <Label TextColor="#F53855" FontSize = "40" Text="5seconds" />
                     <Label TextColor="#46B29D" FontSize = "20" Text="with exit process." />
+	                <StackLayout ><!--
+		                <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+		                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                    <local:VideoView 
+		                         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+		                         IsVisible="True"
+		                         NativeView="{Binding PlayerView, Mode=OneWayToSource}" />
+                                </StackLayout>
+		                </AbsoluteLayout>
+                        -->
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

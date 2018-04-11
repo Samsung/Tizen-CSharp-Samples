@@ -26,20 +26,18 @@ namespace ScreenMirroringSample
     public partial class MainPage : ContentPage
     {
         NavigationPage AppMainPage;
-       
+
         public MainPage(NavigationPage page)
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this,false);
+            NavigationPage.SetHasNavigationBar(this, false);
             AppMainPage = page;
-
         }
         protected override async void OnDisappearing()
         {
             await ((BindingContext as MainViewModel).OnDisappearing());
-            var tt = Task.Run(async () => { await Task.Delay(2000); });
+            var timer = Task.Run(async () => { await Task.Delay(2000); });
             base.OnDisappearing();
         }
     }
-
 }

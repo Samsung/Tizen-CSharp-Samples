@@ -18,6 +18,7 @@ namespace ScreenMirroringSample.Tizen.Mobile
         public static string LogTag = "Tizen.Multimedia.ScreenMirroring";
         protected override void OnElementChanged(ElementChangedEventArgs<VideoView> e)
         {
+            Log.Error(LogTag, "start OnElementChanged");
             if (_mediaView == null | _display == null)
             {
                 _mediaView = new MediaView(Forms.Context.MainWindow);

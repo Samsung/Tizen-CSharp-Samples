@@ -47,18 +47,23 @@ namespace ScreenMirroringSample
         Task ConnectAsync(string sourceIp);
 
         Task StartAsync();
-        void Prepare();
+        Object GetDisplay();
+        //void Prepare();
         void Disconnect();
 
         void Unprepare();
 
+        void Destroy();
+
         void Dispose();
 
         event EventHandler<StateEventArgs> StateChanged;
-        
-        bool StateFlag { get; set; }
 
+        void SetDisplay(object value);
+        bool StateFlag { get; set; }
         ScreenMirroringState State { get; set; }
+
+        void Prepare();
     }
     public class StateEventArgs : EventArgs
     {
@@ -70,11 +75,9 @@ namespace ScreenMirroringSample
         {
             State = state;
         }
-
         /// <summary>
         /// Gets the message.
         /// </summary>
-        public int State { get; }
-        
+        public int State { get; set; }
     }
 }
