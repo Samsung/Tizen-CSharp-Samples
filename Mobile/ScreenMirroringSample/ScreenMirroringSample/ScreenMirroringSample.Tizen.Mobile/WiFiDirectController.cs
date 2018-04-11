@@ -45,6 +45,8 @@ namespace ScreenMirroringSample.Tizen.Mobile
             WiFiDirectManager.PeerFound -= EventHandlerPeerFound;
         }
 
+        //FIXME. 
+        //For Wi-Fi Direct connection, it is needed.
         public async Task DoConnection()
         {
             //s_peer.ConnectionStateChanged += EventHandlerConnectionState;

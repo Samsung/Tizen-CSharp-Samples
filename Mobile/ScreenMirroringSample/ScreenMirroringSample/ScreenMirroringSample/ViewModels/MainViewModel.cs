@@ -22,7 +22,6 @@ namespace ScreenMirroringSample
     
     class MainViewModel : ViewModelBase
     {
-        NavigationPage AppMainPage;
         public ICommand PrepareCommand { get; protected set; }
         public ICommand StartCommand { get; protected set; }
 

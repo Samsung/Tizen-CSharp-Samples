@@ -47,8 +47,9 @@ namespace ScreenMirroringSample
         Task ConnectAsync(string sourceIp);
 
         Task StartAsync();
+
         Object GetDisplay();
-        //void Prepare();
+
         void Disconnect();
 
         void Unprepare();
