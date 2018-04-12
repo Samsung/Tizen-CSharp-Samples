@@ -29,6 +29,7 @@ namespace ScreenMirroringSample
 
         public MainPage(NavigationPage page)
         {
+            ScreenMirroringSecurityProvider.CheckPrivilege();
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             AppMainPage = page;
