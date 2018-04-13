@@ -31,9 +31,7 @@
                                 ConverterParameter={x:Static local:MediaPlayerState.Idle}}" />
 
                 <Button Text="{Binding PauseText}" Command="{Binding PauseCommand}"
-                        IsEnabled="{Binding IsStarted}"
-                        IsVisible="{Binding PlayerState, Converter={StaticResource stateToBoolInverter},
-                                ConverterParameter={x:Static local:MediaPlayerState.Idle}}"/>
+                        IsVisible="{Binding IsStarted}"/>
 
                 <Button Text="&lt;&lt;" Command="{Binding SeekBackwardCommand}"
                         IsEnabled="{Binding IsSeekable}"
@@ -51,8 +49,8 @@
                                 ConverterParameter={x:Static local:MediaPlayerState.Preparing}}"/>
 
                 <Button Text="StreamInfo" Command="{Binding StreamInfoCommand}"
-                        IsVisible="{Binding PlayerState, Converter={StaticResource stateToBoolInverter},
-                                ConverterParameter={x:Static local:MediaPlayerState.Idle}}"/>
+                        IsVisible="true"
+                        IsEnabled="{Binding IsReady}}"/>
             </StackLayout>
 
             <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
