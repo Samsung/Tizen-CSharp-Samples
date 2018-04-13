@@ -1,7 +1,7 @@
 # Calendar Component
 Calendar Component is a sample application which demonstrates how to use Tizen.Xamarin.Forms.Extension.CalendarView
 
-![Main page - overview](./screenshots/screenshot_1.png)
+![Main page - overview](./Screenshots/screenshot_1.png)
 
 ### Features
 * Calendar component with additional navigation.
