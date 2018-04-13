@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:BasicCalculator.ViewModels;assembly=BasicCalculator"
+             x:Class="BasicCalculator.Tizen.TV.Views.TvMainView">
+
+    <ContentPage.BindingContext>
+        <viewModels:CalculatorViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseButton"
+                   TargetType="Button">
+                <Setter Property="TextColor"
+                        Value="Black" />
+                <Setter Property="BorderRadius"
+                        Value="10" />
+                <Setter Property="FontSize"
+                        Value="76" />
+                <Setter Property="FontFamily"
+                        Value="BreezeSans-Regular" />
+            </Style>
+            <Style x:Key="ClearButton"
+                   TargetType="Button"
+                   BasedOn="{StaticResource BaseButton}">
+                <Setter Property="BackgroundColor"
+                        Value="#2564A4" />
+            </Style>
+            <Style x:Key="FunctionButton"
+                   TargetType="Button"
+                   BasedOn="{StaticResource BaseButton}">
+                <Setter Property="BackgroundColor"
+                        Value="#3BC3B5" />
+            </Style>
+            <Style x:Key="NumberButton"
+                   TargetType="Button"
+                   BasedOn="{StaticResource BaseButton}">
+                <Setter Property="BackgroundColor"
+                        Value="#3DB9CC" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="White"
+                        Margin="600, 0, 600, 0">
+            <Image Source="bg_01.png"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 512"
+                   AbsoluteLayout.LayoutFlags="WidthProportional" />
+            <Label Text="{Binding EnteredExpression}"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 240"
+                   AbsoluteLayout.LayoutFlags="WidthProportional"
+                   Margin="32"
+                   VerticalOptions="End"
+                   LineBreakMode="CharacterWrap"
+                   HeightRequest="340"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="End"
+                   TextColor="Black"
+                   FontSize="136"
+                   FontFamily="BreezeSans-Light" />
+            <Label Text="{Binding CurrentResult}"
+                   AbsoluteLayout.LayoutBounds="0, 188, 1, 112"
+                   AbsoluteLayout.LayoutFlags="WidthProportional"
+                   Margin="26"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Start"
+                   TextColor="DarkSlateGray"
+                   FontSize="64"
+                   FontAttributes="None"
+                   FontFamily="BreezeSans-Regular" />
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 277, 1, 800"
+                         AbsoluteLayout.LayoutFlags="WidthProportional"
+                         Padding="32"
+                         BackgroundColor="#c3ecf2">
+                <Grid RowSpacing="32"
+                      ColumnSpacing="24"
+                      VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Text="C"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{StaticResource ClearButton}"
+                        Command="{Binding ClearInputCommand}" />
+                    <Button Text="+/-"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{StaticResource FunctionButton}"
+                        Command="{Binding ChangeSignCommand}" />
+                    <Button Text="%"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Style="{StaticResource FunctionButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="%" />
+                    <Button Text="( )"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Style="{StaticResource FunctionButton}"
+                        Command="{Binding BracketCommand}" />
+                    <Button Text="DEL"
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Style="{StaticResource FunctionButton}"
+                        Command="{Binding DeleteCommand}" />
+                    <Button Text="7"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="7" />
+                    <Button Text="8"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="8" />
+                    <Button Text="9"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="9" />
+                    <Button Text="÷"
+                        Grid.Row="2"
+                        Grid.Column="3"
+                        Style="{StaticResource FunctionButton}"
+                        Command="{Binding AppendOperatorCommand}"
+                        CommandParameter="÷" />
+                    <Button Text="4"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="4" />
+                    <Button Text="5"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="5" />
+                    <Button Text="6"
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="6" />
+                    <Button Text="×"
+                        Grid.Row="3"
+                        Grid.Column="3"
+                        Style="{StaticResource FunctionButton}"
+                        Command="{Binding AppendOperatorCommand}"
+                        CommandParameter="×" />
+                    <Button Text="1"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="1" />
+                    <Button Text="2"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="2" />
+                    <Button Text="3"
+                        Grid.Row="4"
+                        Grid.Column="2"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="3" />
+                    <Button Text="-"
+                        Grid.Row="4"
+                        Grid.Column="3"
+                        Style="{StaticResource FunctionButton}"
+                        Command="{Binding AppendOperatorCommand}"
+                        CommandParameter="-" />
+                    <Button Text="."
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendDecimalPointCommand}" />
+                    <Button Text="0"
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding AppendToExpressionCommand}"
+                        CommandParameter="0" />
+                    <Button Text="="
+                        Grid.Row="5"
+                        Grid.Column="2"
+                        Style="{StaticResource NumberButton}"
+                        Command="{Binding EvaluateExpressionCommand}" />
+                    <Button Text="+"
+                        Grid.Row="5"
+                        Grid.Column="3"
+                        Style="{StaticResource FunctionButton}"
+                        Command="{Binding AppendOperatorCommand}"
+                        CommandParameter="+" />
+                </Grid>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
