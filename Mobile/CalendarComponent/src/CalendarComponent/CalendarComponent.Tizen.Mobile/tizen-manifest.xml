@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.CalendarComponent.Tizen.Mobile" version="1.0.0">
+	<profile name="common" />
+	<ui-application appid="org.tizen.example.CalendarComponent.Tizen.Mobile"
+					exec="CalendarComponent.Tizen.Mobile.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+  <label>CalendarComponent.Tizen.Mobile</label>
+	<icon>CalendarComponent.Tizen.Mobile.png</icon>
+	</ui-application>
+</manifest>

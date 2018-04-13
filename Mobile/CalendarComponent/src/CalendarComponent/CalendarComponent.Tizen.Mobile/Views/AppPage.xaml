@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalendarComponent.Tizen.Mobile.Views.CalendarPage"
+             NavigationPage.HasBackButton="False"
+             Title="Calendar">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="TODAY"
+                     Order="Primary"
+                     Command="{Binding GoToday}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="VerticalOptions"
+                        Value="FillAndExpand" />
+                <Setter Property="HorizontalOptions"
+                        Value="FillAndExpand" />
+                <Setter Property="FontSize"
+                        Value="26" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Spacing="0">
+        <StackLayout HeightRequest="340"
+                     VerticalOptions="Start">
+            <AbsoluteLayout HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            AbsoluteLayout.LayoutFlags="All">
+                <Image Source="bg_1.png"
+                       AbsoluteLayout.LayoutBounds="0, 0, 720, 340" />
+                <Image Source="{Binding ImageFilename}"
+                       AbsoluteLayout.LayoutBounds="272, 46, 176, 194" />
+                <Label FontSize="24"
+                       TextColor="#92c8d6"
+                       FontAttributes="Bold"
+                       Text="{Binding DayName}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Fill"
+                       HorizontalOptions="Fill"
+                       AbsoluteLayout.LayoutBounds="211, 250, 300, 50" />
+            </AbsoluteLayout>
+        </StackLayout>
+        <StackLayout BackgroundColor="White"
+                     HeightRequest="830"
+                     VerticalOptions="EndAndExpand"
+                     Padding="0">
+            <StackLayout x:Name="CalendarWrapper" />
+            <Grid Padding="24, 12, 24, 12"
+                  ColumnSpacing="24"
+                  VerticalOptions="EndAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="104" />
+                </Grid.RowDefinitions>
+                <Button Text="Previous Year"
+                        Grid.Column="0"
+                        Command="{Binding GoPrevYear}" />
+                <Button Text="Next Year"
+                        Grid.Column="1"
+                        Command="{Binding GoNextYear}" />
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
