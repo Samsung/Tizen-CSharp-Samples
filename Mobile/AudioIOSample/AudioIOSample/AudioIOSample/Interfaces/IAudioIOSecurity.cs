@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
+/*
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,14 @@
  * limitations under the License.
  */
 
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 namespace AudioIOSample
 {
-    /// <summary>
-    /// The main page.
-    /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public interface IAudioIOSecurity
     {
-        public MainPage()
-        {
-            AudioIOSecurityProvider.CheckPrivilege();
-            InitializeComponent();
-        }
+        /// <summary>
+        /// Check privilege.
+        /// </summary>
+        /// <param name="privilege">The string for privilege.</param>
+        void CheckPrivilege(string privilege);
     }
 }
