@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.BasicCalculator.Tizen.TV" version="1.0.0">
+	<profile name="tv" />
+	<ui-application appid="org.tizen.example.BasicCalculator.Tizen.TV"
+					exec="BasicCalculator.Tizen.TV.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+  <label>BasicCalculator.Tizen.TV</label>
+	<icon>BasicCalculator.Tizen.TV.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+	</ui-application>
+</manifest>
