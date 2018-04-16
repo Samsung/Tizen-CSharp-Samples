@@ -26,7 +26,7 @@ namespace AudioIOSample
         private const string privilegeRecorder = "http://tizen.org/privilege/recorder";
 
         /// <summary>
-        /// Check privilege for RecorderSample.
+        /// Check privilege for AudioIOSample.
         /// </summary>
         public static void CheckPrivilege()
         {
