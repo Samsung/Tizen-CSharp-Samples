@@ -41,7 +41,7 @@ namespace Tizen.NUI
         private View targetView;
         private float accRatio;
 
-        private event EventHandler viaEventHandler;
+        private event EventHandler ViaEventHandler;
 
         /// <summary>
         /// Via event handler, user can add/remove
@@ -50,11 +50,12 @@ namespace Tizen.NUI
         {
             add
             {
-                viaEventHandler += value;
+                ViaEventHandler += value;
             }
+
             remove
             {
-                viaEventHandler -= value;
+                ViaEventHandler -= value;
             }
         }
 
@@ -74,6 +75,7 @@ namespace Tizen.NUI
                         break;
                     }
                 }
+
                 return ret;
             }
         }
@@ -113,6 +115,7 @@ namespace Tizen.NUI
                 Animation lastAni = scrollAniList.ElementAt(count - 1);
                 duration = lastAni.Duration - 300 > endDuration ? lastAni.Duration - 100 : endDuration;
             }
+
             Animation ani = new Animation(startDuration);
             ani.AnimateTo(targetView, property, destValue);
             ani.Finished += OnAnimationFinished;
@@ -165,6 +168,7 @@ namespace Tizen.NUI
                     break;
                 }
             }
+
             return ret;
         }
 
@@ -178,6 +182,7 @@ namespace Tizen.NUI
                 ani?.Stop();
                 ani?.Dispose();
             }
+
             scrollAniList.Clear();
         }
 
@@ -187,10 +192,11 @@ namespace Tizen.NUI
             {
                 return;
             }
+
             Animation ani = obj as Animation;
             scrollAniList.Remove(ani);
 
-            viaEventHandler(this, null);
+            ViaEventHandler(this, null);
             if (scrollAniList.Count != 0)
             {
                 scrollAniList[0].Play();

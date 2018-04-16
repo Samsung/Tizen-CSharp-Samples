@@ -39,6 +39,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return editMode;
             }
+
             set
             {
                 editMode = value;
@@ -94,10 +95,11 @@ namespace Tizen.NUI.MediaHub
                 footModel.Size = item.Size;
                 footModel.Format = item.Format;
                 footModel.Data = item.Data;
-                if(footView)
+                if (footView)
                 {
                     footView.Update(footModel);
                 }
+
                 Tizen.Log.Fatal("NUI", " Gridlist view onFocus change footModel.ItemType:" + footModel.ItemType);
             }
 
@@ -114,7 +116,7 @@ namespace Tizen.NUI.MediaHub
            // int itemType = GetItemType(groupIndex, itemIndex);
             object data = GetData(itemIndex, groupIndex);
             View obj = null;
-            switch(this.viewType)
+            switch (this.viewType)
             {
                 case ContentViewType.ALL:
 
@@ -122,6 +124,7 @@ namespace Tizen.NUI.MediaHub
                     obj = new AllContentThumbnailView(data, editMode);
                     break;
             }
+
             return obj;
         }
 
@@ -145,8 +148,8 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Unload item according to the type
         /// </summary>
-        /// <param name="viewType"></param>
-        /// <param name="view"></param>
+        /// <param name="viewType">the view type</param>
+        /// <param name="view">the view</param>
         public override void UnloadItemByViewType(int viewType, View view)
         {
         }
@@ -159,7 +162,7 @@ namespace Tizen.NUI.MediaHub
         /// <param name="view">the item</param>
         public override void UpdateItem(int groupIndex, int itemIndex, View view)
         {
-            Tizen.Log.Fatal("NUI", "Gridlistview UpdateItem  groupIndex:"+ groupIndex + " itemIndex:"+ itemIndex);
+            Tizen.Log.Fatal("NUI", "Gridlistview UpdateItem  groupIndex:" + groupIndex + " itemIndex:" + itemIndex);
             if (view == null)
             {
                 Tizen.Log.Fatal("NUI", "Gridlistview UpdateItem  view == null");

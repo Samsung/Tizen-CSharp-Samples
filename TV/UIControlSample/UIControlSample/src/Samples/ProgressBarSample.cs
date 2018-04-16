@@ -53,19 +53,20 @@ namespace UIControlSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 100);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 0);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
-            guide.PointSize = 15.0f;
+            //guide.PointSize = 15.0f;
+            guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "ProgressBar Sample \n";
             guide.TextColor = Color.White;
-            guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
 
             Progress progressSample = new Progress();
             progressBar = progressSample.GetProgressBar();
-            progressBar.Position = new Position(100, 500, 0);
+            progressBar.Position = new Position(100, 540, 0);
             Window.Instance.GetDefaultLayer().Add(progressBar);
 
             percentage = new TextLabel();
@@ -76,9 +77,10 @@ namespace UIControlSample
             percentage.PivotPoint = PivotPoint.TopLeft;
             percentage.Size2D = new Size2D(200, 80);
             percentage.FontFamily = "Samsung One 400";
-            percentage.Position2D = new Position2D(1700, 400);
+            percentage.Position2D = new Position2D(1700, 440);
             percentage.MultiLine = false;
-            percentage.PointSize = 10.0f;
+            percentage.PointSize = DeviceCheck.PointSize10;
+            //percentage.PointSize = 10.0f;
             percentage.Text = (progressBar.ProgressValue * 100).ToString() + "%";
             percentage.TextColor = Color.White;
             Window.Instance.GetDefaultLayer().Add(percentage);
@@ -88,7 +90,7 @@ namespace UIControlSample
             Timer timer = new Timer(50);
             timer.Tick += (obj, e) =>
             {
-                if(progressBar != null)
+                if (progressBar != null)
                 {
                     float progress = (float)Math.Round(progressBar.ProgressValue, 2);
 
@@ -123,6 +125,9 @@ namespace UIControlSample
             Window.Instance.GetDefaultLayer().Remove(guide);
             guide.Dispose();
             guide = null;
+            Window.Instance.GetDefaultLayer().Remove(percentage);
+            percentage.Dispose();
+            percentage = null;
             Window.Instance.GetDefaultLayer().Remove(progressBar);
             progressBar.Dispose();
             progressBar = null;

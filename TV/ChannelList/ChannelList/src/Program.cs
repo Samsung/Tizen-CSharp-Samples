@@ -31,6 +31,7 @@ namespace ChannelList
         /// <summary>
         /// Main function.
         /// </summary>
+        /// <param name="args">args</param>
         static void Main(string[] args)
         {
             ChannelListSample sample = new ChannelListSample();

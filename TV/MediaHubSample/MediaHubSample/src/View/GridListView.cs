@@ -41,7 +41,7 @@ namespace Tizen.NUI.MediaHub
         /// <param name="isInEdit">The flag show whether the grid is in edit state or not</param>
         public GridListView(View parentView, int viewType, bool isInEdit = false)
         {
-            Tizen.Log.Fatal("NUI", "GridListView viewType:"+ viewType);
+            Tizen.Log.Fatal("NUI", "GridListView viewType:" + viewType);
             this.parentView = parentView;
             this.parentView.Focusable = true;
             this.viewType = viewType;
@@ -88,7 +88,7 @@ namespace Tizen.NUI.MediaHub
         /// </summary>
         /// <param name="dataList">The data source</param>
         /// <param name="groupList">The group</param>
-        public void createList(List<object> dataList, List<object> groupList = null)
+        public void CreateList(List<object> dataList, List<object> groupList = null)
         {
             Tizen.Log.Fatal("NUI", "[ListView]createList ");
 
@@ -122,9 +122,11 @@ namespace Tizen.NUI.MediaHub
                 {
                     col += 1;
                 }
+
                 gridList.AddRegularGrid(col, 2, 218, 298,0);
                 bridge = new GridListDataBridge(dataList, this.viewType, isInEdit);
             }
+
             parentView.Add(gridList);
         
             gridList.KeyEvent += OnGridListViewKeyEventHandler;
@@ -137,10 +139,10 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Set the edit status
         /// </summary>
-        /// <param name="status"></param>
+        /// <param name="status">the status</param>
         public void SetEditStatus(bool status)
         {
-            if(bridge != null)
+            if (bridge != null)
             {
                 bridge.EditMode = true;
             }
@@ -151,7 +153,7 @@ namespace Tizen.NUI.MediaHub
         /// </summary>
         /// <param name="source">The sender object</param>
         /// <param name="e">The keyEvent args</param>
-        /// <returns></returns>
+        /// <returns>return whether the key has been customed or not</returns>
         private bool OnGridListViewKeyEventHandler(object source, View.KeyEventArgs e)
         {
             Tizen.Log.Fatal("NUI", "[GridListView.cs@OnLinerKeyEventHandler]e.Key.State : " + e.Key.State + ";  e.Key.KeyPressedName : " + e.Key.KeyPressedName);
@@ -194,6 +196,7 @@ namespace Tizen.NUI.MediaHub
                         {
                             view.Move(e.Key.KeyPressedName);
                         }
+
                         break;
                     case "Return":
                         // Ok key
@@ -209,6 +212,7 @@ namespace Tizen.NUI.MediaHub
                         break;
                 }
             }
+
             return ret;
         }
 

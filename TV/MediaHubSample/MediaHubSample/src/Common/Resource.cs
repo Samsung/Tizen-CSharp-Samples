@@ -51,6 +51,7 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// The path of the image resource.
         /// </summary>
+        /// <returns>return the path of the resource</returns>
         public static string GetLocalReosurceURL()
         {
             return @"/home/owner/apps_rw/org.tizen.example.MediaHubSample/res/images/mediaHub/";
@@ -81,6 +82,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return bgView;
             }
+
             set
             {
                 bgView = value;
@@ -96,6 +98,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return footView;
             }
+
             set
             {
                 footView = value;
@@ -111,6 +114,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return dataList;
             }
+
             set
             {
                 dataList = value;
@@ -126,6 +130,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return photoDataList;
             }
+
             set
             {
                 photoDataList = value;
@@ -141,6 +146,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return videoDataList;
             }
+
             set
             {
                 videoDataList = value;
@@ -156,6 +162,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return musicDataList;
             }
+
             set
             {
                 musicDataList = value;

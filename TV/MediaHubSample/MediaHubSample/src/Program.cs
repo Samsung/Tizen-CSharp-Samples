@@ -29,7 +29,6 @@ namespace Tizen.NUI.MediaHub
     {
         private View bgView;
         private HeadView headView;
-        private MainPage mainPage;
         private IExample currentSample;
         private bool isHomePageFlag = true;
 
@@ -97,24 +96,24 @@ namespace Tizen.NUI.MediaHub
         private void CreateBGImage()
         {
             bgView = new View();
-            bgView.Size = new Size(1920, 1080, 0);
+            bgView.Size2D = new Size2D(1920, 1080);
             bgView.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
             bgView.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
             bgView.Position = new Position(0, 0, 0);
 
-            string mcBgPath = CommonResource.GetLocalReosurceURL() + "bg/mc_main_bg.png";
-            ImageView bgImage = new ImageView(mcBgPath);
-            bgImage.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
-            bgImage.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
-            bgImage.WidthResizePolicy = ResizePolicyType.FillToParent;
-            bgImage.HeightResizePolicy = ResizePolicyType.FillToParent;
-            bgView.Add(bgImage);
-
+            //string mcBgPath = CommonResource.GetLocalReosurceURL() + "bg/mc_main_bg.png";
+            //ImageView bgImage = new ImageView(mcBgPath);
+            //bgImage.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
+            //bgImage.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
+            //bgImage.WidthResizePolicy = ResizePolicyType.FillToParent;
+            //bgImage.HeightResizePolicy = ResizePolicyType.FillToParent;
+            //bgView.Add(bgImage);
+            bgView.BackgroundColor = Color.Black;
             contentBgView = new View();
-            contentBgView.Size = new Size(1920, 710, 0);
+            contentBgView.Size2D = new Size2D(1920, 710);
             contentBgView.Position = new Position(0, 150, 0);
-            contentBgView.AnchorPoint = Tizen.NUI.AnchorPoint.TopLeft;
-            contentBgView.ParentOrigin = Tizen.NUI.AnchorPoint.TopLeft;
+            contentBgView.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
+            contentBgView.ParentOrigin = Tizen.NUI.PivotPoint.TopLeft;
             bgView.Add(contentBgView);
         }
 
@@ -139,7 +138,7 @@ namespace Tizen.NUI.MediaHub
 
             HomePageData data = new HomePageData();
             List<object> dataList = data.GetData();
-            gridListView.createList(dataList);
+            gridListView.CreateList(dataList);
             Tizen.Log.Fatal("NUI", "Create Grid for first Page!");
             gridView = gridListView.GetGridView();
             gridView.KeyEvent += DoTilePress;
@@ -153,9 +152,9 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// The call back for the KeyEvent of grid
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
-        /// <returns></returns>
+        /// <param name="source">the object</param>
+        /// <param name="e">the args of the event</param>
+        /// <returns>return whether the key has been consumed</returns>
         private bool DoTilePress(object source, View.KeyEventArgs e)
         {
             GridView gridView = source as GridView;
@@ -185,6 +184,7 @@ namespace Tizen.NUI.MediaHub
                             }
                         }
                     }
+
                     return true;
                 }
             }

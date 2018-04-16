@@ -35,11 +35,12 @@ namespace Tizen.NUI.MediaHub
 
         private void Initialize()
         {
-            for(int index = 0; index <3; index++)
+            for (int index = 0; index < 3; index++)
             {
                 ContentModel contentModel = new ContentModel(index, "Empty", "NO." + index.ToString(), ContentItemType.eItemUpFolder, index.ToString(), "", "", 1);
                 dataList.Add(contentModel);
             }
+
             ContentModel itemFolder = new ContentModel(3, "Data", "NO.3", ContentItemType.eItemFolder, "3", "", "", 2);
             dataList.Add(itemFolder);
         }

@@ -5,7 +5,7 @@ namespace Tizen.NUI.MediaHub
     /// <summary>
     /// The data struct of the item.
     /// </summary>
-    public class ContentModel: IComparable<ContentModel>
+    public class ContentModel : IComparable<ContentModel>
     {
         // base attribution
         private int index;
@@ -37,16 +37,15 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ContentModel(
-            int index,
-            string displayName, 
-            string contentTitle, 
-            int mediaItemType,
-            string contentId = "",
-            string filePath = "",
-            string data = "",
-            int folderType = -1
-            )
+        /// <param name="index">the index</param>
+        /// <param name="displayName">the display name</param>
+        /// <param name="contentTitle">the title of the content</param>
+        /// <param name="mediaItemType">the type of the media item</param>
+        /// <param name="contentId">the id of the content</param>
+        /// <param name="filePath">the file path</param>
+        /// <param name="data">the data</param>
+        /// <param name="folderType">the type of the folder</param>
+        public ContentModel(int index, string displayName, string contentTitle, int mediaItemType, string contentId = "", string filePath = "", string data = "", int folderType = -1)
         {
             this.index = index;
             this.displayName = displayName;
@@ -71,6 +70,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return 1;
             }
+
             int size1 = Convert.ToInt32(other.Size);
             int size2 = Convert.ToInt32(this.Size);
             return size1.CompareTo(size2);
@@ -148,6 +148,7 @@ namespace Tizen.NUI.MediaHub
             { 
                 return width;
             }
+
             set
             {
                 width = value;
@@ -163,6 +164,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return available;
             }
+
             set
             {
                 available = value;
@@ -178,6 +180,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return format;
             }
+
             set
             {
                 format = value;
@@ -193,6 +196,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return size;
             }
+
             set
             {
                 size = value;
@@ -208,6 +212,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return filePath;
             }
+
             set
             {
                 filePath = value;
@@ -223,6 +228,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return contentId;
             }
+
             set
             {
                 contentId = value;

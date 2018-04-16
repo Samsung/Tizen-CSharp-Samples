@@ -76,7 +76,7 @@ namespace Tizen.NUI.MediaHub
             int day = (int)myRandom.Next(0, 28);
             for (int index = 0; index < 60; index++)
             {
-                if(index == 0)
+                if (index == 0)
                 {
                     //Create some items for music
                     ContentModel contentModel = new ContentModel(index, index.ToString(), index.ToString(), ContentItemType.eItemMusic, index.ToString(), "", "", 10);
@@ -88,7 +88,7 @@ namespace Tizen.NUI.MediaHub
                     musicDataList.Add(contentModel);
                     sortedMusicList.Add(contentModel);
                 }
-                else if(index > 10 && index <=20)
+                else if (index > 10 && index <= 20)
                 {
                     //Create some items for movies
                     string path = CommonResource.GetLocalReosurceURL() + "Movies/" + (index - 10).ToString() + ".jpg";
@@ -103,12 +103,12 @@ namespace Tizen.NUI.MediaHub
                     videoDataList.Add(contentModel);
                     sortedVideoList.Add(contentModel);
                 }
-                else if(index > 53)
+                else if (index > 53)
                 {
-                    if(index % 2 == 0)
+                    if (index % 2 == 0)
                     {
                         //Create some items for music
-                        string path = CommonResource.GetLocalReosurceURL() + "Musics/" + ((index - 50)/2).ToString() + ".jpg";
+                        string path = CommonResource.GetLocalReosurceURL() + "Musics/" + ((index - 50) / 2).ToString() + ".jpg";
                         ContentModel contentModel = new ContentModel(index, index.ToString(), "NO." + index.ToString(), ContentItemType.eItemMusic, index.ToString(), path, "", 10);
                         contentModel.ThumbnailPath = path;
                         contentModel.ThumbDone = true;
@@ -134,14 +134,14 @@ namespace Tizen.NUI.MediaHub
                     }
                     
                 }
-                else if(index %4 == 0 && index %3 ==0)
+                else if (index % 4 == 0 && index % 3 == 0)
                 {
                     //Create some items for upFolder
                     ContentModel contentModel = new ContentModel(index, index.ToString(), "NO." + index.ToString(), ContentItemType.eItemUpFolder, index.ToString(), "", "", 1);
                     dataList.Add(contentModel);
                     sortedDataList.Add(contentModel);
                 }
-                else if(index %7 ==0)
+                else if (index % 7 == 0)
                 {
                     //Create some items for upFolder
                     ContentModel contentModel = new ContentModel(index, index.ToString(), "NO." + index.ToString(), ContentItemType.eItemUpFolder, index.ToString(), "", "", 2);
@@ -174,18 +174,21 @@ namespace Tizen.NUI.MediaHub
             CommonResource.SortedVideoList.Clear();
             CommonResource.SortedMusicList.Clear();
 
-            for(int index = 0; index< sortedDataList.Count; index++)
+            for (int index = 0; index < sortedDataList.Count; index++)
             {
                 CommonResource.SortedList.Add(sortedDataList[index]);
             }
+
             for (int index = 0; index < sortedPhotoList.Count; index++)
             {
                 CommonResource.SortedPhotoList.Add(sortedPhotoList[index]);
             }
+
             for (int index = 0; index < sortedVideoList.Count; index++)
             {
                 CommonResource.SortedVideoList.Add(sortedVideoList[index]);
             }
+
             for (int index = 0; index < sortedMusicList.Count; index++)
             {
                 CommonResource.SortedMusicList.Add(sortedMusicList[index]);

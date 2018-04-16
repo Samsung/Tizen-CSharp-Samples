@@ -77,6 +77,7 @@ namespace ListSample
             {
                 contentLayout.SetFitHeight(i);
             }
+
             contentLayout.SetFitWidth(0);
             Window.Instance.GetDefaultLayer().Add(contentLayout);
 
@@ -157,7 +158,8 @@ namespace ListSample
             editText.HorizontalAlignment = HorizontalAlignment.Begin;
             editText.VerticalAlignment = VerticalAlignment.Center;
             editText.TextColor = new Color(1, 1, 1, 1);
-            editText.PointSize = 8.0f;
+            //editText.PointSize = 8.0f;
+            editText.PointSize = DeviceCheck.PointSize8;
             editText.FontFamily = "SamsungOne 300";
             editText.Text = "Select";
             editText.Hide();
@@ -185,7 +187,8 @@ namespace ListSample
             titleText.Position = new Position(windowSize.Width * (0.011458f + 0.041666f + 0.010416f), 0, 0);
             titleText.HorizontalAlignment = HorizontalAlignment.Begin;
             titleText.VerticalAlignment = VerticalAlignment.Center;
-            titleText.PointSize = 48.0f;
+            //titleText.PointSize = 48.0f;
+            titleText.PointSize = DeviceCheck.PointSize10;
             titleText.TextColor = new Vector4(1, 1, 1, 1);
             titleText.FontFamily = "SamsungOne 300";
             titleBackGround.Add(titleText);
@@ -205,6 +208,7 @@ namespace ListSample
             {
                 listContentLayout.SetFitWidth(i);
             }
+
             listContentLayout.SetFitHeight(0);
             contentLayout.AddChild(listContentLayout, new TableView.CellPosition(1, 0));
 
@@ -297,6 +301,7 @@ namespace ListSample
             {
                 selectContentLayout.SetFitHeight(i);
             }
+
             selectContentLayout.SetFitWidth(0);
             selectContentLayout.Position = new Position(windowSize.Width * 0.344270f, 0, 0);
             Window.Instance.GetDefaultLayer().Add(selectContentLayout);
@@ -336,7 +341,8 @@ namespace ListSample
             selectTitleText.Position = new Position(windowSize.Width * (0.011458f + 0.041666f + 0.010416f), 0, 0);
             selectTitleText.HorizontalAlignment = HorizontalAlignment.Begin;
             selectTitleText.VerticalAlignment = VerticalAlignment.Center;
-            selectTitleText.PointSize = 48.0f;
+            //selectTitleText.PointSize = 48.0f;
+            selectTitleText.PointSize = DeviceCheck.PointSize10;
             selectTitleText.TextColor = new Vector4(1, 1, 1, 1);
             selectTitleText.FontFamily = "SamsungOne 300";
             titleBackGround.Add(selectTitleText);
@@ -482,6 +488,7 @@ namespace ListSample
                             (subListView.GetLoadedItemView(subSelectedIndex) as SubListItem).SelectedText(false);
                             (subListView.GetLoadedItemView(subSelectedIndex) as SubListItem).IconUrl = ((subListView.GetAdapter().GetData(subSelectedIndex)) as SubListData).IconN;
                         }
+
                         subSelectedIndex = preSubSelectIndex;
                         (subListView.GetLoadedItemView(subSelectedIndex) as SubListItem).SelectedText(true);
                         (subListView.GetLoadedItemView(subSelectedIndex) as SubListItem).IconUrl = ((subListView.GetAdapter().GetData(subSelectedIndex)) as SubListData).IconS;
@@ -507,6 +514,7 @@ namespace ListSample
                         {
                             (listview.GetLoadedItemView(playIndex) as ListItem).Play(false);
                         }
+
                         playIndex = listview.FocusItemIndex;
                         playProgramIndex = (listview.GetLoadedItemView(listview.FocusItemIndex) as ListItem).ProgramIndex;
                         (listview.GetLoadedItemView(listview.FocusItemIndex) as ListItem).Play(true);
@@ -523,11 +531,13 @@ namespace ListSample
                                 (listview.GetLoadedItemView(subSelectedIndex) as SubListItem).SelectedText(false);
                                 (listview.GetLoadedItemView(subSelectedIndex) as SubListItem).IconUrl = ((listview.GetAdapter().GetData(subSelectedIndex)) as SubListData).IconN;
                             }
+
                             subSelectedIndex = listview.FocusItemIndex;
                             (listview.GetLoadedItemView(subSelectedIndex) as SubListItem).SelectedText(true);
                             (listview.GetLoadedItemView(subSelectedIndex) as SubListItem).IconUrl = ((listview.GetAdapter().GetData(subSelectedIndex)) as SubListData).IconS;
                             (listview.GetAdapter() as SubListAdapter).SelectedIndex = subSelectedIndex;
                         }
+
                         SubListSelecteChanged(subSelectedIndex);
                     }
                     else if (listview == selectListView)
@@ -539,13 +549,17 @@ namespace ListSample
                     {
                         Tizen.Log.Fatal("NUI.ChannelList", "genrelistview selected...");
                         //GenreSelect();
+
                     }
+
                 }
-                else if(e.Key.KeyPressedName == "XF86Back")
+                else if (e.Key.KeyPressedName == "XF86Back")
                 {
                     return false;
                 }
+
             }
+
             return true;
         }
 
@@ -572,14 +586,17 @@ namespace ListSample
             {
                 (selectListView.GetLoadedItemView(selectViewIndex) as SelectListItem).Select(false);
             }
+
             if (selectListView.GetLoadedItemView(selectListView.FocusItemIndex) != null)
             {
                 (selectListView.GetLoadedItemView(selectListView.FocusItemIndex) as SelectListItem).Select(true);
             }
+
             if (genreListView.GetLoadedItemView(genreSelectIndex) != null)
             {
                 (genreListView.GetLoadedItemView(genreSelectIndex) as GenreListItem).Select(false);
             }
+
             genreSelectIndex = -1;
             selectViewIndex = selectListView.FocusItemIndex;
 
@@ -597,7 +614,9 @@ namespace ListSample
                 {
                     playIndex = i;
                 }
+
             }
+
             SampleListAdapter mAdapter = new SampleListAdapter(dataList);
             mAdapter.PlayProgramIndex = playProgramIndex;
             listView.SetAdapter(mAdapter);
@@ -630,14 +649,17 @@ namespace ListSample
             {
                 (genreListView.GetLoadedItemView(genreSelectIndex) as GenreListItem).Select(false);
             }
+
             if (genreListView.GetLoadedItemView(genreListView.FocusItemIndex) != null)
             {
                 (genreListView.GetLoadedItemView(genreListView.FocusItemIndex) as GenreListItem).Select(true);
             }
+
             if (selectListView.GetLoadedItemView(selectViewIndex) != null)
             {
                 (selectListView.GetLoadedItemView(selectViewIndex) as SelectListItem).Select(false);
             }
+
             selectViewIndex = -1;
             genreSelectIndex = genreListView.FocusItemIndex;
 
@@ -655,7 +677,9 @@ namespace ListSample
                 {
                     playIndex = i;
                 }
+
             }
+
             SampleListAdapter mAdapter = new SampleListAdapter(dataList);
             mAdapter.PlayProgramIndex = playProgramIndex;
             listView.SetAdapter(mAdapter);

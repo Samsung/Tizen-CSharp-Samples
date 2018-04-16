@@ -95,18 +95,21 @@ namespace UIControlSample
             leftValueHor.TextColor = Color.White;
             leftValueHor.ParentOrigin = ParentOrigin.TopLeft;
             leftValueHor.Position2D = new Position2D(0, 15);
-            leftValueHor.PointSize = 8.0f;
+            //leftValueHor.PointSize = 8.0f;
+            leftValueHor.PointSize = DeviceCheck.PointSize8;
 
             TextLabel rightValueHor = new TextLabel();
             rightValueHor.TextColor = Color.White;
             rightValueHor.ParentOrigin = ParentOrigin.TopLeft;
             rightValueHor.Position2D = new Position2D((sliderWidth + 35), 15);
-            rightValueHor.PointSize = 8.0f;
+            //rightValueHor.PointSize = 8.0f;
+            rightValueHor.PointSize = DeviceCheck.PointSize8;
 
             TextLabel currentValueHor = new TextLabel();
             currentValueHor.TextColor = Color.White;
             currentValueHor.ParentOrigin = ParentOrigin.TopLeft;
-            currentValueHor.PointSize = 8.0f;
+            //currentValueHor.PointSize = 8.0f;
+            currentValueHor.PointSize = DeviceCheck.PointSize8;
             currentValueHor.Position2D = new Position2D(170, 50);
 
             horizontalView.Add(leftValueHor);
@@ -239,10 +242,11 @@ namespace UIControlSample
         {
             float radio = horizontalSlider.Value / (horizontalSlider.UpperBound - horizontalSlider.LowerBound);
             float positionX = sliderWidth * radio + horizontalSlider.Position2D.X - 10.0f;
-            if(radio > 0.1)
+            if (radio > 0.1)
             {
                 positionX = positionX - 8;
             }
+
             return positionX;
         }
 

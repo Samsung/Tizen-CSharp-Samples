@@ -112,7 +112,8 @@ namespace UIControlSample
             textVisual.Add(TextVisualProperty.Text, new PropertyValue(text));
             textVisual.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
             textVisual.Add(TextVisualProperty.TextColor, new PropertyValue(Color.White));
-            textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             textVisual.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("TOP"));
             return textVisual;
         }

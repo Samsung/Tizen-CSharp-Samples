@@ -33,14 +33,22 @@ namespace ListSample
     /// </summary>
     struct Program
     {
-        public string programIndex; //program index
-        public string program; // program name
-        public string channel; // program channel
-        public bool favorite; // favorite flag
+        //program index
+        public string programIndex;
+        // program name
+        public string program;
+        // program channel
+        public string channel;
+        // favorite flag
+        public bool favorite; 
 
         /// <summary>
         /// The constuctor with parameters.
         /// </summary>
+        /// <param name="programIndex">the program index</param>
+        /// <param name="program">the name of the program</param>
+        /// <param name="channel">the program channel</param>
+        /// <param name="favorite">the favorite flag</param>
         public Program(string programIndex, string program, string channel, bool favorite)
         {
             this.programIndex = programIndex;
@@ -55,13 +63,19 @@ namespace ListSample
     /// </summary>
     struct SubListInfo
     {
-        public string iconN; // sublist normal icon 
-        public string iconS; // sublist select icon
-        public string text; // sublist text
+        // sublist normal icon
+        public string iconN;
+        // sublist select icon
+        public string iconS;
+        // sublist text
+        public string text; 
 
         /// <summary>
         /// The constuctor with parameters.
         /// </summary>
+        /// <param name="iconN">the path of the normal icon image</param>
+        /// <param name="iconS">the path of the select icon image</param>
+        /// <param name="text">the text</param>
         public SubListInfo(string iconN, string iconS, string text)
         {
             this.iconN = iconN;
@@ -81,6 +95,8 @@ namespace ListSample
         /// <summary>
         /// The constuctor with parameters.
         /// </summary>
+        /// <param name="name">the favorite name</param>
+        /// <param name="num">the favorite num</param>
         public FavoriteInfo(string name, int num)
         {
             this.name = name;
@@ -249,6 +265,8 @@ namespace ListSample
         /// <summary>
         /// ListItemData constructor with parameters.
         /// </summary>
+        /// <param name="name">the name of the channel</param>
+        /// <param name="index">the index of the channel</param>
         public ListItemData(string name, int index)
         {
             if (name == "All_Channel")
@@ -491,6 +509,7 @@ namespace ListSample
         /// <summary>
         /// SubListData constructor.
         /// </summary>
+        /// <param name="index">the index</param>
         public SubListData(int index)
         {
             if (index < num)
@@ -600,6 +619,7 @@ namespace ListSample
         /// <summary>
         /// Set favorite program information.
         /// </summary>
+        /// <param name="index">the index</param>
         public FavoriteListData(int index)
         {
             num = Favorite.Length;
@@ -655,6 +675,7 @@ namespace ListSample
         /// <summary>
         /// Set genre program information.
         /// </summary>
+        /// <param name="index">the index</param>
         public GenreListData(int index)
         {
             num = Genre.Length;

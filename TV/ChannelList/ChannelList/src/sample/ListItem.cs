@@ -20,7 +20,7 @@ using Tizen.NUI.BaseComponents;
 /// <summary>
 /// namespace for channel list sample
 /// </summary>
-namespace ListSample
+namespace ChannelList
 {
     /// <summary>
     /// All channel list Item class.
@@ -44,6 +44,7 @@ namespace ListSample
             {
                 return programIndexText.Text;
             }
+
             set
             {
                 programIndexText.Text = value;
@@ -59,6 +60,7 @@ namespace ListSample
             {
                 return programText.Text;
             }
+
             set
             {
                 programText.Text = value;
@@ -74,6 +76,7 @@ namespace ListSample
             {
                 return channelText.Text;
             }
+
             set
             {
                 channelText.Text = value;
@@ -166,6 +169,7 @@ namespace ListSample
                 case 4: imageurl = recordingImage; break;
                 case 5: imageurl = nowplayingImage; break;
             }
+
             icons[index] = new ImageView(imageurl);
             icons[index].SizeWidth = windowSize.Width * 0.015625f;
             icons[index].SizeHeight = windowSize.Height * 0.027777f;
@@ -185,7 +189,8 @@ namespace ListSample
             programIndexText.Position = new Position(windowSize.Width * 0.009375f, 0, 0);
             programIndexText.VerticalAlignment = VerticalAlignment.Center;
             programIndexText.HorizontalAlignment = HorizontalAlignment.Begin;
-            programIndexText.PointSize = 10.0f;
+            //programIndexText.PointSize = 10.0f;
+            programIndexText.PointSize = DeviceCheck.PointSize10;
             //programIndexText.PointSize = 42.0f;
             programIndexText.TextColor = new Vector4(1, 1, 1, 1);
             programIndexText.Opacity = 0.85f;
@@ -200,7 +205,8 @@ namespace ListSample
             programText.Position = new Position(windowSize.Width * 0.093229f, windowSize.Height * 0.017592f, 0);
             programText.VerticalAlignment = VerticalAlignment.Center;
             programText.HorizontalAlignment = HorizontalAlignment.Begin;
-            programText.PointSize = 8.0f;
+            //programText.PointSize = 8.0f;
+            programText.PointSize = DeviceCheck.PointSize8;
             //programText.PointSize = 34.0f;
             programText.TextColor = new Vector4(1, 1, 1, 1);
             programText.Opacity = 0.6f;
@@ -218,7 +224,8 @@ namespace ListSample
             channelText.Position = new Position(windowSize.Width * 0.093229f, -windowSize.Height * 0.017592f, 0);
             channelText.VerticalAlignment = VerticalAlignment.Center;
             channelText.HorizontalAlignment = HorizontalAlignment.Begin;
-            channelText.PointSize = 6.0f;
+            //channelText.PointSize = 6.0f;
+            channelText.PointSize = DeviceCheck.PointSize6;
             //channelText.PointSize = 26.0f;
             // channelText.TextColor = new Vector4(58.0f / 255.0f, 174.0f / 255.0f, 254.0f / 255.0f, 1);//#3aaef6
             channelText.TextColor = new Color(1, 1, 1, 1);
@@ -238,6 +245,7 @@ namespace ListSample
                 iconContentLayout.SetFitWidth(i);
                 // iconContentLayout.SetCellAlignment(new TableView.CellPosition(i, 0), HorizontalAlignmentType.Right,  VerticalAlignmentType.Center);
             }
+
             iconContentLayout.SetFitHeight(0);
 
             focusImage = new ImageView(highlightStrokeImage);
@@ -304,6 +312,7 @@ namespace ListSample
             {
                 icon.ResourceUrl = value;
             }
+
             get
             {
                 return icon.ResourceUrl;
@@ -319,6 +328,7 @@ namespace ListSample
             {
                 text.Text = value;
             }
+
             get
             {
                 return text.Text;
@@ -400,7 +410,8 @@ namespace ListSample
             text.Position = new Position(windowSize.Width * (0.010416f * 2 + 0.041666f), 0, 0);
             text.VerticalAlignment = VerticalAlignment.Center;
             text.HorizontalAlignment = HorizontalAlignment.Begin;
-            text.PointSize = 8.0f;
+            //text.PointSize = 8.0f;
+            text.PointSize = DeviceCheck.PointSize8;
             //text.PointSize = 38.0f;
             text.TextColor = new Vector4(1, 1, 1, 1);
             text.FontFamily = "SamsungOne 300";
@@ -456,6 +467,7 @@ namespace ListSample
             {
                 favoriteText.Text = value;
             }
+
             get
             {
                 return favoriteText.Text;
@@ -482,7 +494,9 @@ namespace ListSample
                 {
                     channelNumText.Text = favoriteNum + " channel";
                 }
+
             }
+
             get
             {
                 return favoriteNum;
@@ -541,7 +555,8 @@ namespace ListSample
             favoriteText.Position = new Position(windowSize.Width * 0.021875f, windowSize.Height * 0.010416f, 0);
             favoriteText.VerticalAlignment = VerticalAlignment.Center;
             favoriteText.HorizontalAlignment = HorizontalAlignment.Begin;
-            favoriteText.PointSize = 8.0f;
+            //favoriteText.PointSize = 8.0f;
+            favoriteText.PointSize = DeviceCheck.PointSize8;
             //favoriteText.PointSize = 38.0f;
             favoriteText.TextColor = new Vector4(1, 1, 1, 1);
             favoriteText.FontFamily = "SamsungOne 300";
@@ -555,7 +570,8 @@ namespace ListSample
             channelNumText.Position = new Position(windowSize.Width * 0.021875f, -windowSize.Height * 0.010416f, 0);
             channelNumText.VerticalAlignment = VerticalAlignment.Center;
             channelNumText.HorizontalAlignment = HorizontalAlignment.Begin;
-            channelNumText.PointSize = 6.0f;
+            //channelNumText.PointSize = 6.0f;
+            channelNumText.PointSize = DeviceCheck.PointSize6;
             //channelNumText.PointSize = 30.0f;
             channelNumText.TextColor = new Vector4(1, 1, 1, 1);
             channelNumText.Opacity = 0.5f;
@@ -613,6 +629,7 @@ namespace ListSample
             {
                 text.Text = value;
             }
+
             get
             {
                 return text.Text;
@@ -669,7 +686,8 @@ namespace ListSample
             text.Position = new Position(windowSize.Width * 0.021875f, 0, 0);
             text.VerticalAlignment = VerticalAlignment.Center;
             text.HorizontalAlignment = HorizontalAlignment.Begin;
-            text.PointSize = 8.0f;
+            //text.PointSize = 8.0f;
+            text.PointSize = DeviceCheck.PointSize8;
             //text.PointSize = 38.0f;
             text.TextColor = new Vector4(1, 1, 1, 1);
             text.FontFamily = "SamsungOne 300";

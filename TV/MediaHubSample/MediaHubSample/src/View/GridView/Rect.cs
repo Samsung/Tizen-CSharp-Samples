@@ -44,6 +44,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor, initialize with four float type value.
         /// </summary>
+        /// <param name="x">x value</param>
+        /// <param name="y">y value</param>
+        /// <param name="width">width value</param>
+        /// <param name="height">heiht value</param>
         public Rect(float x, float y, float width, float height)
         {
             this.x = x;
@@ -55,6 +59,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor, initialize with a Rect instance.
         /// </summary>
+        /// <param name="rhs">the Rect instance</param>
         public Rect(Rect rhs)
         {
             x = rhs.x;
@@ -72,6 +77,7 @@ namespace Tizen.NUI
             {
                 x = (value);
             }
+
             get
             {
                 return x;
@@ -87,6 +93,7 @@ namespace Tizen.NUI
             {
                 y = (value);
             }
+
             get
             {
                 return y;
@@ -102,6 +109,7 @@ namespace Tizen.NUI
             {
                 width = (value);
             }
+
             get
             {
                 return width;
@@ -117,6 +125,7 @@ namespace Tizen.NUI
             {
                 height = (value);
             }
+
             get
             {
                 return height;
@@ -201,6 +210,8 @@ namespace Tizen.NUI
         /// If one is null, but not both, return false.
         /// if the fields match, Return true:
         /// </summary>
+        /// <param name="a">the left rect object</param>
+        /// <param name="b">the right rect object</param>
         /// <returns>return the two Rect object matchs or not</returns>
         public static bool operator ==(Rect a, Rect b)
         {
@@ -233,6 +244,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
+
             return l == r;
         }
 

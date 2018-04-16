@@ -61,7 +61,8 @@ namespace UIControlSample
             textVisualW.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             textVisualW.Add(TextVisualProperty.Text, new PropertyValue(text));
             textVisualW.Add(TextVisualProperty.TextColor, new PropertyValue(Color.White));
-            textVisualW.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //textVisualW.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            textVisualW.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             textVisualW.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             textVisualW.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
 
@@ -70,7 +71,8 @@ namespace UIControlSample
             textVisualB.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             textVisualB.Add(TextVisualProperty.Text, new PropertyValue(text));
             textVisualB.Add(TextVisualProperty.TextColor, new PropertyValue(Color.Black));
-            textVisualB.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //textVisualB.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            textVisualB.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             textVisualB.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             textVisualB.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
             _pushbutton.Label = textVisualW;

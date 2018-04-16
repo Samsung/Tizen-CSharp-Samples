@@ -26,7 +26,7 @@ namespace Tizen.NUI.MediaHub
     /// <summary>
     /// The main UI of the Media hub
     /// </summary>
-    public class MainPage:IExample
+    public class MainPage : IExample
     {
         private View bgView;
         private HeadView headView;
@@ -42,7 +42,7 @@ namespace Tizen.NUI.MediaHub
         //The movie image resource file path
         private string MoviePath = CommonResource.GetLocalReosurceURL() + "mediaHub/Movies/";
         //The music image resource path
-        private string MusicPath = CommonResource.GetLocalReosurceURL() + "mediaHub/Music/";
+        private string MusicPath = CommonResource.GetLocalReosurceURL() + "mediaHub/Musics/";
 
         /// <summary>
         /// Get the footView
@@ -109,7 +109,7 @@ namespace Tizen.NUI.MediaHub
 
             CreateFootView();
             CreateContentView();
-            setFocusRule();
+            SetFocusRule();
             Activate();
             Tizen.Log.Fatal("NUI", "OnInitialize!!!!!!!!!!!!!!");
         }
@@ -117,7 +117,7 @@ namespace Tizen.NUI.MediaHub
         // <summary>
         /// Set focus rule for grid list items and footview buttons 
         /// </summary>
-        private void setFocusRule()
+        private void SetFocusRule()
         {
             Tizen.Log.Fatal("NUI", "setFocusRule for GridView and FootView");
             if (gridView == null)
@@ -125,6 +125,7 @@ namespace Tizen.NUI.MediaHub
                 Tizen.Log.Fatal("NUI", "setFocusRule  gridList == null  just return");
                 return;
             }
+
             gridView.DownFocusableView = footView.GetFilterButton();
             footView.GetFilterButton().DropDownButton.UpFocusableView = gridView;
             footView.GetSortButton().DropDownButton.UpFocusableView = gridView;
@@ -138,22 +139,22 @@ namespace Tizen.NUI.MediaHub
             bgView = new View();
             bgView.Size2D = new Size2D(1920, 1080);
             //this.bgView.BackgroundColor = Color.Yellow;
-            bgView.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
-            bgView.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
-            bgView.Position = new Position(0, 0, 0);
+            //bgView.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
+            //bgView.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
+            //bgView.Position = new Position(0, 0, 0);
 
-            CommonResource.BGView = bgView;
-            string mcBgPath = CommonResource.GetLocalReosurceURL() + "bg/mc_main_bg.png";
-            ImageView bgImage = new ImageView(mcBgPath);       
-            bgImage.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
-            bgImage.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
-            bgImage.WidthResizePolicy = ResizePolicyType.FillToParent;
-            bgImage.HeightResizePolicy = ResizePolicyType.FillToParent;
-            bgView.Add(bgImage);
-
+            //CommonResource.BGView = bgView;
+            //string mcBgPath = CommonResource.GetLocalReosurceURL() + "bg/mc_main_bg.png";
+            //ImageView bgImage = new ImageView(mcBgPath);
+            //bgImage.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
+            //bgImage.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
+            //bgImage.WidthResizePolicy = ResizePolicyType.FillToParent;
+            //bgImage.HeightResizePolicy = ResizePolicyType.FillToParent;
+            //bgView.Add(bgImage);
+            bgView.BackgroundColor = Color.Black;
             contentBgView = new View();
             contentBgView.Size2D = new Size2D(1920, 710);
-            contentBgView.Position = new Position(0, 150, 0);
+            contentBgView.Position = new Position(0, 200, 0);//150
             contentBgView.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
             contentBgView.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
             bgView.Add(contentBgView);
@@ -194,7 +195,7 @@ namespace Tizen.NUI.MediaHub
 
             ResourceData data = new ResourceData();
             List<object> dataList = data.GetData();
-            gridListView.createList(dataList);
+            gridListView.CreateList(dataList);
             gridView = gridListView.GetGridView();
             FocusManager.Instance.SetCurrentFocusView(gridView);           
 
@@ -203,6 +204,7 @@ namespace Tizen.NUI.MediaHub
                 preGridList.Destroy();
             }
         }
+
         public void Activate()
         {
             Window.Instance.GetDefaultLayer().Add(bgView);

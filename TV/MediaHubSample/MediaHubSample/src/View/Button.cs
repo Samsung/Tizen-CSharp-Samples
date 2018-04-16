@@ -36,7 +36,6 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Constructor to create new PushButtonSample
         /// </summary>
-        /// <param name="text">text</param>
         public CustomButton()
         {
             OnIntialize();
@@ -101,6 +100,7 @@ namespace Tizen.NUI.MediaHub
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                 }
+
                 return false;
             };
 
@@ -117,7 +117,8 @@ namespace Tizen.NUI.MediaHub
             textVisualNormal.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             textVisualNormal.Add(TextVisualProperty.Text, new PropertyValue(text));
             textVisualNormal.Add(TextVisualProperty.TextColor, new PropertyValue(Color.White));
-            textVisualNormal.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //textVisualNormal.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            textVisualNormal.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             textVisualNormal.Add(TextVisualProperty.FontFamily, new PropertyValue("SamsungOneUI_400"));
             textVisualNormal.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             textVisualNormal.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
@@ -128,10 +129,11 @@ namespace Tizen.NUI.MediaHub
             textVisualFocused.Add(TextVisualProperty.Text, new PropertyValue(text));
             textVisualFocused.Add(TextVisualProperty.FontFamily, new PropertyValue("SamsungOneUI_400"));
             textVisualFocused.Add(TextVisualProperty.TextColor, new PropertyValue(Color.Black));
-            textVisualFocused.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //textVisualFocused.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            textVisualFocused.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             textVisualFocused.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             textVisualFocused.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-            if(_pushbutton.HasFocus())
+            if (_pushbutton.HasFocus())
             {
                 _pushbutton.Label = textVisualFocused;
             }
@@ -163,6 +165,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return buttonTextLabel;
             }
+
             set
             {
                 buttonTextLabel = value;

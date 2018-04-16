@@ -135,23 +135,25 @@ namespace AnimationSample
             guide = new TextLabel();
             guide.HorizontalAlignment = HorizontalAlignment.Center;
             guide.VerticalAlignment = VerticalAlignment.Center;
-            guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             guide.TextColor = Color.White;
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 100);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 0);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
-            guide.PointSize = 15.0f;
+            //guide.PointSize = 15.0f;
+            guide.PointSize = PointSize15;
+
             guide.Text = "Animation Sample";
             Window.Instance.GetDefaultLayer().Add(guide);
 
             // Create the view to animate.
             view = new ImageView();
             view.Size2D = new Size2D(200, 200);
-            view.Position = new Position(860, 265, 0);
+            view.Position = new Position(860, 275, 0);
             view.PositionUsesPivotPoint = true;
             view.PivotPoint = PivotPoint.TopLeft;
             view.ParentOrigin = ParentOrigin.TopLeft;
@@ -231,6 +233,60 @@ namespace AnimationSample
         }
 
         /// <summary>
+        /// Whether it is a SR emul
+        /// </summary>
+        /// <returns>If it is a SR emul, then return true</returns>
+        private bool IsSREmul()
+        {
+            int widthDpi = (int)Window.Instance.Dpi.Width;
+            int heightDpi = (int)Window.Instance.Dpi.Height;
+            if (widthDpi == 314 && heightDpi == 314)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Return the point size of 8
+        /// </summary>
+        private float PointSize8
+        {
+            get
+            {
+                if (IsSREmul())
+                {
+                    return 8.0f;
+                }
+                else
+                {
+                    return 34.0f;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Return the point size of 15
+        /// </summary>
+        private float PointSize15
+        {
+            get
+            {
+                if (IsSREmul())
+                {
+                    return 15.0f;
+                }
+                else
+                {
+                    return 65.0f;
+                }
+            }
+        }
+
+        /// <summary>
         /// Called by buttons
         /// </summary>
         /// <param name="source">The clicked button</param>
@@ -245,7 +301,7 @@ namespace AnimationSample
                 AllStop();
                 positionAnimation.Play();
             }
-            else if(button.Name == "Size")
+            else if (button.Name == "Size")
             {
                 //Stop all the animation and Play position Animation.
                 AllStop();
@@ -275,7 +331,7 @@ namespace AnimationSample
                 AllStop();
                 pixelArealAnimation.Play();
             }
-            else if(button.Name == "PositionSizeOpacity")
+            else if (button.Name == "PositionSizeOpacity")
             {
                 //Stop all the animation and Play position, scale opacitity Animation at the same time.
                 AllStop();
@@ -284,6 +340,7 @@ namespace AnimationSample
                 opacityAnimation.Play();
 
             }
+
             return false;
         }
         /// <summary>
@@ -291,13 +348,15 @@ namespace AnimationSample
         /// </summary>
         /// <param name="text">The text of the Text visual</param>
         /// <param name="color">The color of the text</param>
+        /// <returns>return a map which contains the property of the text visual</returns>
         private PropertyMap CreateTextVisual(string text, Color color)
         {
             PropertyMap map = new PropertyMap();
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            map.Add(TextVisualProperty.PointSize, new PropertyValue(PointSize8));
             map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
@@ -308,6 +367,7 @@ namespace AnimationSample
         /// Create an Image visual.
         /// </summary>
         /// <param name="imagePath">The url of the image</param>
+        /// <returns>return a map which contains the properties of the image visual</returns>
         private PropertyMap CreateImageVisual(string imagePath)
         {
             PropertyMap map = new PropertyMap();
@@ -323,6 +383,7 @@ namespace AnimationSample
             button.Size2D = new Size2D(400, 80);
             button.Focusable = true;
             button.Name = name;
+            //button.LabelText = text;
             // Create the label which will show when _pushbutton focused.
             PropertyMap _focusText = CreateTextVisual(text, Color.Black);
 
@@ -370,7 +431,9 @@ namespace AnimationSample
                         button.UnselectedBackgroundVisual = focusMap;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
+
                 }
+
                 return false;
             };
             return button;

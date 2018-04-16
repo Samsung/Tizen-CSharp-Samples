@@ -114,20 +114,20 @@ namespace UIControlSample
         {
             // Create Background view.
             backGroundView = CreateBackGroundView();
-            // Add logo
+            backGroundView.BackgroundColor = Color.Black;
+            //Add logo
             logo = new ImageView(logo_path);
             logo.Name = "LOGO_IMAGE";
-            //logo.PivotPoint = PivotPoint.TopCenter;
-            //logo.ParentOrigin = new Position(0.5f, 0.1f, 0.5f);
+            logo.PivotPoint = PivotPoint.TopCenter;
+            logo.ParentOrigin = new Position(0.5f, 0.1f, 0.5f);
             logo.PivotPoint = PivotPoint.TopLeft;
             logo.ParentOrigin = ParentOrigin.TopLeft;
-            logo.Position2D = new Position2D(820, 110);
+            logo.Position2D = new Position2D(0, 0);
             logo.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
             logo.WidthResizePolicy = ResizePolicyType.UseNaturalSize;
-            // The logo should appear on top of everything.
-            //logo.DrawMode = DrawModeType.Overlay2D;
+            //The logo should appear on top of everything.
+            logo.DrawMode = DrawModeType.Normal;
             backGroundView.Add(logo);
-
             // Scrollview occupying the majority of the screen
             scrollView = new ScrollView();
             scrollView.PositionUsesPivotPoint = true;
@@ -415,10 +415,18 @@ namespace UIControlSample
             label.PositionUsesPivotPoint = true;
             label.PivotPoint = PivotPoint.Center;
             label.ParentOrigin = ParentOrigin.Center;
-            label.StyleName = "LauncherLabel";
+            if(DeviceCheck.IsSREmul())
+            {
+                label.StyleName = "LauncherLabel";
+            }
+            else
+            {
+                label.StyleName = "VDLauncherLabel";
+            }
+            
             label.MultiLine = true;
             label.Text = title;
-            label.PointSize = 5.0f;
+            //label.PointSize = 5.0f;
             label.HorizontalAlignment = HorizontalAlignment.Center;
             label.VerticalAlignment = VerticalAlignment.Center;
             label.HeightResizePolicy = ResizePolicyType.FillToParent;
@@ -538,7 +546,7 @@ namespace UIControlSample
                     global::System.GC.WaitForPendingFinalizers();
 
                     currentSample = item as IExample;
-                    if(currentSample != null)
+                    if (currentSample != null)
                     {
                         currentSample.Activate();
                     }

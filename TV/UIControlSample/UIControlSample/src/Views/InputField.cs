@@ -91,11 +91,12 @@ namespace UIControlSample
             _textField.Size2D = new Size2D(1000, 80);
             _textField.HorizontalAlignment = HorizontalAlignment.Begin;
             _textField.VerticalAlignment = VerticalAlignment.Center;
-            _textField.PointSize = 10.0f;
+            _textField.PointSize = DeviceCheck.PointSize10;
+            //_textField.PointSize = 10.0f;
             _textField.Focusable = true;
             _textField.FocusGained += OnFocusGained;
             _textField.FocusLost += OnFocusLost;
-            _textField.KeyEvent += OnIMEKeyEvent;
+            //_textField.KeyEvent += OnIMEKeyEvent;
 
             // Create TextField's BackgroundView.
             PropertyMap bgMap = new PropertyMap();
@@ -166,34 +167,26 @@ namespace UIControlSample
         /// <returns>the consume flag</returns>
         private bool OnIMEKeyEvent(object source, View.KeyEventArgs e)
         {
-            Tizen.Log.Fatal("NUI", "!!!!!OnIMEKeyEvent!!!!!");
-            View text = source as View;
-            if (e.Key.State != Tizen.NUI.Key.StateType.Down || text.Focusable == false)
-            {
-                return false;
-            }
+            Tizen.Log.Fatal("NUI", "!!!!!OnIMEKeyEvent!!!!! + KeyName: " + e.Key.KeyPressedName);
 
-            switch (e.Key.KeyPressedName)
+            if (e.Key.State == Key.StateType.Up)
             {
-                case "Select":
-                    HideImf();
-                    return true;
-                case "Cancel":
-                    Text = "";
-                    HideImf();
-                    return true;
-                case "Up":
-                    HideImf();
-                    Tizen.Log.Fatal("NUI", "Move Focus To Right For TextField!!!!!");
-                    return MoveFocusTo(_textField.UpFocusableView);
-                case "Down":
-                    Tizen.Log.Fatal("NUI", "Move Focus To Right For TextField!!!!!");
-                    HideImf();
-                    return MoveFocusTo(_textField.DownFocusableView);
-                case "Right":
-                    HideImf();
-                    Tizen.Log.Fatal("NUI", "Move Focus To Right For TextField!!!!!");
-                    return MoveFocusTo(_textField.RightFocusableView);
+                switch (e.Key.KeyPressedName)
+                {
+                    case "Select":
+                        Tizen.Log.Fatal("NUI", "!!!!!OnIMEKeyEvent!!!!! + KeyName == Select ");
+                        HideImf();
+                        return false;
+                    case "Cancel":
+                        Text = "";
+                        Tizen.Log.Fatal("NUI", "!!!!!OnIMEKeyEvent!!!!! + KeyName == Cancel ");
+                        HideImf();
+                        return false;
+                    case "XF86Back":
+                        Tizen.Log.Fatal("NUI", "!!!!!OnIMEKeyEvent!!!!! + KeyName == XF86Back ");
+                        HideImf();
+                        return false;
+                }
             }
 
             return false;
@@ -224,6 +217,8 @@ namespace UIControlSample
             imf.Deactivate();
             imf.HideInputPanel();
             isImfVisible = false;
+            Tizen.Log.Fatal("NUI", "Move Focus FbgView!!!!!");
+            //FocusManager.Instance.SetCurrentFocusView(bgView);
         }
 
         /// <summary>

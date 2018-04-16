@@ -51,11 +51,10 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Construct FootView
         /// </summary>
-        /// <param name="parent">parent view</param>
         public FootView()
         {   
             mainView = CommonResource.BGView;
-            if(mainView != null)
+            if (mainView != null)
             {
                 parentView = mainView;
             }
@@ -65,7 +64,7 @@ namespace Tizen.NUI.MediaHub
         /// Callback function on triggering event "CLEAR_INFOR", for cleaning foot view information
         /// </summary>
         /// <param name="o">object</param>
-        private void onClearInformation(object o)
+        private void OnClearInformation(object o)
         {
             informationTextWdg[0].Text = " ";
             informationTextWdg[1].Text = " ";
@@ -127,10 +126,12 @@ namespace Tizen.NUI.MediaHub
                 {
                     Itemlist.Add(strSize);
                 }
+
                 if (strFormat != null && strFormat != "")
                 {
                     Itemlist.Add(strFormat);
                 }
+
                 if (strData != null && strData != "")
                 {
                     Itemlist.Add(strData);
@@ -174,6 +175,7 @@ namespace Tizen.NUI.MediaHub
                 }
 
             }
+
             if (itemType == ContentItemType.eItemMusic)
             {
 
@@ -181,10 +183,12 @@ namespace Tizen.NUI.MediaHub
                 {
                     Itemlistmusic.Add(strSize);
                 }
+
                 if (strFormat != null && strFormat != "")
                 {
                     Itemlistmusic.Add(strFormat);
                 }
+
                 if (strData != null && strData != "")
                 {
                     Itemlistmusic.Add(strData);
@@ -200,6 +204,7 @@ namespace Tizen.NUI.MediaHub
                     {
                         width = 220;
                     }
+
                     informationTextWdg[0].NaturalSize2D.Width = (int)width;
                     Tizen.Log.Fatal("NUI", " FootView Update  informationTextWdg[0].GetNaturalSize().Width = " + 0 + " " + informationTextWdg[0].NaturalSize2D.Width);
                     if (i > 0)
@@ -212,6 +217,7 @@ namespace Tizen.NUI.MediaHub
                         {
                             width = informationTextWdg[i - 1].NaturalSize2D.Width;
                         }
+
                         informationLine[i - 1].PositionX = width + informationTextWdg[i - 1].PositionX + 12;
                         informationLine[i - 1].PositionY = 80;
                         informationLine[i - 1].Text = "|";
@@ -249,14 +255,13 @@ namespace Tizen.NUI.MediaHub
         /// </summary>
         public void RenderView()
         {
-            createInformation();
-            this.createBt();
+            CreateInformation();
+            this.CreateBt();
         }
 
         /// <summary>
         /// Show foot view
         /// </summary>
-        /// <param name="viewInfo">foot view info class</param>
         public void ShowView()
         {
             this.buttonView.Show();
@@ -267,7 +272,6 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Hide foot view
         /// </summary>
-        /// <param name="viewInfo">foot view info class</param>
         public void HideView()
         {
             this.buttonView.Hide();
@@ -277,7 +281,7 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Create foot view information in inforAreaView, it includes item tile text,date, size, and info line 
         /// </summary>
-        private void createInformation()
+        private void CreateInformation()
         {
             Tizen.Log.Fatal("NUI","[FootView]createInformation!");
             this.inforAreaView = new View();
@@ -292,8 +296,9 @@ namespace Tizen.NUI.MediaHub
             titleText.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
             titleText.Position = new Position(80, 40, 0);
             titleText.Size2D = new Size2D(650, 40);
-            titleText.PointSize = 6;
-            titleText.TextColor = Color.Black;
+            //titleText.PointSize = 6;
+            titleText.PointSize = DeviceCheck.PointSize6;
+            titleText.TextColor = Color.White;
             titleText.FontFamily = "SamsungOneUI_400";
             titleText.VerticalAlignment = Tizen.NUI.VerticalAlignment.Center;
             this.inforAreaView.Add(titleText);
@@ -312,23 +317,26 @@ namespace Tizen.NUI.MediaHub
                 }
 
                 informationTextWdg[i].Size2D = new Size2D(200, 34);
-                informationTextWdg[i].TextColor = Color.Black;
+                informationTextWdg[i].TextColor = Color.White;
                 informationTextWdg[i].VerticalAlignment = Tizen.NUI.VerticalAlignment.Center;
                 informationTextWdg[i].FontFamily = "SamsungOneUI_400";
-                informationTextWdg[i].PointSize = 6.0f;
+                //informationTextWdg[i].PointSize = 6.0f;
+                informationTextWdg[i].PointSize = DeviceCheck.PointSize6;
                 informationTextWdg[i].Text = " ";
                 this.inforAreaView.Add(informationTextWdg[i]);
             }
+
             informationLine = new TextLabel[2];
             for (int i = 0; i < 2; i++)
             {
                 informationLine[i] = new TextLabel();
                 informationLine[i].ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
                 informationLine[i].PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
-                informationLine[i].TextColor = Color.Black;
+                informationLine[i].TextColor = Color.White;
                 informationLine[i].VerticalAlignment = Tizen.NUI.VerticalAlignment.Center;
                 informationLine[i].FontFamily = "SamsungOneUI_400";
-                informationLine[i].PointSize = 6.0f;
+                //informationLine[i].PointSize = 6.0f;
+                informationLine[i].PointSize = DeviceCheck.PointSize6;
                 informationLine[i].Text = " ";
                 this.inforAreaView.Add(informationLine[i]);
             }
@@ -337,7 +345,7 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Create buttons for USB device type
         /// </summary>
-        private void createUSBButton()
+        private void CreateUSBButton()
         {
             //To Create a bg view
             Tizen.Log.Fatal("NUI", "[FootView CreateUSBButton!]");
@@ -398,8 +406,7 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Set focus rule for buttons in up/down/left/right event
         /// </summary>
-        /// <param name="deviceType">device type</param>
-        private void setFocusRule()
+        private void SetFocusRule()
         {
             this.filterBtn.DropDownButton.RightFocusableView = this.sortBtn.DropDownButton;
             this.sortBtn.DropDownButton.LeftFocusableView = this.filterBtn.DropDownButton;
@@ -408,10 +415,10 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Create buttons
         /// </summary>
-        private void createBt()
+        private void CreateBt()
         {
-            createUSBButton();
-            setFocusRule();
+            CreateUSBButton();
+            SetFocusRule();
         }
 
 
@@ -433,17 +440,17 @@ namespace Tizen.NUI.MediaHub
                 switch (index)
                 {
                     case 0:
-                        if(this.sortBtn.ButtonText == "SortBy : Title")
+                        if (this.sortBtn.ButtonText == "SortBy : Title")
                         {
                             //Create item for all resource and sort the content by title
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.DataList);
+                            gridListView.CreateList(CommonResource.DataList);
                         }
-                        else if(this.sortBtn.ButtonText == "SortBy : Size")
+                        else if (this.sortBtn.ButtonText == "SortBy : Size")
                         {
                             //Create item for all resource and sort the content by size
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.SortedList);
+                            gridListView.CreateList(CommonResource.SortedList);
                         }
                         
                         break;
@@ -452,47 +459,51 @@ namespace Tizen.NUI.MediaHub
                         {
                             //Create item for photos and sort the content by title
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.PhotoDataList);
+                            gridListView.CreateList(CommonResource.PhotoDataList);
                         }
                         else if (this.sortBtn.ButtonText == "SortBy : Size")
                         {
                             //Create item for photos and sort the content by size
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.SortedPhotoList);
+                            gridListView.CreateList(CommonResource.SortedPhotoList);
                         }
+
                         break;
                     case 2:
                         if (this.sortBtn.ButtonText == "SortBy : Title")
                         {
                             //Create item for videos and sort the content by title
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.VideoDataList);
+                            gridListView.CreateList(CommonResource.VideoDataList);
 
                         }
                         else if (this.sortBtn.ButtonText == "SortBy : Size")
                         {
                             //Create item for videos and sort the content by size
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.SortedVideoList);
+                            gridListView.CreateList(CommonResource.SortedVideoList);
 
                         }
+
                         break;
                     case 3:
                         if (this.sortBtn.ButtonText == "SortBy : Title")
                         {
                             //Create item for musics and sort the content by title
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.MusicDataList);
+                            gridListView.CreateList(CommonResource.MusicDataList);
 
                         }
                         else if (this.sortBtn.ButtonText == "SortBy : Size")
                         {
                             //Create item for musics and sort the content by size
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.SortedMusicList);
+                            gridListView.CreateList(CommonResource.SortedMusicList);
                         }
+
                         break;
                 }
+
                 CommonResource.MainViewInstance.SetGridListView(gridListView);
                 if (preGridList != null)
                 {
@@ -511,60 +522,64 @@ namespace Tizen.NUI.MediaHub
                         {
                             //Create item for all resource and sort the content by title
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.DataList);
+                            gridListView.CreateList(CommonResource.DataList);
                         }
                         else if (this.filterBtn.ButtonText == "FilterBy : Photo")
                         {
                             //Create item for photos and sort the content by title
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.PhotoDataList);
+                            gridListView.CreateList(CommonResource.PhotoDataList);
                         }
                         else if (this.filterBtn.ButtonText == "FilterBy : Video")
                         {
                             //Create item for videos and sort the content by title
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.VideoDataList);
+                            gridListView.CreateList(CommonResource.VideoDataList);
                         }
                         else if (this.filterBtn.ButtonText == "FilterBy : Music")
                         {
                             //Create item for musics and sort the content by title
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.MusicDataList);
+                            gridListView.CreateList(CommonResource.MusicDataList);
                         }
+
                         break;
                     case 1:
-                        if(this.filterBtn.ButtonText == "FilterBy : ALL")
+                        if (this.filterBtn.ButtonText == "FilterBy : ALL")
                         {
                             //Create item for all resources and sort the content by size
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.SortedList);
+                            gridListView.CreateList(CommonResource.SortedList);
                         }
-                        else if(this.filterBtn.ButtonText == "FilterBy : Photo")
+                        else if (this.filterBtn.ButtonText == "FilterBy : Photo")
                         {
                             //Create item for photos and sort the content by size
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.SortedPhotoList);
+                            gridListView.CreateList(CommonResource.SortedPhotoList);
                         }
                         else if (this.filterBtn.ButtonText == "FilterBy : Video")
                         {
                             //Create item for videos and sort the content by size
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.SortedVideoList);
+                            gridListView.CreateList(CommonResource.SortedVideoList);
                         }
                         else if (this.filterBtn.ButtonText == "FilterBy : Music")
                         {
                             //Create item for musics and sort the content by size
                             gridListView = new GridListView(contentBgView, ContentViewType.ALL, false);
-                            gridListView.createList(CommonResource.SortedMusicList);
+                            gridListView.CreateList(CommonResource.SortedMusicList);
                         }
+
                         break;
                 }
+
                 CommonResource.MainViewInstance.SetGridListView(gridListView);
                 if (preGridList != null)
                 {
                     preGridList.Destroy();
                 }
             }
+
             GridView gridView = gridListView.GetGridView();
             gridView.DownFocusableView = filterBtn;
             filterBtn.DropDownButton.UpFocusableView = gridView;

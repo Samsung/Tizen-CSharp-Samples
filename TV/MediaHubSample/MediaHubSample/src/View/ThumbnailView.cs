@@ -36,7 +36,7 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ThumbnailView():base()
+        public ThumbnailView() : base()
         {
             StateEditabled = true;
             TopLayerImage = new ImageView();
@@ -72,10 +72,12 @@ namespace Tizen.NUI.MediaHub
             MainText = null;
             MainImageURL = null;
 
-            try {
+            try
+            {
                 InformationIconURLArray = null;
             }
-            catch (Exception err) {
+            catch (Exception err)
+            {
                 Tizen.Log.Fatal("NUI" ," thumbnail  UnloadItem InformationIconURLArray = null error" + err.Message);
             }
            
@@ -84,7 +86,9 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Show the check box on the thumbnail item.
         /// </summary>
-        protected void showCheckBox(bool editMode, bool select)
+        /// <param name="editMode">the flag of the editable</param>
+        /// <param name="select">the state of the item</param>
+        protected void ShowCheckBox(bool editMode, bool select)
         {
             Tizen.Log.Fatal("NUI" ,"Thumbnail View showCheckBox editMode:" + editMode);
             if (!editMode)

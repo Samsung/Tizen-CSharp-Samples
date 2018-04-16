@@ -41,7 +41,6 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// The constructor of the TextItem class with specified style string.
         /// </summary>
-        /// <param name="style">The string to special the style of the TextItem.</param>
         public TextItem()
         {
             Initialize();
@@ -56,14 +55,16 @@ namespace Tizen.NUI.MediaHub
             {
                 return mainTextContent;
             }
+
             set
             {
                 Tizen.Log.Fatal("NUI", "value = " + value);
                 mainTextContent = value;
-                if(mainText != null)
+                if (mainText != null)
                 {
                     mainText.Text = mainTextContent;
                 }
+
                 UpdateMainTextScroll();
             }
         }
@@ -77,6 +78,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return isListLineEnabled;
             }
+
             set
             {
                 Tizen.Log.Fatal("NUI", "value = " + value);
@@ -94,13 +96,15 @@ namespace Tizen.NUI.MediaHub
             {
                 return isFocused;
             }
+
             set
             {
                 Tizen.Log.Fatal("NUI", "value = " + value);
-                if(isFocused == value)
+                if (isFocused == value)
                 {
                     return;
                 }
+
                 isFocused = value;
                 UpdateFocusedState();
             }
@@ -115,6 +119,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return isSelected;
             }
+
             set
             {
                 Tizen.Log.Fatal("NUI", "value = " + value);
@@ -122,6 +127,7 @@ namespace Tizen.NUI.MediaHub
                 {
                     return;
                 }
+
                 isSelected = value;
                 UpdateSelectedState();
             }
@@ -136,6 +142,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return isEnabled;
             }
+
             set
             {
                 Tizen.Log.Fatal("NUI", "value = " + value);
@@ -143,6 +150,7 @@ namespace Tizen.NUI.MediaHub
                 {
                     return;
                 }
+
                 isEnabled = value;
                 UpdateEnabledState();
             }
@@ -243,7 +251,6 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// The method to update Attributes.
         /// </summary>
-        /// <param name="attrs">The specified attributes object.</param>
         public void OnUpdate()
         {
 
@@ -308,7 +315,7 @@ namespace Tizen.NUI.MediaHub
         /// </summary>
         private void InitializeListLineView()
         {
-            if(listLineView == null && isListLineEnabled)
+            if (listLineView == null && isListLineEnabled)
             {
                 Tizen.Log.Fatal("NUI", "Create ListLineView");
                 listLineView = new ImageView();
@@ -331,6 +338,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             Tizen.Log.Fatal("NUI", "Create MainText");
             mainText = new TextLabel();
             mainText.WidthResizePolicy = ResizePolicyType.Fixed;
@@ -350,6 +358,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             Tizen.Log.Fatal("NUI", "Create CheckIcon");
             checkIcon = new ImageView();
             checkIcon.WidthResizePolicy = ResizePolicyType.Fixed;
@@ -371,26 +380,31 @@ namespace Tizen.NUI.MediaHub
                 //Create focus in aniamtion
                 focusInAni = new Animation();
             }
+
             if (focusOutAni == null)
             {
                 //Create focus out aniamtion
                 focusOutAni = new Animation();
             }
+
             if (dimInAni == null)
             {
                 //Create dim in aniamtion
                 dimInAni = new Animation();
             }
+
             if (dimOutAni == null)
             {
                 //Create dim out aniamtion
                 dimOutAni = new Animation();
             }
+
             if (selectedInAni == null)
             {
                 //Create selected in aniamtion
                 selectedInAni = new Animation();
             }
+
             if (selectedOutAni == null)
             {
                 //Create selected out aniamtion
@@ -442,6 +456,7 @@ namespace Tizen.NUI.MediaHub
                 top = 12.0f;
                 bottom = 12.0f;
             }
+
             newWidth = rootWidth + left + right;
             newHeight = rootHeight + top + bottom;
 
@@ -488,6 +503,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             float width = SizeWidth - 20.0f * 2.0f - 26.0f - 10.0f;
             int height = 48;
             mainText.Size2D = new Size2D((int)width, height);
@@ -522,10 +538,12 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             Tizen.Log.Fatal("NUI", "Apply MainText FontStyle");
 
             mainText.FontFamily = "SamsungOneUI_300";
-            mainText.PointSize = 8.0f; //enlargeEnabled == true PointSize = 36.0f;
+            //mainText.PointSize = 8.0f; //enlargeEnabled == true PointSize = 36.0f;
+            mainText.PointSize = DeviceCheck.PointSize8;
             mainText.HorizontalAlignment = HorizontalAlignment.Begin;
             mainText.VerticalAlignment = VerticalAlignment.Center;
 
@@ -533,7 +551,7 @@ namespace Tizen.NUI.MediaHub
             {
                 mainText.TextColor = Utility.Hex2Color(0x000000, 1.0f);
             }
-            else if(isSelected)
+            else if (isSelected)
             {
                 mainText.TextColor = Utility.Hex2Color(0x000000, 1.0f);
                 mainText.ShadowColor = Utility.Hex2Color(0x223036, 0.25f);
@@ -554,6 +572,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             Tizen.Log.Fatal("NUI", "Apply MainText ScrollStyle");
 
             mainText.AutoScrollSpeed = 50;
@@ -573,6 +592,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             if (isFocused)
             {
                 // check the text's natural width is greater than user setting width or not. If yes, enable scroll; else, disable scroll.  
@@ -603,6 +623,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             if (mainTextContent != null)
             {
                 Tizen.Log.Fatal("NUI", "mainTextContent = " + mainTextContent);
@@ -839,7 +860,7 @@ namespace Tizen.NUI.MediaHub
             }
             else
             {
-                if(dimOutAni != null && dimOutAni.State == Animation.States.Playing)
+                if (dimOutAni != null && dimOutAni.State == Animation.States.Playing)
                 {
                     dimOutAni.Stop();
                 }
@@ -860,6 +881,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             Tizen.Log.Fatal("NUI", "Update MainText FontStyle");
             ApplyMainTextFontStyle();
         }
@@ -873,6 +895,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             Tizen.Log.Fatal("NUI", "Apply CheckIcon Position");
 
             float checkIconX = SizeWidth - 20.0f - 26.0f;

@@ -64,14 +64,15 @@ namespace ImageSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 100);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 0);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
-            guide.PointSize = 15.0f;
+            //guide.PointSize = 15.0f;
+            guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "FittingMode Sample \n";
             guide.TextColor = Color.White;
-            guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
 
             //Create an imageView instance to show the fittingMode property.
@@ -172,6 +173,7 @@ namespace ImageSample
                     fittingModeButton.Label = CreateText("FittingMode : FitHeight");
                     break;
             }
+
             image.ImageMap = pngImageMap;
 
             return true;
@@ -197,7 +199,8 @@ namespace ImageSample
             textVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             textVisual.Add(TextVisualProperty.Text, new PropertyValue(text));
             textVisual.Add(TextVisualProperty.TextColor, new PropertyValue(Color.Black));
-            textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(8));
+            //textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(8));
+            textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             textVisual.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             textVisual.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
             textVisual.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
@@ -209,13 +212,15 @@ namespace ImageSample
         /// </summary>
         /// <param name="text">The text of the Text visual</param>
         /// <param name="color">The color of the text</param>
+        /// <returns>return a map which contain the properties of the text visual</returns>
         private PropertyMap CreateTextVisual(string text, Color color)
         {
             PropertyMap map = new PropertyMap();
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            map.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
@@ -226,6 +231,7 @@ namespace ImageSample
         /// Create an Image visual.
         /// </summary>
         /// <param name="imagePath">The url of the image</param>
+        /// <returns>return a map which contain the properties of the image visual</returns>
         private PropertyMap CreateImageVisual(string imagePath)
         {
             PropertyMap map = new PropertyMap();
@@ -289,6 +295,7 @@ namespace ImageSample
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                 }
+
                 return false;
             };
             return button;

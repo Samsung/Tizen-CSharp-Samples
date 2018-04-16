@@ -93,14 +93,17 @@
     {
       "fontFamily":"Rosemary"
     },
-    "TextLabel":
-    {
-      "fontStyle":{"weight":"normal"},
-      "pointSize":18
+    "TextLabel": {
+      "fontStyle": { "weight": "normal" },
+      "pointSize": 18
     },
-    "LauncherLabel":
-    {
-      "pointSize":8
+
+    "LauncherLabel": {
+      "pointSize": 8
+    },
+
+    "VDLauncherLabel": {
+      "pointSize": 34
     },
 
     "ToolbarLabel":

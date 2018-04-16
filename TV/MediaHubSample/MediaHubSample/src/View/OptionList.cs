@@ -104,6 +104,7 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Dispose of OptionList.
         /// </summary>
+        /// <param name="type">the dispose type</param>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -156,7 +157,7 @@ namespace Tizen.NUI.MediaHub
         /// }
         /// catch(ArgumentException)
         /// {
-        ///     Log.Error(LogTag, "SelectItemIndex value is out of range. "+e.Message);
+        ///     Log.Error(LogTag, "SelectItemIndex value is out of range. " +e.Message);
         /// }
         /// </code>
         /// </example>
@@ -166,6 +167,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return selectedIndex;
             }
+
             set
             {
                 if (selectedIndex == value)
@@ -178,6 +180,7 @@ namespace Tizen.NUI.MediaHub
                     Tizen.Log.Fatal("NUI", "Select item index is out of range! Items count = " + list.NumOfItem + ", index = " + value);
                     throw new IndexOutOfRangeException("Select item index is out of range! Items count = " + list.NumOfItem + ", index = " + value);
                 }
+
                 if (list != null)
                 {
                     OptionListItemData itemData = (bridge as OptionListBridge).GetData(value) as OptionListItemData;
@@ -185,6 +188,7 @@ namespace Tizen.NUI.MediaHub
                     {
                         return;
                     }
+
                     if (selectedIndex >= 0)
                     {
                         OptionListItemData data = null;
@@ -192,6 +196,7 @@ namespace Tizen.NUI.MediaHub
                         data.IsSelected = false;
                         list.UpdateItem(selectedIndex);
                     }
+
                     itemData = (bridge as OptionListBridge).GetData(value) as OptionListItemData;
                     itemData.IsSelected = true;
                     list.UpdateItem(value);
@@ -224,7 +229,7 @@ namespace Tizen.NUI.MediaHub
         /// }
         /// catch(ArgumentException)
         /// {
-        ///     Log.Error(LogTag, "FocusItemIndex value is out of range. "+e.Message);
+        ///     Log.Error(LogTag, "FocusItemIndex value is out of range. " +e.Message);
         /// }
         /// </code>
         /// </example>
@@ -234,6 +239,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return list.FocusItemIndex;
             }
+
             set
             {
                 if (value < 0 || value >= list.NumOfItem)
@@ -241,6 +247,7 @@ namespace Tizen.NUI.MediaHub
                     Tizen.Log.Fatal("NUI", "Focus item index is out of range! Items count = " + list.NumOfItem + ", index = " + value);
                     throw new IndexOutOfRangeException("Focus item index is out of range! Items count = " + list.NumOfItem + ", index = " + value);
                 }
+
                 list.FocusItemIndex = value;
             }
         }
@@ -296,7 +303,7 @@ namespace Tizen.NUI.MediaHub
         /// }
         /// catch(ArgumentException)
         /// {
-        ///     Log.Error(LogTag, "RemoveData index out of range. "+e.Message);
+        ///     Log.Error(LogTag, "RemoveData index out of range. " +e.Message);
         /// }
         /// </code>
         /// </example>
@@ -307,6 +314,7 @@ namespace Tizen.NUI.MediaHub
                 Tizen.Log.Fatal("NUI", "Remove data index is out of range! Valid range is 0 to " + (list.NumOfItem - 1) + ", Remove range is " + fromIndex + " to " + (fromIndex + removeNum - 1));
                 throw new IndexOutOfRangeException("Remove data index is out of range! Valid range is 0 to " + (list.NumOfItem - 1) + ", Remove range is " + fromIndex + " to " + (fromIndex + removeNum - 1));
             }
+
             (bridge as OptionListBridge).Remove(fromIndex, removeNum);
         }
 
@@ -314,7 +322,7 @@ namespace Tizen.NUI.MediaHub
         /// Enable or disable OptionList item.
         /// </summary>
         /// <param name="index">OptionList item index</param>
-        /// <param name="ifDim">true is disable the item, false is enalbe the item</param>
+        /// <param name="disable">true is disable the item, false is enalbe the item</param>
         /// <exception cref="System.IndexOutOfRangeException"> Thrown when dim item index out of range[0, NumOfItem-1] </exception>
         /// <example>
         /// <code>
@@ -324,7 +332,7 @@ namespace Tizen.NUI.MediaHub
         /// }
         /// catch(ArgumentException)
         /// {
-        ///     Log.Error(LogTag, "Disable item index out of range. "+e.Message);
+        ///     Log.Error(LogTag, "Disable item index out of range. " +e.Message);
         /// }
         /// </code>
         /// </example>
@@ -335,6 +343,7 @@ namespace Tizen.NUI.MediaHub
                 Tizen.Log.Fatal("NUI", "Disable item index is out of range! Items count = " + list.NumOfItem + ", index = " + index);
                 throw new IndexOutOfRangeException("Disable item index is out of range! Items count = " + list.NumOfItem + ", index = " + index);
             }
+
             OptionListItemData data = (bridge as OptionListBridge).GetData(index) as OptionListItemData;
             data.IsDisabled = disable;
             list.UpdateItem(index);
@@ -353,10 +362,11 @@ namespace Tizen.NUI.MediaHub
         /// }
         /// catch(ArgumentException)
         /// {
-        ///     Log.Error(LogTag, "Item index out of range. "+e.Message);
+        ///     Log.Error(LogTag, "Item index out of range. " +e.Message);
         /// }
         /// </code>
         /// </example>
+        /// <returns>the text string of the soecific index</returns>
         public string TextString(int index)
         {
             if (index < 0 || index >= list.NumOfItem)
@@ -407,6 +417,7 @@ namespace Tizen.NUI.MediaHub
             {
                 coverImage.LowerToBottom();
             }
+
             if (bgImage != null)
             {
                 bgImage.LowerToBottom();
@@ -416,6 +427,8 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Called when the control gain key input focus.
         /// </summary>
+        /// <param name="sender">the object</param>
+        /// <param name="e">the args of the event</param>
         public void OnFocusGained(object sender, EventArgs e)
         {
             focusedView = list;
@@ -424,6 +437,8 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Called when the control loses key input focus.
         /// </summary>
+        /// <param name="sender">the object</param>
+        /// <param name="e">the args of the event</param>
         public void OnFocusLost(object sender, EventArgs e)
         {
             focusedView = null;
@@ -483,8 +498,8 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// The callback of OnRelayoutEvent event.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
+        /// <param name="source">the object</param>
+        /// <param name="e">the args of the event</param>
         private void OnRelayout(object source, EventArgs e)
         {
             OnUpdate();
@@ -493,9 +508,9 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// The callback of KeyEvent.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
-        /// <returns>If the key is customed return true, else return false</returns>
+        /// <param name="source">the object</param>
+        /// <param name="e">the args of the event</param>
+        /// <returns>If the key is consumed return true, else return false</returns>
         private bool ControlKeyEvent(object source, KeyEventArgs e)
         {
             return OnKey(e.Key);
@@ -504,8 +519,8 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Onkey.
         /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="key">the key value</param>
+        /// <returns>return whether the the key has been consumed</returns>
         public bool OnKey(Key key)
         {
             return false;
@@ -623,7 +638,7 @@ namespace Tizen.NUI.MediaHub
         /// Update the item
         /// </summary>
         /// <param name="index">The index of the item</param>
-        /// <param name="view"></param>
+        /// <param name="view">the view</param>
         public override void UpdateItem(int index, View view)
         {
              TextItem textItem = view as TextItem;
@@ -634,15 +649,18 @@ namespace Tizen.NUI.MediaHub
                 {
                     textItem.StateEnabled = !itemData.IsDisabled;
                 }
+
                 if (textItem.StateFocused != itemData.IsFocused)
                 {
                     textItem.StateFocused = itemData.IsFocused;
                 }
+
                 if (textItem.StateSelected != itemData.IsSelected)
                 {
                     textItem.StateSelected = itemData.IsSelected;
                 }
             }
+
             textItem.MainText = itemData.TextString;
         }
 
@@ -672,6 +690,7 @@ namespace Tizen.NUI.MediaHub
             {
                 view.Dispose();
             }
+
             return;
         }
 
@@ -679,13 +698,14 @@ namespace Tizen.NUI.MediaHub
         /// Unload the item according to the type.
         /// </summary>
         /// <param name="viewType">The type </param>
-        /// <param name="view"></param>
+        /// <param name="view">the view</param>
         public override void UnloadItemByViewType(int viewType, View view)
         {
             if (view != null)
             {
                 view.Dispose();
             }
+
             return;
         }
     }

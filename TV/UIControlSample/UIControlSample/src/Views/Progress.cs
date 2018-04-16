@@ -75,7 +75,8 @@ namespace UIControlSample
             labelVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             labelVisual.Add(TextVisualProperty.Text, new PropertyValue("progressBar"));
             labelVisual.Add(TextVisualProperty.TextColor, new PropertyValue(Color.White));
-            labelVisual.Add(TextVisualProperty.PointSize, new PropertyValue(10));
+            //labelVisual.Add(TextVisualProperty.PointSize, new PropertyValue(10));
+            labelVisual.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize10));
             labelVisual.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
             _progressBar.LabelVisual = labelVisual;
 

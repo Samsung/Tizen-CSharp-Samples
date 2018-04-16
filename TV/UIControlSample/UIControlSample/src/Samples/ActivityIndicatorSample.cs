@@ -53,18 +53,19 @@ namespace UIControlSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 100);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 0);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
-            guide.PointSize = 15.0f;
+            //guide.PointSize = 15.0f;
+            guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "ActivityIndicator Sample \n";
             guide.TextColor = Color.White;
-            guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
 
             activityIndicator = new ActivityIndicator();
-            activityIndicator.Position = new Position(900, 550, 0);
+            activityIndicator.Position = new Position(896, 476, 0);
             Window.Instance.GetDefaultLayer().Add(activityIndicator);
         }
 

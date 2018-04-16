@@ -66,6 +66,7 @@ namespace Tizen.NUI.MediaHub
             {
                 itemSelectedHander += value;
             }
+
             remove
             {
                 itemSelectedHander -= value;
@@ -81,6 +82,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return customButton.Text;
             }
+
             set
             {
                 if (customButton != null)
@@ -99,6 +101,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return optionList.ItemHeight;
             }
+
             set
             {
                 if (optionList != null)
@@ -125,9 +128,10 @@ namespace Tizen.NUI.MediaHub
             {
                 return optionList.SelectItemIndex;
             }
+
             set
             {
-                if(optionList != null)
+                if (optionList != null)
                 {
                     optionList.SelectItemIndex = value;
                     ButtonText = optionList.TextString(value);
@@ -144,6 +148,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return optionList.FocusItemIndex;
             }
+
             set
             {
                 if (optionList != null)
@@ -170,7 +175,7 @@ namespace Tizen.NUI.MediaHub
         /// <param name="textString"> OptionList item text string </param>
         public void AddListData(string textString)
         {
-            if(optionList!=null)
+            if (optionList != null)
             {
                 Tizen.Log.Fatal("NUI"," [------" + "enter into Dropdown AddListData" + " ------]" + textString);
                 optionList.AddData(textString);
@@ -210,6 +215,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return optionList.Size2D;
             }
+
             set
             {
                 if (value == null)
@@ -217,6 +223,7 @@ namespace Tizen.NUI.MediaHub
                     Tizen.Log.Fatal("NUI", "Set null value to the size of the list!");
                     throw new InvalidOperationException("Wrong size value of the list. It shoud be a not-null value!");
                 }
+
                 if (optionList != null)
                 {
                     optionList.Size2D = new Size2D(value.Width, value.Height);
@@ -234,6 +241,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             optionList.PositionUsesPivotPoint = true;
             optionList.ParentOrigin = Tizen.NUI.ParentOrigin.TopCenter;
             optionList.PivotPoint = Tizen.NUI.PivotPoint.BottomCenter;
@@ -267,6 +275,7 @@ namespace Tizen.NUI.MediaHub
                 listOpenAni.AnimateTo(optionList, "PositionY", -4.0f, 0, 334);
                 Tizen.Log.Fatal("NUI", " [------" + "enter into Dropdown ShowList" + " ------]" + optionList.Position.Y);
             }
+
             listOpenAni.Play();
         }
 
@@ -288,6 +297,7 @@ namespace Tizen.NUI.MediaHub
                 listCloseAni.AnimateTo(optionList, "Opacity", 0.0f);
                 listCloseAni.AnimateTo(optionList, "PositionY", 84.0f, 0, 334);
             }
+
             listCloseAni.Play();
             Tizen.Log.Fatal("NUI"," [------" + "enter into Dropdown HideList listCloseAni" + " ------]");
         }
@@ -343,8 +353,7 @@ namespace Tizen.NUI.MediaHub
 
         /// <summary>
         /// Overrides this method if want to update attributes of component.
-        /// </summary>
-        /// <param name="attrs"> the attributes of control</param>       
+        /// </summary>       
         private void OnUpdate()
         {
             SetAttribute();
@@ -382,6 +391,7 @@ namespace Tizen.NUI.MediaHub
                 // FocusedControl = dropdownButton;
                 FocusManager.Instance.SetCurrentFocusView(dropdownButton);
             }
+
             if (optionList != null)
             {
                 HideList();
@@ -440,6 +450,7 @@ namespace Tizen.NUI.MediaHub
                         optionListFlag = false;
                     }
                 }
+
                 return false;
             };
             optionList.OptionListEvent += OnOptionListEvent;
@@ -453,7 +464,7 @@ namespace Tizen.NUI.MediaHub
 
         private void OnOptionListEvent(object o, ListView.ListEventArgs e)
         {
-            if(e.EventType == ListView.ListEventType.FocusMoveOut)
+            if (e.EventType == ListView.ListEventType.FocusMoveOut)
             {
                 if ((e.param[0] == (int)MoveDirection.Down))
                 {
@@ -466,9 +477,9 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// The callback of KeyEvent
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
-        /// <returns></returns>
+        /// <param name="source">the object</param>
+        /// <param name="e">the args of the event</param>
+        /// <returns>whether the key has been consumed or not</returns>
         private bool OnListKeyPressed(object source, View.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down)
@@ -507,6 +518,7 @@ namespace Tizen.NUI.MediaHub
 
                 }
             }
+
             return true;
         }
 

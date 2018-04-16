@@ -54,6 +54,10 @@ namespace ChannelList
         /// <summary>
         /// The Constructor with parameter.
         /// </summary>
+        /// <param name="x">x value</param>
+        /// <param name="y">y value</param>
+        /// <param name="width">width value</param>
+        /// <param name="height">height value</param>
         public Rect(float x, float y, float width, float height)
         {
             this.x = x;
@@ -65,6 +69,7 @@ namespace ChannelList
         /// <summary>
         /// The copy constructor.
         /// </summary>
+        /// <param name="rhs">the Rect object instance</param>
         public Rect(Rect rhs)
         {
             x = rhs.x;
@@ -82,6 +87,7 @@ namespace ChannelList
             {
                 x = (value);
             }
+
             get
             {
                 return x;
@@ -97,6 +103,7 @@ namespace ChannelList
             {
                 y = (value);
             }
+
             get
             {
                 return y;
@@ -112,6 +119,7 @@ namespace ChannelList
             {
                 width = (value);
             }
+
             get
             {
                 return width;
@@ -127,6 +135,7 @@ namespace ChannelList
             {
                 height = (value);
             }
+
             get
             {
                 return height;
@@ -197,6 +206,7 @@ namespace ChannelList
         /// <summary>
         /// Check if a rect intersects with another rect.
         /// </summary>
+        /// <param name="other">the Rect object instance.</param>
         /// <returns>True if two rect have an intersection.</returns>
         public bool Intersects(Rect other)
         {
@@ -207,6 +217,7 @@ namespace ChannelList
         /// <summary>
         /// Check if a rect contains another rect.
         /// </summary>
+        /// <param name="other">the Rect object instance</param>
         /// <returns>True if a rect contains another rect.</returns>
         public bool Contains(Rect other)
         {
@@ -217,6 +228,8 @@ namespace ChannelList
         /// <summary>
         /// Check if two rects are equal.
         /// </summary>
+        /// <param name="a">the first rect object used to compare</param>
+        /// <param name="b">the second rect object used to compare</param>
         /// <returns>True if two rects are equal.</returns>
         public static bool operator ==(Rect a, Rect b)
         {
@@ -239,6 +252,8 @@ namespace ChannelList
         /// <summary>
         /// Check if two rects are not equal.
         /// </summary>
+        /// <param name="a">the first rect object used to compare</param>
+        /// <param name="b">the second rect object used to compare</param>
         /// <returns>True if two rects are not equal.</returns>
         public static bool operator !=(Rect a, Rect b)
         {
@@ -248,6 +263,7 @@ namespace ChannelList
         /// <summary>
         /// Check if a rect is equal with another rect
         /// </summary>
+        /// <param name="obj">the object which used to compare</param>
         /// <returns>True if two rects are equal.</returns>
         public override bool Equals(object obj)
         {

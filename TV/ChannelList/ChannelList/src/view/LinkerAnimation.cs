@@ -41,7 +41,7 @@ namespace ChannelList
         private View targetView; //target view
         private float accRatio; //acc ratio
         
-        private event EventHandler viaEventHandler; //via event handler
+        private event EventHandler ViaEventHandler; //via event handler
         
         /// <summary>
         /// Via event handler, user can add/remove
@@ -50,12 +50,12 @@ namespace ChannelList
         {
             add
             {
-                viaEventHandler += value;
+                ViaEventHandler += value;
             }
 
             remove
             {
-                viaEventHandler -= value;
+                ViaEventHandler -= value;
             }
         }
     
@@ -152,7 +152,7 @@ namespace ChannelList
                 }
             }
         }
-    
+
         /// <summary>
         /// Check whehter animation is playing.
         /// </summary>
@@ -167,7 +167,9 @@ namespace ChannelList
                     ret = true;
                     break;
                 }
+
             }
+
             return ret;
         }
     
@@ -176,11 +178,12 @@ namespace ChannelList
         /// </summary>
         public void Dispose()
         {
-            foreach(Animation ani in scrollAniList)
+            foreach (Animation ani in scrollAniList)
             {
                 ani?.Stop();
                 ani?.Dispose();
             }
+
             scrollAniList.Clear();
         }
         
@@ -190,10 +193,11 @@ namespace ChannelList
             {
                 return;
             }
+
             Animation ani = obj as Animation;
             scrollAniList.Remove(ani);
             
-            viaEventHandler(this, null);
+            ViaEventHandler(this, null);
             if (scrollAniList.Count != 0)
             {
                 scrollAniList[0].Play();

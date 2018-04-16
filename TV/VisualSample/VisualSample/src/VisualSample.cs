@@ -70,29 +70,30 @@ namespace VisualSample
             // Create Background view.
             View focusIndicator = new View();
             FocusManager.Instance.FocusIndicator = focusIndicator;
-            Window.Instance.BackgroundColor = Color.White;
+            Window.Instance.BackgroundColor = Color.Black;
             guide = new TextLabel();
             guide.HorizontalAlignment = HorizontalAlignment.Center;
             guide.VerticalAlignment = VerticalAlignment.Center;
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 100);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 0);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
-            guide.PointSize = 15.0f;
+            //guide.PointSize = 15.0f;
+            guide.PointSize = PointSize15;
             guide.Text = "Visual Sample \n";
             guide.TextColor = Color.White;
-            guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
             
             _visualView = new VisualView();
             _visualView.PositionUsesPivotPoint = true;
             _visualView.ParentOrigin = ParentOrigin.TopLeft;
             _visualView.PivotPoint = PivotPoint.TopLeft;
-            _visualView.Position2D = new Position2D(0, 130);
-            _visualView.Size2D = new Size2D(1920, 900);
+            _visualView.Position2D = new Position2D(0, 160);
+            _visualView.Size2D = new Size2D(1920, 800);
             Window.Instance.GetDefaultLayer().Add(_visualView);
 
             Populate();
@@ -231,10 +232,10 @@ namespace VisualSample
 
         /// <summary>
         /// Create a PrimitiveVisual.
+        /// </summary>
         /// <param name="type">the type of the shape</param>
         /// <param name="position">the position of the primitiveVisual</param>
-        /// <retuens>return a primitiveVisual</retuens>
-        /// </summary>
+        /// <returns>return a primitiveVisual</returns>
         private Tizen.NUI.PrimitiveVisual CreatePrimitiveVisual(PrimitiveVisualShapeType type, Vector2 position)
         {
             Tizen.NUI.PrimitiveVisual primitiveVisual = new Tizen.NUI.PrimitiveVisual();
@@ -331,6 +332,7 @@ namespace VisualSample
                     visualMap = imageVisual;
                     break;
             }
+
             visualMap.Size = new Size2D(200, 200);
             visualMap.Position = position;
             visualMap.PositionPolicy = VisualTransformPolicyType.Absolute;
@@ -342,17 +344,19 @@ namespace VisualSample
 
         /// <summary>
         /// Create a TextVisual.
+        /// </summary>
         /// <param name="text">the text of the TextVisual</param>
         /// <param name="position">the position of the textVisual</param>
-        /// <retuens>return a textVisual</retuens>
-        /// </summary>
+        /// <returns>return a text visual</returns>
         private Tizen.NUI.TextVisual CreateTextVisual(string text, Vector2 position)
         {
             Tizen.NUI.TextVisual textVisual = new Tizen.NUI.TextVisual();
             textVisual.Text = text;
-            textVisual.PointSize = 8.0f;
+            //textVisual.PointSize = 8.0f;
+            textVisual.PointSize = PointSize8;
             textVisual.FontFamily = "Samsung One 400";
             textVisual.Size = new Vector2(400.0f, 100.0f);
+            textVisual.TextColor = Color.White;
             textVisual.Position = position;
             textVisual.PositionPolicy = VisualTransformPolicyType.Absolute;
             textVisual.SizePolicy = VisualTransformPolicyType.Absolute;
@@ -368,13 +372,15 @@ namespace VisualSample
         /// </summary>
         /// <param name="text">The text of the Text visual</param>
         /// <param name="color">The color of the text</param>
+        /// <returns>return a map which contain the properties of the text visual</returns>
         private PropertyMap CreateTextVisual(string text, Color color)
         {
             PropertyMap map = new PropertyMap();
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            map.Add(TextVisualProperty.PointSize, new PropertyValue(PointSize8));
             map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
@@ -385,6 +391,7 @@ namespace VisualSample
         /// Create an Image visual.
         /// </summary>
         /// <param name="imagePath">The url of the image</param>
+        /// <returns>return a map which contain the properties of the image visual</returns>
         private PropertyMap CreateImageVisual(string imagePath)
         {
             PropertyMap map = new PropertyMap();
@@ -448,6 +455,7 @@ namespace VisualSample
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                 }
+
                 return false;
             };
             return button;
@@ -467,6 +475,60 @@ namespace VisualSample
             view.HeightResizePolicy = ResizePolicyType.FillToParent;
             view.WidthResizePolicy = ResizePolicyType.FillToParent;
             return view;
+        }
+
+        /// <summary>
+        /// Whether it is a SR emul
+        /// </summary>
+        /// <returns>If it is a SR emul, then return true</returns>
+        public bool IsSREmul()
+        {
+            int widthDpi = (int)Window.Instance.Dpi.Width;
+            int heightDpi = (int)Window.Instance.Dpi.Height;
+            if (widthDpi == 314 && heightDpi == 314)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Return the point size of 8
+        /// </summary>
+        public float PointSize8
+        {
+            get
+            {
+                if (IsSREmul())
+                {
+                    return 8.0f;
+                }
+                else
+                {
+                    return 34.0f;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Return the point size of 15
+        /// </summary>
+        public float PointSize15
+        {
+            get
+            {
+                if (IsSREmul())
+                {
+                    return 15.0f;
+                }
+                else
+                {
+                    return 65.0f;
+                }
+            }
         }
     }
 }

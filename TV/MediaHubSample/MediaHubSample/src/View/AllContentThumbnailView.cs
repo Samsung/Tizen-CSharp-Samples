@@ -30,7 +30,7 @@ namespace Tizen.NUI.MediaHub
         /// </summary>
         /// <param name="o">ContentModel object of data</param>
         /// <param name="editMode">the edit mode for gridlist item</param>
-        public AllContentThumbnailView(object o, bool editMode = false) :base()
+        public AllContentThumbnailView(object o, bool editMode = false) : base()
         {   
           //  FolderThumbnailImage.SetImage(CommonReosurce.GetLocalReosurceURL() + "Folder/mc_folder_folder.png");
 
@@ -42,18 +42,19 @@ namespace Tizen.NUI.MediaHub
                 Tizen.Log.Fatal("NUI" ,"[ListView]ItemView, item is null");
                 return;
             }
+
             LoadItem(item);
-            showCheckBox(editMode, item.IsSelected);
+            ShowCheckBox(editMode, item.IsSelected);
         }
 
         /// <summary>
         /// Create folder thumbnail
         /// </summary>
         /// <param name="item">object for class ContentModel</param>
-        private void createFolder(ContentModel item)
+        private void CreateFolder(ContentModel item)
         {
             StateEditabled = false;
-            string defaultIcon = CommonResource.GetLocalReosurceURL() +"Folder/mc_folder.png";
+            string defaultIcon = CommonResource.GetLocalReosurceURL() + "Folder/mc_folder.png";
             MainImageURL = "";
             MainText = item.DisplayName;
             StateEnabled = !editMode;
@@ -96,20 +97,22 @@ namespace Tizen.NUI.MediaHub
         /// Create thumbnail for photo file 
         /// </summary>
         /// <param name="item">object for class ContentModel</param>
-        private void createPhoto(ContentModel item)
+        private void CreatePhoto(ContentModel item)
         {
             StateEditabled = true;
-            string thumb = CommonResource.GetLocalReosurceURL() +"DefaultThumb/mc_f_default_photo.png";
-            inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() +"Contents_icon/mc_icon_contents_camera.png";
+            string thumb = CommonResource.GetLocalReosurceURL() + "DefaultThumb/mc_f_default_photo.png";
+            inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() + "Contents_icon/mc_icon_contents_camera.png";
 
             if (!item.Available)
             {
-                inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() +"Contents_icon/mc_icon_unsupported_photo.png";
+                inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() + "Contents_icon/mc_icon_unsupported_photo.png";
             }   
+
             if (item.ThumbDone)
             {
                 thumb = item.ThumbnailPath;
             }
+
             MainImageURL = thumb;
 
             MainText = item.DisplayName;
@@ -121,10 +124,10 @@ namespace Tizen.NUI.MediaHub
         /// Create UpFolder thumbnail 
         /// </summary>
         /// <param name="item">object for class ContentModel</param>
-        private void createUpFolder(ContentModel item)
+        private void CreateUpFolder(ContentModel item)
         {
             StateEditabled = false;
-            string folderImage = CommonResource.GetLocalReosurceURL() +"Folder/mc_upper_folder_n.png";
+            string folderImage = CommonResource.GetLocalReosurceURL() + "Folder/mc_upper_folder_n.png";
             MainImageURL = folderImage;
             MainText = item.DisplayName;
             StateEnabled = !editMode;
@@ -134,11 +137,11 @@ namespace Tizen.NUI.MediaHub
         /// Create thumbnail for video file
         /// </summary>
         /// <param name="item">object for class ContentModel</param>
-        private void createVideo(ContentModel item)
+        private void CreateVideo(ContentModel item)
         {
             StateEditabled = true;
-            string thumb = CommonResource.GetLocalReosurceURL() +"DefaultThumb/mc_f_default_video.png";
-            inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() +"Contents_icon/mc_icon_contents_play.png";
+            string thumb = CommonResource.GetLocalReosurceURL() + "DefaultThumb/mc_f_default_video.png";
+            inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() + "Contents_icon/mc_icon_contents_play.png";
 
             if (item.ThumbDone)
             {
@@ -160,19 +163,21 @@ namespace Tizen.NUI.MediaHub
         /// Create thumbnail for music file
         /// </summary>
         /// <param name="item">object for class ContentModel</param>
-        private void createMusic(ContentModel item)
+        private void CreateMusic(ContentModel item)
         {
             StateEditabled = true;
-            string thumb = CommonResource.GetLocalReosurceURL() +"DefaultThumb/mc_f_default_music.png";
-            inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() +"Contents_icon/mc_icon_contents_music.png";
+            string thumb = CommonResource.GetLocalReosurceURL() + "DefaultThumb/mc_f_default_music.png";
+            inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() + "Contents_icon/mc_icon_contents_music.png";
             if (!item.Available)
             {
-                inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() +"Contents_icon/mc_icon_unsupported_music.png";
+                inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() + "Contents_icon/mc_icon_unsupported_music.png";
             }
+
             if (item.ThumbDone)
             {
                 thumb = item.ThumbnailPath;
             }
+
             MainImageURL = thumb;
             MainText = item.DisplayName;
             InformationIconURLArray = inforIconURLArray;
@@ -190,26 +195,26 @@ namespace Tizen.NUI.MediaHub
             if (itemType == ContentItemType.eItemFolder)
             {
                 //Create item for folder
-                createFolder(item);
+                CreateFolder(item);
             }
             else if (itemType == ContentItemType.eItemPhoto)
             {
                 //Create item for photo
-                createPhoto(item);
+                CreatePhoto(item);
             }
             else if (itemType == ContentItemType.eItemVideo)
             {
                 //Create item for video
-                createVideo(item);
+                CreateVideo(item);
             }
-            else if(itemType == ContentItemType.eItemMusic)
+            else if (itemType == ContentItemType.eItemMusic)
             {
                 //Create item for music
-                createMusic(item);
+                CreateMusic(item);
             }
-            else if(itemType == ContentItemType.eItemUpFolder)
+            else if (itemType == ContentItemType.eItemUpFolder)
             {
-                createUpFolder(item);
+                CreateUpFolder(item);
             }         
         }
 
@@ -228,11 +233,13 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             ContentModel itemData = bridge.GetData(itemIndex, groupIndex) as ContentModel;
             if (itemData == null)
             {
                 return;
             }
+
             int itemType = itemData.MediaItemType;
 
             try
@@ -240,7 +247,7 @@ namespace Tizen.NUI.MediaHub
                 switch (itemType)
                 {
                     case ContentItemType.eItemFolder:
-                        //MainImageURL = (CommonReosurce.GetLocalReosurceURL() +"Folder/mc_folder.png");
+                        //MainImageURL = (CommonReosurce.GetLocalReosurceURL() + "Folder/mc_folder.png");
                         MainImageURL = "";
                         MainText = itemData.DisplayName;
                         Folderpath = itemData.FolderThumbPath;
@@ -290,7 +297,7 @@ namespace Tizen.NUI.MediaHub
                         this.Remove(TopLayerImage);
                         this.Remove(FolderThumbnailImage);
 
-                        MainImageURL = (CommonResource.GetLocalReosurceURL() +"Folder/mc_upper_folder_n.png");
+                        MainImageURL = (CommonResource.GetLocalReosurceURL() + "Folder/mc_upper_folder_n.png");
                         MainText = itemData.DisplayName;
 
                         StateEnabled = !editMode;
@@ -301,7 +308,7 @@ namespace Tizen.NUI.MediaHub
                         this.Remove(TopLayerImage);
                         this.Remove(FolderThumbnailImage);
 
-                        inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() +"Contents_icon/mc_icon_contents_camera.png";
+                        inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() + "Contents_icon/mc_icon_contents_camera.png";
                          StateEnabled = true;
                   
                         if (itemData.ThumbDone)
@@ -310,15 +317,16 @@ namespace Tizen.NUI.MediaHub
                         }
                         else
                         {
-                            MainImageURL = (CommonResource.GetLocalReosurceURL() +"DefaultThumb/mc_f_default_photo.png");
+                            MainImageURL = (CommonResource.GetLocalReosurceURL() + "DefaultThumb/mc_f_default_photo.png");
                         }
+
                         this.MainText = itemData.DisplayName;
                         InformationIconURLArray = inforIconURLArray;
                         break;
                     case ContentItemType.eItemVideo:
                         this.Remove(TopLayerImage);
                         this.Remove(FolderThumbnailImage);
-                        inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() +"Contents_icon/mc_icon_contents_play.png";
+                        inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() + "Contents_icon/mc_icon_contents_play.png";
                        
                         StateEnabled = true;
                         if (itemData.ThumbDone)
@@ -327,19 +335,21 @@ namespace Tizen.NUI.MediaHub
                         }
                         else
                         {
-                            MainImageURL = (CommonResource.GetLocalReosurceURL() +"DefaultThumb/mc_f_default_video.png");
+                            MainImageURL = (CommonResource.GetLocalReosurceURL() + "DefaultThumb/mc_f_default_video.png");
                         }
+
                         MainText = itemData.DisplayName;
                         InformationIconURLArray = inforIconURLArray;
                         break;
                     case ContentItemType.eItemMusic:
                         this.Remove(TopLayerImage);
                         this.Remove(FolderThumbnailImage);
-                        inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() +"Contents_icon/mc_icon_contents_music.png";
+                        inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() + "Contents_icon/mc_icon_contents_music.png";
                         if (!itemData.Available)
                         {
                             inforIconURLArray[0] = CommonResource.GetLocalReosurceURL() + "Contents_icon/mc_icon_unsupported_music.png";
                         }
+
                         StateEnabled = true;
                         if (itemData.ThumbDone)
                         {
@@ -347,13 +357,15 @@ namespace Tizen.NUI.MediaHub
                         }
                         else
                         {
-                            MainImageURL = (CommonResource.GetLocalReosurceURL() +"DefaultThumb/mc_f_default_music.png");
+                            MainImageURL = (CommonResource.GetLocalReosurceURL() + "DefaultThumb/mc_f_default_music.png");
                         }
+
                         MainText = itemData.DisplayName;
                         InformationIconURLArray = inforIconURLArray;
                         break;
-                }               
-                showCheckBox(editMode, itemData.IsSelected);
+                }
+                
+                ShowCheckBox(editMode, itemData.IsSelected);
             }
             catch (Exception e)
             {

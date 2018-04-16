@@ -97,7 +97,7 @@ namespace ChannelList
         /// <summary>
         /// Construct ListAdapter with datas.
         /// </summary>
-        /// <param name="attrs">data list</param>
+        /// <param name="objects">data list</param>
         public ListAdapter(List<object> objects)
         {
             listData = objects;

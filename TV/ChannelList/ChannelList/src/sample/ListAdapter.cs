@@ -39,6 +39,7 @@ namespace ListSample
         /// <summary>
         /// The constructor with date sets.
         /// </summary>
+        /// <param name="objects">the objects</param>
         public SampleListAdapter(List<object> objects)
             : base(objects)
         {
@@ -53,6 +54,7 @@ namespace ListSample
             {
                 return playProgramIndex;
             }
+
             set
             {
                 playProgramIndex = value;
@@ -176,6 +178,7 @@ namespace ListSample
                 itemView.ProgramText = itemData.Program;
                 itemView.ChannelText = itemData.Channel;
             }
+
             view?.Dispose();
         }
 
@@ -206,6 +209,7 @@ namespace ListSample
         /// <summary>
         /// The constructor with data set.
         /// </summary>
+        /// <param name="objects">the objects</param>
         public SubListAdapter(List<object> objects)
             : base(objects)
         {
@@ -220,6 +224,7 @@ namespace ListSample
             {
                 return selectedIndex;
             }
+
             set
             {
                 selectedIndex = value;
@@ -235,6 +240,7 @@ namespace ListSample
             {
                 return open;
             }
+
             set
             {
                 open = value;
@@ -268,6 +274,7 @@ namespace ListSample
                 {
                     itemView.IconOpacity(false);
                 }
+
             }
 
             return itemView;
@@ -356,6 +363,7 @@ namespace ListSample
                 itemView.Text = itemData.Text;
                 itemView.IconUrl = itemData.IconN;
             }
+
             view?.Dispose();
         }
 
@@ -384,6 +392,7 @@ namespace ListSample
         /// <summary>
         /// The constructor with parameter.
         /// </summary>
+        /// <param name="objects">the objects</param>
         public SelectListAdapter(List<object> objects)
             : base(objects)
         {
@@ -476,6 +485,7 @@ namespace ListSample
                 itemView.FavoriteText = itemData.Name;
                 itemView.FavoriteNum = itemData.FavoriteNum;
             }
+
             view?.Dispose();
         }
 
@@ -504,6 +514,7 @@ namespace ListSample
         /// <summary>
         /// The constructor with data sets.
         /// </summary>
+        /// <param name="objects">the objects</param>
         public GenreListAdapter(List<object> objects)
             : base(objects)
         {
@@ -593,6 +604,7 @@ namespace ListSample
             {
                 itemView.Text = itemData.Name;
             }
+
             view?.Dispose();
         }
 

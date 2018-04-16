@@ -51,7 +51,6 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Constructor of the ImageItem class with special style.
         /// </summary>
-        /// <param name="style">The string to initialize the ImageItem.</param>
         public ImageItem() : base()
         {
             Initialize();
@@ -68,12 +67,14 @@ namespace Tizen.NUI.MediaHub
             {
                 return isFocused;
             }
+
             set
             {
                 if (isFocused == value)
                 {
                     return;
                 }
+
                 isFocused = value;
                 UpdateFocusedState();
             }
@@ -88,12 +89,14 @@ namespace Tizen.NUI.MediaHub
             {
                 return isSelected;
             }
+
             set
             {
                 if (isSelected == value)
                 {
                     return;
                 }
+
                 isSelected = value;
                 UpdateSelectedState();
             }
@@ -108,12 +111,14 @@ namespace Tizen.NUI.MediaHub
             {
                 return isEnabled;
             }
+
             set
             {
-                if(isEnabled == value)
+                if (isEnabled == value)
                 {
                     return;
                 }
+
                 isEnabled = value;
                 UpdateEnabledState();
             }
@@ -128,12 +133,14 @@ namespace Tizen.NUI.MediaHub
             {
                 return isEditabled;
             }
+
             set
             {
                 if (isEditabled == value)
                 {
                     return;
                 }
+
                 isEditabled = value;
             }
         }
@@ -147,10 +154,11 @@ namespace Tizen.NUI.MediaHub
             {
                 return mainImageURL;
             }
+
             set
             {
                 mainImageURL = value;
-                if(mainImage != null)
+                if (mainImage != null)
                 {
                     mainImage.SetImage(mainImageURL);
                 }
@@ -166,13 +174,15 @@ namespace Tizen.NUI.MediaHub
             {
                 return mainTextContent;
             }
+
             set
             {
                 mainTextContent = value;
-                if(mainText != null)
+                if (mainText != null)
                 {
                     mainText.Text = mainTextContent;
                 }
+
                 UpdateMainTextScroll();
             }
         }
@@ -186,11 +196,12 @@ namespace Tizen.NUI.MediaHub
             {
                 return informationIconURLArray;
             }
+
             set
             {
                 if (value == null)
                 {
-                    if(informationIconArray != null)
+                    if (informationIconArray != null)
                     {
                         int iconArrayLength = informationIconArray.Length;
                         if (iconArrayLength > 0)
@@ -201,6 +212,7 @@ namespace Tizen.NUI.MediaHub
                                 informationIconArray[i].Dispose();
                             }
                         }
+
                         informationIconArray = null;
                     }
                 }
@@ -211,11 +223,13 @@ namespace Tizen.NUI.MediaHub
                     {
                         length = informationIconArrayMaxCount;
                     }
+
                     informationIconURLArray = new string[length];
                     for (int i = 0; i < length; i++)
                     {
                         informationIconURLArray[i] = value[i];
                     }
+
                     InitializeInformationIcon();
                     ApplyInformationIcon();
                 }
@@ -291,6 +305,7 @@ namespace Tizen.NUI.MediaHub
                         informationIconArray[i].Dispose();
                         informationIconArray[i] = null;
                     }
+
                     informationIconArray = null;
                 }
                 //Dispose the root view
@@ -393,7 +408,7 @@ namespace Tizen.NUI.MediaHub
         /// </summary>
         private void InitializeMainImage()
         {
-            if(mainImage == null)
+            if (mainImage == null)
             {
                 mainImage = new ImageView();
                 mainImage.WidthResizePolicy = ResizePolicyType.Fixed;
@@ -413,6 +428,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             int urlArrayLength = informationIconURLArray.Length;
             if (urlArrayLength < 0 || urlArrayLength > informationIconArrayMaxCount)
             {
@@ -434,14 +450,17 @@ namespace Tizen.NUI.MediaHub
                         rootView.Remove(informationIconArray[i]);
                         informationIconArray[i].Dispose();
                     }
+
                     informationIconArray = null;
                     newLength = urlArrayLength;
                 }
             }
+
             if (newLength <= 0)
             {
                 return;
             }
+
             informationIconArray = new ImageView[newLength];
             for (int i = 0; i < newLength; i++)
             {
@@ -482,10 +501,11 @@ namespace Tizen.NUI.MediaHub
         /// </summary>
         private void ApplyRootView()
         {
-            if(rootView == null)
+            if (rootView == null)
             {
                 return;
             }
+
             float thisWidth = Size2D.Width;
             float thisHeight = Size2D.Height;
             float left = 2.0f, top = 2.0f, right = 2.0f, bottom = 2.0f;
@@ -525,8 +545,9 @@ namespace Tizen.NUI.MediaHub
                 bgImagePath = CommonResource.GetLocalReosurceURL() + "component/c_imageitem/c_imageitem_white_bg_normal_singleline_9patch.9.png";
                 
             }
-                backgroundImage.Size2D = new Size2D((int)(rootWidth + left + right), (int)(rootHeight + top + bottom));
-                backgroundImage.SetImage(bgImagePath);
+
+            backgroundImage.Size2D = new Size2D((int)(rootWidth + left + right), (int)(rootHeight + top + bottom));
+            backgroundImage.SetImage(bgImagePath);
         }
 
         /// <summary>
@@ -538,10 +559,11 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             mainImage.Size2D = new Size2D((int)(Size2D.Width - 2.0f * 2), (int)(Size2D.Height - 2.0f * 2 - 60.0f));
             mainImage.Position = new Position(0, 0, 0);
 
-            if(mainImageURL != null)
+            if (mainImageURL != null)
             {
                 mainImage.SetImage(mainImageURL);
             }
@@ -556,6 +578,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             float rootWidth = rootSize.Width;
             float rootHeight = rootSize.Height;
 
@@ -573,6 +596,7 @@ namespace Tizen.NUI.MediaHub
                 Tizen.Log.Fatal("NUI",  "mainTextContent = " + mainTextContent);
                 mainText.Text = mainTextContent;
             }
+
             UpdateMainTextStyleByState();
         }
 
@@ -590,14 +614,14 @@ namespace Tizen.NUI.MediaHub
             int iconArrayLength = informationIconArray.Length;
             for (int i = 0; i < iconArrayLength; i++)
             {
-                if(informationIconArray[i] != null)
+                if (informationIconArray[i] != null)
                 {
                     informationIconArray[i].Size2D = new Size2D(38, 38);
                     //TODO maybe the rootSize is incorrect here:Size rootSize = new Size(newWidth - 2.0f * 2, newHeight - 2.0f * 2, 0);
                     Size2D rootsize = new Size2D(Size2D.Width - 2 * 2, Size2D.Height - 2 * 2);
                     informationIconArray[i].Position = new Position(rootsize.Width - (38.0f + 4.0f) * (i + 1), 4.0f, 0);
                     
-                    if(informationIconURLArray[i] != null)
+                    if (informationIconURLArray[i] != null)
                     {
                         string url = informationIconURLArray[i];
                         if (url != null)
@@ -605,6 +629,7 @@ namespace Tizen.NUI.MediaHub
                             informationIconArray[i].SetImage(url);
                         }
                     }
+
                     informationIconArray[i].RaiseToTop();
                 }
             }
@@ -659,7 +684,7 @@ namespace Tizen.NUI.MediaHub
             }
             
             // dimout
-            if(dimOutAni != null)
+            if (dimOutAni != null)
             {
                 dimOutAni.Duration = 333;
                 float dimOutOpacity = 1.0f;
@@ -705,7 +730,7 @@ namespace Tizen.NUI.MediaHub
         /// </summary>
         private void PlayFocosedAnimation()
         {
-            if(isFocused)
+            if (isFocused)
             {
                 if (focusOutAni != null && focusOutAni.State == Animation.States.Playing)
                 {
@@ -811,6 +836,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             Tizen.Log.Fatal("NUI",  "isFocused = " + isFocused + ", isSelected = "  + isSelected + ", isEnabled = " + isEnabled);
             if (isFocused)
             {
@@ -830,7 +856,8 @@ namespace Tizen.NUI.MediaHub
             }
 
             mainText.FontFamily = "SamsungOneUI_400";
-            mainText.PointSize = 5;
+            //mainText.PointSize = 5;
+            mainText.PointSize = DeviceCheck.PointSize5;
 
             // scroll
             mainText.EnableAutoScroll = false; // enable scroll
@@ -848,6 +875,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
+
             if (enableScroll)
             {
                 if (isFocused)

@@ -52,14 +52,15 @@ namespace UIControlSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 100);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 0);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
-            guide.PointSize = 15.0f;
+            //guide.PointSize = 15.0f;
+            guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "Slider Sample \n";
             guide.TextColor = Color.White;
-            guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
 
             userGuide = new TextLabel();
@@ -71,7 +72,8 @@ namespace UIControlSample
             userGuide.FontFamily = "Samsung One 400";
             userGuide.Position = new Position(200, 200, 0);
             userGuide.MultiLine = true;
-            userGuide.PointSize = 10.0f;
+            //userGuide.PointSize = 10.0f;
+            userGuide.PointSize = DeviceCheck.PointSize10;
             userGuide.Text = "KEY Left: Decrease the value.\n" +
                              "KEY Right: Increase the value.\n";
             userGuide.TextColor = Color.White;
@@ -79,7 +81,7 @@ namespace UIControlSample
 
             Sliders sliderSample = new Sliders();
             sliderView = sliderSample.GetHorizentalSlider();
-            sliderView.Position = new Position(650, 600, 0);
+            sliderView.Position = new Position(760, 550, 0);
             slider = sliderSample.GetSlider();
             Window.Instance.GetDefaultLayer().Add(sliderView);
             FocusManager.Instance.SetCurrentFocusView(slider);

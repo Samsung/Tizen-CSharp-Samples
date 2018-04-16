@@ -35,6 +35,7 @@ namespace VisualSample
             {
                 return visualView;
             }
+
             set
             {
                 visualView = value;

@@ -50,6 +50,7 @@ namespace Tizen.NUI.MediaHub
                 {
                     Tizen.Log.Fatal("NUI", "onItemPress error: " + e.Message);
                 }
+
                 try
                 {
                     if (item.MediaItemType == ContentItemType.eItemFolder)
@@ -61,7 +62,7 @@ namespace Tizen.NUI.MediaHub
                     }
                     else
                     {
-                        selectItems(item, itemIndex, groupIndex, view);
+                        SelectItems(item, itemIndex, groupIndex, view);
                     }
                 }
                 catch (Exception e2)
@@ -79,7 +80,7 @@ namespace Tizen.NUI.MediaHub
         /// <param name="itemIndex">The index of the item</param>
         /// <param name="groupIndex">The index of th grid</param>
         /// <param name="gridView">The grid instance</param>
-        public void selectItems(ContentModel item, int itemIndex, int groupIndex, GridView gridView)
+        public void SelectItems(ContentModel item, int itemIndex, int groupIndex, GridView gridView)
         {
             Tizen.Log.Fatal("NUI", "editModeItemPress itemIndex:" + itemIndex + ", groupIndex:" + groupIndex);
             ImageItem imageItem = (ImageItem)gridView.GetLoadedItemView(groupIndex, itemIndex);

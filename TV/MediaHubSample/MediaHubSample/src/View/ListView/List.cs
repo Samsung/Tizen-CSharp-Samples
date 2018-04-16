@@ -100,7 +100,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Construct ListAdapter with datas.
         /// </summary>
-        /// <param name="attrs">data list</param>
+        /// <param name="objects">data list</param>
         public ListBridge(List<object> objects)
         {
             listData = objects;
@@ -234,7 +234,7 @@ namespace Tizen.NUI
         public void Remove(int fromIndex, int removeNum)
         {
             Tizen.Log.Debug("NUI", "Remove item from " + fromIndex + ", number " + removeNum);
-            if (fromIndex + removeNum > listData.Count )
+            if (fromIndex + removeNum > listData.Count)
             {
                 return;
             }
@@ -524,10 +524,12 @@ namespace Tizen.NUI
         /// </summary>
         public int FocusItemIndex
         {
-            get {
+            get
+            {
                 Tizen.Log.Debug("NUI", "=========get FocusItemIndex : " + curFocusItemIndex);
                 return curFocusItemIndex; 
             }
+
             set
             {
                 Tizen.Log.Debug("NUI", "=========FocusItemIndex set to: " + value);
@@ -535,6 +537,7 @@ namespace Tizen.NUI
                 {
                     return;
                 }
+
                 if (HasFocus() == true)
                 {
                     SetFocus(value);
@@ -543,6 +546,7 @@ namespace Tizen.NUI
                 {
                     curFocusItemIndex = value;
                 }
+
                 Tizen.Log.Debug("NUI", "==========FocusItemIndex set to: " + curFocusItemIndex);
             }
         }
@@ -552,9 +556,11 @@ namespace Tizen.NUI
         /// </summary>
         public ListView ParentList
         {
-        	get {
+        	get
+            {
         		return parentList; 
         	}
+
         	set
         	{
         		parentList = value;
@@ -565,9 +571,11 @@ namespace Tizen.NUI
         /// </summary>
         public ListView ChildList
         {
-        	get {
+        	get
+            {
         		return childList; 
         	}
+
         	set
         	{
         		childList = value;
@@ -581,9 +589,11 @@ namespace Tizen.NUI
         /// </summary>
         public int PreloadFrontItemSize
         {
-        	get {
+        	get
+            {
         		return preloadFrontItemSize; 
         	}
+
         	set
         	{
         		preloadFrontItemSize = value;
@@ -595,9 +605,11 @@ namespace Tizen.NUI
         /// </summary>
         public int PreloadBackItemSize
         {
-        	get {
+        	get
+            {
         		return preloadBackItemSize; 
         	}
+
         	set
         	{
         		preloadBackItemSize = value;
@@ -610,9 +622,11 @@ namespace Tizen.NUI
         /// </summary>
         public AnimationAttributes ScrollAnimationAttrs
         {
-            get {
+            get
+            {
                 return scrollAnimationAttrs; 
             }
+
             set
             {
                 scrollAnimationAttrs = value;
@@ -624,9 +638,11 @@ namespace Tizen.NUI
         /// </summary>
         public float FocusInScaleFactor
         {
-        	get {
+        	get
+            {
         		return focusInScaleFactor; 
         	}
+
         	set
         	{
         		focusInScaleFactor = value;
@@ -637,9 +653,11 @@ namespace Tizen.NUI
         /// </summary>
         public int ListTopPadding
         {
-        	get {
+        	get
+            {
         		return listTopPadding; 
         	}
+
         	set
         	{
         		listTopPadding = value;
@@ -650,9 +668,11 @@ namespace Tizen.NUI
         /// </summary>
         public int ListBottomPadding
         {
-        	get {
+        	get
+            {
         		return listBottomPadding; 
         	}
+
         	set
         	{
         		listBottomPadding = value;
@@ -663,9 +683,11 @@ namespace Tizen.NUI
         /// </summary>
         public int Level
         {
-        	get {
+        	get
+            {
         		return level; 
         	}
+
         	set
         	{
         		level = value;
@@ -677,9 +699,11 @@ namespace Tizen.NUI
         /// </summary>
         public AnimationAttributes FocusInScaleAnimationAttrs
         {
-        	get {
+        	get
+            {
         		return focusInScaleAnimationAttrs; 
         	}
+
         	set
         	{
         		focusInScaleAnimationAttrs = value;
@@ -691,9 +715,11 @@ namespace Tizen.NUI
         /// </summary>
         public AnimationAttributes FocusOutScaleAnimationAttrs
         {
-        	get {
+        	get
+            {
         		return focusOutScaleAnimationAttrs; 
         	}
+
         	set
         	{
         		focusOutScaleAnimationAttrs = value;
@@ -811,7 +837,7 @@ namespace Tizen.NUI
 
             ListItem item = itemList[itemIndex];
 
-            if(item.itemView != null)
+            if (item.itemView != null)
             {
                 adapter.UpdateItem(itemIndex, item.itemView);
             }
@@ -820,7 +846,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the data behind this List.
         /// </summary>
-        /// <param name="Adapter">The ListAdapter which is responsible for maintaining the data
+        /// <param name="adapter">The ListAdapter which is responsible for maintaining the data
         /// backing this list and for producing a view to represent an item in the data set.</param>
         public void SetBridge(ListBridge adapter)
         {
@@ -855,10 +881,11 @@ namespace Tizen.NUI
                     item.rect.Width = this.SizeWidth - (margin[0] + margin[2]);
                     item.rect.Height = adapter.GetItemHeight(i); ;
                 }
-                Tizen.Log.Debug("NUI", "...item.rect.Height :" + item.rect.Height+"attrsApplied : "+attrsApplied);
+
+                Tizen.Log.Debug("NUI", "...item.rect.Height :" + item.rect.Height + "attrsApplied : " + attrsApplied);
             }
 
-            Tizen.Log.Debug("NUI", ".adapter.GetItemTypeCount"+adapter.GetItemTypeCount());
+            Tizen.Log.Debug("NUI", ".adapter.GetItemTypeCount" + adapter.GetItemTypeCount());
             adapter.DataChangeEvent += OnDataChange;
             SetViewTypeCount(adapter.GetItemTypeCount());
 
@@ -916,6 +943,7 @@ namespace Tizen.NUI
             {
                 return;
             }
+
             int itemCount = PageItemNum();
 
             if (itemList.Count - itemCount - 1 <= curFocusItemIndex)
@@ -950,7 +978,7 @@ namespace Tizen.NUI
             ListItem item = itemList.ElementAt(firstShowItemIndex);
 
             float posYOnList = item.rect.Y + itemGroupRect.Y;
-            if(itemGroupRect.Y - posYOnList <= SizeHeight - itemGroupRect.Height)
+            if (itemGroupRect.Y - posYOnList <= SizeHeight - itemGroupRect.Height)
             {
                 itemGroupRect.Y = SizeHeight - itemGroupRect.Height;
             }
@@ -958,6 +986,7 @@ namespace Tizen.NUI
             {
                 itemGroupRect.Y = itemGroupRect.Y - posYOnList;
             }
+
             UpdateInMemoryItems(itemGroupRect);
             itemGroup.PositionY = itemGroupRect.Y;
             ChangeFocus(firstShowItemIndex);
@@ -992,6 +1021,7 @@ namespace Tizen.NUI
             {
                 item = itemList[itemIndex];
             }
+
             return item?.itemView;
         }
 
@@ -1019,7 +1049,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Update when List attributes changed.
         /// </summary>
-        /// <param name="attrs">Attributes to be applied</param>
         protected void OnUpdate()
         {
             if (topShadowView == null)
@@ -1028,6 +1057,7 @@ namespace Tizen.NUI
                 topShadowView.Name = "TopShadowView";
                 this.Add(topShadowView);
             }
+
             if (bottomShadowView == null)
             {
                 bottomShadowView = new ImageView();
@@ -1047,6 +1077,7 @@ namespace Tizen.NUI
                     item.rect.Width = this.SizeWidth - (margin[0] + margin[2]);
                     item.rect.Height = adapter.GetItemHeight(item.index);
                 }
+
                 Load();
             }
         }
@@ -1099,10 +1130,11 @@ namespace Tizen.NUI
             Tizen.Log.Debug("NUI", "Load.attrsApplied." + attrsApplied);
             flagFirstIn = true;
             listItemCount = adapter.GetCount();
-            if(listItemCount == 0)
+            if (listItemCount == 0)
             {
                 return;
             }
+
             Tizen.Log.Debug("NUI", "..Load.to UpdateItemGroupSize..");
 
             UpdateItemGroupSize();
@@ -1114,6 +1146,7 @@ namespace Tizen.NUI
             {
                 SetFocus(curFocusItemIndex);
             }
+
             Tizen.Log.Debug("NUI", "..Load out.");
         }
 
@@ -1151,7 +1184,7 @@ namespace Tizen.NUI
 
         private void AddAll(int count)
         {
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 AddItem();
             }
@@ -1199,6 +1232,7 @@ namespace Tizen.NUI
                     {
                         item.itemView.Scale = new Vector3(1.0f, 1.0f, 1.0f);
                     }
+
                     UnloadItem(item);
 
                     curInMemoryItemList.Remove(item);
@@ -1246,7 +1280,7 @@ namespace Tizen.NUI
                 while (!IsValidItemIndex(curFocusItemIndex))
                 {
                     curFocusItemIndex--;
-                    if(curFocusItemIndex == -1)
+                    if (curFocusItemIndex == -1)
                     {
                         break;
                     }
@@ -1259,6 +1293,7 @@ namespace Tizen.NUI
                 {
                     tailItemIndex = itemList.Count - 1;
                 }
+
                 Position itemGroupPos = new Position(0, 0, 0);
                 bool flagScrollItem = CalItemGroupPosByFocusItemIndex(curFocusItemIndex, itemGroupPos);
                 itemGroupRect.Y = itemGroupPos.Y;
@@ -1316,6 +1351,7 @@ namespace Tizen.NUI
                 curFocusItemIndex++;
                 scrollIndex = curFocusItemIndex;
             }
+
             UpdateItemGroupSize();
 
             //if (index >= (headItemIndex <= currentAttrs.PreloadFrontItemSize ? 0 : headItemIndex - currentAttrs.PreloadFrontItemSize) && index <= tailItemIndex + currentAttrs.PreloadBackItemSize)
@@ -1333,6 +1369,7 @@ namespace Tizen.NUI
             {
                 item.Dispose();
             }
+
             Tizen.Log.Debug("NUI", "" + curInMemoryItemList);
             Tizen.Log.Debug("NUI", "" + curInMemoryItemList.Count());
             foreach (ListItem item in curInMemoryItemList)
@@ -1366,6 +1403,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Called when the control gain key input focus.
         /// </summary>
+        /// <param name="sender">the object</param>
+        /// <param name="e">the args of the event</param>
         private void OnFocusGained(object sender, EventArgs e)
         {
             Tizen.Log.Debug("NUI", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -1378,6 +1417,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Called when the control loses key input focus.
         /// </summary>
+        /// <param name="sender">the object</param>
+        /// <param name="e">the args of the event</param>
         private void OnFocusLost(object sender, EventArgs e)
         {
             Tizen.Log.Debug("NUI", "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
@@ -1425,6 +1466,7 @@ namespace Tizen.NUI
 
                     break;
             }
+
             Tizen.Log.Debug("NUI", "....End");
         }
 
@@ -1455,7 +1497,7 @@ namespace Tizen.NUI
             scrollWayPointAni = new LinkerAnimation(itemGroup, 100, 100, 0);
             /*unload front item when via event happen*/
 
-            scrollWayPointAni.ViaEvent += delegate (object o, EventArgs e)
+            scrollWayPointAni.ViaEvent += delegate(object o, EventArgs e)
             {
                 Tizen.Log.Debug("NUI", " scrollWayPointAni itemGroup: " + itemGroup.PositionX + ", " + itemGroup.PositionY + ", " + itemGroup.SizeWidth + ", " + itemGroup.SizeHeight);
                 Tizen.Log.Debug("NUI", "itemGroupRect: " + itemGroupRect.X + ", " + itemGroupRect.Y + ", " + itemGroupRect.Width + ", " + itemGroupRect.Height);
@@ -1471,6 +1513,7 @@ namespace Tizen.NUI
                 {
                     return;
                 }
+
                 if (unloadItemList.Count > 0)
                 {
                     ListItem item = unloadItemList[0];
@@ -1523,6 +1566,7 @@ namespace Tizen.NUI
             {
                 itemGroupRect.Height = itemList[itemList.Count - 1].rect.Bottom();
             }
+
             itemGroupRect.Width = (int)(this.SizeWidth - (margin[0] + margin[2]));
             Tizen.Log.Debug("NUI", "UpdateItemGroupSize itemGroupRect: " + itemGroupRect.X + ", " + itemGroupRect.Y + ", " + itemGroupRect.Width + ", " + itemGroupRect.Height);
 
@@ -1556,15 +1600,15 @@ namespace Tizen.NUI
 
             newHeadItemIndex = GetItemIndexByPosY(visibleAreaOfItemGroup.Y, true);
             newTailItemIndex = GetItemIndexByPosY(visibleAreaOfItemGroup.Bottom(), false);
-            Tizen.Log.Debug("NUI", ".UpdateInMemoryItems : headItemIndex, tailItemIndex, newHeadItemIndex, newTailItemIndex."+headItemIndex + tailItemIndex.ToString() +newHeadItemIndex + newTailItemIndex);
+            Tizen.Log.Debug("NUI", ".UpdateInMemoryItems : headItemIndex, tailItemIndex, newHeadItemIndex, newTailItemIndex." + headItemIndex + tailItemIndex.ToString() + newHeadItemIndex + newTailItemIndex);
 
             List<ListItem> loadList = new List<ListItem>();
             List<ListItem> unloadList = new List<ListItem>();
             List<ListItem> scrollList = new List<ListItem>();
 
-            Tizen.Log.Debug("NUI", ".UpdateInMemoryItems : headItemIndex, tailItemIndex, newHeadItemIndex, newTailItemIndex."+ headItemIndex + tailItemIndex + newHeadItemIndex + newTailItemIndex);
+            Tizen.Log.Debug("NUI", ".UpdateInMemoryItems : headItemIndex, tailItemIndex, newHeadItemIndex, newTailItemIndex." + headItemIndex + tailItemIndex + newHeadItemIndex + newTailItemIndex);
             GetItemChangeInfo(headItemIndex, tailItemIndex, newHeadItemIndex, newTailItemIndex, loadList, unloadList, scrollList);
-            Tizen.Log.Debug("NUI", "...loadList:"+ loadList.Count+"...unloadList:" + unloadList.Count+"...scrollList:" + scrollList.Count);
+            Tizen.Log.Debug("NUI", "...loadList:" + loadList.Count + "...unloadList:" + unloadList.Count + "...scrollList:" + scrollList.Count);
  
             headItemIndex = newHeadItemIndex;
             tailItemIndex = newTailItemIndex;
@@ -1595,6 +1639,7 @@ namespace Tizen.NUI
             {
                 LoadItem(item);
             }
+
             Tizen.Log.Debug("NUI", "...");
 
         }
@@ -1614,6 +1659,7 @@ namespace Tizen.NUI
             {
                 unloadItemList.Remove(item);
             }
+
             Tizen.Log.Debug("NUI", ".LoadItem...item.index:" + item.index);
             View temp = GetRecycleView(item.index);
             Tizen.Log.Debug("NUI", "....StateRecycleEnable:" + StateRecycleEnable + " temp:" + temp);
@@ -1626,11 +1672,12 @@ namespace Tizen.NUI
             else
             {
                 item.itemView = adapter.GetItemView(item.index);
-                Tizen.Log.Debug("NUI", ".LoadItem item.itemView :"+item.itemView );
+                Tizen.Log.Debug("NUI", ".LoadItem item.itemView :" + item.itemView);
                 item.itemView.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
                 item.itemView.PivotPoint = Tizen.NUI.PivotPoint.Center;
                 item.itemView.PositionUsesPivotPoint = false;
             }
+
             Tizen.Log.Debug("NUI", "....");
             
             item.itemView.PositionX = item.rect.X;
@@ -1638,7 +1685,7 @@ namespace Tizen.NUI
             item.itemView.Size2D = new Size2D((int)item.rect.Width, (int)item.rect.Height);
 
             itemGroup.Add(item.itemView);
-            Tizen.Log.Debug("NUI", "itemGroup.Add...X:"+item.itemView.PositionX+"y : "+item.itemView.PositionY+" Height : " + item.itemView.SizeHeight);
+            Tizen.Log.Debug("NUI", "itemGroup.Add...X:" + item.itemView.PositionX + "y : " + item.itemView.PositionY + " Height : " + item.itemView.SizeHeight);
 
             ListEventArgs evtArgs = new ListEventArgs();
             evtArgs.EventType = ListEventType.ItemScrolledIn;
@@ -1702,7 +1749,7 @@ namespace Tizen.NUI
 
             int itemCount = itemList.Count;
 
-            if(itemCount == 0)
+            if (itemCount == 0)
             {
                 return -1;
             }
@@ -1762,7 +1809,8 @@ namespace Tizen.NUI
                             {
                                 end = itemIndex;
                             }
-                        } while (begin != end);
+                        }
+                        while (begin != end);
                     }
                 }
             }
@@ -1808,7 +1856,8 @@ namespace Tizen.NUI
                         {
                             end = itemIndex;
                         }
-                    } while (begin != end);
+                    }
+                    while (begin != end);
                 }
             }
 
@@ -2060,11 +2109,11 @@ namespace Tizen.NUI
         private void MoveNext()
         {
             bool bMoved = false;
-            Tizen.Log.Debug("NUI", " -1-----MoveNext scrollIndex : " +scrollIndex + ", listItemCount : " +  listItemCount);
+            Tizen.Log.Debug("NUI", " -1-----MoveNext scrollIndex : " + scrollIndex + ", listItemCount : " +  listItemCount);
 
             while (scrollIndex < listItemCount - 1)
             {
-                if(adapter.IsItemEnabled(++scrollIndex) == true)
+                if (adapter.IsItemEnabled(++scrollIndex) == true)
                 {
                     MoveFocus(scrollIndex);
                     bMoved = true;
@@ -2084,7 +2133,8 @@ namespace Tizen.NUI
             {
                 return;
             }
-            Tizen.Log.Debug("NUI", "X1 MoveFocus at FocusIndex : "+focusItemIndex);
+
+            Tizen.Log.Debug("NUI", "X1 MoveFocus at FocusIndex : " + focusItemIndex);
 
             ListItem item = itemList[focusItemIndex];
 
@@ -2119,6 +2169,7 @@ namespace Tizen.NUI
             {
                 return;
             }
+
             flagFirstIn = false;
             if (IsValidItemIndex(from) == true && itemList[from].itemView != null && from != to)
             {
@@ -2147,6 +2198,7 @@ namespace Tizen.NUI
                 curFocusItemIndex = focusItemIndex;
                 return;
             }
+
             if (!IsValidItemIndex(focusItemIndex) || !adapter.IsItemEnabled(focusItemIndex))
             {
                 return;
@@ -2167,6 +2219,7 @@ namespace Tizen.NUI
                 UpdateInMemoryItems(itemGroupRect);
                 itemGroup.PositionY = itemGroupRect.Y;
             }
+
             Tizen.Log.Debug("NUI", "itemGroupRect: " + itemGroupRect.X + ", " + itemGroupRect.Y + ", " + itemGroupRect.Width + ", " + itemGroupRect.Height);
 
             ChangeFocus(focusItemIndex);
@@ -2181,6 +2234,7 @@ namespace Tizen.NUI
                 ListItem focusOutItem = itemList[curFocusItemIndex];
                 focusOutItem.ScaleItem(new Vector3(1.0f, 1.0f, 1.0f), FocusOutScaleAnimationAttrs);
             }
+
             if (IsValidItemIndex(focusItemIndex))
             {
                 ListItem focusInItem = itemList[focusItemIndex];
@@ -2199,6 +2253,7 @@ namespace Tizen.NUI
                     topShadowView.Show();
                 }
             }
+
             if (bottomShadowView != null)
             {
                 if (tailItemIndex == NumOfItem - 1 && itemGroup.PositionY + itemList[tailItemIndex].rect.Bottom() <= this.SizeHeight)
@@ -2216,7 +2271,7 @@ namespace Tizen.NUI
 
             //preFocusItemIndex = curFocusItemIndex;
             curFocusItemIndex = focusItemIndex;
-            Tizen.Log.Debug("NUI", " ############################--ChangeFocus curFocusItemIndex / focusItemIndex : ", curFocusItemIndex+"/"+focusItemIndex);
+            Tizen.Log.Debug("NUI", " ############################--ChangeFocus curFocusItemIndex / focusItemIndex : ", curFocusItemIndex + "/" + focusItemIndex);
         }
 
         private bool IsValidItemIndex(int index)
@@ -2229,7 +2284,7 @@ namespace Tizen.NUI
             bool needScroll = false;
             Rect destItemRectOnList = new Rect(itemList[focusIndex].rect);
             destItemRectOnList.Y += itemGroupRect.Y;
-            Tizen.Log.Debug("NUI", "X1itemGroupRect.Y: "+ itemGroupRect.Y + " destItemRectOnList: " + destItemRectOnList.X + ", " + destItemRectOnList.Y + ", " + destItemRectOnList.Width + ", " + destItemRectOnList.Height);
+            Tizen.Log.Debug("NUI", "X1itemGroupRect.Y: " + itemGroupRect.Y + " destItemRectOnList: " + destItemRectOnList.X + ", " + destItemRectOnList.Y + ", " + destItemRectOnList.Width + ", " + destItemRectOnList.Height);
 
             float startFocusRange = (focusIndex == 0) ? margin[1] : itemList[focusIndex - 1].rect.Height / 2;
             float endFocusRange = (focusIndex == itemList.Count - 1) ? this.SizeHeight - margin[3] : this.SizeHeight - itemList[focusIndex + 1].rect.Height / 2;
@@ -2257,7 +2312,8 @@ namespace Tizen.NUI
                     itemGroupPos.Y = this.SizeHeight - margin[3] - itemGroupRect.Height;
                 }
             }
-            Tizen.Log.Debug("NUI", "itemGroupPosX,Y : " + itemGroupPos.X + ", " + itemGroupPos.Y+"margin[1] : "+margin[1]);
+
+            Tizen.Log.Debug("NUI", "itemGroupPosX,Y : " + itemGroupPos.X + ", " + itemGroupPos.Y + "margin[1] : " + margin[1]);
             return needScroll;
         }
 
@@ -2284,6 +2340,7 @@ namespace Tizen.NUI
 
                 return;
             }
+
             viewTypeCount = typeCount;
             List<View>[] viewListArray = new List<View>[viewTypeCount];
 
@@ -2303,6 +2360,7 @@ namespace Tizen.NUI
             {
                 return;
             }
+
             if (view != null)
             {
                 view.Hide();
@@ -2319,6 +2377,7 @@ namespace Tizen.NUI
             {
                 return null;
             }
+
             View obj = null;
             int viewCount = recycledViews[viewType].Count;
             if (viewCount != 0)
@@ -2326,10 +2385,12 @@ namespace Tizen.NUI
                 obj = recycledViews[viewType][viewCount - 1];
                 recycledViews[viewType].Remove(obj);
             }
+
             if (obj != null)
             {
                 obj.Show();
             }
+
             return obj;
         }
 
@@ -2339,13 +2400,14 @@ namespace Tizen.NUI
             {
                 for (int j = 0; j < recycledViews[i].Count; j++)
                 {
-                    unloadRecycledView(i, recycledViews[i][j]);
+                    UnloadRecycledView(i, recycledViews[i][j]);
                 }
+
                 recycledViews[i].Clear();
             }
         }
 
-        private void unloadRecycledView(int viewType, View view)
+        private void UnloadRecycledView(int viewType, View view)
         {
             adapter.UnloadItemByViewType(viewType, view);
         }
@@ -2367,7 +2429,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            if(IsAniPlaying() == true)
+            if (IsAniPlaying() == true)
             {
                 return;
             }
@@ -2382,6 +2444,7 @@ namespace Tizen.NUI
 
             circular = false;
         }
+
         private bool IsAniPlaying()
         {
             bool isPlaying = false;
@@ -2401,20 +2464,24 @@ namespace Tizen.NUI
                 scaleAni?.Dispose();
                 scaleAni = null;
             }
+
             public void ScaleItem(Vector3 scaleFactor, AnimationAttributes aniAttrs)
             {
                 if (itemView == null || scaleFactor == null || aniAttrs == null)
                 {
                     return;
                 }
+
                 if (scaleAni == null)
                 {
                     scaleAni = new Animation();
                 }
+
                 if (scaleAni.State == Animation.States.Playing)
                 {
                     scaleAni.Stop(Animation.EndActions.StopFinal);
                 }
+
                 scaleAni.Clear();
                 scaleAni.AnimateTo(itemView, "Scale", scaleFactor, 0, aniAttrs.Duration, new AlphaFunction(aniAttrs.BezierPoint1, aniAttrs.BezierPoint2));
                 scaleAni.Play();

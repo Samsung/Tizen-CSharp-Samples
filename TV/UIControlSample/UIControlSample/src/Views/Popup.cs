@@ -111,7 +111,8 @@ namespace UIControlSample
             titleView.Position = new Position(70, 65, 0);
             titleView.Size2D = new Size2D(720, 70);
             titleView.MultiLine = false;
-            titleView.PointSize = 10;
+            //titleView.PointSize = 10;
+            titleView.PointSize = DeviceCheck.PointSize10;
             titleView.HorizontalAlignment = HorizontalAlignment.Center;
 
             ImageView imageView = new ImageView(barImage);
@@ -135,7 +136,8 @@ namespace UIControlSample
             contentLabel.Position = new Position(70, 204, 0);
             contentLabel.Size2D = new Size2D(720, 120);
             contentLabel.MultiLine = true;
-            contentLabel.PointSize = 8;
+            //contentLabel.PointSize = 8;
+            contentLabel.PointSize = DeviceCheck.PointSize8;
             contentLabel.HorizontalAlignment = HorizontalAlignment.Center;
 
             PushButton okButton = CreateOKButton();

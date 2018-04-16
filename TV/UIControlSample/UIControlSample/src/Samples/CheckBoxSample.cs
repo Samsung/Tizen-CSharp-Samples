@@ -54,14 +54,15 @@ namespace UIControlSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 100);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 0);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
-            guide.PointSize = 15.0f;
+            guide.PointSize = DeviceCheck.PointSize15;
+            //guide.PointSize = 15.0f;
             guide.Text = "CheckBox Sample \n";
             guide.TextColor = Color.White;
-            guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
 
             testText = new TextLabel();
@@ -72,12 +73,13 @@ namespace UIControlSample
             testText.PivotPoint = PivotPoint.TopLeft;
             testText.Size2D = new Size2D(300, 100);
             testText.FontFamily = "Samsung One 600";
-            testText.Position2D = new Position2D(850, 200);
+            testText.Position2D = new Position2D(810, 200);
             testText.MultiLine = false;
-            testText.PointSize = 15.0f;
+            //testText.PointSize = 15.0f;
+            testText.PointSize = DeviceCheck.PointSize15;
             testText.Text = "Test Text \n";
-            testText.TextColor = Color.White;
-            testText.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            testText.TextColor = Color.Black;
+            testText.BackgroundColor = Color.White;
             Window.Instance.GetDefaultLayer().Add(testText);
 
 
@@ -89,7 +91,7 @@ namespace UIControlSample
             checkbox1.StateChanged += CheckBoxStateChanged;
             checkbox2.StateChanged += CheckBoxStateChanged;
             checkbox3.StateChanged += CheckBoxStateChanged;
-            checkBoxGroupView.Position = new Position(850, 500, 0);
+            checkBoxGroupView.Position = new Position(810, 400, 0);
             Window.Instance.GetDefaultLayer().Add(checkBoxGroupView);
             FocusManager.Instance.SetCurrentFocusView(checkbox1);
         }

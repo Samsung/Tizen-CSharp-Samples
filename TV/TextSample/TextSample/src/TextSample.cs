@@ -92,29 +92,30 @@ namespace TextSample
             guide = new TextLabel();
             guide.HorizontalAlignment = HorizontalAlignment.Center;
             guide.VerticalAlignment = VerticalAlignment.Center;
-            guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             guide.TextColor = Color.White;
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 100);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 0);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
-            guide.PointSize = 15.0f;
+            //guide.PointSize = 15.0f;
+            guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "Text Sample";
             Window.Instance.GetDefaultLayer().Add(guide);
 
             TextLabel label = CreatTextLabel("TextLabel");
-            label.Position2D = new Position2D(150, 185);
+            label.Position2D = new Position2D(150, 215);
             Window.Instance.GetDefaultLayer().Add(label);
 
             TextLabel field = CreatTextLabel("TextField");
-            field.Position2D = new Position2D(150, 355);
+            field.Position2D = new Position2D(150, 380);
             Window.Instance.GetDefaultLayer().Add(field);
 
             TextLabel editor = CreatTextLabel("TextEditor");
-            editor.Position2D = new Position2D(150, 585);
+            editor.Position2D = new Position2D(150, 615);
             Window.Instance.GetDefaultLayer().Add(editor);
 
             // Create textLabel.
@@ -141,7 +142,8 @@ namespace TextSample
         {
             TextLabel _textLabel = new TextLabel();
             _textLabel.Text = text;
-            _textLabel.PointSize = 8.0f;
+            //_textLabel.PointSize = 8.0f;
+            _textLabel.PointSize = DeviceCheck.PointSize8;
             _textLabel.BackgroundColor = Color.White;
             _textLabel.VerticalAlignment = VerticalAlignment.Center;
             _textLabel.HorizontalAlignment = HorizontalAlignment.Center;
@@ -219,9 +221,10 @@ namespace TextSample
             textLabel.PositionUsesPivotPoint = true;
             textLabel.PivotPoint = PivotPoint.TopLeft;
             textLabel.ParentOrigin = ParentOrigin.TopLeft;
-            textLabel.Position = new Position(370, 150, 0);
+            textLabel.Position = new Position(370, 180, 0);
             // The text size is 8.0f;
-            textLabel.PointSize = 8.0f;
+            //textLabel.PointSize = 8.0f;
+            textLabel.PointSize = DeviceCheck.PointSize8;
             textLabel.BackgroundColor = Color.White;
             textLabel.Focusable = true;
             textLabel.FontFamily = "SamsungOneUI_200";
@@ -243,9 +246,10 @@ namespace TextSample
             textField.PositionUsesPivotPoint = true;
             textField.PivotPoint = PivotPoint.TopLeft;
             textField.ParentOrigin = ParentOrigin.TopLeft;
-            textField.Position = new Position(370, 320, 0);
+            textField.Position = new Position(370, 350, 0);
             // The text size is 8.0f;
-            textField.PointSize = 8.0f;
+            //textField.PointSize = 8.0f;
+            textField.PointSize = DeviceCheck.PointSize8;
             textField.Text = "A control which provides a single-line editable text field.";
             textField.BackgroundColor = Color.White;
             textField.Focusable = true;
@@ -273,14 +277,15 @@ namespace TextSample
             textEditor = new TextEditor();
             // The size of textEditor is 800 * 260.
             textEditor.SizeWidth = 1400;
-            textEditor.SizeHeight = 260;
+            textEditor.SizeHeight = 240;
             // Set the position of textEditor.
             textEditor.PositionUsesPivotPoint = true;
             textEditor.PivotPoint = PivotPoint.TopLeft;
             textEditor.ParentOrigin = ParentOrigin.TopLeft;
-            textEditor.Position = new Position(370, 495, 0);
+            textEditor.Position = new Position(370, 525, 0);
             // The text size is 8.
-            textEditor.PointSize = 8;
+            //textEditor.PointSize = 8;
+            textEditor.PointSize = DeviceCheck.PointSize8;
             textEditor.Text = "A control which provides a multi-line editable text editor.";
             textEditor.BackgroundColor = Color.White;
             textEditor.Focusable = true;
@@ -475,22 +480,39 @@ namespace TextSample
             // Change textLabel/textfield/textEditor's text size.
             else if (button.LabelText == "Size")
             {
-                if (textLabel.PointSize == 12.0f)
+                if (textLabel.PointSize == DeviceCheck.PointSize12)
                 {
-                    textLabel.PointSize = 8.0f;
-                    textField.PointSize = 8.0f;
-                    textEditor.PointSize = 8.0f;
+                    textLabel.PointSize = DeviceCheck.PointSize8;
+                    textField.PointSize = DeviceCheck.PointSize8;
+                    textEditor.PointSize = DeviceCheck.PointSize8;
                     textField.Text = textField.Text;
                     textEditor.Text = textEditor.Text;
                 }
                 else
                 {
-                    textLabel.PointSize = 12.0f;
-                    textField.PointSize = 12.0f;
-                    textEditor.PointSize = 12.0f;
+                    textLabel.PointSize = DeviceCheck.PointSize12;
+                    textField.PointSize = DeviceCheck.PointSize12;
+                    textEditor.PointSize = DeviceCheck.PointSize12;
                     textField.Text = textField.Text;
                     textEditor.Text = textEditor.Text;
                 }
+
+                //if (textLabel.PointSize == 12.0f)
+                //{
+                //    textLabel.PointSize = 8.0f;
+                //    textField.PointSize = 8.0f;
+                //    textEditor.PointSize = 8.0f;
+                //    textField.Text = textField.Text;
+                //    textEditor.Text = textEditor.Text;
+                //}
+                //else
+                //{
+                //    textLabel.PointSize = 12.0f;
+                //    textField.PointSize = 12.0f;
+                //    textEditor.PointSize = 12.0f;
+                //    textField.Text = textField.Text;
+                //    textEditor.Text = textEditor.Text;
+                //}
             }
 
             // Make textLabel's text auto scroll.
@@ -693,7 +715,8 @@ namespace TextSample
             // Text color is black.
             textVisual.Add(TextVisualProperty.TextColor, new PropertyValue(Color.Black));
             // The text size is 7.
-            textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(7));
+            //textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(7));
+            textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize7));
             // Texts place at the center of horizontal direction.
             textVisual.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             // Texts place at the center of vertical direction.
@@ -706,13 +729,15 @@ namespace TextSample
         /// </summary>
         /// <param name="text">The text of the Text visual</param>
         /// <param name="color">The color of the text</param>
+        /// <returns>return a map which contain the properties of the text</returns>
         private PropertyMap CreateTextVisual(string text, Color color)
         {
             PropertyMap map = new PropertyMap();
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            map.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
@@ -767,6 +792,7 @@ namespace TextSample
         /// Create an Image visual.
         /// </summary>
         /// <param name="imagePath">The url of the image</param>
+        /// <returns>return a map which contain the properties of the image</returns>
         private PropertyMap CreateImageVisual(string imagePath)
         {
             PropertyMap map = new PropertyMap();
@@ -829,7 +855,9 @@ namespace TextSample
                         button.UnselectedBackgroundVisual = focusMap;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
+
                 }
+
                 return false;
             };
             return button;

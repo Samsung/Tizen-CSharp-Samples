@@ -187,6 +187,7 @@ namespace Tizen.NUI
             {
                 return focusMoveAniDuration;
             }
+
             set
             {
                 focusMoveAniDuration = value;
@@ -300,7 +301,7 @@ namespace Tizen.NUI
             if (groupList.Count > 0)
             {
                 Load();
-                if(HasFocus() == true && curInMemoryItemSet.Count != 0)
+                if (HasFocus() == true && curInMemoryItemSet.Count != 0)
                 {
                     SetFocus(focusGroupIndex, focusItemIndex);
                 }
@@ -314,7 +315,7 @@ namespace Tizen.NUI
         {
             Tizen.Log.Fatal("NUI", string.Format("[GridView]Add Group Number{0}", groupCount));
             int prevCount = groupList.Count;
-            for(int i = prevCount; i < groupCount + prevCount; i++)
+            for (int i = prevCount; i < groupCount + prevCount; i++)
             {
                 Group newGroup = new Group();
                 newGroup.index = i;
@@ -322,7 +323,7 @@ namespace Tizen.NUI
                 newGroup.itemList = new List<GridItem>();
                 newGroup.itemIndexToCell = new Dictionary<int,Cell>();
 
-                if(GridType.Horizontal == gridType)
+                if (GridType.Horizontal == gridType)
                 {
                     newGroup.startPos = newGroup.endPos = (i == 0 ? 0 : groupSpace + groupList.ElementAt(i - 1).endPos);
                 }
@@ -351,9 +352,11 @@ namespace Tizen.NUI
                             groupTitle.PositionX = 0;
                             groupTitle.PositionY = newGroup.startPos - titleSpace;
                         }
+
                         itemGroup.Add(groupTitle);
                     }
                 }
+
                 groupList.Add(newGroup);
            }
         }
@@ -375,8 +378,10 @@ namespace Tizen.NUI
                         itemGroup.Remove(groupList.ElementAt(i).title);
                         gridBridge.RemoveGroupTitleView(i, groupList.ElementAt(i).title);
                     }
+
                     Clear(i);
                 }
+
                 groupList.RemoveRange(groupCount, removeCount);
             }
         }
@@ -384,7 +389,7 @@ namespace Tizen.NUI
         // Add column to GridView.
         internal void AddColumn(int columnWidth, int groupIndex = 0)
         {
-            if(groupList.Count == 0)
+            if (groupList.Count == 0)
             {
                 Group newGroup = new Group();
                 newGroup.index = 0;
@@ -394,9 +399,10 @@ namespace Tizen.NUI
                 newGroup.startPos = newGroup.endPos =  0;
                 groupList.Add(newGroup);
             }
+
             Tizen.Log.Fatal("NUI", string.Format("[GridView]Add column columnWidth {0} to group {1}",columnWidth, groupIndex));
             
-            if(!IsGroupIndexValid(groupIndex))
+            if (!IsGroupIndexValid(groupIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid group index"));
                 return;
@@ -409,7 +415,7 @@ namespace Tizen.NUI
             newColumn.index = curGroup.columnList.Count;
             newColumn.space = columnWidth;
 
-            if(newColumn.index == 0)
+            if (newColumn.index == 0)
             {
                 newColumn.startPos = curGroup.startPos;
             }
@@ -420,7 +426,7 @@ namespace Tizen.NUI
 
             newColumn.endPos = newColumn.startPos + columnWidth;
 
-            if(newColumn.cellList == null)
+            if (newColumn.cellList == null)
             {
                 newColumn.cellList = new List<Cell>();
             }
@@ -430,27 +436,29 @@ namespace Tizen.NUI
             float posOffset = (0 == newColumn.index) ? columnWidth : columnWidth + columnSpace;
             curGroup.endPos += posOffset;
  
-            for(int i = groupIndex + 1; i < (int)groupList.Count; i++)
+            for (int i = groupIndex + 1; i < (int)groupList.Count; i++)
             {
                 if (GridType.Horizontal == gridType && groupList.ElementAt(i).title != null)
                 {
                     groupList.ElementAt(i).title.PositionX += posOffset;
                 }
+
                 groupList.ElementAt(i).ResetPosition(posOffset);
             }
+
             Tizen.Log.Fatal("NUI", "...");
             return;
         }
         /// <summary>
         /// Add row to the column in GridView.
         /// </summary>
-        /// <param name="groupIndex">The group index.</param>
         /// <param name="columnIndex">The column index;</param>
         /// <param name="rowHeight">The row space.</param>
+        /// <param name="groupIndex">The group index.</param>
         public void AddRowToColumn(int columnIndex, int rowHeight, int groupIndex = 0)
         {
             Tizen.Log.Fatal("NUI", string.Format("[GridView]Add row rowHeight {0} to column {1} of group {2}", rowHeight, columnIndex, groupIndex));
-            if(!IsColumnIndexValid(groupIndex, columnIndex))
+            if (!IsColumnIndexValid(groupIndex, columnIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid column index"));
                 return;
@@ -465,7 +473,7 @@ namespace Tizen.NUI
 
             Cell lastCell = (curRowNumInCol == 0 ? null : curColumn.cellList.ElementAt(curRowNumInCol - 1));
 
-            if(GridType.Horizontal == gridType)
+            if (GridType.Horizontal == gridType)
             {
                 newCell.rect.X = curColumn.startPos;
                 newCell.rect.Y = (curRowNumInCol == 0 ? 0 : lastCell.rect.Bottom() + rowSpace);
@@ -508,6 +516,7 @@ namespace Tizen.NUI
             {
                 curColumn.startItemIndex = newCell.itemIndex;
             }
+
             curColumn.endItemIndex = newCell.itemIndex;
             Tizen.Log.Fatal("NUI", " >>>>>>> curColumn.startItemIndex: " + curColumn.startItemIndex + " curColumn.endItemIndex: " + curColumn.endItemIndex);
 
@@ -520,15 +529,15 @@ namespace Tizen.NUI
         // Add row to the all column in same group of GridView.
         internal void AddRowToAllColumn(int rowHeight, int groupIndex)
         {
-            Tizen.Log.Fatal("NUI", string.Format("[GridView]Add row rowHeight {0} to to all column of group {2}", rowHeight, groupIndex));
-            if(!IsGroupIndexValid(groupIndex))
+            Tizen.Log.Fatal("NUI", string.Format("[GridView]Add row rowHeight {0} to to all column of group {1}", rowHeight, groupIndex));
+            if (!IsGroupIndexValid(groupIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid group index"));
                 return;
             }
 
             int columnCount = groupList.ElementAt(groupIndex).columnList.Count;
-            for(int i = 0; i < columnCount; i++)
+            for (int i = 0; i < columnCount; i++)
             {
                 AddRowToColumn(i, rowHeight, groupIndex);
             }
@@ -536,11 +545,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Quickly add an regular grid by pass column/row number and cell size.
         /// </summary>
-        /// <param name="groupIndex">The groupIndex, default value is -1, means all the groups will use the same regular grid.</param>
         /// <param name="columnCount">The columns count.</param>
         /// <param name="rowCount">The rows count.</param>
         /// <param name="columnWidth">The column width.</param>
         /// <param name="rowHeight">The row height.</param>
+        /// <param name="groupIndex">The groupIndex, default value is -1, means all the groups will use the same regular grid.</param>
         public void AddRegularGrid(int columnCount, int rowCount, int columnWidth, int rowHeight, int groupIndex = -1)
         {
             Tizen.Log.Fatal("NUI", string.Format("[GridView]Add row x column : ({0} x {1}) rowHeight: {2} , columnWidth: {3} to group {4}", rowCount, columnCount, rowHeight, columnWidth, groupIndex));
@@ -613,18 +622,19 @@ namespace Tizen.NUI
         /// <summary>
         /// Attach title to the group.
         /// </summary>
-        /// <param name="groupIndex">The group index.</param>
         /// <param name="titleView">The title view.</param>
+        /// <param name="groupIndex">The group index.</param>
         public void AttachGroupTitle(View titleView, int groupIndex = 0)
         {
             Tizen.Log.Fatal("NUI", string.Format("[GridView]Attach group title to {0}", groupIndex));
-            if(!IsGroupIndexValid(groupIndex))
+            if (!IsGroupIndexValid(groupIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid group index"));
                 return;
             }
+
             Group curGroup = groupList.ElementAt(groupIndex);
-            if(GridType.Horizontal == gridType)
+            if (GridType.Horizontal == gridType)
             {
                 titleView.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
                 titleView.PivotPoint = Tizen.NUI.PivotPoint.BottomLeft;
@@ -637,6 +647,7 @@ namespace Tizen.NUI
                 titleView.PositionX = 0;
                 titleView.PositionY = curGroup.startPos - titleSpace;
             }
+
             curGroup.title = titleView;
             itemGroup.Add(titleView);
         }
@@ -660,22 +671,23 @@ namespace Tizen.NUI
         /// <summary>
         /// Set focus group index and item index of GridView.
         /// </summary>
-        /// <param name="groupIndex">focus group index</param>
         /// <param name="itemIndex">focus item index</param>
+        /// <param name="groupIndex">focus group index</param>
         public void SetFoucsItemIndex(int itemIndex, int groupIndex = 0)
         {
             Tizen.Log.Fatal("NUI", string.Format("[GridView]Set Focus to item {0} of group {1}", itemIndex, groupIndex));
-            if(!IsItemIndexValid(groupIndex, itemIndex))
+            if (!IsItemIndexValid(groupIndex, itemIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid item index"));
                 return;
             }
-            if(groupIndex == focusGroupIndex && itemIndex == focusItemIndex)
+
+            if (groupIndex == focusGroupIndex && itemIndex == focusItemIndex)
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Already focused"));
                 return;
             }
-            //if(IsFocused == true)
+            //if (IsFocused == true)
             //{
             //    SetFocus(groupIndex, itemIndex);
             //}
@@ -716,6 +728,7 @@ namespace Tizen.NUI
             {
                 item = groupList.ElementAt(groupIndex).itemList.ElementAt(itemIndex);
             }
+
             return item?.itemView;
         }
 
@@ -742,12 +755,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Update an item.
         /// </summary>
-        /// <param name="groupIndex">The groupIndex.</param>
         /// <param name="itemIndex">The itemIndex.</param>
+        /// <param name="groupIndex">The groupIndex.</param>
         public void UpdateItem(int itemIndex, int groupIndex = 0)
         {
             Tizen.Log.Fatal("NUI", string.Format("[GridView]Update item {0} of group {1}", itemIndex, groupIndex));
-            if(!IsItemIndexValid(groupIndex, itemIndex))
+            if (!IsItemIndexValid(groupIndex, itemIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid group index"));
                 return;
@@ -756,7 +769,7 @@ namespace Tizen.NUI
             Cell curCell = GetCellByItemIndex(groupIndex, itemIndex);
             int columnIndex = curCell.columnIndex;
             
-            if((groupIndex > onScreenRange.startGroupIndex && groupIndex < onScreenRange.endGroupIndex)
+            if ((groupIndex > onScreenRange.startGroupIndex && groupIndex < onScreenRange.endGroupIndex)
                 || (groupIndex == onScreenRange.startGroupIndex && columnIndex >= onScreenRange.startColumnIndex)
                 || (groupIndex == onScreenRange.endGroupIndex && columnIndex <= onScreenRange.endColumnIndex))
             {
@@ -768,7 +781,7 @@ namespace Tizen.NUI
         /// </summary>
         public void UpdateAllItems()
         {
-            foreach(GridItem item in curInMemoryItemSet)
+            foreach (GridItem item in curInMemoryItemSet)
             {
                 gridBridge.UpdateItem(item.groupIndex, item.index, item.itemView);
             }
@@ -797,7 +810,7 @@ namespace Tizen.NUI
 
             Group curGroup = groupList.ElementAt(groupIndex);
 
-            if(curGroup.columnList == null)
+            if (curGroup.columnList == null)
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid column list"));
                 return INVALID_COUNT;
@@ -814,7 +827,7 @@ namespace Tizen.NUI
         /// <returns>Cells count</returns>
         public int GetCellCount(int groupIndex, int columnIndex)
         {
-            if(!IsColumnIndexValid(groupIndex, columnIndex))
+            if (!IsColumnIndexValid(groupIndex, columnIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid group index"));
                 return INVALID_COUNT;
@@ -822,7 +835,7 @@ namespace Tizen.NUI
 
             Column curColumn = groupList.ElementAt(groupIndex).columnList.ElementAt(columnIndex);
 
-            if(curColumn.cellList == null)
+            if (curColumn.cellList == null)
             {
                 return INVALID_COUNT;
             }
@@ -838,7 +851,7 @@ namespace Tizen.NUI
         /// <returns>Items count</returns>
         public int GetItemCount(int groupIndex)
         {
-            if(!IsGroupIndexValid(groupIndex))
+            if (!IsGroupIndexValid(groupIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid group index"));
                 return INVALID_COUNT;
@@ -952,7 +965,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Update when GridView attributes changed.
         /// </summary>
-        /// <param name="attrs">Attributes to be applied</param>
+        /// <param name="sender">the object</param>
+        /// <param name="e">the args of the event</param>
         protected void OnRelayoutUpdate(object sender, EventArgs e)
         {
             gridWidth = this.SizeWidth;
@@ -971,7 +985,7 @@ namespace Tizen.NUI
 
         private void OnListEvent(GridEventArgs e)
         {
-            if(gridEventHandlers != null)
+            if (gridEventHandlers != null)
             {
                 gridEventHandlers(this, e);
             }
@@ -1024,7 +1038,8 @@ namespace Tizen.NUI
             {
                 return;
             }
-            for(int i = 0; i < groupCount; i++)
+
+            for (int i = 0; i < groupCount; i++)
             {
                 Group curGroup = groupList.ElementAt(i);
                 int dataCount = gridBridge.GetItemCount(i);
@@ -1033,10 +1048,10 @@ namespace Tizen.NUI
 
                 int bindedItemCount = curGroup.itemList.Count;
 
-                for(int j = 0; j < finalCount; j++)
+                for (int j = 0; j < finalCount; j++)
                 {
                     GridItem newItem;
-                    if(j < bindedItemCount)
+                    if (j < bindedItemCount)
                     {
                         newItem = curGroup.itemList.ElementAt(j);
                     }
@@ -1052,7 +1067,7 @@ namespace Tizen.NUI
                 }
 
                 //add for right move between group when not all columns filled
-                if(finalCount >= 1)
+                if (finalCount >= 1)
                 {
                     Cell lastItemCell = GetCellByItemIndex(i, finalCount - 1);
                     curGroup.lastFilledColumnIndex = lastItemCell.columnIndex;
@@ -1081,12 +1096,12 @@ namespace Tizen.NUI
             lastVisibleArea.Width = windowRect.Width;
             lastVisibleArea.Height = windowRect.Height;
 
-            foreach(GridItem item in unloadItemList)
+            foreach (GridItem item in unloadItemList)
             {
                 UnloadItem(item);
             }
 
-            foreach(GridItem item in loadItemList)
+            foreach (GridItem item in loadItemList)
             {
                 LoadItem(item);
             }
@@ -1106,17 +1121,18 @@ namespace Tizen.NUI
             lastVisibleArea.Width = windowRect.Width;
             lastVisibleArea.Height = windowRect.Height;
 
-            foreach(GridItem item in unloadItemList)
+            foreach (GridItem item in unloadItemList)
             {
                 UnloadItem(item);
             }
 
-            foreach(GridItem item in loadItemList)
+            foreach (GridItem item in loadItemList)
             {
                 LoadItem(item);
             }
 
         }
+
         private void UnloadItem(GridItem item, bool bDirectly = false)
         {
             Tizen.Log.Fatal("NUI", "item: " + item + " bDirectly: " + bDirectly);
@@ -1140,14 +1156,15 @@ namespace Tizen.NUI
         {
             curInMemoryItemSet.Add(item);
 
-            if(item.itemView != null)
+            if (item.itemView != null)
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]LoadItem item view is null"));
                 return;
             }
+
             View temp = GetRecycleView(item.groupIndex,item.index);
             Tizen.Log.Fatal("NUI", " temp: " + temp);
-            if(temp != null)
+            if (temp != null)
             {
                 item.itemView = temp;
                 gridBridge.UpdateItem(item.groupIndex, item.index, item.itemView);
@@ -1170,15 +1187,16 @@ namespace Tizen.NUI
 
         private void SetViewTypeCount(int typeCount)
         {
-            if(typeCount < 1)
+            if (typeCount < 1)
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]SetViewTypeCount type count less than 1"));
                 return;
             }
+
             viewTypeCount = typeCount;
             List<View>[] viewListArray = new List<View>[viewTypeCount];
 
-            for(int i = 0; i < viewTypeCount; i++)
+            for (int i = 0; i < viewTypeCount; i++)
             {
                 viewListArray[i] = new List<View>();
             }
@@ -1190,12 +1208,13 @@ namespace Tizen.NUI
         {
             int viewType = gridBridge.GetItemType(groupIndex, itemIndex);
 
-            if(viewType >= viewTypeCount)
+            if (viewType >= viewTypeCount)
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]AddRecycleView viewType larger than viewTypeCount"));
                 return;
             }
-            if(view != null)
+
+            if (view != null)
             {
                 view.Hide();
                 view.Scale = new Vector3(1, 1, 1);
@@ -1209,11 +1228,12 @@ namespace Tizen.NUI
             int viewType = gridBridge.GetItemType(groupIndex, itemIndex);
             Tizen.Log.Fatal("NUI", " viewType:" + viewType + " viewTypeCount:" + viewTypeCount);
 
-            if(viewType >= viewTypeCount)
+            if (viewType >= viewTypeCount)
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]AddRecycleView viewType larger than viewTypeCount"));
                 return null;
             }
+
             View obj = null;
             int viewCount = recycledViews[viewType].Count;
             if (viewCount != 0)
@@ -1221,21 +1241,24 @@ namespace Tizen.NUI
                 obj = recycledViews[viewType][viewCount - 1];
                 recycledViews[viewType].Remove(obj);
             }
+
             if (obj != null)
             {
                 obj.Show();
             }
+
             return obj;
         }
 
         private void ClearRecycleBin()
         {
-            for(int i = 0; i < viewTypeCount; i++)
+            for (int i = 0; i < viewTypeCount; i++)
             {
-                for(int j = 0; j < recycledViews[i].Count; j++)
+                for (int j = 0; j < recycledViews[i].Count; j++)
                 {
                     UnloadRecycledView(i, recycledViews[i][j]);
                 }
+
                 recycledViews[i].Clear();
             }
         }
@@ -1272,7 +1295,7 @@ namespace Tizen.NUI
             int focusColumnIndex = focusedCell.columnIndex;
 
             float areaStartPos, areaEndPos, focusedCellStart, focusedCellEnd;
-            if(GridType.Horizontal == gridType)
+            if (GridType.Horizontal == gridType)
             {
                 areaStartPos = visibleArea.X;
                 areaEndPos = visibleArea.X + visibleArea.Width;
@@ -1291,20 +1314,20 @@ namespace Tizen.NUI
 
             int groupCount = groupList.Count;
             //find start range
-            if((bAllInArea == true && focusedCellStart < areaStartPos)
-                ||(bAllInArea == false &&focusedCellEnd < areaStartPos))
+            if ((bAllInArea == true && focusedCellStart < areaStartPos)
+                || (bAllInArea == false && focusedCellEnd < areaStartPos))
             {
-               for(int i = focusGroupIndex; i < groupCount && bStartFound == false; i++)
+               for (int i = focusGroupIndex; i < groupCount && bStartFound == false; i++)
                {
                    Group curGroup = groupList.ElementAt(i);
                    int startColumnIndex = (i == focusItemIndex) ? focusColumnIndex : 0;
                    int columnCount = curGroup.columnList.Count;
-                   for(int j = startColumnIndex; j < columnCount; j++)
+                   for (int j = startColumnIndex; j < columnCount; j++)
                    {
                        Column curColumn = curGroup.columnList.ElementAt(j);
-                       if( true == bAllInArea)
+                       if (true == bAllInArea)
                        {
-                           if(curColumn.startPos >= areaStartPos)
+                           if (curColumn.startPos >= areaStartPos)
                            {
                                range.startGroupIndex = i;
                                range.startColumnIndex = j;
@@ -1314,7 +1337,7 @@ namespace Tizen.NUI
                        }
                        else
                        {
-                           if(curColumn.endPos > areaStartPos)
+                           if (curColumn.endPos > areaStartPos)
                            {
                                range.startGroupIndex = i;
                                range.startColumnIndex = j;
@@ -1327,19 +1350,19 @@ namespace Tizen.NUI
             }
             else
             {
-                for(int i = focusGroupIndex; i >= 0 && bStartFound == false; i--)
+                for (int i = focusGroupIndex; i >= 0 && bStartFound == false; i--)
                 {
                     Group curGroup = groupList.ElementAt(i);
                     int columnCount = curGroup.columnList.Count;
                     int startColumnIndex = (i == focusItemIndex) ? focusColumnIndex : columnCount - 1;
-                    for(int j = startColumnIndex; j >= 0; j--)
+                    for (int j = startColumnIndex; j >= 0; j--)
                     {
                         Column curColumn = curGroup.columnList.ElementAt(j);
-                        if(curColumn.startPos <= areaStartPos)
+                        if (curColumn.startPos <= areaStartPos)
                         {
-                            if(bAllInArea == true)
+                            if (bAllInArea == true)
                             {
-                                if(j == columnCount - 1)
+                                if (j == columnCount - 1)
                                 {
                                     range.startGroupIndex = i + 1;
                                     range.startColumnIndex = 0;
@@ -1349,19 +1372,20 @@ namespace Tizen.NUI
                                     range.startGroupIndex = i;
                                     range.startColumnIndex = j + 1;
                                 }
+
                                 bStartFound = true;
                                 break;
                             }
                             else
                             {
-                                if(curColumn.endPos > areaStartPos)
+                                if (curColumn.endPos > areaStartPos)
                                 {
                                     range.startGroupIndex = i;
                                     range.startColumnIndex = j;
                                 }
                                 else
                                 {
-                                    if(j == columnCount - 1)
+                                    if (j == columnCount - 1)
                                     {
                                         range.startGroupIndex = i + 1;
                                         range.startColumnIndex = 0;
@@ -1372,6 +1396,7 @@ namespace Tizen.NUI
                                         range.startColumnIndex = j + 1;
                                     }
                                 }
+
                                 bStartFound = true;
                                 break;
                             }
@@ -1380,27 +1405,27 @@ namespace Tizen.NUI
                 }
             }
 
-            if(bStartFound == false)
+            if (bStartFound == false)
             {
                 range.startGroupIndex = 0;
                 range.startColumnIndex = 0;
             }
 
             //find end range
-            if((bAllInArea == true && focusedCellEnd >= areaEndPos)
-                ||(bAllInArea == false && focusedCellStart >= areaEndPos))
+            if ((bAllInArea == true && focusedCellEnd >= areaEndPos)
+                || (bAllInArea == false && focusedCellStart >= areaEndPos))
             {
-                for(int i = focusGroupIndex; i >= 0 && bEndFound == false; i--)
+                for (int i = focusGroupIndex; i >= 0 && bEndFound == false; i--)
                 {
                     Group curGroup = groupList.ElementAt(i);
                     int columnCount = curGroup.columnList.Count;
                     int startColumnIndex = (i == focusItemIndex) ? focusColumnIndex : columnCount - 1;
-                    for(int j = startColumnIndex; j >= 0; j--)
+                    for (int j = startColumnIndex; j >= 0; j--)
                     {
                         Column curColumn = curGroup.columnList.ElementAt(j);
-                        if(bAllInArea == true)
+                        if (bAllInArea == true)
                         {
-                            if(curColumn.endPos <= areaEndPos)
+                            if (curColumn.endPos <= areaEndPos)
                             {
                                 range.endGroupIndex = i;
                                 range.endColumnIndex = j;
@@ -1410,7 +1435,7 @@ namespace Tizen.NUI
                         }
                         else
                         {
-                            if(curColumn.startPos <= areaEndPos)
+                            if (curColumn.startPos <= areaEndPos)
                             {
                                 range.endGroupIndex = i;
                                 range.endColumnIndex = j;
@@ -1423,24 +1448,24 @@ namespace Tizen.NUI
             }
             else
             {
-                for(int i = focusGroupIndex; i < groupCount && bEndFound == false; i++)
+                for (int i = focusGroupIndex; i < groupCount && bEndFound == false; i++)
                 {
                     Group curGroup = groupList.ElementAt(i);
                     int startColumnIndex = (i == focusItemIndex) ? focusColumnIndex : 0;
                     int columnCount = curGroup.columnList.Count;
-                    for(int j = startColumnIndex; j < columnCount; j++)
+                    for (int j = startColumnIndex; j < columnCount; j++)
                     {
                         Column curColumn = curGroup.columnList.ElementAt(j);
-                        if(curColumn.endPos >= areaEndPos)
+                        if (curColumn.endPos >= areaEndPos)
                         {
-                            if(curColumn.startPos < areaEndPos)
+                            if (curColumn.startPos < areaEndPos)
                             {
                                 range.endGroupIndex = i;
                                 range.endColumnIndex = j;
                             }
                             else
                             {
-                                if(j == 0)
+                                if (j == 0)
                                 {
                                     range.endGroupIndex = i - 1;
                                     range.endColumnIndex = groupList.ElementAt(i - 1).columnList.Count - 1; 
@@ -1451,13 +1476,15 @@ namespace Tizen.NUI
                                     range.endColumnIndex = j - 1;
                                 }
                             }
+
                             bEndFound = true;
                             break;
                         }
                     }
                 }
             }
-            if(bEndFound == false)
+
+            if (bEndFound == false)
             {
                 range.endGroupIndex = groupCount - 1;
                 range.endColumnIndex = groupList.ElementAt(range.endGroupIndex).columnList.Count - 1;
@@ -1473,7 +1500,7 @@ namespace Tizen.NUI
             Column startColumn = startGroup.columnList.ElementAt(range.startColumnInScrn);
             Cell startCell = startColumn.cellList.ElementAt(0);
             range.startItemIndexInScrn = startCell.itemIndex;
-            if(range.startItemIndexInScrn >= startGroup.itemList.Count)
+            if (range.startItemIndexInScrn >= startGroup.itemList.Count)
             {
                 range.startItemIndexInScrn = startGroup.itemList.Count - 1;
             }
@@ -1482,22 +1509,22 @@ namespace Tizen.NUI
             Column endColumn = endGroup.columnList.ElementAt(range.endColumnInScrn);
             Cell endCell = endColumn.cellList.ElementAt(endColumn.cellList.Count - 1);
             range.endItemIndexInScrn = endCell.itemIndex;
-            if(range.endItemIndexInScrn >= endGroup.itemList.Count)
+            if (range.endItemIndexInScrn >= endGroup.itemList.Count)
             {
                 range.endItemIndexInScrn = endGroup.itemList.Count - 1;
             }
 
             //add buffer columns
             int frontBufferCount = preloadFrontColumnSize;
-            while(frontBufferCount-- > 0)
+            while (frontBufferCount-- > 0)
             {
-                if(range.startColumnIndex > 0)
+                if (range.startColumnIndex > 0)
                 {
                     range.startColumnIndex--;
                 }
                 else
                 {
-                    if(range.startGroupIndex > 0)
+                    if (range.startGroupIndex > 0)
                     {
                         range.startGroupIndex--;
                         range.startColumnIndex = groupList.ElementAt(range.startGroupIndex).columnList.Count - 1;
@@ -1510,15 +1537,15 @@ namespace Tizen.NUI
             }
 
             int backBufferCount = preloadBackColumnSize;
-            while(backBufferCount-- > 0)
+            while (backBufferCount-- > 0)
             {
-                if(range.endColumnIndex < groupList.ElementAt(range.endGroupIndex).columnList.Count - 1)
+                if (range.endColumnIndex < groupList.ElementAt(range.endGroupIndex).columnList.Count - 1)
                 {
                     range.endColumnIndex++;
                 }
                 else
                 {
-                    if(range.endGroupIndex < groupList.Count - 1)
+                    if (range.endGroupIndex < groupList.Count - 1)
                     {
                         range.endGroupIndex++;
                         range.endColumnIndex = 0;
@@ -1533,20 +1560,20 @@ namespace Tizen.NUI
         
         private void GetItemsInRange(Range range, ref HashSet<GridItem> itemSet)
         {
-            for(int i = range.startGroupIndex; i <= range.endGroupIndex; i++)
+            for (int i = range.startGroupIndex; i <= range.endGroupIndex; i++)
             {
                 Group curGroup = groupList.ElementAt(i);
                 int startColumnIndex = (i == range.startGroupIndex) ? range.startColumnIndex : 0;
                 int endColumnIndex = (i == range.endGroupIndex) ? range.endColumnIndex : curGroup.columnList.Count - 1;
 
-                for(int j = startColumnIndex; j <= endColumnIndex; j++)
+                for (int j = startColumnIndex; j <= endColumnIndex; j++)
                 {
                     Column curColumn = curGroup.columnList.ElementAt(j);
 
-                    for(int k = 0; k < curColumn.cellList.Count; k++)
+                    for (int k = 0; k < curColumn.cellList.Count; k++)
                     {
                         Cell curCell = curColumn.cellList.ElementAt(k);
-                        if( /*curCell.state < CellMergeState.Hidden &&*/ curCell.itemIndex < curGroup.itemList.Count)
+                        if (curCell.itemIndex < curGroup.itemList.Count)
                         {
                             itemSet.Add(curGroup.itemList.ElementAt(curCell.itemIndex));
                         }
@@ -1587,6 +1614,7 @@ namespace Tizen.NUI
                         Cell nextCell = currentColumn.cellList.ElementAt(currentCell.rowIndex - 1);
                         destFocusItemIndex = nextCell.itemIndex;
                     }
+
                     break;
                 case "Down":
                     destFocusGroupIndex = fromGroupIndex;
@@ -1606,6 +1634,7 @@ namespace Tizen.NUI
                         Cell nextCell = currentColumn.cellList.ElementAt(currentCell.rowIndex + 1);
                         destFocusItemIndex = nextCell.itemIndex;
                     }
+
                     break;
                 case "Left":
                     if (currentCell.columnIndex == 0)
@@ -1643,6 +1672,7 @@ namespace Tizen.NUI
                         destFocusItemIndex = nextCell.itemIndex;
                         Tizen.Log.Fatal("NUI", ">>>>>>>>> destFocusItemIndex: " + destFocusItemIndex);
                     }
+
                     break;
                 case "Right":
                     if (currentColumnIndex == currentGroup.columnList.Count - 1)
@@ -1682,6 +1712,7 @@ namespace Tizen.NUI
                             Tizen.Log.Fatal("NUI", ">>>>>>>>> destFocusItemIndex: " + destFocusItemIndex + " currentCell.rowIndex: " + currentCell.rowIndex + " nextColumn.cellList.Count: " + nextColumn.cellList.Count);
                         }
                     }
+
                     break;
                 default:
                     break;
@@ -1694,6 +1725,7 @@ namespace Tizen.NUI
             {
                 item = groupList.ElementAt(destFocusGroupIndex).itemList.ElementAt(destFocusItemIndex);
             }
+
             return item;
         }
 
@@ -1702,12 +1734,12 @@ namespace Tizen.NUI
             Tizen.Log.Fatal("NUI", ">>>>>>>>> direction: " + direction + " fromGroupIndex: " + fromGroupIndex + " fromItemIndex: " + fromItemIndex);
             Cell curFocusedCell = GetCellByItemIndex(fromGroupIndex, fromItemIndex);
             //change reference line of focus move
-            if(refXForFocusMove == -1)
+            if (refXForFocusMove == -1)
             {
                 refXForFocusMove = curFocusedCell.rect.X;
             }
 
-            if(refYForFocusMove == -1)
+            if (refYForFocusMove == -1)
             {
                 refYForFocusMove = curFocusedCell.rect.Y;
             }
@@ -1720,11 +1752,11 @@ namespace Tizen.NUI
 
             int destFocusGroupIndex = -2, destFocusItemIndex = -2;
             int destFocusColumnIndex = -1;
-            switch(direction)
+            switch (direction)
             {
                 case "Up":
                     destFocusGroupIndex = fromGroupIndex;
-                    if(curFocusedCell.index == 0)
+                    if (curFocusedCell.index == 0)
                     {
                         destFocusItemIndex = -1;
                     }
@@ -1733,9 +1765,9 @@ namespace Tizen.NUI
                         Cell nextCell = focusedColumn.cellList.ElementAt(curFocusedCell.index - 1);
                         {
                             destFocusItemIndex = nextCell.itemIndex;
-                            if(destFocusItemIndex >= 0 && destFocusItemIndex < groupList.ElementAt(destFocusGroupIndex).itemList.Count)
+                            if (destFocusItemIndex >= 0 && destFocusItemIndex < groupList.ElementAt(destFocusGroupIndex).itemList.Count)
                             {
-                                if(GridType.Horizontal == gridType)
+                                if (GridType.Horizontal == gridType)
                                 {
                                     refYForFocusMove = nextCell.rect.Y;
                                 }
@@ -1746,18 +1778,19 @@ namespace Tizen.NUI
                             }
                         }
                     }
+
                     break;
                 case "Down":
                     destFocusGroupIndex = fromGroupIndex;
                     int destCellIndex = curFocusedCell.index + 1;
-                    if(destCellIndex >= focusedColumn.cellList.Count || fromItemIndex == focusedGroup.itemList.Count - 1)
+                    if (destCellIndex >= focusedColumn.cellList.Count || fromItemIndex == focusedGroup.itemList.Count - 1)
                     {
                         destFocusItemIndex = -1;
-                        if(fromItemIndex == focusedGroup.itemList.Count - 1)
+                        if (fromItemIndex == focusedGroup.itemList.Count - 1)
                         {
                             destFocusColumnIndex = focusedColumnIndex - 1;
                             Cell cellBelow = FindCellBelow(curFocusedCell, destFocusGroupIndex, destFocusColumnIndex);
-                            if(cellBelow != null)
+                            if (cellBelow != null)
                             {
                                 destFocusItemIndex = cellBelow.itemIndex;
                                 refXForFocusMove = cellBelow.rect.X;
@@ -1768,7 +1801,7 @@ namespace Tizen.NUI
                     else
                     {
                         Cell nextCell = null;
-                        for(; destCellIndex < focusedColumn.cellList.Count; destCellIndex++)
+                        for (; destCellIndex < focusedColumn.cellList.Count; destCellIndex++)
                         {
                             nextCell = focusedColumn.cellList.ElementAt(destCellIndex);
                             {
@@ -1776,16 +1809,16 @@ namespace Tizen.NUI
                             }
                         }
 
-                        if(destCellIndex >= focusedColumn.cellList.Count)
+                        if (destCellIndex >= focusedColumn.cellList.Count)
                         {
                             destFocusItemIndex = -1;
                         }
                         else
                         {
                             destFocusItemIndex = nextCell.itemIndex;
-                            if(destFocusItemIndex >= 0 && destFocusItemIndex < groupList.ElementAt(destFocusGroupIndex).itemList.Count)
+                            if (destFocusItemIndex >= 0 && destFocusItemIndex < groupList.ElementAt(destFocusGroupIndex).itemList.Count)
                             {
-                                if(GridType.Horizontal == gridType)
+                                if (GridType.Horizontal == gridType)
                                 {
                                     refYForFocusMove = nextCell.rect.Y;
                                 }
@@ -1799,25 +1832,25 @@ namespace Tizen.NUI
 
                     break;
                 case "Left":
-                    if(curFocusedCell.columnIndex == 0)
+                    if (curFocusedCell.columnIndex == 0)
                     {
-                        if(fromGroupIndex == 0)
+                        if (fromGroupIndex == 0)
                         {
-                            if(StateLeftCircularEnable && true/*check whether  allow to loop*/)
+                            if (StateLeftCircularEnable && true/*check whether  allow to loop*/)
                             {
                                 destFocusGroupIndex = groupList.Count - 1;
                                 destFocusColumnIndex = groupList.ElementAt(destFocusGroupIndex).columnList.Count - 1;
 
                                 GetNearestItem(curFocusedCell, destFocusGroupIndex, destFocusColumnIndex, ref destFocusItemIndex, true);
                                 int itemCount = groupList.ElementAt(destFocusGroupIndex).itemList.Count;
-                                while(destFocusItemIndex >= itemCount)
+                                while (destFocusItemIndex >= itemCount)
                                 {
                                     destFocusColumnIndex--;
                                     GetNearestItem(curFocusedCell, destFocusGroupIndex, destFocusColumnIndex, ref destFocusItemIndex, true);
                                 }
 
                                 bool bEnabled = gridBridge.IsItemEnabled(destFocusGroupIndex, destFocusItemIndex);
-                                while(bEnabled == false)
+                                while (bEnabled == false)
                                 {
                                     destFocusColumnIndex--;
                                     GetNearestItem(curFocusedCell, destFocusGroupIndex, destFocusColumnIndex, ref destFocusItemIndex, true);
@@ -1841,7 +1874,7 @@ namespace Tizen.NUI
 
                             GetNearestItem(curFocusedCell, destFocusGroupIndex, destFocusColumnIndex, ref destFocusItemIndex, true);
                             int itemCount = groupList.ElementAt(destFocusGroupIndex).itemList.Count;
-                            while(destFocusItemIndex >= itemCount)
+                            while (destFocusItemIndex >= itemCount)
                             {
                                 destFocusColumnIndex--;
                                 GetNearestItem(curFocusedCell, destFocusGroupIndex, destFocusColumnIndex, ref destFocusItemIndex, true);
@@ -1855,6 +1888,7 @@ namespace Tizen.NUI
 
                         GetNearestItem(curFocusedCell, destFocusGroupIndex, destFocusColumnIndex, ref destFocusItemIndex, true);
                     }
+
                     break;
                 case "Right":
                     {
@@ -1862,11 +1896,11 @@ namespace Tizen.NUI
                     }
 
                     Tizen.Log.Fatal("NUI", ">>>>>>>>> focusedColumnIndex: " + focusedColumnIndex);
-                    if(focusedColumnIndex == focusedGroup.columnList.Count - 1 || focusedColumnIndex == focusedGroup.lastFilledColumnIndex)
+                    if (focusedColumnIndex == focusedGroup.columnList.Count - 1 || focusedColumnIndex == focusedGroup.lastFilledColumnIndex)
                     {
-                        if(fromGroupIndex == groupList.Count - 1)
+                        if (fromGroupIndex == groupList.Count - 1)
                         {
-                            if(StateRightCircularEnable && true/*check whether allow right circular*/)
+                            if (StateRightCircularEnable && true/*check whether allow right circular*/)
                             {
                                 destFocusGroupIndex = 0;
                                 destFocusColumnIndex = 0;
@@ -1874,7 +1908,7 @@ namespace Tizen.NUI
                                 GetNearestItem(curFocusedCell, destFocusGroupIndex, destFocusColumnIndex, ref destFocusItemIndex, true);
 
                                 bool bEnabled = gridBridge.IsItemEnabled(destFocusGroupIndex, destFocusItemIndex);
-                                while(bEnabled == false && destFocusColumnIndex < focusedGroup.columnList.Count - 1)
+                                while (bEnabled == false && destFocusColumnIndex < focusedGroup.columnList.Count - 1)
                                 {
                                     destFocusColumnIndex++;
                                     GetNearestItem(curFocusedCell, destFocusGroupIndex, destFocusColumnIndex, ref destFocusItemIndex, true);
@@ -1911,7 +1945,7 @@ namespace Tizen.NUI
 
                         if (StateRightCircularEnable)
                         {
-                            if(destFocusItemIndex >= groupList.ElementAt(destFocusGroupIndex).itemList.Count)
+                            if (destFocusItemIndex >= groupList.ElementAt(destFocusGroupIndex).itemList.Count)
                             {
                                 MoveFocus(direction, destFocusGroupIndex, destFocusItemIndex);
                                 return;
@@ -1932,13 +1966,13 @@ namespace Tizen.NUI
             }
 
             Tizen.Log.Fatal("NUI", ">>>>>>>>> destFocusItemIndex: " + destFocusItemIndex);
-            if(destFocusItemIndex == -1)
+            if (destFocusItemIndex == -1)
             {
                 //notify event focus move out
                 return;
             }
 
-            if(gridBridge.IsItemEnabled(destFocusGroupIndex, destFocusItemIndex) == false)
+            if (gridBridge.IsItemEnabled(destFocusGroupIndex, destFocusItemIndex) == false)
             {
                 MoveFocus(direction, destFocusGroupIndex, destFocusItemIndex);
             }
@@ -1960,12 +1994,12 @@ namespace Tizen.NUI
             int cellCount = destColumn.cellList.Count;
 
             bool bNotAllItemDisabled = false;
-            for(int i = 0; i < cellCount; i++)
+            for (int i = 0; i < cellCount; i++)
             {
                 Cell curCell = destColumn.cellList.ElementAt(i);
-                if(curCell.itemIndex >= 0 && curCell.itemIndex < destGroup.itemList.Count)
+                if (curCell.itemIndex >= 0 && curCell.itemIndex < destGroup.itemList.Count)
                 {
-                    if(gridBridge.IsItemEnabled(destGroupIndex, curCell.itemIndex))
+                    if (gridBridge.IsItemEnabled(destGroupIndex, curCell.itemIndex))
                     {
                         bNotAllItemDisabled = true;
                         break;
@@ -1975,36 +2009,36 @@ namespace Tizen.NUI
 
             float yDis = gridHeight + 1;
             bool bFound = false;
-            for(int i = 0; i < cellCount; i++)
+            for (int i = 0; i < cellCount; i++)
             {
                 Cell curCell = destColumn.cellList.ElementAt(i);
-                if(curCell.itemIndex >= destGroup.itemList.Count)
+                if (curCell.itemIndex >= destGroup.itemList.Count)
                 {
                     break;
                 }
 
-                if(curCell.itemIndex >= 0 && bNotAllItemDisabled)
+                if (curCell.itemIndex >= 0 && bNotAllItemDisabled)
                 {
-                    if(gridBridge.IsItemEnabled(destGroupIndex, curCell.itemIndex) == false)
+                    if (gridBridge.IsItemEnabled(destGroupIndex, curCell.itemIndex) == false)
                     {
                         continue;
                     }
                 }
 
-                if(curCell.itemIndex < 0)
+                if (curCell.itemIndex < 0)
                 {
                     Column realColumn = destGroup.columnList.ElementAt(curCell.columnIndex);
                     Cell realCell = realColumn.cellList.ElementAt(curCell.rowIndex);
-                    if(realCell.itemIndex >= destGroup.itemList.Count || gridBridge.IsItemEnabled(destGroupIndex, realCell.itemIndex) == false)
+                    if (realCell.itemIndex >= destGroup.itemList.Count || gridBridge.IsItemEnabled(destGroupIndex, realCell.itemIndex) == false)
                     {
                         continue;
                     }
                 }
 
-                if(GridType.Vertical == gridType)
+                if (GridType.Vertical == gridType)
                 {
                     float tempXDis;
-                    if(StateStraightPathEnable)
+                    if (StateStraightPathEnable)
                     {
                         tempXDis = Math.Abs(curCell.rect.X - refXForFocusMove);
                     }
@@ -2013,12 +2047,12 @@ namespace Tizen.NUI
                         tempXDis = Math.Abs(curCell.rect.X - focusedCell.rect.X);
                     }
 
-                    if(tempXDis < yDis)
+                    if (tempXDis < yDis)
                     {
                         bFound = true;
                         yDis = tempXDis;
                         nextCell = curCell;
-                        if(yDis == 0)
+                        if (yDis == 0)
                         {
                             break;
                         }
@@ -2027,7 +2061,7 @@ namespace Tizen.NUI
                 else
                 {
                     float tempYDis;
-                    if(StateStraightPathEnable)
+                    if (StateStraightPathEnable)
                     {
                         tempYDis = Math.Abs(curCell.rect.Y - refYForFocusMove);
                     }
@@ -2036,24 +2070,26 @@ namespace Tizen.NUI
                         tempYDis = Math.Abs(curCell.rect.Y - focusedCell.rect.Y);
                     }
 
-                    if(tempYDis < yDis)
+                    if (tempYDis < yDis)
                     {
                         bFound = true;
                         yDis = tempYDis;
                         nextCell = curCell;
-                        if(yDis == 0)
+                        if (yDis == 0)
                         {
                             break;
                         }
                     }
                 }
+
             }
+
             {
                 destItemIndex = nextCell.itemIndex;
-                if(bFound)
+                if (bFound)
                 {
                     refXForFocusMove = nextCell.rect.X;
-                    if(bDirectMove == false)
+                    if (bDirectMove == false)
                     {
                         refYForFocusMove = nextCell.rect.Y;
                     }
@@ -2065,28 +2101,26 @@ namespace Tizen.NUI
         {
             string logicalDirection = direction;
 
-            if(GridType.Vertical == gridType)
+            if (GridType.Vertical == gridType)
             {
-                if( "Left" == direction)
+                if ("Left" == direction)
                 {
                     logicalDirection = "Up";
                 }
-                else if( "Right" == direction)
+                else if ("Right" == direction)
                 {
                     logicalDirection = "Down";
                 }
-                else if( "Down" == direction)
+                else if ("Down" == direction)
                 {
                     logicalDirection = "Right";
                 }
-                else if( "Up" == direction)
+                else if ("Up" == direction)
                 {
                     logicalDirection = "Left";
                 }
             }
-            else
-            {
-            }
+
             return logicalDirection;
         }
 
@@ -2094,18 +2128,18 @@ namespace Tizen.NUI
         {
             Group destGroup = groupList.ElementAt(destGroupIndex);
 
-            if(destColumnIndex < 0 || destColumnIndex >= destGroup.columnList.Count)
+            if (destColumnIndex < 0 || destColumnIndex >= destGroup.columnList.Count)
             {
                 return null;
             }
 
             Column destColumn = destGroup.columnList.ElementAt(destColumnIndex);
 
-            for(int i = 0; i < destColumn.cellList.Count; i++)
+            for (int i = 0; i < destColumn.cellList.Count; i++)
             {
                 Cell destCell = destColumn.cellList.ElementAt(i);
 
-                if(destCell.rect.Y > fromCell.rect.Y && destCell.rect.Y + destCell.rect.Height > fromCell.rect.Y + fromCell.rect.Height)
+                if (destCell.rect.Y > fromCell.rect.Y && destCell.rect.Y + destCell.rect.Height > fromCell.rect.Y + fromCell.rect.Height)
                 {
                     {
                         return destCell;
@@ -2119,14 +2153,14 @@ namespace Tizen.NUI
         private void SetFocus(int groupIndex, int itemIndex, bool bAnimation = false, Position newItemGroupPos = null)
         {
             Tizen.Log.Fatal("NUI", ">>>>>>>>> groupIndex: " + groupIndex + " itemIndex: " + itemIndex);
-            if (!IsItemIndexValid(groupIndex, itemIndex)/* || focusMoveAni.IsPlaying*/)
+            if (!IsItemIndexValid(groupIndex, itemIndex))
             {
                 return;
             }
 
             bool bNeedScroll = false;
             
-            if(newItemGroupPos == null)
+            if (newItemGroupPos == null)
             {
                 Position itemGroupPos = new Position(0, 0, 0);
                 bNeedScroll = GetItemGroupPosByFocusItem(groupIndex, itemIndex, itemGroupPos);
@@ -2136,7 +2170,7 @@ namespace Tizen.NUI
             }
             else
             {
-                if(GridType.Horizontal == gridType && itemGroupRect.X != newItemGroupPos.X
+                if (GridType.Horizontal == gridType && itemGroupRect.X != newItemGroupPos.X
                    || GridType.Vertical == gridType && itemGroupRect.Y != newItemGroupPos.Y)
                 {
                     bNeedScroll = true;
@@ -2150,7 +2184,7 @@ namespace Tizen.NUI
             ResetItemGroupRectPos();
 
             Tizen.Log.Fatal("NUI", ">>>>>>>>> bNeedScroll: " + bNeedScroll + " itemGroupRect.X: " + itemGroupRect.X + " itemGroupRect.Y: " + itemGroupRect.Y);
-            if(bNeedScroll)
+            if (bNeedScroll)
             {
                 Tizen.Log.Fatal("NUI", ">>>>>>>>> bAnimation: " + bAnimation);
                 if (bAnimation == true)
@@ -2168,6 +2202,7 @@ namespace Tizen.NUI
                     {
                         focusMoveAni.SetDestination("PositionY", itemGroupRect.Y);
                     }
+
                     focusMoveAni.Play();
                 }
                 else
@@ -2250,7 +2285,7 @@ namespace Tizen.NUI
         private bool GetItemGroupPosByFocusItem(int aFocusGroupIndex, int aFocusItemIndex, Position itemGroupPos)
         {
             bool bNeedScroll = false;
-            if(!IsItemIndexValid(aFocusGroupIndex, aFocusItemIndex))
+            if (!IsItemIndexValid(aFocusGroupIndex, aFocusItemIndex))
             {
                 return false;
             }
@@ -2272,9 +2307,9 @@ namespace Tizen.NUI
             float startFocusRange;
             float endFocusRange;
 
-            if(GridType.Horizontal == gridType)
+            if (GridType.Horizontal == gridType)
             {
-                if(0 == focusedItem.rect.X)
+                if (0 == focusedItem.rect.X)
                 {
                     startFocusRange = margin[0];
                 }
@@ -2286,7 +2321,7 @@ namespace Tizen.NUI
                     startFocusRange = prevItem != null ? prevItem.rect.Width / 2 : margin[0];
                 }
 
-                if(itemGroupRect.Width == focusedItem.rect.Right())
+                if (itemGroupRect.Width == focusedItem.rect.Right())
                 {
                     endFocusRange = gridWidth - margin[2];
                 }
@@ -2299,13 +2334,13 @@ namespace Tizen.NUI
                     Tizen.Log.Fatal("NUI", "endFocusRange :: " + endFocusRange);
                 }
 
-                if(focusBarRectBaseOnList.X < startFocusRange)
+                if (focusBarRectBaseOnList.X < startFocusRange)
                 {
                     Tizen.Log.Fatal("NUI", "focusBarRectBaseOnList.X :: " + focusBarRectBaseOnList.X + "  startFocusRange :: " + startFocusRange);
                     itemGroupPos.X += startFocusRange - focusBarRectBaseOnList.X;
                     bNeedScroll = true;
                 } 
-                else if(focusBarRectBaseOnList.Right() > endFocusRange)
+                else if (focusBarRectBaseOnList.Right() > endFocusRange)
                 {
                     Tizen.Log.Fatal("NUI", "focusBarRectBaseOnList.Right() :: " + focusBarRectBaseOnList.Right() + "  endFocusRange :: " + endFocusRange);
                     itemGroupPos.X += endFocusRange - focusBarRectBaseOnList.Right();
@@ -2314,7 +2349,7 @@ namespace Tizen.NUI
             }
             else
             {
-                if(0 == focusedItem.rect.Y)
+                if (0 == focusedItem.rect.Y)
                 {
                     startFocusRange = margin[1];
                 }
@@ -2334,12 +2369,12 @@ namespace Tizen.NUI
                     endFocusRange = nextItem != null ? gridHeight - nextItem.rect.Height / 2 : gridHeight - margin[3];
                 } 
                 
-                if(focusBarRectBaseOnList.Y < startFocusRange)
+                if (focusBarRectBaseOnList.Y < startFocusRange)
                 {
                     itemGroupPos.Y += startFocusRange - focusBarRectBaseOnList.Y;
                     bNeedScroll = true;
                 } 
-                else if(focusBarRectBaseOnList.Bottom() > endFocusRange)
+                else if (focusBarRectBaseOnList.Bottom() > endFocusRange)
                 {
                     itemGroupPos.Y += endFocusRange - focusBarRectBaseOnList.Bottom();
                     bNeedScroll = true;
@@ -2365,7 +2400,7 @@ namespace Tizen.NUI
                 }
             }
 
-            if(IsItemIndexValid(toGroupIndex, toItemIndex))
+            if (IsItemIndexValid(toGroupIndex, toItemIndex))
             {
                 Group curGroup = groupList.ElementAt(toGroupIndex);
                 GridItem item = curGroup.itemList.ElementAt(toItemIndex);
@@ -2387,27 +2422,29 @@ namespace Tizen.NUI
             evtArgs.param[3] = toItemIndex;
             OnListEvent(evtArgs);
 
-            if(toGroupIndex != -1 && toItemIndex != -1)
+            if (toGroupIndex != -1 && toItemIndex != -1)
             {
                 focusGroupIndex = toGroupIndex;
                 focusItemIndex = toItemIndex;
             }
+
             Tizen.Log.Fatal("NUI", ">>>>>>>>> focusGroupIndex: " + focusGroupIndex + " focusItemIndex: " + focusItemIndex);
         }
 
         private void ScaleUpItem(GridItem item)
         {
-            if(item.itemView == null)
+            if (item.itemView == null)
             {
                 return;
             }
+
             item.itemView.RaiseToTop();
             item.ScaleItem(new Vector3(focusInScaleFactor, focusInScaleFactor, 1.0f), focusInScaleAnimationAttrs);
         }
 
         private void ScaleDownItem(GridItem item)
         {
-            if(item.itemView == null)
+            if (item.itemView == null)
             {
                 return;
             }
@@ -2421,10 +2458,11 @@ namespace Tizen.NUI
             {
                 return;
             }
+
             Group lastGroup = groupList.ElementAt(groupList.Count - 1);
 
             int lastItemIndex = lastGroup.itemList.Count - 1;
-            if(lastItemIndex < 0)
+            if (lastItemIndex < 0)
             {
                 return;
             }
@@ -2434,19 +2472,20 @@ namespace Tizen.NUI
             Column lastFilledColumn = lastGroup.columnList.ElementAt(lastFilledColumnIndex);
             
             int cellCount = lastFilledColumn.cellList.Count;
-            for(int i = 0; i < cellCount;  i++)
+            for (int i = 0; i < cellCount;  i++)
             {
                 Cell curCell = lastFilledColumn.cellList.ElementAt(i);
-                if(curCell.columnIndex > lastFilledColumnIndex)
+                if (curCell.columnIndex > lastFilledColumnIndex)
                 {
                     lastFilledColumnIndex = lastFilledColumn.cellList.ElementAt(i).columnIndex;
                 }
             }
+
             lastFilledColumn = lastGroup.columnList.ElementAt(lastFilledColumnIndex);
 
             float width, height;
 
-            if(GridType.Horizontal == gridType)
+            if (GridType.Horizontal == gridType)
             {
                 width = lastFilledColumn.endPos;
                 height = gridHeight - (margin[1] + margin[3]);
@@ -2468,15 +2507,15 @@ namespace Tizen.NUI
 
         private void InitItemGroupPosition()
         {
-            if(GridType.Horizontal == gridType)
+            if (GridType.Horizontal == gridType)
             {
                 if (itemGroupRect.X > margin[0])
                 {
                     itemGroupRect.X = margin[0];
                 }
-                else if(itemGroupRect.Right() < gridWidth)
+                else if (itemGroupRect.Right() < gridWidth)
                 {
-                    if(itemGroupRect.X >= gridWidth)
+                    if (itemGroupRect.X >= gridWidth)
                     {
                         itemGroupRect.X = gridWidth - itemGroupRect.Width;
                     }
@@ -2485,6 +2524,7 @@ namespace Tizen.NUI
                         itemGroupRect.X = 0;
                     }
                 }
+
                 itemGroupRect.Y = margin[1];
             }
             else
@@ -2494,9 +2534,9 @@ namespace Tizen.NUI
                 {
                     itemGroupRect.Y = margin[1];
                 }
-                else if(itemGroupRect.Y + itemGroupRect.Height < gridHeight)
+                else if (itemGroupRect.Y + itemGroupRect.Height < gridHeight)
                 {
-                    if(itemGroupRect.Y >= gridHeight)
+                    if (itemGroupRect.Y >= gridHeight)
                     {
                         itemGroupRect.Y = gridHeight - itemGroupRect.Height;
                     }
@@ -2506,6 +2546,7 @@ namespace Tizen.NUI
                     }
                 }
             }
+
             Tizen.Log.Fatal("NUI", ">>>>>>>>> itemGroupRect: " + itemGroupRect.X + ", " + itemGroupRect.Y + ", " + itemGroupRect.Width + ", " + itemGroupRect.Height);
             ResetItemGroupRectPos();
 
@@ -2543,17 +2584,18 @@ namespace Tizen.NUI
         private Cell GetCellByItemIndex(int groupIndex, int itemIndex)
         {
             Cell curCell = null;
-            if(!IsGroupIndexValid(groupIndex))
+            if (!IsGroupIndexValid(groupIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid group index"));
                 return null;
             }
 
             Group curGroup = groupList.ElementAt(groupIndex);
-            if(curGroup.itemIndexToCell.ContainsKey(itemIndex))
+            if (curGroup.itemIndexToCell.ContainsKey(itemIndex))
             {
                 curCell = curGroup.itemIndexToCell[itemIndex];
             }
+
             return curCell;
         }
 
@@ -2564,7 +2606,7 @@ namespace Tizen.NUI
 
         private bool IsItemIndexValid(int groupIndex, int itemIndex)
         {
-            if(!IsGroupIndexValid(groupIndex))
+            if (!IsGroupIndexValid(groupIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid group index"));
                 return false;
@@ -2572,12 +2614,12 @@ namespace Tizen.NUI
 
             Group curGroup = groupList.ElementAt(groupIndex); 
 
-            return (itemIndex >=0 && curGroup.itemList != null && itemIndex < curGroup.itemList.Count);
+            return (itemIndex >= 0 && curGroup.itemList != null && itemIndex < curGroup.itemList.Count);
         }
 
         private bool IsColumnIndexValid(int groupIndex, int columnIndex)
         {
-            if(!IsGroupIndexValid(groupIndex))
+            if (!IsGroupIndexValid(groupIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid group index"));
                 return false;
@@ -2590,7 +2632,7 @@ namespace Tizen.NUI
 
         private bool IsCellIndexValid(int groupIndex, int columnIndex, int cellIndex)
         {
-            if(!IsColumnIndexValid(groupIndex, columnIndex))
+            if (!IsColumnIndexValid(groupIndex, columnIndex))
             {
                 Tizen.Log.Fatal("NUI", string.Format("[GridView]Invalid column index"));
                 return false;
@@ -2604,6 +2646,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Called when the control gain key input focus.
         /// </summary>
+        /// <param name="sender">the object</param>
+        /// <param name="e">the args of the event</param>
         public void ControlFocusGained(object sender, EventArgs e)
         {
             OnFocusGained();
@@ -2618,6 +2662,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Called when the control loses key input focus.
         /// </summary>
+        /// <param name="sender">the object</param>
+        /// <param name="e">the args of the event</param>
         public void ControlFocusLost(object sender, EventArgs e)
         {
             OnFocusLost();
@@ -2639,6 +2685,7 @@ namespace Tizen.NUI
                     {
                         UpdateInMemoryItems(itemGroup.Position);
                     }
+
                     {
                         //common focus notify focus change at destination of every via
                         NotifyFocusChange(focusGroupIndex, focusItemIndex, obj.toGroupIndex, obj.toItemIndex);
@@ -2651,7 +2698,7 @@ namespace Tizen.NUI
 
         private void OnDataChange(object o, GridBridge.DataChangeEventArgs e)
         {
-            switch(e.ChangeType)
+            switch (e.ChangeType)
             {
                 case GridBridge.DataChangeEventType.Add:
                     AddItem(e.param[0]);
@@ -2671,21 +2718,21 @@ namespace Tizen.NUI
                 case GridBridge.DataChangeEventType.Load:
                     Load();
                     Group curGroup = groupList.ElementAt(e.param[0]);
-                    for(int i = e.param[1]; i < gridBridge.GetItemCount(e.param[0]); i++)
+                    for (int i = e.param[1]; i < gridBridge.GetItemCount(e.param[0]); i++)
                     {
-                        if(i < curGroup.itemList.Count)
+                        if (i < curGroup.itemList.Count)
                         {
                             gridBridge.UpdateItem(e.param[0], i, curGroup.itemList.ElementAt(i).itemView);
                         }
                     }
 
-                    if(focusItemIndex >= e.param[1] && focusItemIndex <= e.param[1] + e.param[2] - 1)
+                    if (focusItemIndex >= e.param[1] && focusItemIndex <= e.param[1] + e.param[2] - 1)
                     {
-                        if(e.param[1] > 0)
+                        if (e.param[1] > 0)
                         {
                             SetFoucsItemIndex(e.param[1] - 1, focusGroupIndex);
                         }
-                        else if(e.param[1] + e.param[2] < curGroup.itemList.Count)
+                        else if (e.param[1] + e.param[2] < curGroup.itemList.Count)
                         {
                             SetFoucsItemIndex(e.param[1] + e.param[2], focusGroupIndex);
                         }
@@ -2707,7 +2754,7 @@ namespace Tizen.NUI
         private void AddItem(int groupIndex)
         {
             int dataCount = gridBridge.GetItemCount(groupIndex);
-            if(dataCount > groupList.ElementAt(groupIndex).realCellCount)
+            if (dataCount > groupList.ElementAt(groupIndex).realCellCount)
             {
                 AddColumn(colW, groupIndex);
                 int columnIndex = groupList.ElementAt(groupIndex).columnList.Count - 1;
@@ -2745,7 +2792,8 @@ namespace Tizen.NUI
                     count++;
                 }
             }
-            for(int i = 0; i < count; i++)
+
+            for (int i = 0; i < count; i++)
             {
                 curGroup.itemList.Remove(curGroup.itemList.ElementAt(curGroup.itemList.Count - 1));
             }       
@@ -2756,9 +2804,9 @@ namespace Tizen.NUI
             Load();
 
             Group curGroup = groupList.ElementAt(groupIndex);
-            for(int i = itemIndex; i < gridBridge.GetItemCount(groupIndex); i++)
+            for (int i = itemIndex; i < gridBridge.GetItemCount(groupIndex); i++)
             {
-                if(i < curGroup.itemList.Count)
+                if (i < curGroup.itemList.Count)
                 {
                     gridBridge.UpdateItem(groupIndex, i, curGroup.itemList.ElementAt(i).itemView);
                 }
@@ -2771,6 +2819,7 @@ namespace Tizen.NUI
             {
                 Clear(i);
             }
+
             ClearRecycleBin();
         }
 
@@ -2786,6 +2835,7 @@ namespace Tizen.NUI
                     UnloadItem(item, false);
                 }
             }
+
             curGroup.itemList.Clear();
         }
 
@@ -2817,7 +2867,7 @@ namespace Tizen.NUI
                 {
                     float posOffset = -(group.columnList.Count - columnCount) * (colW + columnSpace) + ColumnSpace;
 
-                    for(int c = columnCount; c < group.columnList.Count; c++)
+                    for (int c = columnCount; c < group.columnList.Count; c++)
                     {
                         for (int r = 0; r < rowCnt; r++)
                         {
@@ -2836,10 +2886,12 @@ namespace Tizen.NUI
                         {
                             groupList.ElementAt(j).title.PositionX += posOffset;
                         }
+
                         groupList.ElementAt(j).ResetPosition(posOffset);
                     }
 
                 }
+
                 Tizen.Log.Fatal("NUI", ".... group.columnList.Count: " + group.columnList.Count);
             }
 
@@ -2858,12 +2910,12 @@ namespace Tizen.NUI
         {
             Rect visibleAreaOfItemGroup = new Rect(-itemGroupRect.X, -itemGroupRect.Y, gridWidth, gridHeight);
 
-            if(GridType.Horizontal == gridType)
+            if (GridType.Horizontal == gridType)
             {
-                if(bPrev)
+                if (bPrev)
                 {
                     visibleAreaOfItemGroup.X -= gridWidth;
-                    if(0 > visibleAreaOfItemGroup.X)
+                    if (0 > visibleAreaOfItemGroup.X)
                     {
                         visibleAreaOfItemGroup.X = 0;
                     }
@@ -2871,23 +2923,23 @@ namespace Tizen.NUI
                 else
                 {
                     visibleAreaOfItemGroup.X += gridWidth;
-                    if(-visibleAreaOfItemGroup.X + itemGroupRect.Width < gridWidth)
+                    if (-visibleAreaOfItemGroup.X + itemGroupRect.Width < gridWidth)
                     {
                         visibleAreaOfItemGroup.X = itemGroupRect.Width - gridWidth;
                     }
                 }
 
-                if(-itemGroupRect.X == visibleAreaOfItemGroup.X)
+                if (-itemGroupRect.X == visibleAreaOfItemGroup.X)
                 {
                     return;
                 }
             }
             else
             {
-                if(bPrev)
+                if (bPrev)
                 {
                     visibleAreaOfItemGroup.Y -= gridHeight;
-                    if(0 > visibleAreaOfItemGroup.Y)
+                    if (0 > visibleAreaOfItemGroup.Y)
                     {
                         visibleAreaOfItemGroup.Y = 0;
                     }
@@ -2895,13 +2947,13 @@ namespace Tizen.NUI
                 else
                 {
                     visibleAreaOfItemGroup.Y += gridHeight;
-                    if(-visibleAreaOfItemGroup.Y + itemGroupRect.Height < gridHeight)
+                    if (-visibleAreaOfItemGroup.Y + itemGroupRect.Height < gridHeight)
                     {
                         visibleAreaOfItemGroup.Y = itemGroupRect.Height - gridHeight;
                     }
                 }
 
-                if(-itemGroupRect.Y == visibleAreaOfItemGroup.Y)
+                if (-itemGroupRect.Y == visibleAreaOfItemGroup.Y)
                 {
                     return;
                 }
@@ -2918,9 +2970,9 @@ namespace Tizen.NUI
             float focusEndLine = curFocusedColumn.endPos;
             float focusMiddleLine = 0;
 
-            if(newRange.startGroupInScrn >=0 && newRange.endGroupInScrn>=0)
+            if (newRange.startGroupInScrn >= 0 && newRange.endGroupInScrn >= 0)
             {
-                if(GridType.Horizontal == gridType)
+                if (GridType.Horizontal == gridType)
                 {
                     focusStartLine = focusStartLine + itemGroupRect.X + visibleAreaOfItemGroup.X;
                     focusEndLine = focusEndLine + itemGroupRect.X + visibleAreaOfItemGroup.X;
@@ -2935,17 +2987,17 @@ namespace Tizen.NUI
 
                 int nextFocusGroup = -1; int nextFocusColumn = -1;
                 bool bFound = false;
-                for(int i = newRange.startGroupInScrn; i <= newRange.endGroupInScrn && bFound == false; i++)
+                for (int i = newRange.startGroupInScrn; i <= newRange.endGroupInScrn && bFound == false; i++)
                 {
                     Group curGroup = groupList.ElementAt(i);
 
                     int startColumnIndex = (i == newRange.startGroupInScrn) ? newRange.startColumnInScrn : 0;
                     int endColumnIndex = (i == newRange.endGroupInScrn) ? newRange.endColumnInScrn : curGroup.columnList.Count - 1;
 
-                    for(int j = startColumnIndex; j <= endColumnIndex; j++)
+                    for (int j = startColumnIndex; j <= endColumnIndex; j++)
                     {
                         Column curColumn = curGroup.columnList.ElementAt(j);
-                        if(curColumn.startPos <= focusMiddleLine && curColumn.endPos >= focusMiddleLine)
+                        if (curColumn.startPos <= focusMiddleLine && curColumn.endPos >= focusMiddleLine)
                         {
                             nextFocusGroup = i;
                             nextFocusColumn = j;
@@ -2954,14 +3006,14 @@ namespace Tizen.NUI
                         }
                     }
 
-                    if(bFound== false && i == newRange.startGroupInScrn && focusMiddleLine < curGroup.columnList.ElementAt(startColumnIndex).startPos)
+                    if (bFound == false && i == newRange.startGroupInScrn && focusMiddleLine < curGroup.columnList.ElementAt(startColumnIndex).startPos)
                     {
                         nextFocusGroup = i;
                         nextFocusColumn = startColumnIndex;
                         break;
                     }
 
-                    else if(bFound == false && i == newRange.endGroupInScrn && focusMiddleLine > curGroup.columnList.ElementAt(endColumnIndex).endPos)
+                    else if (bFound == false && i == newRange.endGroupInScrn && focusMiddleLine > curGroup.columnList.ElementAt(endColumnIndex).endPos)
                     {
                         nextFocusGroup = i;
                         nextFocusColumn = endColumnIndex;
@@ -2969,19 +3021,19 @@ namespace Tizen.NUI
                     }
                 }
 
-                if(nextFocusGroup >= 0 && nextFocusColumn >=0)
+                if (nextFocusGroup >= 0 && nextFocusColumn >= 0)
                 {
                     int nextFocusItem = -1;
                     GetNearestItem(curFocusedCell, nextFocusGroup, nextFocusColumn, ref nextFocusItem);
 
-                    if(nextFocusItem >= 0)
+                    if (nextFocusItem >= 0)
                     {
-                        while(gridBridge.IsItemEnabled(nextFocusGroup, nextFocusItem) == false)
+                        while (gridBridge.IsItemEnabled(nextFocusGroup, nextFocusItem) == false)
                         {
                             nextFocusItem = GetNextColumnIndex(bPrev, nextFocusColumn, ref nextFocusGroup);
                         }
 
-                        if(nextFocusItem >= 0)
+                        if (nextFocusItem >= 0)
                         {
                             Position newItemGroupPos = new Position(-visibleAreaOfItemGroup.X, -visibleAreaOfItemGroup.Y, 0);
                             SetFocus(nextFocusGroup, nextFocusItem, bAni, newItemGroupPos);
@@ -2993,11 +3045,11 @@ namespace Tizen.NUI
 
         private int GetNextColumnIndex(bool bPrev, int curColumnIndex, ref int curGroupIndex)
         {
-            if(bPrev == true)
+            if (bPrev == true)
             {
-                if(curColumnIndex == 0)
+                if (curColumnIndex == 0)
                 {
-                    if(curGroupIndex == 0)
+                    if (curGroupIndex == 0)
                     {
                         return -1;
                     }
@@ -3015,9 +3067,9 @@ namespace Tizen.NUI
             else
             {
                 Group curGroup = groupList.ElementAt(curGroupIndex);
-                if(curGroup.columnList.Count - 1 == curColumnIndex)
+                if (curGroup.columnList.Count - 1 == curColumnIndex)
                 {
-                    if(groupList.Count - 1 == curGroupIndex)
+                    if (groupList.Count - 1 == curGroupIndex)
                     {
                         return -1;
                     }
@@ -3042,14 +3094,17 @@ namespace Tizen.NUI
                 {
                     return;
                 }
+
                 if (scaleAni == null)
                 {
                     scaleAni = new Animation();
                 }
+
                 if (scaleAni.State == Animation.States.Playing)
                 {
                     scaleAni.Stop(Animation.EndActions.StopFinal);
                 }
+
                 scaleAni.Clear();
                 scaleAni.AnimateTo(itemView, "Scale", scaleFactor, 0, aniAttrs.Duration, new AlphaFunction(aniAttrs.BezierPoint1, aniAttrs.BezierPoint2));
                 scaleAni.Play();
@@ -3154,6 +3209,7 @@ namespace Tizen.NUI
                 endGroupIndex = 0;
                 endColumnIndex = 0;
             }
+
             public Range(int a, int b, int c, int d)
             {
                 startGroupIndex = a;
@@ -3255,11 +3311,14 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructs a AnimationAttributes..
         /// </summary>
-        public AnimationAttributes() { }
+        public AnimationAttributes()
+        {
+        }
 
         /// <summary>
         /// Constructs a AnimationAttributes with curve style..
         /// </summary>
+        /// <param name="curve">curve</param>
         public AnimationAttributes(string curve)
         {
         }
@@ -3279,10 +3338,12 @@ namespace Tizen.NUI
             {
                 BezierPoint1 = new Vector2(attrs.BezierPoint1[0], attrs.BezierPoint1[1]);
             }
+
             if (attrs.BezierPoint2 != null)
             {
                 BezierPoint2 = new Vector2(attrs.BezierPoint2[0], attrs.BezierPoint2[1]);
             }
+
             Duration = attrs.Duration;
         }
 
@@ -3484,8 +3545,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the data at the specified index.
         /// </summary>
-        /// <param name="groupIndex">The group index.</param>
         /// <param name="itemIndex">The item index.</param>
+        /// <param name="groupIndex">The group index.</param>
         /// <returns>The data at the specified index.</returns>
         public object GetData(int itemIndex, int groupIndex = 0)
         {
@@ -3494,6 +3555,7 @@ namespace Tizen.NUI
             {
                 data = gridData.ElementAt(groupIndex).ElementAt(itemIndex);
             }
+
             return data;
         }
 
@@ -3549,8 +3611,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Adds the specified data at the end of the List of specified group.
         /// </summary>
-        /// <param name="groupIndex">The group index which need to add data.</param>
         /// <param name="data">The data to add at the end of the List.</param>
+        /// <param name="groupIndex">The group index which need to add data.</param>
         /// <param name="sendEvent">Notify list to remove item or not.</param>
         public void Add(object data, int groupIndex = 0, bool sendEvent = true)
         {
@@ -3567,9 +3629,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Removes the specified datas from the List of specified group.
         /// </summary>
-        /// <param name="groupIndex">The group index which need to add data.</param>
         /// <param name="fromIndex">The from index of data to remove from the list.</param>
         /// <param name="removeNum">The remove number of data to remove from the list.</param>
+        /// <param name="groupIndex">The group index which need to add data.</param>
         /// <param name="withAni">Remove with animation or not.</param>
         /// <param name="sendEvent">Notify list to remove item or not.</param>
 
@@ -3597,8 +3659,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Removes the specified datas from the List of specified group.
         /// </summary>
-        /// <param name="groupIndex">The group index which need to add data.</param>
         /// <param name="itemIndex">The from index of data to remove from the list.</param>
+        /// <param name="groupIndex">The group index which need to add data.</param>
         /// <param name="withAni">Remove with animation or not.</param>
         /// <param name="sendEvent">Notify list to remove item or not.</param>
         public void Remove(int itemIndex, int groupIndex = 0, bool withAni = false, bool sendEvent = true)
@@ -3608,15 +3670,16 @@ namespace Tizen.NUI
                 Tizen.Log.Fatal("NUI", "Error!! item index is invalid");
                 return;
             }
+
             RemoveItems(itemIndex, 1, groupIndex, withAni, sendEvent);
         }
 
         /// <summary>
         /// Inserts the specified data at the specified index in the List of specified group.
         /// </summary>
-        /// <param name="groupIndex">The group index which need to insert data.</param>
         /// <param name="index">The index at which the data must be inserted.</param>
         /// <param name="data">The data to insert into the list.</param>
+        /// <param name="groupIndex">The group index which need to insert data.</param>
         /// <param name="sendEvent">Notify list to remove item or not.</param>
         public void Insert(int index, object data, int groupIndex = 0, bool sendEvent = true)
         {

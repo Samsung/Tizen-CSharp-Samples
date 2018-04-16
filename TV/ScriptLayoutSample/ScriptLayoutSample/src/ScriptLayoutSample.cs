@@ -85,8 +85,8 @@ namespace ScriptLayoutSample
         /// </summary>
         private void Initialize()
         {
-            Window.Instance.BackgroundColor = new Color(0.9f, 0.9f, 0.9f, 1.0f);
-            //Window.Instance.BackgroundColor = Color.Black;
+            //Window.Instance.BackgroundColor = new Color(0.9f, 0.9f, 0.9f, 1.0f);
+            Window.Instance.BackgroundColor = Color.Black;
             //Window.Instance.BackgroundColor = Color.White;
             View focusIndicator = new View();
             FocusManager.Instance.FocusIndicator = focusIndicator;
@@ -106,20 +106,21 @@ namespace ScriptLayoutSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 100);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 0);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
-            guide.PointSize = 15.0f;
+            //guide.PointSize = 15.0f;
+            guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "Script Sample \n";
             guide.TextColor = Color.White;
-            guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
+            guide.BackgroundColor = Color.Black;//new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
 
             //The container of the RadioButtons, CheckBoxButtons, Sliders, and the big ImageView
             TableView content = new TableView(6, 6);
             //content.BackgroundColor = Color.Black;
-            content.Position2D = new Position2D(100, 250);
+            content.Position2D = new Position2D(100, 275);
             content.Size2D = new Size2D(1000, 500);
             content.PositionUsesPivotPoint = true;
             content.ParentOrigin = ParentOrigin.TopLeft;
@@ -129,25 +130,37 @@ namespace ScriptLayoutSample
             {
                 content.SetFitHeight(i);
             }
-            for(uint i = 0; i < content.Columns; ++i)
+
+            for (uint i = 0; i < content.Columns; ++i)
             {
                 content.SetFitWidth(i);
             }
+
             Window.Instance.GetDefaultLayer().Add(content);
             string[] images = { smallImage1, smallImage2, smallImage3 };
             mRadioButtons = new RadioButton[3];
-            for (uint i= 0; i<=2; i++)
+            for (uint i = 0; i <= 2; i++)
             {
                 ImageView image = new ImageView(images[i]);
                 image.Name = "thumbnail" + (i + 1);
                 image.Size2D = new Size2D(60, 60);
 
-                mRadioButtons[i] = CreateRadioButton((i+1).ToString());
+                mRadioButtons[i] = CreateRadioButton((i + 1).ToString());
+
+                if (DeviceCheck.IsSREmul())
+                {
+                    mRadioButtons[i].StyleName = "RadioButton";
+                }
+                else
+                {
+                    mRadioButtons[i].StyleName = "TVRadioButton";
+                }
                 content.AddChild(mRadioButtons[i], new TableView.CellPosition(i, 0));
                 content.AddChild(image, new TableView.CellPosition(i, 1));
                 content.SetCellAlignment(new TableView.CellPosition(i, 0), HorizontalAlignmentType.Left, VerticalAlignmentType.Center);
                 content.SetCellAlignment(new TableView.CellPosition(i, 1), HorizontalAlignmentType.Left, VerticalAlignmentType.Center);
             }
+
             mRadioButtons[0].Selected = true;
             //Set the focus to the first radioButton when the apps loaded
             FocusManager.Instance.SetCurrentFocusView(mRadioButtons[0]);
@@ -157,7 +170,7 @@ namespace ScriptLayoutSample
             mChannelSliders = new Slider[3];
             for (uint i = 3; i <= 5;i++)
             {
-                mCheckButtons[i-3] = CreateCheckBox(checkboxLabels[i-3]);
+                mCheckButtons[i - 3] = CreateCheckBox(checkboxLabels[i - 3]);
                 mCheckButtons[i - 3].Selected = true;
                 mCheckButtons[i - 3].Name = "channelActiveCheckBox" + (i - 2).ToString();
                 mChannelSliders[i - 3] = CreateSlider();
@@ -167,8 +180,18 @@ namespace ScriptLayoutSample
                 mChannelSliders[i - 3].KeyEvent += ChannelSliderKeyEvent;
                 mChannelSliders[i - 3].ValueChanged += OnSliderChanged;
 
+                // Set the style according to the target devices
+                if (DeviceCheck.IsSREmul())
+                {
+                    mCheckButtons[i - 3].StyleName = "CheckBoxButton";
+                }
+                else
+                {
+                    mCheckButtons[i - 3].StyleName = "TVCheckBoxButton";
+                }
+
                 content.AddChild(mCheckButtons[i - 3], new TableView.CellPosition(i, 0));
-                content.AddChild(mChannelSliders[i-3], new TableView.CellPosition(i, 1));
+                content.AddChild(mChannelSliders[i - 3], new TableView.CellPosition(i, 1));
                 content.SetCellAlignment(new TableView.CellPosition(i, 0), HorizontalAlignmentType.Left, VerticalAlignmentType.Center);
                 content.SetCellAlignment(new TableView.CellPosition(i, 1), HorizontalAlignmentType.Left, VerticalAlignmentType.Center);
             }
@@ -189,6 +212,17 @@ namespace ScriptLayoutSample
             customThemeButton.Position2D = new Position2D(1146, 900);
             customThemeButton.Clicked += OnThemeButtonClicked;
             Window.Instance.GetDefaultLayer().Add(customThemeButton);
+
+            if (DeviceCheck.IsSREmul())
+            {
+                defaultThemeButton.StyleName = "PushButton";
+                customThemeButton.StyleName = "PushButton";
+            }
+            else
+            {
+                defaultThemeButton.StyleName = "TVPushButton";
+                customThemeButton.StyleName = "TVPushButton";
+            }
 
             defaultThemeButton.RightFocusableView = customThemeButton;
             customThemeButton.LeftFocusableView = defaultThemeButton;
@@ -459,7 +493,8 @@ namespace ScriptLayoutSample
             // Set titleActor's style.
             // The titleActor's textColor is black.
             titleActor.StyleName = "PopupTitle";
-            titleActor.PointSize = 15.0f;
+            //titleActor.PointSize = 15.0f;
+            titleActor.PointSize = DeviceCheck.PointSize15;
             titleActor.HorizontalAlignment = HorizontalAlignment.Center;
             titleActor.MultiLine = false;
 
@@ -484,29 +519,30 @@ namespace ScriptLayoutSample
             return contentPane;
         }
 
-        /// <summary>
-        /// Create text propertyMap used to set Button.Label
-        /// </summary>
-        /// <param name="text">text</param>
-        /// <returns>The created propertyMap</returns>
-        private PropertyMap CreateText(string text)
-        {
-            PropertyMap textVisual = new PropertyMap();
-            // Visual's type is textVisual;
-            textVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            // Set textVisual's text.
-            textVisual.Add(TextVisualProperty.Text, new PropertyValue(text));
-            // Text color is black.
-            textVisual.Add(TextVisualProperty.TextColor, new PropertyValue(Color.Black));
-            // The text size is 7.
-            textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(7));
-            // Texts place at the center of horizontal direction.
-            textVisual.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
-            // Texts place at the center of vertical direction.
-            textVisual.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-            textVisual.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
-            return textVisual;
-        }
+        ///// <summary>
+        ///// Create text propertyMap used to set Button.Label
+        ///// </summary>
+        ///// <param name="text">text</param>
+        ///// <returns>The created propertyMap</returns>
+        //private PropertyMap CreateText(string text)
+        //{
+        //    PropertyMap textVisual = new PropertyMap();
+        //    // Visual's type is textVisual;
+        //    textVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
+        //    // Set textVisual's text.
+        //    textVisual.Add(TextVisualProperty.Text, new PropertyValue(text));
+        //    // Text color is black.
+        //    textVisual.Add(TextVisualProperty.TextColor, new PropertyValue(Color.Black));
+        //    // The text size is 7.
+        //    //textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(7));
+        //    textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize7));
+        //    // Texts place at the center of horizontal direction.
+        //    textVisual.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
+        //    // Texts place at the center of vertical direction.
+        //    textVisual.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
+        //    textVisual.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
+        //    return textVisual;
+        //}
 
         /// <summary>
         /// This Application will be exited when back key entered.
@@ -584,6 +620,7 @@ namespace ScriptLayoutSample
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                 }
+
                 return false;
             };
 
@@ -596,7 +633,8 @@ namespace ScriptLayoutSample
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            map.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
@@ -607,7 +645,7 @@ namespace ScriptLayoutSample
         /// Create an Image visual.
         /// </summary>
         /// <param name="imagePath">The url of the image</param>
-        /// <Return>return thr radioButton instance</Return>
+        /// <returns>return thr radioButton instance</returns>
         private PropertyMap CreateImageVisual(string imagePath)
         {
             PropertyMap map = new PropertyMap();
@@ -620,12 +658,12 @@ namespace ScriptLayoutSample
         /// Create a RadioButton.
         /// </summary>
         /// <param name="text">The text of the radioButton</param>
-        /// <Return>return thr radioButton instance</Return>
+        /// <returns>return the radioButton instance</returns>
         private RadioButton CreateRadioButton(string text)
         {
             RadioButton _radiobutton = new RadioButton();
             _radiobutton = new RadioButton();
-            _radiobutton.Label = CreateLabel(text, Color.Black);
+            _radiobutton.Label = CreateLabel(text, Color.White);
             _radiobutton.LabelPadding = new Vector4(10, 12, 0, 0);
             _radiobutton.Size2D = new Size2D(120, 48);
             _radiobutton.Focusable = true;
@@ -716,18 +754,19 @@ namespace ScriptLayoutSample
         private CheckBoxButton CreateCheckBox(string text)
         {
             CheckBoxButton _checkboxbutton = new CheckBoxButton();
-            if(text == "R")
+            if (text == "R")
             {
                 _checkboxbutton.Label = CreateLabel(text, Color.Red);
             }
-            else if(text == "G")
+            else if (text == "G")
             {
                 _checkboxbutton.Label = CreateLabel(text, Color.Green);
             }
-            else if(text == "B")
+            else if (text == "B")
             {
                 _checkboxbutton.Label = CreateLabel(text, Color.Blue);
             }
+
             _checkboxbutton.LabelPadding = new Vector4(10, 12, 0, 0);
             _checkboxbutton.Size2D = new Size2D(120, 48);
             _checkboxbutton.Focusable = true;
@@ -880,16 +919,16 @@ namespace ScriptLayoutSample
         /// Create a PropertyMap which be used to set _checkboxbutton.Label
         /// </summary>
         /// <param name="text">text</param>
-        /// <returns>
-        /// the created PropertyMap
-        /// </returns>
+        /// <param name="color">the color of the text</param>
+        /// <returns>the created PropertyMap</returns>
         private PropertyMap CreateLabel(string text, Color color)
         {
             PropertyMap textVisual = new PropertyMap();
             textVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             textVisual.Add(TextVisualProperty.Text, new PropertyValue(text));
             textVisual.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            //textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
+            textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             textVisual.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("TOP"));
             return textVisual;
         }

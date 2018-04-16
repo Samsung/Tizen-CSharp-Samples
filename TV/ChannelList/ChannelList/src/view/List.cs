@@ -161,6 +161,7 @@ namespace ChannelList
                 Tizen.Log.Fatal("NUI.List", "get FocusItemIndex : " + mCurFocusItemIndex);
                 return mCurFocusItemIndex; 
             }
+
             set
             {
                 Tizen.Log.Fatal("NUI.List", "FocusItemIndex set to: " + value);
@@ -178,6 +179,7 @@ namespace ChannelList
                 {
                     mCurFocusItemIndex = value;
                 }
+
                 Tizen.Log.Fatal("NUI.List", "FocusItemIndex set to: " + mCurFocusItemIndex);
             }
         }
@@ -187,9 +189,11 @@ namespace ChannelList
         /// </summary>
         public int PreloadFrontItemSize
         {
-        	get {
+        	get
+            {
         		return mPreloadFrontItemSize; 
         	}
+
         	set
         	{
         		mPreloadFrontItemSize = value;
@@ -201,9 +205,11 @@ namespace ChannelList
         /// </summary>
         public int PreloadBackItemSize
         {
-        	get {
+        	get
+            {
         		return mPreloadBackItemSize; 
         	}
+
         	set
         	{
         		mPreloadBackItemSize = value;
@@ -267,7 +273,7 @@ namespace ChannelList
         /// <summary>
         /// Sets the data behind this List.
         /// </summary>
-        /// <param name="Adapter">The ListAdapter which is responsible for maintaining the data
+        /// <param name="adapter">The ListAdapter which is responsible for maintaining the data
         /// backing this list and for producing a view to represent an item in the data set.</param>
         public void SetAdapter(ListAdapter adapter)
         {
@@ -296,7 +302,9 @@ namespace ChannelList
                     item.rect.Width = this.SizeWidth - (mMargin[0] + mMargin[2]);
                     item.rect.Height = adapter.GetItemHeight(i); ;
                 }
+
             }
+
             adapter.DataChangeEvent += OnDataChange;
             SetViewTypeCount(mAdapter.GetItemTypeCount());
             Load();
@@ -350,6 +358,7 @@ namespace ChannelList
             {
                 return;
             }
+
             int itemCount = PageItemNum();
 
             if (mItemList.Count - itemCount - 1 <= mCurFocusItemIndex)
@@ -383,7 +392,7 @@ namespace ChannelList
             ListItem item = mItemList.ElementAt(firstShowItemIndex);
 
             float posYOnList = item.rect.Y + mItemGroupRect.Y;
-            if(mItemGroupRect.Y - posYOnList <= SizeHeight - mItemGroupRect.Height)
+            if (mItemGroupRect.Y - posYOnList <= SizeHeight - mItemGroupRect.Height)
             {
                 mItemGroupRect.Y = SizeHeight - mItemGroupRect.Height;
             }
@@ -391,6 +400,7 @@ namespace ChannelList
             {
                 mItemGroupRect.Y = mItemGroupRect.Y - posYOnList;
             }
+
             UpdateInMemoryItems(mItemGroupRect);
             mItemGroup.PositionY = mItemGroupRect.Y;
             ChangeFocus(firstShowItemIndex);
@@ -427,6 +437,7 @@ namespace ChannelList
             {
                 item = mItemList[itemIndex];
             }
+
             return item?.itemView;
         }
 
@@ -439,6 +450,7 @@ namespace ChannelList
             {
                 mListEventHandlers += value;
             }
+
             remove
             {
                 mListEventHandlers -= value;
@@ -448,7 +460,6 @@ namespace ChannelList
         /// <summary>
         /// Update when List attributes changed.
         /// </summary>
-        /// <param name="attrs">Attributes to be applied</param>
         protected void OnUpdate()
         {
             Tizen.Log.Fatal("NUI.List", "OnUpdate...");
@@ -483,6 +494,7 @@ namespace ChannelList
                     item.rect.Width = this.SizeWidth - (mMargin[0] + mMargin[2]);
                     item.rect.Height = mAdapter.GetItemHeight(item.index);
                 }
+
                 Load();
             }
         }
@@ -506,10 +518,11 @@ namespace ChannelList
             Tizen.Log.Fatal("NUI.List", "mAttrsApplied: " + mAttrsApplied);
             mFlagFirstIn = true;
             mListItemCount = mAdapter.GetCount();
-            if(mListItemCount == 0)
+            if (mListItemCount == 0)
             {
                 return;
             }
+
             Tizen.Log.Fatal("NUI.List", "mListItemCount: " + mListItemCount);
 
             //update item group size
@@ -527,6 +540,7 @@ namespace ChannelList
             {
                 SetFocus(mCurFocusItemIndex);
             }
+
             Tizen.Log.Fatal("NUI.List", "Load out.");
         }
 
@@ -570,11 +584,12 @@ namespace ChannelList
         /// <summary>
         /// Add all items according to list count
         /// </summary>
+        /// <param name="count">the count of the item</param>
         private void AddAll(int count)
         {
             Tizen.Log.Fatal("NUI.List", "AddAll...count: " + mTailItemIndex);
             //add each item
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 AddItem();
             }
@@ -589,6 +604,8 @@ namespace ChannelList
         /// <summary>
         /// Delete items at specified index and number.
         /// </summary>
+        /// <param name="fromItemIndex">the index of the first item</param>
+        /// <param name="deleteItemNum">the number of the item</param>
         private void DeleteItem(int fromItemIndex, int deleteItemNum)
         {
             Tizen.Log.Fatal("NUI.List", "DeleteItem...fromItemIndex: " + fromItemIndex + ", deleteItemNum: " + deleteItemNum);
@@ -627,6 +644,7 @@ namespace ChannelList
                     {
                         item.itemView.Scale = new Vector3(1.0f, 1.0f, 1.0f);
                     }
+
                     UnloadItem(item);
 
                     mCurInMemoryItemList.Remove(item);
@@ -674,7 +692,7 @@ namespace ChannelList
                 while (!IsValidItemIndex(mCurFocusItemIndex))
                 {
                     mCurFocusItemIndex--;
-                    if(mCurFocusItemIndex == -1)
+                    if (mCurFocusItemIndex == -1)
                     {
                         break;
                     }
@@ -687,6 +705,7 @@ namespace ChannelList
                 {
                     mTailItemIndex = mItemList.Count - 1;
                 }
+
                 Position itemGroupPos = new Position(0, 0, 0);
                 bool flagScrollItem = CalItemGroupPosByFocusItemIndex(mCurFocusItemIndex, itemGroupPos);
                 mItemGroupRect.Y = itemGroupPos.Y;
@@ -714,6 +733,7 @@ namespace ChannelList
         /// <summary>
         /// Insert an item at specified index.
         /// </summary>
+        /// <param name="index">the index of the item</param>
         private void InsertItem(int index)
         {
             Tizen.Log.Fatal("NUI.List", "index:" + index);
@@ -773,6 +793,7 @@ namespace ChannelList
             {
                 item.Dispose();
             }
+
             Tizen.Log.Fatal("NUI.List", "mCurInMemoryItemList.Count: " + mCurInMemoryItemList.Count());
             foreach (ListItem item in mCurInMemoryItemList)
             {
@@ -804,6 +825,8 @@ namespace ChannelList
         /// <summary>
         /// Called when the control gain key input focus.
         /// </summary>
+        /// <param name="sender">the object</param>
+        /// <param name="e">the args of the event</param>
         private void OnFocusGained(object sender, EventArgs e)
         {
             Tizen.Log.Fatal("NUI.List", "OnFocusGained.");
@@ -816,6 +839,8 @@ namespace ChannelList
         /// <summary>
         /// Called when the control loses key input focus.
         /// </summary>
+        /// <param name="sender">the object</param>
+        /// <param name="e">the args of the event</param>
         private void OnFocusLost(object sender, EventArgs e)
         {
             Tizen.Log.Fatal("NUI.List", "OnFocusLost.");
@@ -832,6 +857,8 @@ namespace ChannelList
         /// <summary>
         /// Called when the list data changed.
         /// </summary>
+        /// <param name="o">the object</param>
+        /// <param name="e">the args of the event</param>
         private void OnDataChange(object o, ListAdapter.DataChangeEventArgs e)
         {
             Tizen.Log.Fatal("NUI.List", "OnDataChange.");
@@ -869,6 +896,7 @@ namespace ChannelList
                 default:
                     break;
             }
+
             Tizen.Log.Fatal("NUI.List", "OnDataChange End");
         }
 
@@ -909,7 +937,7 @@ namespace ChannelList
             mScrollWayPointAni = new LinkerAnimation(mItemGroup, 100, 100, 0);
 
             /*unload front item when via event happen*/
-            mScrollWayPointAni.ViaEvent += delegate (object o, EventArgs e)
+            mScrollWayPointAni.ViaEvent += delegate(object o, EventArgs e)
             {
                 Tizen.Log.Fatal("NUI.List", "mItemGroupRect: " + mItemGroupRect.X + ", " + mItemGroupRect.Y + ", " + mItemGroupRect.Width + ", " + mItemGroupRect.Height);
                 Rect itemGroupVisualRect = new Rect(mItemGroup.PositionX, mItemGroup.PositionY, mItemGroup.SizeWidth, mItemGroup.SizeHeight);
@@ -999,6 +1027,7 @@ namespace ChannelList
         /// <summary>
         /// Refresh the specified item position.
         /// </summary>
+        /// <param name="item">the item</param>
         private void RefreshItemPosition(ListItem item)
         {
             //check item is valid
@@ -1018,6 +1047,8 @@ namespace ChannelList
         /// <summary>
         /// update list in memory.
         /// </summary>
+        /// <param name="groupRect">the group rect</param>
+        /// <param name="flagFocusAni">the falg of focus animation</param>
         private void UpdateInMemoryItems(Rect groupRect, bool flagFocusAni = false)
         {
             Tizen.Log.Fatal("NUI.List", "UpdateInMemoryItems...flagFocusAni: " + flagFocusAni);
@@ -1072,6 +1103,7 @@ namespace ChannelList
         /// <summary>
         /// Load an specified item.
         /// </summary>
+        /// <param name="item">the item which should be loaded</param>
         private void LoadItem(ListItem item)
         {
             Tizen.Log.Fatal("NUI.List", "LoadItem...");
@@ -1105,11 +1137,12 @@ namespace ChannelList
             else
             {
                 item.itemView = mAdapter.GetItemView(item.index);
-                Tizen.Log.Fatal("NUI.List", "item.itemView :"+item.itemView );
+                Tizen.Log.Fatal("NUI.List", "item.itemView :" + item.itemView);
                 item.itemView.ParentOrigin = Tizen.NUI.ParentOrigin.TopCenter;
                 item.itemView.PivotPoint = Tizen.NUI.PivotPoint.TopCenter;
                 item.itemView.PositionUsesPivotPoint = true;
             }
+
             Tizen.Log.Fatal("NUI.List", "LoadItem...update item position and size.");
             
             //set item view position and size
@@ -1120,7 +1153,7 @@ namespace ChannelList
 
             //add the item to iten group
             mItemGroup.Add(item.itemView);
-            Tizen.Log.Fatal("NUI.List", "mItemGroup.Add...X: "+item.itemView.PositionX + ", Y: "+item.itemView.PositionY);
+            Tizen.Log.Fatal("NUI.List", "mItemGroup.Add...X: " + item.itemView.PositionX + ", Y: " + item.itemView.PositionY);
             Tizen.Log.Fatal("NUI.List", "mItemGroup.Add...Width: " + item.itemView.SizeWidth + ", Height: " + item.itemView.SizeHeight);
 
             //send item scroll in event.
@@ -1135,6 +1168,7 @@ namespace ChannelList
         /// <summary>
         /// unload an specified item
         /// </summary>
+        /// <param name="item">the item which should be unload</param>
         private void UnloadItem(ListItem item)
         {
             Tizen.Log.Fatal("NUI.List", "UploadItem...");
@@ -1170,6 +1204,13 @@ namespace ChannelList
         /// <summary>
         /// get item change information
         /// </summary>
+        /// <param name="curHeadItemIndex">the current head index</param>
+        /// <param name="curTailItemIndex">the current tail index</param>
+        /// <param name="newHeadItemIndex">the new head index</param>
+        /// <param name="newTailItemIndex">the new tail index</param>
+        /// <param name="loadItem">the list of the load item</param>
+        /// <param name="unloadItem">the list of the unload item</param>
+        /// <param name="nochangedItem">the list of the no change item</param>
         private void GetItemChangeInfo(int curHeadItemIndex, int curTailItemIndex, int newHeadItemIndex, int newTailItemIndex, List<ListItem> loadItem, List<ListItem> unloadItem, List<ListItem> nochangedItem)
         {
             Tizen.Log.Fatal("NUI.List", "GetItemChangeInfo...");
@@ -1203,13 +1244,16 @@ namespace ChannelList
         /// <summary>
         /// Get item index according Y position
         /// </summary>
+        /// <param name="posY">the position of Y</param>
+        /// <param name="isHead">is Head or not</param>
+        /// <returns>return the item index</returns>
         private int GetItemIndexByPosY(float posY, bool isHead)
         {
             int itemIndex = -1;
 
             int itemCount = mItemList.Count;
             //check itemcout
-            if(itemCount == 0)
+            if (itemCount == 0)
             {
                 return -1;
             }
@@ -1268,7 +1312,10 @@ namespace ChannelList
                             {
                                 end = itemIndex;
                             }
-                        } while (begin != end);
+
+                        }
+                        while (begin != end);
+
                     }
                 }
             }
@@ -1314,7 +1361,10 @@ namespace ChannelList
                         {
                             end = itemIndex;
                         }
-                    } while (begin != end);
+
+                    }
+                    while (begin != end);
+
                 }
             }
 
@@ -1324,6 +1374,14 @@ namespace ChannelList
         /// <summary>
         /// Compare index range
         /// </summary>
+        /// <param name="oldStart">the old start index</param>
+        /// <param name="oldEnd">the old end index</param>
+        /// <param name="newStart">the new start index</param>
+        /// <param name="newEnd">the new end index</param>
+        /// <param name="maxIndex">the max index</param>
+        /// <param name="loadItem">the list of the load item</param>
+        /// <param name="unloadItem">the list of the unload item</param>
+        /// <param name="noChangeItem">the list of the no change item</param>
         private void CompareIndexRange(int oldStart, int oldEnd, int newStart, int newEnd, int maxIndex, List<int> loadItem, List<int> unloadItem, List<int> noChangeItem)
         {
             Tizen.Log.Fatal("NUI.List", "CompareIndexRange...");
@@ -1552,6 +1610,8 @@ namespace ChannelList
         /// <summary>
         /// Notify focus change region
         /// </summary>
+        /// <param name="from">the first item index</param>
+        /// <param name="to">the last item index</param>
         private void NotifyFocusChange(int from, int to)
         {
             Tizen.Log.Fatal("NUI.List", "=========NotifyFocusChange: from: " + from + " to " + to);
@@ -1588,6 +1648,7 @@ namespace ChannelList
         /// <summary>
         /// Set focus item index.
         /// </summary>
+        /// <param name="focusItemIndex">the index of the focused item</param>
         private void SetFocus(int focusItemIndex)
         {
             Tizen.Log.Fatal("NUI.List", "=========SetFocus index: " + focusItemIndex);
@@ -1628,6 +1689,7 @@ namespace ChannelList
         /// <summary>
         /// Change focus index to specfied index.
         /// </summary>
+        /// <param name="focusItemIndex">the index of the focused item</param>
         private void ChangeFocus(int focusItemIndex)
         {
             Tizen.Log.Fatal("NUI.List", "=========ChangeFocus focusItemIndex: " + focusItemIndex);
@@ -1682,6 +1744,8 @@ namespace ChannelList
         /// <summary>
         /// Check index is valid in list
         /// </summary>
+        /// <param name="index">the index of the item</param>
+        /// <returns>whether the item with the specific index is valid or not</returns>
         private bool IsValidItemIndex(int index)
         {
             //check index is valid
@@ -1691,6 +1755,9 @@ namespace ChannelList
         /// <summary>
         /// Calculate item group position accroding to focus item index.
         /// </summary>
+        /// <param name="focusIndex">the index of the focused item</param>
+        /// <param name="itemGroupPos">the item group position</param>
+        /// <returns>return whether get the position successfully or not</returns>
         private bool CalItemGroupPosByFocusItemIndex(int focusIndex, Position itemGroupPos)
         {
             Tizen.Log.Fatal("NUI.List", "CalItemGroupPosByFocusItemIndex... focusIndex: " + focusIndex);
@@ -1723,6 +1790,7 @@ namespace ChannelList
         /// <summary>
         /// Get page number.
         /// </summary>
+        /// <returns>return the number of the oage item</returns>
         private int PageItemNum()
         {
             //check current focus item index is valid
@@ -1746,6 +1814,7 @@ namespace ChannelList
         /// <summary>
         /// Set view type count.
         /// </summary>
+        /// <param name="typeCount">the count of view type</param>
         private void SetViewTypeCount(int typeCount)
         {
             Tizen.Log.Fatal("NUI.List", "SetViewTypeCount...");
@@ -1754,6 +1823,7 @@ namespace ChannelList
             {
                 return;
             }
+
             Tizen.Log.Fatal("NUI.List", "typeCount: " + typeCount);
 
             mViewTypeCount = typeCount;
@@ -1771,6 +1841,8 @@ namespace ChannelList
         /// <summary>
         /// Add an view at specified index into recycle list.
         /// </summary>
+        /// <param name="index">the index</param>
+        /// <param name="view">the view</param>
         private void AddRecycleView(int index, View view)
         {
             Tizen.Log.Fatal("NUI.List", "AddRecycleView...");
@@ -1798,6 +1870,8 @@ namespace ChannelList
         /// <summary>
         /// Get recycle view at specified index.
         /// </summary>
+        /// <param name="index">the index</param>
+        /// <returns>return the view with the specific index</returns>
         private View GetRecycleView(int index)
         {
             int viewType = mAdapter.GetItemType(index);
@@ -1821,6 +1895,7 @@ namespace ChannelList
             {
                 obj.Show();
             }
+
             return obj;
         }
 
@@ -1836,13 +1911,17 @@ namespace ChannelList
                 {
                     UnloadRecycledView(i, mRecycledViews[i][j]);
                 }
+
                 mRecycledViews[i].Clear();
             }
+
         }
 
         /// <summary>
         /// Unload view at specified view type.
         /// </summary>
+        /// <param name="viewType">view type</param>
+        /// <param name="view">the view should be unload</param>
         private void UnloadRecycledView(int viewType, View view)
         {
             Tizen.Log.Fatal("NUI.List", "unloadRecycledVie...");
