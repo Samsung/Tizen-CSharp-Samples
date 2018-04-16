@@ -1,7 +1,7 @@
 # AnimationSample
 This sample demonstrates how to use animation in Tizen.NUI. You can change the Size, Position, Scale, Opacity...with animation, and you can change these properties at the same time if you want.
 
-![MainPage](./Screenshots/animatinMain.png)
+![MainPage](./Screenshots/animationMain.png)
 
 ## License
 Copyright (c) 2017 Samsung Electronics Co., Ltd.
