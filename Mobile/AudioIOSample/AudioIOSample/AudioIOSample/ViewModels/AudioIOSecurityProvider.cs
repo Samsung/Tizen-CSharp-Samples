@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
+/*
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,24 @@
  */
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace AudioIOSample
 {
-    /// <summary>
-    /// The main page.
-    /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    class AudioIOSecurityProvider
     {
-        public MainPage()
+        /// <summary>
+        /// Recorder privilege.
+        /// </summary>
+        private const string privilegeRecorder = "http://tizen.org/privilege/recorder";
+
+        /// <summary>
+        /// Check privilege for AudioIOSample.
+        /// </summary>
+        public static void CheckPrivilege()
         {
-            AudioIOSecurityProvider.CheckPrivilege();
-            InitializeComponent();
+            IAudioIOSecurity audioIOSecurity = DependencyService.Get<IAudioIOSecurity>();
+
+            audioIOSecurity.CheckPrivilege(privilegeRecorder);
         }
     }
 }
