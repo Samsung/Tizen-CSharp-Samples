@@ -62,6 +62,7 @@ namespace ImageUtilSample
 
                         DecodeResultText = "Decoded";
                         IsDecodeSucceeded = true;
+                        ResultSource = ImageSource.FromFile(ImageUtil.ResultPath);
                     }
                     catch (Exception e)
                     {
@@ -120,8 +121,8 @@ namespace ImageUtilSample
 
         private async Task Resize()
         {
-            var newWidth = (_random.Next() % ImageUtil.ImageWidth + 1) * 2;
-            var newHeight = (_random.Next() % ImageUtil.ImageHeight + 1) * 2;
+            var newWidth = ImageUtil.ImageWidth / 8 * 4;
+            var newHeight = ImageUtil.ImageHeight / 8 * 4;
 
             CommandText = $"Resize ({newWidth}, {newHeight})";
 
@@ -130,10 +131,10 @@ namespace ImageUtilSample
 
         private async Task Crop()
         {
-            var left = _random.Next() % ImageUtil.ImageWidth;
-            var top = _random.Next() % ImageUtil.ImageHeight;
-            var newWidth = _random.Next() % (ImageUtil.ImageWidth - left) + 1;
-            var newHeight = _random.Next() % (ImageUtil.ImageHeight - top) + 1;
+            var left = ImageUtil.ImageWidth / 8 * 2;
+            var top = ImageUtil.ImageHeight / 8 * 2;
+            var newWidth = ImageUtil.ImageWidth / 8 * 4;
+            var newHeight = ImageUtil.ImageHeight / 8 * 4;
 
             CommandText = $"Crop ({left}, {top}, {newWidth}, {newHeight})";
 
@@ -142,7 +143,7 @@ namespace ImageUtilSample
 
         private async Task ChangeColorSpace()
         {
-            var colorSpace = RandomValue<TransformColorSpace>();
+            var colorSpace = TransformColorSpace.Rgb888;
 
             CommandText = $"ColorSpace => {colorSpace}";
 

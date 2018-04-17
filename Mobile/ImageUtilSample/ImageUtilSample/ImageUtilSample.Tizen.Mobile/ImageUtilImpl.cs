@@ -75,6 +75,16 @@ namespace ImageUtilSample.Tizen.Mobile
 
                 // Fills the buffer with decoded data.
                 _decodedPacket.VideoPlanes[0].Buffer.CopyFrom(result.Buffer, 0, result.Buffer.Length);
+
+                using (var encoder = new JpegEncoder())
+                using (var fs = File.OpenWrite(ResultPath))
+                {
+                    encoder.SetResolution(result.Size);
+                    encoder.SetColorSpace(ColorSpace.Rgba8888);
+
+                    // Encodes the result(which is raw format) as a jpeg image.
+                    await encoder.EncodeAsync(result.Buffer, fs);
+                }
             }
         }
 
