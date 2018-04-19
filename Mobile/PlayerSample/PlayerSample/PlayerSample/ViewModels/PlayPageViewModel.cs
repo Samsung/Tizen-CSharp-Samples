@@ -70,10 +70,9 @@ namespace PlayerSample
                     break;
             }
 
-            ErrorText = null;
-
             OnPropertyChanged(nameof(PositionText));
             OnPropertyChanged(nameof(IsStarted));
+            OnPropertyChanged(nameof(IsReady));
             OnPropertyChanged(nameof(PlayText));
             OnPropertyChanged(nameof(PauseText));
         }
@@ -172,6 +171,8 @@ namespace PlayerSample
 
         public bool IsStarted => PlayerState == MediaPlayerState.Playing ||
             PlayerState == MediaPlayerState.Paused;
+
+        public bool IsReady => IsStarted || PlayerState == MediaPlayerState.Ready;
 
         private bool _isSeekable;
         public bool IsSeekable
