@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:VisionApplicationSamples"
+                x:Class="VisionApplicationSamples.Barcode.DetectorPage">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="{Binding BarcodeImage}" HorizontalOptions="FillAndExpand" />
+            <Label Text="{Binding MessageText}" TextColor="Black"  IsEnabled="False" />
+            <Button Text="Detect" Command="{Binding DetectCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</local:PageBase>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:VisionApplicationSamples"
+                x:Class="VisionApplicationSamples.Image.RecognizerPage">
+    
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,.5" AbsoluteLayout.LayoutFlags="All">
+            <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,.3,.3" AbsoluteLayout.LayoutFlags="All">
+                <Image Source="{Binding TargetImage}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="1,0,.7,1" AbsoluteLayout.LayoutFlags="All">
+                <Image Source="{Binding SceneImage}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            </AbsoluteLayout>
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,.5" AbsoluteLayout.LayoutFlags="All"
+                         Orientation="Vertical">
+                <StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Success" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" />
+                        <Entry Text="{Binding Success}" Grid.Row="0" Grid.Column="1" IsEnabled="False"/>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,.5" AbsoluteLayout.LayoutFlags="All"
+                         Orientation="Vertical">
+                    <StackLayout>
+                        <Label Text="Target Location"/>
+                        <ListView ItemsSource="{Binding Items}" HorizontalOptions="FillAndExpand">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" >
+                                            <Label Text="X:" FontAttributes="Bold"/>
+                                            <Label Text="{Binding X}" TextColor="Blue"/>
+                                            <Label Text="Y:" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Y}" TextColor="Blue" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,1,.5,.2" AbsoluteLayout.LayoutFlags="All">
+                <Button Text="SetTarget" Command="{Binding SetTargetCommand}" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,.5" AbsoluteLayout.LayoutFlags="All"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="1,1,.5,.2" AbsoluteLayout.LayoutFlags="All">
+                <Button Text="Recognize" Command="{Binding RecognizeCommand}" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,.5" AbsoluteLayout.LayoutFlags="All"/>
+            </AbsoluteLayout>
+
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+</local:PageBase>
