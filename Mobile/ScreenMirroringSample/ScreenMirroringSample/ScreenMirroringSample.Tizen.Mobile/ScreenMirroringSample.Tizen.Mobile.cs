@@ -1,7 +1,3 @@
-using System;
-
-using Tizen.Xamarin.Forms.Extension.Renderer;
-
 namespace ScreenMirroringSample.Tizen.Mobile
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication

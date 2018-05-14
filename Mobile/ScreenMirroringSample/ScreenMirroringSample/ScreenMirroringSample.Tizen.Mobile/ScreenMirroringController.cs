@@ -21,8 +21,6 @@ using Tizen.Multimedia.Remoting;
 using System;
 using System.Threading.Tasks;
 using Tizen;
-using XamarinTizen = Xamarin.Forms.Platform.Tizen;
-using XamarinExt = Tizen.Xamarin.Forms.Extension;
 using ElmSharp;
 
 
