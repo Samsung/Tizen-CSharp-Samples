@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.SmartCardSampleApp.Tizen.Mobile" version="1.0.1" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.example.SmartCardSampleApp.Tizen.Mobile" exec="SmartCardSampleApp.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>SmartCardSampleApp.Tizen.Mobile</label>
+        <icon>SmartCardSampleApp.Tizen.Mobile.png</icon>
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/secureelement</privilege>
+    </privileges>
+</manifest>
