@@ -113,12 +113,27 @@ namespace SmartCardSampleApp.Tizen.Mobile
         {
             byte[] atrList = null;
             byte[] aid = {0xA0, 0x00, 0x00, 0x00, 0x63, 0x50, 0x4B, 0x43, 0x53, 0x2D, 0x31, 0x35};
-            byte[] cmdBytes = new byte[cmd.Length / 2];
+            
 
-            for (int index = 0; index < cmdBytes.Length; index++)
+            if (cmd != null && (cmd.Length % 2) != 0)
             {
-                string byteValue = cmd.Substring(index * 2, 2);
-                cmdBytes[index] = byte.Parse(byteValue, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture);
+                LogImplementation.DLog("cmd should be even number");
+                return "6800";
+            }
+            
+            byte[] cmdBytes = new byte[cmd.Length / 2];
+            try {
+                for (int index = 0; index < cmdBytes.Length; index++)
+                {
+                    string byteValue = cmd.Substring(index * 2, 2);
+
+                    cmdBytes[index] = byte.Parse(byteValue, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture);
+                }
+            }
+            catch (Exception e)
+            {
+                LogImplementation.DLog("Failed " + e.Message);
+                return "6800";
             }
 
             if (SmartcardReader.Count() > 0)
