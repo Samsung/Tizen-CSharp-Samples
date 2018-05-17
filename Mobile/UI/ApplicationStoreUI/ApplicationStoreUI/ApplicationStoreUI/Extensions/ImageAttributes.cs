@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace ApplicationStoreUI
+namespace ApplicationStoreUI.Extensions
 {
     public static class ImageAttributes
     {
