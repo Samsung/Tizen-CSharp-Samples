@@ -11,9 +11,8 @@ This Application Store UI  sample application demonstrates how to make a complex
 </table>
 
 ### Verified Version
-* Xamarin.Forms : 2.4.0.18342
-* Xamarin.Platform.Tizen : 2.4.0.18342
-* Tizen.Xamarin.Forms.Extension : 2.4.0-v00014
+* Xamarin.Forms : 3.1.0.469394-pre1
+* Xamarin.Platform.Tizen : 2.5.0.280555
 * Tizen.NET : 4.0.0
 * Tizen.NET.SDK : 1.0.0
 
@@ -22,4 +21,4 @@ This Application Store UI  sample application demonstrates how to make a complex
 * Mobile
 
 ### Author
-* Jeong-Kyun Pu
+* Jeong-Kyun Pu, Hyunjin Park
