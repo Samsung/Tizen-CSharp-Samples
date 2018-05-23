@@ -16,11 +16,10 @@
 
 using Xamarin.Forms;
 using Image = Xamarin.Forms.Image;
-using Tizen.Xamarin.Forms.Extension;
 using System;
 using System.Diagnostics;
 
-namespace ApplicationStoreUI
+namespace ApplicationStoreUI.Extensions
 {
     class ImageButton : RelativeLayout, IButtonController
     {

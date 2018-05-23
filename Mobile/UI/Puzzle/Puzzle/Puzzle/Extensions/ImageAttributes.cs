@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace Puzzle
+namespace Puzzle.Extensions
 {
     public static class ImageAttributes
     {

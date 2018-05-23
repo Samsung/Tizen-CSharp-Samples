@@ -50,9 +50,9 @@ namespace AppCommon.Tizen.Mobile.Renderers
         {
             if (_tpage == null)
             {
-                _navi = new Naviframe(Forms.Context.MainWindow);
+                _navi = new Naviframe(Forms.NativeParent);
 
-                _tpage = new Toolbar(Forms.Context.MainWindow)
+                _tpage = new Toolbar(Forms.NativeParent)
                 {
                     Style = "tabbar",
                     Text = Element.Title,
@@ -64,7 +64,7 @@ namespace AppCommon.Tizen.Mobile.Renderers
                 _tpage.SelectionMode = ToolbarSelectionMode.Default;
                 _tpage.Selected += OnCurrentPageChanged;
 
-                _box = new Box(Forms.Context.MainWindow)
+                _box = new Box(Forms.NativeParent)
                 {
                     AlignmentX = -1,
                     AlignmentY = -1,
@@ -77,7 +77,7 @@ namespace AppCommon.Tizen.Mobile.Renderers
                 item.Style = "tabbar/notitle";
                 item.SetPartContent("tabbar", _tpage);
 
-                SetNativeControl(_navi);
+                SetNativeView(_navi);
             }
 
             base.OnElementChanged(e);

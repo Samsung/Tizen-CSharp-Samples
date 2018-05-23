@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using AppCommon.Cells;
 using AppCommon.Extensions;
-using Tizen.Xamarin.Forms.Extension;
 
 namespace AppCommon
 {
@@ -50,6 +49,18 @@ namespace AppCommon
             {
                 count = 0;
             }
+
+            /// A pop-up be invoked when a list item is selected
+            _popup = new Dialog { };
+            var closeButton = new Button
+            {
+                Text = "CLOSE",
+            };
+            closeButton.Clicked += (sender, arg) =>
+            {
+                _popup.Hide();
+            };
+            _popup.Positive = closeButton;
 
             _popup.Title = title;
             _popup.Content = new StackLayout
@@ -113,17 +124,6 @@ namespace AppCommon
                 list.ScrollTo((list.ItemsSource as IList<PathInformation>)[0], ScrollToPosition.Start, true);
             };
 
-            /// A pop-up be invoked when a list item is selected
-            _popup = new Dialog { };
-            var closeButton = new Button
-            {
-                Text = "CLOSE",
-            };
-            closeButton.Clicked += (s, e) =>
-            {
-                _popup.Hide();
-            };
-            _popup.Positive = closeButton;
 
             mainLayout.Children.Add(
                 list,

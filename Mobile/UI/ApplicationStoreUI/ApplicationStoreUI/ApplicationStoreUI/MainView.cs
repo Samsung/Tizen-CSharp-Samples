@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using ApplicationStoreUI.Extensions;
 using Xamarin.Forms;
 
 /// <summary>

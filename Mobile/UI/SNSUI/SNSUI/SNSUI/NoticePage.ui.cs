@@ -16,7 +16,7 @@
 
 using Xamarin.Forms;
 using System.Collections.Generic;
-using Tizen.Xamarin.Forms.Extension;
+using SNSUI.Extensions;
 
 namespace SNSUI
 {

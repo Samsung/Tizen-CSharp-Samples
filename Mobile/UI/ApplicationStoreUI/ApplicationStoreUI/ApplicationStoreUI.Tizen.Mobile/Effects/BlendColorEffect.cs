@@ -16,6 +16,7 @@
 
 using System;
 using System.ComponentModel;
+using ApplicationStoreUI.Extensions;
 using ApplicationStoreUI.Tizen.Mobile;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;

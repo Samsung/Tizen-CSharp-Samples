@@ -15,7 +15,6 @@
  */
 
 using ElmSharp;
-using Tizen.Xamarin.Forms.Extension.Renderer;
 
 namespace Puzzle.Tizen.Mobile
 {
@@ -41,8 +40,6 @@ namespace Puzzle.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            //Initialize Tizen Forms Extension. for using Extension APIs.
-            TizenFormsExtension.Init();
             global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
             app.Run(args);
         }
