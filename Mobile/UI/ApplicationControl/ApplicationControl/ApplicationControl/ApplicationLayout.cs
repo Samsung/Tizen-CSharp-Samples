@@ -16,11 +16,10 @@
 
 using Xamarin.Forms;
 using Image = Xamarin.Forms.Image;
-using Tizen.Xamarin.Forms.Extension;
 using ApplicationControl.Extensions;
-using ApplicationControl.Cells;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System;
 
 namespace ApplicationControl
 {
@@ -29,6 +28,7 @@ namespace ApplicationControl
     /// </summary>
     public class ApplicationLayout : RelativeLayout
     {
+        ApplicationContentLayout _applications;
         /// <summary>
         /// A constructor of the ApplicationLayout class
         /// </summary>
@@ -70,6 +70,11 @@ namespace ApplicationControl
         {
             return Task.Run(() =>
             {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    _applications.Children.Clear();
+                });
+
                 var selected = ((MainViewModel)BindingContext).SelectedAppControlType;
                 var apps = ApplicationControlHelper.GetApplicationIdsForSpecificAppControlType(selected);
                 foreach (var app in apps)
@@ -78,28 +83,69 @@ namespace ApplicationControl
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         /// Add an item to the list
-                        ((MainViewModel)BindingContext)
-                            .Applications.Add(new ApplicationListItem
-                            {
-                                Id = app,
-                                IconPath = iconPath,
-                                BlendColor = Color.Gray,
-                            });
+                        var item = new ApplicationListItem
+                        {
+                            Id = app,
+                            IconPath = iconPath,
+                            BlendColor = Color.Gray,
+                        };
+                        ((MainViewModel)BindingContext).Applications.Add(item);
+
+                        _applications.AddItem(item).Selected += OnItemSelected;
                     });
                 }
 
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    /// Add an extra empty item.
-                    ((MainViewModel)BindingContext)
-                        .Applications.Add(new ApplicationListItem
-                        {
-                            Id = null,
-                            IconPath = null,
-                            BlendColor = Color.Gray,
-                        });
+                    /// Add an empty item to the list
+                    var item = new ApplicationListItem
+                    {
+                        Id = null,
+                        IconPath = null,
+                        BlendColor = Color.Gray,
+                    };
+                    ((MainViewModel)BindingContext).Applications.Add(item);
+
+                    _applications.AddItem(item);
                 });
+
+                /// For application list
+                Children.Add(
+                    _applications,
+                    Constraint.RelativeToParent((parent) =>
+                    {
+                        return 0;
+                    }),
+                    Constraint.RelativeToParent((parent) =>
+                    {
+                        return parent.Height * 0.2411;
+                    }),
+                    Constraint.RelativeToParent((parent) =>
+                    {
+                        return parent.Width;
+                    }),
+                    Constraint.RelativeToParent((parent) =>
+                    {
+                        return parent.Height * 0.5265;
+                    }));
             });
+        }
+
+        /// <summary>
+        /// A handler be invoked when an item is selected on the application list
+        /// </summary>
+        /// <param name="s">sender</param>
+        /// <param name="e">event</param>
+        void OnItemSelected(object s, EventArgs e)
+        {
+            var item = (ApplicationLayoutItem)s;
+            foreach (var app in ((MainViewModel)BindingContext).Applications )
+            {
+                if(app.Id.Equals(item.AppId)){
+                    ((MainViewModel)BindingContext).SelectedItem = app;
+                    break;
+                }
+            }
         }
 
         /// <summary>
@@ -134,32 +180,11 @@ namespace ApplicationControl
                    return parent.Height * 0.2411;
                }));
 
-            var applications = new ApplicationContentLayout(screenWidth, screenHeight);
-            applications.ItemSelected += (s, e) =>
-            {
-                var item = (ApplicationListItem)e.SelectedItem;
-                var selectedItem = ((MainViewModel)BindingContext).SelectedItem;
-                if (selectedItem != null)
-                {
-                    selectedItem.BlendColor = Color.Gray;
-                }
-
-                ((MainViewModel)BindingContext).SelectedItem = item;
-            };
-
-            BindingContextChanged += (s, e) =>
-            {
-                if (BindingContext == null)
-                {
-                    return;
-                }
-
-                applications.ItemsSource = ((MainViewModel)BindingContext).Applications;
-            };
+            _applications = new ApplicationContentLayout(screenWidth, screenHeight);
 
             /// For application list
             Children.Add(
-                applications,
+                _applications,
                 Constraint.RelativeToParent((parent) =>
                 {
                     return 0;
@@ -208,7 +233,7 @@ namespace ApplicationControl
 
             var killButton = new ImageButton
             {
-                Source = "kill_button.jpg"
+                Source = "kill_button.jpg",
             };
             killButton.Clicked += (s, e) =>
             {
@@ -253,24 +278,37 @@ namespace ApplicationControl
     /// <summary>
     /// A class for an application content layout
     /// </summary>
-    public class ApplicationContentLayout : GridView
+    public class ApplicationContentLayout : StackLayout
     {
         /// <summary>
         /// A constructor for the ApplicationContentLayout
         /// </summary>
         public ApplicationContentLayout(int screenWidth, int screenHeight) : base()
         {
-            var widthScale = (double)screenWidth / 720.0;
-            var heightScale = (double)screenHeight / 1280.0;
+            InitializeComponent();
+        }
 
-            var scaledItemWidth = (int)(360.0 * widthScale);
-            var scaledItemHeight = (int)(219.0 * heightScale);
+        /// <summary>
+        /// To initialize components of the operation content layout
+        /// </summary>
+        void InitializeComponent()
+        {
+            Orientation = StackOrientation.Horizontal;
+            Spacing = 0;
+        }
 
-            ItemWidth = scaledItemWidth;
-            ItemHeight = scaledItemHeight;
-            Orientation = GridViewOrientation.Horizontal;
-            IsHighlightEffectEnabled = false;
-            ItemTemplate = new DataTemplate(typeof(CustomViewCell));
+        /// <summary>
+        /// To add an item on the application content layout
+        /// </summary>
+        /// <param name="id">An applicaiton id</param>
+        /// <param name="iconPath">An icon path</param>
+        /// <returns>An operation item</returns>
+        public ApplicationLayoutItem AddItem(ApplicationListItem item)
+        {
+            var layoutItem = new ApplicationLayoutItem(item) { };
+            layoutItem.WidthRequest = this.Width / 2;
+            this.Children.Add(layoutItem);
+            return layoutItem;
         }
     }
 }

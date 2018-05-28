@@ -15,7 +15,6 @@
  */
 using System;
 using Xamarin.Forms;
-using Tizen.Xamarin.Forms.Extension;
 using ApplicationControl.Extensions;
 
 namespace ApplicationControl
@@ -151,8 +150,6 @@ namespace ApplicationControl
     {
         string _name;
         Label _caption;
-        BlendImage _radio;
-        BlendImage _radioCheck;
         RadioButton _radioButton;
 
         /// <summary>
@@ -180,20 +177,9 @@ namespace ApplicationControl
             _caption = new Label
             {
                 Text = _name,
+                FontSize = 18,
                 HorizontalTextAlignment = TextAlignment.Center,
-            };
-
-            _radio = new BlendImage
-            {
-                Source = "radio.png",
-                BlendColor = Color.FromRgb(231, 214, 25),
-            };
-
-            _radioCheck = new BlendImage
-            {
-                Source = "radio_check.png",
-                BlendColor = Color.FromRgb(231, 214, 25),
-                Scale = 0,
+                HorizontalOptions = LayoutOptions.Center
             };
 
             _radioButton = new RadioButton
@@ -209,11 +195,9 @@ namespace ApplicationControl
             {
                 if (e.Value == false)
                 {
-                    UpdateUncheckedRadio();
                     return;
                 }
 
-                UpdateCheckedRadio();
                 Selected?.Invoke(this, EventArgs.Empty);
             };
             
@@ -235,44 +219,6 @@ namespace ApplicationControl
                 {
                     return parent.Height * 0.4931;
                 }));
-                
-            Children.Add(
-                _radio,
-                Constraint.RelativeToParent((parent) =>
-                {
-                    return parent.Width * 0.4;
-                }),
-                Constraint.RelativeToParent((parent) =>
-                {
-                    return parent.Height * 0.1507;
-                }),
-                Constraint.RelativeToParent((parent) =>
-                {
-                    return parent.Width * 0.2;
-                }),
-                Constraint.RelativeToParent((parent) =>
-                {
-                    return parent.Height * 0.2192;
-                }));
-
-            Children.Add(
-                _radioCheck,
-                Constraint.RelativeToParent((parent) =>
-                {
-                    return parent.Width * 0.4292;
-                }),
-                Constraint.RelativeToParent((parent) =>
-                {
-                    return parent.Height * 0.1826;
-                }),
-                Constraint.RelativeToParent((parent) =>
-                {
-                    return parent.Width * 0.1416;
-                }),
-                Constraint.RelativeToParent((parent) =>
-                {
-                    return parent.Height * 0.1553;
-                }));
 
             Children.Add(
                 _radioButton,
@@ -292,24 +238,6 @@ namespace ApplicationControl
                 {
                     return parent.Height;
                 }));
-        }
-
-        /// <summary>
-        /// To update radio properties when the radio button is checked
-        /// </summary>
-        async void UpdateCheckedRadio()
-        {
-            _radioCheck.Opacity = 100;
-            await _radioCheck.ScaleTo(1, length: 50);
-        }
-
-        /// <summary>
-        /// To update radio properties when the radio button is unchecked
-        /// </summary>
-        void UpdateUncheckedRadio()
-        {
-            _radioCheck.Opacity = 0;
-            _radioCheck.Scale = 0.5;
         }
 
         public event EventHandler Selected;

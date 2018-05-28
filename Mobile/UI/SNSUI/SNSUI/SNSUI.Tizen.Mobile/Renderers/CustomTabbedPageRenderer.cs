@@ -58,9 +58,9 @@ namespace SNSUI.Tizen.Renderers
         {
             if (_tpage == null)
             {
-                _navi = new Naviframe(Forms.Context.MainWindow);
+                _navi = new Naviframe(Forms.NativeParent);
 
-                _tpage = new Toolbar(Forms.Context.MainWindow)
+                _tpage = new Toolbar(Forms.NativeParent)
                 {
                     Style = "tabbar",
                     Text = Element.Title,
@@ -71,7 +71,7 @@ namespace SNSUI.Tizen.Renderers
                 _tpage.Show();
                 _tpage.Selected += OnCurrentPageChanged;
 
-                _box = new Box(Forms.Context.MainWindow)
+                _box = new Box(Forms.NativeParent)
                 {
                     AlignmentX = -1,
                     AlignmentY = -1,
@@ -81,7 +81,7 @@ namespace SNSUI.Tizen.Renderers
                 _box.IsHorizontal = true;
                 _box.Show();
 
-                _scroller = new Scroller(Forms.Context.MainWindow)
+                _scroller = new Scroller(Forms.NativeParent)
                 {
                     AlignmentX = -1,
                     AlignmentY = -1,
@@ -100,7 +100,7 @@ namespace SNSUI.Tizen.Renderers
                 item.Style = "tabbar/notitle";
                 item.SetPartContent("tabbar", _tpage);
 
-                SetNativeControl(_navi);
+                SetNativeView(_navi);
             }
 
             base.OnElementChanged(e);

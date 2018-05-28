@@ -16,7 +16,6 @@
 
 using Xamarin.Forms;
 using Image = Xamarin.Forms.Image;
-using Tizen.Xamarin.Forms.Extension;
 using System;
 
 namespace AppCommon.Extensions

@@ -12,10 +12,8 @@ This Application Store UI  sample application demonstrates how to make a complex
 
 ### Verified Version
 * Xamarin.Forms : 3.1.0.469394-pre1
-* Xamarin.Platform.Tizen : 2.5.0.280555
 * Tizen.NET : 4.0.0
 * Tizen.NET.SDK : 1.0.0
-
 
 ### Supported Profile
 * Mobile

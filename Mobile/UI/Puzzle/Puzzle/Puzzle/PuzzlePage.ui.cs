@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
+using Puzzle.Extensions;
 using System;
 using Xamarin.Forms;
-using Tizen.Xamarin.Forms.Extension;
 
 namespace Puzzle
 {

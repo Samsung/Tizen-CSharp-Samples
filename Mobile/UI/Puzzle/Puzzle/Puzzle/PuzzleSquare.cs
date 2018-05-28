@@ -15,8 +15,8 @@
  */
 
 using Xamarin.Forms;
-using Tizen.Xamarin.Forms.Extension;
 using System;
+using Puzzle.Extensions;
 
 namespace Puzzle
 {

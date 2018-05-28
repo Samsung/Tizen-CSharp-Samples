@@ -19,7 +19,6 @@ using Label = Xamarin.Forms.Label;
 using Image = Xamarin.Forms.Image;
 using AppCommon.Extensions;
 using AppCommon.Styles;
-using Tizen.Xamarin.Forms.Extension;
 
 namespace AppCommon
 {

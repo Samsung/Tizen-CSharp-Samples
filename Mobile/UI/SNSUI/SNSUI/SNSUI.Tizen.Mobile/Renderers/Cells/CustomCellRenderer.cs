@@ -20,7 +20,6 @@ using ElmSharp;
 using EButton = ElmSharp.Button;
 using SNSUI.Extensions;
 using SNSUI.Tizen.Renderers.Cells;
-using Tizen.Xamarin.Forms.Extension.Renderer;
 
 [assembly: ExportRenderer(typeof(CustomCell), typeof(CustomCellRenderer))]
 
@@ -48,7 +47,7 @@ namespace SNSUI.Tizen.Renderers.Cells
         {
             if (part == "elm.swallow.end")
             {
-                var button = new EButton(Forms.Context.MainWindow)
+                var button = new EButton(Forms.NativeParent)
                 {
                     Text = "+",
                     MinimumWidth = 60,

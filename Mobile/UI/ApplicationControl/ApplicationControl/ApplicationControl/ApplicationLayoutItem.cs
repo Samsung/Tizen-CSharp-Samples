@@ -15,43 +15,78 @@
  */
 
 using Xamarin.Forms;
-using Tizen.Xamarin.Forms.Extension;
+using Image = Xamarin.Forms.Image;
 using ApplicationControl.Extensions;
+using System;
 
-namespace ApplicationControl.Cells
+namespace ApplicationControl
 {
     /// <summary>
-    /// A class for a custrom view cell will be used as a DataTemplate by the ApplicationContentLayout
+    /// A class for an application item
     /// </summary>
-    public class CustomViewCell : GridViewCell
+    public class ApplicationLayoutItem : RelativeLayout
     {
+        Label _caption;
+        Image _bgButton;
+        Image _icon;
+        ApplicationListItem _data;
+
         /// <summary>
-        /// A constructor for the CustomViewCell class
+        /// The application ID
         /// </summary>
-        public CustomViewCell() : base()
+        public string AppId { get ; set;}
+
+        /// <summary>
+        /// A constructor for the ApplicationItem
+        /// </summary>
+        /// <param name="item">An ApplicationListItem item</param>
+        public ApplicationLayoutItem(ApplicationListItem item) : base()
         {
+            _data = item;
+            AppId = _data.Id;
             InitializeComponent();
         }
 
         /// <summary>
-        /// To initialize the custom view cell
+        /// To initialize components of the operation item
         /// </summary>
         void InitializeComponent()
         {
-            var layout = new RelativeLayout
-            {
-                WidthRequest = 360,
-                HeightRequest = 219,
 
-                HorizontalOptions = LayoutOptions.Start,
+            _bgButton = new Image
+            {
+                Source = "apps_list_item_bg.png",
             };
 
-            layout.Children.Add(
-                new Image
-                {
-                    Source = "apps_list_item_bg.png",
-                    Aspect = Aspect.Fill,
-                },
+            var gestureRecognizer = new LongTapGestureRecognizer();
+            //When tap event is invoked. add pressed color to square image.
+            gestureRecognizer.TapStarted += (s, e) =>
+            {
+                //change forground blend color of image
+                ImageAttributes.SetBlendColor(_bgButton, Color.FromRgb(213, 228, 240));
+            };
+
+            //If tap is released. set default color to square image.
+            gestureRecognizer.TapCanceled += (s, e) =>
+            {
+                //revert forground blend color of image
+                ImageAttributes.SetBlendColor(_bgButton, Color.Default);
+                //Invoke selected event to consumer.
+                SendSelected();
+            };
+
+            //Set default color to square image.
+            gestureRecognizer.TapCompleted += (s, e) =>
+            {
+                //revert forground blend color of image
+                ImageAttributes.SetBlendColor(_bgButton, Color.Default);
+                //Invoke selected event to consumer.
+                SendSelected();
+            };
+            GestureRecognizers.Add(gestureRecognizer);
+
+            Children.Add(
+                _bgButton,
                 Constraint.RelativeToParent((parent) =>
                 {
                     return 0;
@@ -69,12 +104,12 @@ namespace ApplicationControl.Cells
                     return parent.Height;
                 }));
 
-            var icon = new BlendImage { };
-            icon.SetBinding(BlendImage.SourceProperty, "IconPath");
-            icon.SetBinding(BlendImage.BlendColorProperty, "BlendColor");
+            _icon = new Image() { };
+            _icon.Source = ImageSource.FromFile(_data.IconPath);
+            ImageAttributes.SetBlendColor(_bgButton, Color.FromRgb(213, 228, 240));
 
-            layout.Children.Add(
-                icon,
+            Children.Add(
+                _icon,
                 Constraint.RelativeToParent((parent) =>
                 {
                     return parent.Width * 0.0778;
@@ -92,14 +127,16 @@ namespace ApplicationControl.Cells
                     return parent.Height * 0.4475;
                 }));
 
-            var label = new Label
+            _caption = new Label
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
+                FontSize = 18,
+                LineBreakMode = LineBreakMode.WordWrap,
             };
-            label.SetBinding(Label.TextProperty, "Id");
+            _caption.Text = _data.Id;
 
-            layout.Children.Add(
-                label,
+            Children.Add(
+                _caption,
                 Constraint.RelativeToParent((parent) =>
                 {
                     return parent.Width * 0.425;
@@ -116,8 +153,16 @@ namespace ApplicationControl.Cells
                 {
                     return parent.Height;
                 }));
+        }
 
-            View = layout;
+        public event EventHandler Selected;
+
+        /// <summary>
+        /// To broadcast a selected event to subscribers
+        /// </summary>
+        public void SendSelected()
+        {
+            Selected?.Invoke(this, EventArgs.Empty);
         }
     }
 }

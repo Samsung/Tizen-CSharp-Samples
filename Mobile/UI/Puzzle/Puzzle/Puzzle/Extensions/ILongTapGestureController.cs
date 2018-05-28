@@ -16,7 +16,7 @@
 
 using Xamarin.Forms;
 
-namespace ApplicationStoreUI
+namespace Puzzle.Extensions
 {
     /// <summary>
     /// This interface is for internal use by the platform renderer.

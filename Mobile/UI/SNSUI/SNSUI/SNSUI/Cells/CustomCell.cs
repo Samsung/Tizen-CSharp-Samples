@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using Tizen.Xamarin.Forms.Extension;
 
 namespace SNSUI.Extensions
 {

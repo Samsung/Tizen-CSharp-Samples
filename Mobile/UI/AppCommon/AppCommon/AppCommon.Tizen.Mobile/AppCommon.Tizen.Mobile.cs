@@ -16,7 +16,6 @@
 
 using Tizen.Applications;
 using System.Globalization;
-using Tizen.Xamarin.Forms.Extension.Renderer;
 using System.Diagnostics;
 
 namespace AppCommon.Tizen.Mobile
@@ -91,7 +90,6 @@ namespace AppCommon.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            TizenFormsExtension.Init();
             global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
             app.Run(args);
         }

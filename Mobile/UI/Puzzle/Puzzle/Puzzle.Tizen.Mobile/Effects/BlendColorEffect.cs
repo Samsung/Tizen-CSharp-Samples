@@ -16,6 +16,7 @@
 
 using System;
 using System.ComponentModel;
+using Puzzle.Extensions;
 using Puzzle.Tizen.Mobile;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;

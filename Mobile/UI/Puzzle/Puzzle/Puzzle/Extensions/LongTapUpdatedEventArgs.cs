@@ -14,25 +14,30 @@
  * limitations under the License.
  */
 
+using System;
 using Xamarin.Forms;
-using Image = Xamarin.Forms.Image;
 
-namespace ApplicationControl.Extensions
+namespace Puzzle.Extensions
 {
     /// <summary>
-    /// An image class to enable change the foreground color of it
+    /// Arguments for the LongTapUpdated event.
     /// </summary>
-    public class BlendImage : Image
+    public class LongTapUpdatedEventArgs : EventArgs
     {
-        public static readonly BindableProperty BlendColorProperty = BindableProperty.Create("BlendColor", typeof(Color), typeof(BlendImage), Color.Default);
+        public LongTapUpdatedEventArgs(GestureStatus status, double timestamp)
+        {
+            Status = status;
+            TimeStamp = timestamp;
+        }
 
         /// <summary>
-        /// A foreground color
+        /// Gets the timestamp(millisecond).
         /// </summary>
-        public Color BlendColor
-        {
-            get { return (Color)GetValue(BlendColorProperty); }
-            set { SetValue(BlendColorProperty, value); }
-        }
+        public double TimeStamp { get; }
+
+        /// <summary>
+        /// Gets the status that indicates whether the gesture started earlier has finished or got canceled.
+        /// </summary>
+        public GestureStatus Status { get; }
     }
 }

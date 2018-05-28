@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace Puzzle
+namespace Puzzle.Extensions
 {
     public static class ImageAttributes
     {
@@ -35,7 +35,7 @@ namespace Puzzle
         }
 
         /// <summary>
-        /// Sets the font weight of the bindable element.
+        /// Sets the blend color of the bindable element.
         /// </summary>
         /// <param name="element">element object</param>
         /// <param name="color">color for blend</param>

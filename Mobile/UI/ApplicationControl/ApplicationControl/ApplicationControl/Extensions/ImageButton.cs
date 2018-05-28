@@ -16,8 +16,6 @@
 using System;
 using Xamarin.Forms;
 using Image = Xamarin.Forms.Image;
-using Label = Xamarin.Forms.Label;
-using Tizen.Xamarin.Forms.Extension;
 
 namespace ApplicationControl.Extensions
 {
@@ -33,25 +31,30 @@ namespace ApplicationControl.Extensions
         public ImageButton() : base()
         {
             var gestureRecognizer = new LongTapGestureRecognizer();
+            //When tap event is invoked. add pressed color to image.
             gestureRecognizer.TapStarted += (s, e) =>
             {
                 //change forground blend color of image
                 ImageAttributes.SetBlendColor(this, Color.FromRgb(213, 228, 240));
             };
 
+            //If tap is released. set default color to image.
             gestureRecognizer.TapCanceled += (s, e) =>
             {
                 //revert forground blend color of image
                 ImageAttributes.SetBlendColor(this, Color.Default);
+                SendClicked();
             };
 
+            //If tap is completed. set default color to image.
             gestureRecognizer.TapCompleted += (s, e) =>
             {
                 //revert forground blend color of image
                 ImageAttributes.SetBlendColor(this, Color.Default);
+                SendClicked();
             };
             GestureRecognizers.Add(gestureRecognizer);
-            this.Effects.Add(Effect.Resolve("Tizen.ImageClickEffect"));
+
         }
 
         /// <summary>
@@ -67,7 +70,6 @@ namespace ApplicationControl.Extensions
         /// </summary>
         public void SendPressed()
         {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -75,7 +77,6 @@ namespace ApplicationControl.Extensions
         /// </summary>
         public void SendReleased()
         {
-            throw new NotImplementedException();
         }
 
         public event EventHandler Clicked;

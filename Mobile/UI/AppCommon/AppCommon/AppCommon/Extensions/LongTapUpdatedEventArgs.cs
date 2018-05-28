@@ -14,31 +14,30 @@
  * limitations under the License.
  */
 
+using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.Tizen;
-using NEntry = Xamarin.Forms.Platform.Tizen.Native.Entry;
-using ApplicationControl.Extensions;
-using ApplicationControl.Tizen.Mobile.Effects;
 
-[assembly: ExportEffect(typeof(EditorDisEditableEffect), "EditorDisEditableEffect")]
-
-namespace ApplicationControl.Tizen.Mobile.Effects
+namespace AppCommon.Extensions
 {
     /// <summary>
-    /// A class to enable to make an ediator diseditable
+    /// Arguments for the LongTapUpdated event.
     /// </summary>
-    public class EditorDisEditableEffect : PlatformEffect
+    public class LongTapUpdatedEventArgs : EventArgs
     {
-        protected override void OnAttached()
+        public LongTapUpdatedEventArgs(GestureStatus status, double timestamp)
         {
-            var entry = (NEntry)Control;
-            entry.IsEditable = ((DisEditableEditor)Element).IsEditable;
+            Status = status;
+            TimeStamp = timestamp;
         }
 
-        protected override void OnDetached()
-        {
-            var entry = (NEntry)Control;
-            entry.IsEditable = true;
-        }
+        /// <summary>
+        /// Gets the timestamp(millisecond).
+        /// </summary>
+        public double TimeStamp { get; }
+
+        /// <summary>
+        /// Gets the status that indicates whether the gesture started earlier has finished or got canceled.
+        /// </summary>
+        public GestureStatus Status { get; }
     }
 }
