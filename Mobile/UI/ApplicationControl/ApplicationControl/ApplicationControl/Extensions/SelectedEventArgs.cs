@@ -14,25 +14,27 @@
  * limitations under the License.
  */
 
-using Xamarin.Forms;
-using Image = Xamarin.Forms.Image;
+using System;
 
 namespace ApplicationControl.Extensions
 {
     /// <summary>
-    /// An image class to enable change the foreground color of it
+    /// Event arguments for events of RadioButton.
     /// </summary>
-    public class BlendImage : Image
+    public class SelectedEventArgs : EventArgs
     {
-        public static readonly BindableProperty BlendColorProperty = BindableProperty.Create("BlendColor", typeof(Color), typeof(BlendImage), Color.Default);
+        /// <summary>
+        /// Creates a new SelectedEventArgs object that represents a change from RadioButton.
+        /// </summary>
+        /// <param name="value">The boolean value that checks whether the RadioButton is selected.</param>
+        public SelectedEventArgs(bool value)
+        {
+            Value = value;
+        }
 
         /// <summary>
-        /// A foreground color
+        /// Gets the value object for the SelectedEventArgs object.
         /// </summary>
-        public Color BlendColor
-        {
-            get { return (Color)GetValue(BlendColorProperty); }
-            set { SetValue(BlendColorProperty, value); }
-        }
+        public bool Value { get; private set; }
     }
 }

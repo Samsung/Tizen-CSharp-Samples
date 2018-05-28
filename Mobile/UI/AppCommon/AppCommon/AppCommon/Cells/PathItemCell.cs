@@ -17,6 +17,7 @@
 using Xamarin.Forms;
 using Label = Xamarin.Forms.Label;
 using Image = Xamarin.Forms.Image;
+using AppCommon.Extensions;
 
 namespace AppCommon.Cells
 {
@@ -99,6 +100,26 @@ namespace AppCommon.Cells
                 {
                     return parent.Height * 0.5198;
                 }));
+
+            var gestureRecognizer = new LongTapGestureRecognizer();
+            gestureRecognizer.TapStarted += (s, e) =>
+            {
+                //change forground blend color of image
+                ImageAttributes.SetBlendColor(backgroundImage, Color.FromRgb(213, 228, 240));
+            };
+
+            gestureRecognizer.TapCanceled += (s, e) =>
+            {
+                //revert forground blend color of image
+                ImageAttributes.SetBlendColor(backgroundImage, Color.Default);
+            };
+
+            gestureRecognizer.TapCompleted += (s, e) =>
+            {
+                //revert forground blend color of image
+                ImageAttributes.SetBlendColor(backgroundImage, Color.Default);
+            };
+            layout.GestureRecognizers.Add(gestureRecognizer);
 
             return layout;
         }

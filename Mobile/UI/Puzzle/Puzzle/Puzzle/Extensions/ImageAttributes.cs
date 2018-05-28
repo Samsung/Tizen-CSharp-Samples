@@ -35,7 +35,7 @@ namespace Puzzle.Extensions
         }
 
         /// <summary>
-        /// Sets the font weight of the bindable element.
+        /// Sets the blend color of the bindable element.
         /// </summary>
         /// <param name="element">element object</param>
         /// <param name="color">color for blend</param>

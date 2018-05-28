@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using Tizen.Xamarin.Forms.Extension.Renderer;
 
 namespace ApplicationControl.Tizen.Mobile
 {
@@ -36,7 +35,6 @@ namespace ApplicationControl.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            TizenFormsExtension.Init();
             global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
             app.Run(args);
         }

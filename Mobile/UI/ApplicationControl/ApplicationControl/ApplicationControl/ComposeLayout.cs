@@ -63,13 +63,12 @@ namespace ApplicationControl
                     return parent.Height * 0.2107;
                 }));
 
-            var message = new DisEditableEditor
+            var message = new Label
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
-
+                TextColor = Color.Gray,
                 BackgroundColor = Color.FromRgb(255, 255, 255),
-                //IsEditable = false,
             };
             BindingContextChanged += (s, e) =>
             {
@@ -79,15 +78,6 @@ namespace ApplicationControl
                 }
 
                 message.Text = ((MainViewModel)BindingContext).Message.Text;
-            };
-            message.Completed += (s, e) =>
-            {
-                if (BindingContext == null)
-                {
-                    return;
-                }
-
-                ((MainViewModel)BindingContext).Message.Text = ((Editor)s).Text;
             };
 
             Children.Add(
@@ -136,7 +126,7 @@ namespace ApplicationControl
                 }),
                 Constraint.RelativeToParent((parent) =>
                 {
-                    return parent.Width * 0.65;
+                    return parent.Width * 0.622;
                 }),
                 Constraint.RelativeToParent((parent) =>
                 {
@@ -161,19 +151,19 @@ namespace ApplicationControl
                 sendButton,
                 Constraint.RelativeToParent((parent) =>
                 {
-                    return parent.Width * 0.65;
+                    return parent.Width * 0.622;
                 }),
                 Constraint.RelativeToParent((parent) =>
                 {
-                    return parent.Height * 0.7893;
+                    return parent.Height * 0.773;
                 }),
                 Constraint.RelativeToParent((parent) =>
                 {
-                    return parent.Width * 0.35;
+                    return parent.Width * 0.378;
                 }),
                 Constraint.RelativeToParent((parent) =>
                 {
-                    return parent.Height * 0.2107;
+                    return parent.Height * 0.227;
                 }));
         }
     }
