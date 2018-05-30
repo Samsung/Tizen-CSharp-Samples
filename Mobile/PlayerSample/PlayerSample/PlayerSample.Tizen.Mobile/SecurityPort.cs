@@ -27,7 +27,7 @@ namespace PlayerSample.Tizen.Mobile
         /// <summary>
         /// Used to check privilege.
         /// </summary>
-        /// <param name="privilege"></param>
+        /// <param name="privilege">The string for privilege.</param>
         public void CheckPrivilege(string privilege)
         {
             CheckResult result = PrivacyPrivilegeManager.CheckPermission(privilege);
