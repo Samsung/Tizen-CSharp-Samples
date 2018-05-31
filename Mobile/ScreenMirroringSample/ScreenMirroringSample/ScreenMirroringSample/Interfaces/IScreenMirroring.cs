@@ -61,7 +61,9 @@ namespace ScreenMirroringSample
         event EventHandler<StateEventArgs> StateChanged;
 
         void SetDisplay(object value);
+
         bool StateFlag { get; set; }
+
         ScreenMirroringState State { get; set; }
 
         void Prepare();

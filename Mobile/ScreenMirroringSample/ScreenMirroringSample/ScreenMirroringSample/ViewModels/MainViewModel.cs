@@ -33,16 +33,19 @@ namespace ScreenMirroringSample
             {
                 ScreenMirroring.Prepare();
             });
-            StartCommand = new Command( async () =>
+            StartCommand = new Command(async () =>
             {
                 await ScreenMirroring.ConnectAsync(WiFiDirect.SourceIp);   
             });
         }
         public View Display { get; set; }
+
         protected IScreenMirroring ScreenMirroring => DependencyService.Get<IScreenMirroring>();
+
         protected IWiFiDirect WiFiDirect => DependencyService.Get<IWiFiDirect>();
 
         private ScreenMirroringState _screenMirroringState;
+
         public ScreenMirroringState MirroringState
         {
             get => _screenMirroringState;
@@ -56,6 +59,7 @@ namespace ScreenMirroringSample
                 }
             }
         }
+
         public object PlayerView
         {
             set
@@ -66,7 +70,9 @@ namespace ScreenMirroringSample
                 }
             }
         }
+
         public bool IsPlaying => ScreenMirroring.IsPlaying;
+
         private void UpdatePage()
         {
             OnPropertyChanged(nameof(IsPlaying));

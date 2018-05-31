@@ -21,7 +21,7 @@ namespace ScreenMirroringSample
         /// <summary>
         /// Check privilege.
         /// </summary>
-        /// <param name="privilege"></param>
+        /// <param name="privilege">The privilege which is needed for ScreenMirroring</param>
         void CheckPrivilege(string privilege);
     }
 }
