@@ -27,6 +27,7 @@ namespace ImageUtilSample
     {
         public MainPage()
         {
+            SecurityProvider.Instance.CheckPrivilege();
             InitializeComponent();
         }
     }
