@@ -14,21 +14,13 @@
  * limitations under the License.
  */
 
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 namespace ImageUtilSample
 {
-    /// <summary>
-    /// Main ContentPage.
-    /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public interface IImageUtilSecurity
     {
-        public MainPage()
-        {
-            SecurityProvider.Instance.CheckPrivilege();
-            InitializeComponent();
-        }
+        /// <summary>
+        /// Check privilege.
+        /// </summary>
+        void CheckPrivilege(string privilege);
     }
 }

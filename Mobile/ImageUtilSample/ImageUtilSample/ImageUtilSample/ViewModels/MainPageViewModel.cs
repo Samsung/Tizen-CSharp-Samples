@@ -39,6 +39,8 @@ namespace ImageUtilSample
         private IImageUtil ImageUtil => DependencyService.Get<IImageUtil>();
 
         private Random _random = new Random();
+        private TransformRotation _rotation = TransformRotation.Rotate270;
+        private TransformFlip _flip = TransformFlip.Vertical;
 
         public MainPageViewModel()
         {
@@ -103,20 +105,26 @@ namespace ImageUtilSample
 
         private async Task Rotate()
         {
-            var rotation = RandomValue<TransformRotation>();
+            if (TransformRotation.Rotate270.Equals(_rotation))
+                _rotation = TransformRotation.Rotate90;
+            else
+                _rotation++;
 
-            await ImageUtil.Rotate(rotation);
+            await ImageUtil.Rotate(_rotation);
 
-            CommandText = rotation.ToString();
+            CommandText = _rotation.ToString();
         }
 
         private async Task Flip()
         {
-            var flip = RandomValue<TransformFlip>();
+            if (TransformFlip.Horizontal.Equals(_flip))
+                _flip = TransformFlip.Vertical;
+            else
+                _flip = TransformFlip.Horizontal;
 
-            CommandText = $"Flip ({flip})";
+            CommandText = $"Flip ({_flip})";
 
-            await ImageUtil.Flip(flip);
+            await ImageUtil.Flip(_flip);
         }
 
         private async Task Resize()
