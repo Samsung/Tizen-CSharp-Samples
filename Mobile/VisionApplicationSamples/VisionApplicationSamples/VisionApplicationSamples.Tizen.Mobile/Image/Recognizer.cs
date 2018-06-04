@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -35,6 +35,8 @@ namespace VisionApplicationSamples.Tizen.Mobile.Image
         private MediaVisionSource _mvSceneSource;
         private string _targetImagePath;
         private string _sceneImagePath;
+
+        private bool _isTargetFilled = false;
 
         private ImageObject _targObject;
 
@@ -156,10 +158,25 @@ namespace VisionApplicationSamples.Tizen.Mobile.Image
         /// <summary>
         /// Set target object with a given target image.
         /// </summary>
-        public void FillTarget()
+        public bool FillTarget()
         {
             _targObject = new ImageObject();
             _targObject.Fill(_mvTargetSource);
+
+            _isTargetFilled = true;
+
+            return _isTargetFilled;
+        }
+
+        /// <summary>
+        /// Get value indicating whether a target is filled or not.
+        /// </summary>
+        public bool IsTargetFilled
+        {
+            get
+            {
+                return _isTargetFilled;
+            }
         }
 
         public async Task<string> Recognize()
@@ -183,30 +200,5 @@ namespace VisionApplicationSamples.Tizen.Mobile.Image
                 return ConvertToPoints(_detectedTargetRegion.Points);
             }
         }
-
-        /*
-        /// <summary>
-        /// The number of the detected faces.
-        /// </summary>
-        public int NumberOfFace
-        {
-            get
-            {
-                return _numberOfFaces;
-            }
-        }
-
-        /// <summary>
-        /// The list of the detected faces' regions.
-        /// </summary>
-        public List<Rectangle> DetectedFaces
-        {
-            get
-            {
-                return ConvertToRectangle(_detectedFaces.ToList());
-            }
-        }
-        */
-
     }
 }

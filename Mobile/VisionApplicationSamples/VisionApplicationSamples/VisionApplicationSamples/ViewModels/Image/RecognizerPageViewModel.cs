@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -39,15 +39,24 @@ namespace VisionApplicationSamples.Image
 
         public RecognizerPageViewModel(string targetPath, string scenePath)
         {
-
             TargetImage = ImageSource.FromFile(targetPath);
             SceneImage = ImageSource.FromFile(scenePath);
             ImageRecogImpl.TargetImagePath = targetPath;
             ImageRecogImpl.SceneImagePath = scenePath;
             ImageRecogImpl.Decode();
 
-            SetTargetCommand = new Command(() => ImageRecogImpl.FillTarget());
-            RecognizeCommand = new Command(async () => RefreshPage(await ImageRecogImpl.Recognize()));
+            SetTargetCommand = new Command(() => ReadyToRecognize(ImageRecogImpl.FillTarget()));
+            RecognizeCommand = new Command(async () => RefreshPage(await ImageRecogImpl.Recognize()), () => ImageRecogImpl.IsTargetFilled);
+        }
+
+        private void ReadyToRecognize(bool isReady)
+        {
+            if (isReady)
+            {
+              RecognizeCommand.ChangeCanExecute();
+              OnPropertyChanged(nameof(RecognizeCommand));
+
+            }
         }
 
         private void RefreshPage(string source)

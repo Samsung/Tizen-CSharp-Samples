@@ -26,6 +26,9 @@ namespace VisionApplicationSamples.Image
 
         private string _selectedSceneItem;
 
+        private bool _isSceneItemSelected = false;
+        private bool _isTargetItemSelected = false;
+
         public string SelectedSceneItem
         {
             get
@@ -37,9 +40,12 @@ namespace VisionApplicationSamples.Image
                 if (_selectedSceneItem != value)
                 {
                     _selectedSceneItem = value;
+                    _isSceneItemSelected = true;
 
-                    OpenCommand.ChangeCanExecute();
                     OnPropertyChanged(nameof(SelectedSceneItem));
+
+                    if (_isSceneItemSelected && _isTargetItemSelected)
+                        OpenCommand.ChangeCanExecute();
                 }
             }
         }
@@ -56,9 +62,12 @@ namespace VisionApplicationSamples.Image
                 if (_selectedTargetItem != value)
                 {
                     _selectedTargetItem = value;
+                    _isTargetItemSelected = true;
 
-                    //OpenCommand.ChangeCanExecute();
                     OnPropertyChanged(nameof(SelectedTargetItem));
+
+                    if (_isSceneItemSelected && _isTargetItemSelected)
+                        OpenCommand.ChangeCanExecute();
                 }
             }
         }

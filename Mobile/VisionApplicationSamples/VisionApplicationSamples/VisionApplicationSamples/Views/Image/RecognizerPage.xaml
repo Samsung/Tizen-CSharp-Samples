@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:local="clr-namespace:VisionApplicationSamples"
-                x:Class="VisionApplicationSamples.Image.RecognizerPage">
+                x:Class="VisionApplicationSamples.Image.RecognizerPage"
+                Title="Set Target and Recognize">
     
     <ContentPage.Content>
         <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,.5" AbsoluteLayout.LayoutFlags="All">
@@ -49,15 +50,10 @@
                         </ListView>
                     </StackLayout>
                 </StackLayout>
+                <Label Text="SetTarget First and then Run Recognize" TextColor="Black" BackgroundColor="LightGray" FontAttributes="Bold"/>
+                <Button Text="SetTarget" Command="{Binding SetTargetCommand}" HorizontalOptions="FillAndExpand"/>
+                <Button Text="Recognize" Command="{Binding RecognizeCommand}" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
-            <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,1,.5,.2" AbsoluteLayout.LayoutFlags="All">
-                <Button Text="SetTarget" Command="{Binding SetTargetCommand}" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,.5" AbsoluteLayout.LayoutFlags="All"/>
-            </AbsoluteLayout>
-            <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="1,1,.5,.2" AbsoluteLayout.LayoutFlags="All">
-                <Button Text="Recognize" Command="{Binding RecognizeCommand}" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,.5" AbsoluteLayout.LayoutFlags="All"/>
-            </AbsoluteLayout>
-
         </AbsoluteLayout>
-
     </ContentPage.Content>
 </local:PageBase>

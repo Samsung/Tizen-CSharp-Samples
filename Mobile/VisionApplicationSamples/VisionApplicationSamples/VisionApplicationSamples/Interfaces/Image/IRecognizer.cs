@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -35,7 +35,12 @@ namespace VisionApplicationSamples.Image
         /// <summary>
         /// Fill target with a given target image.
         /// </summary>
-        void FillTarget();
+        bool FillTarget();
+
+        /// <summary>
+        /// Get value indicating whether a target is filled or not.
+        /// </summary>
+        bool IsTargetFilled { get; }
 
         /// <summary>
         /// Gets points of recognized targets.
