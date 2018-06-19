@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="VoiceMemo.Views.SttLanguageViewCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms">
+    <ViewCell.View>
+        <RelativeLayout HeightRequest="130" WidthRequest="360">
+            <Label
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0,
+                                                                  Constant=30}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=0,
+                                                                  Constant=15}"
+                Style="{StaticResource BaseLabelStyle}"
+                Text="{Binding Name}"
+                FontSize="11"
+                VerticalTextAlignment="Center"
+                WidthRequest="220" />
+            <Label
+                FontAttributes="None"
+                HorizontalTextAlignment="Center"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0,
+                                                                  Constant=30}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=0,
+                                                                  Constant=80}"
+                Style="{StaticResource BaseLabelStyle}"
+                Text="{Binding Country}"
+                FontSize="7"
+                VerticalTextAlignment="Center"
+                WidthRequest="220" />
+            <w:Radio
+                x:Name="onOffSwitch"
+                GroupName="Language"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Width,
+                                                                  Factor=0.7,
+                                                                  Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=0.15,
+                                                                  Constant=0}"
+                IsSelected="{Binding IsOn, Mode=TwoWay}" 
+                Selected="OnSelected"
+                Value="{Binding Combo}"/>
+        </RelativeLayout>
+    </ViewCell.View>
+</ViewCell>

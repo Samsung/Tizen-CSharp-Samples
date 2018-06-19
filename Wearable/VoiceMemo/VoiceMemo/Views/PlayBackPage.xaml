@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:CirclePageEx
+    x:Class="VoiceMemo.Views.PlayBackPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:VoiceMemo.Converters;"
+    xmlns:views="clr-namespace:VoiceMemo.Views;"
+    xmlns:vm="clr-namespace:VoiceMemo.ViewModels;"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms" >
+    <!--TODO: it is possible to cast CircleSlider to RotaryFocusable object. RotaryFocusTargetName="PlayProgress">-->
+    <w:CirclePage.CircleSurfaceItems>
+        <w:CircleProgressBarSurfaceItem x:Name="PlayProgress" Value="{Binding PlayingProcess}" />
+        <!--// BG Dim Code :  AO0241 - #FF404040
+        // BG Normal Code : AO0231 - #FF004373
+        // Progress BG : Normal : AO0232  - #FF467ea6
+        // Progress BG : DIM : AO0242 -  #994673A6
+        // Progress BG : MAX VOLUME : AO025 - #ffe84c0e-->
+
+        <!--<w:CircleSliderSurfaceItem
+            x:Name="VolumeProgress"
+            BackgroundColor="DarkBlue"
+            BarColor="Cyan"
+            IsVisible="{Binding VolumeViewVisible}"
+            Value="{Binding VolumeLevelProcess}" />-->
+        <!--<w:CircleProgressBarSurfaceItem
+            x:Name="VolumeProgress"
+
+            BackgroundColor="DarkBlue"
+            BarColor="Cyan"
+            IsVisible="{Binding VolumeViewVisible}" />-->
+        <!--Value="{Binding VolumeLevelProcess}" />-->
+    </w:CirclePage.CircleSurfaceItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DurationToRemainingTimeConverter x:Key="TimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="PlaybackLayout">
+            <Image x:Name="VolumeImage"
+                   AbsoluteLayout.LayoutBounds="145,32,70,70"
+                   AbsoluteLayout.LayoutFlags="None"
+                   Source="{Binding MuteOnOffSmallImage}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding VolumeViewCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image x:Name="PlaybackImage"
+                   AbsoluteLayout.LayoutBounds="117,116,126,126"
+                   AbsoluteLayout.LayoutFlags="None"
+                   Source="{Binding PlayControlImage}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PlayControlCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label x:Name="RemainingTimeLabel"
+                   AbsoluteLayout.LayoutBounds="102,242,156,85"
+                   AbsoluteLayout.LayoutFlags="None"
+                   Text="{Binding RemainingTime, Converter={StaticResource TimeConverter}, ConverterParameter={x:Static converters:RemainingTimeType.TimeText}}}"
+                   Style="{StaticResource LabelStyle-AT011}" />
+            <!--Volume control View-->
+            <ContentView x:Name="VolumeView" IsVisible="{Binding VolumeViewVisible}">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DelayTimeCommand}" />
+                </ContentView.GestureRecognizers>
+                <AbsoluteLayout>
+                    <AbsoluteLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DelayTimeCommand}" />
+                    </AbsoluteLayout.GestureRecognizers>
+                    <BoxView AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                             AbsoluteLayout.LayoutFlags="All"
+                             BackgroundColor="#80000000" />
+                    <Grid
+                        AbsoluteLayout.LayoutBounds="83,39,194,64"
+                        AbsoluteLayout.LayoutFlags="None"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            x:Name="MinusButton"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BackgroundColor="Transparent"
+                            Command="{Binding VolumeControlCommand}"
+                            CommandParameter="{x:Static vm:VolumeControlType.Minus}"
+                            Image="icons/b_slider_icon_minus.png">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DelayTimeCommand}" />
+                            </Button.GestureRecognizers>
+                            <Button.Triggers>
+                                <Trigger TargetType="Button" Property="IsEnabled" Value="False">
+                                    <Setter Property="BackgroundColor" Value="Black" />
+                                </Trigger>
+                                <Trigger TargetType="Button" Property="IsEnabled" Value="True">
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                </Trigger>
+                                <DataTrigger
+                                    Binding="{Binding CurrentVolume}"
+                                    TargetType="Button"
+                                    Value="0">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+
+                        <!--This Label shows the current volume level.-->
+                        <Label x:Name="VolumeLevelLabel"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Style="{StaticResource LabelStyle-AT0211}"
+                            Text="{Binding CurrentVolume}" />
+
+                        <!--  By clicking/tapping this button, volume level will increase  -->
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            BackgroundColor="Transparent"
+                            Command="{Binding VolumeControlCommand}"
+                            CommandParameter="{x:Static vm:VolumeControlType.Plus}"
+                            Image="icons/b_slider_icon_plus.png">
+                            <Button.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DelayTimeCommand}" />
+                            </Button.GestureRecognizers>
+                            <Button.Triggers>
+                                <Trigger TargetType="Button" Property="IsEnabled" Value="False">
+                                    <Setter Property="BackgroundColor" Value="Black" />
+                                </Trigger>
+                                <Trigger TargetType="Button" Property="IsEnabled" Value="True">
+                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                </Trigger>
+                                <DataTrigger
+                                    Binding="{Binding CurrentVolume}"
+                                    TargetType="Button"
+                                    Value="15">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </Grid>
+                    <!--Volume Image-->
+                    <Image AbsoluteLayout.LayoutBounds="105,105,150,150"
+                           AbsoluteLayout.LayoutFlags="None"
+                           Source="voice_mamo_slider_btn_bg.png" />
+                    <Image AbsoluteLayout.LayoutBounds="105,105,150,150"
+                           AbsoluteLayout.LayoutFlags="None"
+                           Source="{Binding MuteOnOffImage}" />
+                    <BoxView AbsoluteLayout.LayoutBounds="105,105,150,150"
+                             AbsoluteLayout.LayoutFlags="None">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DelayTimeCommand}" />
+                            <TapGestureRecognizer Command="{Binding MuteControlCommand}" />
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+                </AbsoluteLayout>
+            </ContentView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</views:CirclePageEx>

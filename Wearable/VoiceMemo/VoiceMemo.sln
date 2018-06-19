@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoiceMemo", "VoiceMemo\VoiceMemo.csproj", "{B434F024-9324-4E49-9BEE-1AC40A9281B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoiceMemo.Tizen.Wearable", "VoiceMemo.Tizen.Wearable\VoiceMemo.Tizen.Wearable.csproj", "{8F3222BA-B56D-460A-A8F7-AA65809E1198}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B434F024-9324-4E49-9BEE-1AC40A9281B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B434F024-9324-4E49-9BEE-1AC40A9281B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B434F024-9324-4E49-9BEE-1AC40A9281B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B434F024-9324-4E49-9BEE-1AC40A9281B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F3222BA-B56D-460A-A8F7-AA65809E1198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F3222BA-B56D-460A-A8F7-AA65809E1198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F3222BA-B56D-460A-A8F7-AA65809E1198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F3222BA-B56D-460A-A8F7-AA65809E1198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D255B94-9859-4248-A65F-944704A7A9EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D255B94-9859-4248-A65F-944704A7A9EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D255B94-9859-4248-A65F-944704A7A9EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D255B94-9859-4248-A65F-944704A7A9EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FB8013A-D36B-41BA-A342-D2ED25063C4D}
+	EndGlobalSection
+EndGlobal

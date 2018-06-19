@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:TwoButtonPage
+    x:Class="VoiceMemo.Views.CancelPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resx="clr-namespace:VoiceMemo.Resx;"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms">
+    <w:TwoButtonPage.FirstButton>
+        <MenuItem Clicked="OnAbortCancelClicked" Icon="tw_ic_popup_btn_delete.png" />
+    </w:TwoButtonPage.FirstButton>
+    <w:TwoButtonPage.SecondButton>
+        <MenuItem Clicked="OnCancelClicked" Icon="tw_ic_popup_btn_check.png" />
+    </w:TwoButtonPage.SecondButton>
+
+    <w:TwoButtonPage.Content>
+        <StackLayout BackgroundColor="Black">
+            <Label
+                x:Name="CancelLabel"
+                FontSize="Medium"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{x:Static resx:AppResources.CancelRecording}"
+                TextColor="White"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center"
+                />
+        </StackLayout>
+    </w:TwoButtonPage.Content>
+</w:TwoButtonPage>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:CirclePageEx
+    x:Class="VoiceMemo.Views.RecordingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:VoiceMemo.Views;"
+    xmlns:vm="clr-namespace:VoiceMemo.ViewModels;"
+    xmlns:converter="clr-namespace:VoiceMemo.Converters"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    Title="{Binding Title}">
+    <views:CirclePageEx.Resources>
+        <ResourceDictionary>
+            <converter:RecordImageSourceColorConverter x:Key="RecordImageSourceColorConverter" />
+        </ResourceDictionary>    
+    </views:CirclePageEx.Resources>
+    <w:CirclePage.CircleSurfaceItems>
+        <w:CircleProgressBarSurfaceItem
+            x:Name="RecordingProgress"
+            Value="{Binding RecordingProcess}" />
+    </w:CirclePage.CircleSurfaceItems>
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="Black">
+            <!--  Recorder  -->
+            <Image
+                x:Name="VoiceRecorderBtnEffectImage"
+                AbsoluteLayout.LayoutBounds="117,117,126,126"
+                AbsoluteLayout.LayoutFlags="None"
+                Source="voicememo_effect.png" />
+            <Image
+                x:Name="VoiceRecorderBtnEffectImage2"
+                AbsoluteLayout.LayoutBounds="117,117,126,126"
+                AbsoluteLayout.LayoutFlags="None"
+                Source="voicememo_effect.png" />
+            <Image
+                x:Name="VoiceRecorderBtnBgImage"
+                AbsoluteLayout.LayoutBounds="117,117,126,126"
+                AbsoluteLayout.LayoutFlags="None"
+                Source="voicerecorder_btn_bg.png">
+            </Image>
+            <Image
+                x:Name="VoiceRecorderBtnStopImage"
+                AbsoluteLayout.LayoutBounds="117,117,126,126"
+                AbsoluteLayout.LayoutFlags="None"
+                Source="voicerecorder_btn_stop.png">
+            </Image>
+            <BoxView
+                AbsoluteLayout.LayoutBounds="117,117,126,126"
+                AbsoluteLayout.LayoutFlags="None"
+                x:Name="TapLayer">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CompleteRecording_Tapped" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <Image
+                x:Name="RecordingSttImage"
+                AbsoluteLayout.LayoutBounds="162,18,36,36"
+                AbsoluteLayout.LayoutFlags="None"
+                IsVisible="{Binding SttOn}"
+                Source="recording_stt_icon.png" />
+
+            <!--  Record Controller in Left  -->
+            <Image
+                x:Name="RecordControllerCancelBgImage"
+                AbsoluteLayout.LayoutBounds="30,139,82,82"
+                AbsoluteLayout.LayoutFlags="None"
+                Source="record_controller_bg.png" />
+            <Image
+                x:Name="RecordingIconCancelImage"
+                AbsoluteLayout.LayoutBounds="30,139,82,82"
+                AbsoluteLayout.LayoutFlags="None"
+                Source="recording_icon_cancel.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TryToCancel_Tapped" />
+                    <!--<TapGestureRecognizer Command="{Binding TryToCancelCommand}"/>-->
+                </Image.GestureRecognizers>
+            </Image>
+
+            <!--  Record Controller in Right  -->
+            <Image
+                x:Name="RecordControllerPauseBgImage"
+                AbsoluteLayout.LayoutBounds="248,139,82,82"
+                AbsoluteLayout.LayoutFlags="None"
+                Source="record_controller_bg.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PauseRecording_Tapped" />
+                </Image.GestureRecognizers>
+                <!--<Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RequestCommand}" CommandParameter="{x:Static vm:RecordingCommandType.PAUSE}"/>
+                </Image.GestureRecognizers>-->
+            </Image>
+            <Image
+                x:Name="RecordingIconPauseImage"
+                AbsoluteLayout.LayoutBounds="248,139,82,82"
+                AbsoluteLayout.LayoutFlags="None"
+                Source="{Binding PauseRecordToggleImage, Converter={StaticResource RecordImageSourceColorConverter}, ConverterParameter={x:Reference RecordingIconPauseImage}}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PauseRecording_Tapped" />
+                </Image.GestureRecognizers>
+                <!--<Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RequestCommand}" CommandParameter="{x:Static vm:RecordingCommandType.PAUSE}"/>
+                </Image.GestureRecognizers>-->
+            </Image>
+            <Label
+                x:Name="TitleLabel"
+                AbsoluteLayout.LayoutBounds="64,51,232,39"
+                AbsoluteLayout.LayoutFlags="None"
+                Text="{Binding RecordTitle}"
+                Style="{StaticResource LabelStyle-AT0116}" />
+            <Label
+                x:Name="RecordingTimeLabel"
+                AbsoluteLayout.LayoutBounds="102,249,156,79"
+                AbsoluteLayout.LayoutFlags="None"
+                Text="{Binding RecordingTime}"
+                Style="{StaticResource LabelStyle-AT011}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</views:CirclePageEx>

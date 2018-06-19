@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:CirclePageEx
+    x:Class="VoiceMemo.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:VoiceMemo.Converters;"
+    xmlns:views="clr-namespace:VoiceMemo.Views;"
+    xmlns:vm="clr-namespace:VoiceMemo.ViewModels;"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    xmlns:resx="clr-namespace:VoiceMemo.Resx;"
+    x:Name="StandBy"
+    Title="MainPage">
+    <views:CirclePageEx.Resources>
+        <ResourceDictionary>
+            <converters:SttToPropertyConverter x:Key="SttConverter" />
+        </ResourceDictionary>
+    </views:CirclePageEx.Resources>
+    <views:CirclePageEx.BindingContext>
+        <vm:MainPageModel x:Name="ViewModel" />
+    </views:CirclePageEx.BindingContext>
+    <views:CirclePageEx.Content>
+        <AbsoluteLayout x:Name="MainView" BackgroundColor="Black">
+            <!--  Stand by  -->
+            <Image AbsoluteLayout.LayoutBounds=".5, .5, 126, 126"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   Source="voicerecorder_stop_bg.png"
+                   x:Name="VoiceRecorderBgImage" />
+            <Image AbsoluteLayout.LayoutBounds=".5, .5, 126, 126"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   Source="voicerecorder_stop_icon.png"
+                   x:Name="VoiceRecorderIconImage" />
+            <BoxView AbsoluteLayout.LayoutBounds=".5, .5, 126, 126"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     x:Name="TapLayer">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="LaunchRecordingPage_Tapped" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <Label
+                x:Name="TitleLabel"
+                AbsoluteLayout.LayoutBounds="64,51,232,39"
+                AbsoluteLayout.LayoutFlags="None"
+                Text="{Binding MainLabelText}"
+                Style="{StaticResource LabelStyle-AT0116}" />
+            <Label
+                x:Name="MinTimeLabel"
+                AbsoluteLayout.LayoutBounds="102,249,156,79"
+                AbsoluteLayout.LayoutFlags="None"
+                Text="00:00"
+                Style="{StaticResource LabelStyle-AT011}" />
+        </AbsoluteLayout>
+    </views:CirclePageEx.Content>
+    <w:CirclePage.ToolbarItems>
+        <w:CircleToolbarItem
+            x:Name="recordsMenu"
+            Clicked="OnCircleToolbarItemClicked_DisplayRecordings"
+            Icon="more_option_icon_stt_list.png"
+            Text="{x:Static resx:AppResources.Recordings}" />
+        <w:CircleToolbarItem
+            x:Name="sttOnOfMenu"
+            Command="{Binding SttOnOffCommand}"
+            Clicked="OnCircleToolbarItemClicked_OnOffStt"
+            Icon="{Binding SttEnabled, Converter={StaticResource SttConverter}, ConverterParameter={x:Static converters:SttPropertyType.ImageSource}}"
+            SubText="{Binding SttEnabled, Converter={StaticResource SttConverter}, ConverterParameter={x:Static converters:SttPropertyType.TextString}}"
+            Text="{x:Static resx:AppResources.SpeechToText}" />
+        <w:CircleToolbarItem
+            x:Name="sttMenu"
+            Clicked="OnCircleToolbarItemClicked_SelectLanguage"
+            Command="{Binding GetSttServiceCommand}"
+            Icon="more_option_icon_language.png"
+            Text="{x:Static resx:AppResources.Languages}" />
+    </w:CirclePage.ToolbarItems>
+</views:CirclePageEx>
