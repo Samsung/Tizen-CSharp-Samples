@@ -5,6 +5,9 @@ using System.Text;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 
+using Tizen;
+using Tizen.System;
+
 namespace FeedbackApp
 {
     /// <summary>
@@ -20,8 +23,35 @@ namespace FeedbackApp
         /// <param name="a">Event argument</param>
         private async void Pattern_ItemTappedAsync(object sender, ItemTappedEventArgs a)
         {
-            // Create SecondPage with user selected pattern
-            await this.Navigation.PushAsync(new SecondPage(a.Item.ToString()));
+            bool support, sound_spt, vib_spt;
+            string pattern = a.Item.ToString();
+            Feedback feedback = new Feedback();
+
+            try
+            {
+                // Check whether user selected pattern is supported
+                sound_spt = feedback.IsSupportedPattern(FeedbackType.Sound, pattern);
+                vib_spt = feedback.IsSupportedPattern(FeedbackType.Vibration, pattern);
+                if (!sound_spt && !vib_spt)
+                    support = false;
+                else
+                    support = true;
+                // If pattern is supported, play feedback
+                if (support)
+                    feedback.Play(FeedbackType.All, pattern);
+
+                // Create ResultPage with pattern and supported information
+                // If pattern is not supported, there is no feedback
+                await this.Navigation.PushAsync(new ResultPage(pattern, support));
+            }
+            catch (Exception e)
+            {
+                Log.Debug("FeedbackApp", e.Message);
+                // Create ResultPage with pattern
+                // When there is exception, feedback play is failed
+                await this.Navigation.PushAsync(new ResultPage(pattern, false));
+            }
+
         }
 
         /// <summary>
