@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:RecorderSample"
@@ -32,7 +32,7 @@
         <Button Text="{Binding PlayText}" Command="{Binding PlayCommand}"/>
 
         <local:VideoView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
-                         IsVisible="{Binding IsPlaying, Converter={StaticResource boolInverter}}"
+                         IsVisible="{Binding IsPrepared}"
                          NativeView="{Binding CameraView, Mode=OneWayToSource}"/>
 
         <local:VideoView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
@@ -41,3 +41,4 @@
 
     </StackLayout>
 </ContentPage>
+    

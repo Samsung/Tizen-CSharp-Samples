@@ -73,6 +73,7 @@ namespace RecorderSample
             OnPropertyChanged(nameof(PlayText));
             OnPropertyChanged(nameof(PauseText));
             OnPropertyChanged(nameof(IsPlaying));
+            OnPropertyChanged(nameof(IsPrepared));
             OnPropertyChanged(nameof(State));
 
             PauseCommand.ChangeCanExecute();
@@ -155,6 +156,11 @@ namespace RecorderSample
         /// Gets the value indicating whether the media player is playing.
         /// </summary>
         public bool IsPlaying => MediaPlayer.IsPlaying;
+
+        /// <summary>
+        /// Gets the value indicating whether the recorder is prepared.
+        /// </summary>
+        public bool IsPrepared => State != RecorderState.Idle && !IsPlaying;
 
         internal void OnDisappearing()
         {
