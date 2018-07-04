@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preference", "Preference\Preference\Preference.csproj", "{975F4165-C8D9-456A-B913-CD30A74C3604}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preference.Tizen.Mobile", "Preference\Preference.Tizen.Mobile\Preference.Tizen.Mobile.csproj", "{5F70CC65-09D4-4F37-A360-1BE9A13B627B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{975F4165-C8D9-456A-B913-CD30A74C3604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{975F4165-C8D9-456A-B913-CD30A74C3604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{975F4165-C8D9-456A-B913-CD30A74C3604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{975F4165-C8D9-456A-B913-CD30A74C3604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E103C1A-E6A4-4929-A34B-A00B10D69F23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E103C1A-E6A4-4929-A34B-A00B10D69F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E103C1A-E6A4-4929-A34B-A00B10D69F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E103C1A-E6A4-4929-A34B-A00B10D69F23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F70CC65-09D4-4F37-A360-1BE9A13B627B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F70CC65-09D4-4F37-A360-1BE9A13B627B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F70CC65-09D4-4F37-A360-1BE9A13B627B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F70CC65-09D4-4F37-A360-1BE9A13B627B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39024C7B-6CF9-4458-92A6-71059B9B5FEC}
+	EndGlobalSection
+EndGlobal
