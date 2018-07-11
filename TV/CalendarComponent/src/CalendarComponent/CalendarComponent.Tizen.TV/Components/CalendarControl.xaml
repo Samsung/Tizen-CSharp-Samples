@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalendarComponent.Tizen.TV.Components.CalendarControl"
+             xmlns:components="clr-namespace:CalendarComponent.Tizen.TV.Components;assembly=CalendarComponent.Tizen.TV">
+    <ContentView.Content>
+        <components:CalendarView SelectedDate="{Binding SelectedDate, Mode=TwoWay}" />
+    </ContentView.Content>
+</ContentView>
