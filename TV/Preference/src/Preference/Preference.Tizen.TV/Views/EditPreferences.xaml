@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Preference.Tizen.TV.Views.EditPreferences"
+             xmlns:controls="clr-namespace:Preference.Tizen.TV.Controls;assembly=Preference.Tizen.TV"
+             Title="Edit Preferences">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor"
+                        Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <TableView>
+            <TableRoot>
+                <TableSection>
+                    <EntryCell Placeholder="Name"
+                               Text="{Binding NameValue, Mode=TwoWay}" />
+                    <EntryCell Placeholder="Surname"
+                               Text="{Binding SurnameValue, Mode=TwoWay}" />
+                    <EntryCell Placeholder="Age"
+                               Text="{Binding AgeValue, Mode=TwoWay}"
+                               Keyboard="Numeric" />
+                    <EntryCell Placeholder="Height (in meters)"
+                               Text="{Binding HeightValue, Mode=TwoWay}"
+                               Keyboard="Numeric" />
+                    <controls:MultilineCell Text="C++"
+                                             IsChecked="{Binding CPlusPlusValue, Mode=TwoWay}"
+                                             IsCheckVisible="True" />
+                    <controls:MultilineCell Text="C#"
+                                             IsChecked="{Binding CSharpValue, Mode=TwoWay}"
+                                             IsCheckVisible="True" />
+                    <controls:MultilineCell Text="Java"
+                                             IsChecked="{Binding JavaValue, Mode=TwoWay}"
+                                             IsCheckVisible="True" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+        <Button Text="Save"
+                Command="{Binding SaveRequestCommand}" />
+    </StackLayout>
+</ContentPage>
