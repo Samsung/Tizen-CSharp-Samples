@@ -1,116 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{F291A799-6D2D-451E-B526-9ACEC4EF9CD4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Calculator</RootNamespace>
-    <AssemblyName>Calculator</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>portable</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
+
+  <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <Compile Include="Calculator.cs" />
-    <Compile Include="Controls\CommandButton.xaml.cs">
-      <DependentUpon>CommandButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ElementButton.xaml.cs">
-      <DependentUpon>ElementButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\CustomScrollView.xaml.cs">
-      <DependentUpon>CustomScrollView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="IAppConfigurationChanged.cs" />
-    <Compile Include="Impl\CalculatorImpl.cs" />
-    <Compile Include="Impl\DebuggingUtils.cs" />
-    <Compile Include="Impl\Formatter.cs" />
-    <Compile Include="Impl\IDebuggingAPIs.cs" />
-    <Compile Include="Impl\InputParser.cs" />
-    <Compile Include="Models\AddingElementResult.cs" />
-    <Compile Include="Models\CalculateResult.cs" />
-    <Compile Include="Models\IBinaryOperator.cs" />
-    <Compile Include="Models\InputElement.cs" />
-    <Compile Include="Models\INullary.cs" />
-    <Compile Include="Models\InvalidNumberException.cs" />
-    <Compile Include="Models\IOperator.cs" />
-    <Compile Include="Models\IUnaryOperator.cs" />
-    <Compile Include="Models\Literal.cs" />
-    <Compile Include="Models\Operators.cs" />
-    <Compile Include="Models\TooBigNumberException.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="Views\CalculatorMainPage.xaml.cs">
-      <DependentUpon>CalculatorMainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CalculatorMainPageLandscape.xaml.cs">
-      <DependentUpon>CalculatorMainPageLandscape.xaml</DependentUpon>
-    </Compile>
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.77107" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>2.3.5.256-pre6</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Controls\CommandButton.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ElementButton.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\CalculatorMainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\CalculatorMainPageLandscape.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Settings.StyleCop" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Controls\CustomScrollView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-		Other similar extension points exist, see Microsoft.Common.targets.
-	<Target Name="BeforeBuild">
-	</Target>
-	<Target Name="AfterBuild">
-	</Target>
-	-->
+
 </Project>

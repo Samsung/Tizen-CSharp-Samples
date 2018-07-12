@@ -68,8 +68,8 @@ namespace Calculator.Tizen
         /// true : Landscape orientation, false : Portrait orientation. </returns>
         private bool IsLandscape()
         {
-            return (MainWindow.CurrentOrientation == DisplayOrientations.Landscape ||
-                MainWindow.CurrentOrientation == DisplayOrientations.LandscapeFlipped);
+            return (MainWindow.Rotation == 90 ||
+                MainWindow.Rotation == 270);
         }
 
         /// <summary>

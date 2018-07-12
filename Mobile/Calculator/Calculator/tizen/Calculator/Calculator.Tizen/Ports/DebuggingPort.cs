@@ -15,7 +15,7 @@
  */
 
 
-using Xamarin.Forms.Platform.Tizen.Native;
+using ElmSharp;
 using Calculator.Impl;
 using Tizen;
 using System.Runtime.CompilerServices;
@@ -34,7 +34,7 @@ namespace Calculator.Tizen
     {
         /// <summary>
         /// A Calculator Windows reference. This is used to display a Dialog</summary>
-        public static Xamarin.Forms.Platform.Tizen.Native.Window MainWindow
+        public static Window MainWindow
         {
             set;
             get;
@@ -78,7 +78,7 @@ namespace Calculator.Tizen
             {
                 return;
             }
-
+            /*
             Dialog toast = new Dialog(MainWindow);
             toast.Title = message;
             toast.Timeout = 2.3;
@@ -87,6 +87,15 @@ namespace Calculator.Tizen
                 toast.Dismiss();
             };
             toast.Show();
+            */
+            Popup popup = new Popup(MainWindow);
+            popup.Append(message);
+            popup.Timeout = 2.3;
+            popup.OutsideClicked += (s, e) =>
+            {
+                popup.Dismiss();
+            };
+            popup.Show();
         }
 
         /// <summary>
