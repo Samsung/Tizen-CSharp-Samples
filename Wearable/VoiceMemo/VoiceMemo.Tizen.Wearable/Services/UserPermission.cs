@@ -21,7 +21,7 @@ using VoiceMemo.Services;
 using VoiceMemo.Tizen.Wearable.Services;
 using Xamarin.Forms;
 
-[assembly: Xamarin.Forms.Dependency(typeof(UserPermission))]
+[assembly: Dependency(typeof(UserPermission))]
 
 namespace VoiceMemo.Tizen.Wearable.Services
 {

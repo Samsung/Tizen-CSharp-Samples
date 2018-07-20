@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-#define STT_ON
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -45,6 +44,7 @@ namespace VoiceMemo.ViewModels
         Stop
     }
 
+    // The model class for RecordingPage
     public class RecordingPageModel : BasePageModel
     {
         /// <summary>
@@ -138,9 +138,7 @@ namespace VoiceMemo.ViewModels
         IMediaContentService _ContentService;
         // For
         IDeviceInformation _DeviceInfoService;
-#if STT_ON
         ISpeechToTextService _SttService;
-#endif
         public int Index;
 
         double RECORDING_PROGRESSBAR_DELTA;
@@ -210,12 +208,15 @@ namespace VoiceMemo.ViewModels
                     break;
                 case SttState.Ready:
                     HandleSttReadyState(o, prev, current);
+                    ((App)App.Current).mainPageModel.availableToRecord = true;
                     break;
                 case SttState.Recording:
                     HandleSttRecordingState(o, prev, current);
+                    ((App)App.Current).mainPageModel.availableToRecord = false;
                     break;
                 case SttState.Processing:
                     HandleSttProcessingState(o, prev, current);
+                    ((App)App.Current).mainPageModel.availableToRecord = false;
                     break;
                 case SttState.Unavailable:
                     HandleSttUnavailableState(o, prev, current);
@@ -314,10 +315,8 @@ namespace VoiceMemo.ViewModels
             _audioRecordingService.RegisterStateCallbacks(new Action<Object, AudioRecordState, AudioRecordState>(RecordingStateCallback));
             AudioRecordingService = _audioRecordingService;
             _DeviceInfoService = DependencyService.Get<IDeviceInformation>(DependencyFetchTarget.GlobalInstance);
-#if STT_ON
             _SttService = DependencyService.Get<ISpeechToTextService>(DependencyFetchTarget.GlobalInstance);
             _SttService.RegisterStateCallbacks(new Action<object, SttState, SttState>(SttStateCallback));
-#endif
             _ContentService = DependencyService.Get<IMediaContentService>(DependencyFetchTarget.GlobalInstance);
             string.Format("{0:00}", _DeviceInfoService.LastStoredFileIndex);
             Index = _DeviceInfoService.LastStoredFileIndex + 1;
@@ -523,7 +522,6 @@ namespace VoiceMemo.ViewModels
                 StopTimeFlickering();
             }
 
-#if STT_ON
             if (SttOn)
             {
                 _requestSttStop = true;
@@ -540,7 +538,7 @@ namespace VoiceMemo.ViewModels
                     }
                 }
             }
-#endif
+
             _audioRecordingService.Cancel();
             RecordingViewModelState = RecordingViewModelState.Cancelled;
         }

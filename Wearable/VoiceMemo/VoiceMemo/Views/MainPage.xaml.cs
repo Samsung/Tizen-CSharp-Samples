@@ -71,8 +71,18 @@ namespace VoiceMemo.Views
         /// <param name="e">EventArgs</param>
         async void LaunchRecordingPage_Tapped(object sender, EventArgs e)
         {
-            Console.WriteLine("\n\n MainPage.LaunchRecordingPage_Tapped()");
-            await Navigation.PushAsync(PageFactory.GetInstance(Pages.Recording, ((MainPageModel)ViewModel).SttEnabled));
+            // While STT is in progress, a new recording cannot be started.
+            if (((App)App.Current).mainPageModel.availableToRecord)
+            {
+                // can record
+                await Navigation.PushAsync(PageFactory.GetInstance(Pages.Recording, ((MainPageModel)ViewModel).SttEnabled));
+
+            }
+            else
+            {
+                // cannot record
+                await DisplayAlert("Recording", "Stt service is in progress. Please wait a moment.", "OK");
+            }
         }
 
         /// <summary>
@@ -124,7 +134,7 @@ namespace VoiceMemo.Views
 
         /// <summary>
         /// Called when Language is selected in More option
-        /// Standby > More options > Languag
+        /// Standby > More options > Language
         /// </summary>
         /// <param name="sender">sender object </param>
         /// <param name="e">EventArgs</param>

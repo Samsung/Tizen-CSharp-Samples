@@ -42,6 +42,7 @@ namespace VoiceMemo
             mainPageModel = (MainPageModel)firstPage.BindingContext;
         }
 
+        // database for voice records
         static RecordDatabase database;
         public static RecordDatabase Database
         {

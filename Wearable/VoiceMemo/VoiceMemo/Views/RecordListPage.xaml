@@ -9,7 +9,7 @@
     xmlns:resx="clr-namespace:VoiceMemo.Resx;"
     xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
     x:Name="recordListPage"
-    RotaryFocusTargetName="DataListView">
+    RotaryFocusObject="{x:Reference DataListView}">
     <views:CirclePageEx.Resources>
         <ResourceDictionary>
             <converters:RecordsCountToViewVisibilityConverter x:Key="ViewVisibilityConverter" />
@@ -161,19 +161,13 @@
             <Button x:Name="CheckedCounter"
                     IsVisible="{Binding IsCheckable}"
                     Text="{Binding CheckedNamesCount}"
-                    AbsoluteLayout.LayoutBounds="0.5, 10, AutoSize, AutoSize"
+                    AbsoluteLayout.LayoutBounds="0.5, 10, 100, 80"
                     AbsoluteLayout.LayoutFlags="XProportional"
-                    effect:TizenStyleEffect.Style="select_mode"
-                    Command="{Binding SelectModeActionButtonPressedCommand}"
-                    w:ConfirmPopupEffect.AcceptText="{Binding SelectOptionMessage1, Mode=OneWay}"
-                    w:ConfirmPopupEffect.AcceptCommand="{Binding SelectCommand1, Mode=OneWay}"
-                    w:ConfirmPopupEffect.CancelText="{Binding SelectOptionMessage2, Mode=OneWay}"
-                    w:ConfirmPopupEffect.CancelCommand="{Binding SelectCommand2, Mode=OneWay}"
-                    w:ConfirmPopupEffect.ConfirmVisibility="{Binding PopupVisibility, Mode=TwoWay}">
-                <Button.Effects>
-                    <effect:TizenStyleEffect/>
-                    <w:ConfirmPopupEffect/>
-                </Button.Effects>
+                    Command="{Binding SelectModeActionButtonPressedCommand}">
+                <Button.Behaviors>
+                    <w:ContextPopupEffectBehavior x:Name="CheckedCounterBehavior"
+                        PositionOption="BottomOfView" />
+                </Button.Behaviors>
             </Button>
         </AbsoluteLayout>
     </views:CirclePageEx.Content>

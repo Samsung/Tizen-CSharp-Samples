@@ -26,7 +26,7 @@ namespace VoiceMemo.Converters
     public enum ViewType
     {
         /// <summary>
-        /// View which is shwon when there is no record
+        /// View which is shown when there is no record
         /// </summary>
         NoRecordView,
         /// <summary>
@@ -65,7 +65,6 @@ namespace VoiceMemo.Converters
                 case ViewType.RecordCheckView:
                     return RecordsCnt == 0 ? false : true;
                 default:
-                    //
                     return true;
             }
         }

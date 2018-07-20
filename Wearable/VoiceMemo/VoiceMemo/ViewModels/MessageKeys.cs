@@ -18,7 +18,7 @@ namespace VoiceMemo.ViewModels
 {
     public class MessageKeys
     {
-        // Notify that player's state haas changed
+        // Notify that player's state has changed
         public const string PlayerStateChanged = "PlayerStateChanged";
 
         // Notify that Audo play has done

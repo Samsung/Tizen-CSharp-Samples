@@ -81,6 +81,7 @@ namespace VoiceMemo.Models
             get { return _country; }
         }
 
+        // Indicate that this language is set for Stt service.
         public bool IsOn
         {
             get { return _isOn; }

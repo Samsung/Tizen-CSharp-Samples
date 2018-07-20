@@ -42,6 +42,7 @@ namespace VoiceMemo.Tizen.Wearable.Services
                 _state = AudioPlayState.Init;
             }
 
+            // Create a player
             if (player == null)
             {
                 player = new Player();
@@ -232,7 +233,7 @@ namespace VoiceMemo.Tizen.Wearable.Services
             player.Dispose();
         }
         /// <summary>
-        /// Invoked when audio volume leve has been changed
+        /// Invoked when audio volume level has been changed
         /// </summary>
         /// <param name="sender">object</param>
         /// <param name="e">VolumeChangedEventArgs</param>

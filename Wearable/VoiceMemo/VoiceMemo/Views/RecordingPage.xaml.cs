@@ -154,6 +154,7 @@ namespace VoiceMemo.Views
             Device.StartTimer(TimeSpan.FromMilliseconds(100), CheckVolumeAndResizeAnimationAsync);
         }
 
+        // Draw animation effects depending on volume level
         private bool CheckVolumeAndResizeAnimationAsync()
         {
             RecordingPageModel recordingViewModel = (RecordingPageModel)BindingContext;
@@ -245,6 +246,7 @@ namespace VoiceMemo.Views
             return ((RecordingPageModel)BindingContext).RecordingEffectOn;
         }
 
+        // Draw animation depending on volume level while recording
         private async Task DrawVolumeEffectAnimationAsync(int imageSize, int shadowImageSize)
         {
             double image2Ratio = (double)imageSize / 126;

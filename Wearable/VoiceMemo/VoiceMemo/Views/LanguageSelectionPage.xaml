@@ -8,7 +8,7 @@
     xmlns:view="clr-namespace:VoiceMemo.Views;"
     xmlns:resx="clr-namespace:VoiceMemo.Resx;"
     xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
-    RotaryFocusTargetName="LangListView">
+    RotaryFocusObject="{x:Reference LangListView}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:CountryCodeToNameConverter x:Key="LangConverter" />

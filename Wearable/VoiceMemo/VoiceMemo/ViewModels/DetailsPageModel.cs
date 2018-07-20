@@ -18,8 +18,10 @@ using VoiceMemo.Models;
 
 namespace VoiceMemo.ViewModels
 {
+    // The model class for DetailPage
     public class DetailsPageModel : BasePageModel
     {
+        // Record that is shown in DetailsPage
         Record _record;
         public bool IsNew
         {

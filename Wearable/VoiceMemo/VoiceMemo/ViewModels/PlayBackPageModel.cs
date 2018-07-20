@@ -374,7 +374,7 @@ namespace VoiceMemo.ViewModels
 
         // For changing the visibility of a View which provides a way to control volume level
         public ICommand VolumeViewVisibilityCommand => new Command<bool>(ChangeVolumeViewVisibility);/* { private set; get; }*/
-        // To show up VolumeView which provides aa way to make the volume up and down
+        // To show up VolumeView which provides a way to make the volume up and down
         public ICommand VolumeViewCommand => new Command(ControlVolumeView);
         // For Volume Up/Down
         public ICommand VolumeControlCommand => new Command<VolumeControlType>(ControlVolume);

@@ -81,6 +81,10 @@ namespace VoiceMemo.Services
         /// </summary>
         void Dispose();
 
+        /// <summary>
+        /// Register state callback methods
+        /// </summary>
+        /// <param name="callback">callback functions</param>
         void RegisterStateCallbacks(Action<Object, SttState, SttState> callback);
     }
 }

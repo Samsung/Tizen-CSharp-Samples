@@ -43,6 +43,14 @@ namespace VoiceMemo.Views
             });
             InitializeComponent();
             ImageAttributes.SetBlendColor(NoImage, Color.FromRgba(94, 94, 94, 77));
+            // Binding for ContextPopupEffectBehavior's properties
+            // BindingContext is not inherited by Behavior and Effect.
+            // Source of Binding should be specified explicitly.
+            CheckedCounterBehavior.SetBinding(ContextPopupEffectBehavior.AcceptTextProperty, new Binding("SelectOptionMessage1", BindingMode.OneWay, source: BindingContext));
+            CheckedCounterBehavior.SetBinding(ContextPopupEffectBehavior.AcceptCommandProperty, new Binding("SelectCommand1", BindingMode.OneWay, source: BindingContext));
+            CheckedCounterBehavior.SetBinding(ContextPopupEffectBehavior.CancelTextProperty, new Binding("SelectOptionMessage2", BindingMode.OneWay, source: BindingContext));
+            CheckedCounterBehavior.SetBinding(ContextPopupEffectBehavior.CancelCommandProperty, new Binding("SelectCommand2", BindingMode.OneWay, source: BindingContext));
+            CheckedCounterBehavior.SetBinding(ContextPopupEffectBehavior.VisibilityProperty, new Binding("PopupVisibility", BindingMode.TwoWay, source: BindingContext));
         }
 
         void UpdateUI()

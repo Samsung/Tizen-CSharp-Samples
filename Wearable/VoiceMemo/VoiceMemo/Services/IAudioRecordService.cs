@@ -76,8 +76,13 @@ namespace VoiceMemo.Services
         /// <returns>volume level</returns>
         double GetRecordingLevel();
 
+        /// <summary>
+        /// Register state callback methods
+        /// </summary>
+        /// <param name="callback">callback functions</param>
         void RegisterStateCallbacks(Action<Object, AudioRecordState, AudioRecordState> callback);
 
+        // The page model class for RecordingPage
         RecordingPageModel ViewModel { get; set; }
     }
 }

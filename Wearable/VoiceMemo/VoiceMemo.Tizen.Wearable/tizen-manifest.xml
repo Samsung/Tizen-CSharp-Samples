@@ -4,23 +4,21 @@
     <ui-application appid="org.tizen.example.VoiceMemo.Tizen.Wearable" exec="VoiceMemo.Tizen.Wearable.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
         <label>VoiceMemo.Tizen.Wearable</label>
         <icon>VoiceMemo.Tizen.Wearable.png</icon>
-        <background-category value="iot-communication"/>
-        <background-category value="media"/>
-        <metadata key="accessory-services-location" value="/res/xml/accessoryservices.xml"/>
-        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
         <label xml:lang="en-us">.NET Voice Memo</label>
         <label xml:lang="hi-in">.NET वॉइस मेमो</label>
         <label xml:lang="ko-kr">닷넷 음성 메모</label>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <background-category value="media" />
+        <splash-screens />
     </ui-application>
+    <shortcut-list />
     <privileges>
-        <privilege>http://developer.samsung.com/tizen/privilege/accessoryprotocol</privilege>
         <privilege>http://tizen.org/privilege/mediastorage</privilege>
         <privilege>http://tizen.org/privilege/externalstorage</privilege>
         <privilege>http://tizen.org/privilege/externalstorage.appdata</privilege>
         <privilege>http://tizen.org/privilege/recorder</privilege>
         <privilege>http://tizen.org/privilege/volume.set</privilege>
         <privilege>http://tizen.org/privilege/content.write</privilege>
-        <privilege>http://tizen.org/privilege/datasharing</privilege>
     </privileges>
     <provides-appdefined-privileges />
     <feature name="http://tizen.org/feature/microphone">true</feature>

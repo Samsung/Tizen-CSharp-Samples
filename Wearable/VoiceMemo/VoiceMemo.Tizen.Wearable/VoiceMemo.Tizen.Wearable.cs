@@ -40,6 +40,7 @@ namespace VoiceMemo.Tizen.Wearable
         protected override void OnTerminate()
         {
             Console.WriteLine("[Program.OnTerminate] LastUsedID " + AudioRecordService.numbering);
+            // Save the index of recording files
             Preference.Set(DeviceInformation.LastUsedID, AudioRecordService.numbering);
             base.OnTerminate();
             app.Terminate();
@@ -49,7 +50,7 @@ namespace VoiceMemo.Tizen.Wearable
         {
             var app = new Program();
             global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
-            // It's mandatory to initialize Circular UI for ussing Tizen Wearable Circular UI API
+            // It's mandatory to initialize Circular UI for using Tizen Wearable Circular UI API
             FormsCircularUI.Init();
             app.Run(args);
         }

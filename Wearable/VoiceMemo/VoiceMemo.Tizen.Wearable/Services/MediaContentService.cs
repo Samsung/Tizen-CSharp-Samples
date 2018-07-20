@@ -36,7 +36,6 @@ namespace VoiceMemo.Tizen.Wearable.Services
         {
             try
             {
-                Console.WriteLine("    *****  MediaContentService()");
                 mediaDB = new MediaDatabase();
 #if media_svc_get_storage_id_failed_return_minus_2
                 //mediaDB.Connect();

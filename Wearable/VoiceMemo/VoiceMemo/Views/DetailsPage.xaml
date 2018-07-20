@@ -7,7 +7,7 @@
     xmlns:view="clr-namespace:VoiceMemo.Views;"
     xmlns:vm="clr-namespace:VoiceMemo.ViewModels;"
     xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
-    RotaryFocusTargetName="ScrollTextView"
+    RotaryFocusObject="{x:Reference ScrollTextView}"
     x:Name="Details">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -42,7 +42,7 @@
                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=147}"
                     WidthRequest="294"
                     HeightRequest="32"
-                    Text="{Binding Record.Duration, Converter={StaticResource TimeConverter}, ConverterParameter={x:Static converters:RemainingTimeType.TimeText}}}"
+                    Text="{Binding Record.Duration, Converter={StaticResource TimeConverter}, ConverterParameter={x:Static converters:RemainingTimeType.TimeText}}"
                     Style="{StaticResource LabelStyle-AT0114}"/>
                 <Label
                     x:Name="ContentLabel"

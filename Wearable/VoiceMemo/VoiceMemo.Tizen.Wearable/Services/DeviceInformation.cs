@@ -30,7 +30,9 @@ namespace VoiceMemo.Tizen.Wearable.Services
     public static class Features
     {
         // Required features
+        // check microphone feature to use a mic for voice recording
         public const string Microphone = "http://tizen.org/feature/microphone";
+        // check speech.recognition feature to use stt service
         public const string STT = "http://tizen.org/feature/speech.recognition";
     }
     /// <summary>

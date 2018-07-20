@@ -27,13 +27,21 @@ using Xamarin.Forms;
 
 namespace VoiceMemo.ViewModels
 {
+    // The model class for MainPage
     public class MainPageModel : BasePageModel
     {
+        // Collection of Records
         ObservableCollection<Record> _Records;
+        // Language for STT recognition
         string _CurrentLanguage;
+        // Speech-To-Text Service
         ISpeechToTextService _SttService;
+        // Media Content Service to get the path of audio record file
         IMediaContentService _ContentService;
+        // App data service to store / restore app data
         IAppDataService _AppDataService;
+        // indicate whether it is possible to record voice
+        public bool availableToRecord;
 
         public MainPageModel()
         {
@@ -53,6 +61,7 @@ namespace VoiceMemo.ViewModels
             IsCheckable = false;
             SttEnabled = true;
             MainLabelText = AppResources.StandByTitleA;
+            availableToRecord = true;
         }
 
         // Subscribe to get notified when some events occur.
@@ -212,11 +221,6 @@ namespace VoiceMemo.ViewModels
 
         public ICommand SttOnOffCommand => new Command(SttOnOff);
 
-        public static readonly BindableProperty SelectSttLanguageCommandProperty =
-            BindableProperty.Create("SelectSttLanguageCommand", typeof(Command), typeof(MainPageModel), default(Command));
-
-        public ICommand SelectSttLanguageCommand => new Command(SelectSttLanguage);
-
         void GetSttService()
         {
             if (_SttService == null)
@@ -304,11 +308,7 @@ namespace VoiceMemo.ViewModels
             MessagingCenter.Send<MainPageModel, bool>(this, MessageKeys.SttSupportedChanged, SttEnabled);
         }
 
-        void SelectSttLanguage(object sender)
-        {
-            Console.WriteLine(" StandByPageModel.SelectSttLanguage()");
-        }
-
+        // main label text : voice memo or voice recorder
         string _mainlabeltext;
         public string MainLabelText
         {
@@ -323,14 +323,17 @@ namespace VoiceMemo.ViewModels
             }
         }
 
+        // Update the text of main label, depending on enabling or disabling stt service
         public override void UpdateText()
         {
             if (SttEnabled)
             {
+                // voice memo
                 MainLabelText = AppResources.StandByTitleA;
             }
             else
             {
+                // voice recorder
                 MainLabelText = AppResources.StandByTitleB;
             }
         }
@@ -443,20 +446,16 @@ namespace VoiceMemo.ViewModels
 
         void SelectOption1Job()
         {
-            Console.WriteLine("------------ 1-start   SelectOption1Job  ");
             bool r = CheckedNamesCount < Records.Count;
             Console.WriteLine("CheckedNamesCount : " + CheckedNamesCount + " vs. CheckableNames.Count: " + Records.Count);
             foreach (var x in Records)
             {
                 x.Checked = r;
             }
-
-            Console.WriteLine("------------ 1-end   SelectOption1Job  ");
         }
 
         void SelectOption2Job()
         {
-            Console.WriteLine("------------ 2-start   SelectOption2Job  ");
             Console.WriteLine("CheckedNamesCount : " + CheckedNamesCount + " vs. CheckableNames.Count: " + Records.Count);
             if (CheckedNamesCount > 0 && CheckedNamesCount != Records.Count)
             {
@@ -465,22 +464,12 @@ namespace VoiceMemo.ViewModels
                     x.Checked = false;
                 }
             }
-
-            Console.WriteLine("------------ 2-end   SelectOption2Job  ");
         }
 
         void UpdateSelectOptionMessage()
         {
-            //SelectOptionMessage1 = _checkedNamesCount < CheckableNames.Count ? SelectAll : DeselectAll;
-            //SelectOptionMessage2 = _checkedNamesCount != 0 && _checkedNamesCount != CheckableNames.Count ? DeselectAll : "";
-
-            SelectOptionMessage1 = _checkedNamesCount < Records.Count ? SelectAll : DeselectAll;
-            SelectOptionMessage2 = _checkedNamesCount != 0 && _checkedNamesCount != Records.Count ? DeselectAll : "";
-
-            Console.WriteLine("   ########  UpdateSelectOptionMessage ");
-            Console.WriteLine(" _checkedNamesCount : " + _checkedNamesCount);
-            Console.WriteLine(" SelectOptionMessage1 : " + SelectOptionMessage1);
-            Console.WriteLine(" SelectOptionMessage2 : " + SelectOptionMessage2);
+            SelectOptionMessage1 = CheckedNamesCount < Records.Count ? SelectAll : DeselectAll;
+            SelectOptionMessage2 = CheckedNamesCount != 0 && CheckedNamesCount != Records.Count ? DeselectAll : "";
         }
 
         async void DeleteRecords()

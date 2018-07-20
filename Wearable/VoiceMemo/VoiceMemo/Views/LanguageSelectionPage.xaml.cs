@@ -50,6 +50,8 @@ namespace VoiceMemo.Views
             Console.WriteLine("[LanguageSelectionPage.Init()] LangListView.SelectedItem :" + LangListView.SelectedItem 
                 + " VS. ViewModel.SelectedItemIndex :" + ViewModel.SelectedItemIndex);
             ignoreRadioSelection = true;
+
+            // Scroll to the previously selected language if it exists.
             if (ViewModel.SelectedItemIndex != null)
             {
                 LangListView.ScrollTo(ViewModel.SelectedItemIndex, ScrollToPosition.Center, false);
@@ -64,7 +66,6 @@ namespace VoiceMemo.Views
         void OnItemTapped(object sender, ItemTappedEventArgs args)
         {
             ignoreRadioSelection = false;
-            Console.WriteLine("OnItemTapped >>>>>>> sender :" + sender + ", Item:" + args.Item);
 
             ViewModel.CurrentLanguage = ((SttLanguage)args.Item).Lang;
             SttLanguage item = args.Item as SttLanguage;

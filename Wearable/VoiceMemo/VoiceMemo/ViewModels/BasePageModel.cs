@@ -21,6 +21,7 @@ using System.Runtime.CompilerServices;
 
 namespace VoiceMemo.ViewModels
 {
+    // Base page model class
     public class BasePageModel : INotifyPropertyChanged
     {
         public virtual void UpdateText()

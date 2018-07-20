@@ -27,6 +27,7 @@ namespace VoiceMemo.Data
     /// </summary>
     public class RecordDatabase
     {
+        // SQLite connection
         readonly SQLiteAsyncConnection database;
 
         public RecordDatabase(string dbPath)

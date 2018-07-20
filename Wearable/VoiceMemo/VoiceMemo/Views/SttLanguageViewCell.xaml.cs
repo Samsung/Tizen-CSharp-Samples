@@ -35,10 +35,9 @@ namespace VoiceMemo.Views
 			InitializeComponent();
 		}
 
-        // Called when radio button is selectedg
+        // Called when radio button is selected
         public async void OnSelected(object sender, SelectedEventArgs args)
         {
-            Console.WriteLine("==========================================");
             Console.WriteLine($"Radio.OnSoundSelected!! value:{args.Value}");
             Radio radio = sender as Radio;
             if (Application.Current.MainPage.Navigation.NavigationStack.Count > 0)
@@ -46,7 +45,8 @@ namespace VoiceMemo.Views
                 int index = Application.Current.MainPage.Navigation.NavigationStack.Count - 1;
 
                 LanguageSelectionPage currPage = Application.Current.MainPage.Navigation.NavigationStack[index] as LanguageSelectionPage;
-                if (!args.Value)
+                //Error CS0023  Operator '!' cannot be applied to operand of type 'string'
+                if (args.Value != null)
                 {
                     Console.WriteLine("  < UNSELECTED >  XXXXXX sender " + sender + " -  " + radio.Value);
                     currPage.ignoreRadioSelection = false;

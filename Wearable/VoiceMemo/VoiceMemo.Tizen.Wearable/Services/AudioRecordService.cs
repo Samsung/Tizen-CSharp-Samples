@@ -31,6 +31,11 @@ using Tizen.Wearable.CircularUI.Forms;
 
 namespace VoiceMemo.Tizen.Wearable.Services
 {
+    /// <summary>
+    /// AudioRecordService
+    /// The main role is recording voice.
+    /// Use Tizen.Multimedia and Tizen.System classes
+    /// </summary>
     class AudioRecordService : IAudioRecordService
     {
         // Time limit of stt recording is 5 minutes.
@@ -67,9 +72,10 @@ namespace VoiceMemo.Tizen.Wearable.Services
             _state = AudioRecordState.Init;
             numbering = 0;
 
+            // Create an audio recorder
             if (_recorder == null)
             {
-                // TODO: update this using LINQ
+                // find out the available audio codec and file format
                 RecorderAudioCodec AudioCodec = RecorderAudioCodec.Amr;
                 foreach (RecorderAudioCodec codec in Recorder.GetSupportedAudioCodecs())
                 {
@@ -129,6 +135,7 @@ namespace VoiceMemo.Tizen.Wearable.Services
             }
         }
 
+        // The model class object for RecordingPage
         RecordingPageModel _viewModel;
         public RecordingPageModel ViewModel
         {

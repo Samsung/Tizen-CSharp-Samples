@@ -50,6 +50,7 @@ namespace VoiceMemo.Converters
                     int minutes = remains / 60000;
                     int seconds = (remains - minutes * 60000) / 1000;
                     //Console.WriteLine("[DurationToRemainingTimeConverter  -  TimeText] remaining time : " + remains);
+                    // return the remaining time, formatted as {minutes}:{seconds}
                     return String.Format("{0:00}:{1:00}", minutes, seconds);
                 default:
                     return null;

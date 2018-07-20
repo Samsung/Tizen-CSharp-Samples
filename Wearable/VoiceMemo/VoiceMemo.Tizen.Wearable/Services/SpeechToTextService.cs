@@ -27,6 +27,11 @@ using Xamarin.Forms;
 
 namespace VoiceMemo.Tizen.Wearable.Services
 {
+    /// <summary>
+    /// SpeechToTextService
+    /// The main role is speech recognition.
+    /// Use Tizen.Uix.Stt
+    /// </summary>
     public class SpeechToTextService : ISpeechToTextService
     {
         SttClient _Stt;
@@ -237,6 +242,7 @@ namespace VoiceMemo.Tizen.Wearable.Services
                     //System.InvalidOperationException: An attempt was made to transition a task to a final state when it had already completed.
                     //    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
                     //    at System.Threading.Tasks.TaskCompletionSource`1.SetResult(TResult result)
+                    taskCompletionSource = null;
                 }
             }
         }
