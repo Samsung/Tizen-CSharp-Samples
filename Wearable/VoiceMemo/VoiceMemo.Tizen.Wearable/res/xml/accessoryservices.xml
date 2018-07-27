@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<application name="org.tizen.example.VoiceMemo.Tizen.Wearable" >
+		<serviceProfile
+				id="/dotnetvoicememo/filetransfer"
+				name="FileTransferSender"
+				role="consumer"
+				version="1.0"
+				serviceLimit="ONE_PEERAGENT"
+				serviceTimeout="30">
+			<supportedTransports>
+				<transport type="TRANSPORT_BT" />
+				<transport type="TRANSPORT_WIFI"/>
+				<transport type="TRANSPORT_BLE"/>
+			</supportedTransports>
+			<serviceChannel
+					id="113"
+					dataRate="low"
+					priority="low"
+					reliability= "enable">
+			</serviceChannel>
+		</serviceProfile>
+	</application>
+</resources>

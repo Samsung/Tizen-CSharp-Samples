@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:CirclePageEx
+    x:Class="VoiceMemo.Views.RecordListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:VoiceMemo.Converters;"
+    xmlns:views="clr-namespace:VoiceMemo.Views;"
+    xmlns:effect="clr-namespace:VoiceMemo.Effects;"
+    xmlns:resx="clr-namespace:VoiceMemo.Resx;"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    x:Name="recordListPage"
+    RotaryFocusObject="{x:Reference DataListView}">
+    <views:CirclePageEx.Resources>
+        <ResourceDictionary>
+            <converters:RecordsCountToViewVisibilityConverter x:Key="ViewVisibilityConverter" />
+        </ResourceDictionary>
+    </views:CirclePageEx.Resources>
+
+    <views:CirclePageEx.Content>
+        <AbsoluteLayout x:Name="RecordListView"
+                        BackgroundColor="Black">
+            <Label
+                x:Name="recordingsLabel"
+                AbsoluteLayout.LayoutBounds="64,51,232,39"
+                AbsoluteLayout.LayoutFlags="None"
+                Text="{x:Static resx:AppResources.Recordings}"
+                Style="{StaticResource LabelStyle-AT0116}" />
+            <Label
+                x:Name="noRecordingsLabel"
+                AbsoluteLayout.LayoutBounds=".5,.8,360,79"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Text="{x:Static resx:AppResources.NoRecordings}"
+                Style="{StaticResource LabelStyle-AT011}"
+                FontSize="10"/>
+            <Image
+                x:Name="NoImage"
+                IsVisible="{Binding Records.Count, Converter={StaticResource ViewVisibilityConverter}, ConverterParameter={x:Static converters:ViewType.NoRecordView}}"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                AbsoluteLayout.LayoutFlags="All"
+                Source="tw_no_item_bg.png"/>
+            <Image
+                IsVisible="{Binding Records.Count, Converter={StaticResource ViewVisibilityConverter}, ConverterParameter={x:Static converters:ViewType.NoRecordView}}"
+                AbsoluteLayout.LayoutBounds=".5, .5, 98, 98"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Source="b_icon_voicememo.png"/>
+            <w:CircleListView
+                x:Name="DataListView"
+                IsVisible="{Binding Records.Count, Converter={StaticResource ViewVisibilityConverter}, ConverterParameter={x:Static converters:ViewType.RecordListView}}"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                AbsoluteLayout.LayoutFlags="All"
+                Header="Recordings"
+                ItemSelected="OnItemSelected"
+                ItemTapped="OnItemTapped"
+                effect:ItemLongPressEffect.Command="{Binding LongClickCommand}"
+                ItemsSource="{Binding Records}">
+                <w:CircleListView.Effects>
+                    <effect:ItemLongPressEffect />
+                </w:CircleListView.Effects>
+                <ListView.Footer>
+                    <StackLayout HeightRequest="115">
+                        <BoxView />
+                    </StackLayout>
+                </ListView.Footer>
+                <ListView.Header>
+                    <AbsoluteLayout HeightRequest="115" BackgroundColor="Black">
+                        <Label
+                            x:Name="headerLabel"
+                            AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 0.5"
+                            AbsoluteLayout.LayoutFlags="All"
+                            Text="{x:Static resx:AppResources.Recordings}"
+                            Style="{StaticResource LabelStyle-AT0116}"
+                            TextColor="#FF00FFF0"
+                            FontSize="14" />
+                    </AbsoluteLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <RelativeLayout HeightRequest="130" WidthRequest="360">
+                                <RelativeLayout.Resources>
+                                    <ResourceDictionary>
+                                        <converters:DurationToRemainingTimeConverter x:Key="TimeConverter" />
+                                        <converters:SttToPropertyConverter x:Key="SttConverter" />
+                                        <Style TargetType="Label">
+                                            <Setter Property="HorizontalTextAlignment" Value="Center" />
+                                            <Setter Property="VerticalTextAlignment" Value="Center" />
+                                            <Setter Property="WidthRequest" Value="200" />
+                                            <Setter Property="TextColor" Value="White" />
+                                            <!--<Setter Property="BackgroundColor" Value="Pink" />-->
+                                            <Setter Property="RelativeLayout.XConstraint"
+                                                Value="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=30}" />
+                                        </Style>
+                                    </ResourceDictionary>
+                                </RelativeLayout.Resources>
+                                <Label
+                                    Text="{Binding Title}"
+                                    HeightRequest="47"
+                                    WidthRequest="230"
+                                    TextColor="{StaticResource T0211}"
+                                    FontSize="13"
+                                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Height,
+                                                                                  Factor=0,
+                                                                                  Constant=9}" />
+                                <Label
+                                    Text="{Binding Date}"
+                                    HeightRequest="32"
+                                    WidthRequest="230"
+                                    TextColor="{StaticResource T022}"
+                                    FontSize="8"
+                                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Height,
+                                                                                  Factor=0,
+                                                                                  Constant=56}" />
+                                <Label
+                                    Text="{Binding Duration, Converter={StaticResource TimeConverter}, ConverterParameter={x:Static converters:RemainingTimeType.TimeText}}}"
+                                    HeightRequest="32"
+                                    WidthRequest="230"
+                                    TextColor="{StaticResource T022}"
+                                    FontSize="8"
+                                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                    Property=Height,
+                                                                                    Factor=0,
+                                                                                    Constant=90}" />
+                                <Image Source="{Binding SttEnabled, Converter={StaticResource SttConverter}, ConverterParameter={x:Static converters:SttPropertyType.RecordImageSource}}" 
+                                    WidthRequest="76"
+                                    HeightRequest="76"
+                                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                    Property=Width,
+                                                                                    Factor=0,
+                                                                                    Constant=268}"
+                                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                    Property=Height,
+                                                                                    Factor=0,
+                                                                                    Constant=27}" />
+                                <w:Check DisplayStyle="Default"
+                                     IsToggled="{Binding Checked, Mode=TwoWay}"
+                                     IsEnabled="{Binding BindingContext.IsCheckable, Source={x:Reference recordListPage}}"
+                                     WidthRequest="76"
+                                     HeightRequest="76"
+                                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=0,
+                                                                                  Constant=150}"
+                                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Height,
+                                                                                  Factor=0,
+                                                                                  Constant=30}"
+                                     effect:TizenStyleEffect.Style="genlist/select_mode"
+                                     effect:TizenEventPropagationEffect.EnablePropagation="True">
+                                    <w:Check.Effects>
+                                        <effect:TizenStyleEffect/>
+                                        <effect:TizenEventPropagationEffect/>
+                                    </w:Check.Effects>
+                                </w:Check>
+                            </RelativeLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </w:CircleListView>
+            <Button x:Name="CheckedCounter"
+                    IsVisible="{Binding IsCheckable}"
+                    Text="{Binding CheckedNamesCount}"
+                    AbsoluteLayout.LayoutBounds="0.5, 10, 100, 80"
+                    AbsoluteLayout.LayoutFlags="XProportional"
+                    Command="{Binding SelectModeActionButtonPressedCommand}">
+                <Button.Behaviors>
+                    <w:ContextPopupEffectBehavior x:Name="CheckedCounterBehavior"
+                        PositionOption="BottomOfView" />
+                </Button.Behaviors>
+            </Button>
+        </AbsoluteLayout>
+    </views:CirclePageEx.Content>
+    <w:CirclePage.ActionButton>
+        <w:ActionButtonItem
+            x:Name="deleteActionButton"
+            IsVisible="{Binding IsCheckable}"
+            IsEnable="{Binding CheckedNamesCount, Converter={StaticResource ViewVisibilityConverter}, ConverterParameter={x:Static converters:ViewType.RecordCheckView}}"
+                            Clicked="DeleteActionButtonClicked"
+                            Command="{Binding DeleteRecordsCommand}"
+                            Text="{x:Static resx:AppResources.DELETE}" />
+    </w:CirclePage.ActionButton>
+    <w:CirclePage.ToolbarItems>
+        <views:BindableToolbarItem
+            x:Name="toolbarItem"
+            IsVisible="{Binding Records.Count, Converter={StaticResource ViewVisibilityConverter}, ConverterParameter={x:Static converters:ViewType.RecordListView}}"
+            Command="{Binding ChangeToDeleteModeCommand}"
+            Icon="more_option_icon_delete.png"
+            Text="{x:Static resx:AppResources.DELETE}" />
+    </w:CirclePage.ToolbarItems>
+</views:CirclePageEx>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<view:CirclePageEx
+    x:Class="VoiceMemo.Views.DetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:VoiceMemo.Converters;"
+    xmlns:view="clr-namespace:VoiceMemo.Views;"
+    xmlns:vm="clr-namespace:VoiceMemo.ViewModels;"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    RotaryFocusObject="{x:Reference ScrollTextView}"
+    x:Name="Details">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DurationToRemainingTimeConverter x:Key="TimeConverter" />
+            <converters:RemainingTimeType x:Key="TimeType" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <w:CircleScrollView
+            x:Name="ScrollTextView"
+            Orientation="Vertical">
+            <RelativeLayout x:Name="mainLayout">
+                <Label
+                    x:Name="TitleLabel"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=64}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=51}"
+                    WidthRequest="232"
+                    HeightRequest="39"
+                    Text="{Binding Record.Title}"
+                    Style="{StaticResource LabelStyle-AT0116}" />
+                <Label
+                    x:Name="DateInfoLabel"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=33}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=115}"
+                    WidthRequest="294"
+                    HeightRequest="32"
+                    Text="{Binding Record.Date}"
+                    Style="{StaticResource LabelStyle-AT0114}" />
+                <Label
+                    x:Name="TimeInfoLabel"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=33}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=147}"
+                    WidthRequest="294"
+                    HeightRequest="32"
+                    Text="{Binding Record.Duration, Converter={StaticResource TimeConverter}, ConverterParameter={x:Static converters:RemainingTimeType.TimeText}}"
+                    Style="{StaticResource LabelStyle-AT0114}"/>
+                <Label
+                    x:Name="ContentLabel"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=33}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=179}"
+                    WidthRequest="294"
+                    Text="{Binding Record.Text}"
+                    TextColor="White"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center" />
+                <!-- default font size of label : 9.2936170212766-->
+            </RelativeLayout>
+        </w:CircleScrollView>
+    </ContentPage.Content>
+    <w:CirclePage.ActionButton>
+        <w:ActionButtonItem Clicked="OnPlayBackClicked" Icon="details_playback_icon.png" />
+    </w:CirclePage.ActionButton>
+    <w:CirclePage.ToolbarItems>
+        <w:CircleToolbarItem
+            Clicked="OnCircleToolbarItemClicked_DeleteRecord"
+            Icon="more_option_icon_delete.png"
+            Text="Delete" />
+    </w:CirclePage.ToolbarItems>
+</view:CirclePageEx>

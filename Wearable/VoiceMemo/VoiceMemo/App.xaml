@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoiceMemo.App">
+	<Application.Resources>
+
+		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <Style x:Key="LabelStyle-Base" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <!--For Stand by and Recording pages-->
+            <Color x:Key="AT011">#FFFAFAFA</Color>
+            <Style x:Key="LabelStyle-AT011" TargetType="Label" BasedOn="{StaticResource LabelStyle-Base}">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextColor" Value="{StaticResource AT011}" />
+            </Style>
+            <Color x:Key="AT0116">#FF4DCFFF</Color>
+            <Style x:Key="LabelStyle-AT0116" TargetType="Label" BasedOn="{StaticResource LabelStyle-Base}">
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="TextColor" Value="{StaticResource AT0116}" />
+            </Style>
+
+            <!--For Detail page-->
+            <Color x:Key="AT0114">#FFB3B3B3</Color>
+            <Style x:Key="LabelStyle-AT0114" TargetType="Label" BasedOn="{StaticResource LabelStyle-Base}">
+                <Setter Property="FontSize" Value="8" />
+                <Setter Property="TextColor" Value="{StaticResource AT0114}" />
+            </Style>
+
+            <!--For Volume control in PlayBack Page-->
+            <Color x:Key="AT0211">#FFFAFAFA</Color>
+            <Style x:Key="LabelStyle-AT0211" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <!--<Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />-->
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource AT0211}" />
+            </Style>
+
+            <Color x:Key="AT0212">#FFFAFAFA</Color>
+
+            <!--  FF467EA6  -->
+            <Color x:Key="AO013L3">#FFE00404</Color>
+            <Color x:Key="AO013L3P">#66E00404</Color>
+            <Color x:Key="AO013L3D">#66E00404</Color>
+            <Color x:Key="AO0137">#CC000000</Color>
+            <Color x:Key="AO013L1">#FF000000</Color>
+            <Color x:Key="AO013L1P">#66000000</Color>
+            <Color x:Key="AO013L1D">#66000000</Color>
+
+            <Color x:Key="AO027">#FF000000</Color>
+            <Color x:Key="AO028">#8C11B4FF</Color>
+            <!--  4D467EA6  -->
+            <!--  voicerecorder_btn_bg.png  -->
+            <Color x:Key="AO014L1">#FF12B4FF</Color>
+            <!--  FF467EA6  -->
+            <Color x:Key="AO014L1P">#6612B4FF</Color>
+            <Color x:Key="AO014L1D">#6612B4FF</Color>
+            <!--  voicerecorder_btn_stop(_pause, _play).png  -->
+            <Color x:Key="AO014L3">#FFFAFAFA</Color>
+            <Color x:Key="AO014L3P">#66FAFAFA</Color>
+            <Color x:Key="AO014L3D">#66FAFAFA</Color>
+            <!--  record_controller_bg.png  -->
+            <Color x:Key="AO012L1">#FFFAFAFA</Color>
+            <Color x:Key="AO012L1P">#66FAFAFA</Color>
+            <Color x:Key="AO012L1D">#66FAFAFA</Color>
+            <!--  recording_icon_cancel(_pause).png  -->
+            <Color x:Key="AO012L3">#FF4F4F4F</Color>
+            <Color x:Key="AO012L3P">#64F4F4F</Color>
+            <Color x:Key="AO012L3D">#664F4F4F</Color>
+            <!--  record_stop_icon.png  -->
+            <Color x:Key="AO016L1">#FFE00404</Color>
+            <Color x:Key="AO016L1P">#66E00404</Color>
+            <Color x:Key="AO016L1D">#66E00404</Color>
+            <!--  recording_stt_icon.png  -->
+            <Color x:Key="AO0210">#FFFAFAFA</Color>
+            <!--<local:RecordingStateToVisibilityConverter x:Key="VisibilityConverter" />
+            <local:RecordingStateToImageSourceConverter x:Key="ImageSourceConverter" />-->
+
+            <!--  For Voice Memo List  -->
+            <Color x:Key="AO0138">#FFFAFAFA</Color>
+            <Color x:Key="AO0138P">#80FAFAFA</Color>
+            <!--  First line  size 13 -->
+            <Color x:Key="T0211">#FFFAFAFA</Color>
+            <!--  Second line size 8 -->
+            <Color x:Key="T022">#FFB3B3B3</Color>
+
+            <!--  For No items  -->
+            // Action bar_title
+            <Color x:Key="T012">#FF467EA6</Color>
+            <!--  NATIVE : 12B4FF, EXCEL : FF467EA6  -->
+            <Color x:Key="T071">#FFFFFFFF</Color>
+            <!--  FF000000  But looks white  -->
+
+            <!--  For PlayBack Page  -->
+            <Color x:Key="AO017">#FFFAFAFA</Color>
+            <Color x:Key="AO017P">#66FAFAFA</Color>
+            <Color x:Key="AO0141L1">#FFFAFAFA</Color>
+            <Color x:Key="AO0141L1P">#66FAFAFA</Color>
+            <Color x:Key="AO0141L1D">#66FAFAFA</Color>
+
+            <!--  For Volume Page  -->
+            <Color x:Key="AO022">#FF141414</Color>
+            <Color x:Key="AO022P">#FF141414</Color>
+            <Color x:Key="AO022D">#FF333333</Color>
+
+            <Style x:Key="BaseLabelStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <Style x:Key="LabelTitleStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="9" />
+                <Setter Property="TextColor" Value="{StaticResource AT0116}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

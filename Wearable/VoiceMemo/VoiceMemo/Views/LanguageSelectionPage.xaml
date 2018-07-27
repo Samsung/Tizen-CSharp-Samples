@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<view:CirclePageEx
+    x:Class="VoiceMemo.Views.LanguageSelectionPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:VoiceMemo.Converters;"
+    xmlns:vms="clr-namespace:VoiceMemo.ViewModels;"
+    xmlns:view="clr-namespace:VoiceMemo.Views;"
+    xmlns:resx="clr-namespace:VoiceMemo.Resx;"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    RotaryFocusObject="{x:Reference LangListView}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:CountryCodeToNameConverter x:Key="LangConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <view:CirclePageEx.Content>
+        <w:CircleListView
+            x:Name="LangListView"
+            HasUnevenRows="True"
+            HorizontalOptions="FillAndExpand"
+            ItemTapped="OnItemTapped"
+            ItemsSource="{Binding Languages}"
+            VerticalOptions="FillAndExpand">
+            <ListView.Footer>
+                <StackLayout HeightRequest="115">
+                    <BoxView />
+                </StackLayout>
+            </ListView.Footer>
+            <ListView.Header>
+                <StackLayout HeightRequest="115">
+                    <!--original #4DCFFF-->
+                    <Label
+                        x:Name="headerLabel"
+                        TextColor="#5aFFFF"
+                        Style="{StaticResource BaseLabelStyle}"
+                        Text="{x:Static resx:AppResources.Languages}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        VerticalOptions="FillAndExpand" />
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <view:SttLanguageViewCell />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </w:CircleListView>
+    </view:CirclePageEx.Content>
+</view:CirclePageEx>
