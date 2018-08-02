@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:ex="clr-namespace:UsingResxLocalization.ViewExtensions"
+              Title="MainPage"
+              x:Class="UsingResxLocalization.MainPage">
+    <w:CirclePage.Resources>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+    </w:CirclePage.Resources>
+    <w:CirclePage.Content>
+        <AbsoluteLayout x:Name="MainView" BackgroundColor="Black">
+            <ex:NoContentView AbsoluteLayout.LayoutBounds="0, 0, 360, 360"
+                   AbsoluteLayout.LayoutFlags="None" />
+            <Label AbsoluteLayout.LayoutBounds="40, 80, 120, 50"
+                   AbsoluteLayout.LayoutFlags="None"
+                   Style="{StaticResource LabelStyle}"
+                   Text="C#" />
+            <Label AbsoluteLayout.LayoutBounds="200, 80, 120, 50"
+                   AbsoluteLayout.LayoutFlags="None"
+                   Style="{StaticResource LabelStyle}"
+                   Text="XAML" />
+            <Image AbsoluteLayout.LayoutBounds="40, 130, 120, 120"
+                   AbsoluteLayout.LayoutFlags="None"
+                   Source="1.png"
+                   x:Name="LeftImage">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="LeftImage_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image AbsoluteLayout.LayoutBounds="200, 130, 120, 120"
+                   AbsoluteLayout.LayoutFlags="None"
+                   Source="2.png"
+                   x:Name="RightImage">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="RightImage_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </w:CirclePage.Content>
+</w:CirclePage>

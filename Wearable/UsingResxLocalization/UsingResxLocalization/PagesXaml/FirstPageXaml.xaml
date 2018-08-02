@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+              x:Class="UsingResxLocalization.FirstPageXaml"
+              xmlns:i18n="clr-namespace:UsingResxLocalization;assembly=UsingResxLocalization"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:local="clr-namespace:UsingResxLocalization;assembly=UsingResxLocalization"
+              Title="FirstPageXaml"
+              RotaryFocusObject="{x:Reference myScrollView}">
+    <w:CircleScrollView x:Name="myScrollView">
+	    <StackLayout 
+		    HorizontalOptions="Center" 
+		    VerticalOptions="CenterAndExpand">
+            <Label x:Name="myLabel" Text="{i18n:Translate NotesLabel}" HorizontalTextAlignment="Center"/>
+		    <Entry x:Name="myEntry" Placeholder="{i18n:Translate NotesPlaceholder}" HorizontalTextAlignment="Center"/>
+            <Picker x:Name="myPicker" Title="{i18n:Translate PickerName}">
+                <Picker.Items>
+                    <x:String>0</x:String>
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                </Picker.Items>
+            </Picker>
+            <Button x:Name="myButton" Text="{i18n:TranslateExtension Text=AddButton}" Clicked="MyButton_Clicked" />
+            <Image>
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource">
+                        <On Platform="iOS, Android, Tizen" Value="flag.png" />
+                        <On Platform="UWP" Value="Assets/Images/flag.png" />
+                    </OnPlatform>
+                </Image.Source>
+            </Image>
+	    </StackLayout>
+    </w:CircleScrollView>
+</w:CirclePage>
