@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cu="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns:local="clr-namespace:XStopWatch"
+             x:Class="XStopWatch.StopWatchApplication">
+    <Application.MainPage>
+        <!-- Use CarouselPage to swipe the main page and Laps page -->
+        <CarouselPage x:Name="RootPage">
+            <!-- Main page of the Stopwatch -->
+            <local:StopWatch x:Name="StopWatch" LapPressed="OnAddLap" StopPressed="OnStopLap"/>
+            <!-- A page to shows a list of the recorded Lap times. Time property is used to show the time, and is associated with the time of the StopWatch. -->
+            <local:LapsPage x:Name="Laps" Time="{Binding AllTime, Source={x:Reference StopWatch}}"/>
+        </CarouselPage>
+    </Application.MainPage>
+</Application>

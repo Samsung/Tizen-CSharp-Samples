@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cu:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cu="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="XStopWatch.LapsPage" x:Name="Self">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <cu:CircleListView ItemsSource="{Binding Laps, Source={x:Reference Self}}"
+                               x:Name="LapList"
+                               BackgroundColor="Black"
+                               AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                               AbsoluteLayout.LayoutFlags="SizeProportional">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <AbsoluteLayout>
+                                <!-- Label that present Index of Lap -->
+                                <Label Text="{Binding Item1, StringFormat='{0:D2}'}"
+                                   AbsoluteLayout.LayoutBounds="0,0,0.3,1"
+                                   AbsoluteLayout.LayoutFlags="All"
+                                   HorizontalTextAlignment="End"
+                                   TextColor="White"
+                                   FontSize="18"/>
+                                <!-- Label that present total elapsed time -->
+                                <Label Text="{Binding Item2, StringFormat='{}{0:mm\\:ss\\.ff}'}"
+                                   AbsoluteLayout.LayoutBounds="0.2,0,1,0.5"
+                                   AbsoluteLayout.LayoutFlags="All"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="White"
+                                   FontSize="Medium"/>
+                                <!-- Label that present a lap time -->
+                                <Label Text="{Binding Item3, StringFormat='{}{0:mm\\:ss\\.ff}'}"
+                                   AbsoluteLayout.LayoutBounds="0.2,0.55,1,0.5"
+                                   AbsoluteLayout.LayoutFlags="All"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="White"
+                                   FontSize="Medium"/>
+                            </AbsoluteLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </cu:CircleListView>
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 100" AbsoluteLayout.LayoutFlags="WidthProportional" BackgroundColor="Black">
+                <!-- Label that present the count of laps -->
+                <Label Text="{Binding Path=Laps.Count,  Source={x:Reference Self}, StringFormat='{0} Laps'}"
+                       MinimumWidthRequest="100"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="StartAndExpand"
+                       TextColor="Yellow"
+                       FontSize="10"/>
+                <!-- Label that present the current elapsed time -->
+                <Label Text="{Binding Time, Source={x:Reference Self}, StringFormat='{}{0:mm\\:ss\\.ff}'}"
+                           TextColor="Yellow"
+                           FontSize="10"
+                           VerticalOptions="StartAndExpand"
+                           HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</cu:CirclePage>
