@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:components="clr-namespace:SystemInfo.Components;assembly=SystemInfo"
+             xmlns:controls="clr-namespace:SystemInfo.Controls;assembly=SystemInfo"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="SystemInfo.InfoPages.SettingsPage"
+             RotaryFocusObject="{x:Reference scrollView}">
+
+    <ContentPage.BindingContext>
+        <components:Settings />
+    </ContentPage.BindingContext>
+
+
+
+    <StackLayout HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="CenterAndExpand">
+        <Label Text="Settings" HorizontalTextAlignment="Center" TextColor="AliceBlue"
+                   HeightRequest="60" VerticalTextAlignment="End"/>
+        <w:CircleScrollView x:Name="scrollView">
+            <StackLayout>
+                <controls:DoubleLabel
+                    MainText="{Binding LocaleCountry}"
+                    SubText="Country"/>
+                <controls:DoubleLabel
+                    MainText="{Binding LocaleLanguage}"
+                    SubText="Language"/>
+                <controls:DoubleLabel
+                    MainText="{Binding LocaleTimeFormat}"
+                    SubText="Time format"/>
+                <controls:DoubleLabel
+                    MainText="{Binding LocaleTimeZone}"
+                    SubText="Time zone"/>
+                <controls:DoubleLabel
+                    MainText="{Binding FontSize}"
+                    SubText="Font size"/>
+                <controls:DoubleLabel
+                    MainText="{Binding FontType}"
+                    SubText="Font type"/>
+                <controls:DoubleLabel
+                    MainText="{Binding DefaultFontType}"
+                    SubText="Default Font Type"/>
+                <controls:DoubleLabel
+                    MainText="{Binding DeviceName}"
+                    SubText="Device Name"/>
+                <controls:DoubleLabel
+                    MainText="{Binding MotionEnabled}"
+                    SubText="Motion"/>
+                <controls:DoubleLabel
+                    MainText="{Binding MotionActivationEnabled}"
+                    SubText="Motion Activatgion"/>
+
+
+            </StackLayout>
+        </w:CircleScrollView>
+    </StackLayout>
+</w:CirclePage>

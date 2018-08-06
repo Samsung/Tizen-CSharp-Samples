@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:SystemInfo.Components;assembly=SystemInfo"
+             xmlns:controls="clr-namespace:SystemInfo.Controls;assembly=SystemInfo"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="SystemInfo.InfoPages.CapabilitiesPage"
+             RotaryFocusObject="{x:Reference scrollView}">
+
+    <ContentPage.BindingContext>
+        <components:Capabilities />
+    </ContentPage.BindingContext>
+
+
+
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="CenterAndExpand">
+            <Label Text="Capabilities" HorizontalTextAlignment="Center" TextColor="AliceBlue"
+                   HeightRequest="60" VerticalTextAlignment="End"/>
+            <w:CircleScrollView x:Name="scrollView">
+            <StackLayout>
+                <controls:DoubleLabel
+                MainText="{Binding VibratorsCount}"
+                SubText="Vibrators count"/>
+                
+                <controls:DoubleLabel
+                    MainText="{Binding IsFlighModeEnabled}"
+                    SubText="Flight Mode Enabled"
+                    />
+                <controls:DoubleLabel
+                    MainText="{Binding IsWifiNotificationEnabled}"
+                    SubText="Wifi Notifications Enabled"
+                    />
+                <controls:DoubleLabel
+                    MainText="{Binding Is3GDataNetworkEnabled}"
+                    SubText="3G Data Enabled"
+                    />
+                <controls:DoubleLabel
+                    MainText="{Binding Gps}"
+                    SubText="GPS"
+                    />
+                <controls:DoubleLabel
+                    MainText="{Binding Wps}"
+                    SubText="WPS"
+                    />
+                <controls:DoubleLabel
+                    MainText="{Binding Bluetooth}"
+                    SubText="Bluetooth"
+                    />
+                <controls:DoubleLabel
+                    MainText="{Binding Nfc}"
+                    SubText="NFC"
+                    />
+
+
+
+
+            </StackLayout>
+            </w:CircleScrollView>
+        </StackLayout>
+
+</w:CirclePage>
