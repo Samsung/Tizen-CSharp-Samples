@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:SystemInfo.Components;assembly=SystemInfo"
+             xmlns:controls="clr-namespace:SystemInfo.Controls;assembly=SystemInfo"
+             x:Class="SystemInfo.InfoPages.DisplayPage">
+
+    <ContentPage.BindingContext>
+        <components:Display />
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="CenterAndExpand">
+            <Label Text="Display" HorizontalTextAlignment="Center" TextColor="AliceBlue"/>
+            <controls:DoubleLabel
+                MainText="{Binding Resolution}"
+                SubText="Resolution"/>
+            <StackLayout Orientation="Horizontal">
+            <controls:DoubleLabel
+                MainText="{Binding Dpi}"
+                SubText="dpi"/>
+            <controls:DoubleLabel                
+                MainText="{Binding Bpp}"
+                SubText="bpp"/>
+            </StackLayout>
+            <controls:DoubleLabel
+                MainText="{Binding Brightness}"
+                SubText="Brightness"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
