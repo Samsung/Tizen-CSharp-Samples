@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.SystemInfo" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <author />
+    <description>Icon source: https://openclipart.org/detail/35431/tango-preferences-system</description>
+    <profile name="wearable" />
+    <ui-application appid="org.tizen.example.SystemInfo" exec="SystemInfo.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>SystemInfo</label>
+        <icon>SystemInfo.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/display</privilege>
+        <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        <privilege>http://tizen.org/privilege/systemsettings</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
+    <feature name="http://tizen.org/feature/systemsetting">true</feature>
+</manifest>
