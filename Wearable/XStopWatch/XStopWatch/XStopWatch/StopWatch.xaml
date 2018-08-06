@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cu:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cu="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns:local="clr-namespace:XStopWatch"
+             x:Name="Self"
+             x:Class="XStopWatch.StopWatch">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- this style change the color to the gray of the Label for showing the time. -->
+            <Style x:Key="TimeStyle"  TargetType="Span">
+                <Setter Property="TextColor" Value="White"/>
+                <Style.Triggers>
+                    <Trigger TargetType="Span" Property="Text" Value="00">
+                        <Setter Property="TextColor" Value="#666666"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!-- CirclePage has a special item list to show a circular progressbar or a circular slider.-->
+    <cu:CirclePage.CircleSurfaceItems>
+        <!-- this circular progressbar show the elapsed time -->
+        <cu:CircleProgressBarSurfaceItem x:Name="Timebar"
+                                         BarColor="#12b4ff"
+                                         BarRadius="108"
+                                         BarLineWidth="6"
+                                         IsVisible="true"
+                                         Value="0"/>
+    </cu:CirclePage.CircleSurfaceItems>
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="Black" x:Name="RootView">
+            <!-- Background image that show the numbers and pins -->
+            <Image Source="images/b_stopwatch_unit_number.png"
+                   AbsoluteLayout.LayoutBounds="0,0,1,1"
+                   AbsoluteLayout.LayoutFlags="All"/>
+            <!-- Red bar image that present current elapsed time -->
+            <Image Source="images/b_stopwatch_mark_red.png"
+                   x:Name="RedBar"
+                   AbsoluteLayout.LayoutBounds="0,0,1,1"
+                   AbsoluteLayout.LayoutFlags="All"/>
+            <!-- Blue bar image that present Lap time. it is visible only Lap measurement started -->
+            <Image Source="images/b_stopwatch_mark_blue.png"
+                   x:Name="BlueBar"
+                   AbsoluteLayout.LayoutBounds="0,0,1,1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   IsVisible="False"/>
+
+            <!-- Upward Label for start / stop button -->
+            <Label x:Name="StateLabel"
+                   TextColor="#00CC4D"
+                   FontSize="6"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   AbsoluteLayout.LayoutBounds="130, 120, 100, 20"
+                   AbsoluteLayout.LayoutFlags="None">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Self}, Path=State}" Value="Started">
+                        <Setter Property="Text" Value="STOP"/>
+                        <Setter Property="TextColor" Value="Red"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Self}, Path=State}" Value="Paused">
+                        <Setter Property="Text" Value="RESUME"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Self}, Path=State}" Value="Stopped">
+                        <Setter Property="Text" Value="START"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <!-- Downward Label for reset / lap button -->
+            <Label x:Name="ResetOrLapLabel"
+                   TextColor="#0080dd"
+                   FontSize="6"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   AbsoluteLayout.LayoutBounds="130, 224, 100, 20"
+                   AbsoluteLayout.LayoutFlags="None">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Self}, Path=State}" Value="Started">
+                        <Setter Property="Text" Value="LAP"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Self}, Path=State}" Value="Paused">
+                        <Setter Property="Text" Value="RESET"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Self}, Path=State}" Value="Stopped">
+                        <Setter Property="Text" Value=""/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <!-- Central Label that present elapsed tiem -->
+            <Label FontSize="10"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   AbsoluteLayout.LayoutBounds="96, 152, 168, 58"
+                   AbsoluteLayout.LayoutFlags="None">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding AllTime, Source={x:Reference Self}, StringFormat='{}{0:mm}', Mode=OneWay}" Style="{StaticResource TimeStyle}"/>
+                        <Span Text=" : "/>
+                        <Span Text="{Binding AllTime, Source={x:Reference Self}, StringFormat='{}{0:ss}', Mode=OneWay}" Style="{StaticResource TimeStyle}"/>
+                        <Span Text=" . "/>
+                        <Span Text="{Binding AllTime, Source={x:Reference Self}, StringFormat='{}{0:ff}', Mode=OneWay}" Style="{StaticResource TimeStyle}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <!-- If Lap is added, this small bracket image show the bounce animation -->
+            <Image Source="images/wc_visual_cue.png"
+                   x:Name="CueBtn"
+                   IsVisible="False"
+                   AbsoluteLayout.LayoutBounds="315, 164, 18, 32"/>
+
+            <!-- this translucent images indicate the area to receive the touch. -->
+            <Image Source="images/event_spot.png"
+                   Opacity="0"
+                   AbsoluteLayout.LayoutBounds="72, 126, 216, 216"
+                   AbsoluteLayout.LayoutFlags="None">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBottomEventTapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="images/event_spot.png"
+                   Opacity="0"
+                   AbsoluteLayout.LayoutBounds="72, 22, 216, 216"
+                   AbsoluteLayout.LayoutFlags="None">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTopEventTapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</cu:CirclePage>
