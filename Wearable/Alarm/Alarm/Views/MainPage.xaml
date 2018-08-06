@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:CirclePageEx
+	x:Class="Alarm.Views.MainPage"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:control="clr-namespace:Alarm.Controls"
+	xmlns:converters="clr-namespace:Alarm.Converters"
+	xmlns:resx="clr-namespace:Alarm.Resx"
+	xmlns:views="clr-namespace:Alarm.Views"
+	xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+	Title="MainPage"
+	RotaryFocusObject="{x:Reference AlarmList}">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<converters:ItemCountToVisibilityConverter x:Key="VisibilityConverter" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<ContentPage.Content>
+		<StackLayout Orientation="Vertical">
+			<StackLayout
+				x:Name="NoAlarmLayout"
+				HorizontalOptions="Center"
+				IsVisible="{Binding RecordList.Count, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:MainPageType.Empty}}"
+				VerticalOptions="FillAndExpand">
+				<Label
+					x:Name="EmptyHeaderLabel"
+					Margin="0,50,0,30"
+					FontAttributes="Bold"
+					FontSize="Medium"
+					HorizontalTextAlignment="Center"
+					Text="{x:Static resx:AppResources.Alarm}"
+					TextColor="#368AFF" />
+				<control:ImageButton
+					x:Name="noAlarmImg"
+					Released="OnButtonReleased"
+					Source="alarm_no_alarm_icon.png" />
+				<Label
+					x:Name="EmptyBottomLabel"
+					Margin="0,30,0,50"
+					FontSize="Small"
+					HorizontalTextAlignment="Center"
+					Text="{x:Static resx:AppResources.AddAlarm}" />
+			</StackLayout>
+			<StackLayout
+				x:Name="AlarmListLayout"
+				HorizontalOptions="FillAndExpand"
+				IsVisible="{Binding RecordList.Count, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:MainPageType.ListView}}"
+				VerticalOptions="Center">
+				<w:CircleListView
+					x:Name="AlarmList"
+					HasUnevenRows="True"
+					HorizontalOptions="FillAndExpand"
+					ItemTapped="OnItemTapped"
+					ItemsSource="{Binding RecordList}"
+					VerticalOptions="Center">
+					<ListView.Header>
+						<StackLayout HeightRequest="115">
+							<Label
+								x:Name="HeaderLabel"
+								FontAttributes="Bold"
+								FontSize="16"
+								HorizontalOptions="CenterAndExpand"
+								Text="{x:Static resx:AppResources.Alarm}"
+								TextColor="#368AFF"
+								VerticalOptions="FillAndExpand" />
+						</StackLayout>
+					</ListView.Header>
+					<ListView.Footer>
+						<StackLayout HeightRequest="115">
+							<BoxView />
+						</StackLayout>
+					</ListView.Footer>
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<views:AlarmListCell />
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</w:CircleListView>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+	<views:CirclePageEx.ActionButton>
+		<w:ActionButtonItem
+			x:Name="AddButton"
+			Clicked="OnAddButtonClicked"
+			IsVisible="{Binding RecordList.Count, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:MainPageType.Button}}"
+			Text="{x:Static resx:AppResources.Add}" />
+	</views:CirclePageEx.ActionButton>
+</views:CirclePageEx>
