@@ -1,0 +1,58 @@
+﻿<w:CirclePage
+    x:Class="UIComponents.Samples.CircleList.StyleTitle"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UIComponents.Samples.CircleList"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    RotaryFocusObject="{x:Reference mylist}">
+    <w:CirclePage.BindingContext>
+        <local:ListViewModel />
+    </w:CirclePage.BindingContext>
+    <w:CirclePage.Content>
+        <w:CircleListView x:Name="mylist" ItemsSource="{Binding Names}">
+            <w:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout
+                            HeightRequest="120"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="FillAndExpand">
+                            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                                <Label
+                                    FontSize="8"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding ., StringFormat='elm.text:{0}'}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+                                <Label
+                                    FontSize="5"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding ., StringFormat='elm.text.1:{0}'}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </w:CircleListView.ItemTemplate>
+            <w:CircleListView.Header>
+                <x:String>elm.text:GenlistDemoLongTitle</x:String>
+            </w:CircleListView.Header>
+            <w:CircleListView.HeaderTemplate>
+                <DataTemplate>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        HeightRequest="120"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding .}"
+                        TextColor="#6CC3F1" />
+                </DataTemplate>
+            </w:CircleListView.HeaderTemplate>
+        </w:CircleListView>
+    </w:CirclePage.Content>
+</w:CirclePage>

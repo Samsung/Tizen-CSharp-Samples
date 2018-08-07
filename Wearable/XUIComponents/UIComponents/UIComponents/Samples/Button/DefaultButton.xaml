@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage
+    x:Class="UIComponents.Samples.Button.DefaultButton"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UIComponents.Samples.Button"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    RotaryFocusObject="{x:Reference myscroller}">
+    <w:CirclePage.Content>
+        <w:CircleScrollView x:Name="myscroller" Orientation="Vertical">
+            <StackLayout Padding="0,30" Orientation="Vertical">
+                <Button
+                    HeightRequest="120"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Default 0"
+                    WidthRequest="180" />
+                <Button
+                    HeightRequest="120"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Default 1"
+                    WidthRequest="180" />
+                <Button
+                    HeightRequest="120"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Default 2"
+                    WidthRequest="180" />
+                <Button
+                    HeightRequest="120"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Default 3"
+                    WidthRequest="180" />
+                <Button
+                    HeightRequest="120"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Default 4"
+                    WidthRequest="180" />
+                <Button
+                    HeightRequest="120"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Default 5"
+                    WidthRequest="180" />
+                <Button
+                    HeightRequest="120"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Default 6"
+                    WidthRequest="180" />
+                <Button
+                    HeightRequest="120"
+                    HorizontalOptions="Center"
+                    Text="Default 7"
+                    WidthRequest="180" />
+                <Button
+                    HeightRequest="120"
+                    HorizontalOptions="Center"
+                    Text="Default 8"
+                    WidthRequest="180" />
+                <Button
+                    HeightRequest="120"
+                    HorizontalOptions="Center"
+                    Text="Default 9"
+                    WidthRequest="180" />
+            </StackLayout>
+        </w:CircleScrollView>
+    </w:CirclePage.Content>
+</w:CirclePage>

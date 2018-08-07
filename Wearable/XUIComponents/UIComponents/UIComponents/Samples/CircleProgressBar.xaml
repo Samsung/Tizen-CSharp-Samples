@@ -1,0 +1,50 @@
+﻿<w:CirclePage
+    x:Class="UIComponents.Samples.CircleProgressBar"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UIComponents.Samples"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    NavigationPage.HasNavigationBar="False">
+    <w:CirclePage.BindingContext>
+        <local:CircleProgressBarViewModel />
+    </w:CirclePage.BindingContext>
+    <w:CirclePage.Content>
+        <StackLayout
+            Padding="0,30,0,0"
+            BackgroundColor="Black"
+            HorizontalOptions="Center"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand">
+            <Label
+                x:Name="label1"
+                FontAttributes="Bold"
+                FontSize="12"
+                Text="{Binding ProgressLabel1}"
+                TextColor="White" />
+            <Label
+                x:Name="label2"
+                Margin="0,40"
+                FontAttributes="Bold"
+                FontSize="12"
+                Text="{Binding ProgressLabel2}"
+                TextColor="White" />
+        </StackLayout>
+    </w:CirclePage.Content>
+    <w:CirclePage.CircleSurfaceItems>
+        <w:CircleProgressBarSurfaceItem
+            x:Name="progress1"
+            IsVisible="True"
+            Value="{Binding ProgressValue1}" />
+        <w:CircleProgressBarSurfaceItem
+            x:Name="progress2"
+            BackgroundColor="Black"
+            BackgroundLineWidth="15"
+            BackgroundRadius="70"
+            BarColor="Red"
+            BarLineWidth="15"
+            BarRadius="70"
+            IsVisible="True"
+            Value="{Binding ProgressValue2}" />
+    </w:CirclePage.CircleSurfaceItems>
+</w:CirclePage>

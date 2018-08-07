@@ -1,0 +1,23 @@
+﻿<ContentPage
+    x:Class="UIComponents.Samples.PageControl.Thumbnail"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ex="clr-namespace:UIComponents.Extensions"
+    xmlns:local="clr-namespace:UIComponents.Samples.PageControl"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ex:ThumbnailIndex HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ex:ThumbnailIndex.ThumbnailItems>
+                    <ex:ThumbnailItem Image="100_1.jpg" />
+                    <ex:ThumbnailItem Image="100_2.jpg" />
+                    <ex:ThumbnailItem Image="100_3.jpg" />
+                    <ex:ThumbnailItem Image="100_4.jpg" />
+                    <ex:ThumbnailItem Image="100_5.jpg" />
+                    <ex:ThumbnailItem Image="100_6.jpg" />
+                </ex:ThumbnailIndex.ThumbnailItems>
+            </ex:ThumbnailIndex>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

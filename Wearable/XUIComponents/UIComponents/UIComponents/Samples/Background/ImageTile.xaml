@@ -1,0 +1,18 @@
+﻿<ContentPage
+    x:Class="UIComponents.Samples.Background.ImageTile"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ex="clr-namespace:UIComponents.Extensions"
+    xmlns:local="clr-namespace:UIComponents.Samples.Background"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms">
+    <ContentPage.Content>
+        <StackLayout>
+            <ex:Background
+                HorizontalOptions="FillAndExpand"
+                Image="logo.png"
+                Option="Tile"
+                VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
