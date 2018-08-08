@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:CirclePageEx
+	x:Class="Alarm.Views.AlarmAlertPage"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:converters="clr-namespace:Alarm.Converters"
+	xmlns:resx="clr-namespace:Alarm.Resx"
+	xmlns:views="clr-namespace:Alarm.Views"
+	xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<converters:ScheduledDateTimeToTextConverter x:Key="TimeConverter" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<w:CirclePage.Content>
+		<AbsoluteLayout BackgroundColor="Black">
+			<Image
+				x:Name="AlarmRingImg"
+				AbsoluteLayout.LayoutBounds="133, 66, 94, 94"
+				AbsoluteLayout.LayoutFlags="None"
+				Source="alarm_ringing_icon.png" />
+			<Label
+				x:Name="TimeLabel"
+				AbsoluteLayout.LayoutBounds="0, 170, 360, 45"
+				AbsoluteLayout.LayoutFlags="None"
+				FontSize="12"
+				HorizontalTextAlignment="Center"
+				Text="{Binding Record.ScheduledDateTime, Converter={StaticResource TimeConverter}}"
+				TextColor="White" />
+		</AbsoluteLayout>
+	</w:CirclePage.Content>
+	<w:CirclePage.ActionButton>
+		<w:ActionButtonItem
+			x:Name="DismissButton"
+			Clicked="OnDismissButtonClicked"
+			Text="{x:Static resx:AppResources.Dismiss}" />
+	</w:CirclePage.ActionButton>
+</views:CirclePageEx>

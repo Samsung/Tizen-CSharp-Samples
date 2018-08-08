@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:CirclePageEx
+	x:Class="Alarm.Views.AlarmEditPage"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:views="clr-namespace:Alarm.Views"
+	xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+	RotaryFocusObject="{x:Reference TimeSelector}">
+	<w:CirclePage.Content>
+		<StackLayout
+			BackgroundColor="Black"
+			HorizontalOptions="FillAndExpand"
+			Orientation="Vertical"
+			VerticalOptions="FillAndExpand">
+			<w:CircleDateTimeSelector
+				x:Name="TimeSelector"
+				DateTime="{Binding SelectedDateTime, Mode=TwoWay}"
+				IsVisibleOfAmPm="True"
+				ValueType="Time" />
+		</StackLayout>
+	</w:CirclePage.Content>
+	<w:CirclePage.ActionButton>
+		<w:ActionButtonItem
+			x:Name="SaveButton"
+			Clicked="OnSaveButtonClicked"
+			Icon="ic_popup_btn_check.png" />
+	</w:CirclePage.ActionButton>
+</views:CirclePageEx>
