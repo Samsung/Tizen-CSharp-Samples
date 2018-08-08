@@ -131,7 +131,7 @@ namespace ApplicationControl
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 FontSize = 18,
-                LineBreakMode = LineBreakMode.WordWrap,
+                LineBreakMode = LineBreakMode.CharacterWrap,
             };
             _caption.Text = _data.Id;
 
