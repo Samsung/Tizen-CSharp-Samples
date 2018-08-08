@@ -1,0 +1,25 @@
+﻿<w:CirclePage
+    x:Class="UIComponents.Samples.ButtonList"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UIComponents"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    NavigationPage.HasNavigationBar="False"
+    RotaryFocusObject="{x:Reference buttonlist}">
+    <w:CirclePage.BindingContext>
+        <local:AppViewModel />
+    </w:CirclePage.BindingContext>
+    <w:CirclePage.Content>
+        <w:CircleListView
+            x:Name="buttonlist"
+            ItemTapped="OnItemTapped"
+            ItemsSource="{Binding ButtonSamples}">
+            <w:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}" />
+                </DataTemplate>
+            </w:CircleListView.ItemTemplate>
+        </w:CircleListView>
+    </w:CirclePage.Content>
+</w:CirclePage>

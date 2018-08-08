@@ -1,0 +1,39 @@
+﻿<w:CirclePage
+    x:Class="UIComponents.Samples.CircleSpinner.SpinnerDefault"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UIComponents.Samples.CircleSpinner"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    RotaryFocusObject="{x:Reference stepper}">
+    <w:CirclePage.BindingContext>
+        <local:SpinnerViewModel />
+    </w:CirclePage.BindingContext>
+    <w:CirclePage.Content>
+        <StackLayout Padding="0,50,0,0" Orientation="Vertical">
+            <Label
+                FontAttributes="Bold"
+                FontSize="11"
+                HorizontalTextAlignment="Center"
+                Text="Title"
+                TextColor="#0FB4EF" />
+            <Label
+                FontSize="8"
+                HorizontalTextAlignment="Center"
+                Text="unit"
+                TextColor="White" />
+            <w:CircleStepper
+                x:Name="stepper"
+                HorizontalOptions="CenterAndExpand"
+                Increment="7.5"
+                LabelFormat="%1.1f"
+                MarkerColor="Coral"
+                Maximum="99.0"
+                Minimum="9.0"
+                Value="{Binding Value}" />
+        </StackLayout>
+    </w:CirclePage.Content>
+    <w:CirclePage.ActionButton>
+        <w:ActionButtonItem Command="{Binding ButtonPressedExit}" Text="SET" />
+    </w:CirclePage.ActionButton>
+</w:CirclePage>

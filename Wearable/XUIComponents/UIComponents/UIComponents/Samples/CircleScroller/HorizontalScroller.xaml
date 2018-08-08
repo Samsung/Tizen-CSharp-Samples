@@ -1,0 +1,36 @@
+﻿<w:CirclePage
+    x:Class="UIComponents.Samples.CircleScroller.HorizontalScroller"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UIComponents.Samples.CircleScroller"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    RotaryFocusObject="{x:Reference myscroller}">
+    <w:CirclePage.Content>
+        <w:CircleScrollView x:Name="myscroller" Orientation="Horizontal">
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="FillAndExpand">
+                <Image Source="tw_btn_delete_holo_dark.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_ringtone_mute.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_ic_popup_btn_check.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_alert.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_bell.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_ringtone_sound.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_btn_delete_holo_dark.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_ringtone_mute.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_ic_popup_btn_check.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_alert.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_bell.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_ringtone_sound.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_btn_delete_holo_dark.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_ringtone_mute.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_ic_popup_btn_check.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_alert.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_bell.png" VerticalOptions="CenterAndExpand" />
+                <Image Source="tw_number_controller_icon_ringtone_sound.png" VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+        </w:CircleScrollView>
+    </w:CirclePage.Content>
+</w:CirclePage>

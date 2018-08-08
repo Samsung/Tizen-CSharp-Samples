@@ -1,0 +1,21 @@
+﻿<w:CirclePage
+    x:Class="UIComponents.Samples.Image"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UIComponents.Samples"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    RotaryFocusObject="{x:Reference myscroller}">
+    <w:CirclePage.Content>
+        <w:CircleScrollView x:Name="myscroller" Orientation="Vertical">
+            <StackLayout Padding="50,50" Orientation="Vertical">
+                <Image HorizontalOptions="Center" Source="png_image.png" />
+                <Image HorizontalOptions="Center" Source="grid_image/1_raw.png" />
+                <Image HorizontalOptions="Center" Source="grid_image/2_raw.png" />
+                <Image HorizontalOptions="Center" Source="animated_logo.gif" />
+                <Image HorizontalOptions="Center" Source="jpg_image.jpg" />
+                <Image HorizontalOptions="Center" Source="bmp_image.bmp" />
+            </StackLayout>
+        </w:CircleScrollView>
+    </w:CirclePage.Content>
+</w:CirclePage>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:IndexPage
+    x:Class="UIComponents.Samples.PageControl.CircleIndex"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UIComponents.Samples.PageControl"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms">
+    <ContentPage>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Image Source="tw_number_controller_icon_alert.png" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Image Source="music_controller_btn_mobile.png" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Image Source="music_controller_btn_play.png" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Image Source="music_controller_btn_repeat_all.png" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Image Source="music_controller_btn_shuffle_on.png" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Image Source="tw_number_controller_icon_bell.png" />
+        </StackLayout>
+    </ContentPage>
+</w:IndexPage>

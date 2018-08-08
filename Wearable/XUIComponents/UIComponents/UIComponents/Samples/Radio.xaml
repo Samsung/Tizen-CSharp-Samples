@@ -1,0 +1,25 @@
+﻿<w:CirclePage
+    x:Class="UIComponents.Samples.Radio"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UIComponents.Samples"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    RotaryFocusObject="{x:Reference myscroller}">
+    <w:CirclePage.Content>
+        <w:CircleScrollView x:Name="myscroller" Orientation="Vertical">
+            <StackLayout Padding="50,50" Orientation="Vertical">
+                <w:Radio
+                    GroupName="Group"
+                    HorizontalOptions="Center"
+                    IsSelected="True" />
+                <w:Radio GroupName="Group" HorizontalOptions="Center" />
+                <w:Radio GroupName="Group" HorizontalOptions="Center" />
+                <w:Radio
+                    GroupName="Group"
+                    HorizontalOptions="Center"
+                    IsEnabled="False" />
+            </StackLayout>
+        </w:CircleScrollView>
+    </w:CirclePage.Content>
+</w:CirclePage>
