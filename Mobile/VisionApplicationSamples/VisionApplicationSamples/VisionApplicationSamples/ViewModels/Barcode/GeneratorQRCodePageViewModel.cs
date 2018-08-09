@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -27,6 +28,8 @@ namespace VisionApplicationSamples.Barcode
         private int _inputWidth = 300;
         private int _inputHeight = 300;
         private string _inputMessage = "";
+        private string _generationResult = "";
+        private bool _isValid = false;
 
         public ICommand GenerateCommand { get; protected set; }
         public ICommand SetQrModeTypeCommand { get; protected set; }
@@ -44,8 +47,21 @@ namespace VisionApplicationSamples.Barcode
             SetVersionCommand = new Command(version =>
                 QRCodeGenerator.SetVersion((int)version));
 
-            GenerateCommand = new Command(() =>
-                RefreshPage(QRCodeGenerator.Generate(inputWidth, inputHeight, inputMessage)));
+            GenerateCommand = new Command(
+                () =>
+                {
+                    try
+                    {
+                        RefreshPage(QRCodeGenerator.Generate(inputWidth, inputHeight, inputMessage));
+                        IsValid = true;
+                        GenerationResultText = $"Success:";
+                    }
+                    catch (Exception e)
+                    {
+                        IsValid = false;
+                        GenerationResultText = $"Failure : {e.Message}. \nCheck QrMdoe, ECC, Version are valid or not ";
+                    }
+                });
         }
 
         protected IGeneratorQRCode QRCodeGenerator => DependencyService.Get<IGeneratorQRCode>();
@@ -100,6 +116,38 @@ namespace VisionApplicationSamples.Barcode
                 {
                     _inputMessage = value;
                     OnPropertyChanged(nameof(inputMessage));
+                }
+            }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                return _isValid;
+            }
+            set
+            {
+                if (_isValid != value)
+                {
+                    _isValid = value;
+                    OnPropertyChanged(nameof(IsValid));
+                }
+            }
+        }
+
+        public string GenerationResultText
+        {
+            get
+            {
+                return _generationResult;
+            }
+            set
+            {
+                if (_generationResult != value)
+                {
+                    _generationResult = value;
+                    OnPropertyChanged(nameof(GenerationResultText));
                 }
             }
         }

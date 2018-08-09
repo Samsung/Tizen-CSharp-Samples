@@ -75,7 +75,8 @@
                 </Grid>
             </RelativeLayout>
             <RelativeLayout HeightRequest="200">
-                <Image Source="{Binding GeneratedImage}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
+                <Label Text="{Binding GenerationResultText}"/>
+                <Image Source="{Binding GeneratedImage}" IsVisible="{Binding IsValid}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
                        RelativeLayout.WidthConstraint ="{ConstraintExpression Type=RelativeToParent, Property=Width,  Factor=0.9}"
                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"

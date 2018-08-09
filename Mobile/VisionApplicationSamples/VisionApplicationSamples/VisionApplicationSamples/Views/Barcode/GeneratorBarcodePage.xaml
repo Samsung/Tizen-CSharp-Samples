@@ -55,11 +55,12 @@
                             Command="{Binding SetBarcodeTypeCommand}" CommandParameter="{x:Static local:Barcode.BarcodeType.I25}"/>
 
                     <Button Text="Generate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand"
-                            Command="{Binding GenerateCommand}" />
+                            Command="{Binding GenerateCommand}"/>
                 </Grid>
             </RelativeLayout>
             <RelativeLayout HeightRequest="200">
-                <Image Source="{Binding GeneratedImage}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
+                <Label Text="{Binding GenerationResultText}"/>
+                <Image Source="{Binding GeneratedImage}" IsVisible="{Binding IsValid}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
                        RelativeLayout.WidthConstraint ="{ConstraintExpression Type=RelativeToParent, Property=Width,  Factor=0.9}"
                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0, Constant=10}"
