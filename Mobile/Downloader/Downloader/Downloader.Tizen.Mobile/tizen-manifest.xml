@@ -7,6 +7,7 @@
     </ui-application>
     <shortcut-list />
     <privileges>
-        <privilege>http://tizen.org/privilege/download</privilege>
+      <privilege>http://tizen.org/privilege/internet</privilege>
+      <privilege>http://tizen.org/privilege/download</privilege>
     </privileges>
 </manifest>
