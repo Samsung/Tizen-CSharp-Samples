@@ -76,8 +76,9 @@ namespace AppCommon.Cells
                 Text = "Path",
                 HorizontalOptions = LayoutOptions.StartAndExpand,
                 VerticalOptions = LayoutOptions.StartAndExpand,
-                FontSize = 25 * 72 * 2.6 / 316,
+                FontSize = 26 * 72 * 2.6 / 316,
                 TextColor = Color.FromRgb(146, 146, 146),
+                LineBreakMode = LineBreakMode.CharacterWrap
             };
             pathLabel.SetBinding(Label.TextProperty, "Path");
 
@@ -99,6 +100,10 @@ namespace AppCommon.Cells
                 Constraint.RelativeToParent((parent) =>
                 {
                     return parent.Height * 0.5198;
+                }),
+                Constraint.RelativeToParent((parent) =>
+                {
+                    return parent.Width * ( 1 - 2 * 0.0431);
                 }));
 
             var gestureRecognizer = new LongTapGestureRecognizer();

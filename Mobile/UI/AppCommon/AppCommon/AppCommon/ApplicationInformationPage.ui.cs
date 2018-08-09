@@ -130,7 +130,7 @@ namespace AppCommon
                 }),
                 Constraint.RelativeToParent((parent) =>
                 {
-                    return parent.Height * 0.0319;
+                    return parent.Height * 0.0519;
                 }));
 
             /// To display an application version
