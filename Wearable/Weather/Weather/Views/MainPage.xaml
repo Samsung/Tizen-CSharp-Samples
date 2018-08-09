@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
+             xmlns:behaviors="clr-namespace:Weather.Behaviors;assembly=Weather"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"            
+             xmlns:views="clr-namespace:Weather.Views;assembly=Weather"
+             x:Class="Weather.Views.MainPage"
+             x:Name="Root"
+             NavigationPage.HasNavigationBar="False"
+             RotaryFocusObject="{x:Reference myscroller}">
+
+
+    <w:CirclePage.BindingContext>
+        <viewModels:MainPageViewModel 
+            x:Name="ViewModel"              
+            Navigation="{Binding Source={x:Reference Name=Root}, Path=Navigation}" />
+    </w:CirclePage.BindingContext>
+
+
+    <w:CircleScrollView  x:Name="myscroller">
+        <StackLayout  
+            Orientation="Vertical"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Spacing="5">
+
+            <Label Text="Weather App"
+                   FontSize="12"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="End" 
+                   HeightRequest="120"
+                   MinimumHeightRequest="120"/>
+
+            <Label Text="Country code:"
+                   FontSize="8"  
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+
+            <w:PopupEntry BackgroundColor="White"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   WidthRequest="280"
+                   Text="{Binding EnteredCountry, Mode=OneWayToSource}">
+                <Entry.Behaviors>
+                    <behaviors:CountryCodeValidatorBehavior MaxLength="2" />
+                </Entry.Behaviors>
+            </w:PopupEntry>
+
+            <Label Text="City:"
+                   FontSize="8"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Fill"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+
+            <w:PopupEntry x:Name="CityEntry"
+                   BackgroundColor="White"
+                   HorizontalOptions="Center"
+                   WidthRequest="280"
+                   Text="{Binding EnteredCity, Mode=TwoWay}">
+                <Entry.Behaviors>
+                    <behaviors:CityNameValidatorBehavior
+                        City="{Binding Source={x:Reference Name=ViewModel}, Path=SelectedCity}"
+                        OnInputCompleted="{Binding Source={x:Reference Name=ViewModel}, Path=OnCityEnteredCommand}" />
+                </Entry.Behaviors>
+            </w:PopupEntry>
+
+
+            <Label Text="Matching Cities:"
+                   FontSize="6"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Fill"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" 
+                   IsVisible="{Binding Source={x:Reference Name=ViewModel}, Path=InvalidCityEntered}"/>
+            
+            <w:CircleListView ItemsSource="{Binding Cities}"
+                      SelectedItem="{Binding SelectedCity, Mode=TwoWay}"   
+                      IsVisible="{Binding Source={x:Reference Name=ViewModel}, Path=InvalidCityEntered}"
+                      HeightRequest="150"
+                      MinimumHeightRequest="150"
+                      WidthRequest="260" 
+                      HorizontalOptions="Center"
+                      BackgroundColor="Black">
+
+                <w:CircleListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="Black"
+                                Orientation="Vertical"                                
+                                HorizontalOptions="Center">
+                                <Label Text="{Binding Name}"
+                                           TextColor="LightGray"
+                                           FontSize="8"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </w:CircleListView.ItemTemplate>
+            </w:CircleListView>
+
+            <StackLayout VerticalOptions="Fill" MinimumHeightRequest="20" HeightRequest="20"> </StackLayout>
+            <Button                     
+                    Text="Check Weather"
+                    BackgroundColor="DarkGray"
+                    TextColor="White"
+                    Command="{Binding CheckWeatherCommand}"                    
+                    HeightRequest="90"
+                    MinimumHeightRequest="90">
+                <Button.CommandParameter>
+                    <views:CurrentWeatherPage
+                        CityData="{Binding Source={x:Reference Name=ViewModel}, Path=SelectedCity}" />
+                </Button.CommandParameter>
+            </Button>
+
+        </StackLayout>
+    </w:CircleScrollView>
+</w:CirclePage>

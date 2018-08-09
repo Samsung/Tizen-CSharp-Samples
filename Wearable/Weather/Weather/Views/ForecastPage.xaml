@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
+             xmlns:behaviors="clr-namespace:Weather.Behaviors;assembly=Weather"
+             xmlns:converters="clr-namespace:Weather.Converters;assembly=Weather"
+             xmlns:location="clr-namespace:Weather.Models.Location;assembly=Weather"
+             xmlns:controls="clr-namespace:Weather.Controls;assembly=Weather"
+             xmlns:views="clr-namespace:Weather.Views;assembly=Weather"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"            
+             x:Class="Weather.Views.ForecastPage"
+             x:Name="ForecastCirclePage"
+             NavigationPage.HasNavigationBar="False"
+             RotaryFocusObject="{x:Reference ForecastCirclePage}"
+             Title="Weather Forecast">
+
+    <w:CirclePage.Resources>
+        <ResourceDictionary>
+            <converters:TimeStampToDateConverter x:Key="TimeStampToDateConverter" />
+            <converters:TimeStampToTimeConverter x:Key="TimeStampToTimeConverter" />
+            <converters:DegreeToCardinalDirectionConverter x:Key="CardinalDirectionConverter" />
+            <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
+            <converters:MeasurementSystemConverter x:Key="MeasurementSystemConverter" />
+        </ResourceDictionary>
+    </w:CirclePage.Resources>
+
+    <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" >
+
+        <Label 
+            Text="{Binding SelectedForecast.CityName}"
+            HeightRequest="60"
+            MinimumHeightRequest="60"               
+            FontSize="10"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="End"/>
+        <Label
+            Text="{Binding SelectedForecast.TimeStamp, Converter={StaticResource TimeStampToDateConverter}}"
+            FontSize="8"
+            HorizontalTextAlignment="Center"/>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <StackLayout Orientation="Vertical">
+                <Image
+                    Source="{Binding SelectedForecast.Weather[0].Icon, Converter={StaticResource ImageSourceConverter}}"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    Aspect="AspectFit" />
+                <Label
+                    Text="{Binding SelectedForecast.Weather[0].Description}"                   
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    FontSize="5" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+                <controls:DoubleLabel
+                        MainText="{Binding SelectedForecast.WeatherData.Temperature, Converter={StaticResource MeasurementSystemConverter}, ConverterParameter='temp'}"
+                        SubText="Temperature" />
+                <controls:DoubleLabel
+                        MainText="{Binding SelectedForecast.Clouds.Percent, StringFormat=' {0}%'}"
+                        SubText="Clouds percent" />
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <controls:DoubleLabel
+                        MainText="{Binding SelectedForecast.Wind.Speed, Converter={StaticResource MeasurementSystemConverter}, ConverterParameter='speed'}"
+                        SubText="Wind speed" />
+            <controls:DoubleLabel
+                        MainText="{Binding SelectedForecast.Wind.Degree, Converter={StaticResource CardinalDirectionConverter}}"
+                        SubText="Wind direction" />
+        </StackLayout>
+    </StackLayout>
+</w:CirclePage>
