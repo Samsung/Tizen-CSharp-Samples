@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
+             xmlns:converters="clr-namespace:Weather.Converters;assembly=Weather"
+             x:Class="Weather.Views.ApiErrorPage"
+             NavigationPage.HasBackButton="False"        
+             NavigationPage.HasNavigationBar="False"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             >
+
+    <ContentPage.BindingContext>
+        <viewModels:ApiErrorViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TimeStampToDateConverter x:Key="TimeStampToDateConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <w:CircleStackLayout Orientation="Vertical" Spacing="10">
+        <Label Text="Error"
+               FontSize="12"
+               TextColor="OrangeRed"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"/>
+        <Label Text="Error occurred while trying to get response from API."
+               FontSize="8" 
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+        <Label Text="{Binding Code, StringFormat='HTTP status code: {0}'}"   
+               FontSize="6" 
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+        <Label Text="{Binding Message}"
+               FontSize="6" 
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+    </w:CircleStackLayout>
+    <w:CirclePage.ActionButton>
+        <w:ActionButtonItem Command="{Binding ExitAppCommand}" Text="Exit" />
+    </w:CirclePage.ActionButton>
+</w:CirclePage>
