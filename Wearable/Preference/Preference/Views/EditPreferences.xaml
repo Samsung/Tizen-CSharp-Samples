@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Preference.Tizen.Mobile.Views.EditPreferences"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             NavigationPage.HasNavigationBar="False"
+             RotaryFocusObject="{x:Reference scroller}">
+
+    <w:CircleScrollView x:Name="scroller">
+        <StackLayout Orientation="Vertical"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     Spacing="5">
+
+            <Label Text="Preferences"
+                    FontSize="Small"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="End" 
+                    HeightRequest="120"
+                    MinimumHeightRequest="120"/>
+
+            <w:PopupEntry HorizontalTextAlignment="Center"
+                          HorizontalOptions="CenterAndExpand"
+                          WidthRequest="280"
+                          Placeholder="Name"
+                          Text="{Binding NameValue, Mode=TwoWay}"/>
+
+            <w:PopupEntry HorizontalTextAlignment="Center"
+                          HorizontalOptions="Center"
+                          WidthRequest="280"
+                          Placeholder="Surname"
+                          Text="{Binding SurnameValue, Mode=TwoWay}"/>
+
+            <w:PopupEntry HorizontalTextAlignment="Center"
+                          HorizontalOptions="Center"
+                          WidthRequest="280"
+                          Placeholder="Age"
+                          Keyboard="Numeric"
+                          Text="{Binding AgeValue, Mode=TwoWay}"/>
+
+            <w:PopupEntry HorizontalTextAlignment="Center"
+                          HorizontalOptions="Center"
+                          WidthRequest="280"
+                          Placeholder="Height (meters)"
+                          Keyboard="Numeric"
+                          Text="{Binding HeightValue, Mode=TwoWay}"/>
+
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         WidthRequest="280">
+
+                <Label Text="C#"
+                       HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand"/>
+
+                <w:Check IsToggled="{Binding CSharpValue, Mode=TwoWay}"
+                         HorizontalOptions="EndAndExpand"/>
+                
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         WidthRequest="280">
+
+                <Label Text="Java"
+                       HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand"/>
+
+                <w:Check IsToggled="{Binding JavaValue, Mode=TwoWay}"
+                         HorizontalOptions="EndAndExpand"/>
+                
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         WidthRequest="280">
+
+                <Label Text="C++"
+                       HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand"/>
+
+                <w:Check IsToggled="{Binding CPlusPlusValue, Mode=TwoWay}"
+                         HorizontalOptions="EndAndExpand"/>
+                
+            </StackLayout>
+
+            <Button Text="Save"
+                    Command="{Binding SaveRequestCommand}"
+                    Margin="15"/>
+            
+        </StackLayout>
+
+    </w:CircleScrollView>
+
+</w:CirclePage>
