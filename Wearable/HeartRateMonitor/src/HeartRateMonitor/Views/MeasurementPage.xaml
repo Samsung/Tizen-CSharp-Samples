@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<forms:CirclePage xmlns:forms="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:controls="clr-namespace:HeartRateMonitor.Controls"
+                  x:Class="HeartRateMonitor.Views.MeasurementPage"
+                  BindingContext="{Binding Source={x:Static Application.Current}, Path=AppMainViewModel}"
+                  NavigationPage.HasBackButton="False"
+                  NavigationPage.HasNavigationBar="False">
+
+    <forms:CirclePage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseLabel"
+                   TargetType="Label">
+                <Setter Property="HorizontalTextAlignment"  Value="Center" />
+                <Setter Property="FontSize" Value="7"/>
+            </Style>
+            <Style x:Key="BpmLabel" BasedOn="{StaticResource BaseLabel}"
+                   TargetType="Label">
+                <Setter Property="HorizontalTextAlignment"  Value="Center" />
+                <Setter Property="FontSize" Value="10"/>
+            </Style>
+
+            <controls:DialogOK x:Key="PrivilegeDeniedDialog"
+                               Title="Privilege denied"
+                               Message="Application will be closed due to required privilege denied."
+                               ExecuteCommand="{Binding PrivilegeDeniedInfoCommand}"
+                               ConfirmCommand="{Binding AppUnusableConfirmedCommand}" />
+            <controls:DialogOK x:Key="NotSupportedDialog"
+                               Title="Sensor not supported"
+                               Message="Heart rate sensor is not supported. Application will be closed."
+                               ExecuteCommand="{Binding NotSupportedInfoCommand}"
+                               ConfirmCommand="{Binding AppUnusableConfirmedCommand}" />
+        </ResourceDictionary>
+    </forms:CirclePage.Resources>
+
+    <forms:CirclePage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" Padding="35,25,35,80">
+
+            <Label Style="{StaticResource BaseLabel}" Text="Ready">
+                <Label.Triggers>
+                    <DataTrigger Binding="{Binding IsMeasuring}" TargetType="Label" Value="True">
+                        <Setter Property="Text" Value="{Binding MeasurementCountdown, StringFormat='Measuring... ({0} sec.)'}"/>
+                    </DataTrigger>
+                    
+                    <DataTrigger Binding="{Binding IsFinished}" TargetType="Label" Value="True">
+                        <Setter Property="Text" Value="Finished." />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <Label Style="{StaticResource BaseLabel}" Text="Tap start to proceed.">
+                <Label.Triggers>
+                    <DataTrigger Binding="{Binding IsMeasuring}" TargetType="Label" Value="True">
+                        <Setter Property="Text" Value="Try to keep still and quiet." />
+                    </DataTrigger>
+                    
+                    <MultiTrigger TargetType="Label">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding IsFinished}"
+                                                  Value="True" />
+                            <BindingCondition Binding="{Binding MeasurementResultRange}"
+                                                  Value="-1" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Text"  Value="Your result is within the average resting rate (61-76 bpm)." />
+                    </MultiTrigger>
+                    
+                    <MultiTrigger TargetType="Label">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding IsFinished}"
+                                                  Value="True" />
+                            <BindingCondition Binding="{Binding MeasurementResultRange}"
+                                                  Value="0" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Text" Value="Your result is within the defined heart rate limit."/>
+                    </MultiTrigger>
+                    
+                    <MultiTrigger TargetType="Label">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding IsFinished}" Value="True" />
+                            <BindingCondition Binding="{Binding MeasurementResultRange}" Value="1" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Text" Value="Caution! Your result is above the defined heart rate limit." />
+                        <Setter Property="TextColor" Value="Red" />
+                    </MultiTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <AbsoluteLayout>
+                <Image x:Name="heart" Source="heart.png" 
+                   AbsoluteLayout.LayoutBounds=".5, .5, 100, 100"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+                <Label Text="Start" Style="{StaticResource BaseLabel}" VerticalOptions="Center"
+                   AbsoluteLayout.LayoutBounds=".5, .5, 100, 100"
+                   AbsoluteLayout.LayoutFlags="PositionProportional">
+                    <Label.Triggers>
+                        <DataTrigger Binding="{Binding IsMeasuring}" TargetType="Label" Value="True">
+                            <Setter Property="Text" Value="Cancel" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+
+                <Button Command="{Binding ToggleMeasurementCommand}" Opacity="0"
+                   AbsoluteLayout.LayoutBounds=".5, .5, 100, 100"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            </AbsoluteLayout>
+
+            <Label Opacity="0" Text="{Binding CurrentHeartRate, StringFormat='{0} bpm'}" Style="{StaticResource BpmLabel}">
+                <Label.Triggers>
+                    <DataTrigger Binding="{Binding IsMeasurementCounted}" TargetType="Label" Value="True">
+                        <Setter Property="Opacity" Value="1"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsFinished}" TargetType="Label" Value="True">
+                        <Setter Property="Opacity" Value="1"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+        </StackLayout>
+    </forms:CirclePage.Content>
+
+    <forms:CirclePage.ActionButton>
+        <forms:ActionButtonItem Icon="settings.png" Command="{Binding ShowSettingsCommand}"/>
+    </forms:CirclePage.ActionButton>
+</forms:CirclePage>
