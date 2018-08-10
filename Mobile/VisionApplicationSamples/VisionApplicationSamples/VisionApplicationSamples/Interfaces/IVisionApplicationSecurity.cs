@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-using Xamarin.Forms.Xaml;
-
 namespace VisionApplicationSamples
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MainPage : PageBase
-	{
-		public MainPage ()
-		{
-			SecurityProvider.Instance.CheckPrivilege();
-			InitializeComponent ();
-		}
-	}
+    public interface IVIsionApplicationSecurity
+    {
+        /// <summary>
+        /// Check privilege.
+        /// </summary>
+        void CheckPrivilege(string privilege);
+    }
 }

@@ -24,7 +24,6 @@ namespace VisionApplicationSamples.Face
     /// </summary>
     class DetectorPageViewModel : ViewModelBase
     {
-        //public ImageSource FaceImage { get; protected set; }
         public ImageSource FaceImage { get; protected set; }
 
         public Command DetectCommand { get; protected set; }

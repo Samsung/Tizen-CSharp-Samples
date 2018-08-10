@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace VisionApplicationSamples.Barcode
@@ -27,6 +28,16 @@ namespace VisionApplicationSamples.Barcode
         /// Sets ImagePath.
         /// </summary>
         string ImagePath { set; }
+
+        /// <summary>
+        /// Gets the number of detected Barcodes.
+        /// </summary>
+        int NumberOfBarcodes { get; }
+
+        /// <summary>
+        /// Gets regions of detected faces.
+        /// </summary>
+        List<string> Messages { get; }
 
         /// <summary>
         /// Detects Barcode from a path.

@@ -23,6 +23,7 @@ using Xamarin.Forms;
 using TizenMM = Tizen.Multimedia;
 using VisionApplicationSamples.Barcode;
 using VisionApplicationSamples.Tizen.Mobile.Barcode;
+using System.Collections.Generic;
 
 [assembly: Dependency(typeof(Detector))]
 namespace VisionApplicationSamples.Tizen.Mobile.Barcode
@@ -30,8 +31,10 @@ namespace VisionApplicationSamples.Tizen.Mobile.Barcode
     class Detector : IDetector
     {
         private MediaVisionSource _mvSource;
-
         private string _imagePath;
+
+        private int _numberOfBarcodes;
+        private List<string> _messages;
 
         TizenMM::Point _point;
         TizenMM::Size _size;
@@ -99,9 +102,34 @@ namespace VisionApplicationSamples.Tizen.Mobile.Barcode
         {
             TizenMM::Rectangle roi = new TizenMM::Rectangle(_point, _size);
 
-            var detectedBarcode = (await BarcodeDetector.DetectAsync(_mvSource, roi)).ElementAt(0);
+            var detectedBarcode = await BarcodeDetector.DetectAsync(_mvSource, roi);
 
-            return detectedBarcode.Message;
+            _numberOfBarcodes = detectedBarcode.Count();
+            _messages = new List<string>();
+
+            foreach (TizenMM.Vision.Barcode barcode in detectedBarcode)
+            {
+                _messages.Add(barcode.Message);
+            }
+
+            return _imagePath;
+        }
+
+        public int NumberOfBarcodes
+        {
+            get
+            {
+                return _numberOfBarcodes;
+            }
+        }
+
+        public List<string> Messages
+        {
+            get
+            {
+                return _messages;
+            }
+
         }
     }
 }

@@ -12,4 +12,9 @@
 	<icon>VisionApplicationSamples.Tizen.Mobile.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
 	</ui-application>
+    <privileges>
+        <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        <privilege>http://tizen.org/privilege/externalstorage</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
 </manifest>

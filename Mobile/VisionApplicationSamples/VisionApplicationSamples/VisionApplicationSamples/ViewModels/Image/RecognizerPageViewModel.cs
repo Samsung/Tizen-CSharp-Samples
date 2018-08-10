@@ -55,7 +55,6 @@ namespace VisionApplicationSamples.Image
             {
               RecognizeCommand.ChangeCanExecute();
               OnPropertyChanged(nameof(RecognizeCommand));
-
             }
         }
 

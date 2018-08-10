@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -25,9 +27,11 @@ namespace VisionApplicationSamples.Barcode
     /// 
     class DetectorPageViewModel : ViewModelBase
     {
+        private string _detectionResult = "";
         public ImageSource BarcodeImage { get; protected set; }
 
-        public string MessageText { get; protected set; }
+        public int BarcodeCount { get; protected set; }
+        public List<string> Items { get; protected set; }
 
         public ICommand DetectCommand { get; protected set; }
         protected IDetector BarcodeDetectorImpl => DependencyService.Get<IDetector>();
@@ -39,13 +43,52 @@ namespace VisionApplicationSamples.Barcode
             BarcodeDetectorImpl.ImagePath = path;
             BarcodeDetectorImpl.Decode();
 
-            DetectCommand = new Command(async () => UpdateMessage(await BarcodeDetectorImpl.Detect()));
+            DetectCommand = new Command(
+                async () =>
+                {
+                    try
+                    {
+                        RefreshPage(await BarcodeDetectorImpl.Detect());
+                        DetectionResultText = $"Success";
+                    }
+                    catch (Exception e)
+                    {
+                        DetectionResultText = $"Failure";
+                    }
+                }
+            );
         }
 
-        private void UpdateMessage(string message)
+        private void RefreshPage(string source)
         {
-            MessageText = message;
-            OnPropertyChanged(nameof(MessageText));
+            BarcodeImage = ImageSource.FromFile(source);
+            OnPropertyChanged(nameof(BarcodeImage));
+
+            RefreshMessage();
+        }
+
+        private void RefreshMessage()
+        {
+            BarcodeCount = BarcodeDetectorImpl.NumberOfBarcodes;
+            OnPropertyChanged(nameof(BarcodeCount));
+            Items = BarcodeDetectorImpl.Messages;
+            OnPropertyChanged(nameof(Items));
+        }
+
+        public string DetectionResultText
+        {
+            get
+            {
+                return _detectionResult;
+            }
+            set
+            {
+                if (_detectionResult != value)
+                {
+                    _detectionResult = value;
+                    OnPropertyChanged(nameof(DetectionResultText));
+                }
+            }
         }
     }
 }
