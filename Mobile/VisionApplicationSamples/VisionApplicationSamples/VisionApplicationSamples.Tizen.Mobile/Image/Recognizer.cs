@@ -41,7 +41,7 @@ namespace VisionApplicationSamples.Tizen.Mobile.Image
         private ImageObject _targObject;
 
         private bool _success;
-        private Quadrangle _detectedTargetRegion;
+        private List<Point> _recognizedTarget;
 
 
         /// <summary>
@@ -49,14 +49,17 @@ namespace VisionApplicationSamples.Tizen.Mobile.Image
         /// </summary>
         /// <param name="points"></param>
         /// <returns>A list of points</returns>
-        private List<Point> ConvertToPoints(TizenMM::Point[] points)
+        private List<Point> ConvertToPoints(Quadrangle regions)
         {
-            List<Point> convertedPoints = new List<Point>();
-            foreach (var point in points)
+            List<Point> convertedPoints = null;
+            if (regions != null)
             {
-                convertedPoints.Add(new Point(point.X, point.Y));
+                convertedPoints = new List<Point>();
+                foreach (var point in regions.Points)
+                {
+                    convertedPoints.Add(new Point(point.X, point.Y));
+                }
             }
-
             return convertedPoints;
         }
 
@@ -188,7 +191,7 @@ namespace VisionApplicationSamples.Tizen.Mobile.Image
             foreach (var ResultRecog in objLists)
             {
                 _success = ResultRecog.Success;
-                _detectedTargetRegion = ResultRecog.Region;
+                _recognizedTarget = ConvertToPoints(ResultRecog.Region);
             }
             return _sceneImagePath;
         }
@@ -197,7 +200,7 @@ namespace VisionApplicationSamples.Tizen.Mobile.Image
         {
             get
             {
-                return ConvertToPoints(_detectedTargetRegion.Points);
+                return _recognizedTarget;
             }
         }
     }

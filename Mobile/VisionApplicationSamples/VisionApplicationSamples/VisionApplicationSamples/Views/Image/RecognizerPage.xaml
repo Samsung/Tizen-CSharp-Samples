@@ -10,7 +10,7 @@
             <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0,0,.3,.3" AbsoluteLayout.LayoutFlags="All">
                 <Image Source="{Binding TargetImage}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
             </AbsoluteLayout>
-            <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="1,0,.7,1" AbsoluteLayout.LayoutFlags="All">
+            <AbsoluteLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="1,0,.6,.5" AbsoluteLayout.LayoutFlags="All">
                 <Image Source="{Binding SceneImage}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
             </AbsoluteLayout>
 
@@ -25,8 +25,8 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Text="Success" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" />
-                        <Entry Text="{Binding Success}" Grid.Row="0" Grid.Column="1" IsEnabled="False"/>
+                        <Label Text="Result" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" />
+                        <Entry Text="{Binding RecognitionResultText}" Grid.Row="0" Grid.Column="1" IsEnabled="False"/>
                     </Grid>
                 </StackLayout>
 

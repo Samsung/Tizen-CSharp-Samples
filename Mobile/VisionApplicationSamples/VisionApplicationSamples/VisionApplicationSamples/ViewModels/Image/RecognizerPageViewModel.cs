@@ -24,6 +24,7 @@ namespace VisionApplicationSamples.Image
     /// </summary>
     class RecognizerPageViewModel : ViewModelBase
     {
+        private string _recognitiondResult = "";
         public ImageSource TargetImage { get; protected set; }
 
         public ImageSource SceneImage { get; protected set; }
@@ -49,6 +50,22 @@ namespace VisionApplicationSamples.Image
             RecognizeCommand = new Command(async () => RefreshPage(await ImageRecogImpl.Recognize()), () => ImageRecogImpl.IsTargetFilled);
         }
 
+        public string RecognitionResultText
+        {
+            get
+            {
+                return _recognitiondResult;
+            }
+            set
+            {
+                if (_recognitiondResult != value)
+                {
+                    _recognitiondResult = value;
+                    OnPropertyChanged(nameof(RecognitionResultText));
+                }
+            }
+        }
+
         private void ReadyToRecognize(bool isReady)
         {
             if (isReady)
@@ -68,8 +85,7 @@ namespace VisionApplicationSamples.Image
 
         private void RefreshResult()
         {
-            Success = ImageRecogImpl.Success;
-            OnPropertyChanged(nameof(Success));
+            RecognitionResultText = ImageRecogImpl.Success ? "Target is recognized" : "There is no target";
 
             Items = ImageRecogImpl.RecognizedTarget;
             OnPropertyChanged(nameof(Items));
