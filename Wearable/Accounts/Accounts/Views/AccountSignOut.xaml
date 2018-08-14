@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              x:Class="Accounts.Views.AccountSignOut"
+              Title="Account info">
+    <w:CirclePage.Content>
+        <StackLayout Orientation="Vertical"
+                     HorizontalOptions="Center">
+            <Label x:Name="AccountLabel" 
+                   Text="" 
+                   LineBreakMode="CharacterWrap" 
+                   FontSize = "Small"
+                   HorizontalTextAlignment="Center"/>
+            
+            <Label Text="Account ID" 
+                   LineBreakMode="WordWrap" 
+                   FontSize = "Micro"
+                   HorizontalTextAlignment="Center"/>
+            
+            <Button Text="Sign out"
+                    Clicked="SignOutClicked"
+                    WidthRequest="160"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Font="Large" />
+        </StackLayout>
+    </w:CirclePage.Content>
+</w:CirclePage>
