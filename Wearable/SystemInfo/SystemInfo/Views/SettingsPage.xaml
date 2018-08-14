@@ -48,7 +48,7 @@
                     SubText="Motion"/>
                 <controls:DoubleLabel
                     MainText="{Binding MotionActivationEnabled}"
-                    SubText="Motion Activatgion"/>
+                    SubText="Motion Activation"/>
 
 
             </StackLayout>
