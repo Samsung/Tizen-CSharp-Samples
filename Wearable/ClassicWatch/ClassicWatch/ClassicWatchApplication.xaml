@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+	x:Class="ClassicWatch.ClassicWatchApplication"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:ClassicWatch">
+	<Application.MainPage>
+		<ContentPage>
+			<AbsoluteLayout BackgroundColor="Black">
+				<!--  Stacks images in sequence in layout for avoiding image hide  -->
+				<!--  background for watch  -->
+				<Image
+					x:Name="bg_watch"
+					AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+					AbsoluteLayout.LayoutFlags="All"
+					Source="images/lux_3_bg_01.png" />
+				<!--
+					background for phase
+					bottom is phase_nightsky_bg,
+					and then stacks star , cover and window frame
+				-->
+				<Image
+					x:Name="phase_nightsky_bg"
+					AbsoluteLayout.LayoutBounds="60, 60, 240, 240"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_module_calendar_phase_nightsky.png" />
+				<Image
+					x:Name="phase_nightsky_star"
+					AbsoluteLayout.LayoutBounds="60, 60, 240, 240"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_module_calendar_phase_nightsky_02.png" />
+				<Image
+					x:Name="phase_cover"
+					AbsoluteLayout.LayoutBounds="60, 60, 240, 240"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_module_calendar_phase_cover_01.png" />
+				<Image
+					x:Name="phase_cover_window_frame"
+					AbsoluteLayout.LayoutBounds="60, 60, 240, 240"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_module_calendar_phase_windowframe.png" />
+
+				<!--
+					background for day of week
+					right bottom side background image for day of week hand
+				-->
+				<Image
+					x:Name="bg_dayofweek"
+					AbsoluteLayout.LayoutBounds="180, 175, 128, 128"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_calendar_module_day.png" />
+				<!--
+					background for month
+					left bottom side background image for month hand
+				-->
+				<Image
+					x:Name="bg_month"
+					AbsoluteLayout.LayoutBounds="52, 175, 128, 128"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_calendar_module_month.png" />
+
+				<!--  background for num of day  -->
+				<Image
+					x:Name="bg_daynum"
+					AbsoluteLayout.LayoutBounds="286, 154, 52, 52"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_day_num_bg.png" />
+				<!--
+					Label for num of day
+					X,Y position and width, height are same as bg_daynum
+					Label value binding to Time.day that is number of month
+				-->
+				<Label
+					x:Name="label_daynum"
+					AbsoluteLayout.LayoutBounds="286, 154, 52, 52"
+					AbsoluteLayout.LayoutFlags="None"
+					FontSize="9"
+					HorizontalTextAlignment="Center"
+					Text="{Binding Time.Day}"
+					TextColor="#333333"
+					VerticalTextAlignment="Center" />
+
+				<!--
+					hand for month module
+					Y position of month shadow hand is different to Y position of hand of month
+					Shadow hand moves 4 pixel to bottom from month hand.
+					X position and width/heheightgith are same both month hand and shadow hand.
+				-->
+				<Image
+					x:Name="hand_month_shadow"
+					AbsoluteLayout.LayoutBounds="52, 179, 128, 128"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_hands_module_calendar_shadow.png" />
+				<Image
+					x:Name="hand_month"
+					AbsoluteLayout.LayoutBounds="52, 175, 128, 128"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_hands_module_calendar.png" />
+
+				<!--
+					hand for day of week module
+					Y position of day shadow is different to Y position of hand of day.
+					Shadow hand moves 4 pixel to bottom from day hand.
+					X position and width/height are same both day hand and shadow hand.
+				-->
+				<Image
+					x:Name="hand_day_of_month_shadow"
+					AbsoluteLayout.LayoutBounds="180, 179, 128, 128"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_hands_module_calendar_shadow.png" />
+				<Image
+					x:Name="hand_day_of_month"
+					AbsoluteLayout.LayoutBounds="180, 175, 128, 128"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_hands_module_calendar.png" />
+
+				<!--
+					hand for second
+					Y position of second shadow is different to Y position of hand of second.
+					Shadow hand moves 9 pixel to bottom from second hand.
+					X position and width/height are same both second hand and shadow hand.
+				-->
+				<Image
+					x:Name="hand_sec_shadow"
+					AbsoluteLayout.LayoutBounds="165, 9, 30, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_hands_sec_shadow.png" />
+				<Image
+					x:Name="hand_sec"
+					AbsoluteLayout.LayoutBounds="165, 0, 30, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_hands_sec.png" />
+
+				<!--
+					hand for minute
+					Y position of minute shadow is different to Y position of hand of minute.
+					Shadow hand moves 4 pixel to bottom from minute hand.
+					X position and width/height are same both minute hand and shadow hand.
+				-->
+				<Image
+					x:Name="hand_min_shadow"
+					AbsoluteLayout.LayoutBounds="165, 4, 30, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_hands_min_shadow.png" />
+				<Image
+					x:Name="hand_min"
+					AbsoluteLayout.LayoutBounds="165, 0, 30, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_hands_min.png" />
+
+				<!--
+					hand for hour
+					Y position of hour shadow is different to Y position of hand of hour.
+					Shadow hand moves 4 pixel to bottom from hour hand.
+					X position and width/height are same both hour hand and shadow hand.
+				-->
+				<Image
+					x:Name="hand_hr_shadow"
+					AbsoluteLayout.LayoutBounds="165, 4, 30, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_hands_hr_shadow.png" />
+				<Image
+					x:Name="hand_hr"
+					AbsoluteLayout.LayoutBounds="165, 0, 30, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/lux_3_hands_hr.png" />
+			</AbsoluteLayout>
+		</ContentPage>
+	</Application.MainPage>
+</Application>
