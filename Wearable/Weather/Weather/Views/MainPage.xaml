@@ -38,15 +38,15 @@
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center" />
 
-            <w:PopupEntry BackgroundColor="White"
+            <Entry BackgroundColor="White"
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="Center"
                    WidthRequest="280"
-                   Text="{Binding EnteredCountry, Mode=OneWayToSource}">
+                   Text="{Binding EnteredCountry, Mode=TwoWay}">
                 <Entry.Behaviors>
                     <behaviors:CountryCodeValidatorBehavior MaxLength="2" />
                 </Entry.Behaviors>
-            </w:PopupEntry>
+            </Entry>
 
             <Label Text="City:"
                    FontSize="8"

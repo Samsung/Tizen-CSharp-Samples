@@ -195,6 +195,9 @@ namespace Weather.ViewModels
             CheckWeatherCommand = new Command<Page>(ExecuteCheckWeatherCommand, CanExecuteCheckWeatherCommand);
 
             OnCityEnteredCommand = new Command(() => SelectedCity = Cities.FirstOrDefault());
+
+            // Fill in the country code for better "first run experience"           
+            SetProperty<string>(ref _enteredCountry, "US");            
         }
 
         /// <summary>
