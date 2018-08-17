@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="AppHistory.AppHistoryInformationPage"
+             RotaryFocusObject="{x:Reference appHistoryInformationList}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+        <w:CircleListView x:Name="appHistoryInformationList" SeparatorVisibility="Default" HasUnevenRows="True" ItemSelected="OnItemSelected">
+            <w:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,15">
+                            <Label
+                                Text="{Binding Name}"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="WordWrap"
+                                FontSize="9"
+                                TextColor="White"/>
+                            <Label
+                                Text="{Binding Information}"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="WordWrap"
+                                FontSize="7"
+                                TextColor="LightGray"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </w:CircleListView.ItemTemplate>
+        </w:CircleListView>
+    </ContentPage.Content>
+</w:CirclePage>
