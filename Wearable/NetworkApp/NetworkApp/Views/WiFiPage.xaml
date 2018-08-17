@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:local="clr-namespace:NetworkApp.Converters"
+              x:Class="NetworkApp.Views.WifiPage"
+              >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:WiFiStatusToColorConverter x:Key="statusToColor" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand">
+
+        <Button Margin="20"
+                Text="{Binding Status,
+                        StringFormat='Wi-Fi status: {0}'}"
+                WidthRequest="200"
+                FontSize="Micro"
+                HorizontalOptions="Center"
+                Command="{Binding ChangeConnectionStatusCommand}"
+                BackgroundColor="{Binding Status, 
+                                  Converter={StaticResource statusToColor}}"/>
+
+        <StackLayout IsVisible="{Binding IsTurnedOn}"
+                     VerticalOptions="EndAndExpand">
+
+            <Label Text="{Binding ConnectedNetwork}"
+                   FontSize="Micro"
+                   HorizontalTextAlignment="Center"/>
+            <Button x:Name="scanButton"
+                    Text="Search for networks"
+                    FontSize="Micro"
+                    Command="{Binding PushScanNetworksPageCommand}"/>
+
+            <Button Text="Disconnect"
+                    FontSize="Micro"
+                    Command="{Binding DisconnectCommand}"
+                    IsEnabled="{Binding IsConnected}"/>
+
+            <Button Text="Forget"
+                    FontSize="Micro"
+                    Command="{Binding ForgetCommand}"
+                    IsEnabled="{Binding IsConnected}"/>
+        </StackLayout>
+    </StackLayout>
+</w:CirclePage>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:IndexPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="NetworkApp.Views.ConnectionPage">
+
+    <w:IndexPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="VerticalOptions"
+                        Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions"
+                        Value="CenterAndExpand"/>
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center"/>
+                <Setter Property="FontSize"
+                        Value="Micro"/>
+            </Style>
+        </ResourceDictionary>
+    </w:IndexPage.Resources>
+
+    <ContentPage x:Name="CurrentConnection">
+        <Label Text="{Binding CurrentConnectionLabel}"
+               Style="{StaticResource labelStyle}"/>
+    </ContentPage>
+
+    <ContentPage x:Name="WifiState">
+        <Label Text="{Binding WifiStateLabel}"
+              Style="{StaticResource labelStyle}"/>
+    </ContentPage>
+
+    <ContentPage x:Name="CellularState">
+        <Label Text="{Binding CellularStateLabel}"
+               Style="{StaticResource labelStyle}"/>
+    </ContentPage>
+
+    <ContentPage x:Name="IPAddress">
+        <Label Text="{Binding IPAddressLabel}"
+               Style="{StaticResource labelStyle}"/>
+    </ContentPage>
+
+    <ContentPage x:Name="WifiMacAddress">
+        <Label Text="{Binding WifiMacAddressLabel}"
+               Style="{StaticResource labelStyle}"/>
+    </ContentPage>
+
+    <ContentPage x:Name="ProxyAddress">
+        <Label Text="{Binding ProxyAddressLabel}"
+               Style="{StaticResource labelStyle}"/>
+    </ContentPage>
+</w:IndexPage>
