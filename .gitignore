@@ -321,3 +321,6 @@ ASALocalRun/
 # MSBuild Binary and Structured Log
 *.binlog
 
+# Stylecop files
+Settings.StyleCop
+StyleCop.Cache
