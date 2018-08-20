@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+	x:Class="ChronographWatch.ChronographWatchApplication"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:converters="clr-namespace:ChronographWatch.Converters"
+	xmlns:local="clr-namespace:ClassicWatch">
+	<Application.MainPage>
+		<ContentPage>
+			<ContentPage.Resources>
+				<ResourceDictionary>
+					<converters:WatchModeToVisibilityConverter x:Key="VisibilityConverter" />
+				</ResourceDictionary>
+			</ContentPage.Resources>
+			<AbsoluteLayout BackgroundColor="Transparent">
+				<!--  Stacks images in sequence in layout for avoiding image hide  -->
+				<!--
+					background for watch
+					This image set invisible when watch is ambient mode.
+				-->
+				<Image
+					x:Name="bg_watch"
+					AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+					AbsoluteLayout.LayoutFlags="All"
+					IsVisible="{Binding AmbientModeDisabled}"
+					Source="images/chrono_clock_bg.png" />
+				<!--  background for watch dial  -->
+				<Image
+					x:Name="bg_watch_dial"
+					AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+					AbsoluteLayout.LayoutFlags="All"
+					Source="images/chrono_clock_dial_04.png" />
+				<!--
+					background for stopwatch 30 min
+					This image always visible watch and Chronograph mode.
+				-->
+				<Image
+					x:Name="bg_stopwatch_30_min"
+					AbsoluteLayout.LayoutBounds="117, 30, 126, 126"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/chrono_ss_30_unit_bg.png" />
+				<!--
+					hand for stopwatch 30 mins
+					This image always visible watch and Chronograph mode.
+				-->
+				<Image
+					x:Name="hand_stopwatch_30_min"
+					AbsoluteLayout.LayoutBounds="174, 30, 12, 126"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/chrono_ss_30_hand.png" />
+				<!--
+					background for stopwatch 12 hours
+					This image always visible watch and Chronograph mode.
+				-->
+				<Image
+					x:Name="bg_stopwatch_12_hr"
+					AbsoluteLayout.LayoutBounds="117, 204, 126, 126"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/chrono_h_12_unit_bg.png" />
+				<!--
+					hand for stopwatch 12 hours
+					This image always visible watch and Chronograph mode.
+				-->
+				<Image
+					x:Name="hand_stopwatch_12_hr"
+					AbsoluteLayout.LayoutBounds="174, 204, 12, 126"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/chrono_h_12_hand.png" />
+				<!--
+					hand for stopwatch second
+					This hand always visible watch and Chronograph mode.
+				-->
+				<Image
+					x:Name="hand_stopwatch_sec"
+					AbsoluteLayout.LayoutBounds="170, 0, 20, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					Source="images/chrono_stopwatch_hand_sec.png" />
+				<!--
+					background for num of day
+					This image set invisible when mode is Chronograph.
+				-->
+				<Image
+					x:Name="bg_daynum"
+					AbsoluteLayout.LayoutBounds="245, 154, 52, 52"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Watch}}"
+					Source="images/chrono_date_bg.png" />
+				<!--
+					Label for num of day
+					X,Y position and width, height are same as bg_daynum
+					Label Text value binding to Time.day that is number of month.
+					This label set invisible when mode is Chronograph.
+				-->
+				<Label
+					x:Name="label_daynum"
+					AbsoluteLayout.LayoutBounds="245, 154, 52, 52"
+					AbsoluteLayout.LayoutFlags="None"
+					FontSize="8"
+					HorizontalTextAlignment="Center"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Watch}}"
+					Text="{Binding Time.Day}"
+					TextColor="#B2FAFAFA"
+					VerticalTextAlignment="Center" />
+				<!--
+					background for second
+					Y position = half of circle (360/2) - half of image width (126/2) = 180 - 63 = 117
+					This Image set invisible when mode is Chronograph.
+				-->
+				<Image
+					x:Name="bg_watch_sec"
+					AbsoluteLayout.LayoutBounds="30, 117, 126, 126"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Watch}}"
+					Source="images/chrono_s_60_unit_bg.png" />
+
+				<!--
+					hand for watch second shadow
+					X position = start of x position of bg + half of bg width - second image width = 30 + 126/2 - 12/2 = 87
+					This Image set invisible when mode is Chronograph.
+				-->
+				<Image
+					x:Name="hand_sec_shadow"
+					AbsoluteLayout.LayoutBounds="87, 119, 12, 126"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Watch}}"
+					Opacity="0.3"
+					Source="images/chrono_s_60_hand_shadow.png" />
+				<!--
+					hand for watch second
+					X position = start of x position of bg + half of bg width - second image width = 30 + 126/2 - 12/2 = 87
+					This Image set invisible when mode is Chronograph.
+				-->
+				<Image
+					x:Name="hand_sec"
+					AbsoluteLayout.LayoutBounds="87, 117, 12, 126"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Watch}}"
+					Source="images/chrono_s_60_hand.png" />
+				<!--
+					hand for hour shadow
+					Y position of hour shadow is different to Y position of hand of hour.
+					Shadow hand moves 6 pixel to bottom from hour hand.
+					X position and width/height are same both hour hand and shadow hand.
+					X position = half of circle (360/2) - half of width (28/2) = 180 - 14 = 166
+					This Image set invisible when mode is Chronograph.
+				-->
+				<Image
+					x:Name="hand_hr_shadow"
+					AbsoluteLayout.LayoutBounds="166, 6, 28, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Watch}}"
+					Opacity="0.3"
+					Source="images/chrono_hand_hour_shadow.png" />
+				<!--
+					hand for hour
+					X position and width/height are same both hour hand and shadow hand.
+					X position = half of circle (360/2) - half of width (28/2) = 180 - 14 = 166
+					This Image set invisible when mode is Chronograph.
+				-->
+				<Image
+					x:Name="hand_hr"
+					AbsoluteLayout.LayoutBounds="166, 0, 28, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Watch}}"
+					Source="images/chrono_hand_hour.png" />
+
+				<!--
+					hand for minute shadow
+					Y position of minute shadow is different to Y position of hand of minute.
+					Shadow hand moves 6 pixel to bottom from minute hand.
+					X position and width/height are same both minute hand and shadow hand.
+					X position = half of circle (360/2) - half of image width (28/2) = 180 - 14 = 166
+					This Image set invisible when mode is Chronograph.
+				-->
+				<Image
+					x:Name="hand_min_shadow"
+					AbsoluteLayout.LayoutBounds="166, 6, 28, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Watch}}"
+					Opacity="0.3"
+					Source="images/chrono_hand_min_shadow.png" />
+				<!--
+					hand for minute
+					X position and width/height are same both minute hand and shadow hand.
+					X position = half of circle (360/2) - half of image width (28/2) = 180 - 14 = 166
+					This Image set invisible when mode is Chronograph.
+				-->
+				<Image
+					x:Name="hand_min"
+					AbsoluteLayout.LayoutBounds="166, 0, 28, 360"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Watch}}"
+					Source="images/chrono_hand_min.png" />
+				<!--  resources for StopWatch mode  -->
+				<!--
+					Label for Resume and Stop Button
+					This Label Text and Color value binding to WatchModel.State
+					If State is Started, Text is Stop and color set Red.
+					If State is Pause, Text is Resume and color set LightGreen.
+					This Label set invisible when mode is Watch.
+				-->
+				<Label
+					x:Name="label_state"
+					AbsoluteLayout.LayoutBounds="22, 160, 108, 40"
+					AbsoluteLayout.LayoutFlags="None"
+					FontAttributes="Bold"
+					FontSize="7"
+					HorizontalTextAlignment="Center"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Chronograph}}"
+					TextColor="LightGreen"
+					VerticalTextAlignment="Center">
+					<Label.Triggers>
+						<DataTrigger
+							Binding="{Binding State}"
+							TargetType="Label"
+							Value="Started">
+							<Setter Property="Text" Value="STOP" />
+							<Setter Property="TextColor" Value="Red" />
+						</DataTrigger>
+						<DataTrigger
+							Binding="{Binding State}"
+							TargetType="Label"
+							Value="Paused">
+							<Setter Property="Text" Value="RESUME" />
+						</DataTrigger>
+						<DataTrigger
+							Binding="{Binding State}"
+							TargetType="Label"
+							Value="Stopped">
+							<Setter Property="Text" Value=" " />
+						</DataTrigger>
+					</Label.Triggers>
+				</Label>
+				<!--
+					Label for exit button
+					This Label set invisible when mode is Watch.
+				-->
+				<Label
+					x:Name="label_exit"
+					AbsoluteLayout.LayoutBounds="230, 160, 108, 40"
+					AbsoluteLayout.LayoutFlags="None"
+					FontAttributes="Bold"
+					FontSize="7"
+					HorizontalTextAlignment="Center"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Chronograph}}"
+					Text="EXIT"
+					TextColor="Blue"
+					VerticalTextAlignment="Center" />
+				<!--  this translucent images indicate the area to receive the touch.  -->
+				<!--
+					Image for Entering Chronograph mode button
+					This image is added for pressed effect and receiving gesture event.
+					This translucent image area is the same as bg_stopwatch_30_min image's area.
+					This Image set invisible when mode is Chronograph.
+				-->
+				<Image
+					AbsoluteLayout.LayoutBounds="117, 30, 126, 126"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Watch}}"
+					Opacity="0"
+					Source="images/event_spot.png">
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnEnterEventTapped" />
+					</Image.GestureRecognizers>
+				</Image>
+				<!--
+					Image for Stop and Resume button
+					This image is added for pressed effect and receiving gesture event.
+					This translucent image area X position and Width is the same as label_state area.
+					This Image set invisible when mode is Watch.
+				-->
+				<Image
+					AbsoluteLayout.LayoutBounds="22, 126, 108, 108"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Chronograph}}"
+					Opacity="0"
+					Source="images/event_spot.png">
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnLeftEventTapped" />
+					</Image.GestureRecognizers>
+				</Image>
+				<!--
+					Image for Exit button
+					This image is added for pressed effect and receiving gesture event.
+					This translucent image area X position and Width is the same as label_exit area.
+					This Image set invisible when mode is Watch.
+				-->
+				<Image
+					AbsoluteLayout.LayoutBounds="230, 126, 108, 108"
+					AbsoluteLayout.LayoutFlags="None"
+					IsVisible="{Binding Mode, Converter={StaticResource VisibilityConverter}, ConverterParameter={x:Static converters:Mode.Chronograph}}"
+					Opacity="0"
+					Source="images/event_spot.png">
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnRightEventTapped" />
+					</Image.GestureRecognizers>
+				</Image>
+			</AbsoluteLayout>
+		</ContentPage>
+	</Application.MainPage>
+</Application>
