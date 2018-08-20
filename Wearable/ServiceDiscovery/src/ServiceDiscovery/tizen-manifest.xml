@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.ServiceDiscovery" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="wearable" />
+    <ui-application appid="org.tizen.example.ServiceDiscovery" exec="ServiceDiscovery.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>ServiceDiscovery</label>
+        <icon>ServiceDiscovery.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/internet</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
+    <feature name="http://tizen.org/feature/network.service_discovery.dnssd">true</feature>
+</manifest>

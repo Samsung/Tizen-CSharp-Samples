@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<forms:CirclePage xmlns:forms="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:local="clr-namespace:ServiceDiscovery.ViewModels"
+                  x:Class="ServiceDiscovery.Views.DiscoveryPage"
+                  NavigationPage.HasNavigationBar="False"
+                  RotaryFocusObject="{x:Reference list}">
+    
+    <forms:CirclePage.BindingContext>
+        <local:DiscoveryPageViewModel x:Name="viewModel"/>
+    </forms:CirclePage.BindingContext>
+
+    <forms:CirclePage.Content>
+        <StackLayout Margin="30,15,30,80" VerticalOptions="Center">
+            
+            <Label Text="{Binding TitleText}" HorizontalOptions="Center" TextColor="White"/>
+            
+            <forms:PopupEntry Placeholder="Service type (e.g. _http._tcp)" 
+                              Text="{Binding ServiceType}" IsVisible="{Binding IsNotDiscovering}"/>
+
+            <forms:CircleListView x:Name="list" ItemsSource="{Binding Services}"
+                                  HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                <forms:CircleListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical"                                
+                                         HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="10"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </forms:CircleListView.ItemTemplate>
+            </forms:CircleListView>
+            
+        </StackLayout>
+    </forms:CirclePage.Content>
+
+    <forms:CirclePage.ActionButton>
+        <forms:ActionButtonItem Text="{Binding ActionText}"
+                                Command="{Binding ChangeDiscoveryStateCommand}"/>
+    </forms:CirclePage.ActionButton>
+
+</forms:CirclePage>
