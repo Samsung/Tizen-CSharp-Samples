@@ -40,7 +40,7 @@ namespace NFCSampleApp
 
             if (!nfc.IsNfcSupported())
             {
-                layout.Children.Add(CreateLabel("NFC is not supported"););
+                layout.Children.Add(CreateLabel("NFC is not supported"));
                 return;
             }
 
