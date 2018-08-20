@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<forms:CirclePage xmlns:forms="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:local="clr-namespace:ServiceDiscovery.ViewModels"
+                  x:Class="ServiceDiscovery.Views.RegisterPage"
+                  NavigationPage.HasNavigationBar="False">
+
+    <forms:CirclePage.BindingContext>
+        <local:RegisterPageViewModel x:Name="viewModel"/>
+    </forms:CirclePage.BindingContext>
+    
+    <forms:CirclePage.Content>
+        <forms:CircleScrollView VerticalOptions="FillAndExpand" Margin="30,30,30,0" Padding="0,0,0,80">
+            <StackLayout>
+                <Label Text="Service type:" HorizontalTextAlignment="Center" FontSize="8"/>
+                <forms:PopupEntry Placeholder="Enter service type" Text="{Binding ServiceType}"/>
+
+                <Label Text="Service name:" HorizontalTextAlignment="Center" FontSize="8"/>
+                <forms:PopupEntry Placeholder="Enter service name" Text="{Binding ServiceName}"/>
+
+                        <Label Text="Port number:" HorizontalTextAlignment="Center" FontSize="8"/>
+                <forms:PopupEntry Placeholder="Enter port number" Text="{Binding PortNumber}"
+                                  Keyboard="Numeric"/>
+            </StackLayout>
+        </forms:CircleScrollView>
+    </forms:CirclePage.Content>
+
+    <forms:CirclePage.ActionButton>
+        <forms:ActionButtonItem x:Name="registerButton" Text="Register" Command="{Binding RegisterServiceCommand}" IsEnable="{Binding CanRegister}"/>
+    </forms:CirclePage.ActionButton>
+</forms:CirclePage>
