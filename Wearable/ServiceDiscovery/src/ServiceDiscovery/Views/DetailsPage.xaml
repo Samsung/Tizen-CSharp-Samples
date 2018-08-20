@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<forms:CirclePage xmlns:forms="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:local="clr-namespace:ServiceDiscovery.Converters"
+                  x:Class="ServiceDiscovery.Views.DetailsPage"
+                  NavigationPage.HasNavigationBar="False"
+                  RotaryFocusObject="{x:Reference scroll}">
+    
+    <forms:CirclePage.Resources>
+        <ResourceDictionary>
+            <local:IPAddressToStringConverter x:Key="ipToString"/>
+
+            <Style x:Key="NameLabel" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+            
+            <Style x:Key="DetailLabel" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="8"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </forms:CirclePage.Resources>
+    
+    <ContentPage.Content>
+        <forms:CircleScrollView x:Name="scroll" Margin="30,15,30,15" HorizontalOptions="Center">
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Name" Style="{StaticResource NameLabel}"/>
+                <Label Text="{Binding Service.Name}" Style="{StaticResource DetailLabel}"/>
+
+                <Label Text="Type" Style="{StaticResource NameLabel}"/>
+                <Label Text="{Binding Service.Type}" Style="{StaticResource DetailLabel}"/>
+
+                <Label Text="IP v4 address" Style="{StaticResource NameLabel}"/>
+                <Label Text="{Binding Service.IPv4, Converter={StaticResource ipToString}}" 
+                       Style="{StaticResource DetailLabel}"/>
+
+                <Label Text="IP v6 address" Style="{StaticResource NameLabel}"/>
+                <Label Text="{Binding Service.IPv6, Converter={StaticResource ipToString}}" 
+                       Style="{StaticResource DetailLabel}"/>
+
+                <Label Text="Port" Style="{StaticResource NameLabel}"/>
+                <Label Text="{Binding Service.Port}" Style="{StaticResource DetailLabel}"/>
+            </StackLayout>
+        </forms:CircleScrollView>
+    </ContentPage.Content>
+</forms:CirclePage>

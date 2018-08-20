@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ServiceDiscovery.Views.MainPage"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Margin="30,0,30,0">
+            <Label Text="DNS-SD Service Registration" HorizontalTextAlignment="Center"/>
+
+            <Button x:Name="registerButton" Text="Register"/>
+            <Button x:Name="discoverButton" Text="Discover"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
