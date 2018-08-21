@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagePortSampleApp", "MessagePortSampleApp\MessagePortSampleApp.csproj", "{12EE0A15-5E82-49E8-94C3-3E58DAB0D64E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12EE0A15-5E82-49E8-94C3-3E58DAB0D64E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12EE0A15-5E82-49E8-94C3-3E58DAB0D64E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12EE0A15-5E82-49E8-94C3-3E58DAB0D64E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12EE0A15-5E82-49E8-94C3-3E58DAB0D64E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33E16726-4859-4BEC-AA9F-51DB9B6B851C}
+	EndGlobalSection
+EndGlobal
