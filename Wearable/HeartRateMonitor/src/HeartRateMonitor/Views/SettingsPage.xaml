@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<forms:CirclePage xmlns:forms="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="HeartRateMonitor.Views.SettingsPage"
+                  BindingContext="{Binding Source={x:Static Application.Current}, Path=AppMainViewModel}"
+                  NavigationPage.HasNavigationBar="False"
+                  RotaryFocusObject="{x:Reference stepper}">
+    
+    <forms:CirclePage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+            <Label
+                FontSize="10"
+                HorizontalTextAlignment="Center"
+                Text="Set heart rate limit:"/>
+            <forms:CircleStepper
+                x:Name="stepper"
+                HorizontalOptions="Center"
+                Increment="5"
+                MarkerColor="Crimson"
+                LabelFormat="%d bpm"
+                Maximum="220"
+                Minimum="0"
+                Value="{Binding HeartRateLimitBufferValue}" />
+        </StackLayout>
+    </forms:CirclePage.Content>
+    
+    <forms:CirclePage.ActionButton>
+        <forms:ActionButtonItem Command="{Binding UpdateHeartRateLimitCommand}" Text="SET" />
+    </forms:CirclePage.ActionButton>
+</forms:CirclePage>

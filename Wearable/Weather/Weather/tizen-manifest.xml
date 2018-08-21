@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.Weather" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <author href="https://github.com/Samsung/Tizen-CSharp-Samples">Michał Kołodziejski &amp; @Piotr12</author>
+    <description>
+        Mobile sample app made by Michał Kołodziejski.
+        Wearable port by @Piotr12.
+
+        Icon sourced from https://openclipart.org/detail/30073/tango-weather-few-clouds
+    </description>
+    <profile name="wearable" />
+    <ui-application appid="org.tizen.example.Weather" exec="Weather.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>Weather</label>
+        <icon>Weather.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/haptic</privilege>
+        <privilege>http://tizen.org/privilege/internet</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
+</manifest>

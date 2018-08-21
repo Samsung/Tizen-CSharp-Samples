@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              x:Class="NetworkApp.Views.LoginPage">
+
+    <StackLayout HorizontalOptions="CenterAndExpand"
+                 VerticalOptions="CenterAndExpand">
+
+        <Label Text="{Binding APName}"
+               HorizontalOptions="CenterAndExpand"/>
+
+        <w:PopupEntry x:Name="passwordEntry"
+                      Placeholder="{Binding Placeholder}"
+                      HorizontalOptions="CenterAndExpand"
+                      IsPassword="True"
+                      Text="{Binding Password, Mode=TwoWay}"
+                      IsVisible="{Binding IsPasswordRequired}"/>
+
+        <Button x:Name="connectButton"
+                Text="{Binding ConnectButtonText}"
+                Command="{Binding ConnectClickedCommand}"
+                WidthRequest="230"
+                HorizontalOptions="Center"/>
+
+        <Button x:Name="forgetButton"
+                Text="Forget"
+                Command="{Binding ForgetClickedCommand}"
+                WidthRequest="230"
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsStored}"/>
+    </StackLayout>
+</w:CirclePage>

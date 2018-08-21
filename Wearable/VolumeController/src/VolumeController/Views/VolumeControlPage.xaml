@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<forms:CirclePage xmlns:forms="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:local="clr-namespace:VolumeController.ViewModels"
+                  x:Class="VolumeController.Views.VolumeControlPage"
+                  RotaryFocusObject="{x:Reference slider}">
+
+    <forms:CirclePage.BindingContext>
+        <local:VolumeControlViewModel/>
+    </forms:CirclePage.BindingContext>
+
+    <Grid Margin="30,0,30,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Text="{Binding VolumeTypeName}" 
+               TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+        <Button Grid.Column="0" Grid.Row="2" BackgroundColor="DarkSlateGray" Text="Prev" FontSize="10" 
+                Command="{Binding PreviousVolumeTypeCommand}" IsEnabled="{Binding CanSelectPrevious}"/>
+        <Label Grid.Column="1" Grid.Row="2" Text="{Binding CurrentVolume}" TextColor="White" 
+               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="20"/>
+        <Button Grid.Column="2" Grid.Row="2" BackgroundColor="DarkSlateGray" Text="Next" FontSize="10" 
+                Command="{Binding NextVolumeTypeCommand}" IsEnabled="{Binding CanSelectNext}"/>
+
+    </Grid>
+    <forms:CirclePage.CircleSurfaceItems>
+        <forms:CircleSliderSurfaceItem x:Name="slider" Minimum="0" Maximum="{Binding MaxVolume}" 
+                                       Value="{Binding SliderVolume, Mode=TwoWay}" 
+                                       BarColor="Cyan" BackgroundColor="DarkCyan"/>
+    </forms:CirclePage.CircleSurfaceItems>
+</forms:CirclePage>
+    
+   
