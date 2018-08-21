@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="AudioManagerSample.DevicePage"
+                xmlns:local="clr-namespace:AudioManagerSample"
+                Title="Device status">
+
+    <ContentPage.BindingContext>
+        <local:DevicePageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Label x:Name="deviceLabel" Margin="0, 20, 0, 0"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

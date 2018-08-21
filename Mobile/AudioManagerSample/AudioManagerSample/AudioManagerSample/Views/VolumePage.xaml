@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="AudioManagerSample.VolumePage"
+                xmlns:local="clr-namespace:AudioManagerSample"
+                Title="Change Volumes">
+
+    <ContentPage.BindingContext>
+        <local:VolumePageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Slider">
+                <Setter Property="Maximum" Value="15" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Label Text="System level: " Margin="0, 20, 0, 0"/>
+            <Label Text="{Binding SystemLabel}" Margin="0, 20, 0, 0"/>
+            <Slider x:Name="systemSlider" ValueChanged="OnSliderValueChanged"/>
+
+            <Label Text="Media level: " Margin="0, 20, 0, 0"/>
+            <Label Text="{Binding MediaLabel}" Margin="0, 20, 0, 0"/>
+            <Slider x:Name="mediaSlider" ValueChanged="OnSliderValueChanged"/>
+
+            <Label Text="Notification level: " Margin="0, 20, 0, 0"/>
+            <Label Text="{Binding NotificationLabel}" Margin="0, 20, 0, 0"/>
+            <Slider x:Name="notificationSlider" ValueChanged="OnSliderValueChanged"/>
+
+            <Label Text="Alarm level: " Margin="0, 20, 0, 0"/>
+            <Label Text="{Binding AlarmLabel}" Margin="0, 20, 0, 0"/>
+            <Slider x:Name="alarmSlider" ValueChanged="OnSliderValueChanged"/>
+
+            <Label Text="Voice level: " Margin="0, 20, 0, 0"/>
+            <Label Text="{Binding VoiceLabel}" Margin="0, 20, 0, 0"/>
+            <Slider x:Name="voiceSlider" ValueChanged="OnSliderValueChanged"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
