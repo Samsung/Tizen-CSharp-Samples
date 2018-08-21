@@ -1,4 +1,6 @@
-﻿/*
+﻿using System;
+using System.Collections.Generic;
+/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,28 +16,13 @@
  * limitations under the License.
  */
 
-using System.ComponentModel;
-using Xamarin.Forms;
-
 namespace AudioManagerSample
 {
-    abstract class BaseViewModel : INotifyPropertyChanged
+    public interface ILog
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Notifies change of a property.
-        /// </summary>
-        /// <param name="propertyName">A property name.</param>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        protected ILog Log => DependencyService.Get<ILog>();
-
-        public virtual void OnPopped()
-        {
-        }
+        void Debug(string message, string file = "", string func = "", int line = 0);
+        void Info(string message, string file = "", string func = "", int line = 0);
+        void Warn(string message, string file = "", string func = "", int line = 0);
+        void Error(string message, string file = "", string func = "", int line = 0);
     }
 }

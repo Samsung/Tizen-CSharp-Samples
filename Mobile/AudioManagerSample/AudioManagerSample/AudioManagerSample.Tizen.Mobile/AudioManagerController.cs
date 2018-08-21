@@ -57,7 +57,6 @@ namespace AudioManagerSample.Tizen.Mobile
 
         public int GetVolume(string type)
         {
-            Console.WriteLine("type:" + type);
             if (type == VOL_TYPE_SYSTEM)
                 return AudioManager.VolumeController.Level[AudioVolumeType.System];
 
@@ -78,7 +77,6 @@ namespace AudioManagerSample.Tizen.Mobile
 
         public void SetVolume(string type, int level)
         {
-            Console.WriteLine("type:" + type + ", level:" + level);
             if (type == VOL_TYPE_SYSTEM)
             {
                 AudioManager.VolumeController.Level[AudioVolumeType.System] = level;
