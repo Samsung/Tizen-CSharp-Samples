@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+using System.Windows.Input;
+using Xamarin.Forms;
+
 namespace AudioManagerSample
 {
     /// <summary>
@@ -23,6 +26,7 @@ namespace AudioManagerSample
     {
         public MainPageViewModel()
         {
+
         }
     }
 }

@@ -12,35 +12,48 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Slider">
-                <Setter Property="Maximum" Value="15" />
+                <Setter Property="Maximum" Value="15"/>
             </Style>
             <Style TargetType="Label">
-                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            <Label Text="System level: " Margin="0, 20, 0, 0"/>
-            <Label Text="{Binding SystemLabel}" Margin="0, 20, 0, 0"/>
-            <Slider x:Name="systemSlider" ValueChanged="OnSliderValueChanged"/>
+        <StackLayout Margin="10" Padding="20">
 
-            <Label Text="Media level: " Margin="0, 20, 0, 0"/>
-            <Label Text="{Binding MediaLabel}" Margin="0, 20, 0, 0"/>
-            <Slider x:Name="mediaSlider" ValueChanged="OnSliderValueChanged"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="System level: " Margin="0, 20, 0, 0"/>
+                <Label Text="{Binding SystemLabel}" Margin="0, 20, 0, 0"/>
+            </StackLayout>
+            <Slider x:Name="systemSlider" ValueChanged="OnSliderValueChanged" Value="{Binding SystemLabel}"/>
 
-            <Label Text="Notification level: " Margin="0, 20, 0, 0"/>
-            <Label Text="{Binding NotificationLabel}" Margin="0, 20, 0, 0"/>
-            <Slider x:Name="notificationSlider" ValueChanged="OnSliderValueChanged"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Media level: " Margin="0, 20, 0, 0"/>
+                <Label Text="{Binding MediaLabel}" Margin="0, 20, 0, 0"/>
+            </StackLayout>
+            <Slider x:Name="mediaSlider" ValueChanged="OnSliderValueChanged" Value="{Binding MediaLabel}"/>
 
-            <Label Text="Alarm level: " Margin="0, 20, 0, 0"/>
-            <Label Text="{Binding AlarmLabel}" Margin="0, 20, 0, 0"/>
-            <Slider x:Name="alarmSlider" ValueChanged="OnSliderValueChanged"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Notification level: " Margin="0, 20, 0, 0"/>
+                <Label Text="{Binding NotificationLabel}" Margin="0, 20, 0, 0"/>
+            </StackLayout>
+            <Slider x:Name="notificationSlider" ValueChanged="OnSliderValueChanged" Value="{Binding NotificationLabel}"/>
 
-            <Label Text="Voice level: " Margin="0, 20, 0, 0"/>
-            <Label Text="{Binding VoiceLabel}" Margin="0, 20, 0, 0"/>
-            <Slider x:Name="voiceSlider" ValueChanged="OnSliderValueChanged"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Alarm level: " Margin="0, 20, 0, 0"/>
+                <Label Text="{Binding AlarmLabel}" Margin="0, 20, 0, 0"/>
+            </StackLayout>
+            <Slider x:Name="alarmSlider" ValueChanged="OnSliderValueChanged" Value="{Binding AlarmLabel}"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Voice level: " Margin="0, 20, 0, 0"/>
+                <Label Text="{Binding VoiceLabel}" Margin="0, 20, 0, 0"/>
+            </StackLayout>
+            <Slider x:Name="voiceSlider" ValueChanged="OnSliderValueChanged" Value="{Binding VoiceLabel}"/>
+
+            <Label Text="{Binding ChangedVolumeLabel}" Margin="0, 20, 0, 0" HorizontalTextAlignment="Center"/>
 
         </StackLayout>
     </ContentPage.Content>
