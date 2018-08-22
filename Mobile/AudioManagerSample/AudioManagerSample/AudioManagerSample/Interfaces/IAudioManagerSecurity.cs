@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,23 +14,14 @@
  * limitations under the License.
  */
 
-namespace AudioManagerSample.Tizen.Mobile
+namespace AudioManagerSample
 {
-    class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
+    public interface IAudioManagerSecurity
     {
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-            
-            LoadApplication(new App());
-        }
-
-        static void Main(string[] args)
-        {
-            var app = new Program();
-            global::Xamarin.Forms.DependencyService.Register<SecurityPort>();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
-            app.Run(args);
-        }
+        /// <summary>
+        /// Check privilege.
+        /// </summary>
+        /// <param name="privilege">The string for privilege.</param>
+        void CheckPrivilege(string privilege);
     }
 }

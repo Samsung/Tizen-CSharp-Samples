@@ -24,7 +24,8 @@ namespace AudioManagerSample
     {
 		public VolumePage ()
 		{
-			InitializeComponent ();
+            SecurityProvider.Instance.CheckPrivilege();
+            InitializeComponent ();
 		}
 
         private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
