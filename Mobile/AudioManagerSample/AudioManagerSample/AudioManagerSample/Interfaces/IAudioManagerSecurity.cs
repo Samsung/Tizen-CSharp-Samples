@@ -19,7 +19,7 @@ namespace AudioManagerSample
     public interface IAudioManagerSecurity
     {
         /// <summary>
-        /// Check privilege.
+        /// Checks privilege.
         /// </summary>
         /// <param name="privilege">The string for privilege.</param>
         void CheckPrivilege(string privilege);

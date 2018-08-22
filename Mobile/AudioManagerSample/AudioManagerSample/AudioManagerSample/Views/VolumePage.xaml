@@ -3,7 +3,7 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 x:Class="AudioManagerSample.VolumePage"
                 xmlns:local="clr-namespace:AudioManagerSample"
-                Title="Change Volumes">
+                Title="Volume Setting">
 
     <ContentPage.BindingContext>
         <local:VolumePageViewModel />

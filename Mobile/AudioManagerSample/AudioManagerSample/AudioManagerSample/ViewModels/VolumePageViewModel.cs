@@ -31,7 +31,7 @@ namespace AudioManagerSample
             _alarmLabel = AMController.GetVolume("Alarm");
             _voiceLabel = AMController.GetVolume("Voice");
 
-            AMController.VolumeLevelChanged += (s, e) => ChangedVolumeLabel = e.type + " level is changed to " + e.level;
+            AMController.VolumeLevelChanged += (s, e) => ChangedVolumeLabel = e.Type + " level is changed to " + e.Level;
         }
         protected IAudioManagerController AMController => DependencyService.Get<IAudioManagerController>();
 

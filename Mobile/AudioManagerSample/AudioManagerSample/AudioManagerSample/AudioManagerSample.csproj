@@ -19,8 +19,8 @@
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.77107" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\DevicePage.xaml.cs">
-      <DependentUpon>DevicePage.xaml</DependentUpon>
+    <Compile Update="Views\DeviceListPage.xaml.cs">
+      <DependentUpon>DeviceListPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

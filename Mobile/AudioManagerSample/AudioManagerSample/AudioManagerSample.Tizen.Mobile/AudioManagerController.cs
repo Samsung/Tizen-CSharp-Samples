@@ -17,6 +17,7 @@
 
 using AudioManagerSample.Tizen.Mobile;
 using System;
+using System.Collections.Generic;
 using Tizen.Multimedia;
 using Xamarin.Forms;
 
@@ -30,6 +31,15 @@ namespace AudioManagerSample.Tizen.Mobile
         private static readonly string VOL_TYPE_NOTIFICATION = "Notification";
         private static readonly string VOL_TYPE_ALARM = "Alarm";
         private static readonly string VOL_TYPE_VOICE = "Voice";
+
+        private static readonly string DEV_TYPE_AUDIOJACK = "Audio Jack";
+        private static readonly string DEV_TYPE_BT_MEDIA = "Bluetooth Media";
+        private static readonly string DEV_TYPE_BT_VOICE = "Bluetooth Voice";
+        private static readonly string DEV_TYPE_BUILTIN_MIC = "Built-in Mic";
+        private static readonly string DEV_TYPE_BUILTIN_RECEIVER = "Built-in Receiver";
+        private static readonly string DEV_TYPE_BUILTIN_SPEAKER = "Built-in Speaker";
+        private static readonly string DEV_TYPE_HDMI = "HDMI";
+        private static readonly string DEV_TYPE_USB_AUDIO = "USB Audio";
 
         private string ConvertVolumeTypeToString(AudioVolumeType type)
         {
@@ -47,13 +57,38 @@ namespace AudioManagerSample.Tizen.Mobile
             return "unknown";
         }
 
+        private string ConvertDeviceTypeToString(AudioDeviceType type)
+        {
+            if (type == AudioDeviceType.AudioJack)
+                return DEV_TYPE_AUDIOJACK;
+            if (type == AudioDeviceType.BluetoothMedia)
+                return DEV_TYPE_BT_MEDIA;
+            if (type == AudioDeviceType.BluetoothVoice)
+                return DEV_TYPE_BT_VOICE;
+            if (type == AudioDeviceType.BuiltinMic)
+                return DEV_TYPE_BUILTIN_MIC;
+            if (type == AudioDeviceType.BuiltinReceiver)
+                return DEV_TYPE_BUILTIN_RECEIVER;
+            if (type == AudioDeviceType.BuiltinSpeaker)
+                return DEV_TYPE_BUILTIN_SPEAKER;
+            if (type == AudioDeviceType.Hdmi)
+                return DEV_TYPE_HDMI;
+            if (type == AudioDeviceType.UsbAudio)
+                return DEV_TYPE_USB_AUDIO;
+
+            return "unknown";
+        }
+
         public AudioManagerController()
         {
             AudioManager.VolumeController.Changed += (s, e) =>
                 VolumeLevelChanged?.Invoke(this, new VolumeLevelChangedEventArgs(ConvertVolumeTypeToString(e.Type), e.Level));
+            AudioManager.DeviceConnectionChanged += (s, e) =>
+                DeviceConnectionChanged?.Invoke(this, new DeviceConnectionChangedEventArgs(new DeviceItem(e.Device.Id, ConvertDeviceTypeToString(e.Device.Type), e.Device.Name), e.IsConnected));
         }
 
         public event EventHandler<VolumeLevelChangedEventArgs> VolumeLevelChanged;
+        public event EventHandler<DeviceConnectionChangedEventArgs> DeviceConnectionChanged;
 
         public int GetVolume(string type)
         {
@@ -108,6 +143,21 @@ namespace AudioManagerSample.Tizen.Mobile
             }
 
             throw new NotSupportedException();
+        }
+
+        public IEnumerable<DeviceItem> GetConnectedDevices()
+        {
+            IEnumerable<AudioDevice> items = AudioManager.GetConnectedDevices();
+
+            foreach (AudioDevice item in items)
+            {
+                yield return new DeviceItem()
+                {
+                    Id = item.Id,
+                    Type = ConvertDeviceTypeToString(item.Type),
+                    Name = item.Name
+                };
+            }
         }
     }
 }

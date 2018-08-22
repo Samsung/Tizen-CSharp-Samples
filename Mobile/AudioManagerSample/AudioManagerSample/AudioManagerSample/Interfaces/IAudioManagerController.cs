@@ -15,24 +15,35 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace AudioManagerSample
 {
     public interface IAudioManagerController
     {
         /// <summary>
-        /// Set volume.
+        /// Sets volume.
         /// </summary>
         void SetVolume(string type, int level);
 
         /// <summary>
-        /// Get volume.
+        /// Gets volume.
         /// </summary>
         int GetVolume(string type);
+
+        /// <summary>
+        /// Gets connected device list.
+        /// </summary>
+        IEnumerable<DeviceItem> GetConnectedDevices();
  
         /// <summary>
         /// Occurs when the level of the volume changes.
         /// </summary>
         event EventHandler<VolumeLevelChangedEventArgs> VolumeLevelChanged;
+
+        /// <summary>
+        /// Occurs when the connection state of the device changes.
+        /// </summary>
+        event EventHandler<DeviceConnectionChangedEventArgs> DeviceConnectionChanged;
     }
 }

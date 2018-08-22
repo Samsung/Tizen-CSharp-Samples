@@ -20,9 +20,9 @@ using Xamarin.Forms.Xaml;
 namespace AudioManagerSample
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DevicePage : ContentPage
+	public partial class DeviceListPage : ContentPage
     {
-		public DevicePage ()
+		public DeviceListPage ()
 		{
 			InitializeComponent ();
 		}

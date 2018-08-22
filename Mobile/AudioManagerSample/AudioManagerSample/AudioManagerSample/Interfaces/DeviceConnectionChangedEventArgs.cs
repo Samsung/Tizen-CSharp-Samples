@@ -14,16 +14,25 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace AudioManagerSample
 {
     /// <summary>
-    /// ViewModel for DevicePage.
+    /// Provides data for the <see cref="IAudioManagerController.DeviceConnectionChanged"/> event.
     /// </summary>
-    class DevicePageViewModel : BaseViewModel
-	{
-		public DevicePageViewModel ()
-		{
+    public class DeviceConnectionChangedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Initializes a new instance of the DeviceConnectionChangedEventArgs class.
+        /// </summary>
+        public DeviceConnectionChangedEventArgs(DeviceItem device, bool isConnected)
+        {
+            IsConnected = isConnected;
+            Device = device;
+        }
 
-		}
-	}
+        public bool IsConnected;
+        public DeviceItem Device;
+    }
 }

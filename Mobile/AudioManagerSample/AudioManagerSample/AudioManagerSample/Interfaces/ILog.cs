@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-/*
+﻿/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
