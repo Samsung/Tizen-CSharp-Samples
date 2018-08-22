@@ -30,8 +30,42 @@ namespace AudioManagerSample
             _notificationLabel = AMController.GetVolume("Notification");
             _alarmLabel = AMController.GetVolume("Alarm");
             _voiceLabel = AMController.GetVolume("Voice");
+            _ringtoneLabel = AMController.GetVolume("Ringtone");
 
-            AMController.VolumeLevelChanged += (s, e) => ChangedVolumeLabel = e.Type + " level is changed to " + e.Level;
+            AMController.VolumeLevelChanged += (s, e)
+                => {
+                    ChangedVolumeLabel = e.Type + " volume is changed to " + e.Level;
+                    if (e.Type == "System")
+                    {
+                        _systemLabel = e.Level;
+                        OnPropertyChanged(nameof(SystemLabel));
+                    }
+                    else if (e.Type == "Media")
+                    {
+                        _mediaLabel = e.Level;
+                        OnPropertyChanged(nameof(MediaLabel));
+                    }
+                    else if (e.Type == "Notification")
+                    {
+                        _notificationLabel = e.Level;
+                        OnPropertyChanged(nameof(NotificationLabel));
+                    }
+                    else if (e.Type == "Alarm")
+                    {
+                        _alarmLabel = e.Level;
+                        OnPropertyChanged(nameof(AlarmLabel));
+                    }
+                    else if (e.Type == "Voice")
+                    {
+                        _voiceLabel = e.Level;
+                        OnPropertyChanged(nameof(VoiceLabel));
+                    }
+                    else if (e.Type == "Ringtone")
+                    {
+                        _ringtoneLabel = e.Level;
+                        OnPropertyChanged(nameof(RingtoneLabel));
+                    }
+                };
         }
         protected IAudioManagerController AMController => DependencyService.Get<IAudioManagerController>();
 
@@ -108,6 +142,22 @@ namespace AudioManagerSample
 
                     OnPropertyChanged(nameof(VoiceLabel));
                     AMController.SetVolume("Voice", value);
+                }
+            }
+        }
+
+        private int _ringtoneLabel;
+        public int RingtoneLabel
+        {
+            get => _ringtoneLabel;
+            set
+            {
+                if (_ringtoneLabel != value)
+                {
+                    _ringtoneLabel = value;
+
+                    OnPropertyChanged(nameof(RingtoneLabel));
+                    AMController.SetVolume("Ringtone", value);
                 }
             }
         }

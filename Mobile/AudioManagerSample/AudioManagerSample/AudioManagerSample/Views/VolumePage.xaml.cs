@@ -19,14 +19,14 @@ using Xamarin.Forms.Xaml;
 
 namespace AudioManagerSample
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class VolumePage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class VolumePage : ContentPage
     {
-		public VolumePage ()
-		{
+        public VolumePage ()
+        {
             SecurityProvider.Instance.CheckPrivilege();
             InitializeComponent ();
-		}
+        }
 
         private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
         {
@@ -54,6 +54,11 @@ namespace AudioManagerSample
             {
                 VolumePageViewModel vm = new VolumePageViewModel();
                 vm.VoiceLabel = (int)e.NewValue;
+            }
+            else if (sender == ringtoneSlider)
+            {
+                VolumePageViewModel vm = new VolumePageViewModel();
+                vm.RingtoneLabel = (int)e.NewValue;
             }
         }
     }

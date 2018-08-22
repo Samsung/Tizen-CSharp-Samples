@@ -53,6 +53,12 @@
             </StackLayout>
             <Slider x:Name="voiceSlider" ValueChanged="OnSliderValueChanged" Value="{Binding VoiceLabel}"/>
 
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Ringtone level: " Margin="0, 20, 0, 0"/>
+                <Label Text="{Binding RingtoneLabel}" Margin="0, 20, 0, 0"/>
+            </StackLayout>
+            <Slider x:Name="ringtoneSlider" ValueChanged="OnSliderValueChanged" Value="{Binding RingtoneLabel}"/>
+
             <Label Text="{Binding ChangedVolumeLabel}" Margin="0, 20, 0, 0" HorizontalTextAlignment="Center"/>
 
         </StackLayout>

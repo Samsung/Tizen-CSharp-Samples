@@ -31,6 +31,7 @@ namespace AudioManagerSample.Tizen.Mobile
         private static readonly string VOL_TYPE_NOTIFICATION = "Notification";
         private static readonly string VOL_TYPE_ALARM = "Alarm";
         private static readonly string VOL_TYPE_VOICE = "Voice";
+        private static readonly string VOL_TYPE_RINGTONE = "Ringtone";
 
         private static readonly string DEV_TYPE_AUDIOJACK = "Audio Jack";
         private static readonly string DEV_TYPE_BT_MEDIA = "Bluetooth Media";
@@ -53,6 +54,8 @@ namespace AudioManagerSample.Tizen.Mobile
                 return VOL_TYPE_ALARM;
             if (type == AudioVolumeType.Voice)
                 return VOL_TYPE_VOICE;
+            if (type == AudioVolumeType.Ringtone)
+                return VOL_TYPE_RINGTONE;
 
             return "unknown";
         }
@@ -107,6 +110,9 @@ namespace AudioManagerSample.Tizen.Mobile
             if (type == VOL_TYPE_VOICE)
                 return AudioManager.VolumeController.Level[AudioVolumeType.Voice];
 
+            if (type == VOL_TYPE_RINGTONE)
+                return AudioManager.VolumeController.Level[AudioVolumeType.Ringtone];
+
             throw new NotSupportedException();
         }
 
@@ -142,6 +148,12 @@ namespace AudioManagerSample.Tizen.Mobile
                 return;
             }
 
+            if (type == VOL_TYPE_RINGTONE)
+            {
+                AudioManager.VolumeController.Level[AudioVolumeType.Ringtone] = level;
+                return;
+            }
+
             throw new NotSupportedException();
         }
 
@@ -151,12 +163,7 @@ namespace AudioManagerSample.Tizen.Mobile
 
             foreach (AudioDevice item in items)
             {
-                yield return new DeviceItem()
-                {
-                    Id = item.Id,
-                    Type = ConvertDeviceTypeToString(item.Type),
-                    Name = item.Name
-                };
+                yield return new DeviceItem(item.Id, ConvertDeviceTypeToString(item.Type), item.Name);
             }
         }
     }

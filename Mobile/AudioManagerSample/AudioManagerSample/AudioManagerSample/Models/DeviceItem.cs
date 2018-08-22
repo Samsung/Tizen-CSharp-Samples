@@ -18,11 +18,6 @@ namespace AudioManagerSample
 {
     public class DeviceItem
     {
-        public DeviceItem()
-        {
-
-        }
-
         public DeviceItem(int id, string type, string name)
         {
             Id = id;
