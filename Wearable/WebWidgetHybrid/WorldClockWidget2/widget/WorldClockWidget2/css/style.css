@@ -1,0 +1,132 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#page-clock {
+    position:relative;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    background-size: 100%;
+    overflow: hidden;
+    text-align: center;
+    color: #ffffff;
+}
+
+.city {
+    height: 48px;
+    margin-top: 38px;
+}
+
+#city-name {
+    font-size: 36px;
+    vertical-align: middle;
+}
+
+#city-toggle {
+    width: 18px;
+    height: 48px;
+    vertical-align: middle;
+}
+
+#city-diff {
+    height: 35px;
+    font-size: 28px;
+    color: rgb(166, 166, 166);
+}
+
+.time {
+    height: 89px;
+    margin-top: 2px;
+}
+
+#clock-time {
+    font-size: 68px;
+}
+
+#clock-ampm {
+    margin-left: 10px;
+    font-size: 36px;
+}
+
+.date {
+    height: 32px;
+    margin-top: -8px;
+}
+
+#clock-date {
+    font-size: 28px;
+    vertical-align: middle;
+}
+
+#time-icon {
+    width: 34px;
+    height: 34px;
+    vertical-align: middle;
+}
+
+.sunrise {
+    height: 33px;
+    margin-top: 21px;
+}
+
+#sunrise-icon {
+    width: 31px;
+    height: 35px;
+    vertical-align: middle;
+}
+
+#sunrise-time {
+    vertical-align: middle;
+    font-size: 28px;
+}
+
+.sunset {
+    height: 33px;
+    margin-top: -2px;
+}
+
+#sunset-icon {
+    width: 31px;
+    height: 35px;
+    vertical-align: middle;
+}
+
+#sunset-time {
+    vertical-align: middle;
+    font-size: 28px;
+}
+
+#page-no-list {
+    display: none;
+}
+
+#page-no-list {
+    position:relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000000;
+    text-align: center;
+    color: #ffffff;
+}
+
+.clock-icon {
+    margin-top: 107px;
+    height: 110px;
+}
+
+#add-icon {
+    width: 100px;
+    height: 100px;
+}
+
+#add-city {
+    margin-top: 16px;
+    height: 42px;
+    font-size: 32px;
+}

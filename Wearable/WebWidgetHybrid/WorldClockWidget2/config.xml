@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/WorldClockWidget2" version="1.0.0" viewmodes="maximized">
+    <access origin="*" subdomains="true"></access>
+    <tizen:app-widget id="iEn963TXYi.WorldClockWidget2.WorldClockWidget2" primary="true">
+        <tizen:widget-label>World Clock Widget</tizen:widget-label>
+        <tizen:widget-content src="widget/WorldClockWidget2/index.html">
+            <tizen:widget-size preview="widget/WorldClockWidget2/preview.png">2x2</tizen:widget-size>
+        </tizen:widget-content>
+    </tizen:app-widget>
+    <tizen:application id="iEn963TXYi.WorldClockWidget2" package="iEn963TXYi" required_version="2.3.2"/>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="icon.png"/>
+    <name>WorldClockWidget2</name>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    <tizen:profile name="wearable"/>
+</widget>
