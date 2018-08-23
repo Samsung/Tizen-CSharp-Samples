@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="">
+		<attributes>
+			<attribute name="provider" value="org.eclipse.wst.jsdt.web.core.internal.project.ModuleSourcePathProvider"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.WebProject">
+		<attributes>
+			<attribute name="hide" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.tizen.web.project.initializer.WebWidgetECMA3LibraryInitializer"/>
+	<classpathentry kind="con" path="org.tizen.web.project.initializer.WebWidgetTizenLibraryInitializer"/>
+	<classpathentry kind="con" path="org.tizen.web.project.initializer.ext.RESTSupport"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
