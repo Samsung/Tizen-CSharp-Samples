@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:control="clr-namespace:MediaContent.Controls"
+              x:Class="MediaContent.Views.RootPage"
+              NavigationPage.HasNavigationBar="False"
+              BackgroundColor="#1b1b1b">
+
+    <StackLayout HorizontalOptions="CenterAndExpand" 
+                 VerticalOptions="CenterAndExpand">
+
+            <control:ImageButton Source="fa-music.png" 
+                                 WidthRequest="100" 
+                                 VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="CenterAndExpand"
+                                 Command="{Binding PushNewPageCommand}"
+                                 CommandParameter="Music"/>
+
+        <StackLayout Orientation="Horizontal">
+
+        <control:ImageButton Source="fa-image.png" 
+                             WidthRequest="100"
+                             VerticalOptions="CenterAndExpand"
+                             Margin="20"
+                             Command="{Binding PushNewPageCommand}"
+                             CommandParameter="Image"/>
+
+            <control:ImageButton Source="fa-video-camera.png" 
+                                 WidthRequest="100"
+                                 Margin="20"
+                                 VerticalOptions="CenterAndExpand"
+                                 Command="{Binding PushNewPageCommand}"
+                                 CommandParameter="Video"/>
+        </StackLayout>
+    </StackLayout>
+
+</w:CirclePage>
