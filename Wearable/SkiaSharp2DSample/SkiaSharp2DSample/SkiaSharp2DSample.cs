@@ -21,7 +21,6 @@ namespace SkiaSharp2DSample
         protected override void OnCreate()
         {
             base.OnCreate();
-
             LoadApplication(new App());
         }
 

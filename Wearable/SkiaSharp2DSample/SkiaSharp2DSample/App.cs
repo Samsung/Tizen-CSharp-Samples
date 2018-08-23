@@ -12,20 +12,6 @@ namespace SkiaSharp2DSample
     {
         public App()
         {
-            // The root page of your application
-            //MainPage = new CirclePage
-            //{
-            //    Content = new StackLayout
-            //    {
-            //        VerticalOptions = LayoutOptions.Center,
-            //        Children = {
-            //            new Label {
-            //                HorizontalTextAlignment = TextAlignment.Center,
-            //                Text = "Welcome to Xamarin Forms!"
-            //            }
-            //        }
-            //    }
-            //};
             MainPage = new SkiaSharp2DSample.MainPage();
         }
 
