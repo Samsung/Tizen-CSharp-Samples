@@ -61,6 +61,12 @@ namespace PlayingWithHWInputs
             canvasView.HeightRequest = 360;
             canvasView.WidthRequest = 360;
 
+            // Add tap gesture recognizer
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) => {
+                Toast.DisplayText("Tapped !!!");
+            };
+            canvasView.GestureRecognizers.Add(tapGestureRecognizer);
             canvasView.PaintSurface += (sender, e) =>
             {
                 // Right arrow svg data
