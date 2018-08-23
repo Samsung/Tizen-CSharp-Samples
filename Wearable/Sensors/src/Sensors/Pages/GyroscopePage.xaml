@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+				xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+				xmlns:local="clr-namespace:Sensors.Extensions" 
+				xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+				x:Class="Sensors.Pages.GyroscopePage"
+				x:Name="Page"
+				BindingContext="{Binding Source={x:Reference Page}, Path=Model}"
+				RotaryFocusObject="{x:Reference pageScroller}">
+	<cui:CircleScrollView x:Name="pageScroller" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" HeightRequest="300">
+		<StackLayout>
+			<Label Text="Gyroscope" HorizontalOptions="Center"/>
+			<Label Text="{Binding IsSupported, StringFormat='Is supported: {0}'}" Style="{StaticResource LabelDataStyle}"/>
+			<Label Text="{Binding SensorCount, StringFormat='Sensor count: {0}'}" Style="{StaticResource LabelDataStyle}"/>
+			<Label Text="{Binding X, StringFormat='X: {0:N2}'}}" Style="{StaticResource LabelDataStyle}"/>
+			<Label Text="{Binding Y, StringFormat='Y: {0:N2}'}}" Style="{StaticResource LabelDataStyle}"/>
+			<Label Text="{Binding Z, StringFormat='Z: {0:N2}'}}" Style="{StaticResource LabelDataStyle}"/>
+			<local:SkiaChartView x:Name="canvas" HeightRequest="200" WidthRequest="360"/>
+		</StackLayout>
+	</cui:CircleScrollView>
+</cui:CirclePage>
