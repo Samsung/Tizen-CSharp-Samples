@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              x:Class="MediaContent.Views.FilesListPage"
+              x:Name="Page"
+              BackgroundColor="#1b1b1b"
+              RotaryFocusObject="{x:Reference listView}">
+
+    <StackLayout>
+        <ActivityIndicator IsRunning="{Binding InitializationInProgress}"
+                           IsVisible="{Binding InitializationInProgress}"/>
+        
+        <w:CircleListView ItemsSource="{Binding FoundFiles}"
+                          BackgroundColor="#1b1b1b"
+                          x:Name="listView"
+                          IsVisible="{Binding IsFoundFilesNotEmpty}">
+                          <w:CircleListView.ItemTemplate>
+                              <DataTemplate>
+                                  <TextCell Text="{Binding DisplayName}"
+                                            Detail="{Binding StorageId, 
+                                                     StringFormat='Storage: {0}'}"
+                                            DetailColor="#4DCFFF"
+                                            Command="{Binding BindingContext.PushFileDetailsPageCommand, 
+                                                      Source={x:Reference Page}}"
+                                            CommandParameter="{Binding}"/>
+                              </DataTemplate>
+                          </w:CircleListView.ItemTemplate>
+        </w:CircleListView>
+        
+        <Label IsVisible="{Binding IsFoundFilesEmpty}"
+               Text="No files found"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               FontSize="Large"/>
+    </StackLayout>
+
+</w:CirclePage>
