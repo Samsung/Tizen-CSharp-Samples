@@ -48,7 +48,7 @@ namespace AppControl
                                 Tizen.Applications.AppControl.SendLaunchRequest(
                                     new Tizen.Applications.AppControl
                                     {
-                                        ApplicationId = "org.tizen.alarm",
+                                        ApplicationId = "org.tizen.example.AppInformation",
                                         LaunchMode = Tizen.Applications.AppControlLaunchMode.Single,
                                     }, (launchRequest, replyRequest, result) => 
                                     {
