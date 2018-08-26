@@ -79,6 +79,7 @@ namespace MessagePortSampleApp
                                     catch(Exception e)
                                     {
                                         Console.WriteLine("Exception: " + e.Message + ", " + e);
+                                        Toast.DisplayText("An exception occurs!!   " + e.Message + ",   " + e, 10000);
                                     }
                                 })
                             }
