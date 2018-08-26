@@ -2,11 +2,13 @@
 
 AppControl sample application demonstrates how to launch an application and get a result for the launch request.
 
-![main page](./AppInformation_Snapshot.png)
+<p align="center">
+ <img src="./AppControl_Snapshot.png" width=150 height=150>
+ <img src="./AppControl_Snapshot_1.png" width=150 height=150>
+</p>
 
 When you press `Launch` button, *AppInformation* sample app will be launched.
 
-![main page](./AppControl_Snapshot_1.png)
 
 ### Prerequisites
 First of all, you need to install [AppInformation sample app](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Wearable/AppInformation) 
