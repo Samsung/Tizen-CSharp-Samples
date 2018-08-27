@@ -50,11 +50,19 @@ WebWidgetHybrid sample app demonstrates how to make Tizen hybrid app which is pa
 
 6. Add a `WebWidgetHybrid` widget from the home screen.
     1. Go to the home screen by pressing the back key.
-   ![main page](./WebWidgetHybrid_HomeScreen.png)
+<p align="left">
+ <img src="./WebWidgetHybrid_HomeScreen.png">
+</p>
+
     2. Swipe the home screen right or rotate the bezel right until you see `+ Add widget` and select it.
-   ![main page](./WebWidgetHybrid_AppWidget.png)
+<p align="left">
+ <img src="./WebWidgetHybrid_AppWidget.png">
+</p>
+
     3. Swipe right until you see "World Clock Widget" and select it.
-   ![main page](./WebWidgetHybrid_WorldClockWidget2.png)
+<p align="left">
+ <img src="./WebWidgetHybrid_WorldClockWidget2.png">
+</p>
 
 7. Check the added widget by switing the home screen.
    ![main page](./WebWidgetHybrid_AddedWidget.png)
