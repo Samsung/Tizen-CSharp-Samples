@@ -20,7 +20,6 @@ You can install it by using `Visual Studio` or the `sdb` command line as follows
 $ sdb install org.tizen.example.AppInformation-1.0.0.tpk
 ```
 
-## Getting Started
 This application uses Tizen.Application API.
 
 * [Class AppControl][AppControl]

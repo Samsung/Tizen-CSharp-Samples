@@ -4,7 +4,6 @@ AppInformation sample app demonstrates how to get application-specific informati
 
 ![main page](./AppInformation_Snapshot.png)
 
-## Getting Started
 This application uses Tizen.Application API.
 
 * [Class ApplicationInfo](https://developer.tizen.org/dev-guide/csapi/api/Tizen.Applications.ApplicationInfo.html)
@@ -12,7 +11,5 @@ This application uses Tizen.Application API.
 
 In addition, there is a similar native sample application.
 - [Tizen Native version](https://developer.tizen.org/development/sample/native/AppFW/App-common)
-
-![main page](./AppInformation_Snapshot.png)
 
 

@@ -26,7 +26,6 @@ If you do not install `Tizen .Net service application`, an exception occurs when
 
    ![main page](./MessagePortSampleApp_Snapshot-ErrorCase.png)
 
-## Getting Started
 This application uses Tizen.Application.Messages API.
 
 * [Class MessagePort][MessagePort]

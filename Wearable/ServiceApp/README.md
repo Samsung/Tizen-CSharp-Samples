@@ -6,7 +6,6 @@ ServiceApp app demonstrates how to make a service application which has no UI.
 
    ![main page](./CreatingProjectForServiceApp.png)
 
-## Getting Started
 This application uses Tizen.Application API.
 
 * [Class ServiceApplication][ServiceApp]
