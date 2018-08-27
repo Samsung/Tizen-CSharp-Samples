@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HarfBuzzSharp" Version="1.4.6.1" />
-    <PackageReference Include="SkiaSharp" Version="1.60.2" />
-    <PackageReference Include="SkiaSharp.HarfBuzz" Version="1.60.2" />
-    <PackageReference Include="SkiaSharp.Views" Version="1.60.2" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.2" />
     <PackageReference Include="Tizen.NET" Version="4.0.0">
       <ExcludeAssets>Runtime</ExcludeAssets>
