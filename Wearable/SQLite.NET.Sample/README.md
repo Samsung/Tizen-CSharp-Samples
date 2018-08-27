@@ -11,5 +11,8 @@ SQLite.Net.Sample app demonstrates how to create and connect to an SQLite databa
 </p>
 
 Whenever you relaunch this sample app, two new items are inserted to SQLite databe.
-   <img src="./SQLiteNet_Sample_Snapshot_relaunch.png" width=180 height=180>
+
+<img src="./SQLiteNet_Sample_Snapshot_relaunch.png" width=180 height=180>
+
+
 
