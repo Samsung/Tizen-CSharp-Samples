@@ -1,45 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application
-    x:Class="UIComponents.App"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:UIComponents"
-    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms">
-    <Application.MainPage>
-        <NavigationPage x:Name="MainNavigation">
-            <x:Arguments>
-                <w:CirclePage NavigationPage.HasNavigationBar="False" RotaryFocusObject="{x:Reference MainList}">
-                    <w:CirclePage.BindingContext>
-                        <local:AppViewModel />
-                    </w:CirclePage.BindingContext>
-                    <w:CirclePage.Content>
-                        <w:CircleListView
-                            x:Name="MainList"
-                            ItemTapped="OnItemTapped"
-                            ItemsSource="{Binding Samples}">
-                            <w:CircleListView.ItemTemplate>
-                                <DataTemplate>
-                                    <TextCell Text="{Binding Title}" />
-                                </DataTemplate>
-                            </w:CircleListView.ItemTemplate>
-                            <w:CircleListView.Header>
-                                <x:String>UI Controls</x:String>
-                            </w:CircleListView.Header>
-                            <w:CircleListView.HeaderTemplate>
-                                <DataTemplate>
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="14"
-                                        HeightRequest="120"
-                                        HorizontalTextAlignment="Center"
-                                        Text="{Binding .}"
-                                        TextColor="#6CC3F1" />
-                                </DataTemplate>
-                            </w:CircleListView.HeaderTemplate>
-                        </w:CircleListView>
-                    </w:CirclePage.Content>
-                </w:CirclePage>
-            </x:Arguments>
-        </NavigationPage>
-    </Application.MainPage>
+	x:Class="UIComponents.App"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:UIComponents"
+	xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms">
+	<Application.MainPage>
+		<NavigationPage x:Name="MainNavigation">
+			<x:Arguments>
+				<w:CirclePage NavigationPage.HasNavigationBar="False" RotaryFocusObject="{x:Reference MainList}">
+					<w:CirclePage.BindingContext>
+						<local:AppViewModel />
+					</w:CirclePage.BindingContext>
+					<w:CirclePage.Content>
+						<w:CircleListView
+							x:Name="MainList"
+							ItemTapped="OnItemTapped"
+							ItemsSource="{Binding Samples}">
+							<w:CircleListView.ItemTemplate>
+								<DataTemplate>
+									<TextCell Text="{Binding Title}" />
+								</DataTemplate>
+							</w:CircleListView.ItemTemplate>
+							<w:CircleListView.Header>
+								<x:String>UI Controls</x:String>
+							</w:CircleListView.Header>
+							<w:CircleListView.HeaderTemplate>
+								<DataTemplate>
+									<Label
+										w:CircleListView.CancelEffect="True"
+										FontAttributes="Bold"
+										FontSize="11"
+										HeightRequest="120"
+										HorizontalTextAlignment="Center"
+										Text="{Binding .}"
+										TextColor="#6CC3F1"
+										VerticalTextAlignment="Center" />
+								</DataTemplate>
+							</w:CircleListView.HeaderTemplate>
+						</w:CircleListView>
+					</w:CirclePage.Content>
+				</w:CirclePage>
+			</x:Arguments>
+		</NavigationPage>
+	</Application.MainPage>
 </Application>
