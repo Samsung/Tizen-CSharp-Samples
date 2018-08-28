@@ -1,15 +1,15 @@
 ﻿<w:CirclePage
-    x:Class="UIComponents.Samples.Check"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:UIComponents"
-    xmlns:sys="clr-namespace:System;assembly=netstandard"
-    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms">
-    <w:CirclePage.Content>
-        <StackLayout VerticalOptions="Center">
-            <w:Check DisplayStyle="Default" HorizontalOptions="CenterAndExpand" />
-            <w:Check DisplayStyle="Small" HorizontalOptions="CenterAndExpand" />
-            <w:Check DisplayStyle="Onoff" HorizontalOptions="FillAndExpand" />
-        </StackLayout>
-    </w:CirclePage.Content>
+	x:Class="UIComponents.Samples.Check"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:UIComponents"
+	xmlns:sys="clr-namespace:System;assembly=netstandard"
+	xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms">
+	<w:CirclePage.Content>
+		<StackLayout VerticalOptions="Center">
+			<w:Check DisplayStyle="Default" HorizontalOptions="CenterAndExpand" />
+			<w:Check DisplayStyle="Small" HorizontalOptions="CenterAndExpand" />
+			<w:Check DisplayStyle="Onoff" HorizontalOptions="CenterAndExpand" />
+		</StackLayout>
+	</w:CirclePage.Content>
 </w:CirclePage>
