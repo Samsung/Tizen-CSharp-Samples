@@ -30,6 +30,8 @@ namespace ApplicationControl
         /// <summary>
         /// A constructor for the MainPage class
         /// </summary>
+        /// <param name="screenWidth">screen width</param>
+        /// <param name="screenHeight">screen height</param>
         public MainPage(int screenWidth, int screenHeight)
         {
             if (_contentLoaded)
@@ -247,7 +249,7 @@ namespace ApplicationControl
         }
 
         /// <summary>
-        /// To initialize some fields when the class is instanciated
+        /// To initialize some fields when the class is instantiated
         /// </summary>
         void Initialize()
         {

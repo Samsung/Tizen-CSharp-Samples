@@ -52,7 +52,7 @@ namespace AppCommon
         }
 
         /// <summary>
-        /// To initialize fields when the class is instanciated
+        /// To initialize fields when the class is instantiated
         /// </summary>
         void Initialize()
         {

@@ -103,25 +103,25 @@ namespace AppCommon.Cells
                 }),
                 Constraint.RelativeToParent((parent) =>
                 {
-                    return parent.Width * ( 1 - 2 * 0.0431);
+                    return parent.Width * (1 - 2 * 0.0431);
                 }));
 
             var gestureRecognizer = new LongTapGestureRecognizer();
             gestureRecognizer.TapStarted += (s, e) =>
             {
-                //change forground blend color of image
+                //change foreground blend color of image
                 ImageAttributes.SetBlendColor(backgroundImage, Color.FromRgb(213, 228, 240));
             };
 
             gestureRecognizer.TapCanceled += (s, e) =>
             {
-                //revert forground blend color of image
+                //revert foreground blend color of image
                 ImageAttributes.SetBlendColor(backgroundImage, Color.Default);
             };
 
             gestureRecognizer.TapCompleted += (s, e) =>
             {
-                //revert forground blend color of image
+                //revert foreground blend color of image
                 ImageAttributes.SetBlendColor(backgroundImage, Color.Default);
             };
             layout.GestureRecognizers.Add(gestureRecognizer);

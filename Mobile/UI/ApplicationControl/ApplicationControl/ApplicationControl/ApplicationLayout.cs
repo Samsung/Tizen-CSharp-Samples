@@ -32,6 +32,8 @@ namespace ApplicationControl
         /// <summary>
         /// A constructor of the ApplicationLayout class
         /// </summary>
+        /// <param name="screenWidth">screen width</param>
+        /// <param name="screenHeight">screen height</param>
         public ApplicationLayout(int screenWidth, int screenHeight) : base()
         {
             SetPropertyChangeListener();
@@ -139,9 +141,10 @@ namespace ApplicationControl
         void OnItemSelected(object s, EventArgs e)
         {
             var item = (ApplicationLayoutItem)s;
-            foreach (var app in ((MainViewModel)BindingContext).Applications )
+            foreach (var app in ((MainViewModel)BindingContext).Applications)
             {
-                if(app.Id.Equals(item.AppId)){
+                if (app.Id.Equals(item.AppId))
+                {
                     ((MainViewModel)BindingContext).SelectedItem = app;
                     break;
                 }
@@ -151,6 +154,8 @@ namespace ApplicationControl
         /// <summary>
         /// To initialize the application layout
         /// </summary>
+        /// <param name="screenWidth">screen width</param>
+        /// <param name="screenHeight">screen height</param>
         void InitializeComponent(int screenWidth, int screenHeight)
         {
             Children.Add(
@@ -283,6 +288,8 @@ namespace ApplicationControl
         /// <summary>
         /// A constructor for the ApplicationContentLayout
         /// </summary>
+        /// <param name="screenWidth">screen width</param>
+        /// <param name="screenHeight">screen height</param>
         public ApplicationContentLayout(int screenWidth, int screenHeight) : base()
         {
             InitializeComponent();
@@ -300,9 +307,8 @@ namespace ApplicationControl
         /// <summary>
         /// To add an item on the application content layout
         /// </summary>
-        /// <param name="id">An applicaiton id</param>
-        /// <param name="iconPath">An icon path</param>
-        /// <returns>An operation item</returns>
+        /// <param name="item">ApplicationListItem</param>
+        /// <returns>ApplicationLayoutItem</returns>
         public ApplicationLayoutItem AddItem(ApplicationListItem item)
         {
             var layoutItem = new ApplicationLayoutItem(item) { };

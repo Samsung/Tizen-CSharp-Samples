@@ -50,15 +50,18 @@ namespace Puzzle.Tizen.Mobile.Renderers
                 var radio = new Radio(TForms.NativeParent) { StateValue = 1 };
                 SetNativeControl(radio);
             }
+
             if (e.OldElement != null)
             {
                 Control.ValueChanged -= ChangedEventHandler;
             }
+
             if (e.NewElement != null)
             {
                 Control.ValueChanged += ChangedEventHandler;
                 UpdateAll();
             }
+
             base.OnElementChanged(e);
         }
 
@@ -138,6 +141,7 @@ namespace Puzzle.Tizen.Mobile.Renderers
             {
                 Control.GroupValue = Element.IsSelected ? 1 : 0;
             }
+
             s_GroupManager.Value.UpdateChecked(Element.GroupName, Element);
         }
 
@@ -155,6 +159,7 @@ namespace Puzzle.Tizen.Mobile.Renderers
                 textStyle = null;
                 emission = "elm,state,text,hidden";
             }
+
             Control.Text = formattedText;
 
             var textblock = Control.EdjeObject["elm.text"];
@@ -204,6 +209,7 @@ namespace Puzzle.Tizen.Mobile.Renderers
             {
                 _groupMap.Add(groupName, new List<RadioButton>());
             }
+
             _groupMap[groupName].Add(button);
             UpdateChecked(groupName, button);
         }
@@ -218,6 +224,7 @@ namespace Puzzle.Tizen.Mobile.Renderers
                     groupName = list.Key;
                 }
             }
+
             PartGroup(groupName, button);
         }
 

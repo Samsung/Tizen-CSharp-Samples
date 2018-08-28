@@ -30,7 +30,7 @@ namespace AppCommon.Tizen.Mobile
     {
         public BatteryInformation()
         {
-            // TODO : if Levelchannged is work welll use LevelChanged event not PercentChanged event.
+            // TODO : if Levelchannged is working well use LevelChanged event not PercentChanged event.
             //TBattery.LevelChanged += (s, e) =>
             //{
             //    Debug.WriteLine("LevelChanged : " + e.Level.ToString());

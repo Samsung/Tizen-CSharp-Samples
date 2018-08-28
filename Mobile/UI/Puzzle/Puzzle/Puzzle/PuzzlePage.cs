@@ -40,7 +40,7 @@ namespace Puzzle
     /// </summary>
     public partial class PuzzlePage : ContentPage
     {
-        // Maximun number of squares horizontally and vertically,
+        // Maximum number of squares horizontally and vertically,
         static readonly int MAXNUM = 5;
         //Refresh factor, moving times to refresh the puzzle.
         private const int REFRESH_FACTOR = 50;

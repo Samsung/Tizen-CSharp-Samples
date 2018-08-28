@@ -79,6 +79,7 @@ namespace AppCommon.Tizen.Mobile.Renderers
             {
                 return _content;
             }
+
             set
             {
                 _content = value;
@@ -92,6 +93,7 @@ namespace AppCommon.Tizen.Mobile.Renderers
             {
                 return _positive;
             }
+
             set
             {
                 _positive = value;
@@ -105,6 +107,7 @@ namespace AppCommon.Tizen.Mobile.Renderers
             {
                 return _neutral;
             }
+
             set
             {
                 _neutral = value;
@@ -118,6 +121,7 @@ namespace AppCommon.Tizen.Mobile.Renderers
             {
                 return _negative;
             }
+
             set
             {
                 _negative = value;
@@ -131,6 +135,7 @@ namespace AppCommon.Tizen.Mobile.Renderers
             {
                 return _title;
             }
+
             set
             {
                 _title = value;
@@ -145,10 +150,12 @@ namespace AppCommon.Tizen.Mobile.Renderers
             {
                 throw new Exception("When the Application's Platform is null, can not show the Dialog.");
             }
+
             if (_contentView.Platform == null)
             {
                 UpdateContent();
             }
+
             _control.Show();
         }
 
@@ -166,7 +173,9 @@ namespace AppCommon.Tizen.Mobile.Renderers
         protected virtual void Dispose(bool disposing)
         {
             if (_isDisposed)
+            {
                 return;
+            }
 
             if (disposing)
             {
@@ -175,16 +184,19 @@ namespace AppCommon.Tizen.Mobile.Renderers
                     _nativePositive.Unrealize();
                     _nativePositive = null;
                 }
+
                 if (_nativeNeutral != null)
                 {
                     _nativeNeutral.Unrealize();
                     _nativeNeutral = null;
                 }
+
                 if (_nativeNegative != null)
                 {
                     _nativeNegative.Unrealize();
                     _nativeNegative = null;
                 }
+
                 if (_nativeContent != null)
                 {
                     _nativeContent.Unrealize();
@@ -230,7 +242,9 @@ namespace AppCommon.Tizen.Mobile.Renderers
         void UpdateContent()
         {
             if (Application.Current.Platform == null)
+            {
                 return;
+            }
 
             _contentView.Children.Clear();
 

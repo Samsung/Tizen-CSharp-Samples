@@ -60,6 +60,7 @@ namespace SNSUI.Tizen.Renderers.Cells
                     FontSize = -1
                 };
             }
+
             return null;
         }
 
@@ -88,8 +89,10 @@ namespace SNSUI.Tizen.Renderers.Cells
                 {
                     check.AllowFocus(false);
                 }
+
                 return check;
             }
+
             return null;
         }
 
@@ -99,7 +102,9 @@ namespace SNSUI.Tizen.Renderers.Cells
             if (property == BaseTypeCell.IconProperty.PropertyName)
             {
                 if (!realizedView.ContainsKey(_iconPart) || typeCell.Icon == null)
+                {
                     return true;
+                }
 
                 var image = realizedView[_iconPart] as NImage;
                 SetUpImage(typeCell, image);
@@ -137,6 +142,7 @@ namespace SNSUI.Tizen.Renderers.Cells
                     image.MinimumHeight = image.ObjectSize.Height;
                 };
             }
+
             image.LoadFromImageSourceAsync(cell.Icon);
         }
     }

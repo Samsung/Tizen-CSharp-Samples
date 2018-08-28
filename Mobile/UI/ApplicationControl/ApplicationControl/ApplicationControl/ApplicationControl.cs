@@ -26,6 +26,8 @@ namespace ApplicationControl
         /// <summary>
         /// A constructor of the App class
         /// </summary>
+        /// <param name="screenWidth">screen width</param>
+        /// <param name="screenHeight">screen height</param>
         public App(int screenWidth, int screenHeight)
         {
             /// The root page of your application

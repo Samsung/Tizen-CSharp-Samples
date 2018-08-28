@@ -73,7 +73,7 @@ namespace SNSUI
     public class NewsItem : StackLayout
     {
         /// <summary>
-        /// A cunstructor for the class.
+        /// A constructor for the class.
         /// </summary>
         public NewsItem()
         {

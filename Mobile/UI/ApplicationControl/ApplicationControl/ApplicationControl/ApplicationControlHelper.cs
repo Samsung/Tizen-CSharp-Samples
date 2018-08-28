@@ -63,7 +63,7 @@ namespace ApplicationControl
     }
 
     /// <summary>
-    /// A static class to manipulatea the application control and the application information functionalities
+    /// A static class to manipulate the application control and the application information functionalities
     /// </summary>
     static public class ApplicationControlHelper
     {
@@ -101,7 +101,7 @@ namespace ApplicationControl
         /// <summary>
         /// To sen a terminate request
         /// </summary>
-        /// <param name="id">an appliction ID</param>
+        /// <param name="id">an application ID</param>
         public static void KillApplication(string id)
         {
             ApplicationOperations.Instance.Operation.SendTerminateRequest(id);
