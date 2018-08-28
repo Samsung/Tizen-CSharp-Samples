@@ -181,7 +181,7 @@ namespace AppCommon
                     return parent.Height * 0.0152;
                 }));
 
-            /// To dispay the device battery status
+            /// To display the device battery status
             var batteryLED = new Image
             {
                 Source = "led.png"
@@ -326,7 +326,7 @@ namespace AppCommon
                 batteryLED.SetBinding(ImageAttributes.BlendColorProperty, "LowBatteryLEDColor");
             };
 
-            /// Set mainLayou as Content of the page
+            /// Set mainLayout as Content of the page
             Content = mainLayout;
         }
     }

@@ -336,7 +336,7 @@ namespace AppCommon
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// This methdo will be invoked o broadcast a property change event
+        /// Called to notify that a change of property happened
         /// </summary>
         /// <param name="propertyName">A property name that need to update to the value</param>
         protected virtual void OnPropertyChanged(string propertyName)
@@ -345,7 +345,7 @@ namespace AppCommon
         }
 
         /// <summary>
-        /// To initialize fields when the class is instanciated
+        /// To initialize fields when the class is instantiated
         /// </summary>
         void Initialize()
         {

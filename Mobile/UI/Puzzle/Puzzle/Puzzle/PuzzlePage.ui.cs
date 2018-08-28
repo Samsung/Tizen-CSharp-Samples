@@ -334,7 +334,7 @@ namespace Puzzle
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };
 
-            //register reft button click event
+            //register left button click event
             btn.Clicked += (sender, e) =>
             {
                 //Check which block can be moved to left.
@@ -428,7 +428,7 @@ namespace Puzzle
 
         /// <summary>
         /// Create answer dialog. if answer button clicked, will push this dialog to front.
-        /// Only contain a whole answer image in center.
+        /// Only contain a whole answer image in the center.
         /// </summary>
         /// <returns>return a Dailog</returns>
         /// <seealso cref="Dialog">
@@ -483,7 +483,7 @@ namespace Puzzle
 
         /// <summary>
         /// Create finish dialog. if puzzle is finished,  will push this dialog to front.
-        /// Only contain a image in center.
+        /// Only contain a image in the center.
         /// </summary>
         void DisplayFinishDialog()
         {
@@ -635,7 +635,7 @@ namespace Puzzle
         /// Create Radio Button of Dialog pop-up.
         /// Radio Button is Tizen forms extension API
         /// </summary>
-        /// <param name="name">The text of radio buton.</param>
+        /// <param name="name">The text of radio button.</param>
         /// <returns>return a RadioButton</returns>
         /// <seealso cref="RadioButton">
         RadioButton CreateRadioButton(string name)

@@ -19,7 +19,7 @@ using Xamarin.Forms;
 namespace SNSUI.Extensions
 {
     /// <summary>
-    /// A class for a custrom tabbed page.
+    /// A class for a custom tabbed page.
     /// </summary>
     public class CustomTabbedPage : TabbedPage
     {

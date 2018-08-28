@@ -55,7 +55,7 @@ namespace AppCommon.Extensions
         /// <summary>
         /// Gets or sets the BackgroundOption on the background.
         /// This identifies on how a background will display its image.
-        /// Defalt value is BackgroundOptions.Scale.
+        /// Default value is BackgroundOptions.Scale.
         /// </summary>
         public BackgroundOptions Option
         {

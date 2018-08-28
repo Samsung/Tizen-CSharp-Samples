@@ -106,7 +106,7 @@ namespace AppCommon.Extensions
         }
 
         /// <summary>
-        /// Gests or sets an object to be passed when the PressedCommand is executed.
+        /// Gets or sets an object to be passed when the PressedCommand is executed.
         /// </summary>
         public object TapStartedCommandParameter
         {
@@ -115,7 +115,7 @@ namespace AppCommon.Extensions
         }
 
         /// <summary>
-        /// Gests or sets the command to invoke when the released event occurs.
+        /// Gets or sets the command to invoke when the released event occurs.
         /// </summary>
         /// <remarks>
         /// </remarks>
@@ -126,7 +126,7 @@ namespace AppCommon.Extensions
         }
 
         /// <summary>
-        /// Gests or sets an object to be passed when the ReleasedCommand is executed.
+        /// Gets or sets an object to be passed when the ReleasedCommand is executed.
         /// </summary>
         public object TapCompletedCommandParameter
         {
@@ -138,7 +138,9 @@ namespace AppCommon.Extensions
         {
             ICommand cmd = TapStartedCommand;
             if (cmd != null && cmd.CanExecute(TapStartedCommandParameter))
+            {
                 cmd.Execute(TapStartedCommandParameter);
+            }
 
             TapStarted?.Invoke(sender, EventArgs.Empty);
             LongTapUpdated?.Invoke(sender, new LongTapUpdatedEventArgs(GestureStatus.Started, timeStamp));
@@ -148,7 +150,9 @@ namespace AppCommon.Extensions
         {
             ICommand cmd = TapCompletedCommand;
             if (cmd != null && cmd.CanExecute(TapCompletedCommandParameter))
+            {
                 cmd.Execute(TapCompletedCommandParameter);
+            }
 
             TapCompleted?.Invoke(sender, EventArgs.Empty);
             LongTapUpdated?.Invoke(sender, new LongTapUpdatedEventArgs(GestureStatus.Completed, timeStamp));

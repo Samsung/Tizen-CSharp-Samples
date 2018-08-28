@@ -26,6 +26,8 @@ namespace ApplicationControl
         /// <summary>
         /// Initialize main page UI layout
         /// </summary>
+        /// <param name="screenWidth">screen width</param>
+        /// <param name="screenHeight">screen height</param>
         void InitializeComponent(int screenWidth, int screenHeight)
         {
             BackgroundColor = Color.FromRgb(255, 255, 255);
@@ -75,7 +77,7 @@ namespace ApplicationControl
                 }));
 
             /// Add an applicationLayout to the mainLayout
-            var applicationLayout = new ApplicationLayout (screenWidth, screenHeight)
+            var applicationLayout = new ApplicationLayout(screenWidth, screenHeight)
             {
                 WidthRequest = adjustedScreenWidth,
                 HeightRequest = adjustedScreenHeight * 0.3445,

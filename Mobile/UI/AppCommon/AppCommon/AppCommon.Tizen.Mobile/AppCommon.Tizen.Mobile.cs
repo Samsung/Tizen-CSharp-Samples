@@ -35,7 +35,7 @@ namespace AppCommon.Tizen.Mobile
         }
 
         /// <summary>
-        /// Handle LowBatter event
+        /// Handle LowBattery event
         /// </summary>
         /// <param name="e">An event data</param>
         protected override void OnLowBattery(LowBatteryEventArgs e)

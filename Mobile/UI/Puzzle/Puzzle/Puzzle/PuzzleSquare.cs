@@ -50,14 +50,14 @@ namespace Puzzle
             //When tap event is invoked. add pressed color to square image.
             gestureRecognizer.TapStarted += (s, e) =>
             {
-                //change forground blend color of image
+                //change foreground blend color of image
                 ImageAttributes.SetBlendColor(image, Color.FromRgb(213, 228, 240));
             };
 
             //If tap is released. set default color to square image.
             gestureRecognizer.TapCanceled += (s, e) =>
             {
-                //revert forground blend color of image
+                //revert foreground blend color of image
                 ImageAttributes.SetBlendColor(image, Color.Default);
                 //Invoke click event to consumer.
                 SendClicked();
@@ -66,7 +66,7 @@ namespace Puzzle
             //Set default color to square image.
             gestureRecognizer.TapCompleted += (s, e) =>
             {
-                //revert forground blend color of image
+                //revert foreground blend color of image
                 ImageAttributes.SetBlendColor(image, Color.Default);
                 //Invoke click event to consumer.
                 SendClicked();

@@ -197,7 +197,7 @@ namespace SNSUI.Tizen.Renderers
         }
 
         /// <summary>
-        /// A handler that be invoked when the CurrentPaget of the TabbedPage is changed.
+        /// A handler that be invoked when the CurrentPage of the TabbedPage is changed.
         /// </summary>
         void CurrentPageChanged()
         {
@@ -231,7 +231,7 @@ namespace SNSUI.Tizen.Renderers
         }
 
         /// <summary>
-        /// A handler that be invoked when pages is scolled.
+        /// A handler that be invoked when pages is scrolled.
         /// </summary>
         /// <param name="s">a sender</param>
         /// <param name="e">an event</param>

@@ -34,19 +34,19 @@ namespace AppCommon.Extensions
             var gestureRecognizer = new LongTapGestureRecognizer();
             gestureRecognizer.TapStarted += (s, e) =>
             {
-                //change forground blend color of image
+                //change foreground blend color of image
                 ImageAttributes.SetBlendColor(this, Color.FromRgb(213, 228, 240));
             };
 
             gestureRecognizer.TapCanceled += (s, e) =>
             {
-                //revert forground blend color of image
+                //revert foreground blend color of image
                 ImageAttributes.SetBlendColor(this, Color.Default);
             };
 
             gestureRecognizer.TapCompleted += (s, e) =>
             {
-                //revert forground blend color of image
+                //revert foreground blend color of image
                 ImageAttributes.SetBlendColor(this, Color.Default);
             };
             GestureRecognizers.Add(gestureRecognizer);
@@ -62,7 +62,7 @@ namespace AppCommon.Extensions
         }
 
         /// <summary>
-        /// To bradcast a press event to subscribers
+        /// To broadcast a press event to subscribers
         /// </summary>
         public void SendPressed()
         {
@@ -70,7 +70,7 @@ namespace AppCommon.Extensions
         }
 
         /// <summary>
-        /// To bradcast a release event to subscribers
+        /// To broadcast a release event to subscribers
         /// </summary>
         public void SendReleased()
         {

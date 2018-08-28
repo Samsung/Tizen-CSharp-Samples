@@ -62,14 +62,14 @@ namespace ApplicationControl
             //When tap event is invoked. add pressed color to square image.
             gestureRecognizer.TapStarted += (s, e) =>
             {
-                //change forground blend color of image
+                //change foreground blend color of image
                 ImageAttributes.SetBlendColor(_bgButton, Color.FromRgb(213, 228, 240));
             };
 
             //If tap is released. set default color to square image.
             gestureRecognizer.TapCanceled += (s, e) =>
             {
-                //revert forground blend color of image
+                //revert foreground blend color of image
                 ImageAttributes.SetBlendColor(_bgButton, Color.Default);
                 //Invoke selected event to consumer.
                 SendSelected();
@@ -78,7 +78,7 @@ namespace ApplicationControl
             //Set default color to square image.
             gestureRecognizer.TapCompleted += (s, e) =>
             {
-                //revert forground blend color of image
+                //revert foreground blend color of image
                 ImageAttributes.SetBlendColor(_bgButton, Color.Default);
                 //Invoke selected event to consumer.
                 SendSelected();

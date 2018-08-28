@@ -23,11 +23,13 @@ namespace AppCommon.Tizen.Mobile.Renderers
                 var background = new EBackground(TForms.NativeParent);
                 SetNativeControl(background);
             }
+
             if (e.NewElement != null)
             {
                 UpdateImage();
                 UpdateOption();
             }
+
             base.OnElementChanged(e);
         }
 
@@ -41,15 +43,20 @@ namespace AppCommon.Tizen.Mobile.Renderers
             {
                 UpdateOption();
             }
+
             base.OnElementPropertyChanged(sender, e);
         }
 
         void UpdateImage()
         {
             if (Element.Image == null)
+            {
                 Control.File = "";
+            }
             else
+            {
                 Control.File = ResourcePath.GetPath(Element.Image.File);
+            }
         }
 
         void UpdateOption()

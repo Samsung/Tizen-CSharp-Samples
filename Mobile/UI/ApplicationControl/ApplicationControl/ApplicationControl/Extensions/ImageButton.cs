@@ -34,14 +34,14 @@ namespace ApplicationControl.Extensions
             //When tap event is invoked. add pressed color to image.
             gestureRecognizer.TapStarted += (s, e) =>
             {
-                //change forground blend color of image
+                //change foreground blend color of image
                 ImageAttributes.SetBlendColor(this, Color.FromRgb(213, 228, 240));
             };
 
             //If tap is released. set default color to image.
             gestureRecognizer.TapCanceled += (s, e) =>
             {
-                //revert forground blend color of image
+                //revert foreground blend color of image
                 ImageAttributes.SetBlendColor(this, Color.Default);
                 SendClicked();
             };
@@ -49,7 +49,7 @@ namespace ApplicationControl.Extensions
             //If tap is completed. set default color to image.
             gestureRecognizer.TapCompleted += (s, e) =>
             {
-                //revert forground blend color of image
+                //revert foreground blend color of image
                 ImageAttributes.SetBlendColor(this, Color.Default);
                 SendClicked();
             };
