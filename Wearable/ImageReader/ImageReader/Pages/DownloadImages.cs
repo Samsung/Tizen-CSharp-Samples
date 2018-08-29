@@ -22,7 +22,7 @@ namespace ImageReader.Pages
                     },
                     new Image
                     {
-                        Source = ImageSource.FromUri(new Uri("https://download.tizen.org/misc/Tizen-Brand/01-Primary-Assets/Logo/On-Dark/01-RGB/Tizen-Logo-On-Dark-RGB.png"))
+                        Source = ImageSource.FromUri(new Uri("http://pe.tedcdn.com/images/ted/2e306b9655267cee35e45688ace775590b820510_615x461.jpg"))
                     },
                 },
                 Padding = new Thickness(50, 30, 50, 30),
