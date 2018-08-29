@@ -27,13 +27,22 @@ WebWidgetHybrid sample app demonstrates how to make Tizen hybrid app which is pa
     2. the location of `WorldClockWidget2` web app package : WebWidgetHybrid\WorldClockWidget2\WorldClockWidget2.wgt
 
 4. Build a hybrid package using the following command line.
-  C:\tizen-studio\tools\ide\bin\tizen.bat package -t wgt -s tizen-cert -r org.tizen.example.WebWidgetHybrid-1.0.0.tpk -- WorldClockWidget2.wgt
+  C:\tizen-studio\tools\ide\bin\tizen.bat package -t wgt -s tizen-cert -r ./org.tizen.example.WebWidgetHybrid-1.0.0.tpk -- ./WorldClockWidget2.wgt
 
   ```
-   C:\tizen-studio\tools\ide\bin>tizen.bat package -t wgt -s tizen-cert -r org.tizen.example.WebWidgetHybrid-1.0.0.tpk -- WorldClockWidget2.wgt
+   C:\tizen-studio\tools\ide\bin>tizen.bat package -t wgt -s tizen-cert -r ./org.tizen.example.WebWidgetHybrid-1.0.0.tpk -- ./WorldClockWidget2.wgt
    Author certficate: C:/tizen-studio-data/keystore/author/tizen-cert.p12
    Distributor1 certificate : C:\tizen-studio\tools\certificate-generator\certificates\distributor\tizen-distributor-signer.p12
    Package( C:\tizen-studio\tools\ide\bin\WorldClockWidget2.wgt ) is created successfully.
+  ```
+
+  ```
+   tizen.bat package --help
+   Usage: tizen package [args]
+    -- <working directory>           Specify where the base directory is for the command
+   -s (--sign) <security profile>    Specify the security profile name
+   -t (--type) wgt                   Packaging type (wgt for hybrid app)
+   -r (--reference) <path>[;...]     Reference prj paths (for HybridApp package)
   ```
 
 5. Install the hybrid app using the following command line:
