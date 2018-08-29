@@ -3,10 +3,11 @@
 The AmbientWatch application demonstrates how to make a watch application that supports ambient mode in Tizen wearable device.
 To extend battery life, a watch application can display a limited UI in ambient mode by detecting ambient mode changes.
 
-![main page](./Snapshot.png)
+   ![main page](./AmbientWatch_Snapshot.png)
 
 * In ambient mode
-![main page](./AmbientMode.png)
+
+   ![main page](./AmbientWatch_AmbientMode.png)
 
 First of all, "ambient-support" attribute should be set to true as follows:
 
