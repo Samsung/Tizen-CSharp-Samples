@@ -57,7 +57,10 @@ If GPS or network connection is not available, weather & AQI information is not 
    <img src="./WeatherWatch_Snapshot-device-noGPS.png">
    </p>
 
-To see the exact values of the AQI & battery percentage, you can check it by touching the AQI or battery icon images.
+To see the exact values of the AQI & battery percentage, you can check them out by touching the AQI or battery icon images.
+
+(AQI and battery percentage texts are visible or invisible by touching icons.)
+
 <p align="left">
  <img src="./WeatherWatch_Snapshot-Emul-touched.png">
  <img src="./WeatherWatch_Snapshot-device-touched.png">
