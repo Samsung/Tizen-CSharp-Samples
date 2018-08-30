@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:WeatherWatch.PageModels;"
+             x:Class="WeatherWatch.Pages.WeatherWatchPage">
+    <ContentPage.BindingContext>
+        <vm:WeatherWatchPageModel x:Name="ViewModel" />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <AbsoluteLayout IsVisible="True" BackgroundColor="Transparent">
+                <Image AbsoluteLayout.LayoutFlags="All"
+                       AbsoluteLayout.LayoutBounds="0,0,1,1"
+                       Source="background_app.png" />
+                
+                
+                <!-- Battery Information -->
+                <Image AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="200, 114, 88, 87"
+                       Source="{Binding BatteryIndicatorPath}" />
+                <Image AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="208, 122, 73, 73"
+                       Source="{Binding BatteryIconPath}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Battery_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="211, 142, 80, 30"
+                       FontAttributes="Bold"
+                       FontSize="9"
+                       IsVisible="{Binding BatteryTextIsVisible}"
+                       Text="{Binding BatteryPercent}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Battery_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <!-- Information about Air Pollution Quality Index (AQI) -->
+                <Image AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="72, 114, 88, 87"
+                       Source="{Binding AqiIndicatorPath}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AirPollution_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="80, 122, 72, 72"
+                       Source="{Binding AqiIconPath}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AirPollution_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="83, 142, 72, 30"
+                       FontAttributes="Bold"
+                       FontSize="9"
+                       IsVisible="{Binding AqiTextIsVisible}"
+                       Text="{Binding AqiText}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AirPollution_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                
+                
+                <!-- Today's date -->
+                <Label AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="117,225,86,17"
+                       TextColor="White"
+                       FontSize="7"
+                       Text="{Binding Month}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="End" />
+                <Label AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="210,219,37,28"
+                       TextColor="#DBD303"
+                       FontAttributes="Bold"
+                       FontSize="12"
+                       Text="{Binding Day}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center" />
+                
+                
+                <!-- Weather Information -->
+                <Image AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="110,247,50,50"
+                       IsVisible="{Binding WeatherInfoIsVisible}"
+                       Source="{Binding WeatherIcon}" />
+                <Label AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="162,250,110,35"
+                       TextColor="White"
+                       FontSize="6"
+                       Text="{Binding WeatherText}"
+                       IsVisible="{Binding WeatherInfoIsVisible}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+                
+                
+                <!-- Watch information -->
+                <Image AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="173.5, 0, 13, 360"
+                       Rotation="{Binding Seconds}"
+                       Source="second_indicator.png" />
+                <Image AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="177, 0, 6, 360"
+                       Rotation="{Binding Minutes}"
+                       Source="minute_indicator.png" />
+                <Image AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="177, 0, 6, 360"
+                       Rotation="{Binding Hours}"
+                       Source="hour_indicator.png" />
+                <Image AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="170, 170, 20, 20"
+                       Source="pin.png" />
+            </AbsoluteLayout>
+            
+            <!-- Error View when API key is invalid -->
+            <StackLayout x:Name="ErrorView" BackgroundColor="RosyBrown"
+                         IsVisible="{Binding ErrorViewIsVisible}" Margin="50"
+                         AbsoluteLayout.LayoutFlags="None"
+                         AbsoluteLayout.LayoutBounds="0, 0, 360, 360">
+                <Label Text="Please use your API key to get information about weather and AQI. Change WEATHER_API_KEY and AIR_POLLUTION_API_KEY."
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand" />
+                <Button Text="Dismiss" Command="{Binding DismissErrorViewCommand}" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
