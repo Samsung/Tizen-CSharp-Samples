@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AmbientWatch.AmbientWatchApplication">
+    <Application.MainPage>
+        <ContentPage>
+            <AbsoluteLayout BackgroundColor="Transparent">
+                <Image x:Name="BackgroundImage"
+                       AbsoluteLayout.LayoutFlags="All"
+                       AbsoluteLayout.LayoutBounds="0,0,1,1"
+                       Source="cipher_board_bg.png">
+                </Image>
+                <Image x:Name="SecondBackgroundImage"
+                       AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="134, 222, 94, 94"
+                       IsVisible="{Binding AmbientModeDisabled}"
+                       Source="second_background.png">
+                </Image>
+                <Image x:Name="CenterPinImage"
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds="0.5, 0.5"
+                       Source="hands_center.png">
+                </Image>
+                <Image x:Name="HourHand"
+                       AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="175.5, 94, 9, 86"
+                       AnchorY ="1"
+                       Rotation="{Binding Hours}"
+                       Source="hand_hour.png"/>
+                <Image x:Name="MinuteHand"
+                       AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="173, 65, 14, 115"
+                       AnchorY ="1"
+                       Rotation="{Binding Minutes}"
+                       Source="hand_minute.png"/>
+                <Image x:Name="SecondHand"
+                       AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="177.5, 222.9964, 7, 92"
+                       Rotation="{Binding Seconds}"
+                       IsVisible="{Binding AmbientModeDisabled}"
+                       Source="hand_second.png"/>
+            </AbsoluteLayout>
+        </ContentPage>
+    </Application.MainPage>
+</Application>
