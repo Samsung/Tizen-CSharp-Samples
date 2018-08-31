@@ -99,7 +99,9 @@ namespace Contacts.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            UpdateListCommand.Execute(null);
+            bool isAccepted = SecurityProvider.Instance.CheckContactsPrivilege();
+            if (isAccepted)
+                UpdateListCommand.Execute(null);
         }
 
         /// <summary>
@@ -109,7 +111,8 @@ namespace Contacts.Views
         /// </summary>
         public ListPage()
         {
-            SecurityProvider.Instance.CheckContactsPrivilege();
+            DependencyService.Get<ISecurityAPIs>().PrivilageAccepted += ListPage_PrivilegeAccepted;
+            //SecurityProvider.Instance.CheckContactsPrivilege();
             InitializeComponent();
             PropertyChanged += OnPropertyChanged;
             ListPageListView.ItemSelected += async (o, e) =>
@@ -120,5 +123,15 @@ namespace Contacts.Views
             };
 
         }
+
+        /// <Summary>
+        /// This is invoked after permission to update the contacts created.
+        /// </Summary>
+        public void ListPage_PrivilegeAccepted(object sender, EventArgs e)
+        {
+            UpdateListCommand.Execute(null);
+        }
+
+
     }
 }

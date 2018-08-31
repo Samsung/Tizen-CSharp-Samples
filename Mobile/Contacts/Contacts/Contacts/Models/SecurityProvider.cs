@@ -40,10 +40,10 @@ namespace Contacts.Models
         /// <summary>
         /// SecurityProvider Constructor.
         /// A Constructor which will initialize the SecurityProvider instance.
-        public void CheckContactsPrivilege()
+        public bool CheckContactsPrivilege()
         {
             securityAPIs = DependencyService.Get<ISecurityAPIs>();
-            securityAPIs.CheckPrivilege();
+            return securityAPIs.CheckPrivilege();
         }
     }
 }

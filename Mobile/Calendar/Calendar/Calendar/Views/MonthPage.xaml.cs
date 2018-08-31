@@ -102,7 +102,9 @@ namespace Calendar.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            UpdateListCommand.Execute(null);
+            bool isAccepted = SecurityProvider.Instance.CheckPrivilege();
+            if (isAccepted)
+                UpdateListCommand.Execute(null);
         }
 
         /// <summary>
@@ -112,7 +114,7 @@ namespace Calendar.Views
         /// </summary>
         public MonthPage()
         {
-            SecurityProvider.Instance.CheckPrivilege();
+            DependencyService.Get<ISecurityAPIs>().PrivilageAccepted += MonthPage_PrivilageAccepted;
             InitializeComponent();
             PropertyChanged += OnPropertyChanged;
             MonthPageListView.ItemSelected += async (o, e) =>
@@ -121,6 +123,14 @@ namespace Calendar.Views
                 InsertPage insertPage = new InsertPage(item, "Update", item.Index);
                 await Navigation.PushAsync(insertPage);
             };
+        }
+
+        /// <summary>
+        /// This is invoked after permission to update the events created.
+        /// </summary>
+        private void MonthPage_PrivilageAccepted(object sender, EventArgs e)
+        {
+            UpdateListCommand.Execute(null);
         }
     }
 }

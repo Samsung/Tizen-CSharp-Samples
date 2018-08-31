@@ -25,9 +25,7 @@ namespace Calendar.Models
     /// </summary>
     public interface ISecurityAPIs
     {
-        /// <summary>
-        /// <param name="privilege">The string for privilege.</param>
-        /// </summary>
-        void CheckPrivilege(string privilege);
+        bool CheckPrivilege();
+        event EventHandler<EventArgs> PrivilageAccepted;
     }
 }
