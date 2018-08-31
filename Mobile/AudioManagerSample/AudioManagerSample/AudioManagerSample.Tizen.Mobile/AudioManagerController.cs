@@ -87,11 +87,14 @@ namespace AudioManagerSample.Tizen.Mobile
             AudioManager.VolumeController.Changed += (s, e) =>
                 VolumeLevelChanged?.Invoke(this, new VolumeLevelChangedEventArgs(ConvertVolumeTypeToString(e.Type), e.Level));
             AudioManager.DeviceConnectionChanged += (s, e) =>
-                DeviceConnectionChanged?.Invoke(this, new DeviceConnectionChangedEventArgs(new DeviceItem(e.Device.Id, ConvertDeviceTypeToString(e.Device.Type), e.Device.Name), e.IsConnected));
+                DeviceConnectionChanged?.Invoke(this, new DeviceConnectionChangedEventArgs(new DeviceItem(e.Device.Id, ConvertDeviceTypeToString(e.Device.Type), e.Device.Name, "Idle"), e.IsConnected));
+            AudioManager.DeviceRunningChanged += (s, e) =>
+                DeviceRunningChanged?.Invoke(this, new DeviceRunningChangedEventArgs(new DeviceItem(e.Device.Id, ConvertDeviceTypeToString(e.Device.Type), e.Device.Name, e.Device.IsRunning ? "Running" : "Idle"), e.IsRunning));
         }
 
         public event EventHandler<VolumeLevelChangedEventArgs> VolumeLevelChanged;
         public event EventHandler<DeviceConnectionChangedEventArgs> DeviceConnectionChanged;
+        public event EventHandler<DeviceRunningChangedEventArgs> DeviceRunningChanged;
 
         public int GetVolume(string type)
         {
@@ -163,7 +166,7 @@ namespace AudioManagerSample.Tizen.Mobile
 
             foreach (AudioDevice item in items)
             {
-                yield return new DeviceItem(item.Id, ConvertDeviceTypeToString(item.Type), item.Name);
+                yield return new DeviceItem(item.Id, ConvertDeviceTypeToString(item.Type), item.Name, item.IsRunning ? "Running" : "Idle");
             }
         }
     }

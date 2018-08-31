@@ -10,8 +10,8 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Volume Setting" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:VolumePage}"/>
-            <Button Text="Device Status" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:DeviceListPage}"/>
+            <Button Text="Volume Setting" FontSize="Large" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:VolumePage}"/>
+            <Button Text="Device Status" FontSize="Large" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:DeviceListPage}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

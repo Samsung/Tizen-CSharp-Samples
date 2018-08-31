@@ -35,7 +35,7 @@ namespace AudioManagerSample
         /// Gets connected device list.
         /// </summary>
         IEnumerable<DeviceItem> GetConnectedDevices();
- 
+
         /// <summary>
         /// Occurs when the level of the volume changes.
         /// </summary>
@@ -45,5 +45,10 @@ namespace AudioManagerSample
         /// Occurs when the connection state of the device changes.
         /// </summary>
         event EventHandler<DeviceConnectionChangedEventArgs> DeviceConnectionChanged;
+
+        /// <summary>
+        /// Occurs when the running state of the device changes.
+        /// </summary>
+        event EventHandler<DeviceRunningChangedEventArgs> DeviceRunningChanged;
     }
 }

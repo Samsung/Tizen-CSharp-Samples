@@ -25,11 +25,14 @@
                         <ViewCell>
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal" >
-                                    <Label Text="{Binding Id}" />
-                                    <Label Text="{Binding Type}" HorizontalOptions="FillAndExpand" LineBreakMode="CharacterWrap"/>
+                                    <Label Text="{Binding Id}" FontSize="Large"/>
+                                    <Label Text="{Binding Type}" HorizontalOptions="FillAndExpand" LineBreakMode="CharacterWrap" FontSize="Large"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="End" >
                                     <Label Text="{Binding Name}" TextColor="#003c68" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="End" >
+                                    <Label Text="{Binding State}" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
