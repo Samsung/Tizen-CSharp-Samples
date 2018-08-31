@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="SpeechToText.Views.LanguageSettingsPage"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:controls="clr-namespace:SpeechToText.Controls"
+              Title="Language"
+              x:Name="page"
+              NavigationPage.HasNavigationBar="False"
+              RotaryFocusObject="{x:Reference LanguagesList}">
+
+    <StackLayout>
+        <controls:SettingsPageTitleControl Text="Languages"/>
+
+        <w:CircleListView ItemsSource="{Binding SupportedLanguages}"
+                              SelectedItem="{Binding Language, Mode=OneWay}"
+                              x:Name="LanguagesList">
+            <w:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:ClickableCellControl Text="{Binding ., Converter={StaticResource LanguageConverter}}"
+                                                   Command="{Binding Source={x:Reference page}, Path=BindingContext.ChangeLanguageCommand}"
+                                                   CommandParameter="{Binding Source={x:Reference LanguagesList}, Path=SelectedItem}"/>
+                </DataTemplate>
+            </w:CircleListView.ItemTemplate>
+        </w:CircleListView>
+
+    </StackLayout>
+</w:CirclePage>

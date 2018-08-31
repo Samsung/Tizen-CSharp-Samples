@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:behaviors="clr-namespace:SpeechToText.Behaviors"
+              xmlns:controls="clr-namespace:SpeechToText.Controls"
+              xmlns:converters="clr-namespace:SpeechToText.Converters"
+              xmlns:views="clr-namespace:SpeechToText.Views"
+              x:Class="SpeechToText.Views.MainPage"
+              Title="Speech to text"
+              NavigationPage.HasBackButton="False"
+              NavigationPage.HasNavigationBar="False"
+              RotaryFocusObject="{x:Reference ResultScrollView}">
+
+    <w:CirclePage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToStringConverter x:Key="RecognitionStateToTipTextConverter">
+                <x:Arguments>
+                    <x:String>Tap to pause</x:String>
+                    <x:String>Tap on mic to speak</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <controls:DialogOK x:Key="SettingsUnavailableDialog"
+                               Title="Settings unavailable"
+                               Message="Cannot change settings while recording."
+                               ExecuteCommand="{Binding Source={x:Static Application.Current}, Path=AppViewModel.SettingsUnavailableInfoCommand}" />
+        </ResourceDictionary>
+    </w:CirclePage.Resources>
+
+    <w:CirclePage.ToolbarItems>
+        <w:CircleToolbarItem Icon="images/settings.png"
+                     Order="Primary"
+                     Text="Settings"
+                     Command="{Binding NavigateToSettingsCommand}"
+                     CommandParameter="{x:Type views:SettingsPage}"></w:CircleToolbarItem>
+    </w:CirclePage.ToolbarItems>
+
+    <w:CirclePage.Content>
+        <StackLayout Orientation="Vertical"
+                     Padding="0, 45, 0, 0"
+                     VerticalOptions="FillAndExpand">
+
+            <w:CircleScrollView HorizontalOptions="CenterAndExpand"
+                                x:Name="ResultScrollView"
+                                HeightRequest="300">
+                <!--Label must be in StackLayout to properly calculate the height for ScrollView-->
+                <StackLayout>
+                    <Label Text="{Binding ResultText}"
+                           FontSize="Micro"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap"
+                           WidthRequest="256"
+                           TextColor="{StaticResource TextColor}" />
+                </StackLayout>
+            </w:CircleScrollView>
+
+            <Label FontSize="Micro"
+                   Margin="0, 20, 0, -10"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalTextAlignment="Start"
+                   HorizontalTextAlignment="Center"
+                   AbsoluteLayout.LayoutFlags="None"
+                   TextColor="{StaticResource TizenPointColor}"
+                   Text="{Binding RecognitionActive, Converter={StaticResource RecognitionStateToTipTextConverter}}" />
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                <Image Margin="20, 0, -20, 0">
+                    <Image.Behaviors>
+                        <behaviors:ImageActiveBehavior OriginalSource="images/clear_default.png"
+                                                       ActiveSource="images/clear_pressed.png" />
+                    </Image.Behaviors>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClearResultCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                
+                <controls:MicButtonControl Recording="{Binding RecognitionActive}"
+                                           TurnOnCommand="{Binding RecognitionStartCommand}"
+                                           TurnOffCommand="{Binding RecognitionPauseCommand}" />
+                
+                <Image Margin="-20, 0, 20, 0">
+                    <Image.Behaviors>
+                        <behaviors:ImageActiveBehavior OriginalSource="images/stop_default.png"
+                                                       ActiveSource="images/stop_pressed.png" />
+                    </Image.Behaviors>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RecognitionStopCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+        </StackLayout>
+    </w:CirclePage.Content>
+</w:CirclePage>

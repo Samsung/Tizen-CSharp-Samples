@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="SpeechToText.Views.SettingsPage"
+             xmlns:views="clr-namespace:SpeechToText.Views"
+             xmlns:controls="clr-namespace:SpeechToText.Controls"
+             NavigationPage.HasBackButton="True"
+             Title="Settings"
+             NavigationPage.HasNavigationBar="False"
+             RotaryFocusObject="{x:Reference SettingsList}">
+
+
+    <w:CirclePage.Content>
+        <w:CircleListView IsGroupingEnabled="True"
+                  GroupDisplayBinding="{Binding Title}"
+                  x:Name="SettingsList">
+            <w:CircleListView.ItemsSource>
+                <x:Array Type="{x:Type views:SettingsItemsGroup}">
+                    <views:SettingsItemsGroup Title="General">
+                        <x:Arguments>
+                            <x:Array Type="{x:Type views:SettingsItem}">
+                                <views:SettingsItem Title="Language"
+                                                    Icon="images/language.png"
+                                                    IconPressed="images/language_pressed.png"
+                                                    Command="{Binding Source={x:Static Application.Current}, Path=AppViewModel.NavigateCommand}"
+                                                    CommandParameter="{x:Type views:LanguageSettingsPage}"
+                                                    Value="{Binding Source={x:Static Application.Current}, Path=AppViewModel.Language, Converter={StaticResource LanguageConverter}}" />
+                                <views:SettingsItem Title="Recognition type"
+                                                    Icon="images/recognition_type.png"
+                                                    IconPressed="images/recognition_type_pressed.png"
+                                                    Command="{Binding Source={x:Static Application.Current}, Path=AppViewModel.NavigateCommand}"
+                                                    CommandParameter="{x:Type views:RecognitionTypeSettingsPage}"
+                                                    Value="{Binding Source={x:Static Application.Current}, Path=AppViewModel.RecognitionType, Converter={StaticResource RecognitionTypeConverter}}" />
+                                <views:SettingsItem Title="Silence detection"
+                                                    Icon="images/silence_detection.png"
+                                                    IconPressed="images/silence_detection_pressed.png"
+                                                    Command="{Binding Source={x:Static Application.Current}, Path=AppViewModel.NavigateCommand}"
+                                                    CommandParameter="{x:Type views:SilenceDetectionSettingsPage}"
+                                                    Value="{Binding Source={x:Static Application.Current}, Path=AppViewModel.SilenceDetection, Converter={StaticResource SilenceDetectionConverter}}" />
+                            </x:Array>
+                        </x:Arguments>
+                    </views:SettingsItemsGroup>
+                    <views:SettingsItemsGroup Title="Personal">
+                        <x:Arguments>
+                            <x:Array Type="{x:Type views:SettingsItem}">
+                                <views:SettingsItem Title="Sounds"
+                                                    Icon="images/sounds.png"
+                                                    IconPressed="images/sounds_pressed.png"
+                                                    Command="{Binding Source={x:Static Application.Current}, Path=AppViewModel.InitSoundsWizardCommand}"
+                                                    CommandParameter="{x:Type views:SoundsSettingsPage}"
+                                                    Value="{Binding Source={x:Static Application.Current}, Path=AppViewModel.SoundOn, Converter={StaticResource BoolToOnOffConverter}}" />
+                            </x:Array>
+                        </x:Arguments>
+                    </views:SettingsItemsGroup>
+                </x:Array>
+
+            </w:CircleListView.ItemsSource>
+            <w:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:IconSubtitleCellControl Text="{Binding Title}"
+                                                      Subtitle="{Binding Value}"
+                                                      Icon="{Binding Icon}"
+                                                      IconPressed="{Binding IconPressed}"
+                                                      Command="{Binding Command}"
+                                                      CommandParameter="{Binding CommandParameter}" />
+                </DataTemplate>
+            </w:CircleListView.ItemTemplate>
+        </w:CircleListView>
+    </w:CirclePage.Content>
+</w:CirclePage>

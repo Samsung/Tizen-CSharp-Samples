@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:SpeechToText.Converters"
+             xmlns:controls="clr-namespace:SpeechToText.Controls"
+             x:Class="SpeechToText.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <converters:SupportedLanguageToDisplayNameConverter x:Key="LanguageConverter" />
+
+            <converters:RecognitionTypeToDisplayNameConverter x:Key="RecognitionTypeConverter" />
+
+            <converters:SilenceDetectionToDisplayNameConverter x:Key="SilenceDetectionConverter" />
+
+            <converters:BoolToStringConverter x:Key="BoolToOnOffConverter">
+                <x:Arguments>
+                    <x:String>On</x:String>
+                    <x:String>Off</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <converters:FilePathToNameConverter x:Key="SoundPathToNameConverter">
+                <x:Arguments>
+                    <x:String>None</x:String>
+                </x:Arguments>
+            </converters:FilePathToNameConverter>
+
+            <converters:SttErrorToDisplayMessage x:Key="SttErrorToDisplayNameConverter" />
+
+            <controls:DialogOK x:Key="RecognitionFailedDialog"
+                               Title="Recognition failed"
+                               Message="Please try to speak the sentence once again or check the selected language"
+                               ExecuteCommand="{Binding RecognitionFailedInfoCommand}" />
+
+            <controls:DialogOK x:Key="ServiceErrorDialog"
+                               Title="Service error"
+                               Message="{Binding ServiceError, Converter={StaticResource SttErrorToDisplayNameConverter}}"
+                               ExecuteCommand="{Binding ServiceErrorInfoCommand} "/>
+
+            <controls:DialogOK x:Key="PrivilegeDeniedDialog"
+                               Title="Privilege denied"
+                               Message="Application will be closed due to required privilege denied."
+                               ExecuteCommand="{Binding PrivilegeDeniedInfoCommand}"
+                               ConfirmCommand="{Binding PrivilegeDeniedConfirmedCommand}" />
+        </ResourceDictionary>
+
+    </Application.Resources>
+
+</Application>
