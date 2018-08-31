@@ -8,10 +8,33 @@
         <local:MainPageViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="Command" Value="{Binding NavigateCommand}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Volume Setting" FontSize="Large" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:VolumePage}"/>
-            <Button Text="Device Status" FontSize="Large" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:DeviceListPage}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Button Grid.Column="1" Grid.Row="0" Text="Volume Setting" CommandParameter="{x:Type local:VolumePage}"/>
+                <Button Grid.Column="1" Grid.Row="2" Text="Device Status" CommandParameter="{x:Type local:DeviceListPage}"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

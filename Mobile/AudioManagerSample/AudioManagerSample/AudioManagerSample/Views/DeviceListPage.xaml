@@ -12,7 +12,8 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
-                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="Margin" Value="12,0,12,0"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -25,8 +26,8 @@
                         <ViewCell>
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal" >
-                                    <Label Text="{Binding Id}" FontSize="Large"/>
-                                    <Label Text="{Binding Type}" HorizontalOptions="FillAndExpand" LineBreakMode="CharacterWrap" FontSize="Large"/>
+                                    <Label Text="{Binding Id}" FontSize="Large" />
+                                    <Label Text="{Binding Type}" FontSize="Large" HorizontalOptions="FillAndExpand" LineBreakMode="CharacterWrap" />
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="End" >
                                     <Label Text="{Binding Name}" TextColor="#003c68" />
