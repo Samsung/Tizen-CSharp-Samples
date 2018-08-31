@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:AudioManagerSample"
+                x:Class="AudioManagerSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Volume Setting" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:VolumePage}"/>
+            <Button Text="Device Status" Command="{Binding NavigateCommand}" CommandParameter="{x:Type local:DeviceListPage}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

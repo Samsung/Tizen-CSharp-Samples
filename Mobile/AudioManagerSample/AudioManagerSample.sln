@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioManagerSample", "AudioManagerSample\AudioManagerSample\AudioManagerSample.csproj", "{BABA155A-B689-4147-BE44-9D5F22CB3589}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioManagerSample.Tizen.Mobile", "AudioManagerSample\AudioManagerSample.Tizen.Mobile\AudioManagerSample.Tizen.Mobile.csproj", "{EBC21380-29D1-4A84-B5C5-D0C1E4FDB829}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BABA155A-B689-4147-BE44-9D5F22CB3589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BABA155A-B689-4147-BE44-9D5F22CB3589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BABA155A-B689-4147-BE44-9D5F22CB3589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BABA155A-B689-4147-BE44-9D5F22CB3589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC21380-29D1-4A84-B5C5-D0C1E4FDB829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC21380-29D1-4A84-B5C5-D0C1E4FDB829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC21380-29D1-4A84-B5C5-D0C1E4FDB829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC21380-29D1-4A84-B5C5-D0C1E4FDB829}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6CCC982-AA05-4A25-8AAB-7427A182B10B}
+	EndGlobalSection
+EndGlobal

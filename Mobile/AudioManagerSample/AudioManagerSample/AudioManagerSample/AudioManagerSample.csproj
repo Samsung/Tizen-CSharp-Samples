@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\Commands\**" />
+    <EmbeddedResource Remove="ViewModels\Commands\**" />
+    <None Remove="ViewModels\Commands\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\BasePage.cs" />
+  </ItemGroup>
+
+  <!-- Include Nuget Package for Xamarin building -->
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.77107" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\DeviceListPage.xaml.cs">
+      <DependentUpon>DeviceListPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Views\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\VolumePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
