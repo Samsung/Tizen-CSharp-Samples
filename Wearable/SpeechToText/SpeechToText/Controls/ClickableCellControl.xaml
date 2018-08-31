@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="SpeechToText.Controls.ClickableCellControl"
+          x:Name="Root">
+    
+    <ViewCell.View>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Label VerticalOptions="EndAndExpand"
+                           VerticalTextAlignment="Center"
+                           Text="{Binding Source={x:Reference Root}, Path=Text}"
+                           HorizontalTextAlignment="Center"
+                           FontSize="10" 
+                           HeightRequest="100"/>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnTapped" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>

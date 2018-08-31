@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms" 
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:controls="clr-namespace:SpeechToText.Controls"
+              x:Class="SpeechToText.Views.StartSoundListPage"
+              NavigationPage.HasNavigationBar="False"
+              x:Name="page"
+              RotaryFocusObject="{x:Reference SoundsList}">
+
+    <StackLayout>
+        <controls:SettingsPageTitleControl Text="Sound list"/>
+        
+        <w:CircleListView ItemsSource="{Binding AvailableStartEndSounds}"
+                          x:Name="SoundsList"
+                          SelectedItem="{Binding WizardStartSound, Mode=OneWay}">
+            <w:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:ClickableCellControl Text="{Binding ., Converter={StaticResource SoundPathToNameConverter}}" 
+                                                   Command="{Binding Source={x:Reference page}, Path=BindingContext.WizardUpdateStartSoundCommand}"
+                                                   CommandParameter="{Binding Source={x:Reference SoundsList}, Path=SelectedItem}"/>
+                </DataTemplate>
+            </w:CircleListView.ItemTemplate>
+        </w:CircleListView>
+    </StackLayout>
+    
+</w:CirclePage>
