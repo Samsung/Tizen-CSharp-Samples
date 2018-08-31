@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms" 
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="SpeechToText.Views.SilenceDetectionSettingsPage"
+              x:Name="page"
+              xmlns:model="clr-namespace:SpeechToText.Model"
+              xmlns:controls="clr-namespace:SpeechToText.Controls"
+              Title="Silence detection"
+              NavigationPage.HasNavigationBar="False"
+              RotaryFocusObject="{x:Reference SilenceDetectionList}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <x:Array Type="{x:Type model:SilenceDetection}" x:Key="AvailableSilenceDetectionValues">
+                <model:SilenceDetection>Auto</model:SilenceDetection>
+                <model:SilenceDetection>True</model:SilenceDetection>
+                <model:SilenceDetection>False</model:SilenceDetection>
+            </x:Array>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <controls:SettingsPageTitleControl Text="Silence detection"/>
+
+            <w:CircleListView ItemsSource="{StaticResource AvailableSilenceDetectionValues}"
+                              SelectedItem="{Binding SilenceDetection, Mode=OneWay}"
+                              x:Name="SilenceDetectionList">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:ClickableCellControl Text="{Binding ., Converter={StaticResource SilenceDetectionConverter}}"
+                                                       Command="{Binding Source={x:Reference page}, Path=BindingContext.ChangeSilenceDetectionCommand}"
+                                                       CommandParameter="{Binding Source={x:Reference SilenceDetectionList}, Path=SelectedItem}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </w:CircleListView>
+        </StackLayout>
+    </ContentPage.Content>
+</w:CirclePage>

@@ -1,0 +1,13 @@
+﻿<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpeechToText.Controls.SettingsPageTitleControl"
+             x:Name="Root">
+    
+    <ContentView.Content>
+        <Label Text="{Binding Source={x:Reference Root}, Path=Text}"
+               FontSize="Small"
+               HorizontalTextAlignment="Center"
+               Margin="30"
+               TextColor="{StaticResource TizenPointColor}"/>
+    </ContentView.Content>
+</ContentView>

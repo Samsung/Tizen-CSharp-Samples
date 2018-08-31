@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms" 
+              xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:controls="clr-namespace:SpeechToText.Controls"
+              x:Class="SpeechToText.Views.RecognitionTypeSettingsPage"
+              x:Name="page"
+              Title="Recognition type"
+              RotaryFocusObject="{x:Reference TypesList}"
+              NavigationPage.HasNavigationBar="False">
+
+    <w:CirclePage.Content>
+        <StackLayout>
+            <controls:SettingsPageTitleControl Text="Recognition type"/>
+
+            <w:CircleListView ItemsSource="{Binding SupportedRecognitionTypes}"
+                              SelectedItem="{Binding RecognitionType, Mode=OneWay}"
+                              x:Name="TypesList">
+                <w:CircleListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:ClickableCellControl Text="{Binding ., Converter={StaticResource RecognitionTypeConverter}}" 
+                                                       Command="{Binding Source={x:Reference page}, Path=BindingContext.ChangeRecognitionTypeCommand}"
+                                                       CommandParameter="{Binding Source={x:Reference TypesList}, Path=SelectedItem}"/>
+                    </DataTemplate>
+                </w:CircleListView.ItemTemplate>
+            </w:CircleListView>
+        </StackLayout>
+    </w:CirclePage.Content>
+</w:CirclePage>
