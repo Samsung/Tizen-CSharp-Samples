@@ -23,7 +23,7 @@ namespace AudioManagerSample
     /// ViewModel for DeviceListPage.
     /// </summary>
     class DeviceListPageViewModel : BaseViewModel
-	{
+    {
         public IEnumerable<DeviceItem> Items { get; protected set; }
 
         private DeviceItem _selecetdItem;
@@ -42,29 +42,43 @@ namespace AudioManagerSample
             }
         }
 
-        public DeviceListPageViewModel ()
-		{
+        public DeviceListPageViewModel()
+        {
             Items = DependencyService.Get<IAudioManagerController>().GetConnectedDevices();
 
-            AMController.DeviceConnectionChanged += (s, e) => ConnectionChangedDeviceLabel = e.Device.Type + "(ID:" + e.Device.Id + ") is " + (e.IsConnected ? "connected" : "disconnected");
+            AMController.DeviceConnectionChanged += OnConnectionChanged;
+            AMController.DeviceRunningChanged += OnRunningChanged;
         }
 
         protected IAudioManagerController AMController => DependencyService.Get<IAudioManagerController>();
 
-        private string _ConnectionChangedDeviceLabel;
-        public string ConnectionChangedDeviceLabel
+        private void OnConnectionChanged(object sender, DeviceConnectionChangedEventArgs e)
         {
-            get => _ConnectionChangedDeviceLabel;
-            set
-            {
-                _ConnectionChangedDeviceLabel = value;
+            ConnectionChangedDeviceLabel = e.Device.Type + "(ID:" + e.Device.Id + ") is " + (e.IsConnected ? "connected" : "disconnected");
+            Log.Debug(ConnectionChangedDeviceLabel);
+            OnPropertyChanged(nameof(ConnectionChangedDeviceLabel));
 
-                OnPropertyChanged(nameof(ConnectionChangedDeviceLabel));
+            Items = DependencyService.Get<IAudioManagerController>().GetConnectedDevices();
+            OnPropertyChanged(nameof(Items));
+        }
 
-                Items = DependencyService.Get<IAudioManagerController>().GetConnectedDevices();
+        private void OnRunningChanged(object sender, DeviceRunningChangedEventArgs e)
+        {
+            Log.Debug(e.Device.Type + "(ID:" + e.Device.Id + ")'s state changed to [" + e.Device.State + "]");
 
-                OnPropertyChanged(nameof(Items));
-            }
+            Items = DependencyService.Get<IAudioManagerController>().GetConnectedDevices();
+            OnPropertyChanged(nameof(Items));
+        }
+
+        public string ConnectionChangedDeviceLabel { get; protected set; }
+
+        public override void OnPopped()
+        {
+            base.OnPopped();
+
+            AMController.DeviceConnectionChanged -= OnConnectionChanged;
+            AMController.DeviceRunningChanged -= OnRunningChanged;
+
         }
     }
 }

@@ -22,9 +22,9 @@ namespace AudioManagerSample
     /// ViewModel for VolumePage.
     /// </summary>
     class VolumePageViewModel : BaseViewModel
-	{
-		public VolumePageViewModel ()
-		{
+    {
+        public VolumePageViewModel()
+        {
             _systemLabel = AMController.GetVolume("System");
             _mediaLabel = AMController.GetVolume("Media");
             _notificationLabel = AMController.GetVolume("Notification");
@@ -32,42 +32,44 @@ namespace AudioManagerSample
             _voiceLabel = AMController.GetVolume("Voice");
             _ringtoneLabel = AMController.GetVolume("Ringtone");
 
-            AMController.VolumeLevelChanged += (s, e)
-                => {
-                    ChangedVolumeLabel = e.Type + " volume is changed to " + e.Level;
-                    if (e.Type == "System")
-                    {
-                        _systemLabel = e.Level;
-                        OnPropertyChanged(nameof(SystemLabel));
-                    }
-                    else if (e.Type == "Media")
-                    {
-                        _mediaLabel = e.Level;
-                        OnPropertyChanged(nameof(MediaLabel));
-                    }
-                    else if (e.Type == "Notification")
-                    {
-                        _notificationLabel = e.Level;
-                        OnPropertyChanged(nameof(NotificationLabel));
-                    }
-                    else if (e.Type == "Alarm")
-                    {
-                        _alarmLabel = e.Level;
-                        OnPropertyChanged(nameof(AlarmLabel));
-                    }
-                    else if (e.Type == "Voice")
-                    {
-                        _voiceLabel = e.Level;
-                        OnPropertyChanged(nameof(VoiceLabel));
-                    }
-                    else if (e.Type == "Ringtone")
-                    {
-                        _ringtoneLabel = e.Level;
-                        OnPropertyChanged(nameof(RingtoneLabel));
-                    }
-                };
+            AMController.VolumeLevelChanged += OnVolumeLevelChanged;
         }
         protected IAudioManagerController AMController => DependencyService.Get<IAudioManagerController>();
+
+        private void OnVolumeLevelChanged(object sender, VolumeLevelChangedEventArgs e)
+        {
+            ChangedVolumeLabel = e.Type + " volume is changed to " + e.Level;
+            if (e.Type == "System")
+            {
+                _systemLabel = e.Level;
+                OnPropertyChanged(nameof(SystemLabel));
+            }
+            else if (e.Type == "Media")
+            {
+                _mediaLabel = e.Level;
+                OnPropertyChanged(nameof(MediaLabel));
+            }
+            else if (e.Type == "Notification")
+            {
+                _notificationLabel = e.Level;
+                OnPropertyChanged(nameof(NotificationLabel));
+            }
+            else if (e.Type == "Alarm")
+            {
+                _alarmLabel = e.Level;
+                OnPropertyChanged(nameof(AlarmLabel));
+            }
+            else if (e.Type == "Voice")
+            {
+                _voiceLabel = e.Level;
+                OnPropertyChanged(nameof(VoiceLabel));
+            }
+            else if (e.Type == "Ringtone")
+            {
+                _ringtoneLabel = e.Level;
+                OnPropertyChanged(nameof(RingtoneLabel));
+            }
+        }
 
         private int _systemLabel;
         public int SystemLabel
@@ -174,5 +176,11 @@ namespace AudioManagerSample
             }
         }
 
+        public override void OnPopped()
+        {
+            base.OnPopped();
+
+            AMController.VolumeLevelChanged -= OnVolumeLevelChanged;
+        }
     }
 }

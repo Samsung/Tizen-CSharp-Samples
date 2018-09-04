@@ -16,7 +16,7 @@
 
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.77107" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\DeviceListPage.xaml.cs">

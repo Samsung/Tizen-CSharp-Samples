@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
+using System.Collections.Generic;
+using Xamarin.Forms;
+
 namespace AudioManagerSample
 {
     public class DeviceItem
     {
-        public DeviceItem(int id, string type, string name)
+        public DeviceItem(int id, string type, string name, string state)
         {
             Id = id;
             Type = type;
             Name = name;
+            State = state;
         }
 
         /// <summary>
@@ -39,5 +43,10 @@ namespace AudioManagerSample
         /// Gets or sets the device name.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the device state.
+        /// </summary>
+        public string State { get; set; }
     }
 }
