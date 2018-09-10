@@ -7,17 +7,32 @@ To extend battery life, a watch application can display a limited UI in ambient 
 
 * In ambient mode
 
-   ![main page](./AmbientWatch_AmbientMode.png)
+
+ ![main page](./AmbientWatch_AmbientMode.png)
 
 First of all, "ambient-support" attribute should be set to true as follows:
 
- <watch-application appid="org.tizen.example.AmbientWatch" exec="AmbientWatch.dll" type="dotnet" ambient-support="true">
+ <watch-application appid="org.tizen.example.AmbientWatch" exec="AmbientWatch.dll" ambient-support="true" type="dotnet">
  </watch-application>
 
-You can get details about ambient-support attribute from https://developer.tizen.org/development/tizen-studio/native-tools/configuring-your-app/manifest-text-editor
+And then you need to overwrite OnAmbientChanged() and OnAmbientTick() methods.
+
+You should add `alarm.set` privilege to get OnAmbientTick event in ambient mode.
+
+
+  ```
+    <privileges>
+        <privilege>http://tizen.org/privilege/alarm.set</privilege>
+    </privileges>
+  ```
 
 To use the ambient mode, you must enable it in Settings application.
   Launch "Settings" App -> Select "Watch faces and styles" -> Choose "Watch always on" -> Enable it
 
+ ![main page](./AmbientWatch-Settings.png)
+
+
 In addition, the ambient mode activates only when you are wearing a watch on your wrist.
+
+You can get details about ambient-support attribute from https://developer.tizen.org/development/tizen-studio/native-tools/configuring-your-app/manifest-text-editor
 
