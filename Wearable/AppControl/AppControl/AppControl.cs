@@ -4,6 +4,10 @@ namespace AppControl
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
+        /// <summary>
+        /// Called when the application is launched.
+        /// If base.OnCreated() is not called, the event 'Created' will not be emitted.
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
