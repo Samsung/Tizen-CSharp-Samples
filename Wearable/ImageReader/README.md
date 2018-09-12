@@ -9,7 +9,7 @@ and is modified according to Tizen Wearable UI.
 
 You can get details from https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/images
 
-![main page](./Snapshot.png)
+![main page](./Screenshots/Snapshot.png)
 
 ### Prerequisites
 Network connection is required for DownloadImage.

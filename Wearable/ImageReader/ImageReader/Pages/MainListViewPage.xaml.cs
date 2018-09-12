@@ -7,6 +7,7 @@ namespace ImageReader.Pages
 {
     /// <summary>
     /// Class MainListViewPage
+    /// The main page fo this application
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainListViewPage : CirclePage
@@ -17,21 +18,31 @@ namespace ImageReader.Pages
 
         public ObservableCollection<string> Items { get; set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MainListViewPage()
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
 
+            // the items to display
             Items = new ObservableCollection<string>
             {
                 LOCAL_IMAGE,
                 EMBEDDED_IMAGE,
                 DOWNLOADED_IMAGE,
             };
-			
+
 			MyListView.ItemsSource = Items;
         }
 
+        /// <summary>
+        /// Called when an item of ListView is tapped
+        /// The new page related to tapped item will be shown
+        /// </summary>
+        /// <param name="sender">object</param>
+        /// <param name="e">ItemTappedEventArgs</param>
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
