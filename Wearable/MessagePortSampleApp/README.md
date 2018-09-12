@@ -4,11 +4,11 @@ MessagePortSampleApp sample app demonstrates how to send and receive messages be
 
  - Send a message to Tizen .Net Service sample app when `Send a message` button is clicked.
 
-   ![main page](./MessagePortSampleApp_Snapshot.png)
+   ![main page](./Screenshots/MessagePortSampleApp_Snapshot.png)
 
  - Receive a message from [Tizen .Net Service sample application](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Wearable/ServiceApp)
 
-   ![main page](./MessagePortSampleApp_ReceiveMessage.png)
+   ![main page](./Screenshots/MessagePortSampleApp_ReceiveMessage.png)
 
 ### Prerequisites
 First of all, you need to install and execute [Tizen .Net Service sample application](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Wearable/ServiceApp) because it is used to communicate each other.
@@ -24,7 +24,7 @@ You can install *Tizen .Net service application* by
 
 If you do not install `Tizen .Net service application`, an exception occurs when you press `Send a message` button.
 
-   ![main page](./MessagePortSampleApp_Snapshot-ErrorCase.png)
+   ![main page](./Screenshots/MessagePortSampleApp_Snapshot-ErrorCase.png)
 
 This application uses Tizen.Application.Messages API.
 
