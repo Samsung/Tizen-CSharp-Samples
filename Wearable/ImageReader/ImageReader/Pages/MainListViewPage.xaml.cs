@@ -23,6 +23,7 @@ namespace ImageReader.Pages
         /// </summary>
         public MainListViewPage()
         {
+            // Make this page have no navigationbar
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
 
@@ -34,7 +35,8 @@ namespace ImageReader.Pages
                 DOWNLOADED_IMAGE,
             };
 
-			MyListView.ItemsSource = Items;
+            // Set a collection of strings
+            MyListView.ItemsSource = Items;
         }
 
         /// <summary>
@@ -50,8 +52,11 @@ namespace ImageReader.Pages
                 return;
             }
 
+            // Get which item is tapped
             var tappedItem = e.Item.ToString();
 
+	    //  Asynchronously add a new page to the top of the navigation stack
+	    //  The page is related to the tapped item of ListView
             if (tappedItem.Equals(LOCAL_IMAGE))
             {
                 await Navigation.PushAsync(new LocalImages());
@@ -69,7 +74,7 @@ namespace ImageReader.Pages
                 await DisplayAlert("Item Tapped", "Something wrong.", "OK");
             }
 
-            //Deselect Item
+            // Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
     }

@@ -4,7 +4,7 @@ ServiceApp app demonstrates how to make a service application which has no UI.
 
 ### How to create a `Tizen .Net Service Application` in `Visual Studio`
 
-   ![main page](./CreatingProjectForServiceApp.png)
+   ![main page](./Screenshots/CreatingProjectForServiceApp.png)
 
 This application uses Tizen.Application API.
 

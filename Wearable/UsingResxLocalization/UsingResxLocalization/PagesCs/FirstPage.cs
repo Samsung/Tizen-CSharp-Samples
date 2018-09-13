@@ -5,10 +5,17 @@ using Tizen.Wearable.CircularUI.Forms;
 
 namespace UsingResxLocalization
 {
+    /// <summary>
+    /// FirstPage class
+    /// </summary>
     public class FirstPage : CirclePage
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public FirstPage()
         {
+            // Make this page have no navigation bar
             NavigationPage.SetHasNavigationBar(this, false);
             // create UI controls
             var myLabel = new Label
@@ -47,10 +54,13 @@ namespace UsingResxLocalization
                     break;
             }
 
-            // button shows an alert, also translated
+            // When myButton is pressed,
+            // alert message is displayed.
+            // This message will be localized according to the current system language.
             myButton.Clicked += async (sender, e) =>
             {
                 var message = AppResources.AddMessageN;
+                // According to the selected index of picker, message will be selected.
                 if (myPicker.SelectedIndex <= 0)
                 {
                     message = AppResources.AddMessage0;
@@ -64,6 +74,7 @@ namespace UsingResxLocalization
                     message = String.Format(message, myPicker.Items[myPicker.SelectedIndex]);
                 }
 
+                // Display an alert dialog
                 await DisplayAlert(message, message, AppResources.CancelButton);
             };
 
@@ -84,6 +95,7 @@ namespace UsingResxLocalization
                     },
                 }
             };
+            // Now, can scroll the view using rotating the bezel
             RotaryFocusObject = myScrollView;
             Content = myScrollView;
 

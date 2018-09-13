@@ -9,6 +9,9 @@ using SkiaSharp;
 
 namespace PlayingWithHWInputs
 {
+    /// <summary>
+    /// Enumarate
+    /// </summary>
     enum ONGOING_EVENT_STATE
     {
         RIGHT_DIRECTION_ROTATE,
@@ -16,6 +19,12 @@ namespace PlayingWithHWInputs
         BACK_BUTTON_PRESS,
         FINISHED
     }
+
+    /// <summary>
+    /// RotaryEventPage class
+    /// It implements IRotaryEventReceiver to take rotary events
+    ///  when app users turn the bezel clockwise or counter-clockwise.
+    /// </summary>
     public class RotaryEventPage : CirclePage, IRotaryEventReceiver
     {
         // public properties
@@ -24,10 +33,14 @@ namespace PlayingWithHWInputs
         public bool Horizontal { get; set; } = false;
 
         // private fields
-        bool rotating; // indicating currently on rotating
-        double angle; // calculate angle to rotate
-        const int kRotateMax = 3; // Need to rotate 3 times
-        string instruction = ""; // The text will be shown on the page
+        // indicating currently on rotating
+        bool rotating;
+        // calculate angle to rotate
+        double angle;
+        // Need to rotate 3 times
+        const int kRotateMax = 3;
+        // The text will be shown on the page
+        string instruction = "";
         ONGOING_EVENT_STATE currentState;
         SKCanvasView canvasView;
         int rightDirectionRotateCount = kRotateMax;
@@ -45,6 +58,9 @@ namespace PlayingWithHWInputs
             IsAntialias = true,
         };
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public RotaryEventPage()
         {
             // NOTICE: IRotaryEventReceiver object MUST set 'RotaryFocusObject' to get the event.
@@ -63,20 +79,17 @@ namespace PlayingWithHWInputs
 
             // Add tap gesture recognizer
             var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += (s, e) => {
+            tapGestureRecognizer.Tapped += (s, e) =>
+            {
                 Toast.DisplayText("Tapped !!!");
             };
             canvasView.GestureRecognizers.Add(tapGestureRecognizer);
             canvasView.PaintSurface += (sender, e) =>
             {
                 // Right arrow svg data
-                SKPath rightDirectionArrow = SKPath.ParseSvgPathData(
-                    "M2.5,4.375l1.5625,-1.25h-1.25a8,8,0,0,0,-6,-6.25a2,2,0,0,1,-0.625,3.125a4.6,4.6,0,0,1,5.875,3.125h-1.25Z"
-                    );
+                SKPath rightDirectionArrow = SKPath.ParseSvgPathData("M2.5,4.375l1.5625,-1.25h-1.25a8,8,0,0,0,-6,-6.25a2,2,0,0,1,-0.625,3.125a4.6,4.6,0,0,1,5.875,3.125h-1.25Z");
                 // Left arrow svg data
-                SKPath leftDirectionArrow = SKPath.ParseSvgPathData(
-                    "M-2.5,4.375L-4.0625,3.125H-2.8125A8,8,0,0,1,3.1875,-3.125A2,2,0,0,0,3.8125,0A4.6,4.6,0,0,0,-2.0625,3.125H-0.8125Z"
-                    );
+                SKPath leftDirectionArrow = SKPath.ParseSvgPathData("M-2.5,4.375L-4.0625,3.125H-2.8125A8,8,0,0,1,3.1875,-3.125A2,2,0,0,0,3.8125,0A4.6,4.6,0,0,0,-2.0625,3.125H-0.8125Z");
                 // Get surface
                 SKSurface canvasSurface = e.Surface;
                 // Get canvas of surface
@@ -113,6 +126,7 @@ namespace PlayingWithHWInputs
                     blackStrokePaint.Shader = shader;
                     canvas.DrawPath(leftDirectionArrow, blackStrokePaint);
                 }
+
                 canvas.Restore();
                 // Text drawing
                 SKPaint textPaint = new SKPaint
@@ -134,15 +148,23 @@ namespace PlayingWithHWInputs
 
             Content = new StackLayout
             {
-                Children = {
+                Children =
+                {
                     canvasView
                 }
             };
         }
 
+        /// <summary>
+        /// Rotate
+        /// </summary>
+        /// <param name="args">RotaryEventArgs</param>
         public void Rotate(RotaryEventArgs args)
         {
-            if (rotating) return;
+            if (rotating)
+            {
+                return;
+            }
 
             rotating = true;
 

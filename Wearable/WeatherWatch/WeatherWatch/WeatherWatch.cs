@@ -34,6 +34,10 @@ namespace WeatherWatch
     {
         WeatherWatchPageModel _viewModel;
 
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the application is launched.
+        /// If base.OnCreated() is not called, the event 'Created' will not be emitted.
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -64,7 +68,7 @@ namespace WeatherWatch
             }
         }
 
-        // Called when the time tick event comes.
+        // Called when the time tick event occurs.
         // It's called when the screen of the device is on.
         protected override void OnTick(TimeEventArgs time)
         {

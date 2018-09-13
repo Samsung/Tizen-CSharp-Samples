@@ -6,13 +6,13 @@ namespace ImageReader.Pages
     /// LocalImages class
     /// It shows how to use the image shipped with the application
     /// </summary>
-	public class LocalImages : ContentPage
+    public class LocalImages : ContentPage
     {
         /// <summary>
         /// Constructor
         /// </summary>
-		public LocalImages()
-		{
+	public LocalImages()
+	{
             // Make NavigationPage have no navigation bar
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -23,6 +23,7 @@ namespace ImageReader.Pages
                     new Label
                     {
                         Text = "1) Image FileSource",
+                        // wrap at character boundaries
                         LineBreakMode = LineBreakMode.CharacterWrap,
                         FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                         FontAttributes = FontAttributes.Bold,
@@ -38,5 +39,5 @@ namespace ImageReader.Pages
                 HorizontalOptions = LayoutOptions.CenterAndExpand
             };
         }
-	}
+    }
 }

@@ -282,6 +282,7 @@ namespace WeatherWatch.PageModels
             }
         }
 
+        // Indicate if an error occurs or not
         bool _errorViewIsVisible;
         public bool ErrorViewIsVisible
         {

@@ -8,6 +8,9 @@ using System;
 
 namespace UsingResxLocalization.Renderers
 {
+    /// <summary>
+    /// Custom renderer class for localized image
+    /// </summary>
     class LocalizedImageRenderer : ImageRenderer
     {
         string fileName;
@@ -23,6 +26,10 @@ namespace UsingResxLocalization.Renderers
             Element.Source = TizenResourceManager.TryGetPath(TizenResourceManager.Category.Image, fileName);
         }
 
+        /// <summary>
+        /// Called when Image element is changed
+        /// </summary>
+        /// <param name="e">ElementChangedEventArgs<Image></param>
         protected override void OnElementChanged(ElementChangedEventArgs<Image> e)
         {
             base.OnElementChanged(e);

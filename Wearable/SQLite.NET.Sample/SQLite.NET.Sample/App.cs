@@ -59,7 +59,7 @@ namespace SQLite.NET.Sample
         public App()
         {
             // Initiate database first.
-            initiateSQLite();
+            InitiateSQLite();
             // Get items in the Item table.
             var itemList = dbConnection.Table<Item>();
             List<string> dbList = new List<string>();
@@ -76,7 +76,8 @@ namespace SQLite.NET.Sample
                 Content = new StackLayout
                 {
                     VerticalOptions = LayoutOptions.Center,
-                    Children = {
+                    Children =
+                    {
                         new CircleListView
                         {
                             ItemsSource = dbList
@@ -86,7 +87,7 @@ namespace SQLite.NET.Sample
             };
         }
 
-        public void initiateSQLite()
+        public void InitiateSQLite()
         {
             bool needCreateTable = false;
             // Need to initialize SQLite
@@ -98,7 +99,11 @@ namespace SQLite.NET.Sample
             databasePath = Path.Combine(dataPath, databaseFileName);
 
             // Check the database file to decide table creation.
-            if (!File.Exists(databasePath)) needCreateTable = true;
+            if (!File.Exists(databasePath))
+            {
+                needCreateTable = true;
+            }
+
             dbConnection = new SQLiteConnection(databasePath);
             if (needCreateTable)
             {

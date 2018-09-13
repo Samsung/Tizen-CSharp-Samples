@@ -5,13 +5,13 @@ PlayingWithHWInputs sample app demonstrates how to handle rotary events from bez
 In addition, it shows the way how to detect when the back button is pressed.
 
 ### When you rotate the bazel right
-  ![main page](./PlayingWithHWInputs_RotateBezelRight.png)
+  ![main page](./Screenshots/PlayingWithHWInputs_RotateBezelRight.png)
 
 ### When you rotate the bazel left
-  ![main page](./PlayingWithHWInputs_RotateBezelLeft.png)
+  ![main page](./Screenshots/PlayingWithHWInputs_RotateBezelLeft.png)
 
 ### When you press back button
-  ![main page](./PlayingWithHWInputs_BackeyTest.png)
+  ![main page](./Screenshots/PlayingWithHWInputs_BackeyTest.png)
 
 This application uses Tizen Wearable CircularUI API.
 

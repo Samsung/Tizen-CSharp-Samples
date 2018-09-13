@@ -18,6 +18,10 @@ namespace SkiaSharp2DSample
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
+        /// <summary>
+        /// Called when the application is launched.
+        /// base.OnCreate() should be called to get "Created" event
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -28,7 +32,8 @@ namespace SkiaSharp2DSample
         {
             var app = new Program();
             global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
-            Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
+            // Initialize to use Tizen.Wearable.CircularUI.Forms APIs
+	    Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }
     }

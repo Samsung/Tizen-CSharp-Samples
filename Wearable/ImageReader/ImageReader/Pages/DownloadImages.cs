@@ -9,13 +9,13 @@ namespace ImageReader.Pages
     /// Image can be automatically downloaded when this page is shown.
     /// So network connection should be available.
     /// </summary>
-	public class DownloadImages : ContentPage
+    public class DownloadImages : ContentPage
     {
         /// <summary>
         /// Constructor
         /// </summary>
-		public DownloadImages()
-		{
+        public DownloadImages()
+        {
             // Make NavigationPage have no navigation bar
             NavigationPage.SetHasNavigationBar(this, false);
 

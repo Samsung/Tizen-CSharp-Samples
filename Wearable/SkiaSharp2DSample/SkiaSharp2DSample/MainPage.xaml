@@ -5,7 +5,12 @@
              x:Class="SkiaSharp2DSample.MainPage">
     <ContentPage.Content>
         <StackLayout>
-            <skia:SKCanvasView x:Name="canvasView" PaintSurface="canvasView_PaintSurface" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" WidthRequest="360" HeightRequest="360"/>
+            <skia:SKCanvasView x:Name="canvasView"
+                               PaintSurface="CanvasView_PaintSurface"
+                               VerticalOptions="FillAndExpand"
+                               HorizontalOptions="FillAndExpand"
+                               WidthRequest="360"
+                               HeightRequest="360"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

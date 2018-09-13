@@ -44,8 +44,10 @@ namespace WebWidgetHybrid
                 Content = new StackLayout
                 {
                     VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
+                    Children =
+                    {
+                        new Label
+                        {
                             HorizontalTextAlignment = TextAlignment.Center,
                             Text = "Check WorldClockWidget2 web widget installed with this app"
                         }

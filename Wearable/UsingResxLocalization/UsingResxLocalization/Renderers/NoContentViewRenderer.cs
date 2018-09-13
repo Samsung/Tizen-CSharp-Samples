@@ -10,6 +10,9 @@ using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 
 namespace UsingResxLocalization.Renderers
 {
+    /// <summary>
+    /// Custom renderer class for NoContentView
+    /// </summary>
     public class NoContentViewRenderer : ViewRenderer<NoContentView, ELayout>
     {
         ELayout _layout;
@@ -18,6 +21,10 @@ namespace UsingResxLocalization.Renderers
         {
         }
 
+        /// <summary>
+        /// Called when NoContentView element is changed
+        /// </summary>
+        /// <param name="e">ElementChangedEventArgs<NoContentView></param>
         protected override void OnElementChanged(ElementChangedEventArgs<NoContentView> e)
         {
             if (Control == null)

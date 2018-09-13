@@ -9,22 +9,39 @@ using UsingResxLocalization;
 
 namespace UsingResxLocalization.Services
 {
+    /// <summary>
+    /// Localize class
+    /// It implements ILocalize interface.
+    /// </summary>
     class Localize : UsingResxLocalization.ILocalize
     {
         CultureInfo _currentCultureInfo;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Localize()
         {
             _currentCultureInfo = GetCurrentCultureInfo();
             SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
         }
 
+        /// <summary>
+        /// Set the current CultureInfo for the current thread and Resource manager
+        /// </summary>
+        /// <param name="ci">CultureInfo</param>
         public void SetLocale(CultureInfo ci)
         {
+            // Set the CultureInfo that represents the culture used by the current thread.
             Thread.CurrentThread.CurrentCulture = ci;
+            // Set the current culture used by the Resource Manager to search for culture-specific resources at runtime.
             Thread.CurrentThread.CurrentUICulture = ci;
         }
 
+        /// <summary>
+        /// Return the current CultureInfo
+        /// </summary>
+        /// <returns>CultureInfo</returns>
         public CultureInfo GetCurrentCultureInfo()
         {
             var netLanguage = "en";

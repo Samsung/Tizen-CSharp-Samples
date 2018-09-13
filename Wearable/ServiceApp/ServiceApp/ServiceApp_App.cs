@@ -30,6 +30,10 @@ namespace ServiceApp
         string serviceAppPortName = "serviceAppPort";
         MessagePort messagePort;
 
+        /// <summary>
+        /// Called when the application is launched.
+        /// If base.OnCreated() is not called, the event 'Created' will not be emitted.
+        /// </summary>
         protected override void OnCreate()
         {
             // Start this service.
@@ -37,7 +41,8 @@ namespace ServiceApp
             // Create a MessagePort object.
             messagePort = new MessagePort(serviceAppPortName, false);
             // Register an event handler for MessagePort
-            messagePort.MessageReceived += (s, e) => {
+            messagePort.MessageReceived += (s, e) =>
+            {
                 if (e.Message.Contains("greeting"))
                 {
                     // Create a bundle to send with the message port message
@@ -54,36 +59,70 @@ namespace ServiceApp
             messagePort.Listen();
         }
 
+        /// <summary>
+        /// Called when the application receives the appcontrol message.
+        /// If base.OnAppControlReceived() is not called, the event 'AppControlReceived' will not be emitted.
+        /// </summary>
+        /// <param name="e">AppControlReceivedEventArgs</param>
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
             base.OnAppControlReceived(e);
         }
 
+        /// <summary>
+        /// Called when the device orientation is changed.
+        /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
+        /// </summary>
+        /// <param name="e">DeviceOrientationEventArgs</param>
         protected override void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {
             base.OnDeviceOrientationChanged(e);
         }
 
+        /// <summary>
+        /// Called when the system language is changed.
+        /// If base.OnLocaleChanged() is not called, the event 'LocaleChanged' will not be emitted.
+        /// </summary>
+        /// <param name="e">LocaleChangedEventArgs</param>
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             base.OnLocaleChanged(e);
         }
 
+        /// <summary>
+        /// Called when the system battery is low.
+        /// If base.OnLowBattery() is not called, the event 'LowBattery' will not be emitted.
+        /// </summary>
+        /// <param name="e">LowBatteryEventArgs</param>
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
             base.OnLowBattery(e);
         }
 
+        /// <summary>
+        /// Called when the system memory is low.
+        /// If base.OnLowMemory() is not called, the event 'LowMemory' will not be emitted.
+        /// </summary>
+        /// <param name="e">LowMemoryEventArgs</param>
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
             base.OnLowMemory(e);
         }
 
+        /// <summary>
+        /// Called when the region format is changed.
+        /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
+        /// </summary>
+        /// <param name="e">RegionFormatChangedEventArgs</param>
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             base.OnRegionFormatChanged(e);
         }
 
+        /// <summary>
+        /// Called when the application is terminated.
+        /// If base.OnTerminate() is not called, the event 'Terminated' will not be emitted.
+        /// </summary>
         protected override void OnTerminate()
         {
             base.OnTerminate();

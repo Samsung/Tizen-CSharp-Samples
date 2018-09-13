@@ -43,10 +43,13 @@ namespace MessagePortSampleApp
                 // You need to first call Listen even you need to send a message.
                 messagePort.Listen();
                 // Register MessageReceived event callback
-                messagePort.MessageReceived += (s, e) => {
+                messagePort.MessageReceived += (s, e) =>
+                {
                     Console.WriteLine("UI application received a message");
                     if (e.Message.Contains("greetingReturn"))
+                    {
                         Toast.DisplayText("Received:" + e.Message.GetItem("greetingReturn") + ", Array: " + BitConverter.ToInt32((byte[])e.Message.GetItem("intByteArray"), 0));
+                    }
                 };
 
                 // The root page of your application
@@ -69,14 +72,14 @@ namespace MessagePortSampleApp
                                 {
                                     Bundle bundleToSend = new Bundle();
                                     bundleToSend.AddItem("greeting","hello");
-                                    bundleToSend.AddItem("intByteArray", BitConverter.GetBytes(1024*1024));
+                                    bundleToSend.AddItem("intByteArray", BitConverter.GetBytes(1024 * 1024));
 
                                     try
                                     {
                                        // Need to call Listen() before calling Send
                                        messagePort.Send(bundleToSend, "org.tizen.example.ServiceApp", serviceAppPortName, false); 
                                     }
-                                    catch(Exception e)
+                                    catch (Exception e)
                                     {
                                         Console.WriteLine("Exception: " + e.Message + ", " + e);
                                         Toast.DisplayText("An exception occurs!!   " + e.Message + ",   " + e, 10000);
@@ -86,7 +89,8 @@ namespace MessagePortSampleApp
                         }
                     }
                 };
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("Exception: " + e.Message);
             }
