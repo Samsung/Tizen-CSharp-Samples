@@ -14,9 +14,13 @@ namespace PlayingWithHWInputs
     /// </summary>
     enum ONGOING_EVENT_STATE
     {
+        // A state needs to rotate right to move to the next state
         RIGHT_DIRECTION_ROTATE,
+        // A state needs to rotate left to move to the next state
         LEFT_DIRECTION_ROTATE,
+        // A state needs to press back button to move to the next state
         BACK_BUTTON_PRESS,
+        // The end state
         FINISHED
     }
 
@@ -28,8 +32,11 @@ namespace PlayingWithHWInputs
     public class RotaryEventPage : CirclePage, IRotaryEventReceiver
     {
         // public properties
+        // A color needed for gradient start
         public Color StartColor { get; set; } = Color.Transparent;
+        // A color needed for gradient end
         public Color EndColor { get; set; } = Color.Transparent;
+        // TODO(vincent): 
         public bool Horizontal { get; set; } = false;
 
         // private fields
@@ -41,20 +48,27 @@ namespace PlayingWithHWInputs
         const int kRotateMax = 3;
         // The text will be shown on the page
         string instruction = "";
+        // The current state of this app
         ONGOING_EVENT_STATE currentState;
+        // SkiaSharp canvas view
         SKCanvasView canvasView;
+        // # of rotation count to move to the next state
         int rightDirectionRotateCount = kRotateMax;
+        // # of rotation count to move to the next state
         int leftDirectionRotateCount = kRotateMax;
+        // SkiaSharp paint color red
         SKPaint redFillPaint = new SKPaint
         {
             Style = SKPaintStyle.Fill,
             Color = SKColors.Red,
         };
+        // SkiaSharp paint color black
         SKPaint blackStrokePaint = new SKPaint
         {
             Style = SKPaintStyle.Fill,
             StrokeWidth = 2,
             StrokeCap = SKStrokeCap.Round,
+            // Look smoother by turning on antialias
             IsAntialias = true,
         };
 
@@ -74,16 +88,20 @@ namespace PlayingWithHWInputs
             // Initialize gradient to draw arrows
             // Create the main canvas new
             canvasView = new SKCanvasView();
+            // Need to set heightRequest and WidthReques to SkiaSharp canvas
             canvasView.HeightRequest = 360;
             canvasView.WidthRequest = 360;
 
             // Add tap gesture recognizer
             var tapGestureRecognizer = new TapGestureRecognizer();
+            // Show a toast when tapped.
             tapGestureRecognizer.Tapped += (s, e) =>
             {
                 Toast.DisplayText("Tapped !!!");
             };
+            // Add to GestureRecognizers in canvas view
             canvasView.GestureRecognizers.Add(tapGestureRecognizer);
+            // This event handler actually draws in SkiaSharp canvas
             canvasView.PaintSurface += (sender, e) =>
             {
                 // Right arrow svg data
@@ -94,48 +112,64 @@ namespace PlayingWithHWInputs
                 SKSurface canvasSurface = e.Surface;
                 // Get canvas of surface
                 SKCanvas canvas = canvasSurface.Canvas;
-
+                // Save canvas here to later retrieve
                 canvas.Save();
-                // Fill black
+                // Initialize canvase before drawing
                 canvas.Clear(SKColors.Black);
+                // Handling for the right rotation state
                 if (currentState == ONGOING_EVENT_STATE.RIGHT_DIRECTION_ROTATE)
                 {
+                    // To draw arrow for rotating direction, move canvas point
                     canvas.Translate(e.Info.Width * 3 / 4, e.Info.Height / 4);
                     // Set scale for the path
                     SKMatrix matrix = SKMatrix.MakeScale(15, 15);
+                    // Adjust scale before drawing
                     rightDirectionArrow.Transform(matrix);
                     // Set a shader for gradient 
                     var colors = new SKColor[] { SKColors.White, SKColors.Blue }; 
+                    // Points needed for gradient
                     SKPoint startPoint = new SKPoint(0, 0);
                     SKPoint endPoint = new SKPoint(20, 20);
                     var shader = SKShader.CreateLinearGradient(startPoint, endPoint, colors, null, SKShaderTileMode.Clamp);
+                    // Add the shader to paint to present gradient effect
                     blackStrokePaint.Shader = shader;
+                    // Draw SVG path for right rotate direction arrow
                     canvas.DrawPath(rightDirectionArrow, blackStrokePaint);
                 }
                 else if (currentState == ONGOING_EVENT_STATE.LEFT_DIRECTION_ROTATE)
                 {
+                    // Move the canvas translate point
                     canvas.Translate(e.Info.Width * 1 / 4, e.Info.Height / 4);
                     // Set scale for the path
                     SKMatrix matrix = SKMatrix.MakeScale(15, 15);
                     // Set a shader for gradient 
                     leftDirectionArrow.Transform(matrix);
+                    // Colors for gradient
                     var colors = new SKColor[] { SKColors.White, SKColors.Blue };
+                    // Points for gradient
                     SKPoint startPoint = new SKPoint(20, 0);
                     SKPoint endPoint = new SKPoint(0, 20);
+                    // Define a shader for left rotate arrow
                     var shader = SKShader.CreateLinearGradient(startPoint, endPoint, colors, null, SKShaderTileMode.Clamp);
                     blackStrokePaint.Shader = shader;
+                    // Draw SVG path for left rotate direction arrow
                     canvas.DrawPath(leftDirectionArrow, blackStrokePaint);
                 }
 
+                // Need to reset canvas which were changed by Translate
                 canvas.Restore();
                 // Text drawing
                 SKPaint textPaint = new SKPaint
                 {
+                    // Text color white
                     Color = SKColors.White,
+                    // Text size 10
                     TextSize = 10,
+                    // Antialiasing true
                     IsAntialias = true
                 };
                 string str = instruction;
+                // Before draw a text, need to calculate total width of a text to locate in the middle
                 float textWidth = textPaint.MeasureText(str);
                 textPaint.TextSize = 0.7f * e.Info.Width * textPaint.TextSize / textWidth;
                 // Draw instruction
@@ -161,57 +195,77 @@ namespace PlayingWithHWInputs
         /// <param name="args">RotaryEventArgs</param>
         public void Rotate(RotaryEventArgs args)
         {
+            // When rotating (previous rotation is ongoing, do nothing.
             if (rotating)
             {
                 return;
             }
-
+            // Set ongoing flag true
             rotating = true;
-
+            // Right rotate handling
             if (currentState == ONGOING_EVENT_STATE.RIGHT_DIRECTION_ROTATE)
             {
+                // If at least one rotation performed.
                 if (rightDirectionRotateCount > 0)
                 {
+                    // Decrease rotation count
                     rightDirectionRotateCount--;
+                    // Increase the angle to rotate canvas
                     angle += args.IsClockwise ? 30 : -30;
                 }
                 else
                 {
+                    // Finished to rotate right. Set angle to zero for left rotate
                     angle = 0;
+                    // Set the state to rotate left
                     currentState = ONGOING_EVENT_STATE.LEFT_DIRECTION_ROTATE;
+                    // Change the instruction
                     instruction = "Rotate the bezel to the left.";
                 }
             }
+            // Left rotate handling
             else if (currentState == ONGOING_EVENT_STATE.LEFT_DIRECTION_ROTATE)
             {
+                // If at least one rotation performed
                 if (leftDirectionRotateCount > 0)
                 {
+                    // Decrease rotation count
                     leftDirectionRotateCount--;
+                    // Increase the angle to rotate canvas.
                     angle += args.IsClockwise ? 30 : -30;
                 }
                 else
                 {
+                    // Done rotate left, and move to next state (back button)
                     currentState = ONGOING_EVENT_STATE.BACK_BUTTON_PRESS;
+                    // Change the instruction
                     instruction = "Press back button.";
                     angle = 0;
                 }
             }
-
+            // Rotate the canvas
             canvasView.RotateTo(angle).ContinueWith(
                 (b) =>
-                {
+                {   
+                    // Set this rotation done.
                     rotating = false;
+                    // Angle should be set to 0 when it reaches 360. 
                     if (angle == 360)
                     {
                         canvasView.Rotation = 0;
                         angle = 0;
                     }
                 });
+            // Redraw the canvas
             canvasView.InvalidateSurface();
         }
 
+        // If you inherited CirclePage and IRotaryEventListener,
+        // then you can implement OnBackButtonPressed method which is 
+        // called when the back button pressed. 
         protected override bool OnBackButtonPressed()
         {
+            // If the back button is pressed in the right context, show the message.
             if (currentState == ONGOING_EVENT_STATE.BACK_BUTTON_PRESS)
             {
                 instruction = "Yes, just like that.";
