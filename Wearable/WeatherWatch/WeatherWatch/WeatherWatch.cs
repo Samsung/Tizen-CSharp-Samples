@@ -16,7 +16,6 @@
 
 using System;
 using Tizen.Applications;
-using Tizen.Multimedia;
 using TSystem = Tizen.System;
 using Tizen.Wearable.CircularUI.Forms.Renderer.Watchface;
 using WeatherWatch.PageModels;

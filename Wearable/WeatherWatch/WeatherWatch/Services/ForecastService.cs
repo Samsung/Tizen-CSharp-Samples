@@ -79,23 +79,31 @@ namespace WeatherWatch.Services
         /// <param name="position">Location</param>
         public async void UpdateAQI(Location position)
         {
-            HttpClient client = new HttpClient();
-            string url = WebSiteInfo.AIR_POLLUTION_URL + position.Latitude + ";" + position.Longitude + "/?token=" + WebSiteInfo.AIR_POLLUTION_API_KEY;
-            Console.WriteLine("[UpdateAQI] url : " + url);
-            dynamic result = await GetDataFromWeb(url);
-            if (result != null)
+            try
             {
-                if (result["data"] != null)
+                HttpClient client = new HttpClient();
+                string url = WebSiteInfo.AIR_POLLUTION_URL + position.Latitude + ";" + position.Longitude + "/?token=" + WebSiteInfo.AIR_POLLUTION_API_KEY;
+                Console.WriteLine("[UpdateAQI] url : " + url);
+                dynamic result = await GetDataFromWeb(url);
+                if (result != null)
                 {
-                    AQI = (int)result["data"]["aqi"];
-                    //Console.WriteLine("Air Pollution Quality Index : " + AQI);
+                    if (result["data"] != null)
+                    {
+                        AQI = (int)result["data"]["aqi"];
+                        //Console.WriteLine("Air Pollution Quality Index : " + AQI);
+                    }
+                }
+                else
+                {
+                    // In case that getting information about AQI is failed.
+                    AQI = WebSiteInfo.AQI_INFO_NOT_AVAILABLE;
+                    //Console.WriteLine("Air Pollution Quality Index : Not available...");
                 }
             }
-            else
+            catch (Exception e)
             {
-                // In case that getting information about AQI is failed.
+                Console.WriteLine(" UpdateAQI() Exception : " + e.Message + ", " + e.StackTrace + ", " + e.InnerException);
                 AQI = WebSiteInfo.AQI_INFO_NOT_AVAILABLE;
-                //Console.WriteLine("Air Pollution Quality Index : Not available...");
             }
 
             UpdateAirPolution();
@@ -107,19 +115,26 @@ namespace WeatherWatch.Services
         /// <param name="location">Location</param>
         public async void UpdateWeather(Location location)
         {
-            HttpClient _httpWeatherClient = new HttpClient();
-            string url = string.Format(WebSiteInfo.WEATHER_URL, location.Latitude, location.Longitude, WebSiteInfo.WEATHER_API_KEY);
-            dynamic result = await GetDataFromWeb(url);
-            if (result != null)
+            try
             {
-                if (result["weather"] != null)
+                HttpClient _httpWeatherClient = new HttpClient();
+                string url = string.Format(WebSiteInfo.WEATHER_URL, location.Latitude, location.Longitude, WebSiteInfo.WEATHER_API_KEY);
+                dynamic result = await GetDataFromWeb(url);
+                if (result != null)
                 {
-                    _viewModel.WeatherText = (string)result["weather"][0]["main"];
-                    _viewModel.WeatherIconPath = string.Format(WebSiteInfo.WEATHER_ICON, (string)result["weather"][0]["icon"]);
-                    Console.WriteLine("Weather : " + _viewModel.WeatherText + ", Icon : " + _viewModel.WeatherIconPath);
-                    _viewModel.WeatherInfoIsVisible = true;
-                    return;
+                    if (result["weather"] != null)
+                    {
+                        _viewModel.WeatherText = (string)result["weather"][0]["main"];
+                        _viewModel.WeatherIconPath = string.Format(WebSiteInfo.WEATHER_ICON, (string)result["weather"][0]["icon"]);
+                        Console.WriteLine("Weather : " + _viewModel.WeatherText + ", Icon : " + _viewModel.WeatherIconPath);
+                        _viewModel.WeatherInfoIsVisible = true;
+                        return;
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(" UpdateWeather() Exception : " + e.Message + ", " + e.StackTrace + ", " + e.InnerException);
             }
 
             // In case that weather data is not available.

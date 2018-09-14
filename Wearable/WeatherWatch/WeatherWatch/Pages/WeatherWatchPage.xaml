@@ -65,20 +65,20 @@
                 
                 <!-- Today's date -->
                 <Label AbsoluteLayout.LayoutFlags="None"
-                       AbsoluteLayout.LayoutBounds="117,225,86,17"
+                       AbsoluteLayout.LayoutBounds="83,225,125,17"
                        TextColor="White"
                        FontSize="7"
                        Text="{Binding Month}"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="End" />
                 <Label AbsoluteLayout.LayoutFlags="None"
-                       AbsoluteLayout.LayoutBounds="210,219,37,28"
+                       AbsoluteLayout.LayoutBounds="215,219,40,28"
                        TextColor="#DBD303"
                        FontAttributes="Bold"
                        FontSize="12"
                        Text="{Binding Day}"
                        VerticalTextAlignment="Center"
-                       HorizontalTextAlignment="Center" />
+                       HorizontalTextAlignment="Start" />
                 
                 
                 <!-- Weather Information -->
