@@ -2,6 +2,10 @@ namespace UsingResxLocalization
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
+        /// <summary>
+        /// Called when the application is launched.
+        /// If base.OnCreated() is not called, the event 'Created' will not be emitted.
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -12,6 +16,7 @@ namespace UsingResxLocalization
         {
             var app = new Program();
             global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            // Initialize to use Tizen.Wearable.CircularUI.Forms API.
             Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }

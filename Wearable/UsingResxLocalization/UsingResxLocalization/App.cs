@@ -8,6 +8,12 @@ namespace UsingResxLocalization
 {
     /// <summary>
     /// UsingResxLocalization app
+    /// It modifies https://github.com/xamarin/xamarin-forms-samples/tree/master/UsingResxLocalization app for Tizen devices.
+    /// 
+    /// This app shows how to make multilingual application with Xamarin.Forms and .NET localization framework.
+    /// RESX files have the translated strings and they are embedded in assembly.
+    /// So you can use them in application code.
+    /// 
     /// According to system languages, localized texts and images are shown.
     /// Currently English, Korean, Japanese are supported.
     /// </summary>
@@ -22,12 +28,12 @@ namespace UsingResxLocalization
             localize = DependencyService.Get<ILocalize>();
             // Get locale information
             UpdateLocale();
-            MainPage main = new MainPage();
-            MainPage = new NavigationPage(main);
+            MainPage = new NavigationPage(new MainPage());
         }
 
         /// <summary>
         /// Get the current locale and apply it.
+        /// To apply it, use MessagingCenter API.
         /// </summary>
         public void UpdateLocale()
         {

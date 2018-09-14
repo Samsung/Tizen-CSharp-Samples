@@ -15,6 +15,7 @@ namespace UsingResxLocalization.Services
     /// </summary>
     class Localize : UsingResxLocalization.ILocalize
     {
+        // current CultureInfo
         CultureInfo _currentCultureInfo;
 
         /// <summary>
@@ -23,6 +24,8 @@ namespace UsingResxLocalization.Services
         public Localize()
         {
             _currentCultureInfo = GetCurrentCultureInfo();
+
+            // To get notified when the current system language has been changed
             SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
         }
 
@@ -70,6 +73,7 @@ namespace UsingResxLocalization.Services
 
         /// <summary>
         /// Called when a language's changed
+        /// <LANGUAGE>_<REGION> syntax
         /// </summary>
         /// <param name="sender">object</param>
         /// <param name="e">LocaleLanguageChangedEventArgs</param>

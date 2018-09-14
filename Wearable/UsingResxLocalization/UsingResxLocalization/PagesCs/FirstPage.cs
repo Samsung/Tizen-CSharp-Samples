@@ -103,6 +103,7 @@ namespace UsingResxLocalization
             {
                 MessagingCenter.Subscribe<App>(this, "UpdateUIByLanguageChanges", (obj) =>
                 {
+                    // apply translated resources
                     myLabel.Text = AppResources.NotesLabel;
                     myEntry.Placeholder = AppResources.NotesPlaceholder;
                     myPicker.Title = AppResources.PickerName;
