@@ -42,7 +42,7 @@ namespace AppCommon.Tizen.Mobile
         {
             base.OnLowBattery(e);
             var status = (LowBatteryStatus)e.LowBatteryStatus;
-            _app.ApplicationInfomation.UpdateLowBatteryLEDColor(status);
+            _app.ApplicationInformation.UpdateLowBatteryLEDColor(status);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace AppCommon.Tizen.Mobile
         {
             base.OnLowMemory(e);
             var status = (LowMemoryStatus)e.LowMemoryStatus;
-            _app.ApplicationInfomation.UpdateLowMemoryLEDColor(status);
+            _app.ApplicationInformation.UpdateLowMemoryLEDColor(status);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace AppCommon.Tizen.Mobile
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             base.OnLocaleChanged(e);
-            _app.ApplicationInfomation.Language = new CultureInfo(e.Locale).DisplayName;
+            _app.ApplicationInformation.Language = new CultureInfo(e.Locale).DisplayName;
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace AppCommon.Tizen.Mobile
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             base.OnRegionFormatChanged(e);
-            _app.ApplicationInfomation.RegionFormat = new CultureInfo(e.Region).DisplayName;
+            _app.ApplicationInformation.RegionFormat = new CultureInfo(e.Region).DisplayName;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace AppCommon.Tizen.Mobile
         {
             base.OnDeviceOrientationChanged(e);
             var orientation = (DeviceOrientationStatus)e.DeviceOrientation;
-            _app.ApplicationInfomation.UpdateDeviceOrientation(orientation);
+            _app.ApplicationInformation.UpdateDeviceOrientation(orientation);
         }
 
         static void Main(string[] args)
