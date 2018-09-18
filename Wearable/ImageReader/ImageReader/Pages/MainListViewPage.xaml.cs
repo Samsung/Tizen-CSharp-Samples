@@ -7,7 +7,7 @@ namespace ImageReader.Pages
 {
     /// <summary>
     /// Class MainListViewPage
-    /// The main page for this application
+    /// The main page of this application
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainListViewPage : CirclePage
