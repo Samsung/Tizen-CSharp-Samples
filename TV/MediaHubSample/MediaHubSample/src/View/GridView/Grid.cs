@@ -3627,7 +3627,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Removes the specified datas from the List of specified group.
+        /// Removes the specified data from the List of specified group.
         /// </summary>
         /// <param name="fromIndex">The from index of data to remove from the list.</param>
         /// <param name="removeNum">The remove number of data to remove from the list.</param>
@@ -3657,7 +3657,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Removes the specified datas from the List of specified group.
+        /// Removes the specified data from the List of specified group.
         /// </summary>
         /// <param name="itemIndex">The from index of data to remove from the list.</param>
         /// <param name="groupIndex">The group index which need to add data.</param>
