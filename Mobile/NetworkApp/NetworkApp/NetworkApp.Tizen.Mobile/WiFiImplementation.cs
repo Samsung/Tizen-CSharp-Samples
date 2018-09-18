@@ -188,7 +188,7 @@ namespace NetworkApp.Tizen.Mobile
         /// <summary>
         /// Get a list of scanned Wi-Fi APs
         /// </summary>
-        /// <returns>List of Wi-Fi AP infomation</returns>
+        /// <returns>List of Wi-Fi AP information</returns>
         public List<APInfo> GetAPList()
         {
             List<APInfo> apInfoList = new List<APInfo>();

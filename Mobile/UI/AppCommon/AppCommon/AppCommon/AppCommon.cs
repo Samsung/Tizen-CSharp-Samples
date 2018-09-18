@@ -32,10 +32,10 @@ namespace AppCommon
         public App(int width, int height)
         {
             /// A model for an ApplicationInformationPage
-            ApplicationInfomation = new ApplicationInformationViewModel();
+            ApplicationInformation = new ApplicationInformationViewModel();
 
             var applicationInformation = new ApplicationInformationPage();
-            applicationInformation.BindingContext = ApplicationInfomation;
+            applicationInformation.BindingContext = ApplicationInformation;
 
             var paths = new PathsPage(width, height);
             paths.BindingContext = new PathsPageViewModel();
@@ -54,7 +54,7 @@ namespace AppCommon
         /// <summary>
         /// The model for the ApplicationInformationPage
         /// </summary>
-        public ApplicationInformationViewModel ApplicationInfomation { get; private set; }
+        public ApplicationInformationViewModel ApplicationInformation { get; private set; }
 
         /// <summary>
         /// Handle when your application starts

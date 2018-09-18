@@ -601,7 +601,7 @@ namespace Tizen.NUI.MediaHub
         }
 
         /// <summary>
-        /// The method is to apply the properties of infomation icons
+        /// The method is to apply the properties of information icons
         /// </summary>
         private void ApplyInformationIcon()
         {
