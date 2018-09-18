@@ -290,7 +290,7 @@ namespace Tizen.NUI.MediaHub
         }
 
         /// <summary>
-        /// Removes the specified datas from the List.
+        /// Removes the specified data from the List.
         /// </summary>
         /// <param name="fromIndex">The from index of data to remove from the list.</param>
         /// <param name="removeNum">The remove number of data to remove from the list.</param>
