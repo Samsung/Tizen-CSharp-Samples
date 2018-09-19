@@ -50,6 +50,7 @@ namespace Badges
                 badgeValue = Math.Clamp(value, 0, 10000);
                 popupEntry.Text = badgeValue.ToString();
             }
+
             get { return badgeValue; }
         }
 
@@ -96,7 +97,8 @@ namespace Badges
 
             var stack = new StackLayout
             {
-                Children = {
+                Children =
+                {
                     label,
                     popupEntry,
                     applyButton,
@@ -129,6 +131,7 @@ namespace Badges
             {
                 BadgeValue = value;
             }
+
             popupEntry.Text = BadgeValue.ToString();
         }
 
@@ -189,6 +192,7 @@ namespace Badges
             {
                 Log.Debug("Badges", $"Failed to find badge. {e.GetType()}, {e.Message}");
             }
+
             return badge;
         }
 
