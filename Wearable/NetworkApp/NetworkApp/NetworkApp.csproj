@@ -25,7 +25,7 @@
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
-    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.0.0-pre2-00084" />
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.0.0-pre2-00099" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.637273" />
   </ItemGroup>
 
