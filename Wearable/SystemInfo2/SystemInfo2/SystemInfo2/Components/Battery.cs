@@ -56,7 +56,7 @@ namespace SystemInfo.Components
         /// Cleans up the events assignment
         /// </summary>
         ~Battery()
-        {            
+        {
             TBattery.PercentChanged -= OnPercentChanged;
             TBattery.ChargingStateChanged -= OnChargingStateChanged;
         }
@@ -64,7 +64,9 @@ namespace SystemInfo.Components
         /// <summary>
         /// Handle TizenBatteryPercentChagedEvent by letting others know they need to check the levels again.
         /// </summary>
-        private void OnPercentChanged (object sender, Tizen.System.BatteryPercentChangedEventArgs args)
+        /// <param name="sender"> Sender </param>
+        /// <param name="args"> Arguments </param>
+        private void OnPercentChanged(object sender, Tizen.System.BatteryPercentChangedEventArgs args)
         {
             // If this happens - two properties could have changed
             OnPropertyChanged(nameof(BatteryLevel));
@@ -74,6 +76,8 @@ namespace SystemInfo.Components
         /// <summary>
         /// Handle ChargingStateChangedEvent by letting others know they need to check relevant property state again.
         /// </summary>
+        /// <param name="sender"> Sender </param>
+        /// <param name="args"> Arguments </param>
         private void OnChargingStateChanged(object sender, Tizen.System.BatteryChargingStateChangedEventArgs args)
         {
             OnPropertyChanged(nameof(IsCharging));

@@ -17,12 +17,15 @@ using Tizen.Wearable.CircularUI.Forms;
 
 namespace SystemInfo.InfoPages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CapabilitiesPage : CirclePage
-	{
-		public CapabilitiesPage ()
-		{
-			InitializeComponent ();
-		}
-	}
+    /// <summary>
+    /// CapabilitiesPage partial class
+    /// </summary>
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CapabilitiesPage : CirclePage
+    {
+        public CapabilitiesPage()
+        {
+            InitializeComponent();
+        }
+    }
 }
