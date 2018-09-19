@@ -35,7 +35,7 @@ namespace ListSample
         private string titleBackGroundImage = resourcesChannel + "channel_list_bg_ch_title.png"; //title background image.
         private string titleShadowImage = resourcesChannel + "channel_list_title_shadow.png"; // title show image.
         private string titleIconAll = resourcesChannel + "channel_list_title_icon_all.png"; // title icon all image.
-        private string titleIconFavorite = resourcesChannel + "channel_list_title_icon_favorite.png"; // title icon favorite iamge.
+        private string titleIconFavorite = resourcesChannel + "channel_list_title_icon_favorite.png"; // title icon favorite image.
         private string titleIconGenre = resourcesChannel + "channel_list_title_icon_genre.png"; //title icon genre image.
         private string titleIconSort = resourcesChannel + "channel_list_title_icon_sort.png"; // title icon sort image.
         private string subListShadow = resourcesChannel + "channel_list_shadow.png"; // sublist shadow image.
