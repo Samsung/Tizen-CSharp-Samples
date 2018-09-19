@@ -118,6 +118,7 @@ namespace NetworkApp.Tizen.Mobile
             {
                 ap.SecurityInformation.SetPassphrase(password);
             }
+
             return ap.ConnectAsync();
         }
 
@@ -183,6 +184,7 @@ namespace NetworkApp.Tizen.Mobile
                 Logger.Log("AP: " + apName + " not found!");
                 return WiFiSecurityType.None;
             }
+
             return ap.SecurityInformation.SecurityType;
         }
 

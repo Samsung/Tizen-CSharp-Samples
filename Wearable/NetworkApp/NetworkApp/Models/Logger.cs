@@ -30,6 +30,9 @@ namespace NetworkApp.Models
         /// Prints DEBUG mode log
         /// </summary>
         /// <param name="message">Log message</param>
+        /// <param name="file"> Caller file</param>
+        /// <param name="func"> Caller member name</param>
+        /// <param name="line"> Caller line number</param>
         public static void Log(string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             global::Tizen.Log.Debug(LOGTAG, message, file, func, line);
