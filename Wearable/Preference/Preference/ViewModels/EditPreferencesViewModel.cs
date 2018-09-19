@@ -197,9 +197,15 @@ namespace Preference.ViewModels
         private bool CheckIfParsableToIntOrNull(string value, out int result)
         {
             if (int.TryParse(value, out result))
+            {
                 return true;
+            }
+
             if (String.IsNullOrEmpty(value))
+            {
                 return true;
+            }
+
             return false;
         }
 
@@ -212,9 +218,15 @@ namespace Preference.ViewModels
         private bool CheckIfParsableToDoubleOrNull(string value, out double result)
         {
             if (double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out result))
+            {
                 return true;
+            }
+
             if (String.IsNullOrEmpty(value))
+            {
                 return true;
+            }
+
             return false;
         }
 
