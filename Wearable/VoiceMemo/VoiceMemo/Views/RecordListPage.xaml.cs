@@ -109,7 +109,7 @@ namespace VoiceMemo.Views
         {
             if (((MainPageModel)BindingContext).IsCheckable)
             {
-                Console.WriteLine(" RecordListPage.OnItemTapped :  Checkable mode so ingore tapped event");
+                Console.WriteLine(" RecordListPage.OnItemTapped :  Checkable mode so ignore tapped event");
                 return;
             }
 

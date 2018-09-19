@@ -78,7 +78,7 @@ namespace AppControl
         }
 
         /// <summary>
-        /// Calledn when the application resumes from a sleeping state.
+        /// Called when the application resumes from a sleeping state.
         /// </summary>
         protected override void OnResume()
         {

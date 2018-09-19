@@ -19,7 +19,7 @@ namespace ImageReader.Pages
     ///           ImageReader.2.png
     /// 
     /// - How to load the embedded images
-    /// call ImageSource.FromResource() methodwith Resource ID
+    /// call ImageSource.FromResource() method with Resource ID
     /// </summary>
     public class EmbeddedImages : ContentPage
     {

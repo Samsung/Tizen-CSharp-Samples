@@ -25,7 +25,7 @@ namespace AppInformation
     /// <summary>
     /// This is a main class of ApplicationInfo and DirectoryInfo.
     /// This class creates a simple list to show ApplicationInfo and DirectoryInfo of 
-    /// this applicaiton.
+    /// this application.
     /// </summary>
     public class App : Application
     {

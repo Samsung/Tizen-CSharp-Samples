@@ -187,7 +187,7 @@ namespace WeatherWatch.PageModels
             }
         }
 
-        // text for bettery percentage
+        // text for battery percentage
         public bool BatteryTextIsVisible
         {
             get => _batteryTextIsVisible;

@@ -119,7 +119,7 @@ namespace VoiceMemo.Tizen.Wearable.Services
         /// </summary>
         public void IncreaseVolume()
         {
-            // if volume level is already max, ingore it.
+            // if volume level is already max, ignore it.
             if (audioVolume.Level[AudioVolumeType.Media] == audioVolume.MaxLevel[AudioVolumeType.Media])
             {
                 return;

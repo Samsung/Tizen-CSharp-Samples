@@ -114,7 +114,7 @@ namespace PlayingWithHWInputs
                 SKCanvas canvas = canvasSurface.Canvas;
                 // Save canvas here to later retrieve
                 canvas.Save();
-                // Initialize canvase before drawing
+                // Initialize canvas before drawing
                 canvas.Clear(SKColors.Black);
                 // Handling for the right rotation state
                 if (currentState == ONGOING_EVENT_STATE.RIGHT_DIRECTION_ROTATE)

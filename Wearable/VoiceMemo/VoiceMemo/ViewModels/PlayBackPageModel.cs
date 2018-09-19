@@ -441,10 +441,10 @@ namespace VoiceMemo.ViewModels
 
         bool HideVolumeView()
         {
-            // In cas that screen is touched, VolumeView is still visible.
+            // In case that screen is touched, VolumeView is still visible.
             if (_Touched)
             {
-                Console.WriteLine("In cas that screen is touched, VolumeView is still visible.");
+                Console.WriteLine("In case that screen is touched, VolumeView is still visible.");
                 _Touched = false;
                 return true;
             }
@@ -461,7 +461,7 @@ namespace VoiceMemo.ViewModels
         {
             Console.WriteLine("  $$$$$$$$$$$$     ");
             Console.WriteLine("  $$$$$$$$$$$$     ");
-            Console.WriteLine("          Screen is touched. So dalaytime will be updated.");
+            Console.WriteLine("          Screen is touched. So delaytime will be updated.");
             Console.WriteLine("  $$$$$$$$$$$$     ");
             Console.WriteLine("  $$$$$$$$$$$$     ");
             _Touched = true;

@@ -72,7 +72,7 @@ namespace VoiceMemo
             }
             else
             {
-                // Close the app if the user refuses the permissions to use recoder and device storage
+                // Close the app if the user refuses the permissions to use recorder and device storage
                 await MainPage.DisplayAlert("Notice", "Due to no user permission, this app cannot be executed.", "OK");
                 // Terminate this application
                 DependencyService.Get<IAppTerminator>().TerminateApp();

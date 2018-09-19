@@ -21,7 +21,7 @@ namespace VoiceMemo.ViewModels
         // Notify that player's state has changed
         public const string PlayerStateChanged = "PlayerStateChanged";
 
-        // Notify that Audo play has done
+        // Notify that Audio play has done
         public const string AudioPlayDone = "AudioPlayDone";
 
         // Notify that Error occurs
@@ -49,7 +49,7 @@ namespace VoiceMemo.ViewModels
         // Notify that permission from an user is got or not
         public const string UserPermission = "UserPermission";
 
-        // Notify that long click event occurrs in RecordListPage
+        // Notify that long click event occurs in RecordListPage
         //public const string RecordListLongPressed = "RecordListLongPressed";
 
         // TODO : It's a missing feature

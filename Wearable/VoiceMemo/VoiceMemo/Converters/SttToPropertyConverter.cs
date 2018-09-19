@@ -32,8 +32,8 @@ namespace VoiceMemo.Converters
 
     /// <summary>
     /// Converter class
-    /// According to wheter or not STT feature usability is on,
-    /// this coverter class will provider the proper text and the path of image file .
+    /// According to whether or not STT feature usability is on,
+    /// this converter class will provider the proper text and the path of image file .
     /// </summary>
     public class SttToPropertyConverter : IValueConverter
     {

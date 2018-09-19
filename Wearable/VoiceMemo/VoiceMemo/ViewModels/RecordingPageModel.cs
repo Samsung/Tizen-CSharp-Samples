@@ -341,7 +341,7 @@ namespace VoiceMemo.ViewModels
                 return;
             }
 
-            // initalize page
+            // initialize page
             RecordingViewModelState = RecordingViewModelState.Ready;
             RecordingTime = "00:00";
             RecordingProcess = 0;

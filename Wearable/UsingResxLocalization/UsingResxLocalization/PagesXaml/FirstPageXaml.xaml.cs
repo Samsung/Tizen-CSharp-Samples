@@ -34,7 +34,7 @@ namespace UsingResxLocalization
         /// <summary>
         /// Called when myButton is clicked.
         /// Alert message will be shown.
-        /// The message will be localized based on the curren system language.
+        /// The message will be localized based on the current system language.
         /// 
         /// </summary>
         /// <param name="sender">object</param>

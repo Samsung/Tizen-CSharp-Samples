@@ -55,7 +55,7 @@ namespace ServiceApp
                     messagePort.Send(bundleToSend, "org.tizen.example.MessagePortSampleApp", uiAppPortName, true); // last argument should match type of receiver port(trusted or not).
                 }
             };
-            // Listen regiser this local message port so this must be called to Send
+            // Listen register this loal message port so this must be called to Send
             messagePort.Listen();
         }
 
