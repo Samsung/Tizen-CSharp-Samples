@@ -23,36 +23,45 @@ namespace MapsView
         /// This is a predefined list of locations available within the app.
         /// Add yours to get acustomed with how Xamarin.Forms.Maps.Pin work
         /// </summary>
-        public static IReadOnlyCollection<Pin> Predefined = new List<Pin> {
-            new Pin() {
+        public static IReadOnlyCollection<Pin> Predefined = new List<Pin>
+        {
+            new Pin()
+            {
                 Label = "Shark Bay, Indian Ocean, Australia",
                 Position = new Position(-25.9670857, 113.0757838)
             },
-            new Pin() {
+            new Pin()
+            {
                 Label = "Ayers Rock (Uluru), Australia",
                 Position = new Position(-25.345657, 131.0283911)
             },
-            new Pin() {
+            new Pin()
+            {
                Label = "The Boneyard, Tucson, Arizona, USA",
                Position = new Position(32.1536835, -110.8318124)
             },
-            new Pin() {
+            new Pin()
+            {
                Label = "A Saharan Sea Of Dunes, The Grand Erg of Bilma, Niger",
                Position = new Position(17.1699123, 7.2034294)
             },
-            new Pin() {
+            new Pin()
+            {
                 Label = "Fresno, California, USA",
                 Position = new Position(36.8219538, -119.8330368)
             },
-            new Pin() {
+            new Pin()
+            {
                 Label = "Irrawaddy Delta, Myanmar",
                 Position = new Position(16.0181631, 94.7724951)
             },
-            new Pin() {
+            new Pin()
+            {
                 Label = "Crop circles, Cansas, USA",
                 Position = new Position(37.6405309, -100.6957721)
             },
-            new Pin() {
+            new Pin()
+            {
                 Label = "Canyonlands National Park, Utah, USA",
                 Position = new Position(38.31684779, -109.9087715)
             },

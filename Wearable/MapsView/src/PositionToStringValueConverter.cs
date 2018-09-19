@@ -27,6 +27,13 @@ namespace MapsView
         /// <summary>
         /// This is a very simple converter taking Position struct and turning it into a string
         /// </summary>        
+        /// <returns> Position struct converted to string </returns>
+        /// <param name="value">Source object</param>
+        /// <seealso cref="System.object">
+        /// <param name="targetType">The target type to convert</param>
+        /// <seealso cref="Type">
+        /// <param name="CultureInfo">The culture info</param>
+        /// <seealso cref="CultureInfo">
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is Position && targetType == typeof(String))
@@ -38,6 +45,7 @@ namespace MapsView
                 throw new NotImplementedException();
             }
         }       
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

@@ -63,6 +63,7 @@ namespace MapsView
         /// IRotaryEventReceiver interface driven bezel rotation handler
         /// Zoom in and out the map every 1 second (to avoid quick zoom in / zoom out)
         /// </summary>
+        /// <param name="args">RotaryEvent arguments</param>
         public void Rotate(RotaryEventArgs args)
         {
             if (DateTimeOffset.Now.ToUnixTimeMilliseconds() - lastZoomMillis > Config.ZOOM_EVERY_X_MILLISECONDS)

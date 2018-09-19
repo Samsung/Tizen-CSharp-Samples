@@ -56,12 +56,16 @@ namespace MapsView
         /// Handler for circleListView ItemTapped event
         /// It creates a new MapPage, prepares a MapSpan for MapPage to start with and navigates to it
         /// </summary>
+        /// <param name="sender">Object that raised the event</param>
+        /// <param name="e">Event arguments</param>
         private void CircleListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             Pin pin = (Pin)((CircleListView)sender).SelectedItem;
             MapSpan startingRegion = MapSpan.FromCenterAndRadius(pin.Position, Distance.FromKilometers(Config.STARTING_ZOOM_LEVEL));
-            MapPage mapPage = new MapPage();
-            mapPage.BindingContext = startingRegion;
+            MapPage mapPage = new MapPage
+            {
+                BindingContext = startingRegion
+            };
             MainPage.Navigation.PushAsync(mapPage, false);               
         }
 
