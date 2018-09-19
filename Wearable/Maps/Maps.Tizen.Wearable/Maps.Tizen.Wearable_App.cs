@@ -251,7 +251,7 @@ namespace Maps.Tizen.Wearable
 		}
 
 		/// <summary>
-		/// Handle the event of the longpress on the MapView.
+		/// Handle the event of the select on the ViewOption.
 		/// </summary>
 		/// <param name="sender">Specifies the sender object</param>
 		/// <param name="oe">Specifies the occured event</param>
