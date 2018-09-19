@@ -56,7 +56,7 @@ namespace ChannelList
     ///     {
     ///         object data = GetData(index);
     ///         ListItem1Data itemData = data as ListItem1Data;
-    /// 
+    ///
     ///         TextItem obj = new TextItem("C_TextItem_WhiteSingleline01");
     ///         obj.Name = "ListItem" + index;
     ///         obj.StateListLineEnabled = true;
@@ -70,7 +70,7 @@ namespace ChannelList
     ///     {
     ///         object data = GetData(index);
     ///         ListItem1Data itemData = data as ListItem1Data;
-    /// 
+    ///
     ///         TextItem itemView = view as TextItem;
     ///         if (itemView != null)
     ///         {
@@ -95,7 +95,7 @@ namespace ChannelList
     public abstract class ListAdapter
     {
         /// <summary>
-        /// Construct ListAdapter with datas.
+        /// Construct ListAdapter with data.
         /// </summary>
         /// <param name="objects">data list</param>
         public ListAdapter(List<object> objects)
@@ -214,23 +214,23 @@ namespace ChannelList
         }
 
         /// <summary>
-        /// Adds the specified datas at the end of the List.
+        /// Adds the specified data at the end of the List.
         /// </summary>
-        /// <param name="datas">The dataList to add at the end of the List.</param>
-        public void AddAll(List<object> datas)
+        /// <param name="data">The dataList to add at the end of the List.</param>
+        public void AddAll(List<object> data)
         {
             Tizen.Log.Fatal("NUI.List", "Add items ...");
-            listData.AddRange(datas);
+            listData.AddRange(data);
 
             // Send AddAll event.
             DataChangeEventArgs e = new DataChangeEventArgs();
             e.ChangeType = DataChangeEventType.AddAll;
-            e.data = datas;
+            e.data = data;
             OnDataChangeEvent(this, e);
         }
 
         /// <summary>
-        /// Removes the specified datas from the List.
+        /// Removes the specified data from the List.
         /// </summary>
         /// <param name="fromIndex">The from index of data to remove from the list.</param>
         /// <param name="removeNum">The remove number of data to remove from the list.</param>
@@ -296,15 +296,15 @@ namespace ChannelList
         {
             /// <summary> Add a data. </summary>
             Add,
-            /// <summary> Add datas at one time. </summary>
+            /// <summary> Add data at one time. </summary>
             AddAll,
-            /// <summary> Remove datas. </summary>
+            /// <summary> Remove data. </summary>
             Remove,
-            /// <summary> Insert datas. </summary>
+            /// <summary> Insert data. </summary>
             Insert,
-            /// <summary> Clear all datas. </summary>
+            /// <summary> Clear all data. </summary>
             Clear,
-            /// <summary> Load datas. </summary>
+            /// <summary> Load data. </summary>
             Load
         }
 
