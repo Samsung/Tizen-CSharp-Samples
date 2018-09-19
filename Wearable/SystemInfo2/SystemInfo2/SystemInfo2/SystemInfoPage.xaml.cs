@@ -17,6 +17,9 @@ using Tizen.Wearable.CircularUI.Forms;
 using SystemInfo.InfoPages;
 namespace SystemInfo
 {
+    /// <summary>
+    /// SystemInfoPage partial class
+    /// </summary>
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SystemInfoPage : IndexPage
     {

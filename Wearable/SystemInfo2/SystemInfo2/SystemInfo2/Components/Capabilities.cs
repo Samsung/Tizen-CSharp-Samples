@@ -23,7 +23,7 @@ namespace SystemInfo.Components
     /// <summary>
     /// An easy to access fascade for Tizen.System.Information with information like flight-mode status or GPS availability. 
     /// </summary>
-    public class Capabilities :  BindableObject
+    public class Capabilities : BindableObject
     {
         #region properties
 
@@ -162,10 +162,10 @@ namespace SystemInfo.Components
             SystemSettings.NetworkFlightModeSettingChanged -= OnFlightModeChanged;
         }
 
-        private void On3gNetworkChanged (Object sender, Data3GNetworkSettingChangedEventArgs args )
+        private void On3gNetworkChanged(Object sender, Data3GNetworkSettingChangedEventArgs args)
         {
             OnPropertyChanged(nameof(Is3GDataNetworkEnabled));
-            
+
         }
 
         private void OnFlightModeChanged(Object sender, NetworkFlightModeSettingChangedEventArgs args)

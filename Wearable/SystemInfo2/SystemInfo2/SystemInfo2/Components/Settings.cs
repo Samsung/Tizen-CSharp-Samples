@@ -113,6 +113,7 @@ namespace SystemInfo.Components
         {
             OnPropertyChanged(nameof(FontType));
         }
+
         private void OnDeviceNameChanged(object sender, DeviceNameChangedEventArgs args)
         {
             OnPropertyChanged(nameof(DeviceName));
@@ -123,7 +124,8 @@ namespace SystemInfo.Components
             OnPropertyChanged(nameof(MotionEnabled));
         }
 
-        private void OnCountryChanged(object sender, LocaleCountryChangedEventArgs args) {
+        private void OnCountryChanged(object sender, LocaleCountryChangedEventArgs args)
+        {
             OnPropertyChanged(nameof(LocaleCountry));
         }
 

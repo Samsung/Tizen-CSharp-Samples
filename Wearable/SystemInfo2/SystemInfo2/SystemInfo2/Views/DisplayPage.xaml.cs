@@ -23,12 +23,15 @@ using Xamarin.Forms.Xaml;
 
 namespace SystemInfo.InfoPages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DisplayPage : ContentPage
-	{
-		public DisplayPage ()
-		{
-			InitializeComponent ();
-		}
-	}
+    /// <summary>
+    /// DisplayPage partial class
+    /// </summary>
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class DisplayPage : ContentPage
+    {
+        public DisplayPage()
+        {
+            InitializeComponent();
+        }
+    }
 }

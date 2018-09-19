@@ -23,12 +23,15 @@ using Xamarin.Forms.Xaml;
 
 namespace SystemInfo.InfoPages
 {
+    /// <summary>
+    /// BatteryPage partial class
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class BatteryPage : ContentPage
-	{
-		public BatteryPage ()
-		{
-			InitializeComponent ();
-		}
-	}
+    public partial class BatteryPage : ContentPage
+    {
+        public BatteryPage()
+        {
+            InitializeComponent();
+        }
+    }
 }
