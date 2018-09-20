@@ -18,6 +18,9 @@ using Xamarin.Forms.Xaml;
 
 namespace VolumeController.Views
 {
+    /// <summary>
+    /// VolumeControllPage partial class.
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VolumeControlPage : CirclePage
     {

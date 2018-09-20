@@ -75,6 +75,7 @@ namespace VolumeController.ViewModels
                 MaxVolume = AudioManager.VolumeController.MaxLevel[CurrentVolumeType];
                 CurrentVolume = AudioManager.VolumeController.Level[CurrentVolumeType];
             }
+
             get { return volumeTypeIndex; }
         }
 
@@ -134,6 +135,7 @@ namespace VolumeController.ViewModels
                 }
 
             }
+
             get { return currentVolume; }
         }
 
@@ -152,8 +154,11 @@ namespace VolumeController.ViewModels
             {
                 sliderUsable = value;
                 if (value == true)
+                {
                     SliderVolume = CurrentVolume;
+                }
             }
+
             get { return sliderUsable; }
         }
 
@@ -176,6 +181,7 @@ namespace VolumeController.ViewModels
                     SliderUsable = true;
                 }
             }
+
             get { return CurrentVolume; }
         }
 
@@ -204,7 +210,9 @@ namespace VolumeController.ViewModels
             {
                 // Skip type None as it cannot be used.
                 if (volumeType == AudioVolumeType.None)
+                {
                     continue;
+                }
 
                 volumeTypes.Add(volumeType);
             }
