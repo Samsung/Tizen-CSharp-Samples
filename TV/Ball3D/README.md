@@ -2,7 +2,7 @@
 This sample application mainly shows how to draw a spherical 3D model, add texture, and realize rotation control.
 
 
-![OPENTK](./Screenshots/Ball3D.png)
+![OPENTK](./Screenshots/Ball3D_1.png)
 
 ## License
 Copyright (c) 2017 Samsung Electronics Co., Ltd.
