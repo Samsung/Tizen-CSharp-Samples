@@ -1,0 +1,7 @@
+attribute vec4 vPosition;
+varying vec2 vTexUV;
+void main()
+{
+	vTexUV = vPosition.xy;
+    gl_Position = vPosition;
+}
