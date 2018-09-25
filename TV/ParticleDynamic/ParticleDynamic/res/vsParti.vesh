@@ -1,0 +1,10 @@
+uniform mat4 uMVPMatrix;  
+attribute vec4 vPosition;
+attribute vec4 vColor;
+varying vec4 tColor;
+void main()
+{
+	tColor=vColor;
+    gl_Position = vPosition;
+	gl_PointSize = 10.0;
+}
