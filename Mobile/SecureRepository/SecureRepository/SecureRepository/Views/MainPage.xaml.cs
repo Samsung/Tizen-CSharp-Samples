@@ -55,9 +55,6 @@ namespace SecureRepository
         public MainPage()
         {
             this.InitializeComponent();
-            var template = new DataTemplate(typeof(TextCell));
-            template.SetBinding(TextCell.TextProperty, "Alias");
-            listView.ItemTemplate = template;
             this.mv = new MainPageViewModel();
             this.BindingContext = this.mv;
         }

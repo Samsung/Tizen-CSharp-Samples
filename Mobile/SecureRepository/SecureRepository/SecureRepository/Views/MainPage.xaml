@@ -18,7 +18,17 @@
                           IsGroupingEnabled="True"
                           SelectedItem="{Binding SelectedItem}"
                           ItemsSource="{Binding Path=UIList}">
-
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="32,0,0,0">
+                                    <Label VerticalTextAlignment="Center"
+                                       HeightRequest="120"
+                                       Text="{Binding Alias}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </Grid>
 
