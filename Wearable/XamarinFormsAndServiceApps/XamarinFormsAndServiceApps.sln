@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinFormsAndServiceApps", "XamarinFormsAndServiceApps\XamarinFormsAndServiceApps.csproj", "{2661F7C6-135B-423C-B246-BC3EA098E524}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceApp", "ServiceApp\ServiceApp.csproj", "{ADCE889D-4212-4E4A-82D1-F6FA83870EEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2661F7C6-135B-423C-B246-BC3EA098E524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2661F7C6-135B-423C-B246-BC3EA098E524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2661F7C6-135B-423C-B246-BC3EA098E524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2661F7C6-135B-423C-B246-BC3EA098E524}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADCE889D-4212-4E4A-82D1-F6FA83870EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADCE889D-4212-4E4A-82D1-F6FA83870EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADCE889D-4212-4E4A-82D1-F6FA83870EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADCE889D-4212-4E4A-82D1-F6FA83870EEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CCE332E-FAA0-40AD-A9FE-902E57B41B42}
+	EndGlobalSection
+EndGlobal
