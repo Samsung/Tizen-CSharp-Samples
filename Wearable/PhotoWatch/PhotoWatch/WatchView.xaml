@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PhotoWatch;assembly=PhotoWatch"
+             x:Class="PhotoWatch.WatchView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <local:DayOfWeekConverter x:Key="dayofweek" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <AbsoluteLayout InputTransparent="true">
+        <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"
+               Source="{Binding CurrentBackground}" Aspect="AspectFill" IsVisible="{Binding IsNormalMode}"/>
+        <StackLayout AbsoluteLayout.LayoutBounds="1, 0.5, 0.25, 0.5" AbsoluteLayout.LayoutFlags="All" InputTransparent="True" Orientation="Horizontal">
+            <Label HorizontalOptions="End" VerticalOptions="Center" Text="{Binding Time, StringFormat='{0:dd}'}"
+                   FontSize="8" TextColor="#eeeeee" BackgroundColor="#aa000000"/>
+            <Label HorizontalOptions="End" VerticalOptions="Center" Text="{Binding Time, Converter={StaticResource dayofweek}}"
+                   FontSize="8" TextColor="#eeeeee" BackgroundColor="#aa000000"/>
+        </StackLayout>
+        <Label AbsoluteLayout.LayoutBounds="0.5, 1, 100, 50" HorizontalTextAlignment="Center" VerticalTextAlignment="End"
+               FontSize="8"  AbsoluteLayout.LayoutFlags="PositionProportional" Text="{Binding Time, StringFormat='{0:hh\\:mm}'}"/>
+
+        <Image x:Name="Hour" AbsoluteLayout.LayoutBounds="0.5, 0.5, 34, 360" AbsoluteLayout.LayoutFlags="PositionProportional"
+               InputTransparent="True"
+               Source="classic_hr.png"/>
+        <Image x:Name="Min" AbsoluteLayout.LayoutBounds="0.5, 0.5, 34, 360" AbsoluteLayout.LayoutFlags="PositionProportional"
+               InputTransparent="True"
+               Source="classic_min.png"/>
+        <Image x:Name="Second" AbsoluteLayout.LayoutBounds="0.5, 0.5, 34, 360" AbsoluteLayout.LayoutFlags="PositionProportional"
+               IsVisible="{Binding IsNormalMode}"
+               InputTransparent="True"
+               Source="classic_sec.png"/>
+    </AbsoluteLayout>
+</ContentView>
