@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PhotoWatch;assembly=PhotoWatch"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="PhotoWatch.SettingView">
+  <ContentView.Content>
+        <StackLayout>
+            <w:CircleListView x:Name="BgList" RowHeight="360" ItemsSource="{Binding BackgroundItems}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HasUnevenRows="False">
+                <w:CircleListView.Header>
+                    <StackLayout Orientation="Horizontal" HeightRequest="360" WidthRequest="360">
+                        <BoxView HorizontalOptions="FillAndExpand"/>
+                        <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center">
+                            <BoxView VerticalOptions="FillAndExpand"/>
+                            <Label Text="+" FontSize="70" TextColor="#eeeeee" HeightRequest="95">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding PickPhotoCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <BoxView VerticalOptions="FillAndExpand"/>
+                        </StackLayout>
+                        <BoxView HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </w:CircleListView.Header>
+                <w:CircleListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <AbsoluteLayout>
+                                <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" 
+                                             Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                        <local:CircleContentView HeightRequest="200" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Image Source="{Binding Path}" Aspect="AspectFill"/>
+                                        </local:CircleContentView>
+                                        <Label Text="{Binding DisplayName}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Image Source="remove-button.png" AbsoluteLayout.LayoutBounds="230, 75, 42, 42" AbsoluteLayout.LayoutFlags="None">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding DeleteCommand}" CommandParameter="{Binding Path}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </AbsoluteLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </w:CircleListView.ItemTemplate>
+            </w:CircleListView>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

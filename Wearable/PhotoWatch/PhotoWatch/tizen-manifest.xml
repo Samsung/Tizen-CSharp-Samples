@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.PhotoWatch" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="wearable" />
+    <watch-application appid="org.tizen.example.PhotoWatch" exec="PhotoWatch.dll" ambient-support="true" type="dotnet">
+        <label>PhotoWatch</label>
+        <label xml:lang="ko-kr">포토 워치</label>
+        <icon>PhotoWatch.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+    </watch-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        <privilege>http://tizen.org/privilege/alarm.set</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
+</manifest>
