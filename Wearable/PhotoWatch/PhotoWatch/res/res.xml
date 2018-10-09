@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<res xmlns="http://tizen.org/ns/rm">
+  <group-image folder="contents">
+    <node folder="contents/ko_KR-All" language="ko_KR" />
+  </group-image>
+  <group-layout folder="contents">
+    <node folder="contents/ko_KR-All" language="ko_KR" />
+  </group-layout>
+  <group-sound folder="contents">
+    <node folder="contents/ko_KR-All" language="ko_KR" />
+  </group-sound>
+  <group-bin folder="contents">
+    <node folder="contents/ko_KR-All" language="ko_KR" />
+  </group-bin>
+</res>
