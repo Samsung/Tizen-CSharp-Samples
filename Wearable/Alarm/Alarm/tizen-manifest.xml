@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest package="org.tizen.example.Alarm" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
-	<profile name="wearable" />
-	<ui-application appid="org.tizen.example.Alarm" exec="Alarm.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
-		<label>.NET Alarm</label>
-		<icon>Alarm.png</icon>
-		<metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
-		<label xml:lang="en-us">.NET Alarm</label>
-		<label xml:lang="ko-kr">.NET 알람</label>
-		<splash-screens />
-	</ui-application>
-	<shortcut-list />
-	<privileges>
-		<privilege>http://tizen.org/privilege/alarm.set</privilege>
-		<privilege>http://tizen.org/privilege/alarm.get</privilege>
-		<privilege>http://tizen.org/privilege/haptic</privilege>
-		<privilege>http://tizen.org/privilege/appmanager.launch</privilege>
-	</privileges>
-	<provides-appdefined-privileges />
+    <profile name="wearable" />
+    <ui-application appid="org.tizen.example.Alarm" exec="Alarm.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" splash-screen-display="true" launch_mode="single">
+        <label>.Net Alarm</label>
+        <icon>Alarm.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <label xml:lang="ko-kr">닷넷 알람</label>
+        <label xml:lang="en-us">.NET Alarm</label>
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        <privilege>http://tizen.org/privilege/alarm.get</privilege>
+        <privilege>http://tizen.org/privilege/haptic</privilege>
+        <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
 </manifest>
