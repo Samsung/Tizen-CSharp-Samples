@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    xmlns:local="clr-namespace:ImageViewer.Views;assembly=ImageViewer"
+    x:Class="ImageViewer.Views.MainListPage"
+    x:Name="ListPage"
+    RotaryFocusObject="{x:Reference listView}">
+    <c:CirclePage.Content>
+        <StackLayout>
+            <ActivityIndicator IsRunning="{Binding InitializationInProgress}" IsVisible="{Binding InitializationInProgress}"/>
+            <c:CircleListView 
+                ItemsSource="{Binding FoundFiles}"
+                x:Name="listView"
+                RowHeight ="360"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                HasUnevenRows="False"
+                IsVisible="{Binding IsFoundFilesNotEmpty}">
+                <c:CircleListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <AbsoluteLayout>
+                                <StackLayout 
+                                    AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    Orientation="Horizontal">
+                                    <StackLayout 
+                                        Orientation="Vertical"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center">
+                                        <local:CircleContentView 
+                                            HeightRequest="220"
+                                            WidthRequest="220"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center">
+                                            <Image Source="{Binding Info.Path}" Aspect="AspectFill">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding DetailsPageCommand}" CommandParameter="{Binding Info}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </local:CircleContentView>
+                                        <BoxView x:Name="blank2"
+                                            HeightRequest="10"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="Center"
+                                            IsVisible="False"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Label Text="{Binding Info.DisplayName}"
+                                    AbsoluteLayout.LayoutBounds="50, 300, 260, 26"
+                                    AbsoluteLayout.LayoutFlags="None"
+                                    FontSize="8"
+                                    HorizontalTextAlignment="Center"
+                                    LineBreakMode="TailTruncation"/>
+                            </AbsoluteLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </c:CircleListView.ItemTemplate>
+            </c:CircleListView>
+            <Label IsVisible="{Binding IsFoundFilesEmpty}"
+                Text="No Image file found"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                FontSize="Large"/>
+        </StackLayout>
+    </c:CirclePage.Content>
+</c:CirclePage>
