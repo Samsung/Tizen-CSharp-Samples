@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.tizen.example.WeatherWatch" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+<manifest package="org.tizen.example.Net.WeatherWatch" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
     <profile name="wearable" />
-    <watch-application appid="org.tizen.example.WeatherWatch" exec="WeatherWatch.dll" splash-screen-display="true" type="dotnet">
+    <watch-application appid="org.tizen.example.Net.WeatherWatch" exec="WeatherWatch.dll" splash-screen-display="true" type="dotnet">
         <label>.NET WeatherWatch</label>
         <icon>WeatherWatch.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
