@@ -64,7 +64,17 @@ namespace WeatherWatch.Services
                 }
             }
 
-            return locator.GetLocation();
+            Location l = null;
+            try
+            {
+                l = locator.GetLocation();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\n[GetCurrentPosition] GetLocation()--> Exception : " + e.Message + ", " + e.StackTrace + ", " + e.InnerException);
+            }
+
+            return l;
         }
 
         async void RequestPermission()
