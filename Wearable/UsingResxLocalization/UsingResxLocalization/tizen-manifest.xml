@@ -2,12 +2,12 @@
 <manifest package="org.tizen.example.UsingResxLocalization" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
     <profile name="wearable" />
     <ui-application appid="org.tizen.example.UsingResxLocalization" exec="UsingResxLocalization.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
-        <label>UsingResxLocalization</label>
+        <label>.Net UsingResxLocalization</label>
         <icon>UsingResxLocalization.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
-        <label xml:lang="ko-kr">Resx한국</label>
-        <label xml:lang="en-us">ResxUSA</label>
-        <label xml:lang="ja-jp">Resx日本</label>
+        <label xml:lang="ko-kr">.Net Resx한국</label>
+        <label xml:lang="en-us">.Net ResxUSA</label>
+        <label xml:lang="ja-jp">.Net Resx日本</label>
         <splash-screens />
     </ui-application>
     <shortcut-list />

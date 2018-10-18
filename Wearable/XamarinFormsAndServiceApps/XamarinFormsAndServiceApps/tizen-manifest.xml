@@ -2,7 +2,7 @@
 <manifest package="org.tizen.example.XamarinFormsAndServiceApps" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
     <profile name="wearable" />
     <ui-application appid="org.tizen.example.XamarinFormsAndServiceApps" exec="XamarinFormsAndServiceApps.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
-        <label>XamarinFormsAndServiceApps</label>
+        <label>.NET XamarinFormsAndServiceApps</label>
         <icon>XamarinFormsAndServiceApps.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
         <splash-screens />
