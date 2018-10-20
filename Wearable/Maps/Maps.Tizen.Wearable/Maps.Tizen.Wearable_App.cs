@@ -580,7 +580,6 @@ namespace Maps.Tizen.Wearable
 			// Remove all the map object from the map view
 			if (s_mapview != null)
 			{
-				s_mapview.RemoveAll();
 				s_mapview.LongPressed -= MapViewLongPressed;
 				s_mapview.Dispose();
 				s_mapview = null;
