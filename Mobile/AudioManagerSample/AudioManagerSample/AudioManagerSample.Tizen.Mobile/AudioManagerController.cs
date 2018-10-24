@@ -17,7 +17,9 @@
 
 using AudioManagerSample.Tizen.Mobile;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Tizen.Multimedia;
 using Xamarin.Forms;
 
@@ -82,6 +84,46 @@ namespace AudioManagerSample.Tizen.Mobile
             return "unknown";
         }
 
+        private uint ConvertSampleFormatToUint(AudioSampleFormat format)
+        {
+            if (format == AudioSampleFormat.U8)
+                return 8;
+            if (format == AudioSampleFormat.S16LE)
+                return 16;
+            if (format == AudioSampleFormat.S24LE || format == AudioSampleFormat.S24PackedIn32LE)
+                return 24;
+
+            return 0;
+        }
+
+        private string ConvertSampleFormatToString(AudioSampleFormat format)
+        {
+            if (format == AudioSampleFormat.U8)
+                return "U8";
+            if (format == AudioSampleFormat.S16LE)
+                return "S16LE";
+            if (format == AudioSampleFormat.S24LE)
+                return "S24LE";
+            if (format == AudioSampleFormat.S24PackedIn32LE)
+                return "S24_32LE";
+
+            return "Unknown";
+        }
+
+        private AudioSampleFormat ConvertSampleFormatStringToEnum(string format)
+        {
+            if (format == "U8")
+                return AudioSampleFormat.U8;
+            if (format == "S16LE")
+                return AudioSampleFormat.S16LE;
+            if (format == "S24LE")
+                return AudioSampleFormat.S24LE;
+            if (format == "S24_32LE")
+                return AudioSampleFormat.S24PackedIn32LE;
+
+            throw new NotSupportedException();
+        }
+
         public AudioManagerController()
         {
             AudioManager.VolumeController.Changed += (s, e) =>
@@ -126,7 +168,7 @@ namespace AudioManagerSample.Tizen.Mobile
                 AudioManager.VolumeController.Level[AudioVolumeType.System] = level;
                 return;
             }
-                
+
             if (type == VOL_TYPE_MEDIA)
             {
                 AudioManager.VolumeController.Level[AudioVolumeType.Media] = level;
@@ -166,7 +208,192 @@ namespace AudioManagerSample.Tizen.Mobile
 
             foreach (AudioDevice item in items)
             {
-                yield return new DeviceItem(item.Id, ConvertDeviceTypeToString(item.Type), item.Name, item.IsRunning ? "Running" : "Idle");
+                DeviceItem device = new DeviceItem(item.Id, ConvertDeviceTypeToString(item.Type), item.Name, item.IsRunning ? "Running" : "Idle");
+
+                if (item.Type == AudioDeviceType.UsbAudio && item.IoDirection == AudioDeviceIoDirection.Output)
+                {
+                    device.SetUsbOutputDeviceProperties(ConvertSampleFormatToUint(item.GetSampleFormat()), item.GetSampleRate(), item.GetMediaStreamOnly(), item.GetAvoidResampling());
+                }
+
+                yield return device;
+            }
+        }
+
+        private AudioDevice GetDeviceById(int deviceId)
+        {
+            IEnumerable<AudioDevice> devices = AudioManager.GetConnectedDevices();
+
+            foreach (AudioDevice device in devices)
+            {
+                if (device.Id == deviceId)
+                {
+                    return device;
+                }
+            }
+
+            throw new InvalidOperationException("could not find the device id: " + deviceId);
+        }
+
+        public IEnumerable<string> GetSupportedSampleFormats(int deviceId)
+        {
+            AudioDevice device;
+
+            try
+            {
+                device = GetDeviceById(deviceId);
+            }
+            catch
+            {
+                yield break;
+            }
+
+            IEnumerable<AudioSampleFormat> formats = device.GetSupportedSampleFormats();
+
+            foreach (AudioSampleFormat format in formats)
+            {
+                yield return ConvertSampleFormatToString(format);
+            }
+        }
+
+        public IEnumerable<uint> GetSupportedSampleRates(int deviceId)
+        {
+            AudioDevice device;
+
+            try
+            {
+                device = GetDeviceById(deviceId);
+            }
+            catch
+            {
+                yield break;
+            }
+
+            IEnumerable<uint> rates = device.GetSupportedSampleRates();
+
+            foreach (uint rate in rates)
+            {
+                yield return rate;
+            }
+        }
+
+        public string GetSampleFormat(int deviceId)
+        {
+            AudioDevice device;
+
+            try
+            {
+                device = GetDeviceById(deviceId);
+                return ConvertSampleFormatToString(device.GetSampleFormat());
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public void SetSampleFormat(int deviceId, string format)
+        {
+            AudioDevice device;
+
+            try
+            {
+                device = GetDeviceById(deviceId);
+                device.SetSampleFormat(ConvertSampleFormatStringToEnum(format));
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public uint GetSampleRate(int deviceId)
+        {
+            AudioDevice device;
+
+            try
+            {
+                device = GetDeviceById(deviceId);
+                return device.GetSampleRate();
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public void SetSampleRate(int deviceId, uint rate)
+        {
+            AudioDevice device;
+
+            try
+            {
+                device = GetDeviceById(deviceId);
+                device.SetSampleRate(rate);
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public bool GetMediaStreamOnly(int deviceId)
+        {
+            AudioDevice device;
+
+            try
+            {
+                device = GetDeviceById(deviceId);
+                return device.GetMediaStreamOnly();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public void SetMediaStreamOnly(int deviceId, bool enable)
+        {
+            AudioDevice device;
+
+            try
+            {
+                device = GetDeviceById(deviceId);
+                device.SetMediaStreamOnly(enable);
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public bool GetAvoidResampling(int deviceId)
+        {
+            AudioDevice device;
+
+            try
+            {
+                device = GetDeviceById(deviceId);
+                return device.GetAvoidResampling();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        public void SetAvoidResampling(int deviceId, bool enable)
+        {
+            AudioDevice device;
+
+            try
+            {
+                device = GetDeviceById(deviceId);
+                device.SetAvoidResampling(enable);
+            }
+            catch
+            {
+                return;
             }
         }
     }

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:AudioManagerSample"
+                x:Class="AudioManagerSample.UsbConfigurePage"
+                Title="USB Device Configuration">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout">
+                <Setter Property="Margin" Value="8"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="ID: " />
+                <Label Text="{Binding Id}" TextColor="#003c68" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Type: " />
+                <Label Text="{Binding Type}" TextColor="#003c68" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Name: " />
+                <Label Text="{Binding Name}" TextColor="#003c68" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="0">
+                <Label Text="Media Stream Only" />
+                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="EndAndExpand">
+                    <BoxView WidthRequest ="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                    <Switch IsToggled="{Binding MediaStreamOnly}" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="0">
+                <Label Text="Avoid Resampling" />
+                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="EndAndExpand">
+                    <BoxView WidthRequest ="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                    <Switch IsToggled="{Binding AvoidResampling}" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</local:BasePage>

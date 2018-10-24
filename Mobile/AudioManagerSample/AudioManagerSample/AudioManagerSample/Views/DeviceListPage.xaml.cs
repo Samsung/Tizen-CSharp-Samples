@@ -14,17 +14,23 @@
  * limitations under the License.
  */
 
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AudioManagerSample
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DeviceListPage : ContentPage
+	public partial class DeviceListPage : BasePage
     {
 		public DeviceListPage ()
 		{
 			InitializeComponent ();
-		}
+        }
+
+        internal override void OnPopped()
+        {
+            base.OnPopped();
+
+            (BindingContext as BaseViewModel).OnPopped();
+        }
     }
 }

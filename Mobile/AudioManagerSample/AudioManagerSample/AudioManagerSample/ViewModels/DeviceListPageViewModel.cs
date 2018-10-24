@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AudioManagerSample
@@ -26,18 +28,41 @@ namespace AudioManagerSample
     {
         public IEnumerable<DeviceItem> Items { get; protected set; }
 
-        private DeviceItem _selecetdItem;
+        private Page usbConfPage;
 
+        private DeviceItem _selectedItem;
         public DeviceItem SelectedItem
         {
-            get => _selecetdItem;
+            get => _selectedItem;
             set
             {
-                if (_selecetdItem != value)
+                if (_selectedItem != value)
                 {
-                    _selecetdItem = value;
+                    _selectedItem = value;
 
                     OnPropertyChanged(nameof(SelectedItem));
+
+                    if (_selectedItem.IsUsbOutputDevice)
+                        _configButtonEnable = true;
+                    else
+                        _configButtonEnable = false;
+
+                    OnPropertyChanged(nameof(ConfigButtonEnable));
+                }
+            }
+        }
+
+        private bool _configButtonEnable;
+        public bool ConfigButtonEnable
+        {
+            get => _configButtonEnable;
+            set
+            {
+                if (_configButtonEnable != value)
+                {
+                    _configButtonEnable = value;
+
+                    OnPropertyChanged(nameof(ConfigButtonEnable));
                 }
             }
         }
@@ -46,9 +71,20 @@ namespace AudioManagerSample
         {
             Items = DependencyService.Get<IAudioManagerController>().GetConnectedDevices();
 
+            NavigateCommand = new Command<Type>(async (Type pageType) =>
+            {
+                usbConfPage = (Page)Activator.CreateInstance(pageType);
+
+                usbConfPage.BindingContext = new UsbConfigurePageViewModel(_selectedItem);
+
+                await Application.Current.MainPage.Navigation.PushAsync(usbConfPage);
+            });
+
             AMController.DeviceConnectionChanged += OnConnectionChanged;
             AMController.DeviceRunningChanged += OnRunningChanged;
         }
+
+        public ICommand NavigateCommand { private set; get; }
 
         protected IAudioManagerController AMController => DependencyService.Get<IAudioManagerController>();
 
@@ -60,6 +96,8 @@ namespace AudioManagerSample
 
             Items = DependencyService.Get<IAudioManagerController>().GetConnectedDevices();
             OnPropertyChanged(nameof(Items));
+
+            ConfigButtonEnable = false;
         }
 
         private void OnRunningChanged(object sender, DeviceRunningChangedEventArgs e)
@@ -78,7 +116,6 @@ namespace AudioManagerSample
 
             AMController.DeviceConnectionChanged -= OnConnectionChanged;
             AMController.DeviceRunningChanged -= OnRunningChanged;
-
         }
     }
 }
