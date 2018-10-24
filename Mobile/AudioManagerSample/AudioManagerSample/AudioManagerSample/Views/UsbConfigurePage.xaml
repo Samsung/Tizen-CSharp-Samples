@@ -16,6 +16,9 @@
                 <Setter Property="FontSize" Value="Large" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
+            <Style TargetType="Picker">
+                <Setter Property="IsEnabled" Value="{Binding EnablePicker}"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -33,18 +36,30 @@
                 <Label Text="Name: " />
                 <Label Text="{Binding Name}" TextColor="#003c68" />
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Spacing="0">
+            <StackLayout Orientation="Horizontal">
                 <Label Text="Media Stream Only" />
                 <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="EndAndExpand">
                     <BoxView WidthRequest ="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
                     <Switch IsToggled="{Binding MediaStreamOnly}" HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Spacing="0">
+            <StackLayout Orientation="Horizontal">
                 <Label Text="Avoid Resampling" />
                 <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="EndAndExpand">
                     <BoxView WidthRequest ="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
                     <Switch IsToggled="{Binding AvoidResampling}" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Sample Bit Depth" />
+                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="EndAndExpand">
+                    <Picker Title="Supported Sample Bit Depths" ItemsSource="{Binding SampleFormats}" SelectedItem="{Binding SampleFormat}" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Sample Rate" />
+                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="EndAndExpand">
+                    <Picker Title="Supported Sample Rates" ItemsSource="{Binding SampleRates}"  SelectedItem="{Binding SampleRate}"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

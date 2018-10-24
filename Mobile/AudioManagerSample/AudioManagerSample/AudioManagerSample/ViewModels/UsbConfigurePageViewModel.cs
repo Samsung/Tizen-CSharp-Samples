@@ -14,6 +14,7 @@
 * limitations under the License.
 */
 
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace AudioManagerSample
@@ -34,6 +35,21 @@ namespace AudioManagerSample
             _mediaStreamOnly = AMController.GetMediaStreamOnly(selectedItem.Id);
             _avoidResampling = AMController.GetAvoidResampling(selectedItem.Id);
 
+            SampleFormats = new List<string>();
+            foreach(string f in AMController.GetSupportedSampleFormats(selectedItem.Id))
+            {
+                SampleFormats.Add(f);
+            }
+            SampleRates = new List<uint>();
+            foreach (uint r in AMController.GetSupportedSampleRates(selectedItem.Id))
+            {
+                SampleRates.Add(r);
+            }
+            _sampleFormat = AMController.GetSampleFormat(selectedItem.Id);
+            _sampleRate = AMController.GetSampleRate(selectedItem.Id);
+
+            _enablePicker = !_avoidResampling;
+
             AMController.DeviceConnectionChanged += OnConnectionChanged;
         }
 
@@ -48,11 +64,47 @@ namespace AudioManagerSample
             }
         }
 
-        public int Id { get; set; }
+        public int Id { get; }
 
-        public string Type { get; set; }
+        public string Type { get; }
 
-        public string Name { get; set; }
+        public string Name { get; }
+
+        public List<uint> SampleRates { get; }
+
+        public List<string> SampleFormats { get; }
+
+        private string _sampleFormat;
+        public string SampleFormat
+        {
+            get => _sampleFormat;
+            set
+            {
+                if (_sampleFormat != value)
+                {
+                    _sampleFormat = value;
+                    AMController.SetSampleFormat(Id, value);
+
+                    OnPropertyChanged(nameof(SampleFormat));
+                }
+            }
+        }
+
+        private uint _sampleRate;
+        public uint SampleRate
+        {
+            get => _sampleRate;
+            set
+            {
+                if (_sampleRate != value)
+                {
+                    _sampleRate = value;
+                    AMController.SetSampleRate(Id, value);
+
+                    OnPropertyChanged(nameof(SampleRate));
+                }
+            }
+        }
 
         private bool _mediaStreamOnly;
         public bool MediaStreamOnly
@@ -82,9 +134,19 @@ namespace AudioManagerSample
                     _avoidResampling = value;
 
                     OnPropertyChanged(nameof(AvoidResampling));
+
+                    _enablePicker = !value;
+                    OnPropertyChanged(nameof(EnablePicker));
                 }
             }
         }
+
+        private bool _enablePicker;
+        public bool EnablePicker
+        {
+            get => _enablePicker;
+        }
+
         public override void OnPopped()
         {
             base.OnPopped();
