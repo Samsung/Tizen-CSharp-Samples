@@ -32,5 +32,12 @@ namespace AudioManagerSample
 
             (BindingContext as BaseViewModel).OnPopped();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            (BindingContext as BaseViewModel).OnAppearing();
+        }
     }
 }

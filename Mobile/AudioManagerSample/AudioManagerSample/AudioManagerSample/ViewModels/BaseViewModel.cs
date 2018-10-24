@@ -37,5 +37,9 @@ namespace AudioManagerSample
         public virtual void OnPopped()
         {
         }
+
+        public virtual void OnAppearing()
+        {
+        }
     }
 }

@@ -28,6 +28,7 @@ namespace AudioManagerSample
 
             MainPage = naviPage;
         }
+
         private void OnPopped(object sender, NavigationEventArgs e)
         {
             (e.Page as BasePage)?.OnPopped();
