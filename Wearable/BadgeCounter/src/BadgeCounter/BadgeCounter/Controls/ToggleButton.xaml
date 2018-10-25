@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BadgeCounter.Controls.ToggleButton"
+             x:Name="Root">
+
+    <ContentView.Content>
+        <AbsoluteLayout WidthRequest="177"
+                        HeightRequest="83">
+
+            <!-- Image for "off" state -->
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       AbsoluteLayout.LayoutFlags="All"
+                       Source="{Binding Source={x:Reference Root}, Path=OffStateSource}"
+                       x:Name="OffStateImage"
+                       Opacity="0" />
+
+            <!-- Image for "on" state -->
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       AbsoluteLayout.LayoutFlags="All"
+                       Source="{Binding Source={x:Reference Root}, Path=OnStateSource}"
+                       x:Name="OnStateImage" />
+
+            <!-- Button text -->
+            <Label AbsoluteLayout.LayoutBounds="38, 34, 101, 32"
+                   AbsoluteLayout.LayoutFlags="None"
+                   Text="{Binding Source={x:Reference Root}, Path=Text}"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   FontSize="4"
+                   FontFamily="BreezeSans:style=Medium" />
+
+        </AbsoluteLayout>
+    </ContentView.Content>
+
+</ContentView>
