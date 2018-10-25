@@ -37,16 +37,24 @@ namespace Contacts.Tizen.Port
         /// </summary>
         static int CBCount = 0;
 
+        public event EventHandler<EventArgs> PrivilageAccepted;
+
+
+        public void privilegeAccepted()
+        {
+            //ListPage.
+        }
         /// <summary>
         /// Check privacy privilege and if need to ask for user, send request for PPM.
         /// </summary>
-        public void CheckPrivilege()
+        public bool CheckPrivilege()
         {
             // Make array list for requesting privacy privilege
             // Contacts need 2 privilege, contact read and account write.
             ArrayList PrivilegeList = new ArrayList();
             PrivilegeList.Add("http://tizen.org/privilege/contact.read");
             PrivilegeList.Add("http://tizen.org/privilege/contact.write");
+            int privilageAcceptedCount = 0;
 
             // Check and request privacy privilege if app is needed
             foreach (string list in PrivilegeList)
@@ -62,7 +70,8 @@ namespace Contacts.Tizen.Port
                 switch (result)
                 {
                 case CheckResult.Allow:
-                    /// Privilege can be used
+                        /// Privilege can be used
+                        privilageAcceptedCount++;
                     break;
                 case CheckResult.Deny:
                     /// Privilege can't be used
@@ -73,6 +82,10 @@ namespace Contacts.Tizen.Port
                     break;
                 }
             }
+            if (privilageAcceptedCount == PrivilegeList.Count)
+                return true;
+            else
+                return false;
         }
 
         /// <summary>
