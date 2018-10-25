@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compass", "Compass\Compass\Compass.csproj", "{15C6966A-4507-4E7F-8603-5A5211CB8E6E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compass.Tizen.Wearable", "Compass\Compass.Tizen.Wearable\Compass.Tizen.Wearable.csproj", "{F2B07D6B-EC41-437E-AF5C-356EA39301D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15C6966A-4507-4E7F-8603-5A5211CB8E6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15C6966A-4507-4E7F-8603-5A5211CB8E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15C6966A-4507-4E7F-8603-5A5211CB8E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15C6966A-4507-4E7F-8603-5A5211CB8E6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2B07D6B-EC41-437E-AF5C-356EA39301D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2B07D6B-EC41-437E-AF5C-356EA39301D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2B07D6B-EC41-437E-AF5C-356EA39301D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2B07D6B-EC41-437E-AF5C-356EA39301D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C739D94-9788-4C8F-B08A-0890393C4A1E}
+	EndGlobalSection
+EndGlobal
