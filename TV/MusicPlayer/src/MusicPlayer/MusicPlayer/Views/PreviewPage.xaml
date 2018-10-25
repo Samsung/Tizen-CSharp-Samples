@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:MusicPlayer.Control"
+             x:Class="MusicPlayer.Views.PreviewPage"
+             BackgroundColor="#657489"
+             BackgroundImage="images/img_gradient_topbottom.9.png"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Margin="97, 67, 97, 0">
+            <Label Text="{Binding CurrentTrack.Title}"
+                   FontSize="76"
+                   FontFamily="BreezeSans:style=Bold"
+                   TextColor="#FFFFFF" />
+            <Label Text="{Binding CurrentTrack.Artist}"
+                   FontSize="50"
+                   FontFamily="BreezeSans:style=Light"
+                   TextColor="#FFFFFF" />
+            <Image Source="{Binding CurrentTrack.Artwork, Converter={StaticResource ByteArrayToImageSource},
+                                    ConverterParameter='images/img_music_info_nocover.png'}"
+                   Margin="0, 79, 0, 0"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HeightRequest="578"
+                   WidthRequest="578" />
+            <ProgressBar Progress="{Binding TrackProgress}"
+                         BackgroundColor="Black"
+                         Margin="-97, 103, -97, 0"
+                         WidthRequest="1920" />
+            <AbsoluteLayout>
+                <Label Text="{Binding TrackPlaybackPosition, Converter={StaticResource MillisecondsToTime}}"
+                       FontSize="55"
+                       FontFamily="BreezeSans:style=Light"
+                       Margin="66, 46, 0, 0"
+                       TextColor="#0081C6" />
+                <Label Text="{Binding CurrentTrack.Duration, Converter={StaticResource MillisecondsToTime}}"
+                       FontSize="55"
+                       FontFamily="BreezeSans:style=Light"
+                       Margin="200, 46, 0, 0"
+                       TextColor="#F5F5F5" />
+                <control:ImageButton DefaultImage="images/btn_viewer_control_previous_normal.png"
+                                     FocusedImage="images/btn_viewer_control_previous_focused.png"
+                                     PressedImage="images/btn_viewer_control_previous_pressed.png"
+                                     Command="{Binding GoToPreviousTrackCommand}"
+                                     Margin="610, 26, 0, 0" />
+                <control:ImageButton DefaultImage="images/btn_viewer_control_rewind_normal.png"
+                                     FocusedImage="images/btn_viewer_control_rewind_focused.png"
+                                     PressedImage="images/btn_viewer_control_rewind_pressed.png"
+                                     Command="{Binding RewindTrackCommand}"
+                                     Margin="726, 26, 0, 0" />
+                <control:ImageButton DefaultImage="images/btn_viewer_control_pause_normal.png"
+                                     FocusedImage="images/btn_viewer_control_pause_focused.png"
+                                     PressedImage="images/btn_viewer_control_pause_pressed.png"
+                                     SecondStateDefaultImage="images/btn_viewer_control_play_normal.png"
+                                     SecondStateFocusedImage="images/btn_viewer_control_play_focused.png"
+                                     SecondStatePressedImage="images/btn_viewer_control_play_pressed.png"
+                                     IsInSecondState="{Binding IsPaused}"
+                                     Command="{Binding PlayOrPauseTrackCommand}"
+                                     Margin="822, 26, 0, 0" />
+                <control:ImageButton DefaultImage="images/btn_viewer_control_forward_normal.png"
+                                     FocusedImage="images/btn_viewer_control_forward_focused.png"
+                                     PressedImage="images/btn_viewer_control_forward_pressed.png"
+                                     Command="{Binding ForwardTrackCommand}"
+                                     Margin="918, 26, 0, 0" />
+                <control:ImageButton DefaultImage="images/btn_viewer_control_next_normal.png"
+                                     FocusedImage="images/btn_viewer_control_next_focused.png"
+                                     PressedImage="images/btn_viewer_control_next_pressed.png"
+                                     Command="{Binding GoToNextTrackCommand}"
+                                     Margin="1014, 26, 0, 0" />
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

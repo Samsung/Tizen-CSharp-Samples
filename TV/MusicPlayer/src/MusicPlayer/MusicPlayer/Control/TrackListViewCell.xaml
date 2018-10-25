@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicPlayer.Control.TrackListViewCell"
+             x:Name="Root"
+             BackgroundColor="#1b1b1b">
+    <ContentView.Content>
+        <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            <Image Source="{Binding Artwork, Converter={StaticResource ByteArrayToImageSource},
+                    Source={x:Reference Root}, ConverterParameter='images/img_music_info_nocover.png'}"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       WidthRequest="134"
+                       HeightRequest="134" />
+                <StackLayout Grid.Row="0"
+                             Grid.Column="1">
+                    <Label Text="{Binding Title, Source={x:Reference Root}}"
+                           FontSize="55"
+                           TextColor="#FFFFFF"
+                           Margin="20, 10, 0, 0"
+                           LineBreakMode="TailTruncation" />
+                    <Label Text="{Binding Artist, Source={x:Reference Root}}"
+                           FontSize="42"
+                           TextColor="#FFFFFF"
+                           Margin="20, 0, 0, 0"
+                           LineBreakMode="TailTruncation" />
+                    <Label Text="{Binding Album, Source={x:Reference Root}}"
+                           FontSize="42"
+                           FontFamily="BreezeSans:style=Light"
+                           TextColor="#FFFFFF"
+                           Margin="20, -6, 0, 0"
+                           LineBreakMode="TailTruncation" />
+                </StackLayout>
+            </Grid>
+    </ContentView.Content>
+</ContentView>
