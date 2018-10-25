@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:MusicPlayer.Views"
+             xmlns:viewModels="clr-namespace:MusicPlayer.ViewModels"
+             xmlns:converters="clr-namespace:MusicPlayer.Converters"
+             x:Class="MusicPlayer.MusicPlayer">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor"
+                        Value="#000000" />
+            </Style>
+            <converters:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSource" />
+            <converters:MillisecondsToTimeConverter x:Key="MillisecondsToTime" />
+            <converters:BooleanToStringConverter x:Key="BooleanToString" />
+            <converters:NegateBooleanConverter x:Key="NegateBoolean" />
+        </ResourceDictionary>
+    </Application.Resources>
+
+    <Application.MainPage>
+        <NavigationPage>
+            <x:Arguments>
+                <views:WelcomePage />
+            </x:Arguments>
+        </NavigationPage>
+    </Application.MainPage>
+
+    <Application.BindingContext>
+        <viewModels:MainViewModel />
+    </Application.BindingContext>
+</Application>

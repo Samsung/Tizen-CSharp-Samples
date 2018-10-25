@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicPlayer", "MusicPlayer\MusicPlayer\MusicPlayer.csproj", "{1B172212-858C-4D59-91ED-B31EB8E237B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicPlayer.Tizen.TV", "MusicPlayer\MusicPlayer.Tizen.TV\MusicPlayer.Tizen.TV.csproj", "{864D6157-D7E7-4345-AC74-909FA31D96C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B172212-858C-4D59-91ED-B31EB8E237B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B172212-858C-4D59-91ED-B31EB8E237B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B172212-858C-4D59-91ED-B31EB8E237B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B172212-858C-4D59-91ED-B31EB8E237B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{864D6157-D7E7-4345-AC74-909FA31D96C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{864D6157-D7E7-4345-AC74-909FA31D96C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{864D6157-D7E7-4345-AC74-909FA31D96C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{864D6157-D7E7-4345-AC74-909FA31D96C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7828B18-A34B-463A-BAE2-A3F48A060DE5}
+	EndGlobalSection
+EndGlobal

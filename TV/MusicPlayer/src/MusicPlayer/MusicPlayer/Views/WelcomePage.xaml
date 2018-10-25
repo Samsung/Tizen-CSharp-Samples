@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MusicPlayer.Views.WelcomePage"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             BackgroundImage="images/bg.png">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="StartAndExpand">
+            <Image Source="images/welcome_screen_icon.png"
+                   Margin="0, 201, 0, 0" />
+            <Label FontSize="170"
+                   FontFamily="BreezeSans:style=Condensed"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 59, 0, 0"
+                   Text="Welcome"
+                   TextColor="#FFFFFF" />
+            <Label FontSize="130"
+                   FontFamily="BreezeSans:style=Condensed"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 44, 0, 0"
+                   Text="The Music Player sample application demonstrates how to display and play music using the Tizen Media Content and Player APIs."
+                   TextColor="#FFFFFF" />
+            <Button x:Name="GetStartedButton"
+                    Text="Get started"
+                    FontSize="55"
+                    HeightRequest="80"
+                    Margin="810, 56, 810, 0"
+                    Command="{Binding GoToApplicationCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

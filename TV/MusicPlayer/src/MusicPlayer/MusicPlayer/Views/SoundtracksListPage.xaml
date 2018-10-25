@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MusicPlayer.Control"
+             x:Class="MusicPlayer.Views.SoundtracksListPage"
+             Title="MUSIC PLAYER"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.Resources>
+        <x:Array x:Key="ImageArray" Type="{x:Type x:String}">
+            <x:String>images/btn_music_info_play.png</x:String>
+            <x:String>images/btn_music_info_pause.png</x:String>
+        </x:Array>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="406" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="96" />
+                <ColumnDefinition Width="406" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="1420" />
+            </Grid.ColumnDefinitions>
+            <Image Source="{Binding CurrentTrack.Artwork, Converter={StaticResource ByteArrayToImageSource},
+                                    ConverterParameter='images/img_music_info_nocover.png'}"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   InputTransparent="True" />
+            <Image Source="{Binding IsPaused, Converter={StaticResource BooleanToString},
+                                    ConverterParameter={StaticResource ImageArray}}"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding TracksAvailable}" />
+            <Image Source="images/Rectangle.png"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding TracksAvailable, Converter={StaticResource NegateBoolean}}" />
+            <Image Source="images/_icon_no-file.png"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   Margin="132, 106, 0, 0"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Start"
+                   IsVisible="{Binding TracksAvailable, Converter={StaticResource NegateBoolean}}" />
+            <Button Grid.Row="0"
+                    Grid.Column="1"
+                    Command="{Binding GoToPreviewPageCommand}"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    Opacity="0.5"
+                    IsEnabled="{Binding TracksAvailable}" />
+            <StackLayout Grid.Row="1"
+                         Grid.Column="1">
+                <Label Text="{Binding CurrentTrack.Title}"
+                       FontSize="60"
+                       TextColor="#FFFFFF"
+                       Margin="0, 6, 0, 0" />
+                <Label Text="{Binding CurrentTrack.Artist}"
+                       FontSize="47"
+                       TextColor="#FFFFFF"
+                       Margin="0, 0, 0, 0" />
+                <Label Text="{Binding CurrentTrack.Album}"
+                       FontSize="47"
+                       FontFamily="BreezeSans:style=Light"
+                       Margin="0, -12, 0, 0" />
+            </StackLayout>
+            <StackLayout Grid.Row="0"
+                         Grid.Column="3"
+                         IsVisible="{Binding TracksAvailable, Converter={StaticResource NegateBoolean}}">
+                <Label Text="No music file"
+                       FontSize="85"
+                       TextColor="White" />
+                <Label Text="Unavailable to play"
+                       FontSize="50"
+                       Opacity="0.6" />
+            </StackLayout>
+            <controls:ScrollableGrid Rows="4"
+                                     ItemsSource="{Binding Tracks}"
+                                     Grid.Column="3"
+                                     Grid.Row="0"
+                                     Grid.RowSpan="2"
+                                     WidthOfItem="570"
+                                     SpaceBetweenColumns="25"
+                                     HeightOfItem="134"
+                                     Command="{Binding SelectTrackCommand}"
+                                     IsVisible="{Binding TracksAvailable}">
+                <controls:ScrollableGrid.ItemTemplate>
+                    <DataTemplate>
+                        <controls:TrackListViewCell
+                            Title="{Binding Title}"
+                            Artist="{Binding Artist}"
+                            Album="{Binding Album}"
+                            Artwork="{Binding Artwork}" />
+                    </DataTemplate>
+                </controls:ScrollableGrid.ItemTemplate>
+            </controls:ScrollableGrid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
