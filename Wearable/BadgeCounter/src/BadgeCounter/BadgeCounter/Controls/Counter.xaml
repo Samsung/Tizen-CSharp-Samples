@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BadgeCounter.Controls.Counter">
+
+    <ContentView.Content>
+        <AbsoluteLayout WidthRequest="46"
+                        HeightRequest="46">
+
+            <!-- Counter background image -->
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Source="images/counter_background.png"
+                   x:Name="PressedSourceImage" />
+
+            <!-- Container to prevent labels going out of the control's bounds during animation -->
+            <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            Margin="5">
+
+                <!-- Label for current value (animation) -->
+                <Label AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       AbsoluteLayout.LayoutFlags="All"
+                       FontSize="6"
+                       FontFamily="BreezeSans:style=Bold"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       x:Name="CurrentLabel" />
+
+                <!-- Label for next value (animation) -->
+                <Label AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       AbsoluteLayout.LayoutFlags="All"
+                       FontSize="6"
+                       FontFamily="BreezeSans:style=Bold"
+                       TextColor="White"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       x:Name="NextLabel" />
+
+            </AbsoluteLayout>
+
+            <!-- Counter foreground image -->
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Source="images/counter_alpha_frame.png" />
+
+        </AbsoluteLayout>
+    </ContentView.Content>
+
+</ContentView>

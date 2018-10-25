@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BadgeCounter.Views.MainPage"
+             xmlns:controls="clr-namespace:BadgeCounter.Controls">
+
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+            <!-- Application background image -->
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Source="images/app_background.png" />
+
+            <!-- Page header - application name -->
+            <Label AbsoluteLayout.LayoutBounds="137, 60, 87, 36"
+                   AbsoluteLayout.LayoutFlags="None"
+                   Text="BADGE COUNTER"
+                   FontSize="6"
+                   FontFamily="BreezeSans:style=Medium"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#c34a58" />
+
+            <!-- Icon under the counter - Reset button -->
+            <Image AbsoluteLayout.LayoutBounds="128, 118, 104, 104"
+                   AbsoluteLayout.LayoutFlags="None"
+                   Source="images/app_icon.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ResetCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <!-- Current value of the badge counter -->
+            <controls:Counter AbsoluteLayout.LayoutBounds="196, 114, AutoSize, AutoSize"
+                              AbsoluteLayout.LayoutFlags="None"
+                              Value="{Binding BadgeCounterValue}" />
+
+            <!-- Minus button - decrease badge counter -->
+            <controls:ImageButton AbsoluteLayout.LayoutBounds="51, 146, 60, 60"
+                                  AbsoluteLayout.LayoutFlags="None"
+                                  Source="images/normal_state_minus.png"
+                                  PressedSource="images/hover_state_minus.png"
+                                  Command="{Binding DecreaseCommand}" />
+
+            <!-- Plus button - increase badge counter -->
+            <controls:ImageButton AbsoluteLayout.LayoutBounds="249, 146, 60, 60"
+                                  AbsoluteLayout.LayoutFlags="None"
+                                  Source="images/normal_state_plus.png"
+                                  PressedSource="images/hover_state_plus.png"
+                                  Command="{Binding IncreaseCommand}" />
+
+            <!-- Toggle autoincrement button -->
+            <controls:ToggleButton AbsoluteLayout.LayoutBounds="92, 240, AutoSize, AutoSize"
+                                   AbsoluteLayout.LayoutFlags="None"
+                                   OffStateSource="images/toggle_off.png"
+                                   OnStateSource="images/toggle_on.png"
+                                   Text="TOGGLE AUTOINCREMENT"
+                                   Checked="{Binding AutoIncrement}" />
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+</ContentPage>
