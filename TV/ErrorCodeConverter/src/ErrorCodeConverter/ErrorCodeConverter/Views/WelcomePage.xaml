@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ErrorCodeConverter.ViewModels;assembly=ErrorCodeConverter"
+             x:Class="ErrorCodeConverter.Views.WelcomePage"
+             NavigationPage.HasNavigationBar="False"
+             BindingContext="{viewModels:WelcomePageViewModel}">
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Image Source="welcome_bg.png"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All" />
+            <Image Source="welcome_screen_icon.png"
+                   AbsoluteLayout.LayoutBounds="862, 201, 196, 196" />
+            <Label AbsoluteLayout.LayoutBounds="0, 478, 1920, 65"
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontSize="170"
+                   FontFamily="BreezeSans:style=Condensed"
+                   Text="Welcome" />
+            <Label AbsoluteLayout.LayoutBounds="85, 615, 1750, 165"
+                   TextColor="White"
+                   FontSize="132"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="FillAndExpand"
+                   FontFamily="BreezeSans:style=Condensed"
+                   Text="Error Code converter is a sample application demonstrating a conversion from error code to message." />
+            <Button AbsoluteLayout.LayoutBounds="810, 847, 300, 80"
+                    HorizontalOptions="FillAndExpand"
+                    FontSize="54"
+                    Text="Get started"
+                    Command="{Binding StartCommand}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+</ContentPage>

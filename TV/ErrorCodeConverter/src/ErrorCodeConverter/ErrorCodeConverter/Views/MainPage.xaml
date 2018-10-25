@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ErrorCodeConverter.Views.MainPage"
+             Title="ERROR CODE CONVERTER"
+             xmlns:viewModels="clr-namespace:ErrorCodeConverter.ViewModels;assembly=ErrorCodeConverter"
+             BindingContext="{viewModels:ErrorCodeConverterViewModel}"
+             DecreaseErrorCodeCommand="{Binding DecreaseErrorCode}"
+             IncreaseErrorCodeCommand="{Binding IncreaseErrorCode}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle"
+                   TargetType="Label">
+                <Setter Property="FontFamily"
+                        Value="BreezeSans:style=Condensed" />
+                <Setter Property="TextColor"
+                        Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Grid Margin="0, 22, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="1153" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="55" />
+                <RowDefinition Height="114" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Label Text="ERROR CODE"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   Style="{StaticResource labelStyle}"
+                   FontSize="57" />
+            <Label Text="ERROR MESSAGE"
+                   Grid.Column="2"
+                   Grid.Row="0"
+                   Style="{StaticResource labelStyle}"
+                   FontSize="57" />
+            <Image Grid.Column="1"
+                   Grid.Row="1"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center"
+                   Source="btn_picker_indi_top_active.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DecreaseErrorCode}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Entry Grid.Column="1"
+                   Grid.Row="2"
+                   TextColor="#0081C6"
+                   BackgroundColor="Transparent"
+                   FontFamily="BreezeSans:style=Condensed"
+                   FontSize="150"
+                   Text="{Binding ErrorCode}"
+                   Keyboard="Numeric"
+                   HorizontalTextAlignment="Center" />
+            <Image Grid.Column="1"
+                   Grid.Row="3"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Center"
+                   Source="btn_picker_indi_bottom_active.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding IncreaseErrorCode}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="{Binding ErrorMessage}"
+                   Grid.Column="2"
+                   Grid.Row="2"
+                   Style="{StaticResource labelStyle}"
+                   FontSize="84"
+                   VerticalTextAlignment="Center" />
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
