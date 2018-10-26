@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MimeTypeConverter.ViewModels;assembly=MimeTypeConverter"
+             xmlns:controls="clr-namespace:MimeTypeConverter.Controls;assembly=MimeTypeConverter"
+             xmlns:converters="clr-namespace:MimeTypeConverter.Tizen.TV.Converters;assembly=MimeTypeConverter.Tizen.TV"
+             x:Class="MimeTypeConverter.Tizen.TV.Views.MainAppPage"
+             Title="MIME TYPE CONVERTER">
+
+    <ContentPage.BindingContext>
+        <viewModels:MainAppViewModel x:Name="MainAppViewModel" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <controls:DialogOK x:Key="ErrorOccurredDialog"
+                               Title="Error occured"
+                               Message="{Binding Source={x:Reference Name=MainAppViewModel}, Path=ErrorMessage}"
+                               ExecuteCommand="{Binding Source={x:Reference Name=MainAppViewModel},
+                                   Path=ErrorInfoCommand}" />
+            <converters:MimeTypeToIconPathConverter x:Key="MimeTypeToIconPathConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid Padding="60, 0, 50, 0"
+              Margin="0, -5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1140" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="165" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Entry Text="{Binding UserInput}"
+                   Placeholder="Enter MIME Type of file extension"
+                   VerticalOptions="Start"
+                   Grid.Column="0"
+                   Grid.Row="0" />
+            <Button Text="Convert"
+                    Command="{Binding ConvertCommand}"
+                    WidthRequest="300"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    Grid.Column="2"
+                    Grid.Row="0" />
+            <StackLayout Grid.Column="0"
+                         Grid.Row="1"
+                         VerticalOptions="Start">
+                <FlexLayout JustifyContent="Center"
+                            IsVisible="{Binding Converted}">
+                    <Label Text="Results for &quot;"
+                           FontSize="66"
+                           TextColor="White" />
+                    <Label Text="{Binding QueryString}"
+                           FontSize="66"
+                           TextColor="White" />
+                    <Label Text="&quot;:"
+                           FontSize="66"
+                           TextColor="White" />
+                </FlexLayout>
+                <Label Text="MIME type not found."
+                       IsVisible="{Binding NoResults}"
+                       Margin="50, 50, 0, 0"
+                       FontSize="56" />
+                <ListView ItemsSource="{Binding ResultsList}"
+                          Margin="-30, -10, -30, 0"
+                          WidthRequest="1140"
+                          VerticalOptions="Start"
+                          HorizontalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="40, 0"
+                                             BackgroundColor="#1f1f1f"
+                                             HeightRequest="114">
+                                    <Label Text="{Binding .}"
+                                           FontSize="56"
+                                           VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <Image Source="{Binding MediaType, Converter={StaticResource MimeTypeToIconPathConverter}}"
+                   Grid.Column="2"
+                   Grid.Row="1"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Center"
+                   Margin="0, 105, 0, 0"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
