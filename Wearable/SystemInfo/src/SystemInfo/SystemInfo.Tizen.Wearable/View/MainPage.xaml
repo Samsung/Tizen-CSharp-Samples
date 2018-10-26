@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:control="clr-namespace:SystemInfo.Tizen.Wearable.Control;assembly=SystemInfo.Tizen.Wearable"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              x:Class="SystemInfo.Tizen.Wearable.View.MainPage"
+              NavigationPage.HasNavigationBar="False"
+              RotaryFocusObject="{x:Reference listView}">
+
+    <w:CirclePage.Content>
+        <w:CircleListView x:Name="listView"
+                          Header="System Info"
+                          ItemsSource="{Binding .}"
+                          IsGroupingEnabled="True">
+            <w:CircleListView.HeaderTemplate>
+                <DataTemplate>
+                    <Label w:CircleListView.CancelEffect="True"
+                           FontSize="10"
+                           HorizontalTextAlignment="Center"
+                           Text="{Binding .}"
+                           TextColor="#4CCDFC"
+                           VerticalTextAlignment="Center" />
+                </DataTemplate>
+            </w:CircleListView.HeaderTemplate>
+            <w:CircleListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" />
+                </DataTemplate>
+            </w:CircleListView.GroupHeaderTemplate>
+            <w:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}"
+                              Command="{Binding OnTap}" />
+                </DataTemplate>
+            </w:CircleListView.ItemTemplate>
+        </w:CircleListView>
+    </w:CirclePage.Content>
+
+</w:CirclePage>

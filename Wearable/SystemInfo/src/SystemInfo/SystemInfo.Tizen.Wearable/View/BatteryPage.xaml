@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:viewModel="clr-namespace:SystemInfo.ViewModel;assembly=SystemInfo"
+              xmlns:utils="clr-namespace:SystemInfo.Utils;assembly=SystemInfo"
+              xmlns:converter="clr-namespace:SystemInfo.Converter;assembly=SystemInfo"
+              xmlns:control="clr-namespace:SystemInfo.Tizen.Wearable.Control;assembly=SystemInfo.Tizen.Wearable"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              x:Class="SystemInfo.Tizen.Wearable.View.BatteryPage"
+              NavigationPage.HasNavigationBar="False"
+              RotaryFocusObject="{x:Reference listView}">
+
+    <w:CirclePage.BindingContext>
+        <viewModel:BatteryViewModel />
+    </w:CirclePage.BindingContext>
+
+    <w:CirclePage.Resources>
+        <ResourceDictionary>
+            <converter:NumberToDisplayPercentConverter x:Key="NumberToDisplayPercentConverter" />
+
+            <DataTemplate x:Key="StandardTemplate">
+                <control:TizenTextCell Text="{Binding Title}"
+                                       Command="{Binding OnTap}"
+                                       Detail="{Binding Description}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="ProgressBarTemplate">
+                <control:TizenTextCell Text="{Binding Title}"
+                                       Command="{Binding OnTap}"
+                                       Detail="{Binding Description,
+                                           Converter={StaticResource NumberToDisplayPercentConverter}}" />
+            </DataTemplate>
+
+            <utils:ListItemTemplateSelector x:Key="ListItemTemplateSelector"
+                                            StandardTemplate="{StaticResource StandardTemplate}"
+                                            ProgressBarTemplate="{StaticResource ProgressBarTemplate}" />
+        </ResourceDictionary>
+    </w:CirclePage.Resources>
+
+    <w:CirclePage.Content>
+        <w:CircleListView x:Name="listView"
+                          Header="Battery"
+                          ItemsSource="{Binding ItemList}"
+                          ItemTemplate="{StaticResource ListItemTemplateSelector}">
+            <w:CircleListView.HeaderTemplate>
+                <DataTemplate>
+                    <Label w:CircleListView.CancelEffect="True"
+                           FontSize="10"
+                           HorizontalTextAlignment="Center"
+                           Text="{Binding .}"
+                           TextColor="#4CCDFC"
+                           VerticalTextAlignment="Center" />
+                </DataTemplate>
+            </w:CircleListView.HeaderTemplate>
+        </w:CircleListView>
+    </w:CirclePage.Content>
+
+</w:CirclePage>
