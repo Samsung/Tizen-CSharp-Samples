@@ -65,7 +65,7 @@ namespace Alarm.Implements
         }
 
         /// <summary>
-        /// Cancel a system alarm of AlarmReco
+        /// Cancel a system alarm of AlarmRecord
         /// </summary>
         /// <param name="binableAlarmRecord">AlarmRecord object relevant to a system alarm to cancel</param>
         /// <seealso cref="AlarmRecord">
@@ -125,7 +125,7 @@ namespace Alarm.Implements
             if (player == null)
             {
                 audioStreamPolicy = new AudioStreamPolicy(AudioStreamType.Alarm);
-                audioStreamPolicy.AcquireFocus(AudioStreamFocusOptions.Playback, AudioStreamBehaviors.NoResume, null);
+                audioStreamPolicy.AcquireFocus(AudioStreamFocusOptions.Playback, AudioStreamBehaviors.Fading, null);
 
                 player = new Player();
                 MediaUriSource soudSource = new MediaUriSource(SystemSettings.SoundNotification);
@@ -142,6 +142,22 @@ namespace Alarm.Implements
             }
         }
 
+        public static void PauseSound()
+        {
+            if (player.State == PlayerState.Playing)
+            {
+                player.Stop();
+            }
+        }
+
+        public static void ResumeSound()
+        {
+            if (player.State == PlayerState.Paused || player.State == PlayerState.Ready)
+            {
+                player.Start();
+            }
+        }
+
         /// <summary>
         /// Asynchronously stops ringing
         /// </summary>
@@ -151,7 +167,7 @@ namespace Alarm.Implements
             {
                 player.Stop();
                 player.Unprepare();
-                audioStreamPolicy.ReleaseFocus(AudioStreamFocusOptions.Playback, AudioStreamBehaviors.NoResume, null);
+                audioStreamPolicy.ReleaseFocus(AudioStreamFocusOptions.Playback, AudioStreamBehaviors.Fading, null);
                 player.Dispose();
                 player = null;
             }

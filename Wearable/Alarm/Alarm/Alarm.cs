@@ -29,6 +29,7 @@ namespace Alarm
         public static string ResourceDir { get; private set; }
 
         App app;
+        AlertPageModel _alertPageModel;
 
         /// <summary>
         /// Called when this application is launched
@@ -41,8 +42,31 @@ namespace Alarm
             LoadApplication(app);
         }
 
+        protected override void OnPause()
+        {
+            Console.WriteLine("OnPause");
+            if (_alertPageModel != null)
+            {
+                if(_alertPageModel.AlertSoundState == SoundState.Start)
+                {
+                    Console.WriteLine("Alert sound state is start, pause alert sound!");
+                    _alertPageModel.PauseAlert();
+                }
+            }
+
+            base.OnPause();
+
+        }
+
+        protected override void OnResume()
+        {
+            Console.WriteLine("OnResume");
+            base.OnResume();
+
+        }
+
         /// <summary>
-        /// Called when this app control event receviced.
+        /// Called when this app control event received.
         /// </summary>
         /// <param name="e">AppControlReceivedEventArgs</param>
         async protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
@@ -77,7 +101,8 @@ namespace Alarm
                             Console.WriteLine("retrievedRecord:" + retrievedRecord);
                             if (retrievedRecord != null && retrievedRecord.AlarmState < AlarmStates.Inactive)
                             {
-                                await currentPage.Navigation.PushAsync(new AlarmAlertPage(new AlertPageModel(retrievedRecord)));
+                                _alertPageModel = new AlertPageModel(retrievedRecord); 
+                                await currentPage.Navigation.PushAsync(new AlarmAlertPage(_alertPageModel));
                             }
                         }
                     }

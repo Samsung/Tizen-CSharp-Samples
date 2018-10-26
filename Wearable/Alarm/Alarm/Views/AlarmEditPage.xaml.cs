@@ -87,7 +87,7 @@ namespace Alarm.Views
             }
 
             _alarmSaving = true;
-            //substract second from selectedTime.
+            //subtract second from selectedTime.
             SelectedDateTime = SelectedDateTime.AddSeconds(-SelectedDateTime.Second);
             Console.WriteLine($"SelectedDateTime :{SelectedDateTime}");
             AlarmModel.BindableAlarmRecord.ScheduledDateTime = SelectedDateTime;

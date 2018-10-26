@@ -21,9 +21,18 @@ using System.Runtime.CompilerServices;
 
 namespace Alarm.ViewModels
 {
+    public enum SoundState
+    {
+        Stop = 0,
+        Start = 1,
+        Pause = 2,
+    }
+
     public class AlertPageModel : BasePageModel
     {
         private AlarmRecord _alarmRecord;
+
+        private SoundState _alertSoundState;
 
         /// <summary>
         /// Alarm record to display in Alert Page
@@ -41,6 +50,19 @@ namespace Alarm.ViewModels
             }
         }
 
+        public SoundState AlertSoundState
+        {
+            get
+            {
+                return _alertSoundState;
+            }
+
+            set
+            {
+                SetProperty(ref _alertSoundState, value, "AlertState");
+            }
+
+        }
         /// <summary>
         /// AlertPageModel constructor with AlarmRecord
         /// </summary>
@@ -54,6 +76,20 @@ namespace Alarm.ViewModels
         {
             AlarmNativeHandler.PlaySound();
             AlarmNativeHandler.StartVibration();
+            _alertSoundState = SoundState.Start;
+        }
+
+        public void PauseAlert()
+        {
+            AlarmNativeHandler.PauseSound();
+            AlarmNativeHandler.StopVibration();
+            _alertSoundState = SoundState.Pause;
+        }
+
+        public void ResumeAlert()
+        {
+            AlarmNativeHandler.ResumeSound();
+            _alertSoundState = SoundState.Start;
         }
 
         /// <summary>
@@ -63,6 +99,7 @@ namespace Alarm.ViewModels
         {
             AlarmNativeHandler.StopSound();
             AlarmNativeHandler.StopVibration();
+            _alertSoundState = SoundState.Stop;
 
             if (_alarmRecord !=  null)
             {

@@ -50,7 +50,7 @@ namespace Alarm.Views
             // Subscribe notification of locale changes to update text based on locale
             MessagingCenter.Subscribe<LocaleHandler, CultureInfo>(this, MessageKeys.LanguageChanged, (obj, culture) =>
             {
-                Console.WriteLine($"AlarmAlertPage receviced LanguageChanged");
+                Console.WriteLine($"AlarmAlertPage received LanguageChanged");
                 // Update text that has been translated into the current language.
                 TimeLabel.Text = _viewModel.Record.ScheduledDateTime.ToString("hh:mm tt");
                 DismissButton.Text = AppResources.Dismiss;

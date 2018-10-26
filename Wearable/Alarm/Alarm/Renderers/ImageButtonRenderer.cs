@@ -120,7 +120,7 @@ namespace Alarm.Tizen.Renderers
 
             if (isTouched)
             {
-                //invoke click event when user relase image button.
+                //invoke click event when a user releases image button.
                 ((ImageButton)Element).SendReleased();
             }
 

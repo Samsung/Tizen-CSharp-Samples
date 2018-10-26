@@ -156,7 +156,7 @@ namespace Alarm.Models
         }
 
         /// <summary>
-        /// Ractivate AlarmRecord
+        /// Reactivate AlarmRecord
         /// </summary>
         /// <param name="record">AlarmRecord for reactivating</param>
         public static void ReactivatelAlarm(AlarmRecord record)

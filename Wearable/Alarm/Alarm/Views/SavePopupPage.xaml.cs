@@ -88,7 +88,7 @@ namespace Alarm.Views
             //Console.WriteLine($"App.Culture.Name:{App.Culture.Name}");
             if (hour == 0)
             {
-                //If housr is 0, display only remain minutes.
+                //If hour is 0, display only remain minutes.
                 if (min == 0)
                 {
                     text = GetSetNowText();
@@ -130,7 +130,7 @@ namespace Alarm.Views
         /// Get localized string of remaining minutes.
         /// </summary>
         /// <param name="minutes">remain minutes</param>
-        /// <returns> ocalized string of remaining minutes</returns>
+        /// <returns>Localized string of remaining minutes</returns>
         private string GetRemainMinutesText(int minutes)
         {
             string text;
@@ -158,7 +158,7 @@ namespace Alarm.Views
         /// </summary>
         /// <param name="hours">remain hours</param>
         /// <param name="minutes">remain minutes</param>
-        /// <returns> ocalized string of remaining hours and minutes</returns>
+        /// <returns>Localized string of remaining hours and minutes</returns>
         private string GetRemainHourMinutesText(int hours, int minutes)
         {
             string text;
