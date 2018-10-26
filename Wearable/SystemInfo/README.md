@@ -1,9 +1,8 @@
 ﻿# SystemInfo
 SystemInfo is a sample application that demonstrates how to obtain data provided by the system using the [Tizen System API](https://developer.tizen.org/dev-guide/csapi/api/Tizen.System.html).
 
-![CapabilitiesPage](./Screenshots/capabilities_page.png)
-![OthersPage](./Screenshots/others_page.png)
 ![PropertiesPage](./Screenshots/properties_page.png)
+![BatteryPage](./Screenshots/battery_page.png)
 
 ### Features
 * Displaying values of system properties.
