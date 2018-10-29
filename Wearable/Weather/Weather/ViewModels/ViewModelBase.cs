@@ -30,7 +30,7 @@ namespace Weather.ViewModels
         /// <param name="value">Value to set</param>
         /// <param name="propertyName">Automatically obtained property name</param>
         /// <typeparam name="T">Property value type</typeparam>
-        /// <returns>True if value was changed, false if value isn't different from current.</returns>
+        /// <returns>True if value was changed, false if value is not different from current.</returns>
         protected bool SetProperty<T>(ref T storage, T value,
             [CallerMemberName] string propertyName = null)
         {
