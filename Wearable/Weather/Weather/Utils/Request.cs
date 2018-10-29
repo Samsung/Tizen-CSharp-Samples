@@ -97,7 +97,7 @@ namespace Weather.Utils
         /// <param name="stream">Stream from client.</param>
         /// <returns>
         /// Returns type T object with response.
-        /// If deserializing wasn't successful returns default value of type T.
+        /// If deserializing was not successful returns default value of type T.
         /// </returns>
         private static T ReadStream(Stream stream)
         {

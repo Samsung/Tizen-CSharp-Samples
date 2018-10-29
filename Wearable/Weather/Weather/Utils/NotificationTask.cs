@@ -61,7 +61,7 @@ namespace Weather.Utils
         public bool IsNotCompleted => !Task.IsCompleted;
 
         /// <summary>
-        /// Indicates if task is canceled.
+        /// Indicates if task is cancelled.
         /// </summary>
         public bool IsCanceled => Task.IsCanceled;
 
