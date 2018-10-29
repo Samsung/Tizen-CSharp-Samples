@@ -123,7 +123,7 @@ namespace Lescanner
         /// <summary>
         /// Whenever any new device is found, this event handler 
         /// will be called. It will add the detected device 
-        /// into DeviceList only if the device wasn't added before.
+        /// into DeviceList only if the device was not added before.
         /// </summary>
         /// <param name="sender">Sender</param>
         /// /// <param name="e">Event arguments</param>
@@ -249,7 +249,7 @@ namespace Lescanner
             await MainPage.Navigation.PushAsync(DevicePage);
             await LeScanSetup();
             ScanLabel.Text = "Scan completed";
-            DeviceListView.ItemsSource = null; // Refreshing doesn't work without it
+            DeviceListView.ItemsSource = null; // Refreshing does not work without it
             DeviceListView.ItemsSource = DeviceList;
         }
 
@@ -274,7 +274,7 @@ namespace Lescanner
         }
 
         /// <summary>
-        /// Waits until GATT connection is successfull adding 
+        /// Waits until GATT connection is successful adding 
         /// small animation during connecting. Sets 30 second
         /// time limit for connect.
         /// </summary>
@@ -369,7 +369,7 @@ namespace Lescanner
                     UuidList.Add(srv.Uuid);
                 }
 
-                UuidListView.ItemsSource = null; // Refreshing doesn't work without it
+                UuidListView.ItemsSource = null; // Refreshing does not work without it
                 UuidListView.ItemsSource = UuidList;
                 GattClientExit(device.Ledevice);
             }
