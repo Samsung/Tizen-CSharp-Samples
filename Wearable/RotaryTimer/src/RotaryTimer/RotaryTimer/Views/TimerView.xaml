@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Converters="clr-namespace:RotaryTimer.Converters"
+             x:Class="RotaryTimer.Views.TimerView"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:viewModels="clr-namespace:RotaryTimer.ViewModels;assembly=RotaryTimer"
+             xmlns:behaviors="clr-namespace:RotaryTimer.Behaviors;assembly=RotaryTimer"
+             BindingContext="{viewModels:TimerViewModel}"
+             x:Name="Root">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="VerticalOptions"
+                        Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions"
+                        Value="CenterAndExpand" />
+                <Setter Property="FontSize"
+                        Value="22" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+                <Setter Property="TextColor"
+                        Value="White" />
+            </Style>
+            <Converters:IntToPadStringConverter x:Key="IntToPadString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentView.Content>
+        <StackLayout>
+            <StackLayout.Behaviors>
+                <behaviors:VibrationBehavior HasEnded="{Binding Source={x:Reference Root},
+                    Path=BindingContext.HasEnded}" />
+            </StackLayout.Behaviors>
+            <AbsoluteLayout BackgroundColor="#30B19B">
+                <Image Source="indicator_runner_line_glow.png"
+                       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       AbsoluteLayout.LayoutFlags="All">
+                    <Image.Behaviors>
+                        <behaviors:ProgressAnimationBehavior TimerSetting="{Binding Source={x:Reference Root},
+                            Path=BindingContext.Duration}"
+                                                             IsRunning="{Binding Source={x:Reference Root},
+                            Path=BindingContext.IsRunning}" />
+                    </Image.Behaviors>
+                </Image>
+                <Image Source="board_run_bg.png"
+                       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       AbsoluteLayout.LayoutFlags="All" />
+                <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                AbsoluteLayout.LayoutFlags="All">
+                    <Image Source="indicator_runner_dot.png"
+                           AbsoluteLayout.LayoutBounds="314, 170, 20, 20" />
+                    <AbsoluteLayout.Behaviors>
+                        <behaviors:ProgressAnimationBehavior TimerSetting="{Binding Source={x:Reference Root},
+                            Path=BindingContext.Duration}"
+                                                             IsRunning="{Binding Source={x:Reference Root},
+                            Path=BindingContext.IsRunning}" />
+                    </AbsoluteLayout.Behaviors>
+                </AbsoluteLayout>
+                <Label AbsoluteLayout.LayoutBounds="41, 162, 87, 55"
+                       Text="{Binding Hours, Converter={StaticResource IntToPadString}}"
+                       Style="{StaticResource labelStyle}" />
+                <Label AbsoluteLayout.LayoutBounds="136, 162, 87, 55"
+                       Text="{Binding Minutes, Converter={StaticResource IntToPadString}}"
+                       Style="{StaticResource labelStyle}" />
+                <Label AbsoluteLayout.LayoutBounds="231, 162, 87, 55"
+                       Text="{Binding Seconds, Converter={StaticResource IntToPadString}}"
+                       Style="{StaticResource labelStyle}" />
+                <Image Source="button_set_time.png"
+                       AbsoluteLayout.LayoutBounds="122, 68, 115, 78">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SetTimerCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image x:Name="StopButton"
+                       Source="button_stop.png"
+                       AbsoluteLayout.LayoutBounds="77, 282, 206, 78">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding StopTimerCommand}" />
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference Root},
+                            Path=SetStopButtonPressed}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentView.Content>
+
+</ContentPage>
