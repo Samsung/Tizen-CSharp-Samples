@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2011
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RotaryTimer", "RotaryTimer\RotaryTimer\RotaryTimer.csproj", "{5BE50C6C-84D4-40CA-AFA0-D93938FBAC06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RotaryTimer.Tizen.Wearable", "RotaryTimer\RotaryTimer.Tizen.Wearable\RotaryTimer.Tizen.Wearable.csproj", "{67717D90-61B2-4B8B-92FB-164257A317C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BE50C6C-84D4-40CA-AFA0-D93938FBAC06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BE50C6C-84D4-40CA-AFA0-D93938FBAC06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BE50C6C-84D4-40CA-AFA0-D93938FBAC06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BE50C6C-84D4-40CA-AFA0-D93938FBAC06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67717D90-61B2-4B8B-92FB-164257A317C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67717D90-61B2-4B8B-92FB-164257A317C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67717D90-61B2-4B8B-92FB-164257A317C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67717D90-61B2-4B8B-92FB-164257A317C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2568A038-F73A-4A0B-83D3-CDC8C464B6B8}
+	EndGlobalSection
+EndGlobal
