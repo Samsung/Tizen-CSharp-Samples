@@ -25,7 +25,7 @@ namespace UIComponents.Samples.Popup
         /// </summary>
         public TextPopup()
         {
-            //Set text of poup
+            //Set text of popup
             Text = "This has only texts. This is set by object";
             //Request to dismiss this popup when back button event occurs
             BackButtonPressed += (s, e) => { this.Dismiss(); };

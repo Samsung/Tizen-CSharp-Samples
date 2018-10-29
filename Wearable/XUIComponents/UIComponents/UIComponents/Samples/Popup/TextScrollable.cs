@@ -25,7 +25,7 @@ namespace UIComponents.Samples.Popup
         /// </summary>
         public TextScrollable()
         {
-            //Set text of poup
+            //Set text of popup
             Text = @"This is scrollable popup text.
 This part is made by adding long text in popup. Popup internally added
 scroller to this layout when size of text is greater than total popup

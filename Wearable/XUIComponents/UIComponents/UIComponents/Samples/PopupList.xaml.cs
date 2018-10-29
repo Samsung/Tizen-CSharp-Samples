@@ -68,7 +68,7 @@ namespace UIComponents.Samples
                 else if (title.Equals("Toast")) // Toast case - set text
                 {
                     Console.WriteLine($"display Toast");
-                    Toast.DisplayText("Saving Contacts to sim on sams, 1 2 3 4 5 6 7 8 9 10.", 2000);
+                    Toast.DisplayText("Saving Contacts to SIM , 1 2 3 4 5 6 7 8 9 10.", 2000);
                 }
                 else if (title.Equals("Graphic Toast")) // Graphic Toast case - set text and image
                 {
