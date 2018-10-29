@@ -23,7 +23,7 @@ namespace NetworkApp
     public class App : Application
     {
         /// <summary>
-        /// Initizalizes a new instance of the <see cref="App"/> class
+        /// Initializes a new instance of the <see cref="App"/> class
         /// </summary>
         public App()
         {

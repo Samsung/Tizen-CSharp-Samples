@@ -83,7 +83,7 @@ namespace NetworkApp.ViewModels
         public Command ForgetClickedCommand { get; set; }
 
         /// <summary>
-        /// Connects to choosen Access Point with password entered by user
+        /// Connects to chosen Access Point with password entered by user
         /// </summary>
         private async void ConnectClickedAsync()
         {
