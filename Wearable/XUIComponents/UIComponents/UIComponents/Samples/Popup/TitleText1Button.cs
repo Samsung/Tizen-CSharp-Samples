@@ -41,7 +41,7 @@ height. This has one button in action area and title text in title area";
                 Text = "OK",
                 Command = new Command(() =>
                 {
-                    Console.WriteLine("Bottom botton Command!!");
+                    Console.WriteLine("Bottom button Command!!");
                     this.Dismiss();
                 })
             };

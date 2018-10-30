@@ -65,7 +65,7 @@ namespace Alarm
                     // parameter 'o' is AlarmRecord object to show in AlarmEditPage.
                     // 1. Copy values to AlarmModel.BindableAlarmRecord
                     AlarmModel.BindableAlarmRecord.DeepCopy((AlarmRecord)o);
-                    // 2. Apply values to EditPage (at first, create UIs. next time, just show it)
+                    // 2. Apply values to EditPage (at first, create UI. next time, just show it)
                     alarmEditPage?.Update((AlarmRecord)o);
                     return AlarmPageController.alarmEditPage ?? (alarmEditPage = new AlarmEditPage(o as AlarmRecord));
                 case AlarmPages.SavePoupPage:

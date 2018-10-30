@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MetalDetector.Converters;assembly=MetalDetector"
+             x:Class="MetalDetector.Views.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StrengthLevelToFileNameConverter x:Key="strengthLevelToFileNameConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+            <Image AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   Source="background.png" />
+
+            <AbsoluteLayout AbsoluteLayout.LayoutFlags="All"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                            IsVisible="{Binding Ready}">
+
+                <Image AbsoluteLayout.LayoutFlags="All"
+                       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       IsVisible="{Binding IsInRange}"
+                       Source="{Binding RelativeSignalStrength, Converter={StaticResource strengthLevelToFileNameConverter}}"
+                       Rotation="{Binding Rotation}" />
+
+                <Image AbsoluteLayout.LayoutFlags="All"
+                       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       Source="text.png" />
+
+                <Image x:Name="radar"
+                       AbsoluteLayout.LayoutFlags="All"
+                       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       Source="radar.png" />
+
+                <Image AbsoluteLayout.LayoutFlags="All"
+                       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       Source="signal_direction_indicator_off.png"
+                       Rotation="{Binding Rotation}">
+                    <Image.Triggers>
+                        <DataTrigger Binding="{Binding IsInRange, StringFormat='{0}'}"
+                                     TargetType="Image"
+                                     Value="True">
+                            <Setter Property="Source"
+                                    Value="signal_direction_indicator_on.png" />
+                        </DataTrigger>
+                    </Image.Triggers>
+                </Image>
+
+                <StackLayout AbsoluteLayout.LayoutBounds="0, 154, 360, AutoSize"
+                             HorizontalOptions="FillAndExpand">
+                    <Label FontSize="10"
+                           HorizontalOptions="Center"
+                           Text="{Binding SignalStrength}"
+                           TextColor="White" />
+                </StackLayout>
+
+                <StackLayout AbsoluteLayout.LayoutBounds="0, 186, 360, AutoSize"
+                             HorizontalOptions="FillAndExpand">
+                    <Label FontSize="7"
+                           HorizontalOptions="Center"
+                           Text="µT"
+                           TextColor="White" />
+                </StackLayout>
+            </AbsoluteLayout>
+
+            <Image AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   Source="frame.png" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

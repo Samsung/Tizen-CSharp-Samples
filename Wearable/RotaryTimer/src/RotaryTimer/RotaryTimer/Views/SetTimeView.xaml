@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RotaryTimer.Views.SetTimeView"
+             xmlns:Converters="clr-namespace:RotaryTimer.Converters;assembly=RotaryTimer"
+             xmlns:viewModels="clr-namespace:RotaryTimer.ViewModels;assembly=RotaryTimer"
+             xmlns:Utils="clr-namespace:RotaryTimer.Utils;assembly=RotaryTimer"
+             BindingContext="{viewModels:SetTimeViewModel}"
+             UpdateValueCommand="{Binding UpdateValueCommand}"
+             x:Name="Root"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions"
+                        Value="CenterAndExpand" />
+                <Setter Property="FontSize"
+                        Value="18" />
+                <Setter Property="TextColor"
+                        Value="White" />
+            </Style>
+            <Converters:ModeToBackgroundConverter x:Key="ModeToBackgroundConverter" />
+            <Converters:IntToPadStringConverter x:Key="IntToPadString" />
+            <Converters:TimeValueToBoardRotationConverter x:Key="TimeValueToBoardRotationConverter" />
+            <Converters:TimeValueToIndicatorRotationConverter x:Key="TimeValueToIndicatorRotationConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Image Source="{Binding SettingMode, Converter={StaticResource ModeToBackgroundConverter}}"
+                   Rotation="{Binding TimerSetting, Converter={StaticResource TimeValueToBoardRotationConverter}}"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All" />
+            <Image Source="circle.png"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All" />
+            <Image Source="set_hours_ind.png"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Rotation="{Binding TimerSetting, Converter={StaticResource TimeValueToIndicatorRotationConverter},
+                       ConverterParameter={x:Static Utils:SettingMode.HOURS}}" />
+            <Image Source="set_minutes_ind.png"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Rotation="{Binding TimerSetting, Converter={StaticResource TimeValueToIndicatorRotationConverter},
+                       ConverterParameter={x:Static Utils:SettingMode.MINUTES}}" />
+            <Image Source="set_seconds_ind.png"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Rotation="{Binding TimerSetting, Converter={StaticResource TimeValueToIndicatorRotationConverter},
+                       ConverterParameter={x:Static Utils:SettingMode.SECONDS}}" />
+            <Image Source="button_reset.png"
+                   AbsoluteLayout.LayoutBounds="122, 68, 115, 78">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ResetTimerCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label AbsoluteLayout.LayoutBounds="69, 149, 70, 50"
+                   WidthRequest="70"
+                   Text="{Binding Hours, Converter={StaticResource IntToPadString}}"
+                   Style="{StaticResource labelStyle}">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding SettingMode}"
+                                 Value="HOURS">
+                        <Setter Property="FontAttributes"
+                                Value="Bold" />
+                        <Setter Property="FontSize"
+                                Value="20" />
+                    </DataTrigger>
+                </Label.Triggers>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SetModeCommand}"
+                                          CommandParameter="{x:Static Utils:SettingMode.HOURS}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label AbsoluteLayout.LayoutBounds="145, 149, 70, 50"
+                   WidthRequest="70"
+                   Text="{Binding Minutes, Converter={StaticResource IntToPadString}}"
+                   Style="{StaticResource labelStyle}">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding SettingMode}"
+                                 Value="MINUTES">
+                        <Setter Property="FontAttributes"
+                                Value="Bold" />
+                        <Setter Property="FontSize"
+                                Value="20" />
+                    </DataTrigger>
+                </Label.Triggers>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SetModeCommand}"
+                                          CommandParameter="{x:Static Utils:SettingMode.MINUTES}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label AbsoluteLayout.LayoutBounds="222, 149, 70, 50"
+                   WidthRequest="70"
+                   Text="{Binding Seconds, Converter={StaticResource IntToPadString}}"
+                   Style="{StaticResource labelStyle}">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding SettingMode}"
+                                 Value="SECONDS">
+                        <Setter Property="FontAttributes"
+                                Value="Bold" />
+                        <Setter Property="FontSize"
+                                Value="20" />
+                    </DataTrigger>
+                </Label.Triggers>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SetModeCommand}"
+                                          CommandParameter="{x:Static Utils:SettingMode.SECONDS}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Image x:Name="StartButton"
+                   Source="button_start.png"
+                   AbsoluteLayout.LayoutBounds="77, 282, 206, 78">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={x:Reference Root},
+                            Path=SetStartButtonPressed}"
+                                          CommandParameter="{Binding IsSet}" />
+                    <TapGestureRecognizer Command="{Binding StartTimerCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+
+</ContentPage>

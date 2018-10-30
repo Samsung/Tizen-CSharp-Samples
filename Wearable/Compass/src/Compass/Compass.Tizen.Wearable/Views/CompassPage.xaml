@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Compass.Tizen.Wearable.Views.CompassPage"
+             xmlns:converters="clr-namespace:Compass.Converters;assembly=Compass"
+             xmlns:viewModels="clr-namespace:Compass.ViewModels;assembly=Compass"
+             xmlns:behaviors="clr-namespace:Compass.Behaviors;assembly=Compass"
+             BackgroundImage="compass_background_w.png"
+             x:Name="Root">
+
+    <ContentPage.BindingContext>
+        <viewModels:CompassViewModel x:Name="CompassViewModel" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:CompassDirectionToDirectionIndicatorConverter x:Key="CompassDirectionToDirectionIndicator" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Image AbsoluteLayout.LayoutBounds="20, 20, 320, 320"
+                   Source="compass_rotation_w.png">
+                <Image.Behaviors>
+                    <behaviors:CompassRoseBehavior CompassDeviation="{Binding Source={x:Reference Root},
+                                                       Path=BindingContext.CompassDeviation}" />
+                </Image.Behaviors>
+            </Image>
+            <Image AbsoluteLayout.LayoutBounds="15, 15, 330, 330"
+                   Source="compass_counter_w.png" />
+            <Label AbsoluteLayout.LayoutBounds="15, 0, 330, 330"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Text="{Binding CompassDeviation, StringFormat='{0:F0}°'}"
+                   TextColor="White"
+                   FontAttributes="Bold" />
+            <Label AbsoluteLayout.LayoutBounds="15, 35, 330, 330"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Text="{Binding CompassDirection, Converter={StaticResource CompassDirectionToDirectionIndicator}}"
+                   TextColor="White"
+                   FontSize="12"
+                   FontAttributes="Bold" />
+            <Image AbsoluteLayout.LayoutBounds="20, 20, 320, 320"
+                   Source="compass_cover_w.png" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

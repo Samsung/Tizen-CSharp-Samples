@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.ErrorCodeConverter.Tizen.TV" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="tv" />
+    <ui-application appid="org.tizen.example.ErrorCodeConverter.Tizen.TV" exec="ErrorCodeConverter.Tizen.TV.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>ErrorCodeConverter.Tizen.TV</label>
+        <icon>welcome_screen_icon.png</icon>
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <provides-appdefined-privileges />
+</manifest>

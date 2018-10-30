@@ -25,7 +25,7 @@ namespace UIComponents.Tizen.Wearable.Renderers
     public class MultilineCellRenderer : CellRenderer
     {
         /// <summary>
-        /// Constructor of MultilineCellRenderer class with style paramter
+        /// Constructor of MultilineCellRenderer class with style parameter
         /// </summary>
         /// <param name="style">Style of CellRenderer</param>
         protected MultilineCellRenderer(string style) : base(style)

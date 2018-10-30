@@ -28,7 +28,7 @@ namespace UIComponents.Samples.Popup
             //Set to enable small progress of popup
             IsProgressRunning = true;
 
-            //Set text of poup
+            //Set text of popup
             Text = "Description about progress";
 
             //Request to dismiss Popup when back button event occurs

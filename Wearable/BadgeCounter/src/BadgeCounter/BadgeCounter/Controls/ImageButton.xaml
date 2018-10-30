@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BadgeCounter.Controls.ImageButton"
+             x:Name="Root">
+
+    <ContentView.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+            <!-- Image for pressed state -->
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Source="{Binding Source={x:Reference Root}, Path=PressedSource}"
+                   x:Name="PressedSourceImage" />
+
+            <!-- Image for normal/default state -->
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Source="{Binding Source={x:Reference Root}, Path=Source}"
+                   x:Name="SourceImage" />
+
+        </AbsoluteLayout>
+    </ContentView.Content>
+
+</ContentView>

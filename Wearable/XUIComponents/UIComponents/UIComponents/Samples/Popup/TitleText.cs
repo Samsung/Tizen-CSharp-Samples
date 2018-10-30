@@ -27,7 +27,7 @@ namespace UIComponents.Samples.Popup
         {
             //Set title of popup
             Title = "Title";
-            //Set text of poup
+            //Set text of popup
             Text = "This Popup has title area";
 
             //Request to dismiss this popup when back button event occurs

@@ -46,13 +46,13 @@ namespace Alarm.Views
             // Subscribe notification of locale changes to update text based on locale
             MessagingCenter.Subscribe<LocaleHandler, CultureInfo>(this, MessageKeys.LanguageChanged, (obj, culture) =>
             {
-                Console.WriteLine($"MainPage receviced LanguageChanged");
+                Console.WriteLine($"MainPage received LanguageChanged");
                 // Update text that has been translated into the current language.
                 HeaderLabel.Text = EmptyHeaderLabel.Text = AppResources.Alarm;
                 EmptyBottomLabel.Text = AppResources.AddAlarm;
                 AddButton.Text = AppResources.Add;
 
-                //This is workaround solution for refresh Listview following to launguage change.
+                //This is workaround solution for refresh Listview following to language change.
                 AlarmList.ItemsSource = null;
                 AlarmList.ItemsSource = viewModel.RecordList;
             });
@@ -71,9 +71,9 @@ namespace Alarm.Views
                 return;
             }
 
-            /// checks selected item
+            /// check selected item
             AlarmRecord alarm = e.SelectedItem as AlarmRecord;
-            /// Deselects first
+            /// de-select first item
             ((ListView)sender).SelectedItem = null; // de-select the row
             EditAlarm(alarm);
         }

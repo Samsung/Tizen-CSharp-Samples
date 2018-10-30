@@ -19,7 +19,6 @@ using UIComponents.Extensions;
 using UIComponents.Tizen.Wearable.Renderers;
 using Xamarin.Forms.Platform.Tizen;
 using ElmSharp;
-using Elayout = ElmSharp.Layout;
 using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 using System.Collections.Generic;
 
@@ -29,7 +28,6 @@ namespace UIComponents.Tizen.Wearable.Renderers
     public class ThumbnailIndexRenderer : ViewRenderer<ThumbnailIndex, EvasObject>
     {
         List<IndexItem> _items = new List<IndexItem>();
-        //Elayout _outterLayout;
         PaddingBox _pbox;
         Scroller _scroller;
         Index _index;
@@ -65,7 +63,6 @@ namespace UIComponents.Tizen.Wearable.Renderers
         {
             Console.WriteLine("Initialize");
             _isFirstItem = true;
-            //_outterLayout = new Elayout(TForms.Context.MainWindow);
 
             _pbox = new PaddingBox(TForms.NativeParent)
             {
@@ -75,7 +72,7 @@ namespace UIComponents.Tizen.Wearable.Renderers
             };
             _pbox.Show();
 
-            _index = new ElmSharp.Index(_pbox/*_outterLayout*/)
+            _index = new ElmSharp.Index(_pbox)
             {
                 Style = "thumbnail",
                 AutoHide = false,
@@ -87,7 +84,7 @@ namespace UIComponents.Tizen.Wearable.Renderers
             _pbox.Header = _index;
             //index.Geometry = new Rect(0, 22, 200, 19);
 
-            _scroller = new ElmSharp.Scroller(_pbox/*_outterLayout*/)
+            _scroller = new ElmSharp.Scroller(_pbox)
             {
                 HorizontalLoop = false,
                 VerticalLoop = false,
