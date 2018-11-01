@@ -23,22 +23,15 @@ namespace AudioManagerSample
         public App()
         {
             var naviPage = new NavigationPage(new MainPage());
+
+            naviPage.Popped += OnPopped;
+
             MainPage = naviPage;
         }
 
-        protected override void OnStart()
+        private void OnPopped(object sender, NavigationEventArgs e)
         {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
+            (e.Page as BasePage)?.OnPopped();
         }
     }
 }

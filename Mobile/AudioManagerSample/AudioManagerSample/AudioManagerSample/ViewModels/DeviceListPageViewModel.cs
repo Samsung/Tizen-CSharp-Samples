@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace AudioManagerSample
@@ -24,42 +26,85 @@ namespace AudioManagerSample
     /// </summary>
     class DeviceListPageViewModel : BaseViewModel
     {
-        public IEnumerable<DeviceItem> Items { get; protected set; }
+        private Page usbConfPage;
 
-        private DeviceItem _selecetdItem;
-
-        public DeviceItem SelectedItem
+        private IEnumerable<DeviceItem> _items;
+        public IEnumerable<DeviceItem> Items
         {
-            get => _selecetdItem;
+            get => _items;
             set
             {
-                if (_selecetdItem != value)
+                if (_items != value)
                 {
-                    _selecetdItem = value;
+                    _items = value;
+                    OnPropertyChanged(nameof(Items));
+
+                    ConfigButtonEnable = false;
+                }
+            }
+        }
+
+        private DeviceItem _selectedItem;
+        public DeviceItem SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
 
                     OnPropertyChanged(nameof(SelectedItem));
+
+                    if (_selectedItem.IsUsbOutputDevice)
+                        _configButtonEnable = true;
+                    else
+                        _configButtonEnable = false;
+
+                    OnPropertyChanged(nameof(ConfigButtonEnable));
+                }
+            }
+        }
+
+        private bool _configButtonEnable;
+        public bool ConfigButtonEnable
+        {
+            get => _configButtonEnable;
+            set
+            {
+                if (_configButtonEnable != value)
+                {
+                    _configButtonEnable = value;
+
+                    OnPropertyChanged(nameof(ConfigButtonEnable));
                 }
             }
         }
 
         public DeviceListPageViewModel()
         {
-            Items = DependencyService.Get<IAudioManagerController>().GetConnectedDevices();
+            NavigateCommand = new Command<Type>(async (Type pageType) =>
+            {
+                usbConfPage = (Page)Activator.CreateInstance(pageType);
+
+                usbConfPage.BindingContext = new UsbConfigurePageViewModel(_selectedItem);
+
+                await Application.Current.MainPage.Navigation.PushAsync(usbConfPage);
+            });
 
             AMController.DeviceConnectionChanged += OnConnectionChanged;
             AMController.DeviceRunningChanged += OnRunningChanged;
         }
+
+        public ICommand NavigateCommand { private set; get; }
 
         protected IAudioManagerController AMController => DependencyService.Get<IAudioManagerController>();
 
         private void OnConnectionChanged(object sender, DeviceConnectionChangedEventArgs e)
         {
             ConnectionChangedDeviceLabel = e.Device.Type + "(ID:" + e.Device.Id + ") is " + (e.IsConnected ? "connected" : "disconnected");
-            Log.Debug(ConnectionChangedDeviceLabel);
-            OnPropertyChanged(nameof(ConnectionChangedDeviceLabel));
 
             Items = DependencyService.Get<IAudioManagerController>().GetConnectedDevices();
-            OnPropertyChanged(nameof(Items));
         }
 
         private void OnRunningChanged(object sender, DeviceRunningChangedEventArgs e)
@@ -67,10 +112,24 @@ namespace AudioManagerSample
             Log.Debug(e.Device.Type + "(ID:" + e.Device.Id + ")'s state changed to [" + e.Device.State + "]");
 
             Items = DependencyService.Get<IAudioManagerController>().GetConnectedDevices();
-            OnPropertyChanged(nameof(Items));
         }
 
-        public string ConnectionChangedDeviceLabel { get; protected set; }
+        private string _connectionChangedDeviceLabel;
+        public string ConnectionChangedDeviceLabel
+        {
+            get => _connectionChangedDeviceLabel;
+            set
+            {
+                if (_connectionChangedDeviceLabel != value)
+                {
+                    _connectionChangedDeviceLabel = value;
+
+                    OnPropertyChanged(nameof(ConnectionChangedDeviceLabel));
+
+                    Log.Debug(value);
+                }
+            }
+        }
 
         public override void OnPopped()
         {
@@ -78,7 +137,13 @@ namespace AudioManagerSample
 
             AMController.DeviceConnectionChanged -= OnConnectionChanged;
             AMController.DeviceRunningChanged -= OnRunningChanged;
+        }
 
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            Items = DependencyService.Get<IAudioManagerController>().GetConnectedDevices();
         }
     }
 }

@@ -37,6 +37,56 @@ namespace AudioManagerSample
         IEnumerable<DeviceItem> GetConnectedDevices();
 
         /// <summary>
+        /// Gets supported sample formats.
+        /// </summary>
+        IEnumerable<string> GetSupportedSampleFormats(int deviceId);
+
+        /// <summary>
+        /// Gets supported sample rates.
+        /// </summary>
+        IEnumerable<uint> GetSupportedSampleRates(int deviceId);
+
+        /// <summary>
+        /// Gets sample format of the device.
+        /// </summary>
+        string GetSampleFormat(int deviceId);
+
+        /// <summary>
+        /// Sets sample format of the device.
+        /// </summary>
+        void SetSampleFormat(int deviceId, string format);
+
+        /// <summary>
+        /// Gets sample rate of the device.
+        /// </summary>
+        uint GetSampleRate(int deviceId);
+
+        /// <summary>
+        /// Sets sample rate of the device.
+        /// </summary>
+        void SetSampleRate(int deviceId, uint rate);
+
+        /// <summary>
+        /// Gets media-streeam-only property of the device.
+        /// </summary>
+        bool GetMediaStreamOnly(int deviceId);
+
+        /// <summary>
+        /// Sets media-streeam-only property of the device.
+        /// </summary>
+        void SetMediaStreamOnly(int deviceId, bool enable);
+
+        /// <summary>
+        /// Gets avoid-resampling property of the device.
+        /// </summary>
+        bool GetAvoidResampling(int deviceId);
+
+        /// <summary>
+        /// Sets avoid-resampling property of the device.
+        /// </summary>
+        void SetAvoidResampling(int deviceId, bool enable);
+
+        /// <summary>
         /// Occurs when the level of the volume changes.
         /// </summary>
         event EventHandler<VolumeLevelChangedEventArgs> VolumeLevelChanged;

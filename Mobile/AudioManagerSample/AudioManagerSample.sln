@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioManagerSample", "AudioManagerSample\AudioManagerSample\AudioManagerSample.csproj", "{BABA155A-B689-4147-BE44-9D5F22CB3589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AudioManagerSample", "AudioManagerSample\AudioManagerSample\AudioManagerSample.csproj", "{BABA155A-B689-4147-BE44-9D5F22CB3589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioManagerSample.Tizen.Mobile", "AudioManagerSample\AudioManagerSample.Tizen.Mobile\AudioManagerSample.Tizen.Mobile.csproj", "{EBC21380-29D1-4A84-B5C5-D0C1E4FDB829}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AudioManagerSample.Tizen.Mobile", "AudioManagerSample\AudioManagerSample.Tizen.Mobile\AudioManagerSample.Tizen.Mobile.csproj", "{EBC21380-29D1-4A84-B5C5-D0C1E4FDB829}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

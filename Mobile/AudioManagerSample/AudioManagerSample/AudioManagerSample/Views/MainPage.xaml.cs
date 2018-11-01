@@ -22,7 +22,7 @@ using Xamarin.Forms.Xaml;
 namespace AudioManagerSample
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MainPage : ContentPage
+	public partial class MainPage : BasePage
 	{
 		public MainPage ()
 		{

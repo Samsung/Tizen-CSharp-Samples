@@ -10,10 +10,6 @@
     <None Remove="ViewModels\Commands\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Views\BasePage.cs" />
-  </ItemGroup>
-
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
@@ -26,6 +22,9 @@
   <ItemGroup>
     <EmbeddedResource Update="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UsbConfigurePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\VolumePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
