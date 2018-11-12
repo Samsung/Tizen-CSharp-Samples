@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- Include Nuget Package for Xamarin building -->
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="5.0.0.14572">
+		<ExcludeAssets>Runtime;Compile</ExcludeAssets>
+	</PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.121934" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="..\..\..\tizenfx\Artifacts\bin\public\*.dll">
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\IME_KEYBOARD_LAYOUT_QWERTY_PORT.xaml.cs">
+      <DependentUpon>IME_KEYBOARD_LAYOUT_QWERTY_PORT.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\IME_KEYBOARD_LAYOUT_QWERTY_LAND.xaml.cs">
+      <DependentUpon>IME_KEYBOARD_LAYOUT_QWERTY_LAND.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>
