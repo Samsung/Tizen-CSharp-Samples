@@ -32,27 +32,12 @@ namespace Weather.Behaviors
             BindableProperty.Create(nameof(City), typeof(City), typeof(CityNameValidatorBehavior));
 
         /// <summary>
-        /// Bindable property that allows to set command that will be executed when user will finish entering text.
-        /// </summary>
-        public static readonly BindableProperty OnInputCompletedProperty =
-            BindableProperty.Create(nameof(OnInputCompleted), typeof(Command), typeof(CityNameValidatorBehavior));
-
-        /// <summary>
         /// Gets or sets selected city.
         /// </summary>
         public City City
         {
             get => (City)GetValue(CityProperty);
             set => SetValue(CityProperty, value);
-        }
-
-        /// <summary>
-        /// Command that is executed when user finished entering text.
-        /// </summary>
-        public Command OnInputCompleted
-        {
-            get => (Command)GetValue(OnInputCompletedProperty);
-            set => SetValue(OnInputCompletedProperty, value);
         }
 
         #endregion
@@ -66,7 +51,6 @@ namespace Weather.Behaviors
         protected override void OnAttachedTo(Entry bindable)
         {
             base.OnAttachedTo(bindable);
-            bindable.Completed += EntryOnCompleted;
             bindable.TextChanged += CityNameChanged;
         }
 
@@ -77,7 +61,6 @@ namespace Weather.Behaviors
         protected override void OnDetachingFrom(Entry bindable)
         {
             base.OnDetachingFrom(bindable);
-            bindable.Completed -= EntryOnCompleted;
             bindable.TextChanged -= CityNameChanged;
         }
 
@@ -90,18 +73,15 @@ namespace Weather.Behaviors
         {
             if (sender is Entry entry)
             {
-                entry.TextColor = City != null ? Color.Black : Color.Red;
+                if (City != null && City.Name == entry.Text)
+                {
+                    entry.TextColor = Color.FromRgb(128, 128, 128);
+                }
+                else
+                {
+                    entry.TextColor = Color.Red;
+                }
             }
-        }
-
-        /// <summary>
-        /// Callback method invoked when user finished entering text.
-        /// </summary>
-        /// <param name="sender">Object that invoked event.</param>
-        /// <param name="eventArgs">Event arguments.</param>
-        private void EntryOnCompleted(object sender, EventArgs eventArgs)
-        {
-            OnInputCompleted.Execute(eventArgs);
         }
 
         #endregion

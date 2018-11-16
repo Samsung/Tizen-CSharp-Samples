@@ -41,6 +41,7 @@ namespace Weather.Converters
             {
                 return string.Format(new UnitFormatter(), "{0:" + parameter + "}", value);
             }
+
             return string.Empty;
         }
 

@@ -91,7 +91,7 @@ namespace Weather.Behaviors
                 ? textChangedEventArgs.OldTextValue.ToUpper()
                 : textChangedEventArgs.NewTextValue.ToUpper();
 
-            entry.TextColor = _provider.Validate(entry.Text) ? Color.Black : Color.Red;
+            entry.TextColor = _provider.Validate(entry.Text) ? Color.FromRgb(128,128,128) : Color.Red;
         }
 
         /// <summary>

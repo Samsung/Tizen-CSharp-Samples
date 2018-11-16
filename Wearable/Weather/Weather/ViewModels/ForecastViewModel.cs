@@ -48,7 +48,7 @@ namespace Weather.ViewModels
         #endregion
 
         #region properties
-       
+
         /// <summary>
         /// Bindable property that allows to set forecast data.
         /// </summary>
@@ -169,7 +169,7 @@ namespace Weather.ViewModels
         /// Assigns prev/next forecast handlers
         /// </summary>
         private void PrepareViewModels()
-        {         
+        {
             ForecastsModels = new ObservableCollection<CurrentWeather>();
             var dictionary = SortViewModelsByDate();
             foreach (var list in dictionary.Values)
@@ -182,7 +182,8 @@ namespace Weather.ViewModels
 
             // Previous forecast handler - either navigate down the forecast list or
             // let the user know that the bottom (0) is reached via a simple vibration
-            PreviousForecastCommand = new Command(o => {
+            PreviousForecastCommand = new Command(o =>
+            {
                 if (ForecastsModels != null)
                 {
                     if (CurrentForecastId > 0)
@@ -199,7 +200,8 @@ namespace Weather.ViewModels
 
             // Next forecast handler - either navigate up the forecast list or
             // let the user know that the top (most distant forecast) is reached via a simple vibration
-            NextForecastCommand = new Command(o => {
+            NextForecastCommand = new Command(o =>
+            {
                 if (ForecastsModels != null)
                 {
                     if (CurrentForecastId < _forecastsModels.Count - 1)
@@ -213,7 +215,7 @@ namespace Weather.ViewModels
                     }
                 }
             });
-            // Notify all parties interested that the Selected forecast (initialy the first one) is
+            // Notify all parties interested that the Selected forecast (initially the first one) is
             // ready and waiting to be presented in the relevant View.
             OnPropertyChanged(nameof(SelectedForecast));
         }
@@ -234,6 +236,7 @@ namespace Weather.ViewModels
                 {
                     dictionary.Add(day, new List<CurrentWeather>());
                 }
+
                 dictionary[day].Add(weather);
             }
 
@@ -250,13 +253,13 @@ namespace Weather.ViewModels
         /// Use Tizen.System.Feedback to let user know something went a bit wrong (vibrate)      
         /// </summary>
         private void Vibrate()
-        {           
+        {
             try
             {
                 Feedback feedback = new Feedback();
-                feedback.Play(FeedbackType.All, "General");              
+                feedback.Play(FeedbackType.All, "General");
             }
-            catch(System.Exception e)
+            catch (System.Exception e)
             {
                 Log.Debug("WeatherApp", e.Message);
             }
