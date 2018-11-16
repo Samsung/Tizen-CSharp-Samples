@@ -18,6 +18,8 @@
     <privileges>
         <privilege>http://tizen.org/privilege/haptic</privilege>
         <privilege>http://tizen.org/privilege/internet</privilege>
+        <privilege>http://tizen.org/privilege/ime</privilege>
+        <privilege>http://tizen.org/privilege/imemanager</privilege>
     </privileges>
     <provides-appdefined-privileges />
 </manifest>

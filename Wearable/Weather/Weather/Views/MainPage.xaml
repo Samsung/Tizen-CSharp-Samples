@@ -38,15 +38,15 @@
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center" />
 
-            <Entry BackgroundColor="White"
-                   HorizontalTextAlignment="Center"
-                   HorizontalOptions="Center"
-                   WidthRequest="280"
-                   Text="{Binding EnteredCountry, Mode=TwoWay}">
-                <Entry.Behaviors>
+            <w:PopupEntry BackgroundColor="White"
+                          HorizontalTextAlignment="Center"
+                          HorizontalOptions="Center"
+                          WidthRequest="280"
+                          Text="{Binding EnteredCountry, Mode=TwoWay}">
+                <w:PopupEntry.Behaviors>
                     <behaviors:CountryCodeValidatorBehavior MaxLength="2" />
-                </Entry.Behaviors>
-            </Entry>
+                </w:PopupEntry.Behaviors>
+            </w:PopupEntry>
 
             <Label Text="City:"
                    FontSize="8"
@@ -59,12 +59,13 @@
                    BackgroundColor="White"
                    HorizontalOptions="Center"
                    WidthRequest="280"
-                   Text="{Binding EnteredCity, Mode=TwoWay}">
-                <Entry.Behaviors>
+                   Text="{Binding EnteredCity, Mode=TwoWay}"
+                   HorizontalTextAlignment="Center"
+                   TextColor="{Binding CityEntryTextColor}">
+                <w:PopupEntry.Behaviors>
                     <behaviors:CityNameValidatorBehavior
-                        City="{Binding Source={x:Reference Name=ViewModel}, Path=SelectedCity}"
-                        OnInputCompleted="{Binding Source={x:Reference Name=ViewModel}, Path=OnCityEnteredCommand}" />
-                </Entry.Behaviors>
+                        City="{Binding Source={x:Reference Name=ViewModel}, Path=SelectedCity}"/>
+                </w:PopupEntry.Behaviors>
             </w:PopupEntry>
 
 
@@ -75,7 +76,7 @@
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center" 
                    IsVisible="{Binding Source={x:Reference Name=ViewModel}, Path=InvalidCityEntered}"/>
-            
+
             <w:CircleListView ItemsSource="{Binding Cities}"
                       SelectedItem="{Binding SelectedCity, Mode=TwoWay}"   
                       IsVisible="{Binding Source={x:Reference Name=ViewModel}, Path=InvalidCityEntered}"
@@ -84,17 +85,15 @@
                       WidthRequest="260" 
                       HorizontalOptions="Center"
                       BackgroundColor="Black">
-
                 <w:CircleListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="Black"
-                                Orientation="Vertical"                                
-                                HorizontalOptions="Center">
-                                <Label Text="{Binding Name}"
-                                           TextColor="LightGray"
-                                           FontSize="8"/>
-                            </StackLayout>
+                            <Label Text="{Binding Name}"
+                                   FontSize="10"
+                                   HeightRequest="50"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   TextColor="LightGray"/>   
                         </ViewCell>
                     </DataTemplate>
                 </w:CircleListView.ItemTemplate>
@@ -105,7 +104,7 @@
                     Text="Check Weather"
                     BackgroundColor="DarkGray"
                     TextColor="White"
-                    Command="{Binding CheckWeatherCommand}"                    
+                    Command="{Binding CheckWeatherCommand}"
                     HeightRequest="90"
                     MinimumHeightRequest="90">
                 <Button.CommandParameter>
