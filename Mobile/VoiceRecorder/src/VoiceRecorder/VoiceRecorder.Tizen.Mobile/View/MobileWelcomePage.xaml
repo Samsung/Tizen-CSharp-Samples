@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:VoiceRecorder.ViewModel;assembly=VoiceRecorder"
+             x:Class="VoiceRecorder.Tizen.Mobile.View.MobileWelcomePage"
+             BackgroundImage="bg.png">
+
+    <TabbedPage.BindingContext>
+        <viewModel:WelcomeViewModel x:Name="WelcomeViewModel" />
+    </TabbedPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+                <Image HorizontalOptions="FillAndExpand"
+                       Margin="0, 24, 0, 24"
+                       Source="icon.png"
+                       VerticalOptions="FillAndExpand" />
+                <Label FontSize="30"
+                       HorizontalOptions="FillAndExpand"
+                       HorizontalTextAlignment="Center"
+                       Margin="24, 0, 24, 48"
+                       Text="Welcome"
+                       TextColor="#fafafa"
+                       VerticalOptions="FillAndExpand" />
+                <Label FontSize="24"
+                       HorizontalOptions="FillAndExpand"
+                       HorizontalTextAlignment="Center"
+                       Margin="24, 0, 24, 0"
+                       Text="Voice Recorder sample application demonstrates how to record and play voice using the Tizen AudioRecorder&#x0a;and Player APIs."
+                       TextColor="#fafafa"
+                       VerticalOptions="FillAndExpand"
+                       VerticalTextAlignment="Center" />
+            </StackLayout>
+            <Button BackgroundColor="#3dc0cc"
+                    Command="{Binding WelcomePageCommand}"
+                    FontSize="25"
+                    HeightRequest="104"
+                    HorizontalOptions="Center"
+                    Margin="0, 0, 0, 24"
+                    Text="Get started"
+                    VerticalOptions="End"
+                    WidthRequest="496" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:view="clr-namespace:VoiceRecorder.Tizen.Mobile.View;assembly=VoiceRecorder.Tizen.Mobile"
+            xmlns:viewModel="clr-namespace:VoiceRecorder.ViewModel;assembly=VoiceRecorder"
+            xmlns:control="clr-namespace:VoiceRecorder.Control;assembly=VoiceRecorder"
+            xmlns:controlTizen="clr-namespace:VoiceRecorder.Tizen.Mobile.Control;assembly=VoiceRecorder.Tizen.Mobile"
+            xmlns:converter="clr-namespace:VoiceRecorder.Converter;assembly=VoiceRecorder"
+            x:Class="VoiceRecorder.Tizen.Mobile.View.MobileMainTabbedPage"
+            Title="Voice Recorder">
+
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <x:Array  x:Key="FileFormatsList"
+                      Type="{x:Type x:String}">
+                <x:String>MP4</x:String>
+                <x:String>WAV</x:String>
+                <x:String>OGG</x:String>
+            </x:Array>
+            <x:Array  x:Key="RecordingQualityList"
+                      Type="{x:Type x:String}">
+                <x:String>High / 256 kbps</x:String>
+                <x:String>Mid / 128 kbps</x:String>
+                <x:String>Low / 64 kbps</x:String>
+            </x:Array>
+
+            <controlTizen:SettingPopup x:Key="FileFormatPopup"
+                                       SettingItems="{StaticResource FileFormatsList}"
+                                       ExecuteCommand="{Binding Source={x:Reference Name=ViewModel},
+                                           Path=ShowSettingFileFormatPopupCommand}"
+                                       SelectCommand="{Binding Source={x:Reference Name=ViewModel},
+                                           Path=UpdateFileFormatCommand}"
+                                       SettingType="FileFormat" />
+
+            <controlTizen:SettingPopup x:Key="RecordingQualityPopup"
+                                       SettingItems="{StaticResource RecordingQualityList}"
+                                       ExecuteCommand="{Binding Source={x:Reference Name=ViewModel},
+                                           Path=ShowSettingRecordingQualityPopupCommand}"
+                                       SelectCommand="{Binding Source={x:Reference Name=ViewModel},
+                                           Path=UpdateRecordingQualityCommand}"
+                                       SettingType="RecordingQuality" />
+            <converter:StringToTextTemplateConverter x:Key="StringToTextTemplate" />
+            <control:DialogOK x:Key="PrivilegeDeniedDialog"
+                              Title="Privilege denied"
+                              Message="Application will be closed since required privilege was denied."
+                              ExecuteCommand="{Binding Source={x:Reference Name=ViewModel},
+                                  Path=PrivilegeDeniedInfoCommand}"
+                              ConfirmCommand="{Binding Source={x:Reference Name=ViewModel},
+                                  Path=PrivilegeDeniedConfirmedCommand}" />
+            <control:DialogOK x:Key="ErrorOccurredDialog"
+                              Title="Error occurred"
+                              Message="{Binding Source={x:Reference Name=ViewModel}, Path=ErrorMessage}"
+                              ExecuteCommand="{Binding Source={x:Reference Name=ViewModel},
+                                  Path=ErrorInfoCommand}" />
+            <control:DialogYesNo x:Key="ConfirmItemDelete"
+                                 Title="Delete file"
+                                 Message="This file will be deleted."
+                                 ExecuteCommand="{Binding Source={x:Reference Name=ViewModel},
+                                     Path=DeleteShowAlertCommand}"
+                                 ConfirmCommand="{Binding Source={x:Reference Name=ViewModel},
+                                     Path=DeleteConfirmCommand}" />
+            <controlTizen:TizenToast x:Key="RecordingSavedToast"
+                                Text="{Binding Source={x:Reference Name=ViewModel}, Path=LastSavedRecordingName,
+                                    Converter={StaticResource StringToTextTemplate},
+                                    ConverterParameter='File saved as {0}'}"
+                                ExecuteCommand="{Binding Source={x:Reference Name=ViewModel},
+                                    Path=SavedRecordingInfoCommand}" />
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+
+    <TabbedPage.BindingContext>
+        <viewModel:VoiceRecorderViewModel x:Name="ViewModel" />
+    </TabbedPage.BindingContext>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ChangePageCommand}"
+                     CommandParameter="{x:Type view:MobileSettingsPage}"
+                     Icon="settings.png"
+                     Order="Primary" />
+    </TabbedPage.ToolbarItems>
+
+    <view:MobileVoiceRecorderPage Title="Record" />
+    <view:MobileRecordingsListPage Title="Listen" />
+
+</TabbedPage>

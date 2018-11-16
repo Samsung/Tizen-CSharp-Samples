@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:VoiceRecorder.Converter;assembly=VoiceRecorder"
+             xmlns:view="clr-namespace:VoiceRecorder.Tizen.Mobile.View;assembly=VoiceRecorder.Tizen.Mobile"
+             x:Class="VoiceRecorder.Tizen.Mobile.View.MobileVoicePlayerPage"
+             BackgroundImage="bg.png"
+             Title="Playback"
+             BackButtonPressed="{Binding ReturnFromPlayerPageCommand}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FullPathToNameConverter x:Key="FullPathToNameConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ChangePageCommand}"
+                     CommandParameter="{x:Type view:MobileSettingsPage}"
+                     Icon="settings.png"
+                     Order="Primary" />
+    </TabbedPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 720, 1050"
+                   Source="bg_highlight.png" />
+            <Image AbsoluteLayout.LayoutBounds="105, 230, 510, 510"
+                   Source="progress.png" />
+            <Image AbsoluteLayout.LayoutBounds="105, 230, 510, 510"
+                   Source="{Binding ProgressImage}" />
+            <Label AbsoluteLayout.LayoutBounds="0, 230, 720, 510"
+                   FontSize="75"
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding PlayingTime}"
+                   TextColor="#FAFAFA"
+                   VerticalOptions="Center" />
+            <Label AbsoluteLayout.LayoutBounds="0, 230, 720, 510"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 150, 0, 0"
+                   Text="{Binding SelectedRecordFile.Path, Converter={StaticResource FullPathToNameConverter}}"
+                   TextColor="#FAFAFA"
+                   VerticalOptions="Center" />
+            <Label AbsoluteLayout.LayoutBounds="0, 927, 720, 100"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Start"
+                   TextColor="#FAFAFA"
+                   Text="Tap to play">
+                <Label.Triggers>
+                    <DataTrigger Binding="{Binding IsPlaying}"
+                                 Value="True"
+                                 TargetType="Label">
+                        <Setter Property="Text"
+                                Value="Tap to pause" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Image AbsoluteLayout.LayoutBounds="303, 984, 114, 114"
+                   Source="play_1.png">
+                <Image.Triggers>
+                    <DataTrigger Binding="{Binding IsPlaying}"
+                                 Value="True"
+                                 TargetType="Image">
+                        <Setter Property="Source"
+                                Value="pause.png" />
+                    </DataTrigger>
+                </Image.Triggers>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding StartPlayingCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image AbsoluteLayout.LayoutBounds="177, 1001, 80, 80"
+                   Source="rewind.png" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RewindVoiceStreamCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image AbsoluteLayout.LayoutBounds="463, 1001, 80, 80"
+                   Source="forward.png" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding FastForwardVoiceStreamCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

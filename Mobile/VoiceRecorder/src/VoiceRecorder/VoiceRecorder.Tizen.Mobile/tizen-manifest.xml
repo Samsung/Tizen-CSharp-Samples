@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.VoiceRecorder.Tizen.Mobile" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.example.VoiceRecorder.Tizen.Mobile" exec="VoiceRecorder.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>VoiceRecorder.Tizen.Mobile</label>
+        <icon>VoiceRecorder.Tizen.Mobile.png</icon>
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/haptic</privilege>
+        <privilege>http://tizen.org/privilege/recorder</privilege>
+        <privilege>http://tizen.org/privilege/content.write</privilege>
+        <privilege>http://tizen.org/privilege/mediastorage</privilege>
+    </privileges>
+</manifest>
