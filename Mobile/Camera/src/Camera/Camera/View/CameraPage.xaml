@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Camera.Converter;assembly=Camera"
+             xmlns:customControls="clr-namespace:Camera.Control;assembly=Camera"
+             x:Class="Camera.View.CameraPage"
+             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppMainViewModel}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:BoolToReverseBoolConverter x:Key="BoolToReverseBoolConverter" />
+            <converters:SliderValueToTimerSecondsConverter x:Key="SliderValueToTimerSecondsConverter" />
+            <converters:TimerIndicatorPositionConverter x:Key="TimerIndicatorPositionConverter" />
+            <Style TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="White" />
+                <Setter Property="VerticalTextAlignment"
+                        Value="End" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- Main container -->
+    <AbsoluteLayout>
+
+        <!-- Camera view container -->
+        <StackLayout x:Name="CameraBox"
+                     AbsoluteLayout.LayoutBounds="0, 0, 720, 1280" />
+
+        <!-- Timer controls -->
+        <Label AbsoluteLayout.LayoutBounds="199, 389, 154, 105"
+               FontSize="85"
+               HorizontalTextAlignment="End"
+               Margin="0, 0, 0, -4"
+               Text="{Binding TimerValue, Converter={StaticResource SliderValueToTimerSecondsConverter}}" />
+        <Label AbsoluteLayout.LayoutBounds="387, 389, 132, 105"
+               FontSize="50"
+               HorizontalTextAlignment="Start"
+               Margin="0, 0, 0, -22"
+               Text="SEC" />
+        <Image AbsoluteLayout.LayoutBounds="349, 597, 22, 454"
+               Opacity="{Binding TimerValue}"
+               Source="scale.png" />
+        <Image AbsoluteLayout.LayoutBounds="{Binding TimerValue,
+               Converter={StaticResource TimerIndicatorPositionConverter}}"
+               Source="set_time.png" />
+        <customControls:TizenSlider AbsoluteLayout.LayoutBounds="290, 545, 140, 553"
+                                    IsEnabled="{Binding IsCountdownStarted,
+                                        Converter={StaticResource BoolToReverseBoolConverter}}"
+                                    Opacity="0.0"
+                                    Value="{Binding TimerValue, Mode=TwoWay}" />
+
+        <!-- Take photo button -->
+        <Image AbsoluteLayout.LayoutBounds="295, 1152, 130, 48"
+               Source="start_btn.png">
+            <Image.Triggers>
+                <DataTrigger Binding="{Binding IsCountdownStarted}"
+                             TargetType="Image"
+                             Value="True">
+                    <Setter Property="Source"
+                            Value="stop_btn.png" />
+                </DataTrigger>
+            </Image.Triggers>
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding StartCountdownCommand}" />
+            </Image.GestureRecognizers>
+        </Image>
+
+        <!-- Preview photo container -->
+        <Frame AbsoluteLayout.LayoutBounds="493, 39, 191, 340"
+               IsVisible="{Binding IsPreviewVisible}"
+               OutlineColor="White"
+               Padding="1">
+            <Image x:Name="PreviewImage"
+                   BackgroundColor="Black"
+                   IsVisible="{Binding IsPreviewVisible}"
+                   Source="{Binding PhotoThumbnail}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToPreviewPageCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Frame>
+    </AbsoluteLayout>
+</ContentPage>
