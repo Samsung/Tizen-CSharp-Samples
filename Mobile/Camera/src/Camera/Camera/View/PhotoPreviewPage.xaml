@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Camera.View.PhotoPreviewPage"
+             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppMainViewModel}"
+             Title="{Binding PhotoName}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding DeletePhotoCommand}"
+                     Icon="delete_icon.png"
+                     Order="Primary" />
+        <ToolbarItem Command="{Binding BackToPreviousPageCommand}"
+                     Icon="back_icon.png"
+                     Order="Secondary" />
+    </ContentPage.ToolbarItems>
+
+    <!-- Main container -->
+    <AbsoluteLayout BackgroundColor="White">
+
+        <!-- Photo preview area -->
+        <Image AbsoluteLayout.LayoutBounds="33, 0, 654, 1081"
+               Source="{Binding PhotoPath}" />
+
+        <!-- Confirmation Popup -->
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="67, 844, 586, 210"
+                        BackgroundColor="White"
+                        IsVisible="{Binding IsConfirmPopup}">
+            <Label AbsoluteLayout.LayoutBounds="0, 35, 586, 35"
+                   FontSize="17"
+                   HorizontalTextAlignment="Center"
+                   Text="Are you sure you want to delete this photo?"
+                   VerticalTextAlignment="End" />
+            <Image AbsoluteLayout.LayoutBounds="110, 128, 130, 48"
+                   Source="cancel_btn.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CancelDeletePhotoCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image AbsoluteLayout.LayoutBounds="346, 128, 130, 48"
+                   Source="delete_btn.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ConfirmDeletePhotoCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </AbsoluteLayout>
+</ContentPage>
