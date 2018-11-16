@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRCodeGenerator", "QRCodeGenerator\QRCodeGenerator\QRCodeGenerator.csproj", "{E7C1CE90-5E3E-474F-8E5D-8C6D2D33F07C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRCodeGenerator.Tizen.Wearable", "QRCodeGenerator\QRCodeGenerator.Tizen.Wearable\QRCodeGenerator.Tizen.Wearable.csproj", "{A8B9464A-C7BD-4664-BEF2-752EA14BBB4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7C1CE90-5E3E-474F-8E5D-8C6D2D33F07C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7C1CE90-5E3E-474F-8E5D-8C6D2D33F07C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7C1CE90-5E3E-474F-8E5D-8C6D2D33F07C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7C1CE90-5E3E-474F-8E5D-8C6D2D33F07C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8B9464A-C7BD-4664-BEF2-752EA14BBB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8B9464A-C7BD-4664-BEF2-752EA14BBB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8B9464A-C7BD-4664-BEF2-752EA14BBB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8B9464A-C7BD-4664-BEF2-752EA14BBB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E2C5087-6087-49BF-9C1E-C613B67082C5}
+	EndGlobalSection
+EndGlobal

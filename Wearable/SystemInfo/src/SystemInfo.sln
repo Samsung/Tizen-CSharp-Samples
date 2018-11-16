@@ -4,7 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemInfo", "SystemInfo\SystemInfo\SystemInfo.csproj", "{F86701AB-5A8D-4397-BC49-998EA632294F}"
-EndProject
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemInfo.Tizen.Wearable", "SystemInfo\SystemInfo.Tizen.Wearable\SystemInfo.Tizen.Wearable.csproj", "{5EFD93CA-5100-4E8A-911F-94EAC96D030E}"
 EndProject
 Global

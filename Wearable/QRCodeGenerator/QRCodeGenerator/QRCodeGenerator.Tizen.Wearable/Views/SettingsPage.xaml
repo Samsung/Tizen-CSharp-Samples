@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns:viewModels="clr-namespace: QRCodeGenerator.ViewModels;assembly=QRCodeGenerator"
+                xmlns:views="clr-namespace: QRCodeGenerator.Views;assembly=QRCodeGenerator"
+                x:Class="QRCodeGenerator.Tizen.Wearable.Views.SettingsPage"
+                RotaryFocusObject="{x:Reference listView}"
+                NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:SettingsViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Content>
+        <cui:CircleListView x:Name="listView"
+                            VerticalOptions="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            Header="Settings">
+
+            <cui:CircleListView.ItemsSource>
+                <x:Array Type="{x:Type views:SettingsItem}">
+                    <views:SettingsItem Title="SSID"
+                                        TitleValue="{Binding SSID}"
+                                        Command="{Binding GoToSSIDPageCommand}" />
+                    <views:SettingsItem Title="Encryption"
+                                        TitleValue="{Binding Encryption}"
+                                        Command="{Binding GoToEncryptionPageCommand}" />
+                    <views:SettingsItem Title="Password"
+                                        TitleValue=""
+                                        Command="{Binding GoToPasswordPageCommand}" />
+                </x:Array>
+            </cui:CircleListView.ItemsSource>
+
+            <cui:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HeightRequest="120"
+                                     HorizontalOptions="FillAndExpand"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="FillAndExpand">
+                            <StackLayout HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="Center">
+                                <Label FontSize="12"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       Text="{Binding Title}"
+                                       VerticalOptions="Center"
+                                       VerticalTextAlignment="End"
+                                       FontFamily="BreezeSans"
+                                       TextColor="#FAFAFA">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding TitleValue}"
+                                                     Value="">
+                                            <Setter Property="FontSize"
+                                                    Value="Large" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding Disabled}"
+                                                     Value="True">
+                                            <Setter Property="TextColor"
+                                                    Value="#474747" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label FontSize="9.5"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       Text="{Binding TitleValue}"
+                                       VerticalOptions="Center"
+                                       VerticalTextAlignment="Start"
+                                       FontFamily="BreezeSans"
+                                       TextColor="#4CCFFF">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding TitleValue}"
+                                                     Value="">
+                                            <Setter Property="IsVisible"
+                                                    Value="False" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Command}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </cui:CircleListView.ItemTemplate>
+
+            <cui:CircleListView.HeaderTemplate>
+                <DataTemplate>
+                    <AbsoluteLayout cui:CircleListView.CancelEffect="True">
+                        <Label AbsoluteLayout.LayoutBounds="127, 33, 184, 54"
+                               Text="{Binding .}"
+                               TextColor="#4CCDFC"
+                               FontSize="9.8"
+                               FontFamily="BreezeSans" />
+                    </AbsoluteLayout>
+                </DataTemplate>
+            </cui:CircleListView.HeaderTemplate>
+
+        </cui:CircleListView>
+    </cui:CirclePage.Content>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="SAVE"
+                              Command="{Binding GoToPreviousPageCommand}" />
+    </cui:CirclePage.ActionButton>
+
+</cui:CirclePage>

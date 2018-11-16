@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns:viewModels="clr-namespace: QRCodeGenerator.ViewModels;assembly=QRCodeGenerator"
+                xmlns:converters="clr-namespace: QRCodeGenerator.Converters;assembly=QRCodeGenerator"
+                x:Class="QRCodeGenerator.Tizen.Wearable.Views.EncryptionPage"
+                RotaryFocusObject="{x:Reference listView}"
+                NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:EncryptionViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Resources>
+        <ResourceDictionary>
+            <converters:EncryptionTypeToStringConverter x:Key="EncryptionTypeToStringConverter" />
+        </ResourceDictionary>
+    </cui:CirclePage.Resources>
+
+    <cui:CirclePage.Content>
+        <cui:CircleListView ItemsSource="{Binding EncryptionTypeList}"
+                            SelectedItem="{Binding SelectedEncryptionType, Mode=TwoWay}"
+                            x:Name="listView"
+                            VerticalOptions="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            Header="Encryption">
+            <cui:CircleListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <AbsoluteLayout HeightRequest="120">
+                                <cui:Radio AbsoluteLayout.LayoutBounds="258, 23, 76, 76"
+                                           IsSelected="{Binding IsSelected}" />
+                                <Label AbsoluteLayout.LayoutBounds="106, 0, 1, 120"
+                                       AbsoluteLayout.LayoutFlags="WidthProportional"
+                                       FontFamily="BreezeSans"
+                                       FontSize="12"
+                                       TextColor="#FAFAFA"
+                                       VerticalTextAlignment="Center"
+                                       Text="{Binding Name, Converter={StaticResource EncryptionTypeToStringConverter}}" />
+                            </AbsoluteLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </cui:CircleListView.ItemTemplate>
+            <cui:CircleListView.HeaderTemplate>
+                <DataTemplate>
+                    <AbsoluteLayout cui:CircleListView.CancelEffect="True">
+                        <Label AbsoluteLayout.LayoutBounds="110, 33, 188, 50"
+                               Text="{Binding .}"
+                               TextColor="#4CCDFC"
+                               FontSize="9.8"
+                               FontFamily="BreezeSans" />
+                    </AbsoluteLayout>
+                </DataTemplate>
+            </cui:CircleListView.HeaderTemplate>
+        </cui:CircleListView>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>

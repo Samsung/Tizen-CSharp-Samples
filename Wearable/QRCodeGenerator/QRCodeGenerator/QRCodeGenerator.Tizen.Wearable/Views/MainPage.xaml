@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:TwoButtonPage xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:viewModels="clr-namespace:QRCodeGenerator.ViewModels;assembly=QRCodeGenerator"
+                   x:Class="QRCodeGenerator.Tizen.Wearable.Views.MainPage"
+                   xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                   xmlns:converters="clr-namespace:QRCodeGenerator.Converters;assembly=QRCodeGenerator"
+                   NavigationPage.HasNavigationBar="False">
+
+    <cui:TwoButtonPage.BindingContext>
+        <viewModels:MainViewModel />
+    </cui:TwoButtonPage.BindingContext>
+
+    <cui:TwoButtonPage.Resources>
+        <ResourceDictionary>
+            <converters:GenerationPossibilityToWelcomeMessageConverter x:Key="GenerationPossibilityToWelcomeMessageConverter" />
+        </ResourceDictionary>
+    </cui:TwoButtonPage.Resources>
+
+    <cui:TwoButtonPage.Triggers>
+        <DataTrigger TargetType="cui:TwoButtonPage" Binding="{Binding GeneratingAllowed}" Value="True">
+            <Setter Property="SecondButton">
+                <Setter.Value>
+                    <MenuItem Command="{Binding GoToQRCommand}" Icon="qr_icon.png" />
+                </Setter.Value>
+            </Setter>
+        </DataTrigger>
+        <DataTrigger TargetType="cui:TwoButtonPage" Binding="{Binding GeneratingAllowed}" Value="False">
+            <Setter Property="SecondButton">
+                <Setter.Value>
+                    <MenuItem Icon="qr_icon_dimmed.png" />
+                </Setter.Value>
+            </Setter>
+        </DataTrigger>
+    </cui:TwoButtonPage.Triggers>
+
+    <cui:TwoButtonPage.Content>
+        <AbsoluteLayout>
+            <Label Text="Welcome"
+                   TextColor="#4CCDFC"
+                   AbsoluteLayout.LayoutBounds="122, 62 ,118, 34"
+                   FontFamily="BreezeSans"
+                   FontSize="9.35"
+                   HorizontalTextAlignment="Center"
+                   IsVisible="{Binding FirstView}" />
+            <Label TextColor="#CCCCCC"
+                   AbsoluteLayout.LayoutBounds="82, 108 ,197, 101"
+                   FontFamily="BreezeSans"
+                   FontSize="9.75"
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding GeneratingAllowed, Converter={StaticResource GenerationPossibilityToWelcomeMessageConverter}}" >
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding FirstView}"
+                                 Value="False">
+                        <Setter Property="AbsoluteLayout.LayoutBounds"
+                                Value="75, 127, 210, 108" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </AbsoluteLayout>
+    </cui:TwoButtonPage.Content>
+
+    <cui:TwoButtonPage.FirstButton>
+        <MenuItem Command="{Binding GoToSettingsCommand}"
+                  Icon="settings_icon.png" />
+    </cui:TwoButtonPage.FirstButton>
+
+</cui:TwoButtonPage>

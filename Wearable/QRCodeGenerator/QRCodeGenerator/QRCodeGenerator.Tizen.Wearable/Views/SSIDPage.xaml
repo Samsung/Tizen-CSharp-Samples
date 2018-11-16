@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:viewModels="clr-namespace:QRCodeGenerator.ViewModels;assembly=QRCodeGenerator"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="QRCodeGenerator.Tizen.Wearable.Views.SSIDPage"
+                NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:SSIDViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Content>
+        <AbsoluteLayout>
+            <Label Text="SSID"
+                   AbsoluteLayout.LayoutBounds="150, 60, 65, 33"
+                   FontFamily="BreezeSans"
+                   FontSize="9.6"
+                   VerticalTextAlignment="Center"
+                   TextColor="#4CCDFC" />
+            <cui:PopupEntry PlaceholderColor="#FAFAFA"
+                            TextColor="#FAFAFA"
+                            Placeholder="Enter SSID"
+                            BackgroundColor="#323232"
+                            FontFamily="BreezeSans"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand"
+                            AbsoluteLayout.LayoutBounds="35, 117, 290, 70"
+                            Opacity="0.82"
+                            Text="{Binding SSID}"
+                            MaxLength="32" />
+        </AbsoluteLayout>
+    </cui:CirclePage.Content>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="DONE"
+                              Command="{Binding GoToPreviousPageCommand}" />
+    </cui:CirclePage.ActionButton>
+
+    <cui:CirclePage.Triggers>
+        <DataTrigger TargetType="cui:CirclePage" Binding="{Binding SSID}" Value="">
+            <Setter Property="ActionButton">
+                <Setter.Value>
+                    <cui:ActionButtonItem IsEnable="False" Text="DONE"/>
+                </Setter.Value>
+            </Setter>
+        </DataTrigger>
+    </cui:CirclePage.Triggers>
+
+</cui:CirclePage>
