@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:VoiceRecorder.ViewModel;assembly=VoiceRecorder"
+             x:Class="VoiceRecorder.Tizen.Mobile.View.MobilePrivilegeDeniedPage"
+             BackgroundImage="bg.png"
+             ConfirmCommand="{Binding ConfirmCommand}">
+
+    <ContentPage.BindingContext>
+        <viewModel:PrivilegeDeniedViewModel />
+    </ContentPage.BindingContext>
+
+</ContentPage>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:VoiceRecorder.Control;assembly=VoiceRecorder"
+             xmlns:converter="clr-namespace:VoiceRecorder.Converter;assembly=VoiceRecorder"
+             xmlns:utils="clr-namespace:VoiceRecorder.Utils;assembly=VoiceRecorder"
+             x:Class="VoiceRecorder.Tizen.Mobile.View.MobileSettingsPage"
+             BackgroundImage="bg.png"
+             Title="Settings"
+             x:Name="Root">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:FileFormatTypeToTextConverter x:Key="FileFormatTypeToText" />
+            <converter:AudioBitRateTypeToTextConverter x:Key="AudioBitRateTypeToText" />
+
+            <DataTemplate x:Key="StereoTemplate">
+                <ViewCell>
+                    <Grid HeightRequest="120"
+                          Padding="32, 0, 32, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               FontSize="25"
+                               VerticalOptions="Center"
+                               Text="Record in stereo" />
+                        <Switch Grid.Column="1"
+                                HeightRequest="72"
+                                IsToggled="{Binding Source={x:Reference Name=SettingsList},
+                                    Path=BindingContext.IsStereo}"
+                                WidthRequest="72" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="RecordingQualityTemplate">
+                <control:ViewCellCommandExtension x:Name="CellRecordingQuality"
+                                                  CellContext="{Binding Source={x:Reference Name=CellRecordingQuality},
+                                                      Path=View, Mode=TwoWay}"
+                                                  Command="{Binding ShowSettingPopupCommand}"
+                                                  CommandParameter="{Binding
+                                                      Source={x:Reference Name=CellRecordingQuality}, Path=View}">
+                    <AbsoluteLayout HeightRequest="144">
+                        <Label AbsoluteLayout.LayoutBounds="32, 18, 498, 54"
+                               HorizontalOptions="Start"
+                               FontSize="25"
+                               Text="Recording quality"
+                               TextColor="#000000" />
+                        <Label AbsoluteLayout.LayoutBounds="32, 72, 498, 43"
+                               FontSize="20"
+                               Text="{Binding Source={x:Reference Name=SettingsList},
+                                   Path=BindingContext.CurrentRecordingQuality,
+                                   Converter={StaticResource AudioBitRateTypeToText}}"
+                               TextColor="#737373" />
+                    </AbsoluteLayout>
+                </control:ViewCellCommandExtension>
+            </DataTemplate>
+
+            <DataTemplate x:Key="FileFormatTemplate">
+                <control:ViewCellCommandExtension x:Name="CellFileFormat"
+                                                  CellContext="{Binding Source={x:Reference Name=CellFileFormat},
+                                                      Path=View, Mode=TwoWay}"
+                                                  Command="{Binding ShowSettingPopupCommand}"
+                                                  CommandParameter="{Binding Source={x:Reference Name=CellFileFormat},
+                                                      Path=View}">
+                    <AbsoluteLayout HeightRequest="144">
+                        <Label AbsoluteLayout.LayoutBounds="32, 18, 498, 54"
+                               FontSize="25"
+                               HorizontalOptions="Start"
+                               Text="File format"
+                               TextColor="#000000" />
+                        <Label AbsoluteLayout.LayoutBounds="32, 72, 498, 43"
+                               FontSize="20"
+                               Text="{Binding Source={x:Reference Name=SettingsList},
+                                   Path=BindingContext.CurrentFileFormat,
+                                   Converter={StaticResource FileFormatTypeToText}}"
+                               TextColor="#737373" />
+                    </AbsoluteLayout>
+                </control:ViewCellCommandExtension>
+            </DataTemplate>
+
+            <utils:SettingsItemTemplateSelector x:Key="SettingsItemTemplateSelector"
+                                                StereoTemplate="{StaticResource StereoTemplate}"
+                                                RecordingQualityTemplate="{StaticResource RecordingQualityTemplate}"
+                                                FileFormatTemplate="{StaticResource FileFormatTemplate}" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <control:NonSelectableListView x:Name="SettingsList"
+                                           BackgroundColor="#3dc0cc"
+                                           ItemsSource="{Binding SettingsCollection}"
+                                           ItemTemplate="{StaticResource SettingsItemTemplateSelector}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
