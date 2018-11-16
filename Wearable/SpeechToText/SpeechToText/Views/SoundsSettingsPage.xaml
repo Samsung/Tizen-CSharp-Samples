@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage
+    xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SpeechToText.Views.SoundsSettingsPage"
+             xmlns:views="clr-namespace:SpeechToText.Views"
+             xmlns:controls="clr-namespace:SpeechToText.Controls"
+             xmlns:behaviors="clr-namespace:SpeechToText.Behaviors"
+             NavigationPage.HasNavigationBar="False"
+             RotaryFocusObject="{x:Reference SettingsList}">
+
+    <w:CirclePage.Behaviors>
+        <behaviors:PageCommandsBehavior AppearingCommand="{Binding Source={x:Static Application.Current}, Path=AppViewModel.UpdateAvailableStartEndSoundsCommand}" />
+    </w:CirclePage.Behaviors>
+
+    <w:CirclePage.Resources>
+        <ResourceDictionary>
+            <x:Array Type="{x:Type x:String}" x:Key="ListItems">
+                <x:String>switch</x:String>
+                <x:String>start_sound</x:String>
+                <x:String>end_sound</x:String>
+            </x:Array>
+
+            <views:SoundsSettingsTemplateSelector x:Key="ListTemplateSelector">
+                <views:SoundsSettingsTemplateSelector.SoundSwitchTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"
+                                         Padding="30">
+                                <Label Text="Sound"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       FontSize="Small" />
+                                <Switch HorizontalOptions="End"
+                                        IsToggled="{Binding Source={x:Static Application.Current}, Path=AppViewModel.WizardSoundOn, Mode=TwoWay}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </views:SoundsSettingsTemplateSelector.SoundSwitchTemplate>
+                <views:SoundsSettingsTemplateSelector.StartSoundTemplate>
+                    <DataTemplate>
+                        <controls:SubtitleCell Text="Start sound"
+                                               Subtitle="{Binding Source={x:Static Application.Current}, Path=AppViewModel.WizardStartSound, Converter={StaticResource SoundPathToNameConverter}}"
+                                               Command="{Binding Source={x:Static Application.Current}, Path=AppViewModel.NavigateCommand}"
+                                               CommandParameter="{x:Type views:StartSoundListPage}" />
+                    </DataTemplate>
+                </views:SoundsSettingsTemplateSelector.StartSoundTemplate>
+                <views:SoundsSettingsTemplateSelector.EndSoundTemplate>
+                    <DataTemplate>
+
+                        <controls:SubtitleCell Text="End sound"
+                                               Subtitle="{Binding Source={x:Static Application.Current}, Path=AppViewModel.WizardEndSound, Converter={StaticResource SoundPathToNameConverter}}"
+                                               Command="{Binding Source={x:Static Application.Current}, Path=AppViewModel.NavigateCommand}"
+                                               CommandParameter="{x:Type views:EndSoundListPage}" />
+
+                    </DataTemplate>
+                </views:SoundsSettingsTemplateSelector.EndSoundTemplate>
+            </views:SoundsSettingsTemplateSelector>
+        </ResourceDictionary>
+    </w:CirclePage.Resources>
+
+    <w:CirclePage.Content>
+        <StackLayout>
+            <controls:SettingsPageTitleControl Text="Sounds"/>
+
+            <w:CircleListView ItemsSource="{StaticResource ListItems}"
+                              ItemTemplate="{StaticResource ListTemplateSelector}"
+                              x:Name="SettingsList" />  
+        </StackLayout>
+    </w:CirclePage.Content>
+</w:CirclePage>

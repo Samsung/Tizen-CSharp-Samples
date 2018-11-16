@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:local="clr-namespace:MediaContent.Controls"
+              x:Class="MediaContent.Views.FileDetailsPage"
+              x:Name="Page"
+              NavigationPage.HasNavigationBar="false"
+              Title="FileInformation"
+              RotaryFocusObject="{Binding Source={x:Reference scrollView}}">
+
+    <w:CircleScrollView x:Name="scrollView">
+        <StackLayout BackgroundColor="#1b1b1b" >
+            <local:FileInfoTable File="{Binding SelectedFile}"/>
+        </StackLayout>
+    </w:CircleScrollView>
+
+</w:CirclePage>

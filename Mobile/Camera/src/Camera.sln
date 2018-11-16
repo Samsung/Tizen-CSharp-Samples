@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camera", "Camera\Camera\Camera.csproj", "{6C6AF9DB-4C5E-4E3C-BBBF-5994C8CCB903}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camera.Tizen.Mobile", "Camera\Camera.Tizen.Mobile\Camera.Tizen.Mobile.csproj", "{090F1C2F-E259-4BB1-B27C-71BF0E8B7CC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C6AF9DB-4C5E-4E3C-BBBF-5994C8CCB903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6AF9DB-4C5E-4E3C-BBBF-5994C8CCB903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6AF9DB-4C5E-4E3C-BBBF-5994C8CCB903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6AF9DB-4C5E-4E3C-BBBF-5994C8CCB903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{090F1C2F-E259-4BB1-B27C-71BF0E8B7CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{090F1C2F-E259-4BB1-B27C-71BF0E8B7CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{090F1C2F-E259-4BB1-B27C-71BF0E8B7CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{090F1C2F-E259-4BB1-B27C-71BF0E8B7CC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7FBEC65-659D-4BED-BE7D-D09729A78F01}
+	EndGlobalSection
+EndGlobal

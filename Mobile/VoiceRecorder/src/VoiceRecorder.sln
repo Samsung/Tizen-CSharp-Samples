@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceRecorder", "VoiceRecorder\VoiceRecorder\VoiceRecorder.csproj", "{84A111E7-662B-451D-803B-E795097F8BEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceRecorder.Tizen.Mobile", "VoiceRecorder\VoiceRecorder.Tizen.Mobile\VoiceRecorder.Tizen.Mobile.csproj", "{05AD6C35-FB11-425B-AB5E-AA4B883B8C3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84A111E7-662B-451D-803B-E795097F8BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84A111E7-662B-451D-803B-E795097F8BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84A111E7-662B-451D-803B-E795097F8BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84A111E7-662B-451D-803B-E795097F8BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05AD6C35-FB11-425B-AB5E-AA4B883B8C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05AD6C35-FB11-425B-AB5E-AA4B883B8C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05AD6C35-FB11-425B-AB5E-AA4B883B8C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05AD6C35-FB11-425B-AB5E-AA4B883B8C3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBC11014-4BD9-488E-9067-152CD3D602DE}
+	EndGlobalSection
+EndGlobal

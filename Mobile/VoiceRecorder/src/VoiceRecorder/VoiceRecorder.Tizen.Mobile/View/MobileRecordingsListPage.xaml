@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoiceRecorder.Tizen.Mobile.View.MobileRecordingsListPage"
+             xmlns:converters="clr-namespace:VoiceRecorder.Converter;assembly=VoiceRecorder">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FullPathToNameConverter x:Key="FullPathToNameConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="RecordingsListView"
+                      BackgroundColor="#3dc0cc"
+                      ItemsSource="{Binding RecordingsCollection}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <AbsoluteLayout>
+                                <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 623, 144">
+                                    <Image AbsoluteLayout.LayoutBounds="32, 40, 64, 64"
+                                           Source="play_2.png" />
+                                    <Label AbsoluteLayout.LayoutBounds="128, 18, 498, 54"
+                                           HorizontalOptions="Start"
+                                           FontSize="25"
+                                           Text="{Binding Path, Converter={StaticResource FullPathToNameConverter}}"
+                                           TextColor="#000000" />
+                                    <Label AbsoluteLayout.LayoutBounds="128, 72, 498, 43"
+                                           HorizontalOptions="Start"
+                                           FontSize="20"
+                                           Text="{Binding Duration}"
+                                           TextColor="#737373" />
+                                    <AbsoluteLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GoToPlayerCommand}"
+                                                              CommandParameter="{Binding .}" />
+                                    </AbsoluteLayout.GestureRecognizers>
+                                </AbsoluteLayout>
+                                <AbsoluteLayout AbsoluteLayout.LayoutBounds="623, 0, 97, 144">
+                                    <Image AbsoluteLayout.LayoutBounds="15, 47, 50, 50"
+                                           Source="delete_normal.png" />
+                                    <AbsoluteLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding DeleteItemCommand}"
+                                                              CommandParameter="{Binding .}" />
+                                    </AbsoluteLayout.GestureRecognizers>
+                                </AbsoluteLayout>
+                            </AbsoluteLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Triggers>
+                    <DataTrigger Binding="{Binding RecordingsCollection.Count}"
+                                 TargetType="ListView"
+                                 Value="0">
+                        <Setter Property="IsVisible"
+                                Value="False" />
+                    </DataTrigger>
+                </ListView.Triggers>
+            </ListView>
+            <StackLayout BackgroundColor="White"
+                         HorizontalOptions="FillAndExpand"
+                         IsVisible="false"
+                         VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                    <Label FontSize="25"
+                           HorizontalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           Margin="0, 20, 0, 20"
+                           Text="No recordings"
+                           VerticalOptions="FillAndExpand"
+                           VerticalTextAlignment="Center" />
+                    <Label FontSize="20"
+                           HorizontalOptions="FillAndExpand"
+                           HorizontalTextAlignment="Center"
+                           Margin="80, 20, 80, 20"
+                           Text="You have no recordings yet.&#x0a;After you record, list of your voice notes&#x0a;will be shown here."
+                           TextColor="Gray"
+                           VerticalOptions="FillAndExpand"
+                           VerticalTextAlignment="Center" />
+                </StackLayout>
+                <StackLayout.Triggers>
+                    <DataTrigger Binding="{Binding RecordingsCollection.Count}"
+                                 TargetType="StackLayout"
+                                 Value="0">
+                        <Setter Property="IsVisible"
+                                Value="True" />
+                    </DataTrigger>
+                </StackLayout.Triggers>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

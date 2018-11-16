@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoiceRecorder.Tizen.Mobile.View.MobileVoiceRecorderPage"
+             BackgroundImage="bg.png">
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 720, 1050"
+                   Source="bg_highlight.png" />
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 720, 1"
+                   Source="separator.png" />
+            <Image AbsoluteLayout.LayoutBounds="105, 120, 510, 510"
+                   Source="progress.png" />
+            <Image AbsoluteLayout.LayoutBounds="105, 120, 510, 510"
+                   Source="{Binding ProgressImage}" />
+            <Label AbsoluteLayout.LayoutBounds="0, 120, 720, 510"
+                   FontSize="75"
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding RecordingTime}"
+                   TextColor="#FAFAFA"
+                   VerticalOptions="Center" />
+            <Label AbsoluteLayout.LayoutBounds="0, 120, 720, 510"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 150, 0, 0"
+                   Text="Paused"
+                   TextColor="#FAFAFA"
+                   VerticalOptions="Center">
+                <Label.Triggers>
+                    <MultiTrigger TargetType="Label">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding IsRecording}"
+                                              Value="False" />
+                            <BindingCondition Binding="{Binding RecordingLength}"
+                                              Value="0" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Text"
+                                Value="Ready to start" />
+                    </MultiTrigger>
+                    <DataTrigger Binding="{Binding IsRecording}"
+                                 Value="True"
+                                 TargetType="Label">
+                        <Setter Property="Text"
+                                Value="Recording" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Label AbsoluteLayout.LayoutBounds="0, 817, 720, 100"
+                   FontSize="20"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Start"
+                   Text="Tap to resume"
+                   TextColor="#FAFAFA">
+                <Label.Triggers>
+                    <MultiTrigger TargetType="Label">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding IsRecording}"
+                                              Value="False" />
+                            <BindingCondition Binding="{Binding RecordingLength}"
+                                              Value="0" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Text"
+                                Value="Tap to record" />
+                    </MultiTrigger>
+                    <DataTrigger Binding="{Binding IsRecording}"
+                                 Value="True"
+                                 TargetType="Label">
+                        <Setter Property="Text"
+                                Value="Tap to pause" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Image AbsoluteLayout.LayoutBounds="303, 874, 114, 114"
+                   Source="record.png">
+                <Image.Triggers>
+                    <DataTrigger Binding="{Binding IsRecording}"
+                                 Value="True"
+                                 TargetType="Image">
+                        <Setter Property="Source"
+                                Value="pause.png" />
+                    </DataTrigger>
+                </Image.Triggers>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding StartRecordingCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image AbsoluteLayout.LayoutBounds="177, 891, 80, 80"
+                   Source="cancel.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CancelRecordingCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image AbsoluteLayout.LayoutBounds="463, 891, 80, 80"
+                   Source="stop.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding StopRecordingCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

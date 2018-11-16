@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns:viewmodels="clr-namespace:TextReader.ViewModels;assembly=TextReader"
+             xmlns:converters="clr-namespace:TextReader.Converters;assembly=TextReader"
+             xmlns:controls="clr-namespace:TextReader.Controls;assembly=TextReader"
+             x:Class="TextReader.MainPage"
+             Title="Text Reader"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
+
+    <w:CirclePage.BindingContext>
+        <viewmodels:TextReaderViewModel x:Name="MainContext" />
+    </w:CirclePage.BindingContext>
+
+    <w:CirclePage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="MainColor"
+                   x:FactoryMethod="FromRgb">
+                <x:Arguments>
+                    <x:Int32>74</x:Int32>
+                    <x:Int32>164</x:Int32>
+                    <x:Int32>178</x:Int32>
+                </x:Arguments>
+            </Color>
+
+            <Color x:Key="TextColor"
+                   x:FactoryMethod="FromRgb">
+                <x:Arguments>
+                    <x:Int32>115</x:Int32>
+                    <x:Int32>115</x:Int32>
+                    <x:Int32>115</x:Int32>
+                </x:Arguments>
+            </Color>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="White">
+                </Setter>
+            </Style>
+
+            <Style x:Key="Paragraph"
+                   TargetType="StackLayout">
+                <Setter Property="Padding"
+                        Value="10, 0, 0, 0"></Setter>
+            </Style>
+
+            <Style x:Key="ParagraphLabel"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="6"></Setter>
+            </Style>
+
+            <converters:BoolToStringConverter x:Key="PlayStateToButtonImage">
+                <x:Arguments>
+                    <x:String>images/pause.png</x:String>
+                    <x:String>images/play.png</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <converters:BoolToStringConverter x:Key="PlayStateToText">
+                <x:Arguments>
+                    <x:String>Pause</x:String>
+                    <x:String>Play</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <converters:BoolToStringConverter x:Key="PlayStateToButtonHoverImage">
+                <x:Arguments>
+                    <x:String>images/play_hover.png</x:String>
+                    <x:String>images/pause_hover.png</x:String>
+                </x:Arguments>
+            </converters:BoolToStringConverter>
+
+            <controls:DialogConfirm x:Key="ResetConfirmationDialog"
+                                    Title="Reset Confirmation"
+                                    Message="Are you sure you want to reset this app to default screen?"
+                                    ExecuteCommand="{Binding ResetConfirmationDialogCommand}"
+                                    ConfirmCommand="{Binding ResetConfirmedCommand}" />
+        </ResourceDictionary>
+    </w:CirclePage.Resources>
+
+    <w:CirclePage.ToolbarItems>
+        <w:CircleToolbarItem
+            Command="{Binding ToggleRepeatUnitCommand}"
+            Icon="images/repeat_unit.png"
+            Text="Repeat unit"/>
+        <w:CircleToolbarItem
+            Command="{Binding GoToPreviousUnitCommand}"
+            Icon="images/back.png"
+            Text="Back"/>
+        <w:CircleToolbarItem
+            Command="{Binding TogglePlayStateCommand}"
+            Icon="{Binding Playing, Mode=OneWay, Converter={StaticResource PlayStateToButtonImage}}"
+            Text="{Binding Playing, Mode=OneWay, Converter={StaticResource PlayStateToText}}"/>
+        <w:CircleToolbarItem
+            Command="{Binding GoToNextUnitCommand}"
+            Icon="images/forward.png"
+            Text="Next"/>
+        <w:CircleToolbarItem
+            Command="{Binding ToggleRepeatAllCommand}"
+            Icon="images/repeat_all.png"
+            Text="Repeat all"/>
+        <w:CircleToolbarItem
+            x:Name="ResetToolbarItem"
+            Icon="images/reset.png"
+            Text="RESET"
+            Command="{Binding ResetCommand}" />
+    </w:CirclePage.ToolbarItems>
+    
+    <StackLayout Spacing="0">
+            <w:CircleListView ItemsSource="{Binding Paragraphs}"
+                      IsPullToRefreshEnabled="False"
+                      x:Name="ParagraphsListView"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True"
+                      SelectedItem="{Binding ActiveParagraph, Mode=TwoWay}">
+
+                <w:CircleListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Style="{StaticResource Paragraph}">
+                                <Label Style="{StaticResource ParagraphLabel}" Text="{Binding Text, Mode=OneWay}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding Active, StringFormat='{0}'}" Value="True">
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </w:CircleListView.ItemTemplate>
+
+            </w:CircleListView>
+        </StackLayout>
+
+</w:CirclePage>

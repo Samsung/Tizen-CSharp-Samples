@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+				xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+				xmlns:local="clr-namespace:Sensors.Extensions" 
+				xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+				x:Class="Sensors.Pages.ProximityPage"
+				x:Name="Page"
+				BindingContext="{Binding Source={x:Reference Page}, Path=Model}"
+				RotaryFocusObject="{x:Reference pageScroller}">
+	<cui:CircleScrollView x:Name="pageScroller" Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" HeightRequest="300">
+		<StackLayout>
+			<Label Text="Proximity" HorizontalOptions="Center"/>
+			<Label Text="{Binding IsSupported, StringFormat='Is supported: {0}'}" Style="{StaticResource LabelDataStyle}"/>
+			<Label Text="{Binding SensorCount, StringFormat='Sensor count: {0}'}" Style="{StaticResource LabelDataStyle}"/>
+			<Label Text="{Binding Proximity, StringFormat='Proximity: {0}'}" Style="{StaticResource LabelDataStyle}"/>
+		</StackLayout>
+	</cui:CircleScrollView>
+</cui:CirclePage>
