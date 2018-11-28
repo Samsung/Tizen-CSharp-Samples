@@ -135,7 +135,7 @@ namespace Weather.ViewModels
                 {
                     ((App)Application.Current).IsInitialized = false;
                     EnteredCity = value.Name;
-                    CityEntryTextColor = Color.FromRgb(128, 128, 128);
+                    CityEntryTextColor = Color.Gray;
                     CheckWeatherCommand.ChangeCanExecute();
                 }
                 else
