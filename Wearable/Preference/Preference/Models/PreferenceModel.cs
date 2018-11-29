@@ -53,8 +53,8 @@ namespace Preference.Models
         /// Returns value assigned to the key.
         /// </summary>
         /// <param name="key">Key name.</param>
-        /// <returns>Returns value assigned to requested key. If key doesn't exist and requested type is string, empty string is returned.
-        /// If key doesn't exist and requested type is not a string, default value for requested type is returned</returns>
+        /// <returns>Returns value assigned to requested key. If key does not exist and requested type is string, empty string is returned.
+        /// If key does not exist and requested type is not a string, default value for requested type is returned</returns>
         public object Get<T>(string key)
         {
             object value = default(T);
