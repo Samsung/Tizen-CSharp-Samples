@@ -68,7 +68,7 @@ namespace NetworkApp.ViewModels
         public string ConnectButtonText { get; set; } = "Connect";
 
         /// <summary>
-        /// Gets or sets password user entered in popup Entry
+        /// Gets or sets password user entered in PopupEntry
         /// </summary>
         public string Password { get; set; }
 
@@ -92,7 +92,7 @@ namespace NetworkApp.ViewModels
                 ConnectButtonText = "Connecting...";
                 RefreshBindings();
                 await _wifi.Connect(APName, Password);
-                // No exception, so wifi connected
+                // No exception, so Wi-Fi connected
                 Toast.DisplayText("Connected!");
                 RefreshBindings();
             }

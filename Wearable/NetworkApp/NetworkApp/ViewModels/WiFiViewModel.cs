@@ -146,7 +146,7 @@ namespace NetworkApp.ViewModels
         }
 
         /// <summary>
-        /// Changes wi-fi status
+        /// Changes Wi-Fi status
         /// </summary>
         private async void ChangeConnectionStatus()
         {
