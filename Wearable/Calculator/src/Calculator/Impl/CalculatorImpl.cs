@@ -207,7 +207,7 @@ namespace Calculator.Impl
                         double _op1 = 0;
                         double _op2 = 0;
 
-                        // This section retrives arguments needed by operator
+                        // This section retrieves arguments needed by operator
                         if (op is IBinaryOperator)
                         {
                             op2 = operand.Pop();
