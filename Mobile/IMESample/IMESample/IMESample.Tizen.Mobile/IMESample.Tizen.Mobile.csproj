@@ -6,6 +6,11 @@
     <TargetFramework>tizen50</TargetFramework>
   </PropertyGroup>
 
+  <!-- Property Group for Tizen Project -->
+  <PropertyGroup>
+      <TizenCreateTpkOnBuild>true</TizenCreateTpkOnBuild>
+  </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>portable</DebugType>
   </PropertyGroup>
@@ -15,8 +20,6 @@
 
   <ItemGroup>
     <Folder Include="lib\" />
-    <Folder Include="Ports\" />
-    <Folder Include="Renderers\" />
     <Folder Include="res\" />
   </ItemGroup>
 
@@ -29,16 +32,9 @@
   
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>	
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14572" />	
+    <PackageReference Include="Tizen.NET" Version="5.0.0.14591" />
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.5.1.444934" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-  <Reference Include="..\..\..\tizenfx\Artifacts\bin\public\*.dll">
-    <Private>false</Private>
-  </Reference>
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
 
 </Project>

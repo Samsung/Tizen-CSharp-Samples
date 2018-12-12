@@ -6,16 +6,8 @@
 
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14572">
-		<ExcludeAssets>Runtime;Compile</ExcludeAssets>
-	</PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.121934" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="..\..\..\tizenfx\Artifacts\bin\public\*.dll">
-      <Private>false</Private>
-    </Reference>
+    <PackageReference Include="Tizen.NET" Version="5.0.0.14591" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,4 +19,7 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+      <Folder Include="Views\" />
+  </ItemGroup>
 </Project>
