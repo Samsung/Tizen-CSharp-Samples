@@ -30,7 +30,6 @@ namespace DeviceApp
                 new FeatureItem("IR"),
                 new FeatureItem("Led"),
                 new FeatureItem("Camera back flash"),
-                new FeatureItem("Power Lock"),
             };
             DeviceFeatureList.ItemsSource = featureItems;
         }
@@ -50,8 +49,6 @@ namespace DeviceApp
                 LedSample();
             else if (item.Name.Equals("Camera back flash"))
                 BackflashSample();
-            else if (item.Name.Equals("Power Lock"))
-                PowerSample();
             else
                 this.Navigation.PushAsync(new SimpleResult("Wrong operation"));
         }
@@ -171,11 +168,6 @@ namespace DeviceApp
             {
                 this.Navigation.PushAsync(new SimpleResult("Failed: IR\n" + e.Message));
             }
-        }
-
-        private void PowerSample()
-        {
-            this.Navigation.PushAsync(new PowerLockPage());
         }
 
         private void LedSample()
