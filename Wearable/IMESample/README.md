@@ -1,9 +1,8 @@
 # IMESample
 This is a simple project for C# IME(Input Method Editor) Application, which lets you create your own IME.
-SampleIME is mainly designed for Tizen Mobile profile.
+SampleIME is mainly designed for Tizen Wearable profile.
 
-![portrait_ime](./ScreenShots/portrait_ime.png)
-![landscape_ime](./ScreenShots/landscape_ime.png)
+![IMESample](./IMESample.png)
 
 
 ### Verified Version
@@ -13,7 +12,7 @@ SampleIME is mainly designed for Tizen Mobile profile.
 
 
 ### Supported Profile
-* Mobile
+* Wearable
 
 ### Author
 * Sungwook Park (sungwook79.park@samsung.com)

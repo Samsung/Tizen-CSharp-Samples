@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:IMESample.ViewModels"
+             xmlns:control="clr-namespace:IMESample.Controls"
+             x:Class="IMESample.Views.IME_KEYBOARD_LAYOUT_QWERTY_PORT"
+             BackgroundImage="sample_ime_keyboard_bg.png"
+             Padding="0, 0, 0, 0">
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Spacing="5" Padding="8,11,8,23">
+        <RelativeLayout HeightRequest="40" Padding="0" Margin="0">
+            <Grid
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                RowSpacing="0"
+                ColumnSpacing="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <RelativeLayout Grid.Row="0" Grid.Column="0" WidthRequest="65">
+                    <Button x:Name="BUTTON_Q" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1" 
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[0]}"/>
+                    <Label x:Name="MainLabel_Q" Text="{Binding MainLabel[0]}" FontSize="Large" 
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="1">
+                    <Button x:Name="BUTTON_W" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1" 
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[1]}"/>
+                    <Label x:Name="MainLabel_W" Text="{Binding MainLabel[1]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="2">
+                    <Button x:Name="BUTTON_E" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1" 
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[2]}"/>
+                    <Label x:Name="MainLabel_E" Text="{Binding MainLabel[2]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="3">
+                    <Button x:Name="BUTTON_R" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1" 
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[3]}"/>
+                    <Label x:Name="MainLabel_R" Text="{Binding MainLabel[3]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="4">
+                    <Button x:Name="BUTTON_T" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1" 
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[4]}"/>
+                    <Label x:Name="MainLabel_T" Text="{Binding MainLabel[4]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="5">
+                    <Button x:Name="BUTTON_Y" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[5]}"/>
+                    <Label x:Name="MainLabel_Y" Text="{Binding MainLabel[5]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="6">
+                    <Button x:Name="BUTTON_U" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[6]}"/>
+                    <Label x:Name="MainLabel_U" Text="{Binding MainLabel[6]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="7">
+                    <Button x:Name="BUTTON_I" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[7]}"/>
+                    <Label x:Name="MainLabel_I" Text="{Binding MainLabel[7]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="8">
+                    <Button x:Name="BUTTON_O" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[8]}"/>
+                    <Label x:Name="MainLabel_O" Text="{Binding MainLabel[8]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="9">
+                    <Button x:Name="BUTTON_P" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[9]}"/>
+                    <Label x:Name="MainLabel_P" Text="{Binding MainLabel[9]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+            </Grid>
+        </RelativeLayout>
+        <RelativeLayout HeightRequest="40" Padding="0" Margin="7,0,7,0">
+            <Grid
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                RowSpacing="0"
+                ColumnSpacing="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <RelativeLayout Grid.Row="0" Grid.Column="0" WidthRequest="65">
+                    <Button x:Name="BUTTON_A" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1" 
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[10]}"/>
+                    <Label x:Name="MainLabel_A" Text="{Binding MainLabel[10]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="1">
+                    <Button x:Name="BUTTON_S" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[11]}"/>
+                    <Label x:Name="MainLabel_S" Text="{Binding MainLabel[11]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="2">
+                    <Button x:Name="BUTTON_D" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[12]}"/>
+                    <Label x:Name="MainLabel_D" Text="{Binding MainLabel[12]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="3">
+                    <Button x:Name="BUTTON_F" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[13]}"/>
+                    <Label x:Name="MainLabel_F" Text="{Binding MainLabel[13]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="4">
+                    <Button x:Name="BUTTON_G" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[14]}"/>
+                    <Label x:Name="MainLabel_G" Text="{Binding MainLabel[14]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="5">
+                    <Button x:Name="BUTTON_H" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[15]}"/>
+                    <Label x:Name="MainLabel_H" Text="{Binding MainLabel[15]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="6">
+                    <Button x:Name="BUTTON_J" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[16]}"/>
+                    <Label x:Name="MainLabel_J" Text="{Binding MainLabel[16]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="7">
+                    <Button x:Name="BUTTON_K" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[17]}"/>
+                    <Label x:Name="MainLabel_K" Text="{Binding MainLabel[17]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="8">
+                    <Button x:Name="BUTTON_L" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[18]}"/>
+                    <Label x:Name="MainLabel_L" Text="{Binding MainLabel[18]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+            </Grid>
+        </RelativeLayout>
+        <RelativeLayout HeightRequest="40" Padding="0" Margin="15,0,15,0">
+            <Grid
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                RowSpacing="0"
+                ColumnSpacing="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="45"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <RelativeLayout Grid.Row="0" Grid.Column="0" WidthRequest="65">
+                    <Button x:Name="BUTTON_SHIFT" BackgroundColor="{Binding ShiftBgImageColor}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1" 
+                        Command="{Binding ShiftButton}" />
+                    <Label x:Name="Sym" Text="{Binding SymText}" FontSize="Medium"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.25}"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.15}"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" 
+                            TextColor="#111111"/>
+                    <Image x:Name="Image_Shift" 
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.6, Constant=-27}"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6, Constant=-27}"
+                       Source="{Binding ShiftImage}" Opacity="{Binding ShiftImageOpacity}"/>
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="1">
+                    <Button x:Name="BUTTON_Z" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[19]}"/>
+                    <Label x:Name="MainLabel_Z" Text="{Binding MainLabel[19]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="2">
+                    <Button x:Name="BUTTON_X" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[20]}"/>
+                    <Label x:Name="MainLabel_X" Text="{Binding MainLabel[20]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="3">
+                    <Button x:Name="BUTTON_C" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[21]}"/>
+                    <Label x:Name="MainLabel_C" Text="{Binding MainLabel[21]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="4">
+                    <Button x:Name="BUTTON_V" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[22]}"/>
+                    <Label x:Name="MainLabel_V" Text="{Binding MainLabel[22]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="5">
+                    <Button x:Name="BUTTON_B" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[23]}"/>
+                    <Label x:Name="MainLabel_B" Text="{Binding MainLabel[23]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="6">
+                    <Button x:Name="BUTTON_M" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[24]}"/>
+                    <Label x:Name="MainLabel_M" Text="{Binding MainLabel[24]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="7">
+                    <Button x:Name="BUTTON_N" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="{Binding MainLabel[25]}"/>
+                    <Label x:Name="MainLabel_N" Text="{Binding MainLabel[25]}" FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="8">
+                    <Button x:Name="BUTTON_BACKSPACE" BackgroundColor="Gray"  
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1" 
+                        Command="{Binding Backspace}" />
+                    <Image x:Name="Image_Backspace" 
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.6, Constant=-27}"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6, Constant=-27}"
+                       Source="sample_ime_back_space_normal.png" />
+                </RelativeLayout>
+            </Grid>
+        </RelativeLayout>
+        <RelativeLayout  HeightRequest="40" Padding="0" Margin="70,0,70,0">
+            <Grid
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=0}"
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0, Constant=0}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                RowSpacing="0"
+                ColumnSpacing="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="32*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="32*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <RelativeLayout Grid.Row="0" Grid.Column="0">
+                    <Button x:Name="BUTTON_LAYOUT" BackgroundColor="Gray"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding LayoutButton}"/>
+                    <Label x:Name="MainLabel_LAYOUT" Text="{Binding LayoutString}" FontSize="Micro"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=-0.1}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="1">
+                    <Button x:Name="BUTTON_COMMA" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1" 
+                        Command="{Binding PressButton}"
+                        CommandParameter=","/>
+                    <Label x:Name="MainLabel_COMMA" Text="," FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="2">
+                    <Button x:Name="BUTTON_SPACE" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter=" "/>
+                    <Image x:Name="Image_Space" 
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.4}"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0, Constant=0}"
+                       Source="sample_ime_space_normal.png" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="3">
+                    <Button x:Name="BUTTON_JUM" BackgroundColor="WhiteSmoke"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding PressButton}"
+                        CommandParameter="."/>
+                    <Label x:Name="MainLabel_JUM" Text="." FontSize="Large"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" 
+                               TextColor="#111111" />
+                </RelativeLayout>
+                <RelativeLayout Grid.Row="0" Grid.Column="4">
+                    <Button x:Name="BUTTON_RETURN" BackgroundColor="Gray"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                        Opacity="1"
+                        Command="{Binding ReturnButton}" />
+                    <Image x:Name="Image_Return" 
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.6, Constant=-27}"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6, Constant=-27}"
+                       Source="sample_ime_enter_normal.png" />
+                </RelativeLayout>
+            </Grid>
+        </RelativeLayout>
+    </StackLayout>
+ </ContentPage>

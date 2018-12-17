@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMESample", "IMESample\IMESample\IMESample.csproj", "{C6FDF31E-8A12-4CAC-9BFA-76E8CEB4EE41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMESample.Tizen.Wearable", "IMESample\IMESample.Tizen.Wearable\IMESample.Tizen.Wearable.csproj", "{7067E418-63C6-4285-8DB0-AD6B99F3C796}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6FDF31E-8A12-4CAC-9BFA-76E8CEB4EE41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6FDF31E-8A12-4CAC-9BFA-76E8CEB4EE41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6FDF31E-8A12-4CAC-9BFA-76E8CEB4EE41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6FDF31E-8A12-4CAC-9BFA-76E8CEB4EE41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7067E418-63C6-4285-8DB0-AD6B99F3C796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7067E418-63C6-4285-8DB0-AD6B99F3C796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7067E418-63C6-4285-8DB0-AD6B99F3C796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7067E418-63C6-4285-8DB0-AD6B99F3C796}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7054E4A4-E583-424D-9BF6-2E433433E0C8}
+	EndGlobalSection
+EndGlobal
