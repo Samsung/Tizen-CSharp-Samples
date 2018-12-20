@@ -39,7 +39,10 @@ namespace StorageApp
             foreach (Storage storage in storages)
             {
                 if (storage.StorageType != StorageArea.Internal)
+                {
                     continue;
+                }
+
                 this.Navigation.PushAsync(new StoragePage(storage.Id, storage.RootDirectory, storage.TotalSpace, storage.AvailableSpace, storage.State));
             }
         }
