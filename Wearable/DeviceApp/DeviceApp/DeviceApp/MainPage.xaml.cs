@@ -10,9 +10,15 @@ using Tizen.System;
 
 namespace DeviceApp
 {
+    /// <summary>
+    /// Main page of device application
+    /// </summary>
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MainPage : CirclePage
 	{
+        /// <summary>
+        /// The constructor of MainPage
+        /// </summary>
 		public MainPage ()
 		{
 			InitializeComponent ();
@@ -20,8 +26,13 @@ namespace DeviceApp
             CreateListView();
         }
 
+        /// <summary>
+        /// Create list view of device feature
+        /// </summary>
         private void CreateListView()
         {
+            // Create device feature list
+            // Battery, Display, Haptic, IR, Led & Camera back flash
             List<FeatureItem> featureItems = new List<FeatureItem>
             {
                 new FeatureItem("Battery"),
@@ -34,6 +45,11 @@ namespace DeviceApp
             DeviceFeatureList.ItemsSource = featureItems;
         }
 
+        /// <summary>
+        /// Method for tapped event of device feature list item
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event argument</param>
         private void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             FeatureItem item = (FeatureItem) e.Item;
@@ -53,22 +69,30 @@ namespace DeviceApp
                 this.Navigation.PushAsync(new SimpleResult("Wrong operation"));
         }
 
+        /// <summary>
+        /// Method for battery feature
+        /// </summary>
         private void BatterySample()
         {
             bool value;
+            // Checks the battery feature is supported in this device
             var result = Information.TryGetValue<bool>("http://tizen.org/feature/battery", out value);
             if (!result || !value)
             {
+                // Battery is not supported
                 this.Navigation.PushAsync(new SimpleResult("Wearable doesn't support battery feature"));
                 return;
             }
 
             try
             {
+                // Gets the current battery level
                 BatteryLevelStatus level = Battery.Level;
+                // Gets the battery charge percentage
                 int percent = Battery.Percent;
                 if (percent < 0 || percent > 100)
                     this.Navigation.PushAsync(new SimpleResult("Failed: Battery\nBattery percent value is invalid"));
+                // Gets the current charging state
                 bool isCharging = Battery.IsCharging;
                 string level_str, isCharing_str;
 
@@ -90,6 +114,7 @@ namespace DeviceApp
                 else
                     isCharing_str = "not charging";
 
+                // Operations are succeed
                 this.Navigation.PushAsync(new SimpleResult("Battery level: " + level_str + "\nPercent: " + percent + "\nBattery is " + isCharing_str));
             }
             catch (Exception e)
@@ -98,16 +123,23 @@ namespace DeviceApp
             }
         }
 
+        /// <summary>
+        /// Method for display feature
+        /// </summary>
         private void DisplaySample()
         {
             try
             {
+                // Gets the number of available display devices
                 int numofDisplay = Display.NumberOfDisplays;
                 int maxBrightness = -1, old = -1, current = -1;
                 foreach (Display dis in Display.Displays)
                 {
+                    // Gets the maximum brightness value for the specific display
                     maxBrightness = dis.MaxBrightness;
+                    // Gets the brightness value of the specific display
                     old = dis.Brightness;
+                    // Sets the brightness value of the specific display
                     dis.Brightness = old - 10;
                     current = dis.Brightness;
                     break;
@@ -115,44 +147,61 @@ namespace DeviceApp
                 if (maxBrightness < 0 || current < 0)
                     this.Navigation.PushAsync(new SimpleResult("Failed: Display\nGetting brightness is failed"));
 
+                // Sets the display state of the specific display
                 Display.State = DisplayState.Normal;
+                // Gets the display state of the specific display
                 DisplayState state = Display.State;
+                // Compare the display states
                 if (state != DisplayState.Normal)
                     this.Navigation.PushAsync(new SimpleResult("Failed: Display\nDisplayState has wrong value"));
 
+                // Operations are succeed
                 this.Navigation.PushAsync(new SimpleResult("Number of display: " + numofDisplay + "\n Max brightness: " + maxBrightness + "\nOld: " + old + "\nCurrent: " + current + "\nState: Normal"));
             }
             catch (Exception e)
             {
+                // Operations are failed
                 this.Navigation.PushAsync(new SimpleResult("Failed: Display\n" + e.Message));
             }
         }
 
+        /// <summary>
+        /// Method for haptic feature
+        /// </summary>
         private void HapticSample()
         {
             bool value;
+            // Checks the haptic feature is supported in this device
             var result = Information.TryGetValue<bool>("http://tizen.org/feature/feedback.vibration", out value);
             if (!result || !value)
             {
+                // Haptic is not supported
                 this.Navigation.PushAsync(new SimpleResult("Wearable doesn't support haptic feature"));
                 return;
             }
 
+            // Create haptic page
             this.Navigation.PushAsync(new HapticPage());
         }
 
+        /// <summary>
+        /// Method for IR feature
+        /// </summary>
         private void IRSample()
         {
             bool value;
+            // Checks the IR feature is supported in this device
             var result = Information.TryGetValue<bool>("http://tizen.org/feature/consumer_ir", out value);
             if (!result || !value)
             {
+                // IR is not supported
                 this.Navigation.PushAsync(new SimpleResult("Wearable doesn't support IR feature"));
                 return;
             }
 
             try
             {
+                // Gets the information whether the IR module is available
                 result = IR.IsAvailable;
                 if (!result)
                     this.Navigation.PushAsync(new SimpleResult("Failed: IR\nIR should be available"));
@@ -160,19 +209,26 @@ namespace DeviceApp
                 List<int> pattern = new List<int>();
                 pattern.Add(10);
                 pattern.Add(50);
+                // Transmits the IR command
                 IR.Transmit(10, pattern);
 
+                // Operations are succeed
                 this.Navigation.PushAsync(new SimpleResult("Succeed: IR"));
             }
             catch (Exception e)
             {
+                // Operations are failed
                 this.Navigation.PushAsync(new SimpleResult("Failed: IR\n" + e.Message));
             }
         }
 
+        /// <summary>
+        ///  Method for led feature
+        /// </summary>
         private void LedSample()
         {
             bool value;
+            // Checks the led feature is supported in this device
             var result = Information.TryGetValue<bool>("http://tizen.org/feature/led", out value);
             var t = Task.Run(async delegate
             {
@@ -182,35 +238,50 @@ namespace DeviceApp
 
             if (!result || !value)
             {
+                // Led is not supported
                 this.Navigation.PushAsync(new SimpleResult("Wearable doesn't support led feature"));
                 return;
             }
 
             try
             {
+                // Plays the LED that is located at the front of the device
                 Led.Play(500, 200, Tizen.Common.Color.FromRgba(255, 255, 255, 1));
+                // Wait 300ms
                 t.Wait();
+                // Stops the LED
                 Led.Stop();
+
+                // Operations are succeed
+                this.Navigation.PushAsync(new SimpleResult("Succeed: Led"));
             }
             catch (Exception e)
             {
+                // Operations are failed
                 this.Navigation.PushAsync(new SimpleResult("Failed: Led\n" + e.Message));
             }
         }
 
+        /// <summary>
+        /// Method for camera back flash feature
+        /// </summary>
         private void BackflashSample()
         {
             bool value;
+            // Checks the camera back flash feature is supported in this device
             var result = Information.TryGetValue<bool>("http://tizen.org/feature/camera.back.flash", out value);
             if (!result || !value)
             {
+                // Camera back flash is not supported
                 this.Navigation.PushAsync(new SimpleResult("Wearable doesn't support camera back flash feature"));
                 return;
             }
 
             try
             {
+                // Gets the maximum brightness value of the LED that is located next to the camera
                 var max = Led.MaxBrightness;
+                // Gets the current brightness value of the LED that is located next to the camera
                 var old_bright = Led.Brightness;
 
                 EventHandler<LedBrightnessChangedEventArgs> handler = null;
@@ -218,15 +289,20 @@ namespace DeviceApp
                 {
                     if (Led.Brightness != 50)
                         this.Navigation.PushAsync(new SimpleResult("Failed: Camera back flash\nBrightness value is wrong"));
+                    // Removes a handler for brightness changes
                     Led.BrightnessChanged -= handler;
 
-                    this.Navigation.PushAsync(new SimpleResult("testtest"));
+                    // Operations are succeed
+                    this.Navigation.PushAsync(new SimpleResult("Succeed: Camera back flash"));
                 };
+                // Adds a handler for brightness changes
                 Led.BrightnessChanged += handler;
+                // Gets the current brightness value of the LED that is located next to the camera
                 Led.Brightness = 50;
             }
             catch (Exception e)
             {
+                // Operations are failed
                 this.Navigation.PushAsync(new SimpleResult("Failed: Camera back flash\n" + e.Message));
             }
         }
