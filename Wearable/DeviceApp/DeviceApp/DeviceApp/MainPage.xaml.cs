@@ -19,12 +19,11 @@ namespace DeviceApp
         /// <summary>
         /// The constructor of MainPage
         /// </summary>
-		public MainPage ()
+		public MainPage()
 		{
-			InitializeComponent ();
-
-            CreateListView();
-        }
+			InitializeComponent();
+			CreateListView();
+		}
 
         /// <summary>
         /// Create list view of device feature
@@ -52,21 +51,42 @@ namespace DeviceApp
         /// <param name="e">Event argument</param>
         private void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            FeatureItem item = (FeatureItem) e.Item;
+            FeatureItem item = (FeatureItem)e.Item;
             if (item.Name.Equals("Battery"))
+            {
+                // Show battery status
                 BatterySample();
+            }
             else if (item.Name.Equals("Display"))
+            {
+                // Show display status
                 DisplaySample();
+            }
             else if (item.Name.Equals("Haptic"))
+            {
+                // Vibrate during user input time
                 HapticSample();
+            }
             else if (item.Name.Equals("IR"))
+            {
+                // Transmit IR patterns
                 IRSample();
+            }
             else if (item.Name.Equals("Led"))
+            {
+                // Play and stop led
                 LedSample();
+            }
             else if (item.Name.Equals("Camera back flash"))
+            {
+                // Show camera back flash status
                 BackflashSample();
+            }
             else
+            {
+                // Unknown feature
                 this.Navigation.PushAsync(new SimpleResult("Wrong operation"));
+            }
         }
 
         /// <summary>
@@ -91,34 +111,56 @@ namespace DeviceApp
                 // Gets the battery charge percentage
                 int percent = Battery.Percent;
                 if (percent < 0 || percent > 100)
+                {
+                    // Battery percent value is out of bound
                     this.Navigation.PushAsync(new SimpleResult("Failed: Battery\nBattery percent value is invalid"));
+                }
                 // Gets the current charging state
                 bool isCharging = Battery.IsCharging;
                 string level_str, isCharing_str;
 
+                // Gets the text of battery level value
                 if (level == BatteryLevelStatus.Critical)
+                {
                     level_str = "Critical";
+                }
                 else if (level == BatteryLevelStatus.Empty)
+                {
                     level_str = "Empty";
+                }
                 else if (level == BatteryLevelStatus.Full)
+                {
                     level_str = "Full";
+                }
                 else if (level == BatteryLevelStatus.High)
+                {
                     level_str = "High";
+                }
                 else if (level == BatteryLevelStatus.Low)
+                {
                     level_str = "Low";
+                }
                 else
+                {
                     level_str = "Invalid";
+                }
 
+                // Gets the text of battery charging state
                 if (isCharging)
+                {
                     isCharing_str = "charging";
+                }
                 else
+                {
                     isCharing_str = "not charging";
+                }
 
                 // Operations are succeed
                 this.Navigation.PushAsync(new SimpleResult("Battery level: " + level_str + "\nPercent: " + percent + "\nBattery is " + isCharing_str));
             }
             catch (Exception e)
             {
+                // Operations are failed
                 this.Navigation.PushAsync(new SimpleResult("Failed: Battery\n" + e.Message));
             }
         }
@@ -144,16 +186,23 @@ namespace DeviceApp
                     current = dis.Brightness;
                     break;
                 }
+
                 if (maxBrightness < 0 || current < 0)
+                {
+                    // Max brightness and current brightness value is out of bound
                     this.Navigation.PushAsync(new SimpleResult("Failed: Display\nGetting brightness is failed"));
+                }
 
                 // Sets the display state of the specific display
                 Display.State = DisplayState.Normal;
                 // Gets the display state of the specific display
                 DisplayState state = Display.State;
-                // Compare the display states
+                // Display state should be Normal
                 if (state != DisplayState.Normal)
+                {
+                    // Operations are failed
                     this.Navigation.PushAsync(new SimpleResult("Failed: Display\nDisplayState has wrong value"));
+                }
 
                 // Operations are succeed
                 this.Navigation.PushAsync(new SimpleResult("Number of display: " + numofDisplay + "\n Max brightness: " + maxBrightness + "\nOld: " + old + "\nCurrent: " + current + "\nState: Normal"));
@@ -180,7 +229,7 @@ namespace DeviceApp
                 return;
             }
 
-            // Create haptic page
+            // Create haptic page for user input
             this.Navigation.PushAsync(new HapticPage());
         }
 
@@ -204,7 +253,10 @@ namespace DeviceApp
                 // Gets the information whether the IR module is available
                 result = IR.IsAvailable;
                 if (!result)
+                {
+                    // IR should be available
                     this.Navigation.PushAsync(new SimpleResult("Failed: IR\nIR should be available"));
+                }
 
                 List<int> pattern = new List<int>();
                 pattern.Add(10);
@@ -288,7 +340,10 @@ namespace DeviceApp
                 handler = (object sender, LedBrightnessChangedEventArgs args) =>
                 {
                     if (Led.Brightness != 50)
+                    {
+                        // Operations are failed
                         this.Navigation.PushAsync(new SimpleResult("Failed: Camera back flash\nBrightness value is wrong"));
+                    }
                     // Removes a handler for brightness changes
                     Led.BrightnessChanged -= handler;
 

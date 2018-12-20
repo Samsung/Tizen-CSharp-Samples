@@ -39,9 +39,15 @@ namespace DeviceApp
         public void OKClicked(object sender, EventArgs args)
         {
             if (input.Time == null)
+            {
+                // Haptic duration is null
                 this.Navigation.PushAsync(new SimpleResult("Failed: Haptic\nWrong Input"));
+            }
             else
+            {
+                // Vibrate during input time
                 HapticOperation((int)input.Time);
+            }
         }
 
         /// <summary>
@@ -52,6 +58,7 @@ namespace DeviceApp
         {
             try
             {
+                // Show waiting page during vibration
                 await this.Navigation.PushAsync(new SimpleResult("Testing..."));
 
                 // Gets the number of the available vibrators
@@ -60,10 +67,15 @@ namespace DeviceApp
                 Vibrator vib = Vibrator.Vibrators[0];
                 int wait_time;
 
+                // Maximum vibration duration is 9999
                 if (time < 9999)
+                {
                     wait_time = time;
+                }
                 else
+                {
                     wait_time = 9999;
+                }
 
                 // Wait until vibration is over
                 var t = Task.Run(async delegate
