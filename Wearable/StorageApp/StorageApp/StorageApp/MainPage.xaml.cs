@@ -11,14 +11,27 @@ using Tizen.System;
 
 namespace StorageApp
 {
+    /// <summary>
+    /// Main page of Storage application
+    /// User can see and choose storage which device have
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : CirclePage
     {
+        /// <summary>
+        /// The constructor of MainPage class
+        /// Storages which this device have are listed
+        /// </summary>
         public MainPage()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Method for clicked event of storage item
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="args">Event argument</param>
         public void OnClicked(object sender, EventArgs args)
         {
             var storages = StorageManager.Storages;

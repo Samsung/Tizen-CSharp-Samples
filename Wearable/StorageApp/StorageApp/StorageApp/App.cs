@@ -6,26 +6,39 @@ using Xamarin.Forms;
 
 namespace StorageApp
 {
+    /// <summary>
+    /// Application class
+    /// Show information about storage
+    /// </summary>
     public class App : Application
     {
+        /// <summary>
+        /// Initializes a new instance of the app class
+        /// </summary>
         public App()
         {
             MainPage = new NavigationPage(new MainPage());
         }
 
+        /// <summary>
+        /// Handle when app starts
+        /// </summary>
         protected override void OnStart()
         {
-            // Handle when your app starts
         }
 
+        /// <summary>
+        /// Handle when app sleeps
+        /// </summary>
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
         }
 
+        /// <summary>
+        /// Handle when app resumes
+        /// </summary>
         protected override void OnResume()
         {
-            // Handle when your app resumes
         }
     }
 }

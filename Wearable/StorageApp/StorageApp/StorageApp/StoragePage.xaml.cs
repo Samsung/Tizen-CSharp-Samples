@@ -10,6 +10,9 @@ using Tizen.System;
 
 namespace StorageApp
 {
+    /// <summary>
+    /// Storage page of Storage application
+    /// </summary>
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StoragePage : CirclePage
 	{
@@ -28,6 +31,14 @@ namespace StorageApp
             CreateListView(id, rootDirectory, totalSpace, availableSpace, state);
 		}
 
+        /// <summary>
+        /// Method to create list view
+        /// </summary>
+        /// <param name="id">Id of storage</param>
+        /// <param name="rootDirectory">Root directory of storage</param>
+        /// <param name="totalSpace">Total space of storage</param>
+        /// <param name="availableSpace">Available space of storage</param>
+        /// <param name="state">State of storage</param>
         public void CreateListView(int id, string rootDirectory, ulong totalSpace, ulong availableSpace, StorageState state)
         {
             string str_state;
