@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.IMEManager.Tizen.Wearable" version="1.0.0" api-version="5" xmlns="http://tizen.org/ns/packages">
+    <profile name="wearable" />
+    <ui-application appid="org.tizen.example.IMEManager.Tizen.Wearable" exec="IMEManager.Tizen.Wearable.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+        <label>IMEManager.Tizen.Wearable</label>
+        <icon>IMEManager.Tizen.Wearable.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/imemanager</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
+</manifest>
