@@ -276,7 +276,7 @@ namespace Calculator.ViewModels
         }
 
         /// <summary>
-        /// This method updates expression and reult texts assuming calculation has not completed.
+        /// This method updates expression and result texts assuming calculation has not completed.
         /// </summary>
         private void UpdateDisplay()
         {
@@ -284,7 +284,7 @@ namespace Calculator.ViewModels
         }
 
         /// <summary>
-        /// This method updates expression and reult texts. 
+        /// This method updates expression and result texts. 
         /// </summary>
         /// <param name="isCalculationCompleted"> Flag value indicating whether calculation has completed or not. </param>
         private void UpdateDisplay(bool isCalculationCompleted)
