@@ -58,9 +58,6 @@ namespace DeviceApp
         {
             try
             {
-                // Show waiting page during vibration
-                await this.Navigation.PushAsync(new SimpleResult("Testing..."));
-
                 // Gets the number of the available vibrators
                 var numofvib = Vibrator.NumberOfVibrators;
                 // Gets the control of the specific vibrator
@@ -76,6 +73,9 @@ namespace DeviceApp
                 {
                     wait_time = 9999;
                 }
+
+                // Show waiting page during vibration
+                await this.Navigation.PushAsync(new SimpleResult("Testing... " + wait_time + "ms"));
 
                 // Wait until vibration is over
                 var t = Task.Run(async delegate

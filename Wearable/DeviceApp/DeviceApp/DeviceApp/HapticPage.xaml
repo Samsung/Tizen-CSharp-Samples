@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <StackLayout Padding="15,15">
             <Label Text="Enter vibration time (Max:9999)"/>
-            <Entry Text="{Binding StrTime, Mode=TwoWay}" Placeholder="Number" MaxLength="4" Keyboard="Numeric"/>
+            <w:PopupEntry Text="{Binding StrTime, Mode=TwoWay}" Placeholder="Number" Keyboard="Numeric"/>
             <Button Text="OK"
                     HorizontalOptions="Center"
                     Clicked="OKClicked"/>
