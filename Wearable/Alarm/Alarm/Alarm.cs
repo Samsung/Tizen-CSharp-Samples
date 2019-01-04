@@ -26,8 +26,6 @@ namespace Alarm
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
-        public static string ResourceDir { get; private set; }
-
         App app;
         AlertPageModel _alertPageModel;
 
@@ -36,7 +34,7 @@ namespace Alarm
         /// </summary>
         protected override void OnCreate()
         {
-            ResourceDir = DirectoryInfo.Resource;
+            AlarmNativeHandler.ResourceDir = DirectoryInfo.Resource;
             base.OnCreate();
             app = new App();
             LoadApplication(app);

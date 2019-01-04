@@ -30,7 +30,9 @@ namespace Alarm.Implements
         static AudioStreamPolicy audioStreamPolicy;
         static Feedback feedback;
         static Player player;
+        static string SoundNotificationUri = "Notification.ogg";
 
+        public static string ResourceDir { get; set; }
 
         /// <summary>
         /// Gets system alarm ID from alarm object
@@ -128,7 +130,8 @@ namespace Alarm.Implements
                 audioStreamPolicy.AcquireFocus(AudioStreamFocusOptions.Playback, AudioStreamBehaviors.Fading, null);
 
                 player = new Player();
-                MediaUriSource soudSource = new MediaUriSource(SystemSettings.SoundNotification);
+                string uri = ResourceDir + SoundNotificationUri;
+                MediaUriSource soudSource = new MediaUriSource(uri);
                 player.SetSource(soudSource);
 
                 player.ApplyAudioStreamPolicy(audioStreamPolicy);
