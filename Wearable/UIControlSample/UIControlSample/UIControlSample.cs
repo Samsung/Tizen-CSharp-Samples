@@ -99,16 +99,19 @@ namespace UIControlSample
             Window.Instance.BackgroundColor = Color.Black;
             mWindowSize = Window.Instance.Size;
 
-            // Title TextLabel
+            // Create Title TextLabel
             TextLabel title = new TextLabel("UI Control");
             title.HorizontalAlignment = HorizontalAlignment.Center;
             title.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color to White
             title.TextColor = Color.White;
             title.PositionUsesPivotPoint = true;
             title.ParentOrigin = ParentOrigin.TopCenter;
             title.PivotPoint = PivotPoint.TopCenter;
             title.Position2D = new Position2D(0, mWindowSize.Height / 10);
+            // Use Samsung One 600 font
             title.FontFamily = "Samsung One 600";
+            // Set MultiLine to false
             title.MultiLine = false;
             title.PointSize = mLargePointSize;
             Window.Instance.GetDefaultLayer().Add(title);
@@ -116,30 +119,36 @@ namespace UIControlSample
             // Create controls.
             CreateControls();
 
-            // subTitle TextLabel
+            // Create subTitle TextLabel
             TextLabel subTitle1 = new TextLabel("Swipe Here");
             subTitle1.HorizontalAlignment = HorizontalAlignment.Center;
             subTitle1.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color to White
             subTitle1.TextColor = Color.White;
             subTitle1.PositionUsesPivotPoint = true;
             subTitle1.ParentOrigin = ParentOrigin.BottomCenter;
             subTitle1.PivotPoint = PivotPoint.BottomCenter;
             subTitle1.Position2D = new Position2D(0, -40);
+            // Use Samsung One 600 font
             subTitle1.FontFamily = "Samsung One 600";
+            // Set MultiLine to false
             subTitle1.MultiLine = false;
             subTitle1.PointSize = mMiddlePointSize;
             Window.Instance.GetDefaultLayer().Add(subTitle1);
 
-            // subTitle2 TextLabel
+            // Create subTitle2 TextLabel
             TextLabel subTitle2 = new TextLabel("for the other sample");
             subTitle2.HorizontalAlignment = HorizontalAlignment.Center;
             subTitle2.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color to White
             subTitle2.TextColor = Color.White;
             subTitle2.PositionUsesPivotPoint = true;
             subTitle2.ParentOrigin = ParentOrigin.BottomCenter;
             subTitle2.PivotPoint = PivotPoint.BottomCenter;
             subTitle2.Position2D = new Position2D(0, -25);
+            // Use Samsung One 600 font
             subTitle2.FontFamily = "Samsung One 600";
+            // Set MultiLine to false
             subTitle2.MultiLine = false;
             subTitle2.PointSize = mSmallPointSize;
             Window.Instance.GetDefaultLayer().Add(subTitle2);
@@ -169,6 +178,7 @@ namespace UIControlSample
             mControlsView.PositionUsesPivotPoint = true;
             mControlsView.PivotPoint = PivotPoint.CenterLeft;
             mControlsView.ParentOrigin = ParentOrigin.CenterLeft;
+            // Set Control view size
             mControlsView.Size2D = new Size2D((int)mCaseCount * 360, mControlSize.Height);
             Window.Instance.GetDefaultLayer().Add(mControlsView);
 
@@ -589,6 +599,7 @@ namespace UIControlSample
         {
             PropertyMap map = new PropertyMap();
             // Text Visual
+            // Add each property of TextVisual
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             // Set text color
@@ -609,6 +620,7 @@ namespace UIControlSample
         private PropertyMap CreateColorVisual(Vector4 color)
         {
             PropertyMap map = new PropertyMap();
+            // Add each property of ColorVisual
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
             map.Add(ColorVisualProperty.MixColor, new PropertyValue(color));
             return map;
@@ -622,6 +634,7 @@ namespace UIControlSample
         private PropertyMap CreateImageVisual(string imagePath)
         {
             PropertyMap map = new PropertyMap();
+            // Add each property of ImageVisual
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
             map.Add(ImageVisualProperty.URL, new PropertyValue(imagePath));
             return map;
