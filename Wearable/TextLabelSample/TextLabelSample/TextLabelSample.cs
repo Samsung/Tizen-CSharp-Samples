@@ -112,16 +112,19 @@ namespace TextLabelSample
             Window.Instance.BackgroundColor = Color.Black;
             mWindowSize = Window.Instance.Size;
 
-            // Title TextLabel
+            // Create Title TextLabel
             TextLabel Title = new TextLabel("Text Label");
             Title.HorizontalAlignment = HorizontalAlignment.Center;
             Title.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color to White
             Title.TextColor = Color.White;
             Title.PositionUsesPivotPoint = true;
             Title.ParentOrigin = ParentOrigin.TopCenter;
             Title.PivotPoint = PivotPoint.TopCenter;
             Title.Position2D = new Position2D(0, mWindowSize.Height / 10);
+            // Use Samsung One 600 font
             Title.FontFamily = "Samsung One 600";
+            // Set MultiLine false
             Title.MultiLine = false;
             Title.PointSize = mLargePointSize;
             Window.Instance.GetDefaultLayer().Add(Title);
@@ -132,16 +135,19 @@ namespace TextLabelSample
             CreateButtons();
             mCurruntButtonIndex = 0;
 
-            // subTitle TextLabel
+            // Create subTitle TextLabel
             TextLabel subTitle = new TextLabel("Swipe and Click the button");
             subTitle.HorizontalAlignment = HorizontalAlignment.Center;
             subTitle.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color to White
             subTitle.TextColor = Color.White;
             subTitle.PositionUsesPivotPoint = true;
             subTitle.ParentOrigin = ParentOrigin.BottomCenter;
             subTitle.PivotPoint = PivotPoint.BottomCenter;
             subTitle.Position2D = new Position2D(0, -30);
+            // Use Samsung One 600 font
             subTitle.FontFamily = "Samsung One 600";
+            // Set MultiLine false
             subTitle.MultiLine = false;
             subTitle.PointSize = mSmallPointSize;
             Window.Instance.GetDefaultLayer().Add(subTitle);
@@ -567,6 +573,8 @@ namespace TextLabelSample
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
                     // Show the underline.
+                    // Underline color is black
+                    // Underline height is 3
                     PropertyMap underlineMap = new PropertyMap();
                     underlineMap.Insert("enable", new PropertyValue("true"));
                     underlineMap.Insert("color", new PropertyValue("black"));
@@ -662,6 +670,7 @@ namespace TextLabelSample
         {
             PropertyMap map = new PropertyMap();
             // Text Visual
+            // Create Property map and add each property of TextVisual
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             // Set text color
@@ -682,6 +691,7 @@ namespace TextLabelSample
         private PropertyMap CreateColorVisual(Vector4 color)
         {
             PropertyMap map = new PropertyMap();
+            // Create Property map and add each property of ColorVisual
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
             map.Add(ColorVisualProperty.MixColor, new PropertyValue(color));
             return map;
