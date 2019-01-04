@@ -107,16 +107,19 @@ namespace VisualsSample
             Window.Instance.BackgroundColor = Color.Black;
             mWindowSize = Window.Instance.Size;
 
-            // Title TextLabel
+            // Create Title TextLabel
             TextLabel Title = new TextLabel("Visuals");
             Title.HorizontalAlignment = HorizontalAlignment.Center;
             Title.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color White
             Title.TextColor = Color.White;
             Title.PositionUsesPivotPoint = true;
             Title.ParentOrigin = ParentOrigin.TopCenter;
             Title.PivotPoint = PivotPoint.TopCenter;
             Title.Position2D = new Position2D(0, mWindowSize.Height / 10);
+            // Use Samsung One 600 font
             Title.FontFamily = "Samsung One 600";
+            // Set MultiLine to false
             Title.MultiLine = false;
             Title.PointSize = mLargePointSize;
             Window.Instance.GetDefaultLayer().Add(Title);
@@ -124,16 +127,19 @@ namespace VisualsSample
             // Create Visuals.
             CreateVisuals();
 
-            // subTitle TextLabel
+            // Create subTitle TextLabel
             TextLabel subTitle = new TextLabel("Swipe for other visuals");
             subTitle.HorizontalAlignment = HorizontalAlignment.Center;
             subTitle.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color White
             subTitle.TextColor = Color.White;
             subTitle.PositionUsesPivotPoint = true;
             subTitle.ParentOrigin = ParentOrigin.BottomCenter;
             subTitle.PivotPoint = PivotPoint.BottomCenter;
             subTitle.Position2D = new Position2D(0, -50);
+            // Use Samsung One 600 font
             subTitle.FontFamily = "Samsung One 600";
+            // Set MultiLine to false
             subTitle.MultiLine = false;
             subTitle.PointSize = mSmallPointSize;
             Window.Instance.GetDefaultLayer().Add(subTitle);
@@ -492,6 +498,7 @@ namespace VisualsSample
         private PropertyMap CreateTextVisual(string text, Color color)
         {
             PropertyMap map = new PropertyMap();
+            // Add each property of TextVisual
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
