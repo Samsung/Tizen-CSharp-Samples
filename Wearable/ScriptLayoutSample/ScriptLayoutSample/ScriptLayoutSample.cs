@@ -81,28 +81,36 @@ namespace ScriptLayoutSample
             // instead for those controls.
             StyleManager.Get().ApplyTheme(mCustomThemeUrl);
 
+            // Create Title TextLabel
             mTitle = new TextLabel("Script");
             mTitle.HorizontalAlignment = HorizontalAlignment.Center;
             mTitle.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color to White
             mTitle.TextColor = Color.White;
             mTitle.PositionUsesPivotPoint = true;
             mTitle.ParentOrigin = ParentOrigin.TopCenter;
             mTitle.PivotPoint = PivotPoint.TopCenter;
             mTitle.Position2D = new Position2D(0, mWindowSize.Height / 10);
+            // Use Samsung One 600 font
             mTitle.FontFamily = "Samsung One 600";
+            // Not use MultiLine of TextLabel
             mTitle.MultiLine = false;
             mTitle.PointSize = mLargePointSize;
             Window.Instance.GetDefaultLayer().Add(mTitle);
 
+            // Create subTitle TextLabel
             mRadioButtonTitle = new TextLabel("Radio Button");
             mRadioButtonTitle.HorizontalAlignment = HorizontalAlignment.Center;
             mRadioButtonTitle.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color to White
             mRadioButtonTitle.TextColor = Color.White;
             mRadioButtonTitle.PositionUsesPivotPoint = true;
             mRadioButtonTitle.ParentOrigin = ParentOrigin.TopCenter;
             mRadioButtonTitle.PivotPoint = PivotPoint.TopLeft;
             mRadioButtonTitle.Position2D = new Position2D(-150, 110);
+            // Use Samsung One 600 font
             mRadioButtonTitle.FontFamily = "Samsung One 600";
+            // Not use MultiLine of TextLabel
             mRadioButtonTitle.MultiLine = false;
             mRadioButtonTitle.PointSize = mMiddlePointSize;
             Window.Instance.GetDefaultLayer().Add(mRadioButtonTitle);
@@ -111,14 +119,18 @@ namespace ScriptLayoutSample
             mRadioButtons = new RadioButton[2];
             for (int i = 0; i < 2; ++i)
             {
+                // Create new RadioButton
                 mRadioButtons[i] = new RadioButton();
+                // Set RadioButton size
                 mRadioButtons[i].Size2D = new Size2D(300, 65);
                 mRadioButtons[i].PositionUsesPivotPoint = true;
                 mRadioButtons[i].ParentOrigin = ParentOrigin.Center;
                 mRadioButtons[i].PivotPoint = PivotPoint.CenterLeft;
+                // Set RadioButton Position
                 mRadioButtons[i].Position = new Position(-150, -20, 0) + new Position(160, 0, 0) * i;
                 mRadioButtons[i].Label = CreateTextVisual(ButtonText[i], mMiddlePointSize * 2.0f, Color.White);
                 mRadioButtons[i].Scale = new Vector3(0.5f, 0.5f, 0.5f);
+                // Add click event callback function
                 mRadioButtons[i].Clicked += OnRadioButtonClicked;
 
                 Window.Instance.GetDefaultLayer().Add(mRadioButtons[i]);
@@ -126,6 +138,7 @@ namespace ScriptLayoutSample
 
             mRadioButtons[0].Selected = true;
 
+            // Create TextLabel for the CheckBox Button
             mCheckBoxButtonTitle = new TextLabel("CheckBox Button");
             mCheckBoxButtonTitle.HorizontalAlignment = HorizontalAlignment.Center;
             mCheckBoxButtonTitle.VerticalAlignment = VerticalAlignment.Center;
@@ -143,6 +156,7 @@ namespace ScriptLayoutSample
             mCheckBoxButtons = new CheckBoxButton[2];
             for (int i = 0; i < 2; ++i)
             {
+                // Create new CheckBox Button
                 mCheckBoxButtons[i] = new CheckBoxButton();
                 mCheckBoxButtons[i].PositionUsesPivotPoint = true;
                 mCheckBoxButtons[i].ParentOrigin = ParentOrigin.Center;
