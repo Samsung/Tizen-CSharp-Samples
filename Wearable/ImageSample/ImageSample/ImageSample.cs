@@ -123,28 +123,36 @@ namespace ImageSample
             Window.Instance.BackgroundColor = Color.Black;
             mWindowSize = Window.Instance.Size;
 
+            // Create title TextLabel
             TextLabel title = new TextLabel("Image");
             title.HorizontalAlignment = HorizontalAlignment.Center;
             title.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color to White
             title.TextColor = Color.White;
             title.PositionUsesPivotPoint = true;
             title.ParentOrigin = ParentOrigin.TopCenter;
             title.PivotPoint = PivotPoint.TopCenter;
             title.Position2D = new Position2D(0, mWindowSize.Height / 10);
+            // Use Samsung One 600 font
             title.FontFamily = "Samsung One 600";
+            // Not use MultiLine of TextLabel
             title.MultiLine = false;
             title.PointSize = mLargePointSize;
             Window.Instance.GetDefaultLayer().Add(title);
 
+            // Create subTitle TextLabel
             TextLabel subTitle = new TextLabel("Swipe and Click the button");
             subTitle.HorizontalAlignment = HorizontalAlignment.Center;
             subTitle.VerticalAlignment = VerticalAlignment.Center;
+            // Set Text color to White
             subTitle.TextColor = Color.White;
             subTitle.PositionUsesPivotPoint = true;
             subTitle.ParentOrigin = ParentOrigin.BottomCenter;
             subTitle.PivotPoint = PivotPoint.BottomCenter;
             subTitle.Position2D = new Position2D(0, -30);
+            // Use Samsung One 600 font
             subTitle.FontFamily = "Samsung One 600";
+            // Not use MultiLine of TextLabel
             subTitle.MultiLine = false;
             subTitle.PointSize = mSmallPointSize;
             Window.Instance.GetDefaultLayer().Add(subTitle);
@@ -172,6 +180,7 @@ namespace ImageSample
             mButtonTableViewAnimation[1].Duration = 100;
             mButtonTableViewAnimation[1].AnimateBy(mButtonTableView, "Position", new Vector3(360, 0, 0));
 
+            // Set callback functions
             Window.Instance.TouchEvent += OnWindowTouched;
             Window.Instance.KeyEvent += OnKey;
         }
@@ -186,6 +195,7 @@ namespace ImageSample
             mImagesView.PositionUsesPivotPoint = true;
             mImagesView.PivotPoint = PivotPoint.CenterLeft;
             mImagesView.ParentOrigin = ParentOrigin.CenterLeft;
+            // Set imageview size
             mImagesView.Size2D = new Size2D((int)mCaseCount * 360, mImageSize.Height);
             Window.Instance.GetDefaultLayer().Add(mImagesView);
 
@@ -194,6 +204,7 @@ namespace ImageSample
             {
                 // Create a Image
                 View image = CreateImage(mCaseString[i], stp + new Position(i * 360, 0, 0));
+                // Add image to ImagesView
                 mImagesView.Add(image);
             }
         }
@@ -217,6 +228,7 @@ namespace ImageSample
                 {
                     for (uint j = 0; j < 2; j++)
                     {
+                        // Create new ImageView to contain each part of Image
                         imageView[i * 2 + j] = new ImageView(mPixelAreaImageUrl);
                         imageView[i * 2 + j].HeightResizePolicy = ResizePolicyType.FillToParent;
                         imageView[i * 2 + j].WidthResizePolicy = ResizePolicyType.FillToParent;
@@ -251,6 +263,7 @@ namespace ImageSample
                 ImageView imageView = new ImageView();
                 PropertyMap propertyMap = new PropertyMap();
                 // Image Visual with MaskBackgroundImage
+                // Set Image properties of the Image View
                 propertyMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
                            .Add(ImageVisualProperty.URL, new PropertyValue(mMaskBackgroundImageUrl));
                 imageView.Image = propertyMap;
@@ -264,6 +277,7 @@ namespace ImageSample
                 ImageView imageView = new ImageView();
                 PropertyMap propertyMap = new PropertyMap();
                 // Image Visual with default FittingMode
+                // Set Image properties of the Image View
                 propertyMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
                            .Add(ImageVisualProperty.URL, new PropertyValue(mFittingModeImageUrl))
                            .Add(ImageVisualProperty.DesiredWidth, new PropertyValue(mImageSize.Width))
