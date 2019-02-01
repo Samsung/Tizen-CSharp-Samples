@@ -23,6 +23,9 @@ using Application = Tizen.Applications.Application;
 
 namespace Badges
 {
+    /// <summary>
+    /// Page class for main screen of the application.
+    /// </summary>
     public class BadgePage : CirclePage, IRotaryEventReceiver
     {
         /// <summary>
