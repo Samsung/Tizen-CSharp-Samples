@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:local="clr-namespace:PlayerSample;assembly=PlayerSample"
+              x:Class="PlayerSample.Views.InputUrlPage">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <w:PopupEntry Text="{Binding UrlText}"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                    BackgroundColor="White" TextColor="Black"/>
+            <Button Text="Open" Command="{Binding OpenCommand}" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</w:CirclePage>
