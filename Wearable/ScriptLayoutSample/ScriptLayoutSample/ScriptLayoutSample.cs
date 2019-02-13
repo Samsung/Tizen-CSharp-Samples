@@ -182,6 +182,8 @@ namespace ScriptLayoutSample
             mPushButton.Label = normalTextMap;
             mPushButton.Clicked += OnPushButtonClicked;
             Window.Instance.GetDefaultLayer().Add(mPushButton);
+
+            Window.Instance.KeyEvent += OnKey;
         }
 
         /// <summary>
