@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.106
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageApp", "StorageApp\StorageApp\StorageApp.csproj", "{5DFDB2C4-B50D-404A-81D4-C736BC226419}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StorageApp.Tizen.Wearable", "StorageApp\StorageApp.Tizen.Wearable\StorageApp.Tizen.Wearable.csproj", "{C9E0DEDF-1FDB-4697-9FC4-EB8AD3103A46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DFDB2C4-B50D-404A-81D4-C736BC226419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DFDB2C4-B50D-404A-81D4-C736BC226419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DFDB2C4-B50D-404A-81D4-C736BC226419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DFDB2C4-B50D-404A-81D4-C736BC226419}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9E0DEDF-1FDB-4697-9FC4-EB8AD3103A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9E0DEDF-1FDB-4697-9FC4-EB8AD3103A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E0DEDF-1FDB-4697-9FC4-EB8AD3103A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9E0DEDF-1FDB-4697-9FC4-EB8AD3103A46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C18A70E-69CC-4917-AFD3-DC080F1431D5}
+	EndGlobalSection
+EndGlobal
