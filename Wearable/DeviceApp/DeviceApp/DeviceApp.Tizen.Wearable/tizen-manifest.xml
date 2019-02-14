@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.DeviceApp.Tizen.Wearable" version="1.0.0" api-version="5" xmlns="http://tizen.org/ns/packages">
+    <profile name="wearable" />
+    <ui-application appid="org.tizen.example.DeviceApp.Tizen.Wearable" exec="DeviceApp.Tizen.Wearable.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+        <label>DeviceApp.Tizen.Wearable</label>
+        <icon>DeviceApp.Tizen.Wearable.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/haptic</privilege>
+        <privilege>http://tizen.org/privilege/display</privilege>
+        <privilege>http://tizen.org/privilege/use_ir</privilege>
+        <privilege>http://tizen.org/privilege/led</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
+</manifest>
