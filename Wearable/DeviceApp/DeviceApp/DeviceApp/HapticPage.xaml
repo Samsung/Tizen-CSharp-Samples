@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeviceApp.HapticPage">
+    <ContentPage.Content>
+        <StackLayout Padding="15,15">
+            <Label Text="Enter vibration time (Max:9999)"/>
+            <w:PopupEntry Text="{Binding StrTime, Mode=TwoWay}" Placeholder="Number" Keyboard="Numeric"/>
+            <Button Text="OK"
+                    HorizontalOptions="Center"
+                    Clicked="OKClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</w:CirclePage>

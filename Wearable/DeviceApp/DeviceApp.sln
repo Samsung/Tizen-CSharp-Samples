@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceApp", "DeviceApp\DeviceApp\DeviceApp.csproj", "{5D3E5A30-2A37-40E7-8D44-F1C06B94F239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceApp.Tizen.Wearable", "DeviceApp\DeviceApp.Tizen.Wearable\DeviceApp.Tizen.Wearable.csproj", "{DD6A5AE5-1ADD-4E6F-BCEF-579C96046FE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D3E5A30-2A37-40E7-8D44-F1C06B94F239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3E5A30-2A37-40E7-8D44-F1C06B94F239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3E5A30-2A37-40E7-8D44-F1C06B94F239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3E5A30-2A37-40E7-8D44-F1C06B94F239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD6A5AE5-1ADD-4E6F-BCEF-579C96046FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD6A5AE5-1ADD-4E6F-BCEF-579C96046FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD6A5AE5-1ADD-4E6F-BCEF-579C96046FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD6A5AE5-1ADD-4E6F-BCEF-579C96046FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E850F1B3-008C-4013-926A-26B6DAE07F3E}
+	EndGlobalSection
+EndGlobal

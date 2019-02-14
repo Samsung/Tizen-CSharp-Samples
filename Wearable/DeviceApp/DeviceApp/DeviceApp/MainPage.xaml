@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeviceApp.MainPage"
+             RotaryFocusObject="{x:Reference DeviceFeatureList}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <w:CircleListView x:Name="DeviceFeatureList" ItemTapped="OnItemTapped" HasUnevenRows="True" SeparatorVisibility="Default">
+            <w:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}"/>
+                </DataTemplate>
+            </w:CircleListView.ItemTemplate>
+        </w:CircleListView>
+    </ContentPage.Content>
+</w:CirclePage>
