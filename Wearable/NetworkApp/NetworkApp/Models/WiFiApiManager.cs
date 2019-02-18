@@ -12,7 +12,6 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-using NetworkApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +19,7 @@ using System.Threading.Tasks;
 using Tizen.Network.Connection;
 using Tizen.Network.WiFi;
 
-namespace NetworkApp.Tizen.Mobile
+namespace NetworkApp.Models
 {
     /// <summary>
     /// WiFiApiManager class for managing Wi-Fi API calls
@@ -31,6 +30,11 @@ namespace NetworkApp.Tizen.Mobile
         /// List that contains the result of latest scan
         /// </summary>
         private IEnumerable<WiFiAP> _apList = null;
+
+        /// <summary>
+        /// An instance of currently connected AP
+        /// </summary>
+        private WiFiAP currentAP = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WiFiApiManager"/> class
@@ -118,6 +122,7 @@ namespace NetworkApp.Tizen.Mobile
             {
                 ap.SecurityInformation.SetPassphrase(password);
             }
+
             return ap.ConnectAsync();
         }
 
@@ -183,6 +188,7 @@ namespace NetworkApp.Tizen.Mobile
                 Logger.Log("AP: " + apName + " not found!");
                 return WiFiSecurityType.None;
             }
+
             return ap.SecurityInformation.SecurityType;
         }
 
@@ -225,6 +231,144 @@ namespace NetworkApp.Tizen.Mobile
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Gets the Connection State of Wi-Fi
+        /// </summary>
+        /// <returns>State of the Wi-Fi</returns>
+        public string GetConnectionState()
+        {
+            return WiFiManager.ConnectionState.ToString();
+        }
+
+        /// <summary>
+        /// Gets the MAC Address of the Wi-Fi interface
+        /// </summary>
+        /// <returns>MAC Address</returns>
+        public string GetMacAddress()
+        {
+            return WiFiManager.MacAddress.ToString();
+        }
+
+        /// <summary>
+        /// Gets the currently connected AP
+        /// </summary>
+        public void GetConnectedAP()
+        {
+            currentAP = WiFiManager.GetConnectedAP();
+        }
+
+        /// <summary>
+        /// Gets the text with IP Address about currently connected AP
+        /// </summary>
+        /// /// <returns>IP Address</returns>
+        public string GetIPAddress()
+        {
+            if (currentAP == null)
+            {
+                return "IP: 0.0.0.0";
+            }
+
+            return "IP: " + currentAP.NetworkInformation.IPv4Setting.IP.ToString();
+        }
+
+        /// <summary>
+        /// Gets the text with Subnet Mask about currently connected AP
+        /// </summary>
+        /// /// <returns>Subnet Mask</returns>
+        public string GetSubnetMask()
+        {
+            if (currentAP == null)
+            {
+                return "Subnet Mask: 0.0.0.0";
+            }
+
+            return "Subnet Mask: " + currentAP.NetworkInformation.IPv4Setting.SubnetMask.ToString();
+        }
+
+        /// <summary>
+        /// Gets the text with DNS Address about currently connected AP
+        /// </summary>
+        /// /// <returns>DNS Address</returns>
+        public string GetDNSAddress()
+        {
+            if (currentAP == null)
+            {
+                return "DNS: 0.0.0.0";
+            }
+
+            return "DNS: " + currentAP.NetworkInformation.IPv4Setting.Dns1.ToString();
+        }
+
+        /// <summary>
+        /// Gets the text with Gateway Address about currently connected AP
+        /// </summary>
+        /// <returns>Gateway Address</returns>
+        public string GetGatewayAddress()
+        {
+            if (currentAP == null)
+            {
+                return "Gateway: 0.0.0.0";
+            }
+
+            return "Gateway: " + currentAP.NetworkInformation.IPv4Setting.Gateway.ToString();
+        }
+
+        /// <summary>
+        /// Gets the text with ESSID about currently connected AP
+        /// </summary>
+        /// /// <returns>ESSID</returns>
+        public string GetEssid()
+        {
+            if (currentAP == null)
+            {
+                return "ESSID: No AP";
+            }
+
+            return "ESSID: " + currentAP.NetworkInformation.Essid;
+        }
+
+        /// <summary>
+        /// Gets the text with BSSID about currently connected AP
+        /// </summary>
+        /// /// <returns>BSSID</returns>
+        public string GetBssid()
+        {
+            if (currentAP == null)
+            {
+                return "BSSID: No AP";
+            }
+
+            return "BSSID: " + currentAP.NetworkInformation.Bssid;
+        }
+
+        /// <summary>
+        /// Gets the text with RSSI about currently connected AP
+        /// </summary>
+        /// /// <returns>RSSI</returns>
+        public string GetRssi()
+        {
+            if (currentAP == null)
+            {
+                return "RSSI: N/A";
+            }
+
+            return "RSSI: " + currentAP.NetworkInformation.Rssi;
+        }
+
+        /// <summary>
+        /// Gets the text with Max Speed about currently connected AP
+        /// </summary>
+        /// /// <returns>Max speed</returns>
+        public string GetMaxSpeed()
+        {
+            if (currentAP == null)
+            {
+                return "Max Speed: N/A";
+            }
+
+            return "Max Speed: " + currentAP.NetworkInformation.MaxSpeed;
         }
     }
 }

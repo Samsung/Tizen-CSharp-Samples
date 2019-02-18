@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:local="clr-namespace:NetworkApp.Converters"
+              x:Class="NetworkApp.Views.ConnectionProfilePage"
+              >
+
+    <w:CirclePage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="VerticalOptions"
+                        Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions"
+                        Value="CenterAndExpand"/>
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center"/>
+                <Setter Property="FontSize"
+                        Value="Micro"/>
+            </Style>
+        </ResourceDictionary>
+    </w:CirclePage.Resources>
+    <StackLayout HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand">
+        <Label Text="{Binding CurrentConnectionLabel}"
+               Style="{StaticResource labelStyle}"/>
+        <Button x:Name="profileButton"
+                Text="Profile List"
+                FontSize="Micro"
+                HorizontalOptions="CenterAndExpand"
+                Command="{Binding PushProfileListPageCommand}"/>
+    </StackLayout>
+</w:CirclePage>

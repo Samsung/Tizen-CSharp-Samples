@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:IndexPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="NetworkApp.Views.WiFiInfoPage">
+
+    <w:IndexPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="VerticalOptions"
+                        Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions"
+                        Value="CenterAndExpand"/>
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center"/>
+                <Setter Property="FontSize"
+                        Value="Micro"/>
+            </Style>
+        </ResourceDictionary>
+    </w:IndexPage.Resources>
+
+    <ContentPage x:Name="ConnectedAP">
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+            <Label Text="{Binding CurrentAP}"
+              HorizontalOptions="CenterAndExpand"/>
+            <Label Text="{Binding ConnectionState}"
+              HorizontalOptions="CenterAndExpand"/>
+            <Label Text="{Binding MacAddress}"
+              HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage x:Name="AddressInformation">
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+            <Label Text="{Binding IPAddress}"
+              HorizontalOptions="CenterAndExpand"/>
+            <Label Text="{Binding SubnetMask}"
+              HorizontalOptions="CenterAndExpand"/>
+            <Label Text="{Binding DNSAddress}"
+              HorizontalOptions="CenterAndExpand"/>
+            <Label Text="{Binding GatewayAddress}"
+              HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage x:Name="APInfo">
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+            <Label Text="{Binding ESSID}"
+              HorizontalOptions="CenterAndExpand"/>
+            <Label Text="{Binding BSSID}"
+              HorizontalOptions="CenterAndExpand"/>
+            <Label Text="{Binding MaxSpeed}"
+              HorizontalOptions="CenterAndExpand"/>
+            <Label Text="{Binding RSSI}"
+              HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage>
+</w:IndexPage>

@@ -12,22 +12,31 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-using NetworkApp.Views;
-using Xamarin.Forms;
-
-namespace NetworkApp
+namespace NetworkApp.Models
 {
     /// <summary>
-    /// Main App class - derives Xamarin.Forms application functionalities
+    /// ProfileInfo class for holding Connection Profile
     /// </summary>
-    public class App : Application
+    public class ProfileInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="App"/> class
+        /// Gets or sets Name of Connection Profile to be shown in View
         /// </summary>
-        public App()
-        {
-            MainPage = new RootPage();
-        }
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets Type of Connection Profile
+        /// </summary>
+        public string Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets State of Connection Profile
+        /// </summary>
+        public string State { get; set; }
+
+        /// <summary>
+        /// Gets or sets real Name of connection Profile
+        public string ProfileName { get; set; }
+        /// </summary>
     }
 }

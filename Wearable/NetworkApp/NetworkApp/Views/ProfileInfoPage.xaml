@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:IndexPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="NetworkApp.Views.ProfileInfoPage">
+
+    <ContentPage x:Name="CurrentProfile">
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+
+        <Label Text="{Binding ProfileName}"
+              HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding ProfileType}"
+              HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding ProfileState}"
+              HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding InterfaceName}"
+              HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage>
+    
+    <ContentPage x:Name="AddressInformation">
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+        <Label Text="{Binding IPAddress}"
+              HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding IPConfigType}"
+              HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding SubnetMask}"
+              HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding GatewayAddress}"
+              HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage>
+    
+    <ContentPage x:Name="AddressInformation2">
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+        <Label Text="{Binding DNSAddress}"
+              HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding DNSConfigType}"
+              HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding ProxyAddress}"
+              HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding ProxyType}"
+              HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage>
+
+</w:IndexPage>

@@ -13,7 +13,6 @@
 //limitations under the License.
 
 using NetworkApp.Models;
-using NetworkApp.Tizen.Mobile;
 using NetworkApp.Views;
 using System;
 using Tizen.Wearable.CircularUI.Forms;
@@ -89,10 +88,15 @@ namespace NetworkApp.ViewModels
             get
             {
                 if (_connectedNetwork == null)
+                {
                     return "Disconnected";
+                }
                 else
+                {
                     return "Connected: " + _connectedNetwork;
+                }
             }
+
             set
             {
                 SetProperty(ref _connectedNetwork, value);
@@ -139,6 +143,7 @@ namespace NetworkApp.ViewModels
             {
                 Logger.Log(e.Message);
             }
+
             OnPropertyChanged(nameof(ConnectedNetwork));
             OnPropertyChanged(nameof(IsConnected));
             OnPropertyChanged(nameof(IsTurnedOn));
@@ -158,6 +163,7 @@ namespace NetworkApp.ViewModels
                     {
                         await _wifi.Activate();
                     }
+
                     IsTurnedOn = true;
                 }
                 else
@@ -166,6 +172,7 @@ namespace NetworkApp.ViewModels
                     {
                         await _wifi.Deactivate();
                     }
+
                     IsTurnedOn = false;
                 }
             }

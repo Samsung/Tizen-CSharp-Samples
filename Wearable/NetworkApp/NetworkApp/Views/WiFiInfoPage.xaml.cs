@@ -12,22 +12,33 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-using NetworkApp.Views;
-using Xamarin.Forms;
+using NetworkApp.ViewModels;
+using Tizen.Wearable.CircularUI.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace NetworkApp
+
+namespace NetworkApp.Views
 {
     /// <summary>
-    /// Main App class - derives Xamarin.Forms application functionalities
+    /// WiFiInfoPage class
     /// </summary>
-    public class App : Application
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class WiFiInfoPage : IndexPage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="App"/> class
+        /// ViewModel for WiFiInfoPage
         /// </summary>
-        public App()
+        private WiFiInfoViewModel _viewModel;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WiFiInfoPage"/> class
+        /// </summary>
+        public WiFiInfoPage()
         {
-            MainPage = new RootPage();
+            _viewModel = new WiFiInfoViewModel(Navigation);
+
+            InitializeComponent();
+            BindingContext = _viewModel;
         }
     }
 }
