@@ -13,7 +13,6 @@
 //limitations under the License.
 
 using NetworkApp.Models;
-using NetworkApp.Tizen.Mobile;
 using System;
 using Tizen.Network.Connection;
 using Tizen.Wearable.CircularUI.Forms;

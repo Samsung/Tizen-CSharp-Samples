@@ -35,6 +35,8 @@ namespace NetworkApp.Views
             {
                 "Connection test",
                 "Wi-Fi test",
+                "Connection Profiles",
+                "Wi-Fi Info",
             };
             RotaryFocusObject = mainListView;
         }
@@ -53,6 +55,12 @@ namespace NetworkApp.Views
                     return;
                 case "Wi-Fi test":
                     Navigation.PushModalAsync(new WifiPage());
+                    return;
+                case "Connection Profiles":
+                    Navigation.PushModalAsync(new ConnectionProfilePage());
+                    return;
+                case "Wi-Fi Info":
+                    Navigation.PushModalAsync(new WiFiInfoPage());
                     return;
             }
         }

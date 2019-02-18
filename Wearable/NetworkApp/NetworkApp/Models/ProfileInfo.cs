@@ -12,30 +12,31 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-using System.Runtime.CompilerServices;
-
 namespace NetworkApp.Models
 {
     /// <summary>
-    /// Logger class for logging the info.
+    /// ProfileInfo class for holding Connection Profile
     /// </summary>
-    public static class Logger
+    public class ProfileInfo
     {
         /// <summary>
-        /// Log tag
+        /// Gets or sets Name of Connection Profile to be shown in View
         /// </summary>
-        private const string LOGTAG = "NetAPP";
+        public string Name { get; set; }
 
         /// <summary>
-        /// Prints DEBUG mode log
+        /// Gets or sets Type of Connection Profile
         /// </summary>
-        /// <param name="message">Log message</param>
-        /// <param name="file">Caller file path</param>
-        /// <param name="func">Caller memeber name</param>
-        /// <param name="line">Caller line number</param>
-        public static void Log(string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
-        {
-            global::Tizen.Log.Debug(LOGTAG, message, file, func, line);
-        }
+        public string Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets State of Connection Profile
+        /// </summary>
+        public string State { get; set; }
+
+        /// <summary>
+        /// Gets or sets real Name of connection Profile
+        public string ProfileName { get; set; }
+        /// </summary>
     }
 }

@@ -12,30 +12,33 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-using System.Runtime.CompilerServices;
+using NetworkApp.ViewModels;
+using Tizen.Wearable.CircularUI.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace NetworkApp.Models
+
+namespace NetworkApp.Views
 {
     /// <summary>
-    /// Logger class for logging the info.
+    /// WiFiInfoPage class
     /// </summary>
-    public static class Logger
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class WiFiInfoPage : IndexPage
     {
         /// <summary>
-        /// Log tag
+        /// ViewModel for WiFiInfoPage
         /// </summary>
-        private const string LOGTAG = "NetAPP";
+        private WiFiInfoViewModel _viewModel;
 
         /// <summary>
-        /// Prints DEBUG mode log
+        /// Initializes a new instance of the <see cref="WiFiInfoPage"/> class
         /// </summary>
-        /// <param name="message">Log message</param>
-        /// <param name="file">Caller file path</param>
-        /// <param name="func">Caller memeber name</param>
-        /// <param name="line">Caller line number</param>
-        public static void Log(string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        public WiFiInfoPage()
         {
-            global::Tizen.Log.Debug(LOGTAG, message, file, func, line);
+            _viewModel = new WiFiInfoViewModel(Navigation);
+
+            InitializeComponent();
+            BindingContext = _viewModel;
         }
     }
 }

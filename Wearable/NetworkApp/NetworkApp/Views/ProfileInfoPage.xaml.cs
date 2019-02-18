@@ -12,30 +12,33 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-using System.Runtime.CompilerServices;
+using NetworkApp.ViewModels;
+using Tizen.Wearable.CircularUI.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace NetworkApp.Models
+namespace NetworkApp.Views
 {
     /// <summary>
-    /// Logger class for logging the info.
+    /// ProfileInfoPage class
     /// </summary>
-    public static class Logger
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ProfileInfoPage : IndexPage
     {
         /// <summary>
-        /// Log tag
+        /// ViewModel for ProfileInfoPage
         /// </summary>
-        private const string LOGTAG = "NetAPP";
+        private ProfileInfoViewModel _viewModel;
 
         /// <summary>
-        /// Prints DEBUG mode log
+        /// Initializes a new instance of the <see cref="ProfileInfoPage"/> class
         /// </summary>
-        /// <param name="message">Log message</param>
-        /// <param name="file">Caller file path</param>
-        /// <param name="func">Caller memeber name</param>
-        /// <param name="line">Caller line number</param>
-        public static void Log(string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+        /// <param name="profileName">Name of Connection Profile to be shown</param>
+        public ProfileInfoPage(string profileName)
         {
-            global::Tizen.Log.Debug(LOGTAG, message, file, func, line);
+            _viewModel = new ProfileInfoViewModel(profileName);
+
+            InitializeComponent();
+            BindingContext = _viewModel;
         }
     }
 }

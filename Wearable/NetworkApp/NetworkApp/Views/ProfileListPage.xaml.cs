@@ -18,6 +18,7 @@ using System.Collections.ObjectModel;
 using Tizen.Wearable.CircularUI.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Tizen.Network.Connection;
 
 namespace NetworkApp.Views
 {
@@ -25,7 +26,7 @@ namespace NetworkApp.Views
     /// NetworkListPage class
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NetworkListPage : CirclePage
+    public partial class ProfileListPage : CirclePage
     {
         /// <summary>
         /// Message showing during Access Points scan
@@ -33,38 +34,36 @@ namespace NetworkApp.Views
         private static string s_scanningMessage = "Scanning...";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RootPage"/> class
+        /// Initializes a new instance of the <see cref="ProfileListPage"/> class
         /// </summary>
-        public NetworkListPage()
+        public ProfileListPage()
         {
             InitializeComponent();
             RotaryFocusObject = listView;
             SetNetworkListAsync();
-            listView.ItemsSource = NetworkList;
+            listView.ItemsSource = ProfileList;
         }
 
         /// <summary>
-        /// Gets or sets Observable Collection holding found APs
+        /// Gets or sets Observable Collection holding found Profiles
         /// </summary>
-        public ObservableCollection<string> NetworkList { get; set; } = new ObservableCollection<string> { s_scanningMessage };
+        public ObservableCollection<string> ProfileList { get; set; } = new ObservableCollection<string> { s_scanningMessage };
 
         /// <summary>
         /// Scans for APs and sets NetworkList with scan result.
         /// </summary>
-        private async void SetNetworkListAsync()
+        private void SetNetworkListAsync()
         {
             try
             {
-                WiFiApiManager wifi = new WiFiApiManager();
+                ConnectionProfileInfo info = new ConnectionProfileInfo();
 
-                await wifi.Scan();
+                var profileList = info.GetProfileList();
 
-                var net = wifi.ScanResult();
-
-                NetworkList.Clear();
-                foreach (var n in net)
+                ProfileList.Clear();
+                foreach (var n in profileList)
                 {
-                    NetworkList.Add(n.Name);
+                    ProfileList.Add(n.Name);
                 }
             }
             catch (NotSupportedException e)
@@ -91,7 +90,7 @@ namespace NetworkApp.Views
                 return;
             }
 
-            Navigation.PushModalAsync(new LoginPage(e.Item.ToString()));
+            Navigation.PushModalAsync(new ProfileInfoPage(e.Item.ToString()));
         }
     }
 }
