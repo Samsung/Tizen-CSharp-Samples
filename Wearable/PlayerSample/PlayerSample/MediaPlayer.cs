@@ -104,6 +104,7 @@ namespace PlayerSample
         /// <summary>
         /// Get stream information
         /// </summary>
+        /// <returns> Stream's informations </returns>
         public IEnumerable<Property> GetStreamInfo()
         {
             yield return new Property("Duration", _player.StreamInfo.GetDuration());
@@ -121,10 +122,13 @@ namespace PlayerSample
         /// <summary>
         /// Get metadata
         /// </summary>
+        /// <returns> MetaData </returns>
         public IEnumerable<Property> GetMetaData()
         {
             for (StreamMetadataKey i = 0; i <= StreamMetadataKey.Year; i++)
+            {
                 yield return new Property(i.ToString(), _player.StreamInfo.GetMetadata(i));
+            }
         }
 
         /// <summary>
@@ -148,6 +152,7 @@ namespace PlayerSample
         /// <summary>
         /// Prepare the player
         /// </summary>
+        /// <returns>A task that represents the asynchronous prepare operation.</returns>
         public async Task PrepareAsync()
         {
             var task = _player.PrepareAsync();
@@ -167,6 +172,8 @@ namespace PlayerSample
         /// <summary>
         /// Set a position of the player
         /// </summary>
+        /// <returns>A task that represents the asynchronous prepare operation.</returns>
+        /// <param name="offset">A offset to seek</param>
         public Task SeekAsync(int offset)
         {
             var targetPos = Math.Min(Math.Max(_player.GetPlayPosition() + offset, 0), Duration);
@@ -177,6 +184,7 @@ namespace PlayerSample
         /// <summary>
         /// Set uri for playing
         /// </summary>
+        /// <param name="uri">Uri to play</param>
         public void SetSource(string uri)
         {
             _player.SetSource(new MediaUriSource(uri));
@@ -185,6 +193,7 @@ namespace PlayerSample
         /// <summary>
         /// Apply audio stream policy
         /// </summary>
+        /// <param name="audioStreamPolicy">Audio stream policy</param>
         public void ApplyAudioStreamPolicy(AudioStreamPolicy audioStreamPolicy)
         {
             _player.ApplyAudioStreamPolicy(audioStreamPolicy);
@@ -193,6 +202,7 @@ namespace PlayerSample
         /// <summary>
         /// Set subtitle uri
         /// </summary>
+        /// <param name="path">A path of subtitle</param>
         public void SetSubtile(string path)
         {
             if (path == null)
@@ -208,6 +218,7 @@ namespace PlayerSample
         /// <summary>
         /// Set subtitle offset
         /// </summary>
+        /// <param name="offset">The offset for subtitle</param>
         public void SetSubtitleOffset(int offset)
         {
             _player.SetSubtitleOffset(offset);
@@ -246,15 +257,10 @@ namespace PlayerSample
         /// <summary>
         /// Sets and gets the Mute.
         /// </summary>
-        public bool Muted {
-            get
-            {
-                return _player.Muted;
-            }
-            set
-            {
-                _player.Muted = value;
-            }
+        public bool Muted
+        {
+            get => _player.Muted;
+            set => _player.Muted = value;
         }
 
         /// <summary>
@@ -262,14 +268,8 @@ namespace PlayerSample
         /// </summary>
         public bool IsLooping
         {
-            get
-            {
-                return _player.IsLooping;
-            }
-            set
-            {
-                _player.IsLooping = value;
-            }
+            get => _player.IsLooping;
+            set => _player.IsLooping = value;
         }
 
         /// <summary>
@@ -277,14 +277,8 @@ namespace PlayerSample
         /// </summary>
         public float Volume
         {
-            get
-            {
-                return _player.Volume;
-            }
-            set
-            {
-                _player.Volume = value;
-            }
+            get => _player.Volume;
+            set => _player.Volume = value;
         }
 
         /// <summary>
@@ -292,14 +286,8 @@ namespace PlayerSample
         /// </summary>
         public MediaPlayerRotation Rotation
         {
-            get
-            {
-                return (MediaPlayerRotation)_player.DisplaySettings.Rotation;
-            }
-            set
-            {
-                _player.DisplaySettings.Rotation = (Rotation)value;
-            }
+            get => (MediaPlayerRotation)_player.DisplaySettings.Rotation;
+            set => _player.DisplaySettings.Rotation = (Rotation)value;
         }
 
         /// <summary>
@@ -307,14 +295,8 @@ namespace PlayerSample
         /// </summary>
         public MediaPlayerDisplayMode DisplayMode
         {
-            get
-            {
-                return (MediaPlayerDisplayMode)_player.DisplaySettings.Mode;
-            }
-            set
-            {
-                _player.DisplaySettings.Mode = (PlayerDisplayMode)value;
-            }
+            get => (MediaPlayerDisplayMode)_player.DisplaySettings.Mode;
+            set => _player.DisplaySettings.Mode = (PlayerDisplayMode)value;
         }
 
         /// <summary>
@@ -322,14 +304,8 @@ namespace PlayerSample
         /// </summary>
         public bool IsVisible
         {
-            get
-            {
-                return _player.DisplaySettings.IsVisible;
-            }
-            set
-            {
-                _player.DisplaySettings.IsVisible = value;
-            }
+            get => _player.DisplaySettings.IsVisible;
+            set => _player.DisplaySettings.IsVisible = value;
         }
 
         /// <summary>
@@ -337,10 +313,7 @@ namespace PlayerSample
         /// </summary>
         public float Rate
         {
-            set
-            {
-                _player.SetPlaybackRate(value);
-            }
+            set => _player.SetPlaybackRate(value);
         }
 
         /// <summary>
@@ -348,14 +321,8 @@ namespace PlayerSample
         /// </summary>
         public int AudioLatencyMode
         {
-            get
-            {
-                return (int)_player.AudioLatencyMode;
-            }
-            set
-            {
-                _player.AudioLatencyMode = (AudioLatencyMode)value;
-            }
+            get => (int)_player.AudioLatencyMode;
+            set => _player.AudioLatencyMode = (AudioLatencyMode)value;
         }
     }
 }

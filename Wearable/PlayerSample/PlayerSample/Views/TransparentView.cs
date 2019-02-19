@@ -51,6 +51,7 @@ namespace PlayerSample
         {
             _transparent.Geometry = Control.Geometry;
         }
+
         void MakeTransparent()
         {
             try
@@ -58,14 +59,16 @@ namespace PlayerSample
                 // Only for tizen 5.0 or higher
                 _transparent.RenderOperation = RenderOp.Copy;
                 // compatible tizen 4.0
-                //evas_object_render_op_set(_transparent.RealHandle, 2);
+                //EvasObjectRenderOpSet(_transparent.RealHandle, 2);
             }
+
             catch (Exception e)
             {
                 Toast.DisplayText(e.Message, 1000);
             }
         }
-        [DllImport("libevas.so.1")]
-        internal static extern void evas_object_render_op_set(IntPtr obj, int op);
+
+        [DllImport("libevas.so.1", EntryPoint = "evas_object_render_op_set")]
+        internal static extern void EvasObjectRenderOpSet(IntPtr obj, int op);
     }
 }

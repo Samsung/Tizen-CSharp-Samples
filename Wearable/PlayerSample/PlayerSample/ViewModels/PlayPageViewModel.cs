@@ -84,7 +84,7 @@ namespace PlayerSample.ViewModels
         /// </summary>
         private void InitializeCommands()
         {
-            PlayCommand = new Command(async() =>
+            PlayCommand = new Command(async () =>
             {
                 try
                 {
@@ -156,11 +156,16 @@ namespace PlayerSample.ViewModels
                         foreach (var Property in MediaPlayer.GetStreamInfo())
                         {
                             if (infoPopUp.Text != null)
+                            {
                                 infoPopUp.Text += ", ";
+                            }
+
                             infoPopUp.Text += ($"{Property.Name}[{Property.Value}]");
                         }
+
                         infoPopUp.Show();
                     }
+
                     infoPopUp.BackButtonPressed += (s, e) =>
                     {
                         infoPopUp.Dismiss();
@@ -184,11 +189,16 @@ namespace PlayerSample.ViewModels
                         foreach (var Property in MediaPlayer.GetMetaData())
                         {
                             if (infoPopUp.Text != null)
+                            {
                                 infoPopUp.Text += ", ";
+                            }
+
                             infoPopUp.Text += ($"{Property.Name}[{Property.Value}]");
                         }
+
                         infoPopUp.Show();
                     }
+
                     infoPopUp.BackButtonPressed += (s, e) =>
                     {
                         infoPopUp.Dismiss();
@@ -218,7 +228,10 @@ namespace PlayerSample.ViewModels
             {
                 float value = MediaPlayer.Volume + 0.1f;
                 if (value <= 1.0f)
+                {
                     MediaPlayer.Volume = value;
+                }
+
                 OnPropertyChanged(nameof(StatusText));
                 Toast.DisplayText(StatusText, 1000);
             });
@@ -227,7 +240,10 @@ namespace PlayerSample.ViewModels
             {
                 float value = MediaPlayer.Volume - 0.1f;
                 if (value >= 0.0f)
+                {
                     MediaPlayer.Volume = value;
+                }
+
                 OnPropertyChanged(nameof(StatusText));
                 Toast.DisplayText(StatusText, 1000);
             });
@@ -235,18 +251,28 @@ namespace PlayerSample.ViewModels
             ModeCommand = new Command(() =>
             {
                 if (MediaPlayerDisplayMode.Roi.Equals(MediaPlayer.DisplayMode))
+                {
                     MediaPlayer.DisplayMode = MediaPlayerDisplayMode.LetterBox;
+                }
                 else
+                {
                     MediaPlayer.DisplayMode++;
+                }
+
                 OnPropertyChanged(nameof(StatusText));
             });
 
             RotationCommand = new Command(() =>
             {
                 if (MediaPlayerRotation.Rotate270.Equals(MediaPlayer.Rotation))
+                {
                     MediaPlayer.Rotation = MediaPlayerRotation.Rotate0;
+                }
                 else
+                {
                     MediaPlayer.Rotation++;
+                }
+
                 OnPropertyChanged(nameof(StatusText));
             });
 
@@ -256,6 +282,7 @@ namespace PlayerSample.ViewModels
                 {
                     return;
                 }
+
                 Rate += 0.5f;
                 MediaPlayer.Rate = Rate;
                 Toast.DisplayText(StatusText, 1000);
@@ -267,6 +294,7 @@ namespace PlayerSample.ViewModels
                 {
                     return;
                 }
+
                 Rate -= 0.5f;
                 MediaPlayer.Rate = Rate;
                 Toast.DisplayText(StatusText, 1000);
@@ -280,9 +308,14 @@ namespace PlayerSample.ViewModels
             AudioLatencyCommand = new Command(() =>
             {
                 if (MediaPlayer.AudioLatencyMode < 2)
+                {
                     MediaPlayer.AudioLatencyMode++;
+                }
                 else
+                {
                     MediaPlayer.AudioLatencyMode = 0;
+                }
+
                 Toast.DisplayText(MediaPlayer.AudioLatencyMode.ToString(), 1000);
             });
         }
@@ -379,6 +412,8 @@ namespace PlayerSample.ViewModels
         /// <summary>
         /// Seek when it is available.
         /// </summary>
+        /// <returns>A task that represents the asynchronous prepare operation.</returns>
+        /// <param name="offset"> A offset to seek</param>
         private async Task Seek(int offset)
         {
             IsSeekable = false;
@@ -408,6 +443,8 @@ namespace PlayerSample.ViewModels
         /// <summary>
         /// Invoked when the state is changed.
         /// </summary>
+        /// <param name="sender">Object that sent event.</param>
+        /// <param name="e">Arguments of the event.</param>
         private void OnStateChanged(object sender, EventArgs e)
         {
             PlayerState = MediaPlayer.State;
@@ -424,12 +461,15 @@ namespace PlayerSample.ViewModels
                     SubtitleText = null;
                     break;
             }
+
             OnPropertyChanged(nameof(PauseText));
         }
 
         /// <summary>
         /// Invoked following the buffering callback.
         /// </summary>
+        /// <param name="sender">Object that sent event.</param>
+        /// <param name="e">Arguments of the event.</param>
         private void OnBuffering(object sender, BufferingEventArgs e)
         {
             if (e.Percent < 100)
@@ -443,11 +483,14 @@ namespace PlayerSample.ViewModels
 
             OnPropertyChanged(nameof(BufferingText));
         }
+
         public string BufferingText { get; protected set; }
 
         /// <summary>
         /// Invoked when the error occurs.
         /// </summary>
+        /// <param name="sender">Object that sent event.</param>
+        /// <param name="e">Arguments of the event.</param>
         private void OnErrorOccurred(object sender, ErrorEventArgs e)
         {
             Toast.DisplayText(e.Message, 1000);
@@ -476,6 +519,8 @@ namespace PlayerSample.ViewModels
         /// <summary>
         /// Invoked when the subtitle is updated.
         /// </summary>
+        /// <param name="sender">Object that sent event.</param>
+        /// <param name="e">Arguments of the event.</param>
         private async void OnSubtitleUpdated(object sender, SubtitleUpdatedEventArgs e)
         {
             _subtitleDelayCancelSource.Cancel();
@@ -513,8 +558,11 @@ namespace PlayerSample.ViewModels
         {
             base.OnDisappearing();
 
-            if(PlayerState >= MediaPlayerState.Ready)
+            if (PlayerState >= MediaPlayerState.Ready)
+            {
                 MediaPlayer.Unprepare();
+            }
+
             MediaPlayer.SetSubtile(null);
 
             MediaPlayer.Buffering -= OnBuffering;

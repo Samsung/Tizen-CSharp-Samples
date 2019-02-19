@@ -30,6 +30,9 @@ namespace PlayerSample.Models
         /// Prints DEBUG mode log
         /// </summary>
         /// <param name="message">Log message</param>
+        /// <param name="file">File</param>
+        /// <param name="func">Function name</param>
+        /// <param name="line">Line number</param>
         public static void Log(string message, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
             global::Tizen.Log.Debug(LOGTAG, message, file, func, line);

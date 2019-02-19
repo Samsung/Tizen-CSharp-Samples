@@ -70,9 +70,13 @@ namespace PlayerSample.ViewModels
         private void PushPlayPage()
         {
             if (UrlText != null)
+            {
                 Navigation.PushModalAsync(new PlayPage(UrlText));
+            }
             else
+            {
                 Logger.Log("Selected Item is null");
+            }
         }
     }
 }
