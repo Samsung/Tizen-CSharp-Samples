@@ -26,13 +26,22 @@ namespace PlayerSample
 {
     public static class VideoViewController
     {
+        /// <summary>
+        /// To get a window
+        /// </summary>
         public static Func<ElmSharp.Window> MainWindowProvider { get; set; }
     }
 
     class MediaPlayer : IMediaPlayer
     {
+        /// <summary>
+        /// Create new player
+        /// </summary>
         private readonly Player _player = new Player();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaPlayer"/>
+        /// </summary>
         public MediaPlayer()
         {
             _player.PlaybackCompleted += (s, e) => Stop();
@@ -47,23 +56,54 @@ namespace PlayerSample
                 SubtitleUpdated?.Invoke(this, new SubtitleUpdatedEventArgs(e.Text, e.Duration));
         }
 
+        /// <summary>
+        /// The state of Player
+        /// </summary>
         public MediaPlayerState State => (MediaPlayerState)_player.State;
 
+        /// <summary>
+        /// Get a position of the player
+        /// </summary>
         public int Position => _player.GetPlayPosition();
 
+        /// <summary>
+        /// Get a duration of the stream
+        /// </summary>
         public int Duration => _player.StreamInfo.GetDuration();
 
+        /// <summary>
+        /// Subtitle updated event
+        /// </summary>
         public event EventHandler<SubtitleUpdatedEventArgs> SubtitleUpdated;
+
+        /// <summary>
+        /// Error occured event
+        /// </summary>
         public event EventHandler<ErrorEventArgs> ErrorOccurred;
+
+        /// <summary>
+        /// Buffering event
+        /// </summary>
         public event EventHandler<BufferingEventArgs> Buffering;
+
+        /// <summary>
+        /// State changed event
+        /// </summary>
         public event EventHandler<EventArgs> StateChanged;
 
+        /// <summary>
+        /// Create window and set display
+        /// </summary>
         public void CreateDisplay()
         {
             var VideoWindow = VideoViewController.MainWindowProvider();
 
             _player.Display = new Display(VideoWindow);
         }
+
+        /// <summary>
+        /// Get stream information
+        /// </summary>
         public IEnumerable<Property> GetStreamInfo()
         {
             yield return new Property("Duration", _player.StreamInfo.GetDuration());
@@ -78,17 +118,26 @@ namespace PlayerSample
             yield return new Property("Video.Size", _player.StreamInfo.GetVideoProperties().Size);
         }
 
+        /// <summary>
+        /// Get metadata
+        /// </summary>
         public IEnumerable<Property> GetMetaData()
         {
             for (StreamMetadataKey i = 0; i <= StreamMetadataKey.Year; i++)
                 yield return new Property(i.ToString(), _player.StreamInfo.GetMetadata(i));
         }
 
+        /// <summary>
+        /// Invoke when state changed
+        /// </summary>
         private void RaiseStateChanged()
         {
             StateChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Pause the player
+        /// </summary>
         public void Pause()
         {
             _player.Pause();
@@ -96,6 +145,9 @@ namespace PlayerSample
             RaiseStateChanged();
         }
 
+        /// <summary>
+        /// Prepare the player
+        /// </summary>
         public async Task PrepareAsync()
         {
             var task = _player.PrepareAsync();
@@ -112,6 +164,9 @@ namespace PlayerSample
             }
         }
 
+        /// <summary>
+        /// Set a position of the player
+        /// </summary>
         public Task SeekAsync(int offset)
         {
             var targetPos = Math.Min(Math.Max(_player.GetPlayPosition() + offset, 0), Duration);
@@ -119,17 +174,25 @@ namespace PlayerSample
             return _player.SetPlayPositionAsync(targetPos, true);
         }
 
+        /// <summary>
+        /// Set uri for playing
+        /// </summary>
         public void SetSource(string uri)
         {
             _player.SetSource(new MediaUriSource(uri));
         }
 
+        /// <summary>
+        /// Apply audio stream policy
+        /// </summary>
         public void ApplyAudioStreamPolicy(AudioStreamPolicy audioStreamPolicy)
         {
             _player.ApplyAudioStreamPolicy(audioStreamPolicy);
         }
-        
 
+        /// <summary>
+        /// Set subtitle uri
+        /// </summary>
         public void SetSubtile(string path)
         {
             if (path == null)
@@ -142,11 +205,17 @@ namespace PlayerSample
             }
         }
 
+        /// <summary>
+        /// Set subtitle offset
+        /// </summary>
         public void SetSubtitleOffset(int offset)
         {
             _player.SetSubtitleOffset(offset);
         }
 
+        /// <summary>
+        /// Start the player
+        /// </summary>
         public void Start()
         {
             _player.Start();
@@ -154,6 +223,9 @@ namespace PlayerSample
             RaiseStateChanged();
         }
 
+        /// <summary>
+        /// Stop the player
+        /// </summary>
         public void Stop()
         {
             _player.Stop();
@@ -161,12 +233,19 @@ namespace PlayerSample
             RaiseStateChanged();
         }
 
+        /// <summary>
+        /// Unprepare the player
+        /// </summary>
         public void Unprepare()
         {
             _player.Unprepare();
 
             RaiseStateChanged();
         }
+
+        /// <summary>
+        /// Sets and gets the Mute.
+        /// </summary>
         public bool Muted {
             get
             {
@@ -177,6 +256,10 @@ namespace PlayerSample
                 _player.Muted = value;
             }
         }
+
+        /// <summary>
+        /// Sets and gets the looping.
+        /// </summary>
         public bool IsLooping
         {
             get
@@ -188,6 +271,10 @@ namespace PlayerSample
                 _player.IsLooping = value;
             }
         }
+
+        /// <summary>
+        /// Sets and gets the Volume.
+        /// </summary>
         public float Volume
         {
             get
@@ -199,6 +286,10 @@ namespace PlayerSample
                 _player.Volume = value;
             }
         }
+
+        /// <summary>
+        /// Sets and gets the Rotation.
+        /// </summary>
         public MediaPlayerRotation Rotation
         {
             get
@@ -210,6 +301,10 @@ namespace PlayerSample
                 _player.DisplaySettings.Rotation = (Rotation)value;
             }
         }
+
+        /// <summary>
+        /// Sets and gets the Displaymode.
+        /// </summary>
         public MediaPlayerDisplayMode DisplayMode
         {
             get
@@ -221,6 +316,10 @@ namespace PlayerSample
                 _player.DisplaySettings.Mode = (PlayerDisplayMode)value;
             }
         }
+
+        /// <summary>
+        /// Sets and gets the Visibility.
+        /// </summary>
         public bool IsVisible
         {
             get
@@ -232,6 +331,10 @@ namespace PlayerSample
                 _player.DisplaySettings.IsVisible = value;
             }
         }
+
+        /// <summary>
+        /// Sets the PlaybackRate.
+        /// </summary>
         public float Rate
         {
             set
@@ -239,6 +342,10 @@ namespace PlayerSample
                 _player.SetPlaybackRate(value);
             }
         }
+
+        /// <summary>
+        /// Sets and gets the AudioLatencyMode.
+        /// </summary>
         public int AudioLatencyMode
         {
             get
