@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:local="clr-namespace:PlayerSample;assembly=PlayerSample"
+              x:Class="PlayerSample.Views.PlayPage">
+
+    <!-- set boundary -->
+    <AbsoluteLayout>
+        <local:TransparentView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+        </local:TransparentView>
+        <Label Text="{Binding SubtitleText}"
+                   TextColor="White"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="EndAndExpand"/>
+    </AbsoluteLayout>
+
+    <!-- set toolbar item -->
+    <w:CirclePage.ToolbarItems>
+        <w:CircleToolbarItem
+            Command="{Binding PlayCommand}"
+            Icon="images/play.png"
+            Text="{Binding PauseText}"/>
+        <w:CircleToolbarItem
+            Command="{Binding StopCommand}"
+            Icon="images/stop.png"
+            Text="Stop"/>
+        <w:CircleToolbarItem
+            Command="{Binding SeekBackwardCommand}"
+            Icon="images/backward.png"
+            Text="Seek backward"/>
+        <w:CircleToolbarItem
+            Command="{Binding SeekForwardCommand}"
+            Icon="images/forward.png"
+            Text="Seek forward"/>
+        <w:CircleToolbarItem
+            Command="{Binding VisibleCommand}"
+            Icon="images/visible.png"
+            Text="Visiblity"/>
+        <w:CircleToolbarItem
+            Command="{Binding LoopCommand}"
+            Icon="images/loop.png"
+            Text="Looping"/>
+        <w:CircleToolbarItem
+            Command="{Binding MuteCommand}"
+            Icon="images/mute.png"
+            Text="Mute"/>
+        <w:CircleToolbarItem
+            Command="{Binding VolumeUpCommand}"
+            Icon="images/volumeup.png"
+            Text="Volume up"/>
+        <w:CircleToolbarItem
+            Command="{Binding VolumeDownCommand}"
+            Icon="images/volumedown.png"
+            Text="Volume down"/>
+        <w:CircleToolbarItem
+            Command="{Binding ModeCommand}"
+            Icon="images/mode.png"
+            Text="Mode"/>
+        <w:CircleToolbarItem
+            Command="{Binding RotationCommand}"
+            Icon="images/rotation.png"
+            Text="Rotation"/>
+        <w:CircleToolbarItem
+            Command="{Binding StreamInfoCommand}"
+            Icon="images/info.png"
+            Text="Stream's Info"/>
+        <w:CircleToolbarItem
+            Command="{Binding ContentInfoCommand}"
+            Icon="images/info.png"
+            Text="Content's Info"/>
+        <w:CircleToolbarItem
+            Command="{Binding PlaybackRateUpCommand}"
+            Icon="images/plus.png"
+            Text="Playback rate up"/>
+        <w:CircleToolbarItem
+            Command="{Binding PlaybackRateDownCommand}"
+            Icon="images/minus.png"
+            Text="Playback rate down"/>
+        <w:CircleToolbarItem
+            Command="{Binding AudioLatencyCommand}"
+            Icon="images/tizen.png"
+            Text="Audio Latency Mode"/>
+    </w:CirclePage.ToolbarItems>
+</w:CirclePage>
