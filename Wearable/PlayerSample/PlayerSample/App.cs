@@ -18,8 +18,14 @@ using Tizen.Security;
 
 namespace PlayerSample
 {
+    /// <summary>
+    /// The main class of PlayerSample application.
+    /// </summary>
     public class App : Application
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="App"/> class.
+        /// </summary>
         public App()
         {
             AskForPermissions();

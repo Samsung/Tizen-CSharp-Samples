@@ -35,7 +35,7 @@ namespace PlayerSample
     class MediaPlayer : IMediaPlayer
     {
         /// <summary>
-        /// Create new player
+        /// Creates new player
         /// </summary>
         private readonly Player _player = new Player();
 
@@ -62,12 +62,12 @@ namespace PlayerSample
         public MediaPlayerState State => (MediaPlayerState)_player.State;
 
         /// <summary>
-        /// Get a position of the player
+        /// Gets a position of the player
         /// </summary>
         public int Position => _player.GetPlayPosition();
 
         /// <summary>
-        /// Get a duration of the stream
+        /// Gets a duration of the stream
         /// </summary>
         public int Duration => _player.StreamInfo.GetDuration();
 
@@ -77,7 +77,7 @@ namespace PlayerSample
         public event EventHandler<SubtitleUpdatedEventArgs> SubtitleUpdated;
 
         /// <summary>
-        /// Error occured event
+        /// Error occurred event
         /// </summary>
         public event EventHandler<ErrorEventArgs> ErrorOccurred;
 
@@ -92,7 +92,7 @@ namespace PlayerSample
         public event EventHandler<EventArgs> StateChanged;
 
         /// <summary>
-        /// Create window and set display
+        /// Creates window and sets display
         /// </summary>
         public void CreateDisplay()
         {
@@ -102,7 +102,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Get stream information
+        /// Gets stream information
         /// </summary>
         /// <returns> Stream's informations </returns>
         public IEnumerable<Property> GetStreamInfo()
@@ -120,7 +120,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Get metadata
+        /// Gets a metadata
         /// </summary>
         /// <returns> MetaData </returns>
         public IEnumerable<Property> GetMetaData()
@@ -132,7 +132,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Invoke when state changed
+        /// Invokes when state changed
         /// </summary>
         private void RaiseStateChanged()
         {
@@ -140,7 +140,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Pause the player
+        /// Pauses the player
         /// </summary>
         public void Pause()
         {
@@ -150,7 +150,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Prepare the player
+        /// Prepares the player
         /// </summary>
         /// <returns>A task that represents the asynchronous prepare operation.</returns>
         public async Task PrepareAsync()
@@ -170,7 +170,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Set a position of the player
+        /// Sets a position of the player
         /// </summary>
         /// <returns>A task that represents the asynchronous prepare operation.</returns>
         /// <param name="offset">A offset to seek</param>
@@ -182,7 +182,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Set uri for playing
+        /// Sets a uri for playing
         /// </summary>
         /// <param name="uri">Uri to play</param>
         public void SetSource(string uri)
@@ -191,7 +191,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Apply audio stream policy
+        /// Applies audio stream policy
         /// </summary>
         /// <param name="audioStreamPolicy">Audio stream policy</param>
         public void ApplyAudioStreamPolicy(AudioStreamPolicy audioStreamPolicy)
@@ -200,7 +200,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Set subtitle uri
+        /// Sets subtitle uri
         /// </summary>
         /// <param name="path">A path of subtitle</param>
         public void SetSubtile(string path)
@@ -216,7 +216,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Set subtitle offset
+        /// Sets subtitle offset
         /// </summary>
         /// <param name="offset">The offset for subtitle</param>
         public void SetSubtitleOffset(int offset)
@@ -225,7 +225,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Start the player
+        /// Starts the player
         /// </summary>
         public void Start()
         {
@@ -235,7 +235,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Stop the player
+        /// Stops the player
         /// </summary>
         public void Stop()
         {
@@ -245,7 +245,7 @@ namespace PlayerSample
         }
 
         /// <summary>
-        /// Unprepare the player
+        /// Unprepares the player
         /// </summary>
         public void Unprepare()
         {

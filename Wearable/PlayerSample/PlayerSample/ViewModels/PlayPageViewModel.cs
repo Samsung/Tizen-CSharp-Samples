@@ -45,7 +45,7 @@ namespace PlayerSample.ViewModels
         public ICommand PlaybackRateDownCommand { get; protected set; }
         public ICommand AudioLatencyCommand { get; protected set; }
 
-        // Set the unit to seek according to the duration of a content
+        // Sets the unit to seek according to the duration of a content
         private int _seekUnit;
 
         /// <summary>
@@ -56,21 +56,21 @@ namespace PlayerSample.ViewModels
         {
             SourceText = path;     
 
-            // Set uri to selected one
+            // Sets uri to selected one
             MediaPlayer.SetSource(path);
 
-            // Set subtitle uri
+            // Sets subtitle uri
             MediaPlayer.SetSubtile(ResourcePath.GetPath("test.srt"));
 
-            // Set audio stream policy and apply it
+            // Sets audio stream policy and apply it
             Tizen.Multimedia.AudioStreamPolicy audioStreamPolicy = new Tizen.Multimedia.AudioStreamPolicy(Tizen.Multimedia.AudioStreamType.Media);
             MediaPlayer.ApplyAudioStreamPolicy(audioStreamPolicy);
 
-            // Create display
+            // Creates display
             MediaPlayer.CreateDisplay();
             PlayerState = MediaPlayer.State;
 
-            // Add events
+            // Adds events
             MediaPlayer.Buffering += OnBuffering;
             MediaPlayer.ErrorOccurred += OnErrorOccurred;
             MediaPlayer.SubtitleUpdated += OnSubtitleUpdated;
@@ -80,7 +80,7 @@ namespace PlayerSample.ViewModels
         }
 
         /// <summary>
-        /// Initialize all comands
+        /// Initializes all commands
         /// </summary>
         private void InitializeCommands()
         {
@@ -327,7 +327,7 @@ namespace PlayerSample.ViewModels
         public string SourceText { get; protected set; }
 
         /// <summary>
-        /// Describe player state.
+        /// Describes player state.
         /// </summary>
         private MediaPlayerState _playerState;
         public MediaPlayerState PlayerState
@@ -410,7 +410,7 @@ namespace PlayerSample.ViewModels
         }
 
         /// <summary>
-        /// Seek when it is available.
+        /// Seeks when it is available.
         /// </summary>
         /// <returns>A task that represents the asynchronous prepare operation.</returns>
         /// <param name="offset"> A offset to seek</param>
@@ -423,7 +423,7 @@ namespace PlayerSample.ViewModels
         }
 
         /// <summary>
-        /// Describe whether or not seek is available.
+        /// Describes whether or not seek is available.
         /// </summary>
         private bool _isSeekable;
         public bool IsSeekable
