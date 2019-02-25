@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:sys="clr-namespace:System;assembly=netstandard"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:local="clr-namespace:MediaCodecSample.ViewModels"
+              x:Class="MediaCodecSample.Views.EncodingPage"
+              x:Name="Page"
+              RotaryFocusObject="{x:Reference encoderList}">
+
+    <w:CirclePage.Content>
+        <w:CircleListView x:Name="encoderList"
+                          HasUnevenRows="True"
+                          ItemsSource="{Binding SupportedCodecs}"
+                          Header="{Binding MediaType}">
+            <w:CircleListView.HeaderTemplate>
+                <DataTemplate>
+                    <Label w:CircleListView.CancelEffect="True"
+                           FontSize="9"
+                           HorizontalTextAlignment="Center"
+                           Text="{Binding}"
+                           TextColor="DarkSeaGreen"
+                           VerticalTextAlignment="Center" />
+                </DataTemplate>
+            </w:CircleListView.HeaderTemplate>
+
+            <w:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HeightRequest="100"
+                                     HorizontalOptions="FillAndExpand"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="FillAndExpand">
+                            <StackLayout HorizontalOptions="CenterAndExpand"
+                                         Orientation="Horizontal"
+                                         VerticalOptions="Center">
+                                <Button FontSize="7"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding StringFormat='{0}'}"
+                                        VerticalOptions="Center"
+                                        Command="{Binding BindingContext.StartEncodingCommand, Source={x:Reference Page}}"
+                                        CommandParameter="{Binding}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </w:CircleListView.ItemTemplate>
+        </w:CircleListView>
+    </w:CirclePage.Content>
+</w:CirclePage>
