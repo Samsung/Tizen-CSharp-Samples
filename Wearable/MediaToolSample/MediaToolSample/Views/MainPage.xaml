@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              x:Class="MediaToolSample.Views.MainPage"
+              NavigationPage.HasNavigationBar="False"
+              BackgroundColor="#1b1b1b"
+              RotaryFocusObject="{x:Reference scroller}">
+    <w:CirclePage.Content>
+        <w:CircleScrollView x:Name="scroller" Orientation="Vertical">
+            <StackLayout HorizontalOptions="CenterAndExpand" 
+                 VerticalOptions="CenterAndExpand">
+                <StackLayout Orientation="Vertical">
+                    <Button Text="Create AudioFormat"
+                            HorizontalOptions="CenterAndExpand"
+                            FontSize="Micro"
+                            Command="{Binding CreateAudioFormatCommand}"/>
+                    <Button Text="Create VideoFormat"
+                            HorizontalOptions="CenterAndExpand"
+                            FontSize="Micro"
+                            Command="{Binding CreateVideoFormatCommand}"/>
+                    <Button Text="Create AudioPacket"
+                            HorizontalOptions="CenterAndExpand"
+                            FontSize="Micro"
+                            Command="{Binding CreateAudioPacketCommand}"/>
+                    <Button Text="Create VideoPacket"
+                            HorizontalOptions="CenterAndExpand"
+                            FontSize="Micro"
+                            Command="{Binding CreateVideoPacketCommand}"/>
+                    <Button Text="Destroy All"
+                            HorizontalOptions="CenterAndExpand"
+                            FontSize="Micro"
+                            Command="{Binding DestroyAllCommand}"/>
+                    <Button Text="Get Packet's Format"
+                            HorizontalOptions="CenterAndExpand"
+                            FontSize="Micro"
+                            Command="{Binding GetFormatCommand}"/>
+                    <Button Text="Sample"
+                            HorizontalOptions="CenterAndExpand"
+                            FontSize="Micro"
+                            Command="{Binding SamplePlayCommand}"/>
+                </StackLayout>
+            </StackLayout>
+        </w:CircleScrollView>
+    </w:CirclePage.Content>
+</w:CirclePage>
