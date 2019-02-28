@@ -86,7 +86,8 @@ namespace OpenTKSample
 
         public OpenTKCubeWithSkiaSharp()
         {
-            vertices = new float[] {
+            vertices = new float[]
+            {
                 /* front surface is blue */
                 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
                 -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
@@ -207,6 +208,7 @@ namespace OpenTKSample
         /// <summary>
         /// Called when it is time to render the next frame. Add your rendering code here.
         /// </summary>
+        /// <param name="sender">the subject of RenderFrame Event </param>
         /// <param name="e">Contains timing information.</param>
         private void OnRenderFrame(Object sender, FrameEventArgs e)
         {
@@ -214,7 +216,7 @@ namespace OpenTKSample
             Rotate(1.0f, 1.0f);
 
             GL.ClearColor(Color4.CornflowerBlue);
-            GL.Enable(All.DepthTest);
+            GL.Enable(EnableCap.DepthTest);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             GL.UseProgram(mProgramHandle);
@@ -232,19 +234,22 @@ namespace OpenTKSample
                     GL.VertexAttribPointer(positionLoc, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), new IntPtr(pvertices));
                     GL.EnableVertexAttribArray(positionLoc);
                 }
+
                 fixed (float* texCoord = textCoord)
                 {
                     // Prepare the texture coordinate data
                     GL.VertexAttribPointer(texCoordLoc, 2, VertexAttribPointerType.Float, false, 2 * sizeof(float), new IntPtr(texCoord));
                     GL.EnableVertexAttribArray(texCoordLoc);
                 }
+
             }
+
             mvpLoc = GL.GetUniformLocation(mProgramHandle, "u_mvpMatrix");
 
             // Apply the projection and view transformation
             GL.UniformMatrix4(mvpLoc, false, ref mvpMatrix);
 
-            GL.DrawArrays(All.Triangles, 0, 36);
+            GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
             GL.Finish();
 
             // Disable vertex array
@@ -324,7 +329,7 @@ namespace OpenTKSample
         /// </summary>
         private void CreateSKCanvas()
         {
-            GL.PixelStore(All.UnpackAlignment, 4);
+            GL.PixelStore(PixelStoreParameter.UnpackAlignment, 4);
 
             // create the SKSurface
             var info = new SKImageInfo(bitmapWidth, bitmapHeight, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
@@ -398,27 +403,33 @@ namespace OpenTKSample
         /// </summary>
         private void Create2DTextureFromMemory()
         {
-            GL.TexImage2D(All.Texture2D, 0, All.BgraExt, bitmapWidth, bitmapHeight, 0, All.BgraExt, All.UnsignedByte, pBitMap);
+#pragma warning disable CS0618 // Type or member is obsolete
+            GL.TexImage2D(All.Texture2D, 0, All.BgraExt, bitmapWidth, bitmapHeight, 0, All.AbgrExt, All.UnsignedByte, pBitMap);
+#pragma warning restore CS0618 // Type or member is obsolete
 
-            GL.TexParameter(All.Texture2D, All.TextureMinFilter, (float)All.LinearMipmapLinear);
-            GL.TexParameter(All.Texture2D, All.TextureMagFilter, (float)All.Linear);
-            GL.GenerateMipmap(All.Texture2D);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (float)All.LinearMipmapLinear);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (float)All.Linear);
+            GL.GenerateMipmap(TextureTarget.Texture2D);
         }
 
         /// <summary>
         /// Rotate the cube
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">X Position</param>
+        /// <param name="y">Y Position</param>
         private void Rotate(float x, float y)
         {
             angleX += (x * 0.2f);
             if (angleX >= 360.0f)
+            {
                 angleX -= 360.0f;
+            }
 
             angleY += (y * 0.2f);
             if (angleY >= 360.0f)
+            {
                 angleY -= 360.0f;
+            }
 
             MatrixHelper.EsMatrixLoadIdentity(ref viewMatrix);
             viewMatrix = MatrixHelper.EsPerspective(60.0f, (float)mainWindow.Width / (float)mainWindow.Height, 1.0f, 20.0f, viewMatrix);

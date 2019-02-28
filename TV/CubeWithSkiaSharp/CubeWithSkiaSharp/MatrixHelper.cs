@@ -36,6 +36,7 @@ namespace OpenTKSample
                         a[i, j] = 1.0f;
                         continue;
                     }
+
                     a[i, j] = 0;
                 }
             }
@@ -45,10 +46,11 @@ namespace OpenTKSample
         /// Perspective translation
         /// </summary>
         /// <param name="fovy">angle of elevation</param>
-        /// <param name="aspectRatio">aspect Ratio</param>
+        /// <param name="aspect">aspect Ratio</param>
         /// <param name="nearZ">near Z coordination</param>
         /// <param name="farZ">far Z coordination</param>
         /// <param name="viewMatrix">Matrix to be processed</param>
+        /// <returns>The processed Matrix</returns>
         public static Matrix4 EsPerspective(float fovy, float aspect, float nearZ, float farZ, Matrix4 viewMatrix)
         {
             float frustumW, frustumH;
@@ -67,15 +69,13 @@ namespace OpenTKSample
         /// <param name="nearZ">The Z-axis coordinates on top surface of frustum cone</param>
         /// <param name="farZ">The Z-axis coordinates of the base of frustum cone</param>
         /// <param name="viewMatrix">Matrix to be processed</param>
+        /// <returns>The processed Matrix</returns>
         public static Matrix4 EsFrustum(float left, float right, float bottom, float top, float nearZ, float farZ, Matrix4 viewMatrix)
         {
             float deltaX = right - left;
             float deltaY = top - bottom;
             float deltaZ = farZ - nearZ;
             Matrix4 frust = new Matrix4();
-            if ((nearZ <= 0.0f) || (farZ <= 0.0f) ||
-                 (deltaX <= 0.0f) || (deltaY <= 0.0f) || (deltaZ <= 0.0f))
-            { }
             frust.M11 = 2.0f * nearZ / deltaX;
             frust.M12 = frust.M13 = frust.M14 = 0.0f;
             frust.M22 = 2.0f * nearZ / deltaY;
