@@ -403,10 +403,7 @@ namespace OpenTKSample
         /// </summary>
         private void Create2DTextureFromMemory()
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            GL.TexImage2D(All.Texture2D, 0, All.BgraExt, bitmapWidth, bitmapHeight, 0, All.AbgrExt, All.UnsignedByte, pBitMap);
-#pragma warning restore CS0618 // Type or member is obsolete
-
+            GL.TexImage2D(TextureTarget2d.Texture2D, 0, TextureComponentCount.Rgba, bitmapWidth, bitmapHeight, 0, PixelFormat.Rgba, PixelType.UnsignedByte, pBitMap);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (float)All.LinearMipmapLinear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (float)All.Linear);
             GL.GenerateMipmap(TextureTarget.Texture2D);
