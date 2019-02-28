@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:local="clr-namespace:MediaToolSample;assembly=MediaToolSample"
+              x:Class="MediaToolSample.Views.PlayPage">
+
+    <!-- set boundary -->
+    <AbsoluteLayout>
+        <local:TransparentView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+        </local:TransparentView>
+    </AbsoluteLayout>
+</w:CirclePage>
