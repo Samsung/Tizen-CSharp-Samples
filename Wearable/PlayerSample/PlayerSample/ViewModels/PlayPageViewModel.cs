@@ -327,11 +327,6 @@ namespace PlayerSample.ViewModels
             });
         }
 
-        /// <summary>
-        /// Gets the Navigation instance to push new pages properly
-        /// </summary>
-        public INavigation Navigation { get; }
-
         protected IMediaPlayer MediaPlayer => DependencyService.Get<IMediaPlayer>();
         public string PauseText => PlayerState != MediaPlayerState.Playing ? "Play" : "Pause";
         public string MuteText => MediaPlayer.Muted ? "\uD83D\uDD07" : "\uD83D\uDD0A";
