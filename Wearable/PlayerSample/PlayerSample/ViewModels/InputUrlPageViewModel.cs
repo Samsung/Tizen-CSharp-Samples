@@ -17,6 +17,7 @@
 using Xamarin.Forms;
 using PlayerSample.Views;
 using PlayerSample.Models;
+using Tizen.Wearable.CircularUI.Forms;
 
 namespace PlayerSample.ViewModels
 {
@@ -69,13 +70,14 @@ namespace PlayerSample.ViewModels
         /// </summary>
         private void PushPlayPage()
         {
-            if (UrlText != null)
+            if (UrlText != string.Empty)
             {
                 Navigation.PushModalAsync(new PlayPage(UrlText));
             }
             else
             {
-                Logger.Log("Selected Item is null");
+                Logger.Log("Uri is empty");
+                Toast.DisplayText("Uri is empty", 1000);
             }
         }
     }

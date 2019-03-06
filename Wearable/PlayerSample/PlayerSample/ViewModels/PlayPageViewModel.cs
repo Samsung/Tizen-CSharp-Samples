@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using Tizen.Wearable.CircularUI.Forms;
+using PlayerSample.Models;
 
 namespace PlayerSample.ViewModels
 {
@@ -101,6 +102,7 @@ namespace PlayerSample.ViewModels
                 }
                 catch (Exception e)
                 {
+                    Logger.Log(e.Message);
                     Toast.DisplayText(e.Message, 1000);
                 }
             });
@@ -116,6 +118,7 @@ namespace PlayerSample.ViewModels
                 }
                 catch (Exception e)
                 {
+                    Logger.Log(e.Message);
                     Toast.DisplayText(e.Message, 1000);
                 }
             });
@@ -128,6 +131,7 @@ namespace PlayerSample.ViewModels
                 }
                 catch (Exception e)
                 {
+                    Logger.Log(e.Message);
                     Toast.DisplayText(e.Message, 1000);
                 }
             });
@@ -140,6 +144,7 @@ namespace PlayerSample.ViewModels
                 }
                 catch (Exception e)
                 {
+                    Logger.Log(e.Message);
                     Toast.DisplayText(e.Message, 1000);
                 }
             });
@@ -173,6 +178,7 @@ namespace PlayerSample.ViewModels
                 }
                 catch (Exception e)
                 {
+                    Logger.Log(e.Message);
                     Toast.DisplayText(e.Message, 1000);
                 }
             });
@@ -206,6 +212,7 @@ namespace PlayerSample.ViewModels
                 }
                 catch (Exception e)
                 {
+                    Logger.Log(e.Message);
                     Toast.DisplayText(e.Message, 1000);
                 }
             });
@@ -545,10 +552,18 @@ namespace PlayerSample.ViewModels
         {
             base.OnAppearing();
 
-            await MediaPlayer.PrepareAsync();
+            try
+            {
+                await MediaPlayer.PrepareAsync();
 
-            // Calculates seek unit based on duration.
-            _seekUnit = Math.Max(1000, MediaPlayer.Duration / 20);
+                // Calculates seek unit based on duration.
+                _seekUnit = Math.Max(1000, MediaPlayer.Duration / 20);
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e.Message);
+                Toast.DisplayText(e.Message, 1000);
+            }
         }
 
         /// <summary>
