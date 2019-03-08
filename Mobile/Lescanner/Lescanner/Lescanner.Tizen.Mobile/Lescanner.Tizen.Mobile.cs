@@ -14,30 +14,24 @@
  * limitations under the License.
  */
 
-using Tizen.Xamarin.Forms.Extension.Renderer;
+using ElmSharp;
 
 namespace Lescanner.Tizen.Mobile
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
-        App app_;
         protected override void OnCreate()
         {
             base.OnCreate();
-            MainWindow.AvailableRotations = ElmSharp.DisplayRotation.Degree_0;
-            app_ = new App();
-            LoadApplication(app_);
+            MainWindow.AvailableRotations = DisplayRotation.Degree_0;
+
+            LoadApplication(new App());
         }
 
-        protected override void OnTerminate()
-        {
-            app_.Terminate();
-        }
 
         static void Main(string[] args)
         {
             var app = new Program();
-            TizenFormsExtension.Init();
             global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
             app.Run(args);
         }
