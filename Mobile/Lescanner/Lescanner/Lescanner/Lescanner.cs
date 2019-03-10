@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Tizen.Network.Bluetooth;
 using System.Threading.Tasks;
-using Tizen.Xamarin.Forms.Extension;
 
 namespace Lescanner
 {
@@ -249,7 +248,7 @@ namespace Lescanner
         {
             if (!BluetoothAdapter.IsBluetoothEnabled)
             {
-                Toast.DisplayText("Please turn on Bluetooth.");
+                // Toast.DisplayText("Please turn on Bluetooth.");
             }
             else
             {
@@ -298,7 +297,7 @@ namespace Lescanner
             ScanLabel.Text = "Scan completed";
             DeviceListView.ItemsSource = null;
             DeviceListView.ItemsSource = DeviceList;
-            Toast.DisplayText("Tap device address to initate GATT connect.");
+            // Toast.DisplayText("Tap device address to initate GATT connect.");
         }
 
         /// <summary>

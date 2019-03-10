@@ -1,16 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   
   <PropertyGroup>
-	<TargetFramework>netstandard1.6</TargetFramework>
-	<PackageTargetFallback>$(PackageTargetFallback);portable-net45+wp80+win81+wpa81</PackageTargetFallback>
+	<TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-	<PackageReference Include="Tizen.Applications" Version="1.4.0" />
 	<PackageReference Include="Tizen.Network.Bluetooth" Version="1.0.9" />
-	<PackageReference Include="Tizen.Xamarin.Forms.Extension" Version="2.4.0-v00003" />
-	<PackageReference Include="Xamarin.Forms" Version="2.4.0.269-pre2" />
+	<PackageReference Include="Xamarin.Forms" Version="2.4.0.282" />
   </ItemGroup>
 
 </Project>
