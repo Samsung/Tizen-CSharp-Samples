@@ -1,4 +1,4 @@
-﻿//Copyright 2019 Samsung Electronics Co., Ltd
+//Copyright 2019 Samsung Electronics Co., Ltd
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
 //you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ namespace TonePlayerSample.ViewModels
                 {
                     await TonePlayer.StartAsync(ToneType.Default, _audioStreamPolicy, Duration * _secUnit, _cts.Token);
                 }
-                catch(TaskCanceledException)
+                catch (TaskCanceledException)
                 {
                     Tizen.Log.Info("TonePlayer", "A task for playing media was canceled.");
                 }
