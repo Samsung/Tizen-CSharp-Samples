@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="TonePlayerSample.Views.MainPage">
+
+    <w:CirclePage.Content>
+        <w:CircleScrollView x:Name="durationList"
+                            Orientation="Vertical">
+            <StackLayout Orientation="Vertical"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+                <Label Text="TonePlayerSample"
+                       FontSize="8"
+                       HorizontalTextAlignment="Center"
+                       TextColor="DarkSeaGreen"/>
+                <Label Text="Select duration time to play."
+                       FontSize="5"
+                       HorizontalTextAlignment="Center"/>
+                
+                <StackLayout HorizontalOptions="CenterAndExpand"
+                             Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Label Text="1sec"
+                               FontSize="8"
+                               VerticalTextAlignment="Center"/>
+                        <w:Radio GroupName="durationGroup1"
+                                 IsSelected="True"
+                                 Selected="OnSelected"
+                                 Value="1"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Label Text="5sec"
+                               FontSize="8"
+                               VerticalTextAlignment="Center"/>
+                        <w:Radio GroupName="durationGroup1"
+                                 IsSelected="false"
+                                 Selected="OnSelected"
+                                 Value="5"/>
+                    </StackLayout>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand">
+                    <Button Text="Play"
+                            FontSize="8"
+                            Command="{Binding PlayCommand}"/>
+                    <Button Text="Cancel"
+                            FontSize="8"
+                            Command="{Binding CancelCommand}"/>
+                </StackLayout>
+            </StackLayout>
+        </w:CircleScrollView>
+    </w:CirclePage.Content>
+
+</w:CirclePage>
