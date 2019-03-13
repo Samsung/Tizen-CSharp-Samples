@@ -16,6 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Tizen.Multimedia;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Tizen;
 
 namespace WavPlayerSample.ViewModels
 {
@@ -27,7 +28,6 @@ namespace WavPlayerSample.ViewModels
         private CancellationTokenSource _cts = null;
         private AudioStreamPolicy _audioStreamPolicy = null;
         private bool _isPlaying = false;
-        private string _resPath = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class
@@ -50,7 +50,7 @@ namespace WavPlayerSample.ViewModels
 
                 try
                 {
-                    await WavPlayer.StartAsync($"{_resPath}/sounds/test.wav", _audioStreamPolicy, _cts.Token);
+                    await WavPlayer.StartAsync(ResourcePath.GetPath("test.wav"), _audioStreamPolicy, _cts.Token);
                 }
                 catch (TaskCanceledException)
                 {
