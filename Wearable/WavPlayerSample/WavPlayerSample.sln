@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WavPlayerSample", "WavPlayerSample\WavPlayerSample.csproj", "{24EBFB06-B8A3-41BA-955B-97787146D3BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24EBFB06-B8A3-41BA-955B-97787146D3BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24EBFB06-B8A3-41BA-955B-97787146D3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24EBFB06-B8A3-41BA-955B-97787146D3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24EBFB06-B8A3-41BA-955B-97787146D3BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FE02745-D151-40C1-B0B9-7A55092A03C5}
+	EndGlobalSection
+EndGlobal
