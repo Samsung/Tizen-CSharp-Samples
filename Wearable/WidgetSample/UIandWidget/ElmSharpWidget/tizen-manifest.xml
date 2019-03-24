@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.ElmSharpWidget" version="1.0.0">
+  <profile name="common" />
+  <widget-application appid="org.tizen.example.ElmSharpWidget"
+					exec="ElmSharpWidget.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+    <label>ElmSharpWidget</label>
+    <icon>ElmSharpWidget.png</icon>
+    <support-size preview="ElmSharpWidget.png">2x2</support-size>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+  </widget-application>
+</manifest>
