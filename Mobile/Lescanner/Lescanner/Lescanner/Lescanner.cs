@@ -26,7 +26,7 @@ namespace Lescanner
     /// The LE Scanner application.
     /// It will scan for LE devices around and discover the services
     /// it supports after GATT connection.
-    /// The application is desgined in a three Navigation Page.
+    /// The application is designed in a three Navigation Page.
     /// 1. Home Page   -> Consists BLE scan button. OnClick, it starts scanning for
     ///                   BLE devices around.
     /// 2. Device Page -> Consists list of devices discovered via BLE scan.
@@ -93,7 +93,7 @@ namespace Lescanner
         public BluetoothGattClient GattClient = null;
         /// <summary>
         /// StateChanged_flag is a boolean value.
-        /// It indicates whethere GATT connection
+        /// It indicates whether GATT connection
         /// succeeded or not.
         /// </summary>
         public bool StateChanged_flag = false;
@@ -154,7 +154,7 @@ namespace Lescanner
         /// <summary>
         /// Whenever any new device is found, this callback will be called.
         /// It will add the discovered device into devicelist.
-        /// It loops through the privously discovered devices and
+        /// It loops through the previously discovered devices and
         /// insert the device only if it not there.
         /// </summary>
         /// <param name="sender">object</param>
@@ -216,9 +216,9 @@ namespace Lescanner
         /// Before starting the LE scan, it registers the
         /// event handler for ScanResultChanged, which is
         /// called whenever any LE device found.
-        /// Then it waits for 30s and after device sicovery,
+        /// Then it waits for 30s and after device discovery,
         /// it stops the LE scan.
-        /// Finaylly it unregisters the
+        /// Finally it unregisters the
         /// event handler for ScanResultChanged.
         /// </summary>
         /// <returns>Task</returns>
@@ -297,7 +297,7 @@ namespace Lescanner
             ScanLabel.Text = "Scan completed";
             DeviceListView.ItemsSource = null;
             DeviceListView.ItemsSource = DeviceList;
-            // Toast.DisplayText("Tap device address to initate GATT connect.");
+            // Toast.DisplayText("Tap device address to initiate GATT connect.");
         }
 
         /// <summary>
@@ -407,7 +407,7 @@ namespace Lescanner
         /// of a stack of other pages. And then it pushes this NaviagationPage
         /// on top of MainPage. Once the page is rendered it registers for the
         /// GattConnectionStateChanged event handler. Then it issues
-        /// GATT connection to the tapped device. It waits unitll GATT connection
+        /// GATT connection to the tapped device. It waits until GATT connection
         /// is successfull, then it fetches all the service uuids it supports
         /// and renders it in the new page. Finally it does GATT disconnect and
         /// all postprocessing.
