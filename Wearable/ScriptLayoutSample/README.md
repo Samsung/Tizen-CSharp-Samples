@@ -1,4 +1,4 @@
-# ImageSample
+# ScriptLayoutSample
 This sample demonstrates how to use different style with different json file in Tizen.NUI.
 
 ![DefaultTheme](./Screenshots/defaultTheme.png)
