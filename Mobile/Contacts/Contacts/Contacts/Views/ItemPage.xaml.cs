@@ -33,9 +33,9 @@ namespace Contacts.Views
 
         /// <summary>
         /// A event handler for the save or update button.
+        /// </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         public void OnLeftClicked(object sender, EventArgs e)
         {
             item.First = xFirst.Text;
@@ -55,14 +55,15 @@ namespace Contacts.Views
             {
                 RecordItemProvider.Instance.Update(item);
             }
+
             Navigation.PopAsync();
         }
 
         /// <summary>
         /// A event handler for the Delete button.
+        /// </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         public void OnRightClicked(object sender, EventArgs e)
         {
             RecordItemProvider.Instance.Delete(item);
@@ -70,12 +71,12 @@ namespace Contacts.Views
         }
 
         /// <summary>
-        /// A Constructor.
+        /// Initializes a new instance of the <see cref="ItemPage"/> class.
         /// Shows event properties to modify data.
+        /// </summary>
         /// <param name="inItem">The item to be shown.</param>
         /// <param name="ButtonText">The name of button.</param>
         /// <param name="index">The selected event id if it exists.</param>
-        /// </summary>
         public ItemPage(RecordItem inItem, string ButtonText, int index)
         {
             InitializeComponent();
@@ -94,6 +95,7 @@ namespace Contacts.Views
                 xEvent.Date = new DateTime(inItem.Event / 10000, (inItem.Event % 10000) / 100,
                         inItem.Event % 100, 0, 0, 0, DateTimeKind.Local);
             }
+
             Title = (index == 0) ? "Create contact" : inItem.DisplayName;
             xRight.IsVisible = (index == 0) ? false : true;
             xLeft.Text = ButtonText;

@@ -37,6 +37,7 @@ namespace Contacts.Tizen.Port
         /// <summary>
         /// Clean child record.
         /// </summary>
+        /// <param name="record">delete child record</param>
         private void CleanChildRecord(TPC.ContactsRecord record)
         {
             if (record.GetChildRecordCount(Contact.Name) > 0)
@@ -85,6 +86,8 @@ namespace Contacts.Tizen.Port
         /// <summary>
         /// Get record from item.
         /// </summary>
+        /// <param name="item">The RecordItem.</param>
+        /// <param name="record"> contacts record</param>
         private void ItemToRecord(RecordItem item, TPC.ContactsRecord record)
         {
             var name = new TPC.ContactsRecord(Name.Uri);
@@ -120,6 +123,8 @@ namespace Contacts.Tizen.Port
         /// <summary>
         /// Get item from record.
         /// </summary>
+        /// <param name="record"> contacts record</param>
+        /// <param name="item">The RecordItem.</param>
         private void RecordToItem(TPC.ContactsRecord record, RecordItem item)
         {
             item.DisplayName = record.Get<string>(Contact.DisplayName);
@@ -173,6 +178,8 @@ namespace Contacts.Tizen.Port
         /// <summary>
         /// Insert item.
         /// </summary>
+        /// <param name="item">The RecordItem that is inserted.</param>
+        /// <returns>the record id.</returns>
         public int Insert(RecordItem item)
         {
             var record = new TPC.ContactsRecord(Contact.Uri);
@@ -184,6 +191,7 @@ namespace Contacts.Tizen.Port
         /// <summary>
         /// Update item.
         /// </summary>
+        /// <param name="item">The RecordItem that is updated.</param>
         public void Update(RecordItem item)
         {
             var record = manager.Database.Get(Contact.Uri, item.Index);
@@ -195,6 +203,7 @@ namespace Contacts.Tizen.Port
         /// <summary>
         /// Delete item.
         /// </summary>
+        /// <param name="item">The RecordItem that is deleted.</param>
         public void Delete(RecordItem item)
         {
             manager.Database.Delete(Contact.Uri, item.Index);
@@ -203,6 +212,7 @@ namespace Contacts.Tizen.Port
         /// <summary>
         /// Get all list.
         /// </summary>
+        /// <returns>returns the record item list.</returns>
         public List<RecordItem> GetAll()
         {
             var itemList = new List<RecordItem>();
@@ -219,6 +229,7 @@ namespace Contacts.Tizen.Port
                 itemList.Add(item);
                 list.MoveNext();
             }
+
             return itemList;
         }
 

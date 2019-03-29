@@ -28,7 +28,7 @@ namespace Calendar.Tizen.Port
     public class SecurityPort : ISecurityAPIs
     {
         /// <summary>
-        /// Context for privacy privilege manager reponse
+        /// Context for privacy privilege manager response
         /// </summary>
         static PrivacyPrivilegeManager.ResponseContext context = null;
 
@@ -39,7 +39,7 @@ namespace Calendar.Tizen.Port
 
         public event EventHandler<EventArgs> PrivilageAccepted;
 
-        public void privilegeAccepted()
+        public void PrivilegeAccepted()
         {
             //MonthPage.
         }
@@ -47,7 +47,7 @@ namespace Calendar.Tizen.Port
         /// <summary>
         /// Used to check privilege.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>bool value of CheckPrivilege</returns>
         public bool CheckPrivilege()
         {
             ArrayList PrivilegeList = new ArrayList();
@@ -80,14 +80,20 @@ namespace Calendar.Tizen.Port
                         break;
                 }
             }
+
             if (privilageAcceptedCount == PrivilegeList.Count)
+            { 
                 return true;
+            }
+
             return false;
         }
 
         /// <summary>
         /// PPM request response call back
         /// </summary>
+        /// <param name="sender">The object.</param>
+        /// <param name="e">The request response event args.</param>
         private void PPM_RequestResponse(object sender, RequestResponseEventArgs e)
         {
             if (e.cause == CallCause.Answer)

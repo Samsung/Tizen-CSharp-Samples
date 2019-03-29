@@ -66,8 +66,9 @@ namespace Calendar.Models
 
         /// <summary>
         /// Inserts item.
-        /// <param name="item">The item to be inserted.</param>
         /// </summary>
+        /// <param name="item">The item to be inserted.</param>
+        /// <returns>retunrns whether item is inserted or not</returns>
         public int Insert(RecordItem item)
         {
             return calendarAPIs.Insert(item);
@@ -75,8 +76,8 @@ namespace Calendar.Models
 
         /// <summary>
         /// Updates item.
-        /// <param name="item">The item to be updated.</param>
         /// </summary>
+        /// <param name="item">The item to be updated.</param>
         public void Update(RecordItem item)
         {
             calendarAPIs.Update(item);
@@ -84,8 +85,8 @@ namespace Calendar.Models
 
         /// <summary>
         /// Delete item.
-        /// <param name="item">The item to be deleted.</param>
         /// </summary>
+        /// <param name="item">The item to be deleted.</param>
         public void Delete(RecordItem item)
         {
             calendarAPIs.Delete(item);
@@ -93,8 +94,8 @@ namespace Calendar.Models
 
         /// <summary>
         /// Gets day's list which specific datetime included.
-        /// <param name="dateTime">The datetime to be selected.</param>
         /// </summary>
+        /// <param name="dateTime">The datetime to be selected.</param>
         public void GetMonthRecords(DateTime dateTime)
         {
             itemList = calendarAPIs.GetMonthRecords(dateTime);

@@ -26,8 +26,9 @@ namespace Contacts.Models
     public interface ISecurityAPIs
     {
         /// <summary>
-        /// Check privilege.
+        /// checks whether check privilage is done or not.
         /// </summary>
+        /// <returns>returns bool value whether check privilage is done or not</returns>
         bool CheckPrivilege();
         event EventHandler<EventArgs> PrivilageAccepted;
     }

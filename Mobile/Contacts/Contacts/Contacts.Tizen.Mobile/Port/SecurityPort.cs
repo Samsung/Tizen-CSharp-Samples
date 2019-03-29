@@ -28,7 +28,7 @@ namespace Contacts.Tizen.Port
     public class SecurityPort : ISecurityAPIs
     {
         /// <summary>
-        /// Context for privacy privilege manager reponse
+        /// Context for privacy privilege manager response
         /// </summary>
         static PrivacyPrivilegeManager.ResponseContext context = null;
 
@@ -40,13 +40,15 @@ namespace Contacts.Tizen.Port
         public event EventHandler<EventArgs> PrivilageAccepted;
 
 
-        public void privilegeAccepted()
+        public void PrivilegeAccepted()
         {
             //ListPage.
         }
+
         /// <summary>
         /// Check privacy privilege and if need to ask for user, send request for PPM.
         /// </summary>
+        /// <returns> returns whether check privilage is done or not</returns>
         public bool CheckPrivilege()
         {
             // Make array list for requesting privacy privilege
@@ -82,17 +84,23 @@ namespace Contacts.Tizen.Port
                     break;
                 }
             }
+
             if (privilageAcceptedCount == PrivilegeList.Count)
+            { 
                 return true;
+            }
             else
+            { 
                 return false;
+            }
+
         }
 
         /// <summary>
         /// PPM request response call back
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The object.</param>
+        /// <param name="e">The request response event args.</param>
         private static void PPM_RequestResponse(object sender, RequestResponseEventArgs e)
         {
             if (e.cause == CallCause.Answer)
