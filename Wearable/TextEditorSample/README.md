@@ -1,4 +1,4 @@
-# TextSample
+# TextEditorSample
 This sample demonstrates how to use TextEditor in Tizen.NUI.
 
 ![MainPage](./Screenshots/textMain.png)
