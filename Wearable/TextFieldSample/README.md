@@ -1,4 +1,4 @@
-# TextSample
+# TextFieldSample
 This sample demonstrates how to use TextField in Tizen.NUI.
 
 ![MainPage](./Screenshots/textMain.png)
