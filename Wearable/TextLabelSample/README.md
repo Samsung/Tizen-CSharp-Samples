@@ -1,4 +1,4 @@
-# TextSample
+# TextLabelSample
 This sample demonstrates how to use TextLabel in Tizen.NUI.
 
 ![MainPage](./Screenshots/textMain.png)
