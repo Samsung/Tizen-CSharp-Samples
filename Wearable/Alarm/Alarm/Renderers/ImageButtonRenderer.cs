@@ -22,7 +22,7 @@ using Alarm.Controls;
 using Alarm.Tizen.Renderers;
 
 
-[assembly: ExportRenderer(typeof(ImageButton), typeof(ImageButtonRenderer))]
+[assembly: ExportRenderer(typeof(ImageButton), typeof(Alarm.Tizen.Renderers.ImageButtonRenderer))]
 namespace Alarm.Tizen.Renderers
 {
     /// <summary>

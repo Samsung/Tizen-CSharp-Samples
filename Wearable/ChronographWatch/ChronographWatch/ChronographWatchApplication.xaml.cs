@@ -136,7 +136,7 @@ namespace ChronographWatch
             }
 
             //request cpu lock for prevent stop of timer.
-            Device.BeginInvokeOnMainThread(() => Power.RequestCpuLock(0));
+            Device.BeginInvokeOnMainThread(() => Power.RequestLock(PowerLock.Cpu, 0));
             _viewModel.State = State.Started;
             _elapsedStopWatch.Start();
 
@@ -154,7 +154,7 @@ namespace ChronographWatch
             _viewModel.State = State.Paused;
             _elapsedStopWatch.Stop();
             //release cpu lock
-            Device.BeginInvokeOnMainThread(() => Power.ReleaseCpuLock());
+            Device.BeginInvokeOnMainThread(() => Power.ReleaseLock(PowerLock.Cpu));
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace ChronographWatch
 
             ResetHands();
             //release cpu lock
-            Device.BeginInvokeOnMainThread(() => Power.ReleaseCpuLock());
+            Device.BeginInvokeOnMainThread(() => Power.ReleaseLock(PowerLock.Cpu));
         }
 
         /// <summary>
