@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThumbnailExtractorSample", "ThumbnailExtractorSample\ThumbnailExtractorSample\ThumbnailExtractorSample.csproj", "{ECB8D419-A417-4511-B434-D68523016434}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThumbnailExtractorSample.Tizen.Mobile", "ThumbnailExtractorSample\ThumbnailExtractorSample.Tizen.Mobile\ThumbnailExtractorSample.Tizen.Mobile.csproj", "{913F7FE6-6924-432C-B727-92AA7CFB4C05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECB8D419-A417-4511-B434-D68523016434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB8D419-A417-4511-B434-D68523016434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECB8D419-A417-4511-B434-D68523016434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECB8D419-A417-4511-B434-D68523016434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{913F7FE6-6924-432C-B727-92AA7CFB4C05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{913F7FE6-6924-432C-B727-92AA7CFB4C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{913F7FE6-6924-432C-B727-92AA7CFB4C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{913F7FE6-6924-432C-B727-92AA7CFB4C05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE1439B4-D846-4E9B-93C7-ED3F6470629D}
+	EndGlobalSection
+EndGlobal

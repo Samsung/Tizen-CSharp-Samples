@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ThumbnailExtractorSample"
+             x:Class="ThumbnailExtractorSample.MainPage"
+             Title="Thumbnail Extractor">
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" >
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,.5" AbsoluteLayout.LayoutFlags="All"
+                         Orientation="Vertical">
+                <Label Text="Original" />
+                <Image Source="{Binding OriginalImage}" VerticalOptions="FillAndExpand"/>
+            </StackLayout>
+            <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,.5" AbsoluteLayout.LayoutFlags="All"
+                         Orientation="Vertical" >
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Default" Command="{Binding DefaultCommand}" />
+                    <Button Text="30x30" Command="{Binding SizeCommand}" CommandParameter="{x:Int32 30}" />
+                    <Button Text="50x50" Command="{Binding SizeCommand}" CommandParameter="{x:Int32 50}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Thumbnail" />
+                    <Label Text="{Binding Size, StringFormat='({0} Bytes)'}" />
+                </StackLayout>
+                <Image Source="{Binding ThumbnailImage}" VerticalOptions="FillAndExpand"/>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
