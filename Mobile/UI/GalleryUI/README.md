@@ -1,4 +1,4 @@
-# Tizen .NET GalleryUI Sample
+# Gallery UI
 
 This GalleryUI application demonstrates how to configure the screen using a variety of objects.
 
