@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:VisionApplicationSamples"
+                x:Class="VisionApplicationSamples.Face.DetectorPage"
+                Title="Run Detection">
+    
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,.5" AbsoluteLayout.LayoutFlags="All"
+                         Orientation="Vertical">
+                <Image Source="{Binding FaceImage}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,.5" AbsoluteLayout.LayoutFlags="All"
+                         Orientation="Vertical">
+                <StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Detected number of faces" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" />
+                        <Entry Text="{Binding FaceCount}" Grid.Row="0" Grid.Column="1" IsEnabled="False"/>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout AbsoluteLayout.LayoutBounds="0,1,1,.5" AbsoluteLayout.LayoutFlags="All"
+                         Orientation="Vertical">
+                    <StackLayout>
+                        <Label Text="Face(s) Location"/>
+                        <ListView ItemsSource="{Binding Items}" HorizontalOptions="FillAndExpand">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" >
+                                            <Label Text="X:" FontAttributes="Bold"/>
+                                            <Label Text="{Binding X}" TextColor="Blue"/>
+                                            <Label Text="Y:" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Y}" TextColor="Blue" />
+                                            <Label Text="Width:" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Width}" TextColor="Blue" />
+                                            <Label Text="Height:" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Height}" TextColor="Blue" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </StackLayout>
+
+                <Button Text="Detect" Command="{Binding DetectCommand}" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</local:PageBase>

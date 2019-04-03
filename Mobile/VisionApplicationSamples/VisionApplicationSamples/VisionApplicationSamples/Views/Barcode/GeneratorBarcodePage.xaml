@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:VisionApplicationSamples"
+                x:Class="VisionApplicationSamples.Barcode.GeneratorBarcodePage"
+                Title="Barcode Generator">
+
+    <ContentPage.BindingContext>
+        <local:Barcode.GeneratorBarcodePageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <RelativeLayout HeightRequest="500" WidthRequest="700">
+                <Grid Padding="10,10,10,10" RowSpacing="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Width" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" />
+                    <Entry Text="{Binding InputWidth}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+
+                    <Label Text="Height" Grid.Row="1" Grid.Column="0" VerticalOptions="CenterAndExpand" />
+                    <Entry Text="{Binding InputHeight}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+
+                    <Label Text="Message" Grid.Row="2" Grid.Column="0" VerticalOptions="CenterAndExpand" />
+                    <Entry Text="{Binding InputMessage}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
+
+                    <Button Text="UPC-A" Grid.Row="3" Grid.Column="0" VerticalOptions="CenterAndExpand" 
+                            Command="{Binding SetBarcodeTypeCommand}"  CommandParameter="{x:Static local:Barcode.BarcodeType.Upca}"/>
+                    <Button Text="UPC-E" Grid.Row="3" Grid.Column="1" VerticalOptions="CenterAndExpand" 
+                            Command="{Binding SetBarcodeTypeCommand}" CommandParameter="{x:Static local:Barcode.BarcodeType.Upce}"/>
+                    <Button Text="Ean8" Grid.Row="3" Grid.Column="2" VerticalOptions="CenterAndExpand" 
+                            Command="{Binding SetBarcodeTypeCommand}" CommandParameter="{x:Static local:Barcode.BarcodeType.Ean8}"/>
+                    <Button Text="Ean13" Grid.Row="3" Grid.Column="3" VerticalOptions="CenterAndExpand" 
+                            Command="{Binding SetBarcodeTypeCommand}" CommandParameter="{x:Static local:Barcode.BarcodeType.Ean13}"/>
+
+                    <Button Text="Code128" Grid.Row="4" Grid.Column="0" VerticalOptions="CenterAndExpand" 
+                            Command="{Binding SetBarcodeTypeCommand}" CommandParameter="{x:Static local:Barcode.BarcodeType.Code128}"/>
+                    <Button Text="Code39" Grid.Row="4" Grid.Column="1" VerticalOptions="CenterAndExpand" 
+                            Command="{Binding SetBarcodeTypeCommand}" CommandParameter="{x:Static local:Barcode.BarcodeType.Code39}"/>
+                    <Button Text="I25" Grid.Row="4" Grid.Column="2" VerticalOptions="CenterAndExpand" 
+                            Command="{Binding SetBarcodeTypeCommand}" CommandParameter="{x:Static local:Barcode.BarcodeType.I25}"/>
+
+                    <Button Text="Generate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand"
+                            Command="{Binding GenerateCommand}"/>
+                </Grid>
+            </RelativeLayout>
+            <RelativeLayout HeightRequest="200">
+                <Label Text="{Binding GenerationResultText}"/>
+                <Image Source="{Binding GeneratedImage}" IsVisible="{Binding IsValid}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
+                       RelativeLayout.WidthConstraint ="{ConstraintExpression Type=RelativeToParent, Property=Width,  Factor=0.9}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0, Constant=10}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            </RelativeLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</local:PageBase>

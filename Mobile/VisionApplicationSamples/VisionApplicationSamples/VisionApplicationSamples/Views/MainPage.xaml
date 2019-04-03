@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:VisionApplicationSamples"
+                x:Class="VisionApplicationSamples.MainPage"
+                Title="Vision SampleApplication">
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Barcode" Command="{Binding BarcodeCommand}"/>
+            <Button Text="Face"    Command="{Binding FaceCommand}" />
+            <Button Text="Image"   Command="{Binding ImageCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</local:PageBase>

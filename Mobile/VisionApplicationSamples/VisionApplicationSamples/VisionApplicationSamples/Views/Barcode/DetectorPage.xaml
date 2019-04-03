@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:VisionApplicationSamples"
+                x:Class="VisionApplicationSamples.Barcode.DetectorPage"
+                Title="Barcode Detection">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="{Binding BarcodeImage}" HorizontalOptions="FillAndExpand" />
+            <Label Text="{Binding DetectionResultText}" HorizontalOptions="FillAndExpand"/>
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Detected number of barcodes" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" />
+                    <Entry Text="{Binding BarcodeCount}" Grid.Row="0" Grid.Column="1" IsEnabled="False"/>
+                </Grid>
+            </StackLayout>
+            <ListView ItemsSource="{Binding Items}" HorizontalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="Message:" FontAttributes="Bold"/>
+                                <Label Text="{Binding}" TextColor="Blue"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                </ListView>
+
+            <Button Text="Detect" Command="{Binding DetectCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</local:PageBase>

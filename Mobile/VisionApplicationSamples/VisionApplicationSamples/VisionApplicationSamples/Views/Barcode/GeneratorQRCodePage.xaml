@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:VisionApplicationSamples"
+                x:Class="VisionApplicationSamples.Barcode.GeneratorQRCodePage"
+                Title="QRcode Generator">
+
+    <ContentPage.BindingContext>
+        <local:Barcode.GeneratorQRCodePageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <RelativeLayout HeightRequest="700" WidthRequest="700">
+                <Grid Padding="10,10,10,10" RowSpacing="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140" />
+                        <ColumnDefinition Width="140" />
+                        <ColumnDefinition Width="140" />
+                        <ColumnDefinition Width="140" />
+                        <ColumnDefinition Width="140" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Width" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" />
+                    <Entry Text="{Binding inputWidth}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"/>
+
+                    <Label Text="Height" Grid.Row="1" Grid.Column="0" VerticalOptions="CenterAndExpand" />
+                    <Entry Text="{Binding inputHeight}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"/>
+
+                    <Label Text="Message" Grid.Row="2" Grid.Column="0" VerticalOptions="CenterAndExpand" />
+                    <Entry Text="{Binding inputMessage}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
+
+                    <Label Text="QrMode" Grid.Row="3" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                    <Button Text="Numer" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" 
+                            Command="{Binding SetQrModeCommand}"  CommandParameter="{x:Static local:Barcode.QrModeType.Numeric}"/>
+                    <Button Text="AlphaNum" Grid.Row="3" Grid.Column="2" VerticalOptions="Center"
+                            Command="{Binding SetQrModeCommand}" CommandParameter="{x:Static local:Barcode.QrModeType.AlphaNumeric}"/>
+                    <Button Text="Byte" Grid.Row="3" Grid.Column="3" VerticalOptions="Center" 
+                            Command="{Binding SetQrModeCommand}" CommandParameter="{x:Static local:Barcode.QrModeType.Byte}"/>
+                    <Button Text="Utf8" Grid.Row="3" Grid.Column="4" VerticalOptions="Center" 
+                            Command="{Binding SetQrModeCommand}" CommandParameter="{x:Static local:Barcode.QrModeType.Utf8}"/>
+
+                    <Label Text="ECCLevel" Grid.Row="4" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                    <Button Text="Low" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" 
+                            Command="{Binding SetErrorCorrectionLevelCommand}" CommandParameter="{x:Static local:Barcode.ErrorCorrectionLevel.Low}"/>
+                    <Button Text="Medium" Grid.Row="4" Grid.Column="2" VerticalOptions="Center" 
+                            Command="{Binding SetErrorCorrectionLevelCommand}" CommandParameter="{x:Static local:Barcode.ErrorCorrectionLevel.Medium}"/>
+                    <Button Text="Quartile" Grid.Row="4" Grid.Column="3" VerticalOptions="Center" 
+                            Command="{Binding SetErrorCorrectionLevelCommand}" CommandParameter="{x:Static local:Barcode.ErrorCorrectionLevel.Quartile}"/>
+                    <Button Text="High" Grid.Row="4" Grid.Column="4" VerticalOptions="Center" 
+                            Command="{Binding SetErrorCorrectionLevelCommand}" CommandParameter="{x:Static local:Barcode.ErrorCorrectionLevel.High}"/>
+
+                    <Label Text="Version" Grid.Row="5" Grid.Column="0" VerticalOptions="CenterAndExpand"/>
+                    <Button Text="10" Grid.Row="5" Grid.Column="1" VerticalOptions="Center"
+                            Command="{Binding SetVersionCommand}" CommandParameter="{x:Int32 10}" />
+                    <Button Text="20" Grid.Row="5" Grid.Column="2" VerticalOptions="Center"
+                            Command="{Binding SetVersionCommand}" CommandParameter="{x:Int32 20}" />
+                    <Button Text="30" Grid.Row="5" Grid.Column="3" VerticalOptions="Center"
+                            Command="{Binding SetVersionCommand}" CommandParameter="{x:Int32 30}" />
+                    <Button Text="40" Grid.Row="5" Grid.Column="4" VerticalOptions="Center"
+                            Command="{Binding SetVersionCommand}" CommandParameter="{x:Int32 40}" />
+
+                    <Button Text="Generate" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" VerticalOptions="CenterAndExpand"
+                            Command="{Binding GenerateCommand}" />
+                </Grid>
+            </RelativeLayout>
+            <RelativeLayout HeightRequest="200">
+                <Label Text="{Binding GenerationResultText}"/>
+                <Image Source="{Binding GeneratedImage}" IsVisible="{Binding IsValid}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
+                       RelativeLayout.WidthConstraint ="{ConstraintExpression Type=RelativeToParent, Property=Width,  Factor=0.9}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            </RelativeLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</local:PageBase>

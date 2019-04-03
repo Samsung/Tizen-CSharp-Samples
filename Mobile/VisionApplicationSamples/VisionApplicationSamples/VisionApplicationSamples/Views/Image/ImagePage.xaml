@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:VisionApplicationSamples"
+                x:Class="VisionApplicationSamples.Image.ImagePage"
+                Title="Image Recognition">
+
+    <ContentPage.BindingContext>
+        <local:Image.ImagePageViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Recognize" Command="{Binding RecognizeCommand}" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</local:PageBase>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:VisionApplicationSamples"
+                x:Class="VisionApplicationSamples.Barcode.BarcodePage"
+                Title="Barcode Application">
+    
+    <ContentPage.BindingContext>
+        <local:Barcode.BarcodePageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Generate Barcode" Command="{Binding GeneratorBarcode}" />
+            <Button Text="Generate QRCode"  Command="{Binding GeneratorQRCode}" />
+            <Button Text="Detect"           Command="{Binding DetectorAll}" />
+        </StackLayout>
+    </ContentPage.Content>
+</local:PageBase>
