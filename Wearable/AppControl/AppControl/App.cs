@@ -42,18 +42,25 @@ namespace AppControl
                         new Button
                         {
                             Text = "Launch",
-                            Command = new Command(() =>
+                            Command = new Command(async () =>
                             {
-                                // Launch with app control APIs
-                                Tizen.Applications.AppControl.SendLaunchRequest(
-                                    new Tizen.Applications.AppControl
-                                    {
-                                        ApplicationId = "org.tizen.example.AppInformation",
-                                        LaunchMode = Tizen.Applications.AppControlLaunchMode.Single,
-                                    }, (launchRequest, replyRequest, result) => 
-                                    {
-                                        System.Diagnostics.Debug.WriteLine("Put your code for appcontrol callback method.");
-                                    });
+                                try {
+                                    // Launch with app control APIs
+                                    Tizen.Applications.AppControl.SendLaunchRequest(
+                                        new Tizen.Applications.AppControl
+                                        {
+                                            ApplicationId = "org.tizen.example.AppInformation",
+                                            LaunchMode = Tizen.Applications.AppControlLaunchMode.Single,
+                                        }, (launchRequest, replyRequest, result) =>
+                                        {
+                                            Console.WriteLine("Put your code for appcontrol callback method.");
+                                        });
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine("Error : " + e.Message +", " + e.Source +", " + e.StackTrace);
+                                    await MainPage.DisplayAlert("Error", e.Message +"\nPlease satisfy the prerequisites(install AppInformation app to launch", "OK");
+                                }
                             })
                         }
                     }
