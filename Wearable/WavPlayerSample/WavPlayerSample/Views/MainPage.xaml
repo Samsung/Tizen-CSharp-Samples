@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="WavPlayerSample.Views.MainPage">
+
+    <w:CirclePage.Content>
+        <w:CircleScrollView x:Name="durationList"
+                            Orientation="Vertical">
+            <StackLayout Orientation="Vertical"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+                <Label Text="WavPlayerSample"
+                       FontSize="8"
+                       HorizontalTextAlignment="Center"
+                       TextColor="DarkSeaGreen"/>
+
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand">
+                    <Button Text="Play"
+                            FontSize="8"
+                            Command="{Binding PlayCommand}"/>
+                    <Button Text="Cancel"
+                            FontSize="8"
+                            Command="{Binding CancelCommand}"/>
+                </StackLayout>
+            </StackLayout>
+        </w:CircleScrollView>
+    </w:CirclePage.Content>
+
+</w:CirclePage>
