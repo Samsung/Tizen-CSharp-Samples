@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioIOSample", "AudioIOSample\AudioIOSample\AudioIOSample.csproj", "{A52758AE-988D-413B-9837-D3532116EA95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioIOSample.Tizen.Mobile", "AudioIOSample\AudioIOSample.Tizen.Mobile\AudioIOSample.Tizen.Mobile.csproj", "{4174F5B5-528E-4E9E-A460-7C8897C84562}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A52758AE-988D-413B-9837-D3532116EA95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A52758AE-988D-413B-9837-D3532116EA95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A52758AE-988D-413B-9837-D3532116EA95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A52758AE-988D-413B-9837-D3532116EA95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4174F5B5-528E-4E9E-A460-7C8897C84562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4174F5B5-528E-4E9E-A460-7C8897C84562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4174F5B5-528E-4E9E-A460-7C8897C84562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4174F5B5-528E-4E9E-A460-7C8897C84562}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0402E515-AFC0-45DE-BBD5-B870A69469EE}
+	EndGlobalSection
+EndGlobal
