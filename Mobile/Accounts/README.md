@@ -1,4 +1,4 @@
-# Tizen .NET Sample Account
+# SampleAccount
 
 The Sample Account application demonstrates how to implement an account provider which can add and configure an account. 
 This sample is following Portable Class Libraries (PCL) application model and using some Xamarin.Forms features such as XAML files for GUI, and subsystem ports by using the Dependency Service.
