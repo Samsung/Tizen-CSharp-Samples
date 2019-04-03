@@ -1,6 +1,6 @@
-# Tizen .NET Sample ScreenMirroring
+# ScreenMirroringSample
 
-The Sample ScreenMirroring application demonstrates how to implement a ScreenMirorring who wants to make ScreenMirroring service using Wi-Fi Direct.
+The ScreenMirroringSample application demonstrates how to implement a ScreenMirorring who wants to make ScreenMirroring service using Wi-Fi Direct.
 
 <table>
     <tr>
