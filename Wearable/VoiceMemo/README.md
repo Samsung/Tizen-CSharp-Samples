@@ -1,4 +1,4 @@
-# SRVoiceMemoApp #
+# VoiceMemo #
 
 The Voice Memo sample application demonstrates how you can create an application using the following APIs:
  - Xamarin.Forms
