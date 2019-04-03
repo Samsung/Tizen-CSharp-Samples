@@ -1,4 +1,4 @@
-# Tizen .NET SampleSync Sample
+# SampleSync
 
 The SampleSync application demonstrates how you can manage data synchronization schedule between target device and server. This sample is following Portable Class Libraries (PCL) application model and using some Xamarin.Forms features such as XAML files for GUI, and subsystem ports by using the Dependency Service.
 
