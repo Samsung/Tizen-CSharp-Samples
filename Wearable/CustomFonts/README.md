@@ -63,6 +63,11 @@ The **CustomFonts** application shows how to use custom fonts instead of system 
 ## NUI application
 You can use custom fonts for NUI applications on Tizen 5.0 and above.
 
+This sample can be run on Tizen 5.0 and above.
+
+If you try to install it on the previous version like Tizen 4.0 wearable emulator, you get the following error during installation:
+ > processing result : Operation not allowed [-4] failed
+
 - Specify font directory
 ```c#
     FontClient.Instance.AddCustomFontDirectory(this.DirectoryInfo.Resource);
