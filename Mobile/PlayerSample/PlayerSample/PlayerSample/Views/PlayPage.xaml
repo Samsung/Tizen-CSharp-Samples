@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:local="clr-namespace:PlayerSample"
+                x:Class="PlayerSample.PlayPage"
+                Title="Player">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:IsNotNullConverter x:Key="isNotNullConverter" />
+            <local:StateToBoolConverter x:Key="stateToBoolConverter" />
+            <local:ValueConverterGroup x:Key="stateToBoolInverter">
+                <local:StateToBoolConverter/>
+                <local:InverseBoolConverter/>
+            </local:ValueConverterGroup>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding SourceText}"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"
+                         IsEnabled="{Binding PlayerState, Converter={StaticResource stateToBoolInverter},
+                                ConverterParameter={x:Static local:MediaPlayerState.Preparing}}">
+                <Button Text="Prepare" Command="{Binding PrepareCommand}"
+                        IsVisible="{Binding PlayerState, Converter={StaticResource stateToBoolConverter},
+                                ConverterParameter={x:Static local:MediaPlayerState.Idle}}"/>
+
+                <Button Text="{Binding PlayText}" Command="{Binding PlayCommand}"
+                        IsVisible="{Binding PlayerState, Converter={StaticResource stateToBoolInverter},
+                                ConverterParameter={x:Static local:MediaPlayerState.Idle}}" />
+
+                <Button Text="{Binding PauseText}" Command="{Binding PauseCommand}"
+                        IsVisible="{Binding IsStarted}"/>
+
+                <Button Text="&lt;&lt;" Command="{Binding SeekBackwardCommand}"
+                        IsEnabled="{Binding IsSeekable}"
+                        IsVisible="{Binding IsStarted}"/>
+
+                <Button Text="&gt;&gt;" Command="{Binding SeekForwardCommand}"
+                        IsEnabled="{Binding IsSeekable}"
+                        IsVisible="{Binding IsStarted}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"
+                         IsEnabled="{Binding PlayerState, Converter={StaticResource stateToBoolInverter},
+                                ConverterParameter={x:Static local:MediaPlayerState.Preparing}}">
+                <Button Text="Open subtitle" Command="{Binding SubtitleCommand}"
+                        IsEnabled="{Binding PlayerState, Converter={StaticResource stateToBoolInverter},
+                                ConverterParameter={x:Static local:MediaPlayerState.Preparing}}"/>
+
+                <Button Text="StreamInfo" Command="{Binding StreamInfoCommand}"
+                        IsVisible="true"
+                        IsEnabled="{Binding IsReady}}"/>
+            </StackLayout>
+
+            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <ContentView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"
+                             Content="{Binding Display}"/>
+
+                <Label Text="{Binding BufferingText}" TextColor="White"/>
+
+                <StackLayout AbsoluteLayout.LayoutBounds="-1, 1, 1, -1"
+                             AbsoluteLayout.LayoutFlags="YProportional, WidthProportional">
+                    <Label Text="{Binding SubtitleText}" TextColor="White" HorizontalOptions="Center"/>
+
+                    <Label Text="{Binding PositionText}" TextColor="White" HorizontalOptions="End"/>
+                </StackLayout>
+
+                <Label Text="{Binding ErrorText}" TextColor="White"
+                       IsVisible="{Binding ErrorText, Converter={StaticResource isNotNullConverter}}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       BackgroundColor="Black" Opacity="0.4"
+                       AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
+
+                <ListView ItemsSource="{Binding Properties}"
+                          IsVisible="{Binding Properties, Converter={StaticResource isNotNullConverter}}"
+                          AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"
+                          BackgroundColor="Black" Opacity="0.4">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" BackgroundColor="Black">
+                                    <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" TextColor="White" />
+                                    <Label Text="{Binding Value}" TextColor="White"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</local:PageBase>
