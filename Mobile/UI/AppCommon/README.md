@@ -1,4 +1,4 @@
-# Tizen .NET AppCommon Sample
+# App-Common
 
 The AppCommon application demonstrates how to work with app-common API in order to obtain application-specific information.
 
