@@ -1,4 +1,4 @@
-# Tizen .NET Sample Account
+# Accounts
 The Account application demonstrates how to implement an account provider which can add and configure an account.
 
 ![Sign In Page](./screenshots/screenshot_1.png)
