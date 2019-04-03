@@ -1,4 +1,4 @@
-# Tizen .NET ApplicationControl Sample
+# Application Control
 
 The ApplicationControl application demonstrates how you can find applications supporting certain classes of operations and run them using those operations contexts. It uses Application control API.
 
