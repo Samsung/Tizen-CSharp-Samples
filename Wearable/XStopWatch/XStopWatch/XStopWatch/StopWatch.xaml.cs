@@ -166,6 +166,8 @@ namespace XStopWatch
         void Start()
         {
             State = State.Started;
+            // Power.RequestCpuLock(Int32) is deperecated but there are no alternative on TizenFX 4.0
+            // Use RequestLock(PowerLock, Int32) if you use version after TizenFX 5.0.
             Device.BeginInvokeOnMainThread(() => Power.RequestCpuLock(0));
 
             _mainStopWatch.Start();
@@ -190,6 +192,9 @@ namespace XStopWatch
         void Pause()
         {
             State = State.Paused;
+
+            // Power.ReleaseCpuLock() is deperecated but there are no alternative on TizenFX 4.0
+            // Use ReleaseLock(PowerLock) if you use version after TizenFX 5.0.
             Device.BeginInvokeOnMainThread(() => Power.ReleaseCpuLock());
 
             _mainStopWatch.Stop();
