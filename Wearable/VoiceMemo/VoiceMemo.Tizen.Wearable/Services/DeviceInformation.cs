@@ -135,6 +135,8 @@ namespace VoiceMemo.Tizen.Wearable.Services
             {
                 // Check if internal storage has sufficient storage available or not
                 Storage internalStorage = StorageManager.Storages.Where(s => s.StorageType == StorageArea.Internal).FirstOrDefault();
+                // 'AvaliableSpace' is deprecated in Tizen 5.0
+                // In Tizen 5.0, 'AvaliableSpace' is recommended instead of 'AvaliableSpace'.
                 return ((internalStorage.AvaliableSpace / OneKiloBytes) > 105) ? true : false;
             }
         }
