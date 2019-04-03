@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RadioSample"
+             x:Class="RadioSample.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StateToBoolConverter x:Key="stateToBoolConverter" />
+            <local:ValueConverterGroup x:Key="stateToBoolInverter">
+                <local:StateToBoolConverter/>
+                <local:InverseBoolConverter/>
+            </local:ValueConverterGroup>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <local:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Orientation="Vertical">
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+            <Button Text="{Binding StartText}"
+                    Command="{Binding StartCommand}"
+                    IsEnabled="{Binding RadioState, Converter={StaticResource stateToBoolInverter},
+                                ConverterParameter={x:Static local:RadioState.Scanning}}" />
+
+            <Button Text="Scan"
+                    Command="{Binding ScanCommand}"
+                    IsEnabled="{Binding RadioState, Converter={StaticResource stateToBoolInverter},
+                                ConverterParameter={x:Static local:RadioState.Scanning}}" />
+
+            <Button Text="SeekUp"
+                    Command="{Binding SeekUpCommand}"
+                    IsEnabled="{Binding RadioState, Converter={StaticResource stateToBoolConverter},
+                                ConverterParameter={x:Static local:RadioState.Playing}}"/>
+
+            <Button Text="SeekDown"
+                    Command="{Binding SeekDownCommand}"
+                    IsEnabled="{Binding RadioState, Converter={StaticResource stateToBoolConverter},
+                                ConverterParameter={x:Static local:RadioState.Playing}}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Label Text="{Binding RadioState}"/>
+            <Label Text="{Binding CurrentFrequencyText}" HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="End"/>
+        </StackLayout>
+
+        <Label Text="Frequencies"/>
+
+        <ListView ItemsSource="{Binding Frequencies}" SelectedItem="{Binding SelectedFrequency, Mode=TwoWay}"
+                  IsEnabled="{Binding RadioState, Converter={StaticResource stateToBoolConverter},
+                                ConverterParameter={x:Static local:RadioState.Playing}}"
+                  RowHeight="30">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding ., StringFormat='{0} Hz'}" TextColor="#503026"
+                               HorizontalTextAlignment="Center"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
