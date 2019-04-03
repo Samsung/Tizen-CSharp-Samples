@@ -1,6 +1,6 @@
-# Tizen .NET VolumeController Sample
+# Volume
 
-This VolumeController application demonstrates how to retrieve and set device's volume levels.
+This Volume application demonstrates how to retrieve and set device's volume levels.
 
 <table>
 <tr>
