@@ -110,15 +110,17 @@ namespace Downloader
         }
 
         /// <summary>
-        /// Refresh download information page after download completed.
+        /// Refresh download information page after download completed or failed.
         /// </summary>
         private void OnDownloadStateChanged(object sender, DownloadStateChangedEventArgs e)
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (e.stateMsg == "Completed")
+                UpdateDownloadInfoList();
+
+                if (e.stateMsg == "Completed" || e.stateMsg == "Failed")
                 {
-                    UpdateDownloadInfoList();
+                    DependencyService.Get<IDownload>().Dispose();
                 }
             });
         }

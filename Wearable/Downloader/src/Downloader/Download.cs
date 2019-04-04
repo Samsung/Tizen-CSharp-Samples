@@ -29,6 +29,7 @@ namespace Downloader
     public class Download : IDownload
     {
         public event EventHandler<DownloadStateChangedEventArgs> DownloadStateChanged;
+
         public event EventHandler<DownloadProgressEventArgs> DownloadProgress;
 
         private Request req;
@@ -68,7 +69,7 @@ namespace Downloader
         }
 
         /// <summary>
-        /// Get the content name of the downloaded file 
+        /// Get the content name of the downloaded file
         /// </summary>
         /// <returns>The content name</returns>
         public string GetContentName()
@@ -186,6 +187,7 @@ namespace Downloader
                 case DownloadState.Failed:
                     stateMsg = "Failed";
                     break;
+
                 default:
                     stateMsg = "";
                     break;

@@ -207,16 +207,16 @@ namespace Downloader
             try
             {
                 progressBar.Value = 0;
+                // Disable a button to avoid duplicated request.
+                downloadButton.IsEnable = false;
                 // Start to download content
                 DependencyService.Get<IDownload>().StartDownload(downloadUrl);
-                // Disable a button to avoid duplicated request.
-                downloadButton.IsEnabled = false;
             }
             catch (Exception ex)
             {
                 DependencyService.Get<IDownload>().DownloadLog("Request.Start() is failed" + ex);
                 // In case download is failed, enable a button.
-                downloadButton.IsEnabled = true;
+                downloadButton.IsEnable = true;
             }
         }
 
@@ -227,12 +227,16 @@ namespace Downloader
         /// <param name="e">Event arguments including received data size</param>
         private void OnProgressbarChanged(object sender, DownloadProgressEventArgs e)
         {
+            DependencyService.Get<IDownload>().DownloadLog("ProgressbarChanged: " + e.ReceivedSize);
             ulong ContentSize = DependencyService.Get<IDownload>().GetContentSize();
 
             if (e.ReceivedSize > 0)
             {
-                progressBar.Value = (double)e.ReceivedSize / ContentSize;
-                progressLabel.Text = e.ReceivedSize + "bytes / " + ContentSize + "bytes";
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    progressBar.Value = (double)e.ReceivedSize / ContentSize;
+                    progressLabel.Text = e.ReceivedSize + "bytes / " + ContentSize + "bytes";
+                });
             }
         }
 
@@ -246,20 +250,20 @@ namespace Downloader
             if (e.stateMsg.Length > 0)
             {
                 DependencyService.Get<IDownload>().DownloadLog("State: " + e.stateMsg);
-
-                if (e.stateMsg == "Failed")
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    downloadButton.Text = e.stateMsg + "! Please start download again.";
-                    // If download is failed, dispose a request
-                    DependencyService.Get<IDownload>().Dispose();
-                    // Enable a donwload button
-                    downloadButton.IsEnabled = true;
-                }
-                else if (e.stateMsg != downloadButton.Text)
-                {
-                    // Update a download state
-                    downloadButton.Text = e.stateMsg;
-                }
+                    if (e.stateMsg == "Failed" || e.stateMsg == "Completed")
+                    {
+                        downloadButton.Text = e.stateMsg;
+                        // Enable a donwload button
+                        downloadButton.IsEnable = true;
+                    }
+                    else if (e.stateMsg != downloadButton.Text)
+                    {
+                        // Update a download state
+                        downloadButton.Text = e.stateMsg;
+                    }
+                });
             }
         }
     }
