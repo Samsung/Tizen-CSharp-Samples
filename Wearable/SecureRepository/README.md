@@ -22,6 +22,10 @@ In sample app the Keys length are intentionally lowered to increase application 
 ListView with AES-Key should pop up. First label should show Encrypted text prefix
 and the second one text before encryption and after decryption.
 
+> **Note**
+>
+> Werable UI does not have buttons, therefore application automatically adds sample data
+to key-manager.
 
 ## Verified Version
 * [Xamarin.Forms](https://www.xamarin.com/forms) : 2.4.0.91020
