@@ -1,4 +1,4 @@
-# MusicPlayerUI
+# Music Player UI
 MusicPlayerUI is the sample UI application that shows how you can compose the music player application.
 UI is written in [XAML](https://developer.xamarin.com/guides/xamarin-forms/xaml/). [Behaviors](https://developer.xamarin.com/guides/xamarin-forms/application-fundamentals/behaviors/) and [Binding](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_binding_basics/) features are mainly used.
 
