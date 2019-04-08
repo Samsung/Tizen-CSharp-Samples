@@ -1,4 +1,4 @@
-# ImageSample
+# Image Sample
 This sample demonstrates how to show image in Tizen.NUI. NUI supports many kinds of format of image, such as ".png", ".jpg", ".9.png", ".gif", and ".svg" files. And Mask, FittingMode and PixelArea feature are also supported in NUI ImageView.
 
 ![MainPage](./Screenshots/ImageMain.png)
