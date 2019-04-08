@@ -1,4 +1,4 @@
-# Classic Watch
+# ClassicWatch
 
 The Classic Watch sample application demonstrates how you can create and manage Watchface application with Xamarin.Forms and [Tizen.Wearable.CircularUI.Forms](https://github.com/Samsung/Tizen.CircularUI).
 
