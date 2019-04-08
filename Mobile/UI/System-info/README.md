@@ -1,4 +1,4 @@
-# Tizen .NET System-info Sample
+# System-info
 
 This System-info application demonstrate how to get information about system properties and capabilities of the device.
 
