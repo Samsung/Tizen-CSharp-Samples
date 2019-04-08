@@ -1,4 +1,4 @@
-# Tizen .NET Settings UI Sample
+# Settings UI
 
 This Settings UI sample application demonstrates how to configure the screen using a variety of objects. This sample is only a reference for constructing an application's UI layout. Menus and UI components do not provide real application's functions.
 
