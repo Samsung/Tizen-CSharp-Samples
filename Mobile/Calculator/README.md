@@ -1,4 +1,4 @@
-# Tizen .NET Calculator Sample
+# Calculator
 
 A sample Calculator application demonstrates the regular calculator and the scientific calculator. This sample is following Portable Class Libraries (PCL) application model and using some Xamarin.Forms features such as XAML files for GUI, Custom Renderers for the image buttons, and subsystem ports by using the Dependency Service.
 
