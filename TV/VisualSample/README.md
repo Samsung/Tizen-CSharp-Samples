@@ -1,4 +1,4 @@
-# VisualSample
+# Visual Sample
 This sample demonstrates how to use Visual in Tizen.NUI.
 
 ![MainPage](./Screenshots/visualMain.png)
