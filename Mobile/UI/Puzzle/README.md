@@ -1,4 +1,4 @@
-# Tizen .NET Puzzle Sample
+# Puzzle
 
 This is the basic UI sample application
 
