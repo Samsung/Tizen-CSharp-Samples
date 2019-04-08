@@ -1,4 +1,4 @@
-# FlexContainerSample
+# FlexContainer Sample
 This sample demonstrates how to use FlexContainer in Tizen.NUI.
 
 ![AlignContent](./Screenshots/AlignContent.png)
