@@ -1,4 +1,4 @@
-# Chronograph Watch
+# ChronographWatch
 
 The Chronograph Watch sample application demonstrates how you can create and manage Watchface application with Xamarin.Forms and [Tizen.Wearable.CircularUI.Forms](https://github.com/Samsung/Tizen.CircularUI).
 This sample application includes the watch and stopwatch functionality.
