@@ -1,4 +1,4 @@
-# Tizen .NET EmailUI Sample
+# Email UI
 
 This EmailUI application demonstrates how to write and send mail.
 
