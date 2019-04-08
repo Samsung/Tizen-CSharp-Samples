@@ -1,4 +1,4 @@
-# Tizen .NET SNSUI Sample
+# SNS UI
 
 This SNSUI application demonstrates how to configure the screen using a variety of objects.
 It shows how to compose the view by using scroller, toolbar and drawer.
