@@ -1,4 +1,4 @@
-# TextSample
+# Text Sample
 This sample demonstrates how to use TextLabel, TextField, and TextEditor in Tizen.NUI.
 
 ![MainPage](./Screenshots/textMain.png)
