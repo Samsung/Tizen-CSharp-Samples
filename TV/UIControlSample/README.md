@@ -1,4 +1,4 @@
-# UIControlSample
+# UIControl Sample
 This sample demonstrates some basic UI Control Tizen.NUI. Such as, Button, RadioButton, CheckBox, Slider, ProgressBar.
 
 ![MainPage](./Screenshots/main.png)
