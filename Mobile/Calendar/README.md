@@ -1,4 +1,4 @@
-# Tizen .NET Calendar
+# Calendar
 
 The Calendar application demonstrates how to implement an calendar service which can add and configure an calendar.
 This sample is following Portable Class Libraries (PCL) application model and using some Xamarin.Forms features such as XAML files for GUI, and subsystem ports by using the Dependency Service.
