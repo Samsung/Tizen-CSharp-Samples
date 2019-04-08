@@ -1,5 +1,5 @@
-# Calendar
-This sample application demonstrates how to implement a calendar provider, which can add and configure an event.
+# CalendarComponent
+This sample application demonstrates how to implement a calendar.
 
 ![Main page - overview](./Screenshots/screenshot_1.png)
 
