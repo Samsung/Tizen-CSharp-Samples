@@ -1,4 +1,4 @@
-# NFC
+# NFCSampleApp
 The NFC applicaiton allows you to send and receive a NDEF message from remote NFC device, and read NDEF message from NFC Tag.
 
 ![Main page](./screenshots/screenshot_01.png)
