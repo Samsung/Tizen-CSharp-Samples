@@ -1,4 +1,4 @@
-﻿# Tizen .NET Calculator Sample
+﻿# Calculator
 
 A sample Calculator application. This sample is using some Xamarin.Forms features such as XAML files for GUI and Custom Renderers for the image buttons.
 
