@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Samsung Electronics Co., Ltd. All rights reserved.
+ * Copyright 2019 Samsung Electronics Co., Ltd. All rights reserved.
  *
  * Licensed under the Flora License, Version 1.1 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using MusicPlayer.Models;
 using MusicPlayer.Tizen.TV.Services;
 using System;
@@ -109,16 +110,18 @@ namespace MusicPlayer.Tizen.TV.Services
         /// <returns>Created 'Track' object.</returns>
         private Track MediaInfoToTrack(AudioInfo audioInfo)
         {
-            MetadataEditor metadataEditor = new MetadataEditor(audioInfo.Path);
-            int pictureCount = metadataEditor.PictureCount;
-            byte[] art = null;
-            if (pictureCount > 0)
+            using (MetadataEditor metadataEditor = new MetadataEditor(audioInfo.Path))
             {
-                Artwork artwork = metadataEditor.GetPicture(0);
-                art = artwork.Data;
-            }
+                int pictureCount = metadataEditor.PictureCount;
+                byte[] art = null;
+                if (pictureCount > 0)
+                {
+                    Artwork artwork = metadataEditor.GetPicture(0);
+                    art = artwork.Data;
+                }
 
-            return new Track(audioInfo.Title, audioInfo.Artist, audioInfo.Album, art, audioInfo.Path, audioInfo.Duration);
+                return new Track(audioInfo.Title, audioInfo.Artist, audioInfo.Album, art, audioInfo.Path, audioInfo.Duration);
+            }
         }
 
         #endregion

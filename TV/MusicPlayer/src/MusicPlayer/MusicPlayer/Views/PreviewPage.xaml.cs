@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Samsung Electronics Co., Ltd. All rights reserved.
+ * Copyright 2019 Samsung Electronics Co., Ltd. All rights reserved.
  *
  * Licensed under the Flora License, Version 1.1 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using MusicPlayer.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
