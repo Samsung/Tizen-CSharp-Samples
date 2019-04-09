@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns:controls="clr-namespace:Geocoding.Tizen.Wearable.Controls"
+                x:Class="Geocoding.Tizen.Wearable.Views.SearchPage"
+                NavigationPage.HasNavigationBar="False"
+                x:Name="root">
+
+    <cui:CirclePage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+            <StackLayout x:Name="searchLayer"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         Spacing="0">
+                <StackLayout.Triggers>
+                    <DataTrigger Binding="{Binding Source={x:Reference root}, Path=BindingContext.IsSearchInputVisible}"
+                                 TargetType="StackLayout"
+                                 Value="False">
+                        <Setter Property="IsVisible"
+                                Value="False" />
+                    </DataTrigger>
+                </StackLayout.Triggers>
+
+                <Label Margin="0, 58, 0, 0"
+                       FontFamily="BreezeSans:style=Condensed"
+                       HorizontalTextAlignment="Center"
+                       Text="Search"
+                       TextColor="#21E562" />
+
+                <cui:PopupEntry Margin="36, 30, 36, 0"
+                                Placeholder="Address, place"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Source={x:Reference root}, Path=BindingContext.SearchValue}" />
+            </StackLayout>
+
+            <StackLayout AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         Spacing="0"
+                         IsVisible="False">
+                <StackLayout.Triggers>
+                    <DataTrigger Binding="{Binding Source={x:Reference root}, Path=BindingContext.IsSearchInputVisible}"
+                                 TargetType="StackLayout"
+                                 Value="False">
+                        <Setter Property="IsVisible"
+                                Value="True" />
+                    </DataTrigger>
+                </StackLayout.Triggers>
+
+                <controls:CircleProgress Margin="0, 116, 0, 0" />
+
+                <Label Margin="0, 26, 0, 0"
+                       FontFamily="BreezeSans:style=Condensed"
+                       HorizontalTextAlignment="Center"
+                       Text="Loading"
+                       TextColor="#ffffff" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </cui:CirclePage.Content>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="DONE"
+                              IsEnable="{Binding Source={x:Reference root}, Path=BindingContext.IsSearchValueValid}"
+                              Command="{Binding Source={x:Reference root}, Path=BindingContext.StartSearchingCommand}"
+                              IsVisible="{Binding Source={x:Reference root}, Path=BindingContext.IsSearchInputVisible}" />
+    </cui:CirclePage.ActionButton>
+
+</cui:CirclePage>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocoding", "Geocoding\Geocoding\Geocoding.csproj", "{40450316-A61A-4D94-B05E-BC58206668FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geocoding.Tizen.Wearable", "Geocoding\Geocoding.Tizen.Wearable\Geocoding.Tizen.Wearable.csproj", "{73806759-A71D-49C8-B93B-94865960DD58}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40450316-A61A-4D94-B05E-BC58206668FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40450316-A61A-4D94-B05E-BC58206668FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40450316-A61A-4D94-B05E-BC58206668FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40450316-A61A-4D94-B05E-BC58206668FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73806759-A71D-49C8-B93B-94865960DD58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73806759-A71D-49C8-B93B-94865960DD58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73806759-A71D-49C8-B93B-94865960DD58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73806759-A71D-49C8-B93B-94865960DD58}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA83B0D5-C07A-4322-9F23-7FB0BDFD4155}
+	EndGlobalSection
+EndGlobal
