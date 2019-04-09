@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="ReverseGeocoding.Tizen.Wearable.Views.MainPage"
+                NavigationPage.HasNavigationBar="False"
+                x:Name="Root">
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="CONFIRM"
+                              Command="{Binding Source={x:Reference Root}, Path=BindingContext.GoToResultsPageCommand}"
+                              CommandParameter="{Binding Point, Source={x:Reference Root}}"
+                              IsEnable="{Binding PinPlaced, Source={x:Reference Root}}" />
+    </cui:CirclePage.ActionButton>
+
+</cui:CirclePage>

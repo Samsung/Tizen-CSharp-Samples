@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="ReverseGeocoding.Tizen.Wearable.Views.ResultsPage"
+                NavigationPage.HasNavigationBar="False"
+                RotaryFocusObject="{x:Reference scroller}"
+                x:Name="Root">
+
+    <cui:CirclePage.Content>
+        <StackLayout>
+            <Label Text="Your location"
+                   TextColor="#4CCDFC"
+                   HorizontalOptions="CenterAndExpand"
+                   Margin="0, 60, 0, 0" />
+            <cui:CircleScrollView Orientation="Vertical"
+                                  x:Name="scroller">
+                <Label Text="{Binding Place}"
+                       HorizontalOptions="CenterAndExpand"
+                       Margin="33, 0, 33, 0"
+                       XAlign="Center"
+                       TextColor="#FFFFFF" />
+            </cui:CircleScrollView>
+        </StackLayout>
+    </cui:CirclePage.Content>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="BACK"
+                              Command="{Binding Source={x:Reference Root}, Path=BindingContext.GoToPreviousPageCommand}" />
+    </cui:CirclePage.ActionButton>
+
+</cui:CirclePage>

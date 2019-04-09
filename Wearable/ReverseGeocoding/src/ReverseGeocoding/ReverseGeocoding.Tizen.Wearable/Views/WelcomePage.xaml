@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="ReverseGeocoding.Tizen.Wearable.Views.WelcomePage"
+                x:Name="Root">
+
+    <cui:CirclePage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+            <Image AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   Source="images/bg.png" />
+            <Image AbsoluteLayout.LayoutFlags="XProportional"
+                   AbsoluteLayout.LayoutBounds=".5, 32, 76, 76"
+                   Source="images/reverse_geocoding_76.png" />
+            <Label AbsoluteLayout.LayoutFlags="XProportional"
+                   AbsoluteLayout.LayoutBounds=".5, 120, AutoSize, AutoSize"
+                   FontFamily="BreezeSans:style=Condensed"
+                   Text="Welcome"
+                   TextColor="#FAFAFA" />
+            <Label AbsoluteLayout.LayoutFlags="XProportional"
+                   AbsoluteLayout.LayoutBounds=".5, 174, AutoSize, AutoSize"
+                   FontFamily="BreezeSans:style=Condensed"
+                   FontSize="7.8"
+                   Text="Reverse Geocoding application shows how to use&#x0a;Tizen Maps API"
+                   TextColor="#FAFAFA"
+                   HorizontalTextAlignment="Center" />
+        </AbsoluteLayout>
+    </cui:CirclePage.Content>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="NEXT"
+                              Command="{Binding Source={x:Reference Root}, Path=BindingContext.GoToMainPageCommand}" />
+    </cui:CirclePage.ActionButton>
+
+</cui:CirclePage>
