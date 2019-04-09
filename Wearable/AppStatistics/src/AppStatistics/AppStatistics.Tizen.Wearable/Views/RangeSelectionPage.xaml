@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns:views="clr-namespace:AppStatistics.Views;assembly=AppStatistics"
+                xmlns:viewModels="clr-namespace:AppStatistics.ViewModels;assembly=AppStatistics"
+                xmlns:utils="clr-namespace:AppStatistics.Utils;assembly=AppStatistics"
+                x:Class="AppStatistics.Tizen.Wearable.Views.RangeSelectionPage"
+                xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                RotaryFocusObject="{x:Reference listView}"
+                NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:MainViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Content>
+        <cui:CircleListView x:Name="listView"
+                            VerticalOptions="Center"
+                            HorizontalOptions="CenterAndExpand">
+            <cui:CircleListView.ItemsSource>
+                <x:Array Type="{x:Type views:MenuItem}">
+                    <views:MenuItem Title="Last Day"
+                                    Command="{Binding GoToLaunchCountCommand}">
+                        <views:MenuItem.CommandParameter>
+                            <utils:Range>LastDay</utils:Range>
+                        </views:MenuItem.CommandParameter>
+                    </views:MenuItem>
+                    <views:MenuItem Title="Last Week"
+                                    Command="{Binding GoToLaunchCountCommand}">
+                        <views:MenuItem.CommandParameter>
+                            <utils:Range>LastWeek</utils:Range>
+                        </views:MenuItem.CommandParameter>
+                    </views:MenuItem>
+                    <views:MenuItem Title="Last Month"
+                                    Command="{Binding GoToLaunchCountCommand}">
+                        <views:MenuItem.CommandParameter>
+                            <utils:Range>LastMonth</utils:Range>
+                        </views:MenuItem.CommandParameter>
+                    </views:MenuItem>
+                    <views:MenuItem Title="Livetime"
+                                    Command="{Binding GoToLaunchCountCommand}">
+                        <views:MenuItem.CommandParameter>
+                            <utils:Range>Livetime</utils:Range>
+                        </views:MenuItem.CommandParameter>
+                    </views:MenuItem>
+                </x:Array>
+            </cui:CircleListView.ItemsSource>
+            <cui:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HeightRequest="108"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand">
+                            <Label FontSize="11.76"
+                                   Margin="0, 30, 0, 0"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   Text="{Binding Title}"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontFamily="BreezeSans"
+                                   TextColor="#95DFD2" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Command}"
+                                                      CommandParameter="{Binding CommandParameter}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </cui:CircleListView.ItemTemplate>
+        </cui:CircleListView>
+    </cui:CirclePage.Content>
+</cui:CirclePage>
