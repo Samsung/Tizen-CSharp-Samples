@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="Geocoding.Tizen.Wearable.Views.MapPage"
+             FindMoreMarkersCommand="{Binding ShowFindMoreMarkersInfoCommand}">
+
+</cui:CirclePage>
