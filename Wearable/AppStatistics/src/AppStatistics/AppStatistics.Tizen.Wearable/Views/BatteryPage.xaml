@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="AppStatistics.Tizen.Wearable.Views.BatteryPage"
+                RotaryFocusObject="{x:Reference listView}"
+                NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.Content>
+        <cui:CircleListView x:Name="listView"
+                            VerticalOptions="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            ItemsSource="{Binding Applications}">
+            <cui:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}"
+                              TextColor="#95DFD2"
+                              Detail="{Binding Battery, StringFormat='{0:D}%'}"
+                              DetailColor="#95DFD2" />
+                </DataTemplate>
+            </cui:CircleListView.ItemTemplate>
+        </cui:CircleListView>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>

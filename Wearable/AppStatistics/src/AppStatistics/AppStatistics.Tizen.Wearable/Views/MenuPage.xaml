@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns:views="clr-namespace:AppStatistics.Views;assembly=AppStatistics"
+                xmlns:viewModels="clr-namespace:AppStatistics.ViewModels;assembly=AppStatistics"
+                x:Class="AppStatistics.Tizen.Wearable.Views.MenuPage"
+                RotaryFocusObject="{x:Reference listView}"
+                NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:MainViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Content>
+        <cui:CircleListView x:Name="listView"
+                            VerticalOptions="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            Header="Menu">
+            <cui:CircleListView.ItemsSource>
+                <x:Array Type="{x:Type views:MenuItem}">
+                    <views:MenuItem Title="Battery"
+                                    Image="images/battery.png"
+                                    Command="{Binding GoToBatteryCommand}" />
+                    <views:MenuItem Title="Usage"
+                                    Image="images/usage.png"
+                                    Command="{Binding GoToRangeSelectionCommand}" />
+                </x:Array>
+            </cui:CircleListView.ItemsSource>
+            <cui:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HeightRequest="108"
+                                     HorizontalOptions="FillAndExpand"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="FillAndExpand"
+                                     Spacing="70">
+                            <Image Source="{Binding Image}"
+                                   Margin="16, 0, 0, 0"
+                                   HeightRequest="76"
+                                   WidthRequest="76" />
+                            <Label FontSize="11.76"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   Text="{Binding Title}"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="End"
+                                   FontFamily="BreezeSans"
+                                   TextColor="#95DFD2" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Command}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </cui:CircleListView.ItemTemplate>
+            <cui:CircleListView.HeaderTemplate>
+                <DataTemplate>
+                    <StackLayout cui:CircleListView.CancelEffect="True">
+                        <Label HorizontalOptions="Center"
+                               Margin="0, 38, 0, 0"
+                               Text="{Binding .}"
+                               TextColor="#FFFFFF"
+                               FontSize="9.8"
+                               FontFamily="BreezeSans" />
+                    </StackLayout>
+                </DataTemplate>
+            </cui:CircleListView.HeaderTemplate>
+        </cui:CircleListView>
+    </cui:CirclePage.Content>
+</cui:CirclePage>
