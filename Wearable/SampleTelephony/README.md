@@ -8,11 +8,10 @@ SampleTelephony is mainly designed for Tizen Wearable profile and it is written 
 
 
 ### Verified Version
-* Xamarin.Forms : 3.4.0.1009999
-* Tizen.NET : 6.0.0.14651
-* Tizen.Wearable.CircularUI : 1.0.0
+* Xamarin.Forms : 3.6.0.264807
+* Tizen.NET : 5.0.0.14562
+* Tizen.Wearable.CircularUI : 1.1.0
 * Tizen.NET.Sdk : 1.0.1
-* Xamarin.Forms.Platform.Tizen : 2.5.1.444934
 
 
 ### Supported Profile
