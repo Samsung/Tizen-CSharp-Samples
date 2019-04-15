@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.AnalogWatch.Tizen.Wearable" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="wearable" />
+    <watch-application appid="org.tizen.example.AnalogWatch.Tizen.Wearable" exec="AnalogWatch.Tizen.Wearable.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single" ambient-support="true">
+        <label>AnalogWatch.Tizen.Wearable</label>
+        <icon>AnalogWatch.Tizen.Wearable.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+    </watch-application>
+    <privileges>
+        <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        <privilege>http://tizen.org/privilege/notification</privilege>
+    </privileges>
+    <provides-appdefined-privileges />
+</manifest>
