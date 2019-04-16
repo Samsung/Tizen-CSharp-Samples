@@ -1,4 +1,4 @@
-# Star
+# CubeWithSkiaSharp
 This sample application mainly shows how to draw text with SkiaSharp on target memory block, generates 2D texture with the target memory block, and finally show this 2D texture in OpenTK application (draw text on a rotating cube).
 
 ![OPENTK](./Screenshots/CubeWithSkiaSharp.png)
