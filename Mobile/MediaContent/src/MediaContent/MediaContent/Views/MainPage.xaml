@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MediaContent.Controls"
+             xmlns:tizen="clr-namespace:Xamarin.Forms.PlatformConfiguration.TizenSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:views="clr-namespace:MediaContent.Views"
+             x:Class="MediaContent.Views.MainPage"
+             x:Name="page"
+             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppMediaContentViewModel}"
+             NavigationPage.HasNavigationBar="false"
+             Title="Media Content">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ContentButton"
+                   TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="BackgroundColor" Value="#3DB9CC" />
+            </Style>
+
+            <Style x:Key="MainFrame"
+                   TargetType="Frame">
+                <Setter Property="OutlineColor" Value="Accent" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+
+            <Style x:Key="DeviceTitleFontSize"
+                   TargetType="Label">
+                <Setter Property="FontSize">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="40"
+                             TV="120" />
+                </Setter>
+            </Style>
+
+            <Style x:Key="DeviceStoragesFontSize"
+                   TargetType="Label">
+                <Setter Property="FontSize">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="30"
+                             TV="70" />
+                </Setter>
+            </Style>
+
+            <DataTemplate x:Key="ContentTemplate">
+                <TextCell Text="{Binding DisplayName}"
+                          Command="{Binding BindingContext.FileInformationCommand, Source={x:Reference page}}" />
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout BackgroundColor="#3DB9CC">
+        <Label HorizontalOptions="Center"
+               Style="{StaticResource DeviceTitleFontSize}"
+               Text="Media Content"
+               Margin="0,30,0,30" />
+        <Label HorizontalOptions="Center"
+               Style="{StaticResource DeviceStoragesFontSize}"
+               Text="Available Storages"
+               Margin="0,0,0,40" />
+        <local:HorizontalListWithSwipe ItemsSource="{Binding Path=StorageItems}"
+                                       SelectedItems="{Binding Path=SelectedStorageItems, Mode=OneWayToSource}" />
+        <Grid Padding="30,20,30,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0"
+                         VerticalOptions="Center"
+                         Spacing="40">
+                <Frame Style="{StaticResource MainFrame}"
+                       OutlineColor="Black">
+                    <Button Text="AUDIO"
+                            Style="{StaticResource ContentButton}"
+                            Command="{Binding UpdateFileItemsCommand}"
+                            CommandParameter="MUSIC" />
+                </Frame>
+                <Frame Style="{StaticResource MainFrame}"
+                       OutlineColor="Black">
+                    <Button Text="IMAGES"
+                            Style="{StaticResource ContentButton}"
+                            Command="{Binding UpdateFileItemsCommand}"
+                            CommandParameter="IMAGE" />
+                </Frame>
+                <Frame Style="{StaticResource MainFrame}"
+                       OutlineColor="Black">
+                    <Button Text="VIDEO"
+                            Style="{StaticResource ContentButton}"
+                            Command="{Binding UpdateFileItemsCommand}"
+                            CommandParameter="VIDEO"/>
+                </Frame>
+            </StackLayout>
+            <ListView Grid.Column="1"
+                      ItemTemplate="{StaticResource ContentTemplate}"
+                      ItemsSource="{Binding FileItems}"
+                      SelectedItem="{Binding SelectedFile, Mode=TwoWay}" />
+        </Grid>
+    </StackLayout>
+</ContentPage>
