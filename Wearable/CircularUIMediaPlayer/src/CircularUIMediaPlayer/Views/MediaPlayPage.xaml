@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              x:Class="CircularUIMediaPlayer.Views.MediaPlayPage">
+    <AbsoluteLayout>
+        <c:MediaView x:Name="mediaView" WidthRequest="360" HeightRequest="360" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <c:MediaPlayer x:Name="mediaPlayer"
+                           Source="{Binding MediaSource}"
+                           AutoPlay="{Binding AutoPlay}"
+                           UsesEmbeddingControls="{Binding UsesEmbeddingControls}" />
+            <c:MediaView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ChangeVisibilityCommand}" />
+            </c:MediaView.GestureRecognizers>
+        </c:MediaView>
+        <AbsoluteLayout x:Name="CustomControlView" IsVisible="{Binding PlayControlViewVisible}"
+                        AbsoluteLayout.LayoutBounds="0, 250, 360, 80" AbsoluteLayout.LayoutFlags="None" BackgroundColor="#CC00FFA0">
+            <Button x:Name="backBtn" Image="10_sec_backward.png" BackgroundColor="White"
+                    Command="{Binding BackwardCommand}"
+                    AbsoluteLayout.LayoutBounds="50, 0, 80, 80" AbsoluteLayout.LayoutFlags="None"/>
+            <Button x:Name="playBtn" BackgroundColor="Yellow"
+                    Image="{Binding PlayBtnImage}" Command="{Binding PlayOrStopCommand}"
+                    AbsoluteLayout.LayoutBounds="140, 0, 80, 80" AbsoluteLayout.LayoutFlags="None" />
+            <Button x:Name="forwardBtn" Image="10_sec_forward.png"
+                    Command="{Binding ForwardCommand}"
+                    AbsoluteLayout.LayoutBounds="230, 0, 80, 80" AbsoluteLayout.LayoutFlags="None" />
+        </AbsoluteLayout>
+    </AbsoluteLayout>
+</c:CirclePage>

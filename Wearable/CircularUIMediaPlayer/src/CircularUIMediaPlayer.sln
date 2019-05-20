@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircularUIMediaPlayer", "CircularUIMediaPlayer\CircularUIMediaPlayer.csproj", "{6F45FCE8-D092-401D-8324-E00EC5CD39CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F45FCE8-D092-401D-8324-E00EC5CD39CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F45FCE8-D092-401D-8324-E00EC5CD39CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F45FCE8-D092-401D-8324-E00EC5CD39CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F45FCE8-D092-401D-8324-E00EC5CD39CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44AAE0B4-90F2-4128-AC5B-CB3E25A88D3A}
+	EndGlobalSection
+EndGlobal
