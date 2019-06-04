@@ -3,7 +3,7 @@
 This sample application demonstrate how user can use maps service.
 
 ![Main page - overview](./Maps.png)
-This sample application demonstrates how to implement a Map.
+
 
 ### Features
 * Maps features(Zoom In,Zoom Out, Scroll, Maps gestures,Rotate).

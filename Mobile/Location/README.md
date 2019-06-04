@@ -1,7 +1,7 @@
 # Location
 This sample application demonstrates how to implement location.
 
-![Main page - overview](./Location1.png)
+![Main page - overview](./location.png)
 
 
 ### Features
