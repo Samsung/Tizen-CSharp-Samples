@@ -1,7 +1,10 @@
 # Geofence
+
+This sample application demonstrates how user can manage geofence.
+
+![Main page - overview](./Geofence.png)
 This sample application demonstrates how to implement Geofence service of a place.
 
-![Main page - overview](./Geofence1.png)
 
 ### Features
 * Geofence information of a geographical place.

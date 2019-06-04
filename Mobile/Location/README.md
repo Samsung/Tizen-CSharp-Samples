@@ -3,6 +3,7 @@ This sample application demonstrates how to implement location.
 
 ![Main page - overview](./Location1.png)
 
+
 ### Features
 * Location information of a place with additional navigation.
 
