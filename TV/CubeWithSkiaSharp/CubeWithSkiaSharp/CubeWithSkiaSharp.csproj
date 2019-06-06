@@ -13,6 +13,10 @@
     <DebugType>None</DebugType>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <TizenTpkExcludePattern>libSkiaSharp.*</TizenTpkExcludePattern>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="lib\" />
     <Folder Include="res\" />
@@ -22,7 +26,9 @@
     <PackageReference Include="OpenTK.Tizen" Version="3.0.2" />
     <PackageReference Include="Tizen.NET" Version="5.0.0.14562" />
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
-    <PackageReference Include="SkiaSharp" Version="1.60.1" />
+    <PackageReference Include="SkiaSharp" Version="1.60.1">
+      <ExcludeAssets>Runtime</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
