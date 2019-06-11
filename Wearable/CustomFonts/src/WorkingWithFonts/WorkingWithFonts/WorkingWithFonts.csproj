@@ -9,8 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.0.0" />
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
