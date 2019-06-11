@@ -19,7 +19,7 @@ namespace CircularUIMediaPlayer.Utilities
     public static class Utility
     {
         public const string InternetPrivilege = "http://tizen.org/privilege/internet";
-        public const string LOG_TAG = "JUWOLS";
+        public const string LOG_TAG = "CircularUIMediaPlayer";
         public const string FileToPlay = "https://archive.org/download/Sintel/sintel-2048-stereo_512kb.mp4";
         public const string EXTERNAL_URL = "external";
         public const string LOCAL_RESOURCE = "local";

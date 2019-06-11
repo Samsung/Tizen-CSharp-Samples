@@ -36,7 +36,7 @@ namespace CircularUIMediaPlayer
 
         async void GrantInternetUserPermission()
         {
-            // Reqeust user's permission for internet privilege
+            // Request user's permission for internet privilege
             // Check detailed info : https://developer.tizen.org/development/guides/.net-application/security/privacy-related-permissions
             // https://developer.tizen.org/development/training/.net-application/security-and-api-privileges
             UserPermission userperm = new UserPermission();
