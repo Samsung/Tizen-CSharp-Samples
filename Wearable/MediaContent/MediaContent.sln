@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaContent", "MediaContent\MediaContent.csproj", "{41CBC480-032B-4F2A-9CDC-DE6EFA536A61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaContent", "MediaContent\MediaContent.csproj", "{41CBC480-032B-4F2A-9CDC-DE6EFA536A61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
