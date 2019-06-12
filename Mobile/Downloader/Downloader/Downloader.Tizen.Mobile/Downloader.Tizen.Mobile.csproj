@@ -12,7 +12,7 @@
   <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>tizen40</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,9 +39,9 @@
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="4.0.0-preview1-00100" />
-    <PackageReference Include="Tizen.NET.Sdk" Version="0.9.18-pre1" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0-r266-005" />
+    <PackageReference Include="Tizen.NET" Version="5.0.0.14629" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.5.1.444934" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />

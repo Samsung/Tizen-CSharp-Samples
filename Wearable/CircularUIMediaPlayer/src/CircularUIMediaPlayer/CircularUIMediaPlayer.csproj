@@ -23,7 +23,6 @@
     </PackageReference>
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
     <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="3.5.0.274416" />
   </ItemGroup>
 
   <ItemGroup>

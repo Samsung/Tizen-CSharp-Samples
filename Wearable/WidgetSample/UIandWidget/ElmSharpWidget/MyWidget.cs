@@ -6,7 +6,6 @@ namespace ElmSharpWidget
 {
     public class MyWidget : WidgetBase
     {
-        Label label;
         public override void OnCreate(Bundle content, int w, int h)
         {
             base.OnCreate(content, w, h);
