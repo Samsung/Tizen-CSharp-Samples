@@ -14,17 +14,26 @@
  * limitations under the License.
  */
 
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Tizen;
 using ElmSharp;
 using IMEManager;
 using IMEManager.Tizen.Mobile;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Tizen;
 
 [assembly: ExportRenderer(typeof(CustomCell), typeof(CustomCellRenderer))]
 namespace IMEManager.Tizen.Mobile
 {
+    /// <summary>
+    /// The renderer for CustomCellRenderer.
+    /// </summary>
     class CustomCellRenderer : ViewCellRenderer
     {
+        /// <summary>
+        /// Return EvasObject which consists of a cell.
+        /// </summary>
+        /// <param name="cell"> Cell. </param>
+        /// <param name="part"> Cell's style name. </param>
+        /// <returns> EvasObject </returns>
         protected override EvasObject OnGetContent(Cell cell, string part)
         {
             var native = base.OnGetContent(cell, part);

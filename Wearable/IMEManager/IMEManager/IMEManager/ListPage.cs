@@ -17,23 +17,33 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Xamarin.Forms;
 using Tizen.Uix.InputMethodManager;
+using Xamarin.Forms;
 
 namespace IMEManager
 {
+    /// <summary>
+    /// The main page of the Input Method Manager application.
+    /// </summary>
     public class ListPage : ContentPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListPage"/> class.
+        /// </summary>
         public ListPage()
         {
+            // Title of this page.
             this.Title = "IMEManager Sample";
+            // Create a new List.
             var menu = new List<string>
             {
+                "",
                 "ShowIMEList",
                 "ShowIMESelector",
                 "IsIMEEnabled",
                 "GetActiveIME",
                 "GetEnabledIMECount",
+                "",
             };
 
             var menuListView = new ListView()
@@ -45,6 +55,11 @@ namespace IMEManager
             menuListView.ItemTapped += MenuItemTapped;
         }
 
+        /// <summary>
+        /// Called when ListView item has been tapped.
+        /// </summary>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private void MenuItemTapped(object sender, ItemTappedEventArgs e)
         {
             string title = e.Item.ToString();

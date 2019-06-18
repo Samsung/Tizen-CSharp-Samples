@@ -18,15 +18,26 @@ using System;
 
 namespace IMEManager
 {
+    /// <summary>
+    /// Program class contains Main method.
+    /// </summary>
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
+        /// <summary>
+        /// This is called when the application is firstly created.
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
 
+            // Load the application
             LoadApplication(new App());
         }
 
+        /// <summary>
+        /// The main entrance of the application.
+        /// </summary>
+        /// <param name="args"> The string arguments. </param>
         static void Main(string[] args)
         {
             var app = new Program();

@@ -75,7 +75,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
-        /// When edit feild has focus in, this callback function will be called
+        /// When edit field has focus in, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
         /// <param name="e"> Argument of Event. </param>
@@ -85,7 +85,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
-        /// When edit feild has focus out, this callback function will be called
+        /// When edit field has focus out, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
         /// <param name="e"> Argument of Event. </param>
@@ -155,7 +155,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
-        /// When the cursor position of edit feild is updated, this callback function will be called
+        /// When the cursor position of edit field is updated, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
         /// <param name="e"> Argument of Event. </param>
@@ -175,7 +175,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
-        /// When the surroundingText for edit feild is updated, this callback function will be called
+        /// When the surroundingText for edit field is updated, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
         /// <param name="e"> Argument of Event. </param>

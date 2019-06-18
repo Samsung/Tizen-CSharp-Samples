@@ -45,7 +45,7 @@ namespace IMESample.ViewModels
         };
 
         /// <summary>
-        /// key lenght for keyboard
+        /// key length for keyboard
         /// </summary>
         const int KeyLen = 26;
 
