@@ -53,9 +53,14 @@ namespace IMEManager
                 case "IsIMEEnabled":
                     string appId = "ise-default";
                     if (Manager.IsIMEEnabled(appId))
+                    {
                         label.Text = "IME state : On";
+                    }
                     else
+                    {
                         label.Text = "IME state : Off";
+                    }
+
                     break;
                 case "GetActiveIME":
                     label.Text = "Active IME : " + Manager.GetActiveIME();

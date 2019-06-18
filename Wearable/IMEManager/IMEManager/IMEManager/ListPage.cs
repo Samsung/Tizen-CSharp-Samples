@@ -49,7 +49,7 @@ namespace IMEManager
         {
             string title = e.Item.ToString();
 
-            switch(title)
+            switch (title)
             {
                 case "ShowIMEList":
                     Manager.ShowIMEList();

@@ -52,7 +52,8 @@ namespace IMESample.ViewModels
         /// <summary>
         /// Define lower case for alphabet
         /// </summary>
-        private static String[] LowerCase = {
+        private static String[] LowerCase =
+        {
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
             "a", "s", "d", "f", "g", "h", "j", "k", "l",
             "z", "x", "c", "v", "b", "m", "n"
@@ -61,7 +62,8 @@ namespace IMESample.ViewModels
         /// <summary>
         /// Define upper case for alphabet
         /// </summary>
-        private static String[] UpperCase = {
+        private static String[] UpperCase =
+        {
             "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
             "A", "S", "D", "F", "G", "H", "J", "K", "L",
             "Z", "X", "C", "V", "B", "M", "N"
@@ -70,7 +72,8 @@ namespace IMESample.ViewModels
         /// <summary>
         /// Define symbol character for first symbol page
         /// </summary>
-        private static String[] Symbol1 = {
+        private static String[] Symbol1 = 
+        {
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
             "-", "@", "*", "^", ":", ";", "(", ")", "~",
             "/", "'", "\"", ".", ",", "?", "!"
@@ -79,7 +82,8 @@ namespace IMESample.ViewModels
         /// <summary>
         /// Define symbol character for second symbol page
         /// </summary>
-        private static String[] Symbol2 = {
+        private static String[] Symbol2 = 
+        {
             "#", "&", "%", "+", "=", "_", "\\", "|", "<", ">",
             "{", "}", "[", "]", "$", "£", "¥", "€", "₩",
             "¢", "`", "°", "·", "®", "©", "¿"
@@ -94,7 +98,7 @@ namespace IMESample.ViewModels
         /// <summary>
         /// A property to provide MainPageViewModel instance.
         /// </summary>
-        public static MainPageViewModel Instance { get { return lazy.Value; } }
+        public static MainPageViewModel Instance => lazy.Value;
 
         /// <summary>
         /// Restore the status of shift key
@@ -263,11 +267,7 @@ namespace IMESample.ViewModels
         /// <param name="propertyName"> A property name. </param>
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this,
-                    new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

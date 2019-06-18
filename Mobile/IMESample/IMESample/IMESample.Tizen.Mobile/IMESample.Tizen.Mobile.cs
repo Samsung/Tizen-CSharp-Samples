@@ -112,8 +112,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When edit feild has focus in, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_FocusedOut(object sender, FocusedOutEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_FocusedOut callback");
@@ -122,8 +122,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When edit feild has focus out, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_FocusedIn(object sender, FocusedInEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_FocusedIn callback");
@@ -132,8 +132,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When the display language of device is changed, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_DisplayLanaguageChanged(object sender, DisplayLanguageChangedEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_DisplayLanaguageChanged callback");
@@ -142,8 +142,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When the Return key state for IME is set, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_ReturnKeyStateSet(object sender, ReturnKeyStateSetEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_ReturnKeyStateSet callback");
@@ -152,8 +152,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When the Return key for IME is set, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_ReturnKeySet(object sender, ReturnKeySetEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_ReturnKeySet callback");
@@ -162,8 +162,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When the layout for IME is set, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_LayoutSet(object sender, LayoutSetEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_LayoutSet callback");
@@ -172,8 +172,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When the data for IME is set, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_DataSet(object sender, SetDataEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_DataSet callback");
@@ -182,8 +182,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When the language for IME is set, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_LanguageSet(object sender, LanguageSetEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_LanguageSet callback");
@@ -192,8 +192,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When the cursor position of edit feild is updated, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_CursorPositionUpdated(object sender, CursorPositionUpdatedEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_CursorPositionUpdated callback");
@@ -202,8 +202,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When InputContext is reset, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_InputContextReset(object sender, EventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_InputContextReset callback");
@@ -212,8 +212,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When the surroundingText for edit feild is updated, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_SurroundingTextUpdated(object sender, SurroundingTextUpdatedEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_SurroundingTextUpdated callback");
@@ -222,8 +222,8 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When the accessibility status is changed, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_AccessibilityStateChanged(object sender, AccessibilityStateChangedEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_AccessibilityStateChanged callback");
@@ -232,17 +232,17 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When the rotation for device is changed, this callback function will be called
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> The sender object. </param>
+        /// <param name="e"> Argument of Event. </param>
         private static void InputMethodEditor_RotationChanged(object sender, RotationChangedEventArgs e)
         {
             Log.Info("IMESample", "InputMethodEditor_RotationChanged callback");
         }
 
         /// <summary>
-        /// register callback functions
+        /// Register callback functions
         /// </summary>
-        private static void registerCallback()
+        private static void RegisterCallback()
         {
             // Set the necessary callback functions
             InputMethodEditor.FocusedIn += InputMethodEditor_FocusedIn;
@@ -285,7 +285,7 @@ namespace IMESample.Tizen.Mobile
             try
             {
                 // Set the necessary callback functions
-                registerCallback();
+                RegisterCallback();
                 // start inputmethod
                 InputMethodEditor.Run(Create, Terminate, Show, Hide);
                 app = new Program();
