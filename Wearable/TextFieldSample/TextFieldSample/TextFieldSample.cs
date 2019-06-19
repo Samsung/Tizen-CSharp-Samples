@@ -34,9 +34,7 @@ namespace TextFieldSample
         private TextField mTextField;
         // PushButton be used to trigger the effect of Text.
         private PushButton[] mPushButton;
-        // CheckBoxButton be used to trigger the effect of Text.
-        private CheckBoxButton[] mCheckBoxButton;
-        // tableView be used to put PushButton and mCheckBoxButton.
+        // tableView be used to put PushButton.
         private TableView mTableView;
         // Some kinds of LANGUAGES.
         private string[] LANGUAGES =
