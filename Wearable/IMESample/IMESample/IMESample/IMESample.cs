@@ -21,21 +21,30 @@ using Tizen.Uix.InputMethod;
 namespace IMESample
 {
     /// <summary>
-    /// ApplicationStore app class
+    /// Application app class
     /// </summary>
     public class App : Application
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="App"/> class.
+        /// </summary>
         public App()
         {
             MainPage = new IME_KEYBOARD_LAYOUT_QWERTY_PORT();
         }
 
+        /// <summary>
+        /// Called when your app starts.
+        /// </summary>
         protected override void OnStart()
         {
             // Handle when your app starts
             EditorWindow.SetSize(360,240,360,240);
         }
 
+        /// <summary>
+        /// Called when your app resumes.
+        /// </summary>
         protected override void OnResume()
         {
             // Handle when your app resumes

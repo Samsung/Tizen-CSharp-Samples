@@ -20,6 +20,9 @@ using Tizen.Uix.InputMethod;
 
 namespace IMESample.Tizen.Wearable
 {
+    /// <summary>
+    /// Program class contains Main method.
+    /// </summary>
     class Program : global::Xamarin.Forms.Platform.Tizen.IMEApplication
     {
         /// <summary>
@@ -75,6 +78,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "FocusedOut" event.
         /// When edit field has focus in, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -85,6 +89,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "FocusedIn" event.
         /// When edit field has focus out, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -95,6 +100,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "DisplayLanaguageChanged" event.
         /// When the display language of device is changed, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -105,6 +111,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "ReturnKeyStateSet" event.
         /// When the Return key state for IME is set, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -115,6 +122,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "ReturnKeySet" event.
         /// When the Return key for IME is set, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -125,6 +133,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "LayoutSet" event.
         /// When the layout for IME is set, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -135,6 +144,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "DataSet" event.
         /// When the data for IME is set, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -145,6 +155,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "LanguageSet" event.
         /// When the language for IME is set, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -155,6 +166,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "CursorPositionUpdated" event.
         /// When the cursor position of edit field is updated, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -165,6 +177,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "InputContextReset" event.
         /// When InputContext is reset, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -175,6 +188,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "SurroundingTextUpdated" event.
         /// When the surroundingText for edit field is updated, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -185,6 +199,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "AccessibilityStateChanged" event.
         /// When the accessibility status is changed, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -195,6 +210,7 @@ namespace IMESample.Tizen.Wearable
         }
 
         /// <summary>
+        /// Handles "RotationChanged" event.
         /// When the rotation for device is changed, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
@@ -245,6 +261,10 @@ namespace IMESample.Tizen.Wearable
             InputMethodEditor.DisplayLanguageChanged -= InputMethodEditor_DisplayLanaguageChanged;
         }
 
+        /// <summary>
+        /// The main entrance of the application.
+        /// </summary>
+        /// <param name="args"> The string arguments. </param>
         static void Main(string[] args)
         {
             try

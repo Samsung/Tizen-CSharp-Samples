@@ -26,9 +26,14 @@ using System.Runtime.CompilerServices;
 
 namespace IMESample.ViewModels
 {
+    /// <summary>
+    /// Base ViewModel class
+    /// </summary>
     public class MainPageViewModel : INotifyPropertyChanged
     {
-        /* the shift key state*/
+        /// <summary>
+        /// The shift key state
+        /// </summary>
         public enum IMEShiftStates
         {
             ShiftOff,
@@ -36,7 +41,9 @@ namespace IMESample.ViewModels
             ShiftLock,
         };
 
-        /* the layout type */
+        /// <summary>
+        /// The layout type
+        /// </summary>
         public enum IMEKeyboardLayoutType
         {
             LayoutEnglish,
@@ -111,29 +118,63 @@ namespace IMESample.ViewModels
         private IMEKeyboardLayoutType LayoutType;
 
         /// <summary>
-        /// Property changing event handler</summary>
+        /// Property changing event handler
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// The main label
+        /// </summary>
         public String[] MainLabel { set; get; }
 
+        /// <summary>
+        /// The shift image file of the current state.
+        /// </summary>
         public String ShiftImage { set; get; }
 
+        /// <summary>
+        /// The shift image opacity of the current state.
+        /// </summary>
         public float ShiftImageOpacity { set; get; }
 
+        /// <summary>
+        /// The shift background image color.
+        /// </summary>
         public String ShiftBgImageColor { set; get; }
 
+        /// <summary>
+        /// The layout string.
+        /// </summary>
         public String LayoutString { set; get; }
 
+        /// <summary>
+        /// The text of symbol key.
+        /// </summary>
         public String SymText { set; get; }
 
+        /// <summary>
+        /// Command which handles 'backspace' key event.
+        /// </summary>
         public ICommand Backspace { protected set; get; }
 
+        /// <summary>
+        /// Command which handles key event.
+        /// </summary>
         public ICommand PressButton { protected set; get; }
 
+        /// <summary>
+        /// Command which handles 'return' key event.
+        /// </summary>
         public ICommand ReturnButton { protected set; get; }
 
+        /// <summary>
+        /// Command which handles 'shift' key event.
+        /// </summary>
         public ICommand ShiftButton { protected set; get; }
 
+        /// <summary>
+        /// Command which allows to change the keyboard layout.
+        /// </summary>
         public ICommand LayoutButton { protected set; get; }
 
 
@@ -150,6 +191,9 @@ namespace IMESample.ViewModels
             OnPropertyChanged("ShiftBgImageColor");
         }
 
+        /// <summary>
+        /// Default class constructor.
+        /// </summary>
         public MainPageViewModel()
         {
             MainLabel = new string[KeyLen];
@@ -166,12 +210,14 @@ namespace IMESample.ViewModels
 
             this.Backspace = new Command(() =>
             {
+                // Send a backspace key event.
                 InputMethodEditor.SendKeyEvent(KeyCode.BackSpace, KeyMask.Pressed);
                 InputMethodEditor.SendKeyEvent(KeyCode.BackSpace, KeyMask.Released);
             });
             this.PressButton = new Command((value) =>
             {
                 string input = value.ToString();
+                // Sending input text data.
                 InputMethodEditor.CommitString(input);
                 if (LayoutType == IMEKeyboardLayoutType.LayoutEnglish && ShiftStatus == IMEShiftStates.ShiftOn)
                 {
@@ -183,6 +229,7 @@ namespace IMESample.ViewModels
             });
             this.ReturnButton = new Command(() =>
             {
+                // Send a return key event.
                 InputMethodEditor.SendKeyEvent(KeyCode.Return, KeyMask.Pressed);
                 InputMethodEditor.SendKeyEvent(KeyCode.Return, KeyMask.Released);
             });

@@ -26,10 +26,22 @@ namespace IMESample
     }
 
     /// <summary>
-    /// Define interface for configuration changed
+    /// A interface which is using for notifying application configuration change
+    /// from the platform project to the shared project.
     /// </summary>
+    /// <remarks>
+    /// Currently only orientation changed is notified by this interface,
+    /// but other configuration such as platform dependent event can be notified
+    /// by adding new interface method.
+    /// </remarks>
     interface IAppConfigurationChanged
     {
+        /// <summary>
+        /// A method which provides the device orientation change
+        /// </summary>
+        /// <param name="orientation">
+        /// A device orientation value, AppOrientation.Portrait, AppOrientation.Landscape
+        /// </param>
         void OnOrientationChanged(AppOrientation orientation);
     }
 }
