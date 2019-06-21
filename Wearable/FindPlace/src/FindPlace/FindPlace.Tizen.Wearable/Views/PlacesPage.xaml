@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="FindPlace.Tizen.Wearable.Views.PlacesPage"
+                xmlns:converters="clr-namespace:FindPlace.Converters;assembly=FindPlace"
+                xmlns:local="clr-namespace:FindPlace.Tizen.Wearable.Behaviors"
+                NavigationPage.HasNavigationBar="False"
+                RotaryFocusObject="{x:Reference PlacesList}"
+                x:Name="Root">
+
+    <cui:CirclePage.Behaviors>
+        <local:PopupBehavior ShowLoadingPopupCommand="{Binding BindingContext.ShowLoading, Source={x:Reference Root}, Mode=OneWayToSource}"
+                             HideLoadingPopupCommand="{Binding BindingContext.HideLoading, Mode=OneWayToSource, Source={x:Reference Root}, Mode=OneWayToSource}"
+                             ShowNotAvailablePopupCommand="{Binding BindingContext.ShowNotAvailableInformation, Source={x:Reference Root}, Mode=OneWayToSource}"
+                             ShowNotGrantedPopupCommand="{Binding BindingContext.ShowNotGrantedInformation, Source={x:Reference Root}, Mode=OneWayToSource}" />
+    </cui:CirclePage.Behaviors>
+
+    <cui:CirclePage.Resources>
+        <ResourceDictionary>
+            <converters:PlaceTypeToImageSourceConverter x:Key="ToImageSourceConverter" />
+            <converters:PlaceTypeToNameConverter x:Key="ToNameConverter" />
+        </ResourceDictionary>
+    </cui:CirclePage.Resources>
+
+    <cui:CirclePage.Content>
+        <cui:CircleListView x:Name="PlacesList"
+                            ItemsSource="{Binding PlaceTypeList}"
+                            SelectedItem="{Binding SelectedPlaceType, Mode=TwoWay}"
+                            VerticalOptions="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            Header="Looking for:">
+
+            <cui:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HeightRequest="120"
+                                     HorizontalOptions="FillAndExpand"
+                                     Orientation="Vertical"
+                                     VerticalOptions="FillAndExpand">
+                            <StackLayout HeightRequest="108"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="CenterAndExpand"
+                                         Orientation="Horizontal">
+                                <Image Source="{Binding PlaceType, Converter={StaticResource ToImageSourceConverter}}"
+                                       HorizontalOptions="Start"
+                                       Margin="16, 0, 0, 0" />
+                                <Label Text="{Binding PlaceType, Converter={StaticResource ToNameConverter}}"
+                                       FontFamily="BreezeSans"
+                                       Font="12"
+                                       TextColor="#94D0F4"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalOptions="CenterAndExpand"
+                                       HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </cui:CircleListView.ItemTemplate>
+
+            <cui:CircleListView.HeaderTemplate>
+                <DataTemplate>
+                    <AbsoluteLayout cui:CircleListView.CancelEffect="True">
+                        <Label AbsoluteLayout.LayoutBounds="110, 33, 188, 50"
+                               Text="{Binding .}"
+                               TextColor="#4CCDFC"
+                               FontSize="9.8"
+                               FontFamily="BreezeSans" />
+                    </AbsoluteLayout>
+                </DataTemplate>
+            </cui:CircleListView.HeaderTemplate>
+        </cui:CircleListView>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>

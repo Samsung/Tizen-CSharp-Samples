@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="FindPlace.Tizen.Wearable.Views.MapPage"
+             x:Name="Root"
+             xmlns:controls="clr-namespace:FindPlace.Tizen.Wearable.Controls"
+             xmlns:local="clr-namespace:FindPlace.Tizen.Wearable.Behaviors"
+             ConfirmAreaSelectionCommand="{Binding ConfirmAreaSelection, Mode=OneWayToSource}"
+             Area="{Binding Area, Mode=OneWayToSource}">
+
+    <cui:CirclePage.Behaviors>
+        <local:RotaryBehavior x:Name="RotaryBehavior" />
+        <local:PopupBehavior ShowLoadingPopupCommand="{Binding BindingContext.ShowLoading, Source={x:Reference Root}, Mode=OneWayToSource}"
+                             HideLoadingPopupCommand="{Binding BindingContext.HideLoading, Source={x:Reference Root}, Mode=OneWayToSource}"
+                             ShowNoPlacesPopupCommand="{Binding BindingContext.ShowNoPlacesInformation, Source={x:Reference Root}, Mode=OneWayToSource}"
+                             ShowErrorPopupCommand="{Binding BindingContext.ShowErrorInformation, Source={x:Reference Root}, Mode=OneWayToSource}" />
+    </cui:CirclePage.Behaviors>
+
+    <cui:CirclePage.Content>
+        <Grid x:Name="GridLayout">
+            <controls:TizenMapView x:Name="MapView"
+                                   Center="{Binding Location}"
+                                   ZoomLevel="{Binding ZoomLevel, Source={x:Reference RotaryBehavior}}" />
+            <Image Source="images/overlayer.png"
+                   InputTransparent="True" />
+        </Grid>
+    </cui:CirclePage.Content>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="OK"
+                              Command="{Binding BindingContext.SearchForPlacesCommand, Source={x:Reference Root}}" />
+    </cui:CirclePage.ActionButton>
+
+</cui:CirclePage>
