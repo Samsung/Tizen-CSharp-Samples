@@ -45,7 +45,7 @@ namespace ScriptLayoutSample
         private string bigImage2 = resources + "/images/gallery-large-11.jpg";
         private string bigImage3 = resources + "/images/gallery-large-7.jpg";
 
-        
+
         // The imageView which will contain the big image.
         private ImageView mImagePlacement;
 
@@ -514,7 +514,7 @@ namespace ScriptLayoutSample
             contentPane.PositionUsesPivotPoint = true;
             contentPane.ParentOrigin = ParentOrigin.Center;
             contentPane.PivotPoint = PivotPoint.Center;
-            contentPane.Padding = new Vector4(4, 4, 4, 4);
+            contentPane.Padding = new Extents(4, 4, 4, 4);
             contentPane.Size2D = Window.Instance.Size;
             return contentPane;
         }
@@ -735,7 +735,7 @@ namespace ScriptLayoutSample
             // Change the image when focus changed.
             _radiobutton.FocusLost += (obj, e) =>
             {
-                
+
                 if (themePath == defaultThemePath)
                 {
                     _radiobutton.UnselectedVisual = unselectedMap;
@@ -818,7 +818,7 @@ namespace ScriptLayoutSample
             // Change the image when focus changed.
             _checkboxbutton.FocusGained += (obj, e) =>
             {
-                
+
                 if (themePath == defaultThemePath)
                 {
                     _checkboxbutton.SelectedVisual = focusSelectedMap;
