@@ -424,9 +424,9 @@ namespace FirstScreen
         /// </summary>
         public void UnStage()
         {
-            if (_rootView != null && _rootView.Parent != null)
+            if (_rootView != null && _rootView.GetParent() != null)
             {
-                _rootView.Parent.Remove(_rootView);
+                _rootView.GetParent().Remove(_rootView);
             }
         }
 

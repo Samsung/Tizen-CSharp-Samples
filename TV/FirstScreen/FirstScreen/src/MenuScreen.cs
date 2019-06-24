@@ -131,12 +131,12 @@ namespace FirstScreen
             menu.SpotLightClip = spotlightClip;
             menu.SpotLight = spotLight;
             menu.Shine = shine;
-            
+
             // Create the selection effect, which includes a moving shine and a spotlight rotating in a circle.
             Effect selectionEffect = new Effect(highlightContainer);
             selectionEffect.Name = "selectionEffect";
             Size2D itemDimensions = menu.ItemDimensions;
-            selectionEffect.AddAction(new Effect.AnimateBetween("shine", "PositionX", -itemDimensions.Width, itemDimensions.Width, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine), 0, Constants.ShineDuration));            
+            selectionEffect.AddAction(new Effect.AnimateBetween("shine", "PositionX", -itemDimensions.Width, itemDimensions.Width, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine), 0, Constants.ShineDuration));
             Position topLeft =     new Position(-0.25f * itemDimensions.Width, -0.25f * itemDimensions.Height, 0.0f);
             Position topRight =    new Position(0.25f * itemDimensions.Width, -0.25f * itemDimensions.Height, 0.0f);
             Position bottomRight = new Position(0.25f * itemDimensions.Width,  0.25f * itemDimensions.Height, 0.0f);
@@ -313,9 +313,9 @@ namespace FirstScreen
                 ScrollMenu hiddenPosterMenu = _posterMenus[posterMenuIndex].ScrollMenu();
 
                 // Unparent the poster-menu.
-                if (hiddenPosterMenu != null && hiddenPosterMenu.Parent != null)
+                if (hiddenPosterMenu != null && hiddenPosterMenu.GetParent() != null)
                 {
-                    hiddenPosterMenu.Parent.Remove(hiddenPosterMenu);
+                    hiddenPosterMenu.GetParent().Remove(hiddenPosterMenu);
                 }
             }
         }
@@ -355,7 +355,7 @@ namespace FirstScreen
                 posterMenuView.Add(title);
                 CreateMenuHighlightEffects(posterMenuView, ("PosterMenu/" + menuNumber), spotLight);
                 posterMenuView.PositionY = 200.0f;
-                
+
                 // Create show & hide effects
                 Effect showEffect = new Effect(posterMenuView, Constants.ShowPosterDuration);
                 showEffect.EndAction = Animation.EndActions.Cancel;
@@ -460,7 +460,7 @@ namespace FirstScreen
             _menu.ShowMenuEffect = new Effect(_menuContainer, Constants.ShowMenuDuration);
             _menu.ShowMenuEffect.EndAction = Animation.EndActions.Cancel;
             _menu.ShowMenuEffect.AddAction(new Effect.AnimateTo("menuContainer", "Position", new Position(0.0f, 0.0f, 0.0f), new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine)));
-            
+
             // Hide animation bounces away.
             _menu.HideMenuEffect = new Effect(_menuContainer, Constants.ShowMenuDuration);
             _menu.HideMenuEffect.EndAction = Animation.EndActions.Cancel;
