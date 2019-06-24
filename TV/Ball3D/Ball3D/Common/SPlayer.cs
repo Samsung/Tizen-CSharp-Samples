@@ -28,7 +28,7 @@ namespace Ball3D
         /// Player instance
         /// </summary>
         private readonly Player _player = new Player();
-        public event EventHandler<EventArgs> StateChanged;
+
         /// <summary>
         /// Constructor of SPlayer
         /// </summary>
@@ -63,7 +63,7 @@ namespace Ball3D
         {
             var state = _player.State;
             _player.IsLooping = isloop;
-            //if the player's state is prestrain ready or paused,the player will play audio. 
+            //if the player's state is prestrain ready or paused,the player will play audio.
             if (state == Tizen.Multimedia.PlayerState.Ready || state == Tizen.Multimedia.PlayerState.Paused)
             {
                 _player.Start();
