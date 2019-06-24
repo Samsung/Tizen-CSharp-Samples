@@ -34,6 +34,7 @@ namespace UIControlSample
         private View textView;
         private TextLabel guide;
         private bool visibleFlag = false;
+        private InputMethodContext inputMethodContext = new InputMethodContext();
 
         /// <summary>
         /// The constructor
@@ -147,8 +148,8 @@ namespace UIControlSample
         /// </summary>
         private void ShowImf()
         {
-            ImfManager.Get().Activate();
-            ImfManager.Get().ShowInputPanel();
+            inputMethodContext.Activate();
+            inputMethodContext.ShowInputPanel();
         }
 
         /// <summary>
@@ -156,8 +157,8 @@ namespace UIControlSample
         /// </summary>
         private void HideImf()
         {
-            ImfManager.Get().Deactivate();
-            ImfManager.Get().HideInputPanel();
+            inputMethodContext.Deactivate();
+            inputMethodContext.HideInputPanel();
             Tizen.Log.Fatal("NUI", "Hide ImfManager!!!!!");
             //FocusManager.Instance.SetCurrentFocusView(guide);
         }
