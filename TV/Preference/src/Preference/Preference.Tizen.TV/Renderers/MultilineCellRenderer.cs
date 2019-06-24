@@ -99,13 +99,13 @@ namespace Preference.Tizen.TV.Renderers
             MultilineCell multilineCell = (MultilineCell)cell;
             if (part == _iconPart && multilineCell.Icon != null)
             {
-                var image = new NImage(TForms.Context.MainWindow);
+                var image = new NImage(TForms.NativeParent);
                 SetUpImage(multilineCell, image);
                 return image;
             }
             else if (part == _endPart && multilineCell.IsCheckVisible)
             {
-                var check = new Check(TForms.Context.MainWindow);
+                var check = new Check(TForms.NativeParent);
                 check.SetAlignment(-1, -1);
                 check.SetWeight(1, 1);
                 check.IsChecked = multilineCell.IsChecked;

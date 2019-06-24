@@ -103,7 +103,7 @@ namespace Preference.Tizen.TV.Renderers
         /// </summary>
         public ToastRenderer()
         {
-            _control = new EPopup(TForms.Context.MainWindow)
+            _control = new EPopup(TForms.NativeParent)
             {
                 Style = DefaultStyle,
                 AllowEvents = true,
