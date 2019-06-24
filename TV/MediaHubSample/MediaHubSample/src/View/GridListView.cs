@@ -97,7 +97,7 @@ namespace Tizen.NUI.MediaHub
             gridList.PivotPoint = PivotPoint.TopLeft;
             gridList.ParentOrigin = ParentOrigin.TopLeft;
             gridList.Position = new Position(0, 0, 0);
-            gridList.Focusable = true;  
+            gridList.Focusable = true;
             gridList.RowSpace = 28;
             gridList.ColumnSpace = 20;
             gridList.ClippingMode = ClippingModeType.Disabled;
@@ -128,11 +128,11 @@ namespace Tizen.NUI.MediaHub
             }
 
             parentView.Add(gridList);
-        
+
             gridList.KeyEvent += OnGridListViewKeyEventHandler;
-                    
+
             Tizen.Log.Fatal("NUI", "getGroups SetBridge");
-           
+
             gridList.SetBridge(bridge);
         }
 
@@ -161,7 +161,7 @@ namespace Tizen.NUI.MediaHub
             if (e.Key.State == Key.StateType.Down)
             {
                 GridView view = source as GridView;
-                
+
                 switch (e.Key.KeyPressedName)
                 {
                     case "Right":
@@ -184,7 +184,7 @@ namespace Tizen.NUI.MediaHub
                         {
                             view.Move(e.Key.KeyPressedName);
                         }
-                        
+
                         break;
                     case "Up":
                         view.GetFocusItemIndex(out groupIndex, out itemIndex);
@@ -207,7 +207,7 @@ namespace Tizen.NUI.MediaHub
                         // return key
                         ret = false;
                         break;
-                    //default:
+                    default:
                         ret = false;
                         break;
                 }
