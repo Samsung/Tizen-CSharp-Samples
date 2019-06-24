@@ -9,14 +9,7 @@
     <None Remove="Control\ImageIndicatorControl.xaml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Control\FooterControl.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\ImageIndicatorControl.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
+
 
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
