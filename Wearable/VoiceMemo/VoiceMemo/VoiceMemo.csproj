@@ -10,6 +10,7 @@
 
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
+    <PackageReference Include="sqlite" Version="3.13.0" />
     <PackageReference Include="sqlite-net-base" Version="1.5.166-beta" />
     <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.2.0" />
   </ItemGroup>
