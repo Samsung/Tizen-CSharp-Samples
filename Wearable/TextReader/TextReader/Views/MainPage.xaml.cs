@@ -46,7 +46,7 @@ namespace TextReader
                 var newItem = new CircleToolbarItem
                 {
                     Command = (ToolbarItems[2] as CircleToolbarItem).Command,
-                    Icon = icon,
+                    IconImageSource = icon,
                     Text = text,
                 };
                 var th4 = ToolbarItems[3];
