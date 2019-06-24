@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="FindPlace.Tizen.Wearable.Views.WelcomePage"
+             x:Name="Root">
+
+    <cui:CirclePage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+            <Image AbsoluteLayout.LayoutFlags="XProportional"
+                   AbsoluteLayout.LayoutBounds=".5, 32, 76, 76"
+                   Source="images/app_icon.png" />
+            <Label AbsoluteLayout.LayoutFlags="XProportional"
+                   AbsoluteLayout.LayoutBounds=".5, 120, AutoSize, AutoSize"
+                   FontFamily="BreezeSans:style=Condensed"
+                   Text="Welcome"
+                   TextColor="#FAFAFA" />
+            <Label AbsoluteLayout.LayoutFlags="XProportional"
+                   AbsoluteLayout.LayoutBounds=".5, 174, AutoSize, AutoSize"
+                   FontFamily="BreezeSans:style=Condensed"
+                   Font="7.8"
+                   Text="Find Place App shows how to use Tizen Maps API"
+                   TextColor="#FAFAFA"
+                   HorizontalTextAlignment="Center" />
+        </AbsoluteLayout>
+    </cui:CirclePage.Content>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="START"
+                              Command="{Binding BindingContext.GoToPlacesPageCommand, Source={x:Reference Root}}" />
+    </cui:CirclePage.ActionButton>
+
+</cui:CirclePage>

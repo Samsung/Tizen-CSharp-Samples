@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns:converters="clr-namespace:FindPlace.Converters;assembly=FindPlace"
+                x:Class="FindPlace.Tizen.Wearable.Views.ResultsPage"
+                NavigationPage.HasNavigationBar="False"
+                RotaryFocusObject="{x:Reference ResultsList}">
+
+    <cui:CirclePage.Resources>
+        <ResourceDictionary>
+            <converters:PlaceTypeToNameConverter x:Key="ToNameConverter" />
+        </ResourceDictionary>
+    </cui:CirclePage.Resources>
+
+    <cui:CirclePage.Content>
+        <cui:CircleListView x:Name="ResultsList"
+                            ItemsSource="{Binding Results}"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand"
+                            Header="{Binding PlaceType, Converter={StaticResource ToNameConverter}}">
+
+            <cui:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HeightRequest="150"
+                                     HorizontalOptions="FillAndExpand"
+                                     Orientation="Vertical"
+                                     VerticalOptions="FillAndExpand">
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="CenterAndExpand"
+                                         Orientation="Vertical">
+                                <Label Text="{Binding Name}"
+                                       FontFamily="BreezeSans"
+                                       Font="10"
+                                       TextColor="#94D0F4"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalOptions="CenterAndExpand"
+                                       HorizontalTextAlignment="Center"
+                                       WidthRequest="300"
+                                       LineHeight="0.9" />
+                                <Label Text="{Binding Address}"
+                                       FontFamily="BreezeSans"
+                                       Font="7"
+                                       TextColor="#85A8BD"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalOptions="CenterAndExpand"
+                                       HorizontalTextAlignment="Center"
+                                       WidthRequest="300"
+                                       LineHeight="0.9" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </cui:CircleListView.ItemTemplate>
+
+            <cui:CircleListView.HeaderTemplate>
+                <DataTemplate>
+                    <AbsoluteLayout cui:CircleListView.CancelEffect="True">
+                        <Label AbsoluteLayout.LayoutBounds="0.5, 50, 360, 45"
+                               AbsoluteLayout.LayoutFlags="XProportional"
+                               HorizontalTextAlignment="Center"
+                               HorizontalOptions="CenterAndExpand"
+                               Text="{Binding .}"
+                               TextColor="#61BAF0"
+                               FontSize="9.8"
+                               FontFamily="BreezeSans" />
+                    </AbsoluteLayout>
+                </DataTemplate>
+            </cui:CircleListView.HeaderTemplate>
+        </cui:CircleListView>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>
