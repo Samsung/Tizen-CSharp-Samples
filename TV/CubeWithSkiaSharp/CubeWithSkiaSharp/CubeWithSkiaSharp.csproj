@@ -24,9 +24,9 @@
 
   <ItemGroup>
     <PackageReference Include="OpenTK.Tizen" Version="3.0.2" />
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14562" />
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
-    <PackageReference Include="SkiaSharp" Version="1.60.1">
+    <PackageReference Include="Tizen.NET" Version="5.0.0.14629" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
+    <PackageReference Include="SkiaSharp" Version="1.68.0">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
   </ItemGroup>

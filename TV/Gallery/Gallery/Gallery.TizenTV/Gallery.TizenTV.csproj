@@ -29,7 +29,7 @@
     <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gallery\Gallery.csproj" />

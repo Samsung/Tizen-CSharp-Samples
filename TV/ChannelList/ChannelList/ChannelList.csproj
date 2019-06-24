@@ -38,8 +38,8 @@
   
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="4.0.0-preview1-00324" />
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
+    <PackageReference Include="Tizen.NET" Version="5.0.0.14629" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
