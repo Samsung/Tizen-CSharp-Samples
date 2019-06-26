@@ -28,27 +28,27 @@ namespace Calendar.Models
     {
         /// <summary>
         /// Inserts record.
+        ///  </summary>
         /// <param name="item">The RecordItem that is includes InsertPage properties.</param>
-        /// </summary>
         /// <returns>Event id</returns>
         int Insert(RecordItem item);
 
         /// <summary>
         /// Updates record.
+        ///  </summary>
         /// <param name="item">The RecordItem that is includes InsertPage properties.</param>
-        /// </summary>
         void Update(RecordItem item);
 
         /// <summary>
         /// Delete record.
-        /// <param name="item">The RecordItem that is includes InsertPage properties.</param>
         /// </summary>
+        /// <param name="item">The RecordItem that is includes InsertPage properties.</param>
         void Delete(RecordItem item);
 
         /// <summary>
         /// Get a day's list of records files.
-        /// <param name="dateTime">The datetime which is selected.</param>
         /// </summary>
+        /// <param name="dateTime">The datetime which is selected.</param>
         /// <returns>Record item list.</returns>
         List<RecordItem> GetMonthRecords(DateTime dateTime);
     }

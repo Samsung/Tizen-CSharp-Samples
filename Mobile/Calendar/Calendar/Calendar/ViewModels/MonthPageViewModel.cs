@@ -60,7 +60,7 @@ namespace Calendar.ViewModels
         }
 
         /// <summary>
-        /// A command for launching prevous button method.
+        /// A command for launching previous button method.
         /// This command gets executed when Button is clicked.
         /// </summary>
         private Command prevButtonCommand;

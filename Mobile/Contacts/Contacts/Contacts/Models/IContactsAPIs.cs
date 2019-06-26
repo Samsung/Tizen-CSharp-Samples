@@ -28,19 +28,21 @@ namespace Contacts.Models
     {
         /// <summary>
         /// Inserts record.
-        /// <param name="item">The RecordItem that is includes InsertPage properties.</param>
         /// </summary>
+        /// <param name="item">The RecordItem that is includes InsertPage properties.</param>
         /// <returns>Event id</returns>
         int Insert(RecordItem item);
 
         /// <summary>
         /// Updates record.
         /// </summary>
+        /// <param name="item">The RecordItem that is includes Update properties.</param>
         void Update(RecordItem item);
 
         /// <summary>
         /// Delete record.
         /// </summary>
+        /// <param name="item">The deleted RecordIte
         void Delete(RecordItem item);
 
         /// <summary>

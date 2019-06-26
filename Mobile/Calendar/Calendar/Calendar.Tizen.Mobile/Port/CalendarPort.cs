@@ -37,7 +37,9 @@ namespace Calendar.Tizen.Port
         /// <summary>
         /// Get tick from reminder index.
         /// </summary>
-        private int getTick(int reminder)
+        /// <param name="reminder">The time to get tick .</param>
+        /// <returns>returns tick.</returns>
+        private int GetTick(int reminder)
         {
             int tick = 0;
             switch (reminder)
@@ -71,13 +73,16 @@ namespace Calendar.Tizen.Port
                 tick = 1;
                 break;
             }
+
             return tick;
         }
 
         /// <summary>
         /// Get unit from reminder index.
         /// </summary>
-        private int getUnit(int reminder)
+        /// <param name="reminder">The time to get tick .</param>
+        /// <returns>returns unit.</returns>
+        private int GetUnit(int reminder)
         {
             int unit = 0;
             switch (reminder)
@@ -111,13 +116,16 @@ namespace Calendar.Tizen.Port
                 unit = (int)TPC.CalendarTypes.TickUnit.Week;
                 break;
             }
+
             return unit;
         }
 
         /// <summary>
         /// Get priority from priority index.
         /// </summary>
-        private int getPriority(int inPriority)
+        /// <param name="inPriority">The variable to get priority.</param>
+        /// <returns>returns priority.</returns>
+        private int GetPriority(int inPriority)
         {
             int priority;
             switch (inPriority)
@@ -136,13 +144,16 @@ namespace Calendar.Tizen.Port
                 priority = (int)TPC.CalendarTypes.Priority.High;
                 break;
             }
+
             return priority;
         }
 
         /// <summary>
         /// Get sensitivity from sensitivity index.
         /// </summary>
-        private int getSensitivity(int inSensitivity)
+        /// <param name="inSensitivity">The variable to get sensitivity .</param>
+        /// <returns>returns sensitivity.</returns>
+        private int GetSensitivity(int inSensitivity)
         {
             int sensitivity;
             switch (inSensitivity)
@@ -161,13 +172,16 @@ namespace Calendar.Tizen.Port
                 sensitivity = (int)TPC.CalendarTypes.Sensitivity.Confidential;
                 break;
             }
+
             return sensitivity;
         }
 
         /// <summary>
         /// Get status from status index.
         /// </summary>
-        private int getStatus(int inStatus)
+        /// <param name="inStatus">The variable to get status .</param>
+        /// <returns>returns status.</returns>
+        private int GetStatus(int inStatus)
         {
             int status;
             switch (inStatus)
@@ -190,13 +204,17 @@ namespace Calendar.Tizen.Port
                 status = (int)TPC.CalendarTypes.EventStatus.Cancelled;
                 break;
             }
+
             return status;
         }
 
         /// <summary>
         /// Get reminder index from tick and unit.
         /// </summary>
-        private int getReminderIndex(int tick, int unit)
+        /// <param name="tick">The time to get tick .</param>
+        /// <param name="unit">The variable to get time unit .</param>
+        /// <returns>returns reminder index.</returns>
+        private int GetReminderIndex(int tick, int unit)
         {
             int index;
             switch (unit)
@@ -223,6 +241,7 @@ namespace Calendar.Tizen.Port
                     index = 4;
                     break;
                 }
+
                 break;
             /// Hour unit
             case (int)TPC.CalendarTypes.TickUnit.Hour:
@@ -237,13 +256,16 @@ namespace Calendar.Tizen.Port
                 index = 7;
                 break;
             }
+
             return index;
         }
 
         /// <summary>
         /// Get priority index from priority value.
         /// </summary>
-        private int getPriorityIndex(int priority)
+        /// <param name="priority">The variable to get priority .</param>
+        /// <returns>returns priority index.</returns>
+        private int GetPriorityIndex(int priority)
         {
             int index;
             switch (priority)
@@ -262,13 +284,16 @@ namespace Calendar.Tizen.Port
                 index = 2;
                 break;
             }
+
             return index;
         }
 
         /// <summary>
         /// Get sensitivity index from sensitivity value.
         /// </summary>
-        private int getSensitivityIndex(int sensitivity)
+        /// <param name="sensitivity">The variable to get sensitivity .</param>
+        /// <returns>returns sensitivity index. </returns>
+        private int GetSensitivityIndex(int sensitivity)
         {
             int index;
             switch (sensitivity)
@@ -287,13 +312,16 @@ namespace Calendar.Tizen.Port
                 index = 2;
                 break;
             }
+
             return index;
         }
 
         /// <summary>
         /// Get status index from status value.
         /// </summary>
-        private int getStatusIndex(int status)
+        /// <param name="status">The variable to get status value .</param>
+        /// <returns>returns status index.</returns>
+        private int GetStatusIndex(int status)
         {
             int index;
             switch (status)
@@ -316,13 +344,16 @@ namespace Calendar.Tizen.Port
                 index = 0;
                 break;
             }
+
             return index;
         }
 
         /// <summary>
         /// Get recurrence index from recurrence value.
         /// </summary>
-        private int getRecurrenceIndex(int recurrence)
+        /// <param name="recurrence">The variable to get recurrence value .</param>
+        /// <returns>returns recurrence index.</returns>
+        private int GetRecurrenceIndex(int recurrence)
         {
             int index;
             switch (recurrence)
@@ -349,13 +380,14 @@ namespace Calendar.Tizen.Port
                 index = 4;
                 break;
             }
+
             return index;
         }
 
         /// <summary>
         /// Clean child record.
-        /// <param name="record">The record to be cleared</param>
         /// </summary>
+        /// <param name="record">The record to be cleared</param>
         private void CleanChildRecord(TPC.CalendarRecord record)
         {
             if (record.GetChildRecordCount(Event.Alarm) > 0)
@@ -367,9 +399,9 @@ namespace Calendar.Tizen.Port
 
         /// <summary>
         /// Get record from item.
+        /// </summary>
         /// <param name="item">The item</param>
         /// <param name="record">The record to be converted from item.</param>
-        /// </summary>
         private void ItemToRecord(RecordItem item, TPC.CalendarRecord record)
         {
             record.Set<string>(Event.Summary, item.Summary);
@@ -390,6 +422,7 @@ namespace Calendar.Tizen.Port
                 start = new TPC.CalendarTime(item.StartTime.ToUniversalTime().Ticks);
                 end = new TPC.CalendarTime(item.EndTime.ToUniversalTime().Ticks);
             }
+
             record.Set<TPC.CalendarTime>(Event.Start, start);
             record.Set<TPC.CalendarTime>(Event.End, end);
 
@@ -439,35 +472,38 @@ namespace Calendar.Tizen.Port
             {
                 TPC.CalendarRecord alarm;
                 alarm = new TPC.CalendarRecord(Alarm.Uri);
-                alarm.Set<int>(Alarm.Tick, getTick(item.Reminder));
-                alarm.Set<int>(Alarm.TickUnit, getUnit(item.Reminder));
+                alarm.Set<int>(Alarm.Tick, GetTick(item.Reminder));
+                alarm.Set<int>(Alarm.TickUnit, GetUnit(item.Reminder));
                 record.AddChildRecord(Event.Alarm, alarm);
             }
 
-            record.Set<int>(Event.Priority, getPriority(item.Priority));
-            record.Set<int>(Event.Sensitivity, getSensitivity(item.Sensitivity));
-            record.Set<int>(Event.EventStatus, getStatus(item.Status));
+            record.Set<int>(Event.Priority, GetPriority(item.Priority));
+            record.Set<int>(Event.Sensitivity, GetSensitivity(item.Sensitivity));
+            record.Set<int>(Event.EventStatus, GetStatus(item.Status));
         }
 
         /// <summary>
         /// Get item from record.
+        /// </summary>
         /// <param name="record">The record</param>
         /// <param name="item">The item to be converted from record.</param>
-        /// </summary>
+        /// <param name="start">The start time.</param>
+        /// <param name="end">The end time.</param>
+        /// <param name="isAllday">To Identify whether it's all day or not.</param>
         private void RecordToItem(TPC.CalendarRecord record, RecordItem item, TPC.CalendarTime start, TPC.CalendarTime end, bool isAllday)
         {
             item.Index = record.Get<int>(Event.Id);
             item.Summary = record.Get<string>(Event.Summary);
             item.Location = record.Get<string>(Event.Location);
             item.Description = record.Get<string>(Event.Description);
-            item.Priority = getPriorityIndex(record.Get<int>(Event.Priority));
-            item.Sensitivity = getSensitivityIndex(record.Get<int>(Event.Sensitivity));
-            item.Status = getStatusIndex(record.Get<int>(Event.EventStatus));
+            item.Priority = GetPriorityIndex(record.Get<int>(Event.Priority));
+            item.Sensitivity = GetSensitivityIndex(record.Get<int>(Event.Sensitivity));
+            item.Status = GetStatusIndex(record.Get<int>(Event.EventStatus));
 
             item.StartTime = isAllday == true ? start.LocalTime : start.UtcTime;
             item.EndTime = isAllday == true ? end.LocalTime : end.UtcTime;
             item.IsAllday = isAllday;
-            item.Recurrence = getRecurrenceIndex(record.Get<int>(Event.Freq));
+            item.Recurrence = GetRecurrenceIndex(record.Get<int>(Event.Freq));
 
             item.DisplayTime = String.Format("{0} - {1}",
                     item.IsAllday == true ? item.StartTime.ToLocalTime().ToString("yyyy/MM/dd") : item.StartTime.ToLocalTime().ToString("yyyy/MM/dd HH:mm"),
@@ -495,14 +531,15 @@ namespace Calendar.Tizen.Port
             if (record.Get<int>(Event.HasAlarm) > 0)
             {
                 var alarm = record.GetChildRecord(Event.Alarm, 0);
-                item.Reminder = getReminderIndex(alarm.Get<int>(Alarm.Tick),  alarm.Get<int>(Alarm.TickUnit));
+                item.Reminder = GetReminderIndex(alarm.Get<int>(Alarm.Tick),  alarm.Get<int>(Alarm.TickUnit));
             }
         }
 
         /// <summary>
         /// Insert item.
-        /// <param name="item">The item to be inserted.</param>
         /// </summary>
+        /// <param name="item">The item to be inserted.</param>
+        /// <returns>returns record Id.</returns>
         public int Insert(RecordItem item)
         {
             var record = new TPC.CalendarRecord(Event.Uri);
@@ -515,8 +552,8 @@ namespace Calendar.Tizen.Port
         /// <summary>
         /// Update item.
         /// Before updating item, item should be clean.
-        /// <param name="item">The item to be updated.</param>
         /// </summary>
+        /// <param name="item">The item to be updated.</param>
         public void Update(RecordItem item)
         {
             var record = manager.Database.Get(Event.Uri, item.Index);
@@ -528,20 +565,21 @@ namespace Calendar.Tizen.Port
 
         /// <summary>
         /// Delete item.
-        /// <param name="item">The item to be deleted.</param>
         /// </summary>
+        /// <param name="item">The item to be deleted.</param>
         public void Delete(RecordItem item)
         {
             manager.Database.Delete(Event.Uri, item.Index);
         }
 
         /// <summary>
-        /// Get utc instance list.
+        /// Get UTC instance list.
         /// To get not-allday instance list, InstanceUtimeBook uri must be used.
         /// This does not include allday instances.
         /// Range is set from the first day of selected date to the last day of selected data.
-        /// <param name="dt">The selected datetime</param>
         /// </summary>
+        /// <param name="dt">The selected datetime</param>
+        /// <returns>returns UTC instance list</returns>
         private TPC.CalendarList GetUtcInstances(DateTime dt)
         {
             TPC.CalendarList list;
@@ -567,8 +605,9 @@ namespace Calendar.Tizen.Port
         /// Get allday instance list.
         /// To get allday instance list, InstanceLocaltimeBook uri must be used.
         /// Range is set from the first day of selected date to the last day of selected data.
-        /// <param name="dt">The selected datetime</param>
         /// </summary>
+        /// <param name="dt">The selected datetime</param>
+        /// <returns>returns allday instance list</returns>
         private TPC.CalendarList GetAlldayInstances(DateTime dt)
         {
             TPC.CalendarList list = null;
@@ -590,6 +629,7 @@ namespace Calendar.Tizen.Port
             {
 
             }
+
             filter.Dispose();
             query.Dispose();
 
@@ -601,8 +641,9 @@ namespace Calendar.Tizen.Port
         /// To display allday and not-allday list, combine list together into itemList.
         /// This will shows allday list on the top of the list.
         /// Range is set from the first day of selected date to the last day of selected data.
-        /// <param name="dt">The selected datetime</param>
         /// </summary>
+        /// <param name="dt">The selected datetime</param>
+        /// <returns>returns item list.</returns>
         public List<RecordItem> GetMonthRecords(DateTime dt)
         {
             TPC.CalendarList list;
@@ -623,6 +664,7 @@ namespace Calendar.Tizen.Port
                 itemList.Add(item);
                 list.MoveNext();
             }
+
             list.Dispose();
 
             list = GetUtcInstances(dt);
@@ -638,6 +680,7 @@ namespace Calendar.Tizen.Port
                 itemList.Add(item);
                 list.MoveNext();
             }
+
             list.Dispose();
 
             return itemList;

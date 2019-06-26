@@ -21,6 +21,9 @@ using Contacts.Models;
 
 namespace Contacts.Views
 {
+    /// <summary>
+    /// Listpage class.
+    /// </summary>
     public partial class ListPage : ContentPage
     {
         /// <summary>
@@ -28,7 +31,7 @@ namespace Contacts.Views
         /// </summary>
         public static readonly BindableProperty RecordListProperty = BindableProperty.Create("RecordList", typeof(List<RecordItem>), typeof(ListPage), null);
         /// <summary>
-        /// The RecordList is only updated by the ListPagetViewModel, so it is defined with the OneWay binding mode.
+        /// The RecordList is only updated by the ListPageViewModel, so it is defined with the OneWay binding mode.
         /// Therefore, the property does not necessarily implement the setter.
         /// </summary>
         public List<RecordItem> RecordList
@@ -68,9 +71,9 @@ namespace Contacts.Views
         /// <summary>
         /// This is invoked when the bound properties are updated.
         /// The property is monitored to run the UpdateList method.
+        /// </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             UpdateList();
@@ -79,11 +82,11 @@ namespace Contacts.Views
         /// <summary>
         /// The event handler of the click event.
         /// When a user clicks a create button in order to create contact, this event handler would be invoked.
-        /// This handler would create an instance of the InsertPaget.xaml
+        /// This handler would create an instance of the InsertPage.xaml
         /// and push the instance to the navigation stack in an asynchronous manner.
+        /// </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         async void OnButtonClicked(object sender, EventArgs e)
         {
             RecordItem item = new RecordItem();
@@ -101,7 +104,9 @@ namespace Contacts.Views
             base.OnAppearing();
             bool isAccepted = SecurityProvider.Instance.CheckContactsPrivilege();
             if (isAccepted)
+            { 
                 UpdateListCommand.Execute(null);
+            }
         }
 
         /// <summary>
@@ -124,9 +129,11 @@ namespace Contacts.Views
 
         }
 
-        /// <Summary>
+        /// <summary>
         /// This is invoked after permission to update the contacts created.
-        /// </Summary>
+        /// </summary>
+        /// <param name="sender">The object what got the event</param>
+        /// <param name="e">Data of the event</param>
         public void ListPage_PrivilegeAccepted(object sender, EventArgs e)
         {
             UpdateListCommand.Execute(null);
