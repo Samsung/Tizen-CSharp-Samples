@@ -3,7 +3,7 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
               x:Class="NetworkApp.Views.RootPage"
-              RotaryFocusObject="mainListView">
+              RotaryFocusObject="{x:Reference mainListView}">
 
     <w:CircleListView x:Name="mainListView"
                       ItemTapped="ItemTapped"/>

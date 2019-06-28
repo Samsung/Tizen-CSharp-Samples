@@ -3,7 +3,6 @@ This is a simple project for C# IME(Input Method Editor) Application, which lets
 SampleIME is mainly designed for Tizen Mobile profile.
 
 ![portrait_ime](./ScreenShots/portrait_ime.png)
-![landscape_ime](./ScreenShots/landscape_ime.png)
 
 
 ### Verified Version

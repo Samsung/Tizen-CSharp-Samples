@@ -21,16 +21,26 @@ using Xamarin.Forms;
 
 namespace IMEManager
 {
+    /// <summary>
+    /// The main page of the Input Method Manager application.
+    /// </summary>
     public class ListPage : ContentPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListPage"/> class.
+        /// </summary>
         public ListPage()
         {
+            // Title of this page.
             this.Title = "IMEManager Sample";
+            // Content view of this page.
             this.Content = new TableView
             {
+                // A table intended to be used as a menu for selections.
                 Intent = TableIntent.Menu,
                 Root = new TableRoot
                 {
+                    // Create a new TableSection and set the sub title.
                     new TableSection()
                     {
                         new CustomCell("ShowIMEList", this),

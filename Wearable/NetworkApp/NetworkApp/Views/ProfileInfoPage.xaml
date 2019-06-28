@@ -18,7 +18,7 @@
               HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
     </ContentPage>
-    
+
     <ContentPage x:Name="AddressInformation">
         <StackLayout HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand">
@@ -32,7 +32,7 @@
               HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
     </ContentPage>
-    
+
     <ContentPage x:Name="AddressInformation2">
         <StackLayout HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand">

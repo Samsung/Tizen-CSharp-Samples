@@ -35,7 +35,7 @@ namespace CalendarComponent.Tizen.TV.Renderers
         {
             if (Control == null)
             {
-                var calrendarView = new ECalendar(TForms.Context.MainWindow);
+                var calrendarView = new ECalendar(TForms.NativeParent);
                 SetNativeControl(calrendarView);
             }
 

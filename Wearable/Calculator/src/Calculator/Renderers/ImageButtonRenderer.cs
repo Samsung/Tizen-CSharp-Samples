@@ -22,6 +22,7 @@ using ElmSharp;
 using System;
 
 using TizenColor = ElmSharp.Color;
+using ImageButtonRenderer = Calculator.Renderers.ImageButtonRenderer;
 
 [assembly: ExportRenderer(typeof(ImageButton), typeof(ImageButtonRenderer))]
 namespace Calculator.Renderers
@@ -83,7 +84,7 @@ namespace Calculator.Renderers
             }
 
             Control.Color = RegularColor;
-            
+
             GestureRecognizer.SetTapCallback(GestureLayer.GestureType.Tap, GestureLayer.GestureState.Start, x => KeyDown() );
             GestureRecognizer.SetTapCallback(GestureLayer.GestureType.Tap, GestureLayer.GestureState.End, x => ExecuteTapCommand() );
             GestureRecognizer.SetTapCallback(GestureLayer.GestureType.LongTap, GestureLayer.GestureState.End, x => KeyUp() );

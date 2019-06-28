@@ -22,10 +22,11 @@ using Tizen.Uix.InputMethod;
 namespace IMESample
 {
     /// <summary>
-    /// ApplicationStore app class
+    /// Application app class
     /// </summary>
     public class App : Application, IAppConfigurationChanged
     {
+        // Check whether current device orientation is landscape.
         private AppOrientation IsLandscape;
 
 
@@ -38,26 +39,34 @@ namespace IMESample
             IsLandscape = AppOrientation.Portrait;
             if (isLandscape)
             {
+                // Changed the layout to landscape keyboard
                 OnOrientationChanged(AppOrientation.Landscape);
             }
             else
             {
+                // Changed the layout to portrait keyboard
                 OnOrientationChanged(AppOrientation.Portrait);
             }
         }
 
+        /// <summary>
+        /// A method which provides the device orientation change
+        /// </summary>
+        /// <param name="orientation"> A device orientation value. </param>
         public void OnOrientationChanged(AppOrientation orientation)
         {
             switch (orientation)
             {
                 case AppOrientation.Landscape:
                     IsLandscape = AppOrientation.Landscape;
+                    // Load the landscape keyboard layout
                     MainPage = new IME_KEYBOARD_LAYOUT_QWERTY_LAND();
                     break;
 
                 case AppOrientation.Portrait:
                 default:
                     IsLandscape = AppOrientation.Portrait;
+                    // Load the portrait keyboard layout
                     MainPage = new IME_KEYBOARD_LAYOUT_QWERTY_PORT();
                     break;
             }

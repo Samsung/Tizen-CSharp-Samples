@@ -27,11 +27,11 @@
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="SQLitePCLRaw.provider.sqlite3.netstandard11" Version="1.1.11" />
-    <PackageReference Include="Tizen.NET" Version="4.0.0">
+    <PackageReference Include="SQLitePCLRaw.provider.sqlite3.netstandard11" Version="1.1.14" />
+    <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
   </ItemGroup>
 
 </Project>

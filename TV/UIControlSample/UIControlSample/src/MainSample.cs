@@ -136,8 +136,8 @@ namespace UIControlSample
             scrollView.WidthResizePolicy = ResizePolicyType.FillToParent;
             scrollView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
             scrollView.SizeModeFactor = new Vector3(0.0f, 0.6f, 0.0f);
-            float buttonsPageMargin = (1.0f - TABLE_RELATIVE_SIZE.X) * 0.5f * Window.Instance.Size.Width;
-            scrollView.Padding = new Vector4(buttonsPageMargin, buttonsPageMargin, 0.0f, 0.0f);
+            ushort buttonsPageMargin = (ushort)((1.0f - TABLE_RELATIVE_SIZE.X) * 0.5f * Window.Instance.Size.Width);
+            scrollView.Padding = new Extents(buttonsPageMargin, buttonsPageMargin, 0, 0);
             scrollView.AxisAutoLockEnabled = true;
             backGroundView.Add(scrollView);
 
@@ -314,7 +314,7 @@ namespace UIControlSample
             int iter = 0;
             // Calculate the number of images going across (columns) within a page,
             // according to the screen resolution and dpi.
-            float margin = 2.0f;
+            ushort margin = 2;
             float tileParentMultiplier = 1.0f / EXAMPLES_PER_ROW;
             for (int t = 0; t < mTotalPages; t++)
             {
@@ -336,7 +336,7 @@ namespace UIControlSample
                         // on the page (between 0 - 1 in each dimension).
                         Vector2 position = new Vector2(column / (EXAMPLES_PER_ROW - 1.0f), row / (EXAMPLES_PER_ROW - 1.0f));
                         tile[iter] = CreateTile(samples[iter], samples[iter], new Vector3(tileParentMultiplier, tileParentMultiplier, 1.0f), position);
-                        tile[iter].Padding = new Vector4(margin, margin, margin, margin);
+                        tile[iter].Padding = new Extents(margin, margin, margin, margin);
                         tileBackGround[iter] = tile[iter].GetChildAt(0);
                         page.AddChild(tile[iter], new TableView.CellPosition(row, column));
                         iter++;
@@ -423,7 +423,7 @@ namespace UIControlSample
             {
                 label.StyleName = "VDLauncherLabel";
             }
-            
+
             label.MultiLine = true;
             label.Text = title;
             //label.PointSize = 5.0f;
@@ -433,7 +433,7 @@ namespace UIControlSample
             label.WidthResizePolicy = ResizePolicyType.FillToParent;
             // Pad around the label as its size is the same as the 9-patch border.
             // It will overlap it without padding.
-            label.Padding = new Vector4(8.0f, 8.0f, 8.0f, 8.0f);
+            label.Padding = new Extents(8, 8, 8, 8);
             focusableTile.Add(label);
 
             focusableTile.KeyEvent += DoTilePress;
@@ -550,7 +550,7 @@ namespace UIControlSample
                     {
                         currentSample.Activate();
                     }
-                    
+
                 }
                 else
                 {

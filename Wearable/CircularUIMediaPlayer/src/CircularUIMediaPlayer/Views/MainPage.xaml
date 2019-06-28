@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns:models="clr-namespace:CircularUIMediaPlayer.ViewModels;"
+             x:Class="CircularUIMediaPlayer.Views.MainPage">
+    <c:CirclePage.BindingContext>
+        <models:MainPageModel/>
+    </c:CirclePage.BindingContext>
+    <c:CirclePage.Content>
+        <StackLayout Margin="50" Spacing="5">
+            <Label Text="Select the type of Media Sources." BackgroundColor="DarkCyan" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+            <Button Text="External URL" VerticalOptions="FillAndExpand" BackgroundColor="HotPink"
+                    Command="{Binding SetUpPlayerCommand}" CommandParameter="external" 
+                    Clicked="Clicked" />
+            <Button Text="Local Resource" VerticalOptions="FillAndExpand" BackgroundColor="BlueViolet"
+                    Command="{Binding SetUpPlayerCommand}" CommandParameter="local"
+                    Clicked="Clicked" />
+        </StackLayout>
+    </c:CirclePage.Content>
+</c:CirclePage>
+    
+        

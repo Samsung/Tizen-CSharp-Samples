@@ -79,7 +79,7 @@ namespace ImageSample
                .Add(ImageVisualProperty.URL, new PropertyValue(image_gif))
                .Add(ImageVisualProperty.WrapModeU, new PropertyValue((int)WrapModeType.Repeat))
                .Add(ImageVisualProperty.WrapModeV, new PropertyValue((int)WrapModeType.Default));
-            animatedImage.ImageMap = map;
+            animatedImage.Image = map;
             Window.Instance.GetDefaultLayer().Add(animatedImage);
         }
 

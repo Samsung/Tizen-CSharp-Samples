@@ -1,13 +1,4 @@
-﻿<Project>
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
-
-  <!-- Setting Tizen Extension Path -->
-  <PropertyGroup Label="Globals">
-    <TizenProjectExtensionsPath>$(MSBuildExtensionsPath)\Tizen\VisualStudio\</TizenProjectExtensionsPath>
-  </PropertyGroup>
-
-  <!-- Import Tizen property in Tizen.NET SDK -->
-  <Import Project="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props" Condition="Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -21,34 +12,25 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="lib\**" />
-    <EmbeddedResource Remove="lib\**" />
-    <None Remove="lib\**" />
-  </ItemGroup>
 
-
-
-  <!-- Include Nuget Package for Tizen Project building -->
-  <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14329" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0.91020" />
-  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\CalendarComponent\CalendarComponent.csproj" />
   </ItemGroup>
-  <ItemGroup>
+    <ItemGroup>
     <Compile Update="Views\CalendarPage.xaml.cs">
       <DependentUpon>CalendarPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+  
 
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
-  <Import Project="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets" Condition="Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets')" />
+  <!-- Include Nuget Package for Tizen Project building -->
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
+      <ExcludeAssets>Runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
+    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0.91020" />
+  </ItemGroup>
 
-  <!-- Install Check 'Visual Studio for Tizen' for developing on Visual Studio -->
-  <Target Name="TizenVsixInstallCheck" BeforeTargets="CompileDesignTime">
-    <Warning Condition="!Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props')" Text="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props is not exist.&#xA; you need to check if 'Visual Studio for Tizen' is installed" />
-    <Warning Condition="!Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets')" Text="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets is not exist.\&#xA; you need to check if 'Visual Studio for Tizen' is installed" />
-  </Target>
 </Project>

@@ -9,18 +9,9 @@
     <None Remove="Views\MainPage.xaml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Controls\ApplicationPropertyControl.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\MainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.4.0.269-pre2" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Controls\ApplicationPropertyControl.xaml.cs">

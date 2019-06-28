@@ -58,7 +58,7 @@ namespace FirstScreen
             imageMap.Add(Tizen.NUI.ImageVisualProperty.URL, new PropertyValue(filename));
             imageMap.Add(Tizen.NUI.Visual.Property.Shader, new PropertyValue(shaderMap));
 
-            clipView.ImageMap = imageMap;
+            clipView.Image = imageMap;
             clipView.ClippingMode = ClippingModeType.ClipChildren;
             return clipView;
         }

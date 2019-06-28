@@ -1,4 +1,4 @@
-﻿//Copyright 2018 Samsung Electronics Co., Ltd
+//Copyright 2018 Samsung Electronics Co., Ltd
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
 //you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ using MediaContent.Renderers;
 using Xamarin.Forms.Platform.Tizen;
 using TizenColor = ElmSharp.Color;
 
-[assembly: ExportRenderer(typeof(ImageButton), typeof(ImageButtonRenderer))]
+[assembly: ExportRenderer(typeof(ImageButton), typeof(MediaContent.Renderers.ImageButtonRenderer))]
 
 namespace MediaContent.Renderers
 {

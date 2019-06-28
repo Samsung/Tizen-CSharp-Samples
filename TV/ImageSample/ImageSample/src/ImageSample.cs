@@ -132,8 +132,8 @@ namespace ImageSample
 
             backGroundView.Add(tableView);
             int iter = 0;
-            float margin = 20.0f;
-            float topmargin = 30.0f;
+            ushort margin = 20;
+            ushort topmargin = 30;
             float tileParentMultiplier = 1.0f / EXAMPLES_PER_ROW;
             for (uint row = 0; row < ROWS_PER_PAGE; row++)
             {
@@ -142,7 +142,7 @@ namespace ImageSample
                     // Calculate the position of each button
                     Vector2 position = new Vector2(column / (EXAMPLES_PER_ROW - 1.0f), row / (EXAMPLES_PER_ROW - 1.0f));
                     buttons[iter] = CreateTile(samples[iter], samples[iter], new Vector3(tileParentMultiplier, tileParentMultiplier, 1.0f), position);
-                    buttons[iter].Padding = new Vector4(margin, margin, topmargin, topmargin);
+                    buttons[iter].Padding = new Extents(margin, margin, topmargin, topmargin);
                     tableView.AddChild(buttons[iter], new TableView.CellPosition(row, column));
                     iter++;
                     if (iter == numOfSamples)

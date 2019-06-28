@@ -20,13 +20,13 @@
   <ItemGroup>
     <PackageReference Include="sqlite" Version="3.13.0" />
     <PackageReference Include="sqlite-net-base" Version="1.5.166-beta" />
-    <PackageReference Include="SQLitePCLRaw.provider.sqlite3.netstandard11" Version="1.1.11" />
-    <PackageReference Include="Tizen.NET" Version="4.0.0">
+    <PackageReference Include="SQLitePCLRaw.provider.sqlite3.netstandard11" Version="1.1.14" />
+    <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
-    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.0.0" />
-    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
   </ItemGroup>
 
 </Project>

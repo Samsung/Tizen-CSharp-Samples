@@ -26,9 +26,14 @@ using System.Runtime.CompilerServices;
 
 namespace IMESample.ViewModels
 {
+    /// <summary>
+    /// Base ViewModel class
+    /// </summary>
     public class MainPageViewModel : INotifyPropertyChanged
     {
-        /* the shift key state*/
+        /// <summary>
+        /// The shift key state
+        /// </summary>
         public enum IMEShiftStates
         {
             ShiftOff,
@@ -36,7 +41,9 @@ namespace IMESample.ViewModels
             ShiftLock,
         };
 
-        /* the layout type */
+        /// <summary>
+        /// The layout type
+        /// </summary>
         public enum IMEKeyboardLayoutType
         {
             LayoutEnglish,
@@ -45,14 +52,15 @@ namespace IMESample.ViewModels
         };
 
         /// <summary>
-        /// key lenght for keyboard
+        /// key length for keyboard
         /// </summary>
         const int KeyLen = 26;
 
         /// <summary>
         /// Define lower case for alphabet
         /// </summary>
-        private static String[] LowerCase = {
+        private static String[] LowerCase =
+        {
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
             "a", "s", "d", "f", "g", "h", "j", "k", "l",
             "z", "x", "c", "v", "b", "m", "n"
@@ -61,7 +69,8 @@ namespace IMESample.ViewModels
         /// <summary>
         /// Define upper case for alphabet
         /// </summary>
-        private static String[] UpperCase = {
+        private static String[] UpperCase =
+        {
             "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
             "A", "S", "D", "F", "G", "H", "J", "K", "L",
             "Z", "X", "C", "V", "B", "M", "N"
@@ -70,7 +79,8 @@ namespace IMESample.ViewModels
         /// <summary>
         /// Define symbol character for first symbol page
         /// </summary>
-        private static String[] Symbol1 = {
+        private static String[] Symbol1 = 
+        {
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
             "-", "@", "*", "^", ":", ";", "(", ")", "~",
             "/", "'", "\"", ".", ",", "?", "!"
@@ -79,7 +89,8 @@ namespace IMESample.ViewModels
         /// <summary>
         /// Define symbol character for second symbol page
         /// </summary>
-        private static String[] Symbol2 = {
+        private static String[] Symbol2 = 
+        {
             "#", "&", "%", "+", "=", "_", "\\", "|", "<", ">",
             "{", "}", "[", "]", "$", "£", "¥", "€", "₩",
             "¢", "`", "°", "·", "®", "©", "¿"
@@ -94,7 +105,7 @@ namespace IMESample.ViewModels
         /// <summary>
         /// A property to provide MainPageViewModel instance.
         /// </summary>
-        public static MainPageViewModel Instance { get { return lazy.Value; } }
+        public static MainPageViewModel Instance => lazy.Value;
 
         /// <summary>
         /// Restore the status of shift key
@@ -107,29 +118,63 @@ namespace IMESample.ViewModels
         private IMEKeyboardLayoutType LayoutType;
 
         /// <summary>
-        /// Property changing event handler</summary>
+        /// Property changing event handler
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// The main label
+        /// </summary>
         public String[] MainLabel { set; get; }
 
+        /// <summary>
+        /// The shift image file of the current state.
+        /// </summary>
         public String ShiftImage { set; get; }
 
+        /// <summary>
+        /// The shift image opacity of the current state.
+        /// </summary>
         public float ShiftImageOpacity { set; get; }
 
+        /// <summary>
+        /// The shift background image color.
+        /// </summary>
         public String ShiftBgImageColor { set; get; }
 
+        /// <summary>
+        /// The layout string.
+        /// </summary>
         public String LayoutString { set; get; }
 
+        /// <summary>
+        /// The text of symbol key.
+        /// </summary>
         public String SymText { set; get; }
 
+        /// <summary>
+        /// Command which handles 'backspace' key event.
+        /// </summary>
         public ICommand Backspace { protected set; get; }
 
+        /// <summary>
+        /// Command which handles key event.
+        /// </summary>
         public ICommand PressButton { protected set; get; }
 
+        /// <summary>
+        /// Command which handles 'return' key event.
+        /// </summary>
         public ICommand ReturnButton { protected set; get; }
 
+        /// <summary>
+        /// Command which handles 'shift' key event.
+        /// </summary>
         public ICommand ShiftButton { protected set; get; }
 
+        /// <summary>
+        /// Command which allows to change the keyboard layout.
+        /// </summary>
         public ICommand LayoutButton { protected set; get; }
 
 
@@ -146,6 +191,9 @@ namespace IMESample.ViewModels
             OnPropertyChanged("ShiftBgImageColor");
         }
 
+        /// <summary>
+        /// Default class constructor.
+        /// </summary>
         public MainPageViewModel()
         {
             MainLabel = new string[KeyLen];
@@ -162,12 +210,14 @@ namespace IMESample.ViewModels
 
             this.Backspace = new Command(() =>
             {
+                // Send a backspace key event.
                 InputMethodEditor.SendKeyEvent(KeyCode.BackSpace, KeyMask.Pressed);
                 InputMethodEditor.SendKeyEvent(KeyCode.BackSpace, KeyMask.Released);
             });
             this.PressButton = new Command((value) =>
             {
                 string input = value.ToString();
+                // Sending input text data.
                 InputMethodEditor.CommitString(input);
                 if (LayoutType == IMEKeyboardLayoutType.LayoutEnglish && ShiftStatus == IMEShiftStates.ShiftOn)
                 {
@@ -179,6 +229,7 @@ namespace IMESample.ViewModels
             });
             this.ReturnButton = new Command(() =>
             {
+                // Send a return key event.
                 InputMethodEditor.SendKeyEvent(KeyCode.Return, KeyMask.Pressed);
                 InputMethodEditor.SendKeyEvent(KeyCode.Return, KeyMask.Released);
             });
@@ -263,11 +314,7 @@ namespace IMESample.ViewModels
         /// <param name="propertyName"> A property name. </param>
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this,
-                    new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

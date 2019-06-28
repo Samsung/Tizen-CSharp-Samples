@@ -32,7 +32,7 @@ namespace UIControlSample
     /// </summary>
     public class InputField
     {
-        private ImfManager imf;
+        private InputMethodContext imf;
         private bool isImfVisible;
         private TextField _textField;
         private View bgView;
@@ -69,7 +69,7 @@ namespace UIControlSample
         /// </summary>
         private void OnIntialize()
         {
-            imf = ImfManager.Get();
+            imf = new InputMethodContext();
             imf.AutoEnableInputPanel(true);
             isImfVisible = false;
 

@@ -59,10 +59,10 @@ namespace BasicCalculator.Tizen.TV.Services
         public void RegisterKeys(string[] keyList, KeyPressedDelegate keyPressedDelegate)
         {
             _keyPressedDelegate += keyPressedDelegate;
-            Forms.Context.MainWindow.KeyUp += KeyEvent;
+            Forms.NativeParent.KeyUp += KeyEvent;
             foreach (var key in keyList)
             {
-                Forms.Context.MainWindow.KeyGrab(key, true);
+                Forms.NativeParent.KeyGrab(key, true);
             }
         }
 

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindPlace", "FindPlace\FindPlace\FindPlace.csproj", "{D7F2C73C-AF75-4C69-8BB0-FAFF1ABC7C50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindPlace.Tizen.Wearable", "FindPlace\FindPlace.Tizen.Wearable\FindPlace.Tizen.Wearable.csproj", "{FC65F100-FE17-44CC-857C-EDB0B0CC2230}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7F2C73C-AF75-4C69-8BB0-FAFF1ABC7C50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F2C73C-AF75-4C69-8BB0-FAFF1ABC7C50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F2C73C-AF75-4C69-8BB0-FAFF1ABC7C50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F2C73C-AF75-4C69-8BB0-FAFF1ABC7C50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC65F100-FE17-44CC-857C-EDB0B0CC2230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC65F100-FE17-44CC-857C-EDB0B0CC2230}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC65F100-FE17-44CC-857C-EDB0B0CC2230}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC65F100-FE17-44CC-857C-EDB0B0CC2230}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {274C3D1A-8821-4C45-B3E0-4F22CEBFDD16}
+	EndGlobalSection
+EndGlobal

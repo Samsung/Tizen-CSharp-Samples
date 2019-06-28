@@ -86,7 +86,7 @@ namespace ImageSample
                        .Add(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.ShrinkToFit))
                        .Add(ImageVisualProperty.SamplingMode, new PropertyValue((int)SamplingModeType.Box));
             fittingMode = (int)FittingModeType.ShrinkToFit;
-            image.ImageMap = pngImageMap;
+            image.Image = pngImageMap;
             image.PositionUsesPivotPoint = true;
             image.PivotPoint = PivotPoint.TopLeft;
             image.ParentOrigin = ParentOrigin.TopLeft;
@@ -174,7 +174,7 @@ namespace ImageSample
                     break;
             }
 
-            image.ImageMap = pngImageMap;
+            image.Image = pngImageMap;
 
             return true;
         }
