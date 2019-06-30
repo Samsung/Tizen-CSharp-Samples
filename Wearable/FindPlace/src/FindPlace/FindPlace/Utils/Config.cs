@@ -26,13 +26,13 @@ namespace FindPlace.Utils
         /// ID registered with provider.
         /// Please visit http://developer.here.com to obtain application id.
         /// </summary>
-        private const string AppId = "hgTt8y5V91b7gWydK2df";
+        private const string AppId = "<put your app id here>";
 
         /// <summary>
         /// Key assigned with application ID.
         /// Please visit http://developer.here.com to obtain application key.
         /// </summary>
-        private const string AppKey = "YwiXR-_JkJ4R1yWz4eMjbw";
+        private const string AppKey = "<put your app key here>";
 
         #endregion
 
