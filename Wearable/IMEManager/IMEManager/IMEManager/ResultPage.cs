@@ -39,7 +39,9 @@ namespace IMEManager
                 // Set the font size.
                 FontSize = 10,
                 // Set the text to be shown.
-                Text = detail
+                Text = detail,
+                // Set the LineBreakMode.
+                LineBreakMode = LineBreakMode.CharacterWrap
             };
 
             // Title of this page.
