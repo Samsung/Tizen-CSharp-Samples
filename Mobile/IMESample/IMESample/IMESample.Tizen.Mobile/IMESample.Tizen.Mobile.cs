@@ -135,14 +135,14 @@ namespace IMESample.Tizen.Mobile
         }
 
         /// <summary>
-        /// Handles "DisplayLanaguageChanged" event.
+        /// Handles "DisplayLanguageChanged" event.
         /// When the display language of device is changed, this callback function will be called
         /// </summary>
         /// <param name="sender"> The sender object. </param>
         /// <param name="e"> Argument of Event. </param>
-        private static void InputMethodEditor_DisplayLanaguageChanged(object sender, DisplayLanguageChangedEventArgs e)
+        private static void InputMethodEditor_DisplayLanguageChanged(object sender, DisplayLanguageChangedEventArgs e)
         {
-            Log.Info("IMESample", "InputMethodEditor_DisplayLanaguageChanged callback");
+            Log.Info("IMESample", "InputMethodEditor_DisplayLanguageChanged callback");
         }
 
         /// <summary>
@@ -273,7 +273,7 @@ namespace IMESample.Tizen.Mobile
             InputMethodEditor.LayoutSet += InputMethodEditor_LayoutSet;
             InputMethodEditor.ReturnKeySet += InputMethodEditor_ReturnKeySet;
             InputMethodEditor.ReturnKeyStateSet += InputMethodEditor_ReturnKeyStateSet;
-            InputMethodEditor.DisplayLanguageChanged += InputMethodEditor_DisplayLanaguageChanged;
+            InputMethodEditor.DisplayLanguageChanged += InputMethodEditor_DisplayLanguageChanged;
         }
 
         /// <summary>
@@ -293,7 +293,7 @@ namespace IMESample.Tizen.Mobile
             InputMethodEditor.LayoutSet -= InputMethodEditor_LayoutSet;
             InputMethodEditor.ReturnKeySet -= InputMethodEditor_ReturnKeySet;
             InputMethodEditor.ReturnKeyStateSet -= InputMethodEditor_ReturnKeyStateSet;
-            InputMethodEditor.DisplayLanguageChanged -= InputMethodEditor_DisplayLanaguageChanged;
+            InputMethodEditor.DisplayLanguageChanged -= InputMethodEditor_DisplayLanguageChanged;
         }
 
         /// <summary>
