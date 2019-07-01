@@ -37,18 +37,18 @@ namespace IMEManager
             // Create a new List.
             var menu = new List<string>
             {
-                "",
                 "ShowIMEList",
                 "ShowIMESelector",
                 "IsIMEEnabled",
                 "GetActiveIME",
                 "GetEnabledIMECount",
-                "",
             };
 
             var menuListView = new ListView()
             {
+                Header = "",
                 ItemsSource = menu,
+                Footer = "",
             };
 
             this.Content = menuListView;
