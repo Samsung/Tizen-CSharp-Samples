@@ -86,13 +86,13 @@ namespace OAuthExample
                 code_challenge_method);
 
             // Opens request with WebView
-            Navigation.PushAsync(new BrowserPage(authorizationRequest));
+            var unused = Navigation.PushAsync(new BrowserPage(authorizationRequest));
 
             // Waits for the OAuth authorization response.
             var context = await http.GetContextAsync();
 
             // Close WebView page
-            Navigation.PopAsync();
+            var unsed2 = Navigation.PopAsync();
 
             // Sends an HTTP response to the browser.
             var response = context.Response;
