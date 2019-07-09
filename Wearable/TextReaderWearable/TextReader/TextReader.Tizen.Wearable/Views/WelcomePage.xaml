@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<circularUI:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:circularUI ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                       xmlns:viewModels="clr-namespace:TextReader.ViewModels;assembly=TextReader"
+                       x:Class="TextReader.Tizen.Wearable.Views.WelcomePage"
+                       BackgroundImage="bg.png">
+
+    <circularUI:CirclePage.BindingContext>
+        <viewModels:WelcomeViewModel x:Name="WelcomeViewModel" />
+    </circularUI:CirclePage.BindingContext>
+
+    <circularUI:CirclePage.Content>
+
+        <!--Main page container-->
+        <Grid>
+
+            <!--Background image-->
+            <Image HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   Source="bg.png" />
+
+            <!--Page content container-->
+            <StackLayout Spacing="0">
+
+                <!--Application icon-->
+                <Image Margin="130, 20, 130, 0"
+                       Source="icon_small.png" />
+
+                <!--Welcome text-->
+                <Label FontFamily="BreezeSans:style=Condensed"
+                       HorizontalTextAlignment="Center"
+                       Margin="0, 2, 0, 0"
+                       Text="Welcome"
+                       TextColor="#FAFAFA" />
+
+                <!--Application description-->
+                <Label FontFamily="BreezeSans:style=Condensed"
+                       FontSize="7.8"
+                       HorizontalTextAlignment="Center"
+                       Margin="10, 12, 10, 0"
+                       Text="Text Reader application shows how&#x0a;to use Tizen Text-to-Speech API"
+                       TextColor="#FAFAFA" />
+
+            </StackLayout>
+
+        </Grid>
+
+    </circularUI:CirclePage.Content>
+
+    <!--Action button-->
+    <circularUI:CirclePage.ActionButton>
+        <circularUI:ActionButtonItem Text="START"
+                                     Command="{Binding StartApplicationCommand}" />
+    </circularUI:CirclePage.ActionButton>
+
+</circularUI:CirclePage>
