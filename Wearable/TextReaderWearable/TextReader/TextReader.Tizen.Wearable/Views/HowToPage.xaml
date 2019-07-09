@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<circularUI:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:circularUI ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                       xmlns:viewModels="clr-namespace:TextReader.ViewModels;assembly=TextReader"
+                       x:Class="TextReader.Tizen.Wearable.Views.HowToPage"
+                       NavigationPage.HasNavigationBar="False">
+
+    <circularUI:CirclePage.BindingContext>
+        <viewModels:HowToViewModel x:Name="HowToViewModel" />
+    </circularUI:CirclePage.BindingContext>
+
+    <circularUI:CirclePage.Content>
+
+        <!--Main page container-->
+        <Grid>
+
+            <!--Background image-->
+            <Image HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   Source="bg.png" />
+
+            <!--Page content container-->
+            <StackLayout Spacing="0">
+
+                <!--Page header-->
+                <Label FontFamily="BreezeSans:style=Condensed"
+                       FontSize="7.8"
+                       HorizontalTextAlignment="Center"
+                       Margin="0, 22, 0, 0"
+                       Text="How to navigate"
+                       TextColor="#FAFAFA" />
+
+                <!--Manual text part I-->
+                <Label FontFamily="BreezeSans:style=Condensed"
+                       FontSize="8.5"
+                       HorizontalTextAlignment="Center"
+                       Margin="0, 40, 0, 0"
+                       Text="Rotate bezel to control&#x0a;reading text"
+                       TextColor="#FAFAFA" />
+
+                <!--Dot indicator-->
+                <Image HeightRequest="10"
+                       Margin="130, 13, 130, 0"
+                       Source="separator.png"
+                       WidthRequest="10" />
+
+                <!--Manual text part II-->
+                <Label FontFamily="BreezeSans:style=Condensed"
+                       FontSize="8.5"
+                       HorizontalTextAlignment="Center"
+                       Margin="10, 2, 10, 0"
+                       Text="Tap the screen to play or&#x0a;pause"
+                       TextColor="#FAFAFA" />
+
+            </StackLayout>
+
+        </Grid>
+
+    </circularUI:CirclePage.Content>
+
+    <!--Action button-->
+    <circularUI:CirclePage.ActionButton>
+        <circularUI:ActionButtonItem Text="NEXT"
+                                     Command="{Binding NavigateToTextReaderCommand}" />
+    </circularUI:CirclePage.ActionButton>
+
+</circularUI:CirclePage>

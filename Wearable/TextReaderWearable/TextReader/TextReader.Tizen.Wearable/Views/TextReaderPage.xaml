@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<circularUI:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:behaviors="clr-namespace:TextReader.Behaviors;assembly=TextReader"
+                       xmlns:circularUI ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                       xmlns:viewModels="clr-namespace:TextReader.ViewModels;assembly=TextReader"
+                       x:Class="TextReader.Tizen.Wearable.Views.TextReaderPage"
+                       x:Name="Root"
+                       BackButtonPressed="{Binding ReturnFromTextReaderPageCommand}"
+                       UpdateActiveParagraphCommand="{Binding ChangeUnitCommand}"
+                       NavigationPage.HasNavigationBar="False">
+
+    <circularUI:CirclePage.BindingContext>
+        <viewModels:TextReaderViewModel x:Name="TextReaderViewModel" />
+    </circularUI:CirclePage.BindingContext>
+
+    <circularUI:CirclePage.Content>
+
+        <!--Main page container-->
+        <Grid>
+
+            <!--Reader text container-->
+            <circularUI:CircleListView ItemsSource="{Binding Paragraphs}"
+                                       HorizontalOptions="FillAndExpand"
+                                       Margin="44, 0, 44, 0"
+                                       SelectedItem="{Binding ActiveParagraph, Mode=TwoWay}"
+                                       SelectionMode="None"
+                                       VerticalOptions="FillAndExpand">
+                <circularUI:CircleListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label HeightRequest="360"
+                                   HorizontalOptions="CenterAndExpand"
+                                   HorizontalTextAlignment="Center"
+                                   Text="{Binding Text, Mode=OneWay}"
+                                   TextColor="White"
+                                   VerticalOptions="CenterAndExpand"
+                                   VerticalTextAlignment="Center">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{Binding Active}"
+                                                 Value="True">
+                                        <Setter Property="TextColor"
+                                                Value="#4968ED" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </ViewCell>
+                    </DataTemplate>
+                </circularUI:CircleListView.ItemTemplate>
+                <circularUI:CircleListView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TogglePlayStateCommand}" />
+                </circularUI:CircleListView.GestureRecognizers>
+            </circularUI:CircleListView>
+
+            <!--Text reading start button-->
+            <Grid IsVisible="False">
+
+                <!--Button's shadow-->
+                <Image HorizontalOptions="Center"
+                       Source="play_pause_btn.png"
+                       VerticalOptions="Center" />
+
+                <!--Play button-->
+                <Image Margin="167, 162, 167, 162"
+                       Source="pause.png">
+                    <Image.Triggers>
+                        <DataTrigger TargetType="Image"
+                                     Binding="{Binding Playing}"
+                                     Value="true">
+                            <Setter Property="Source"
+                                    Value="start.png" />
+                            <Setter Property="Margin"
+                                    Value="168, 161, 163, 161" />
+                        </DataTrigger>
+                    </Image.Triggers>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TogglePlayStateCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Grid.Behaviors>
+                    <behaviors:PlayButtonBehavior IsPlaying="{Binding Source={x:Reference Root},
+                        Path=BindingContext.Playing}" />
+                </Grid.Behaviors>
+            </Grid>
+
+        </Grid>
+
+    </circularUI:CirclePage.Content>
+
+</circularUI:CirclePage>
