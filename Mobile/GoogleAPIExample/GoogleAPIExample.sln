@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAPIExample", "GoogleAPIExample\GoogleAPIExample\GoogleAPIExample.csproj", "{9EAFCA9B-5C44-4D5F-A70F-70EA2131528F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAPIExample.Tizen", "GoogleAPIExample\GoogleAPIExample.Tizen\GoogleAPIExample.Tizen.csproj", "{93DC657F-153E-45E8-8E4B-F9DDF5D50043}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EAFCA9B-5C44-4D5F-A70F-70EA2131528F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EAFCA9B-5C44-4D5F-A70F-70EA2131528F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EAFCA9B-5C44-4D5F-A70F-70EA2131528F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EAFCA9B-5C44-4D5F-A70F-70EA2131528F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93DC657F-153E-45E8-8E4B-F9DDF5D50043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93DC657F-153E-45E8-8E4B-F9DDF5D50043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93DC657F-153E-45E8-8E4B-F9DDF5D50043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93DC657F-153E-45E8-8E4B-F9DDF5D50043}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC7C6206-7E87-47F9-99B7-4E23C520CEF2}
+	EndGlobalSection
+EndGlobal
