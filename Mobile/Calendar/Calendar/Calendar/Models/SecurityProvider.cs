@@ -41,6 +41,7 @@ namespace Calendar.Models
         /// SecurityProvider Constructor.
         /// A Constructor which will initialize the SecurityProvider instance.
         /// </summary>
+        /// <returns>returns whether check privilage is done or not</returns>
         public bool CheckPrivilege()
         {
             securityAPIs = DependencyService.Get<ISecurityAPIs>();

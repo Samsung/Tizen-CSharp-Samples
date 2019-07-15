@@ -59,6 +59,8 @@ namespace Contacts.Models
         /// <summary>
         /// Inserts item.
         /// </summary>
+        /// <param name="item">The RecordItem that is inserted.</param>
+        /// <returns>returns the record item is inserted or not </returns>
         public int Insert(RecordItem item)
         {
             return contactsAPIs.Insert(item);
@@ -67,6 +69,7 @@ namespace Contacts.Models
         /// <summary>
         /// Updates item.
         /// </summary>
+        /// <param name="item">The RecordItem that is updated.</param>
         public void Update(RecordItem item)
         {
             contactsAPIs.Update(item);
@@ -75,6 +78,7 @@ namespace Contacts.Models
         /// <summary>
         /// Delete item.
         /// </summary>
+        /// <param name="item">The RecordItem that is deleted.</param>
         public void Delete(RecordItem item)
         {
             contactsAPIs.Delete(item);

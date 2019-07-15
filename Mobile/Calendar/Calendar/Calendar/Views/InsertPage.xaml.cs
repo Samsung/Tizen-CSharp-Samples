@@ -31,12 +31,12 @@ namespace Calendar.Views
         public RecordItem item;
 
         /// <summary>
-        /// Set visiblity of range properties.
+        /// Set visibility of range properties.
         /// When recurrence is set, one of the range type should be shown.
         /// One is count and the other is until.
+        /// </summary>
         /// <param name="countVisible">Visible of count</param>
         /// <param name="untilVisible">Visible of until</param>
-        /// </summary>
         private void RepeatVisible(bool countVisible, bool untilVisible)
         {
             if (countVisible == false && untilVisible == false)
@@ -57,10 +57,10 @@ namespace Calendar.Views
 
         /// <summary>
         /// A event handler for the Allday toggle.
-        /// When allday is set, time field should be dispeared not to be selected.
+        /// When allday is set, time field should be disappeared not to be selected.
+        /// </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         public void OnAlldayToggled(object sender, EventArgs e)
         {
             Switch s = (Switch)sender;
@@ -77,15 +77,15 @@ namespace Calendar.Views
 
         /// <summary>
         /// A event handler for the Repeat picker.
-        /// When recurrece is set, range tye should be shown.
+        /// When recurrence is set, range type should be shown.
         /// Range type has two type : count and until.
         /// Count should be inserted with count integer.
         /// Until should be inserted with date and time.
         /// index 0 is none recurrence,
         /// 1 is daily, 2 is weekly, 3 is monthly, 4 is yearly.
+        ///  </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         public void OnRepeatPickerChanged(object sender, EventArgs e)
         {
             bool showUntil = RepeatPicker.SelectedIndex == 0 ? false : true;
@@ -106,9 +106,9 @@ namespace Calendar.Views
 
         /// <summary>
         /// A event handler for the RepeatUntil picker.
+        /// </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         public void OnRepeatUntilPickerChanged(object sender, EventArgs e)
         {
             bool visible = RepeatUntilPicker.SelectedIndex == 0 ? true : false;
@@ -117,9 +117,9 @@ namespace Calendar.Views
 
         /// <summary>
         /// A event handler for the Save button.
+        ///  </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         public void OnLeftClicked(object sender, EventArgs e)
         {
             item.Summary = SummaryEntry.Text;
@@ -170,9 +170,9 @@ namespace Calendar.Views
 
         /// <summary>
         /// A event handler for the Delete button.
+        ///  </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         public void OnRightClicked(object sender, EventArgs e)
         {
             RecordItemProvider.Instance.Delete(item);
@@ -180,12 +180,13 @@ namespace Calendar.Views
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="InsertPage" /> class.
         /// A Constructor.
         /// Shows event properties to modify data.
+        /// </summary>
         /// <param name="inItem">The item to be shown.</param>
         /// <param name="ButtonText">The name of button.</param>
         /// <param name="index">The selected event id if it exists.</param>
-        /// </summary>
         public InsertPage(RecordItem inItem, string ButtonText, int index)
         {
             InitializeComponent();

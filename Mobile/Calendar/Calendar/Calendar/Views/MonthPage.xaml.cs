@@ -31,7 +31,7 @@ namespace Calendar.Views
         /// </summary>
         public static readonly BindableProperty RecordListProperty = BindableProperty.Create("RecordList", typeof(List<RecordItem>), typeof(MonthPage), null);
         /// <summary>
-        /// The RecordList is only updated by the MonthPagetViewModel, so it is defined with the OneWay binding mode.
+        /// The RecordList is only updated by the MonthPageViewModel, so it is defined with the OneWay binding mode.
         /// Therefore, the property does not necessarily implement the setter.
         /// </summary>
         public List<RecordItem> RecordList
@@ -71,9 +71,9 @@ namespace Calendar.Views
         /// <summary>
         /// This is invoked when the bound properties are updated.
         /// The property is monitored to run the UpdateList method.
+        /// </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             UpdateList();
@@ -82,11 +82,11 @@ namespace Calendar.Views
         /// <summary>
         /// The event handler of the click event.
         /// When a user clicks a create button in order to create event, this event handler would be invoked.
-        /// This handler would create an instance of the InsertPaget.xaml
+        /// This handler would create an instance of the InsertPage
         /// and push the instance to the navigation stack in an asynchronous manner.
+        /// </summary>
         /// <param name="sender">The object what got the event</param>
         /// <param name="e">Data of the event</param>
-        /// </summary>
         async void OnButtonClicked(object sender, EventArgs e)
         {
             RecordItem item = new RecordItem();
@@ -104,7 +104,9 @@ namespace Calendar.Views
             base.OnAppearing();
             bool isAccepted = SecurityProvider.Instance.CheckPrivilege();
             if (isAccepted)
+            { 
                 UpdateListCommand.Execute(null);
+            }
         }
 
         /// <summary>
@@ -128,6 +130,8 @@ namespace Calendar.Views
         /// <summary>
         /// This is invoked after permission to update the events created.
         /// </summary>
+        ///  // <param name="sender">The object what got the event</param>
+        /// <param name="e">Data of the event</param>
         private void MonthPage_PrivilageAccepted(object sender, EventArgs e)
         {
             UpdateListCommand.Execute(null);
