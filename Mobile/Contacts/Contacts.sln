@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts", "Contacts\Contacts\Contacts.csproj", "{74726CCA-419F-4692-BFE0-AC38B4B67622}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts.Tizen.Mobile", "Contacts\Contacts.Tizen.Mobile\Contacts.Tizen.Mobile.csproj", "{90A7A1F5-B933-4963-BD9C-79C6157B1B6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74726CCA-419F-4692-BFE0-AC38B4B67622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74726CCA-419F-4692-BFE0-AC38B4B67622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74726CCA-419F-4692-BFE0-AC38B4B67622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74726CCA-419F-4692-BFE0-AC38B4B67622}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90A7A1F5-B933-4963-BD9C-79C6157B1B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90A7A1F5-B933-4963-BD9C-79C6157B1B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90A7A1F5-B933-4963-BD9C-79C6157B1B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90A7A1F5-B933-4963-BD9C-79C6157B1B6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE3A2221-43F0-45B9-BDCA-11274C8B2148}
+	EndGlobalSection
+EndGlobal

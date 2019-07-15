@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="Calendar.Views.InsertPage"
+             Title="Add Event" >
+
+
+    <StackLayout Orientation="Vertical">
+        <ScrollView
+                  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.3}"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.95}"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+            <Grid x:Name="gridName" Padding="10, 10, 10, 10" RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" FontSize="20" Keyboard="Default"
+                    x:Name="SummaryEntry" Placeholder="Insert event's summary" PlaceholderColor="Color.Gray"/>
+                <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Start" VerticalOptions="Center" HorizontalOptions="Start" />
+				<DatePicker Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" x:Name="StartDate" Format="yyyy/MM/dd" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+				<TimePicker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" x:Name="StartTime" VerticalOptions="Center" />
+
+                <Label Grid.Row="4" Grid.Column="0" Text="End" VerticalOptions="Center" HorizontalOptions="Start" />
+				<DatePicker Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" x:Name="EndDate" Format="yyyy/MM/dd" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+				<TimePicker Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" x:Name="EndTime" VerticalOptions="Center" />
+
+                <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="TimeZone" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" x:Name="TimeZoneText" VerticalOptions="Center" />
+
+                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="All Day" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Switch Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" x:Name="AlldaySwitch" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+                <Entry Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" FontSize="20" Keyboard="Default"
+                    x:Name="LocationEntry" Placeholder = "Insert event's location" PlaceholderColor="Color.Gray"/>
+                <Entry Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="5" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <Entry Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="5" FontSize="20" Keyboard="Default"
+                    x:Name="DescriptionEntry" Placeholder = "Insert event's description" PlaceholderColor="Color.Gray"/>
+                <Entry Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="5" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                <Label Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Text="Reminder" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="2" x:Name="ReminderPicker" Title="Select a Reminder">
+                    <Picker.Items>
+                        <x:String>None</x:String>
+                        <x:String>At start time</x:String>
+                        <x:String>5mins before</x:String>
+                        <x:String>15mins before</x:String>
+                        <x:String>30mins before</x:String>
+                        <x:String>1hour before</x:String>
+                        <x:String>1day before</x:String>
+                        <x:String>1week before</x:String>
+                    </Picker.Items>
+                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+                <Label Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" Text="Recurrence" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2" x:Name="RepeatPicker">
+                    <Picker.Items>
+                        <x:String>None</x:String>
+                        <x:String>Daily</x:String>
+                        <x:String>Weekly</x:String>
+                        <x:String>Monthly</x:String>
+                        <x:String>Yearly</x:String>
+                    </Picker.Items>
+                    <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+                <Label Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2"
+                    x:Name="RepeatUntilLabel" TextColor="Green" Text="  Range type" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker Grid.Row="13" Grid.Column="3" Grid.ColumnSpan="2" x:Name="RepeatUntilPicker" IsVisible="False" >
+                    <Picker.Items>
+                        <x:String>Count</x:String>
+                        <x:String>Until</x:String>
+                    </Picker.Items>
+                    <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+                    <Label Grid.Row="14" Grid.Column="0" x:Name="xRange" TextColor="Green" VerticalOptions="Center" HorizontalOptions="Start" />
+                    <Entry Grid.Row="14" Grid.Column="3" Grid.ColumnSpan="2" x:Name="xCount" FontSize="20" Placeholder = "Insert repeat count" Keyboard="Numeric" HorizontalOptions="Center"/>
+                    <DatePicker Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" x:Name="UntilDate" Format="yyyy/MM/dd" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                    <TimePicker Grid.Row="14" Grid.Column="3" Grid.ColumnSpan="2" x:Name="UntilTime" VerticalOptions="Center" />
+
+                <Label Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="2" Text="Priority" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="2" x:Name="PriorityPicker" Title="Select a priority">
+                    <Picker.Items>
+                        <x:String>Low</x:String>
+                        <x:String>Normal</x:String>
+                        <x:String>High</x:String>
+                    </Picker.Items>
+                    <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+                <Label Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="2" Text="Sensitivity" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker Grid.Row="16" Grid.Column="3" Grid.ColumnSpan="2" x:Name="SensitivityPicker" Title="Select a sensitivity">
+                    <Picker.Items>
+                        <x:String>Public</x:String>
+                        <x:String>Private</x:String>
+                        <x:String>Confidential</x:String>
+                    </Picker.Items>
+                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+                <Label Grid.Row="17" Grid.Column="0" Grid.ColumnSpan="2" Text="Status" VerticalOptions="Center" HorizontalOptions="Start" />
+                <Picker Grid.Row="17" Grid.Column="3" Grid.ColumnSpan="2" x:Name="StatusPicker" Title="Select a status">
+                    <Picker.Items>
+                        <x:String>None</x:String>
+                        <x:String>Tentative</x:String>
+                        <x:String>Confirmed</x:String>
+                        <x:String>Canceled</x:String>
+                    </Picker.Items>
+                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                </Picker>
+
+            </Grid>
+        </ScrollView>
+        <StackLayout Orientation="Horizontal">
+        <Button x:Name="ButtonName"
+                Clicked="OnLeftClicked"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End"
+                BorderWidth="3"
+                TextColor="Red"
+                Font="Large" />
+        <Button Text="Delete"
+                x:Name="xRight"
+                Clicked="OnRightClicked"
+                HorizontalOptions="FillAndExpand"
+                BorderWidth="3"
+                TextColor="Red"
+                Font="Large" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

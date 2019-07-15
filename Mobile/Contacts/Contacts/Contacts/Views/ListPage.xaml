@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:Contacts.ViewModels"
+             x:Class="Contacts.Views.ListPage"
+             Title="Contacts"
+             RecordList="{Binding RecordList}"
+             UpdateListCommand="{Binding UpdateListCommand}">
+    <ContentPage.BindingContext>
+        <ViewModels:ListPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Orientation="Vertical">
+        <ListView x:Name="ListPageListView"
+                  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.3}"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.95}"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                  SeparatorColor="Red">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding DisplayName}"
+                              Detail="{Binding Number}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Create"
+                Clicked="OnButtonClicked"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End"
+                BorderWidth="3"
+                TextColor="Red"
+                Font="Large" />
+    </StackLayout>
+</ContentPage>
