@@ -50,7 +50,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="1">
                     <Button x:Name="BUTTON_W" BackgroundColor="WhiteSmoke"
@@ -66,7 +67,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="2">
                     <Button x:Name="BUTTON_E" BackgroundColor="WhiteSmoke"
@@ -82,7 +84,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="3">
                     <Button x:Name="BUTTON_R" BackgroundColor="WhiteSmoke"
@@ -98,7 +101,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="4">
                     <Button x:Name="BUTTON_T" BackgroundColor="WhiteSmoke"
@@ -114,7 +118,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="5">
                     <Button x:Name="BUTTON_Y" BackgroundColor="WhiteSmoke"
@@ -130,7 +135,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="6">
                     <Button x:Name="BUTTON_U" BackgroundColor="WhiteSmoke"
@@ -146,7 +152,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="7">
                     <Button x:Name="BUTTON_I" BackgroundColor="WhiteSmoke"
@@ -162,7 +169,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="8">
                     <Button x:Name="BUTTON_O" BackgroundColor="WhiteSmoke"
@@ -178,7 +186,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="9">
                     <Button x:Name="BUTTON_P" BackgroundColor="WhiteSmoke"
@@ -194,7 +203,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
             </Grid>
         </RelativeLayout>
@@ -236,7 +246,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="1">
                     <Button x:Name="BUTTON_S" BackgroundColor="WhiteSmoke"
@@ -252,7 +263,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="2">
                     <Button x:Name="BUTTON_D" BackgroundColor="WhiteSmoke"
@@ -268,7 +280,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="3">
                     <Button x:Name="BUTTON_F" BackgroundColor="WhiteSmoke"
@@ -284,7 +297,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="4">
                     <Button x:Name="BUTTON_G" BackgroundColor="WhiteSmoke"
@@ -300,7 +314,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="5">
                     <Button x:Name="BUTTON_H" BackgroundColor="WhiteSmoke"
@@ -316,7 +331,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="6">
                     <Button x:Name="BUTTON_J" BackgroundColor="WhiteSmoke"
@@ -332,7 +348,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="7">
                     <Button x:Name="BUTTON_K" BackgroundColor="WhiteSmoke"
@@ -348,7 +365,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="8">
                     <Button x:Name="BUTTON_L" BackgroundColor="WhiteSmoke"
@@ -364,7 +382,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
             </Grid>
         </RelativeLayout>
@@ -405,11 +424,12 @@
                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.15}"
                             HorizontalTextAlignment="Center"
                             VerticalTextAlignment="Center" 
-                            TextColor="#111111"/>
+                            TextColor="#111111"
+                            InputTransparent="True" />
                     <Image x:Name="Image_Shift" 
                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.6, Constant=-27}"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6, Constant=-27}"
-                       Source="{Binding ShiftImage}" Opacity="{Binding ShiftImageOpacity}"/>
+                       Source="{Binding ShiftImage}" Opacity="{Binding ShiftImageOpacity}" InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="1">
                     <Button x:Name="BUTTON_Z" BackgroundColor="WhiteSmoke"
@@ -425,7 +445,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="2">
                     <Button x:Name="BUTTON_X" BackgroundColor="WhiteSmoke"
@@ -441,7 +462,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="3">
                     <Button x:Name="BUTTON_C" BackgroundColor="WhiteSmoke"
@@ -457,7 +479,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="4">
                     <Button x:Name="BUTTON_V" BackgroundColor="WhiteSmoke"
@@ -473,7 +496,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="5">
                     <Button x:Name="BUTTON_B" BackgroundColor="WhiteSmoke"
@@ -489,7 +513,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="6">
                     <Button x:Name="BUTTON_M" BackgroundColor="WhiteSmoke"
@@ -505,7 +530,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="7">
                     <Button x:Name="BUTTON_N" BackgroundColor="WhiteSmoke"
@@ -521,7 +547,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="8">
                     <Button x:Name="BUTTON_BACKSPACE" BackgroundColor="Gray"  
@@ -534,7 +561,7 @@
                     <Image x:Name="Image_Backspace" 
                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.6, Constant=-27}"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6, Constant=-27}"
-                       Source="sample_ime_back_space_normal.png" />
+                       Source="sample_ime_back_space_normal.png" InputTransparent="True" />
                 </RelativeLayout>
             </Grid>
         </RelativeLayout>
@@ -571,7 +598,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="1">
                     <Button x:Name="BUTTON_COMMA" BackgroundColor="WhiteSmoke"
@@ -587,7 +615,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="2">
                     <Button x:Name="BUTTON_SPACE" BackgroundColor="WhiteSmoke"
@@ -601,7 +630,7 @@
                     <Image x:Name="Image_Space" 
                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.4}"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0, Constant=0}"
-                       Source="sample_ime_space_normal.png" />
+                       Source="sample_ime_space_normal.png" InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="3">
                     <Button x:Name="BUTTON_JUM" BackgroundColor="WhiteSmoke"
@@ -617,7 +646,8 @@
                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center" 
-                               TextColor="#111111" />
+                               TextColor="#111111"
+                               InputTransparent="True" />
                 </RelativeLayout>
                 <RelativeLayout Grid.Row="0" Grid.Column="4">
                     <Button x:Name="BUTTON_RETURN" BackgroundColor="Gray"
@@ -630,7 +660,7 @@
                     <Image x:Name="Image_Return" 
                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.6, Constant=-27}"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6, Constant=-27}"
-                       Source="sample_ime_enter_normal.png" />
+                       Source="sample_ime_enter_normal.png" InputTransparent="True" />
                 </RelativeLayout>
             </Grid>
         </RelativeLayout>
