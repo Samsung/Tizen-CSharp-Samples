@@ -33,11 +33,18 @@ namespace GoogleAPIExample
 
         private async void OnLogin(object sender, EventArgs e)
         {
+            // Client credential details
+            // this information is for google API example, it is registered by google
+            // You should register a new client id and issue a client secret
             var clientSecrets = new ClientSecrets
             {
                 ClientId = "581786658708-elflankerquo1a6vsckabbhn25hclla0.apps.googleusercontent.com",
                 ClientSecret = "3f6NggMbPtrmIBpgx-MK2xXK"
             };
+
+            // It is a web browser, it is integrated in this app.
+            // It is instance of Page, so it pushed on the Navigation Page
+            // When a completed login process, you need to pop browser page on the Navigation Page
             var browser = new EmbeddedBrowser("Login to google");
             browser.Cancelled += (s, evt) => { Navigation.PopAsync(); };
             var unused = Navigation.PushAsync(browser);
