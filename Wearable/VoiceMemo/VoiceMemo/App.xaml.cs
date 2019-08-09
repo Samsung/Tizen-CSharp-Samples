@@ -23,12 +23,12 @@ using VoiceMemo.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace VoiceMemo
 {
     /// <summary>
     /// VoiceMemo Application class
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class App : Application
     {
         MainPage firstPage;

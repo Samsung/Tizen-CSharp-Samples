@@ -27,7 +27,6 @@ namespace VoiceMemo.Views
     /// SttLanguageViewCell
     /// It's a custom view cell for CircleListView in LanguageSelectionPage
     /// </summary>
-	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SttLanguageViewCell : ViewCell
 	{
 		public SttLanguageViewCell()

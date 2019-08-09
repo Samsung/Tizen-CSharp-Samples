@@ -23,7 +23,6 @@ namespace VoiceMemo.Views
     /// <summary>
     /// Base Page class
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CirclePageEx : CirclePage
     {
 		public CirclePageEx()

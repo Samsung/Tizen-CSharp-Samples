@@ -29,7 +29,6 @@ namespace VoiceMemo.Views
     /// RecordingPage class
     /// It provides voice recording, pausing, and canceling.
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecordingPage : CirclePageEx
     {
         public RecordingPageModel ViewModel;

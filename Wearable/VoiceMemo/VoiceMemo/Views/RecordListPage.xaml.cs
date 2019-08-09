@@ -29,7 +29,6 @@ namespace VoiceMemo.Views
     /// RecordListPage class
     /// It shows the list of recordings
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RecordListPage : CirclePageEx
     {
         MainPageModel ViewModel;

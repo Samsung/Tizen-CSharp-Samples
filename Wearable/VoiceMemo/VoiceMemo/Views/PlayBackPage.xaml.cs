@@ -25,7 +25,6 @@ namespace VoiceMemo.Views
     /// PlayBackPage class
     /// In this page, recorded content will play.
     /// </summary>
-	[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlayBackPage : CirclePageEx
     {
         PlayBackPageModel viewModel;

@@ -26,7 +26,6 @@ namespace VoiceMemo.Views
     /// <summary>
     /// LanguageSelectionPage class
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LanguageSelectionPage : CirclePageEx
     {
         MainPageModel ViewModel;

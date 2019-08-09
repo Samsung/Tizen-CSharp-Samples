@@ -28,7 +28,6 @@ namespace VoiceMemo.Views
     /// It shows the details of voice memo
     /// file name, recorded time, recording time
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailsPage : CirclePageEx
     {
         DetailsPageModel viewModel;

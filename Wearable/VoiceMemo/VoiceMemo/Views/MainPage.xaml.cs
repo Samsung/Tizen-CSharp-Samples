@@ -25,7 +25,6 @@ namespace VoiceMemo.Views
     /// <summary>
     /// The MainPage of VoiceMemo application
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : CirclePageEx
     {
         /// <summary>

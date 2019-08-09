@@ -27,7 +27,6 @@ namespace VoiceMemo.Views
     /// CancelPage class
     /// It provides a way to cancel voice recording
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CancelPage : TwoButtonPage
     {
         RecordingPageModel ViewModel;
