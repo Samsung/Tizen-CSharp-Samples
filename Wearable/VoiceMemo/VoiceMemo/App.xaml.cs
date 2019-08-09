@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using System;
 using System.Globalization;
 using System.Threading;
 using VoiceMemo.Data;
@@ -22,12 +21,14 @@ using VoiceMemo.Services;
 using VoiceMemo.ViewModels;
 using VoiceMemo.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace VoiceMemo
 {
     /// <summary>
     /// VoiceMemo Application class
     /// </summary>
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class App : Application
     {
         MainPage firstPage;
