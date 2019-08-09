@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Contacts.Views.ItemPage"
+             >
+
+    <StackLayout Orientation="Vertical">
+        <ScrollView
+                  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.3}"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.95}"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+            <Grid x:Name="gridName" Padding="10, 10, 10, 10" RowSpacing="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                    <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Keyboard="Default"
+                        x:Name="xFirst" Placeholder="First Name" PlaceholderColor="Color.Gray"
+                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Keyboard="Default"
+                        x:Name="xLast" Placeholder="Last Name" PlaceholderColor="Color.Gray"
+                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Keyboard="Telephone"
+                        x:Name="xNumber" Placeholder="Phone Number" PlaceholderColor="Color.Gray"
+                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" Keyboard="Email"
+                        x:Name="xEmail" Placeholder="Email" PlaceholderColor="Color.Gray"
+                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"
+                        x:Name="xUrl" Placeholder="Url" PlaceholderColor="Color.Gray"
+                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"
+                        x:Name="xCompany" Placeholder="Company" PlaceholderColor="Color.Gray"
+                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Label Grid.Row="13" Grid.Column="0" Text="Event"
+                        VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <DatePicker Grid.Row="13" Grid.Column="1" Format="yyyy/MM/dd"
+                        x:Name="xEvent"
+                        HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                    <Label Grid.Row="14" Grid.Column="0" Text="Note"
+                        VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <Editor Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20"
+                        x:Name="xNote"
+                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+                    <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Entry Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Color.Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            </Grid>
+        </ScrollView>
+        <StackLayout Orientation="Horizontal">
+        <Button Text="Save"
+                x:Name="xLeft"
+                Clicked="OnLeftClicked"
+                HorizontalOptions="FillAndExpand"
+                BorderWidth="3"
+                TextColor="Red"
+                Font="Large" />
+        <Button Text="Delete"
+                x:Name="xRight"
+                Clicked="OnRightClicked"
+                HorizontalOptions="FillAndExpand"
+                BorderWidth="3"
+                TextColor="Red"
+                Font="Large" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:ViewModels="clr-namespace:Calendar.ViewModels"
+             x:Class="Calendar.Views.MonthPage"
+             Title="Calendar"
+             RecordList="{Binding RecordList}"
+             UpdateListCommand="{Binding UpdateListCommand}">
+    <ContentPage.BindingContext>
+        <ViewModels:MonthPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Horizontal">
+            <Button x:Name="PreButton"
+                    Text=" &lt; "
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    BorderWidth="3"
+                    TextColor="Red"
+                    Font="Large"
+                    Command="{Binding PrevButtonCommand}"/>
+
+            <Label x:Name="DateLabel"
+                   Text="{Binding MonthDateTime, StringFormat='{0:yyyy.MM.dd (ddd)}'}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="CenterAndExpand"
+                   Font="Large" />
+
+            <Button x:Name="NextButton"
+                    Text=" &gt; "
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    BorderWidth="3"
+                    TextColor="Red"
+                    Font="Large"
+                    Command="{Binding NextButtonCommand}"/>
+        </StackLayout>
+
+        <ListView x:Name="MonthPageListView"
+                  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.3}"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.0}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.95}"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                  RefreshCommand="{Binding ListViewCommand}"
+                  SeparatorColor="Red">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Summary}"
+                              Detail="{Binding DisplayTime}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Create"
+                Clicked="OnButtonClicked"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End"
+                BorderWidth="3"
+                TextColor="Red"
+                Font="Large" />
+    </StackLayout>
+</ContentPage>
+
