@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:models="clr-namespace:WebProxySample;"
+              x:Class="WebProxySample.MainPage"
+              RotaryFocusObject="{x:Reference MyScrollView}">
+    <c:CirclePage.BindingContext>
+        <models:MainPageModel />
+    </c:CirclePage.BindingContext>
+    <c:CirclePage.Content>
+        <c:CircleScrollView x:Name="MyScrollView" Orientation="Vertical">
+            <StackLayout Padding="50" Spacing="20">
+                <Label Text="{Binding DownloadInfo}" LineBreakMode="CharacterWrap" FontAttributes="Italic"
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Small"/>
+                <Button Text="Download" Command="{Binding DownloadContentCommand}" IsEnabled="{Binding CanDownload}" />
+                <Button Text="GetData" Command="{Binding GetDataCommand}" IsEnabled="{Binding CanGetData}"/>
+                <Label Text="{Binding LabelText}" BackgroundColor="White" TextColor="Red" LineBreakMode="CharacterWrap"
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+        </c:CircleScrollView>
+    </c:CirclePage.Content>
+</c:CirclePage>
