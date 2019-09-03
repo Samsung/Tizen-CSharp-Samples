@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest package="org.tizen.example.TizenTVHttpSample" version="1.0.0" api-version="5" xmlns="http://tizen.org/ns/packages">
-    <profile name="wearable" />
+    <profile name="tv" />
     <ui-application appid="org.tizen.example.TizenTVHttpSample" exec="TizenTVHttpSample.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
         <label>TizenTVHttpSample</label>
         <icon>TizenTVHttpSample.png</icon>
