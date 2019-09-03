@@ -23,8 +23,5 @@
   </ItemGroup>
 
   <!-- Include Nuget Package for Tizen Project building -->
-  <ItemGroup>
-    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.2.0" />
-  </ItemGroup>
 
 </Project>
