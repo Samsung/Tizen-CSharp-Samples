@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TizenTVHttpSample;"
+             x:Class="TizenTVHttpSample.MainPage">
+    <ContentPage.BindingContext>
+        <models:MainPageModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="TextColor" Value="Sienna" />
+            <Setter Property="BackgroundColor" Value="Orchid" />
+            <Setter Property="FontSize" Value="Large" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="50" Spacing="20">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Image Source="{Binding WeatherIcon}" BackgroundColor="Ivory" HeightRequest="200" WidthRequest="200"/>
+                <Label Text="{Binding WeatherInfo}" TextColor="DeepPink" BackgroundColor="Ivory" WidthRequest="300" 
+                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="CharacterWrap"
+                       FontSize="Large" FontAttributes="Bold" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" />
+                <Button Text="Get Weather" Command="{Binding GetWeatherCommand}" Style="{StaticResource buttonStyle}" />
+                <Button Text="Get Data" Command="{Binding GetDataCommand}" Style="{StaticResource buttonStyle}" />
+            </StackLayout>
+            <ScrollView VerticalOptions="FillAndExpand">
+                <Label Text="{Binding InfoText}" TextColor="Black" BackgroundColor="AntiqueWhite"
+                       VerticalOptions="FillAndExpand" 
+                       HorizontalOptions="FillAndExpand" />
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
