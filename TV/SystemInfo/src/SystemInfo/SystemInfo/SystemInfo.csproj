@@ -9,8 +9,6 @@
     <None Remove="Control\ImageIndicatorControl.xaml" />
   </ItemGroup>
 
-
-
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />

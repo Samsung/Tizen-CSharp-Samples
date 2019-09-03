@@ -1,13 +1,4 @@
-﻿<Project>
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
-
-  <!-- Setting Tizen Extension Path -->
-  <PropertyGroup Label="Globals">
-    <TizenProjectExtensionsPath>$(MSBuildExtensionsPath)\Tizen\VisualStudio\</TizenProjectExtensionsPath>
-  </PropertyGroup>
-
-  <!-- Import Tizen property in Tizen.NET SDK -->
-  <Import Project="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props" Condition="Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props')" />
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -30,7 +21,6 @@
     <None Remove="res\**" />
   </ItemGroup>
 
-
   <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
     <ProjectReference Include="..\Preference\Preference.csproj" />
@@ -38,15 +28,13 @@
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.5.1.444934" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
   </ItemGroup>
+  
   <ItemGroup>
     <Compile Update="Views\EditPreferences.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
   </ItemGroup>
-
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 
 </Project>

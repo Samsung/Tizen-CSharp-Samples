@@ -1,13 +1,4 @@
-﻿<Project>
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
-
-  <!-- Setting Tizen Extension Path -->
-  <PropertyGroup Label="Globals">
-    <TizenProjectExtensionsPath>$(MSBuildExtensionsPath)\Tizen\VisualStudio\</TizenProjectExtensionsPath>
-  </PropertyGroup>
-
-  <!-- Import Tizen property in Tizen.NET SDK -->
-  <Import Project="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props" Condition="Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props')" />
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -29,19 +20,12 @@
     <None Remove="lib\**" />
     <None Remove="Services\**" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
-    <PackageReference Include="Tizen.NET.TV" Version="5.5.0.4997532" />
-  </ItemGroup>
-
 
   <!-- If solution already has PCL project, will reference -->
-
-  <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
     <ProjectReference Include="..\ErrorCodeConverter\ErrorCodeConverter.csproj" />
   </ItemGroup>
 
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <!-- Include Nuget Package for Tizen Project building -->
 
 </Project>
