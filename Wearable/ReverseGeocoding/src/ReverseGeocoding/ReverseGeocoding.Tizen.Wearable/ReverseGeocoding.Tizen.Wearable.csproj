@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -13,20 +13,15 @@
     <DebugType>None</DebugType>
   </PropertyGroup>
 
-  
   <ItemGroup>
     <ProjectReference Include="..\ReverseGeocoding\ReverseGeocoding.csproj" />
   </ItemGroup>
-  
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
     <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.2.0" />
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Update="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
