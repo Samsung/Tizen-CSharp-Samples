@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using Xamarin.Forms;
+
 namespace VolumeController.Tizen.Mobile
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -33,7 +35,7 @@ namespace VolumeController.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
     }

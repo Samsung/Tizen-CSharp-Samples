@@ -6,7 +6,7 @@ using SNSUI.Extensions;
 using SNSUI.Tizen.Renderers.Cells;
 
 using NImage = Xamarin.Forms.Platform.Tizen.Native.Image;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
+using TForms = Xamarin.Forms.Forms;
 
 [assembly: ExportCell(typeof(Type1Cell), typeof(Type1CellRenderer))]
 
