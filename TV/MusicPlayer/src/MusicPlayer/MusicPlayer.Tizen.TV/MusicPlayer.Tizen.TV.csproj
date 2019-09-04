@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -13,18 +13,11 @@
     <DebugType>None</DebugType>
   </PropertyGroup>
 
-  
+  <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
     <ProjectReference Include="..\MusicPlayer\MusicPlayer.csproj" />
   </ItemGroup>
-  
 
   <!-- Include Nuget Package for Tizen Project building -->
-  <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
-  </ItemGroup>
 
 </Project>

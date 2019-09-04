@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -13,7 +13,6 @@
     <DebugType>None</DebugType>
   </PropertyGroup>
 
-  
   <ItemGroup>
     <ProjectReference Include="..\CalendarComponent\CalendarComponent.csproj" />
   </ItemGroup>
@@ -22,15 +21,10 @@
       <DependentUpon>CalendarPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0.91020" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
   </ItemGroup>
 
 </Project>

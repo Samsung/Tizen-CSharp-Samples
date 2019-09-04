@@ -1,13 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
+
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>tizen50</TargetFramework>
   </PropertyGroup>
+
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14629" />
     <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Update="HapticPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -16,4 +17,5 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
+
 </Project>

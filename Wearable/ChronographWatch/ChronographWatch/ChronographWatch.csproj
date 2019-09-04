@@ -19,8 +19,6 @@
 
   <ItemGroup>
     <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
   </ItemGroup>
 
 </Project>
-

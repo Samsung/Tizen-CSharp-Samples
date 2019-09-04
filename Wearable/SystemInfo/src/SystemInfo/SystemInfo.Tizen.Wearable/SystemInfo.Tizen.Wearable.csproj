@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -17,20 +17,15 @@
     <Folder Include="res\" />
   </ItemGroup>
 
-  
   <ItemGroup>
     <ProjectReference Include="..\SystemInfo\SystemInfo.csproj" />
   </ItemGroup>
-  
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14318">
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
     <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.0.0-pre2-00099" />
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Update="View\BatteryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
