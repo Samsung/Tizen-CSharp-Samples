@@ -246,13 +246,24 @@ namespace Lescanner
         /// <param name="e">EventArgs</param>
         void OnScanButtonClicked(object s, EventArgs e)
         {
-            if (!BluetoothAdapter.IsBluetoothEnabled)
+            try
             {
-                // Toast.DisplayText("Please turn on Bluetooth.");
+                if (!BluetoothAdapter.IsBluetoothEnabled)
+                {
+                    // Toast.DisplayText("Please turn on Bluetooth.");
+                }
+                else
+                {
+                    RenderDevicePage();
+                }
             }
-            else
+            catch (NotSupportedException)
             {
-                RenderDevicePage();
+                // Not supported!
+            }
+            catch (Exception)
+            {
+
             }
         }
 
