@@ -19,12 +19,19 @@ using System;
 using System.Threading.Tasks;
 using Tizen.Multimedia;
 using Xamarin.Forms;
-using XamarinExt = Tizen.Xamarin.Forms.Extension;
 using System.Collections.Generic;
 
 [assembly: Dependency(typeof(MediaPlayer))]
 namespace PlayerSample.Tizen.Mobile
 {
+    public static class VideoViewController
+    {
+        /// <summary>
+        /// To get a window
+        /// </summary>
+        public static Func<ElmSharp.Window> MainWindowProvider { get; set; }
+    }
+
     class MediaPlayer : IMediaPlayer
     {
         private readonly Player _player = new Player();
@@ -54,15 +61,14 @@ namespace PlayerSample.Tizen.Mobile
         public event EventHandler<BufferingEventArgs> Buffering;
         public event EventHandler<EventArgs> StateChanged;
 
-        public View CreateDisplayView()
+        /// <summary>
+        /// Creates window and sets display
+        /// </summary>
+        public void CreateDisplay()
         {
-            var mediaView = new XamarinExt.MediaView();
+            var VideoWindow = VideoViewController.MainWindowProvider();
 
-            // NativeView must be created first
-            mediaView.NativeViewCreated += (s, e) =>
-                _player.Display = new Display((MediaView)mediaView.NativeView);
-
-            return mediaView;
+            _player.Display = new Display(VideoWindow);
         }
 
         public IEnumerable<Property> GetStreamInfo()

@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-using Tizen.Xamarin.Forms.Extension.Renderer;
-
 namespace PlayerSample.Tizen.Mobile
 {
     class Program : Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -31,10 +29,8 @@ namespace PlayerSample.Tizen.Mobile
             var app = new Program();
 
             global::Xamarin.Forms.DependencyService.Register<SecurityPort>();
-
-            // It must be called for MediaView.
-            TizenFormsExtension.Init();
-            Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            VideoViewController.MainWindowProvider = () => app.MainWindow;
             app.Run(args);
         }
     }
