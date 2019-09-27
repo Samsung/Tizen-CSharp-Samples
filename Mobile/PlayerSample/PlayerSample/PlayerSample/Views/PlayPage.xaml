@@ -16,6 +16,12 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <!-- set boundary -->
+    <AbsoluteLayout>
+        <local:TransparentView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+        </local:TransparentView>
+    </AbsoluteLayout>
+
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{Binding SourceText}"/>

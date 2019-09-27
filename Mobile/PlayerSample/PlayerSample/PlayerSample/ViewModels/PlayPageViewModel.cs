@@ -39,7 +39,7 @@ namespace PlayerSample
 
             _timer.Elapsed += (s, e) => OnPropertyChanged(nameof(PositionText));
 
-            Display = MediaPlayer.CreateDisplayView();
+            MediaPlayer.CreateDisplay();
 
             PlayerState = MediaPlayer.State;
 

@@ -154,7 +154,7 @@ namespace PlayerSample
         /// Creates the view for player.
         /// </summary>
         /// <returns>A view for display.</returns>
-        View CreateDisplayView();
+        void CreateDisplay();
 
         /// <summary>
         /// Gets the state of player.
