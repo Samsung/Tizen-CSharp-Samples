@@ -24,8 +24,6 @@ namespace PlayerSample.Tizen.Mobile
             LoadApplication(new App());
         }
 
-        protected override void OnPreCreate() => MainWindow = new ElmSharp.Window("PlayerSample");
-
         static void Main(string[] args)
         {
             var app = new Program();

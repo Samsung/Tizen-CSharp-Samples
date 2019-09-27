@@ -71,7 +71,6 @@ namespace PlayerSample.Tizen.Mobile
             _player.Display = new Display(VideoWindow);
         }
 
-
         public IEnumerable<Property> GetStreamInfo()
         {
             yield return new Property("Duration", _player.StreamInfo.GetDuration());
