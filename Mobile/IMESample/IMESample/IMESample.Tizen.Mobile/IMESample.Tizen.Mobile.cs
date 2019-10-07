@@ -96,7 +96,7 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When ime show, the show callback function will be called
         /// </summary>
-        /// <param name="a"> IMContext ID. </param>
+        /// <param name="a"> IME context ID. </param>
         /// <param name="b"> the context for ime. </param>
         private static void Show(InputMethodEditor.ContextId a, InputMethodContext b)
         {
@@ -106,7 +106,7 @@ namespace IMESample.Tizen.Mobile
         /// <summary>
         /// When ime hide, this callback function will be called
         /// </summary>
-        /// <param name="a"> IMContext ID. </param>
+        /// <param name="a"> IME context ID. </param>
         private static void Hide(InputMethodEditor.ContextId a)
         {
             Log.Info("IMESample", "Hide callback");
