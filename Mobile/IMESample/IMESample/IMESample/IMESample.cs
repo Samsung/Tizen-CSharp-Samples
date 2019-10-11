@@ -85,14 +85,6 @@ namespace IMESample
         /// </summary>
         protected override void OnResume()
         {
-            if (IsLandscape == AppOrientation.Landscape)
-            {
-                MainPage = new IME_KEYBOARD_LAYOUT_QWERTY_LAND();
-            }
-            else
-            {
-                MainPage = new IME_KEYBOARD_LAYOUT_QWERTY_PORT();
-            }
         }
     }
 }
