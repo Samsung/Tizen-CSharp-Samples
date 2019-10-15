@@ -5,7 +5,7 @@
              BackgroundColor="White"
              Title="OAuth example">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20">
             <Label Text="OAuth 2.0 Authorization"/>
             <Button Text="Login with google" Clicked="Button_Clicked"/>
             <StackLayout>
@@ -14,7 +14,7 @@
             </StackLayout>
             <Label Text="Log : "/>
             <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <Label BackgroundColor="#eeeeee" x:Name="textBoxOutput" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                <Label LineBreakMode="CharacterWrap" BackgroundColor="#eeeeee" x:Name="textBoxOutput" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>
