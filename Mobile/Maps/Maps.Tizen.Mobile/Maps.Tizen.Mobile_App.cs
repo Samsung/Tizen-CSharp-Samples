@@ -51,7 +51,7 @@ namespace Maps.Tizen.Mobile
 		/// The key of HERE provider. Please get the key from https://developer.here.com/.
 		/// You can see the guide about getting the key in https://developer.tizen.org/development/guides/native-application/location-and-sensors/maps-and-maps-service/getting-here-maps-credentials.
 		/// </summary>
-		public string HERE_KEY = "57l3m35FktUN4sBpDTcJ/ckFerp2t5bCVjouh9v2HCw";
+		public string HERE_KEY = "APP_ID/APP_CODE";
 
 		/// <summary>
 		/// The Window object.
