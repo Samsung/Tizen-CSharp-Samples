@@ -56,9 +56,7 @@ namespace VoiceMemo.Tizen.Wearable.Services
         {
             var netLanguage = "en";
             var TizenLocale = SystemSettings.LocaleLanguage;
-            //Console.WriteLine("[GetCurrentCultureInfo] TizenLocale (" + TizenLocale + ")");
             netLanguage = TizenToDotnetLanguage(TizenLocale.ToString().Replace("_", "-"));
-            //Console.WriteLine("[GetCurrentCultureInfo] netLanguage (" + netLanguage + ")");
             CultureInfo info = null;
             try
             {
@@ -85,11 +83,11 @@ namespace VoiceMemo.Tizen.Wearable.Services
             MessagingCenter.Send<ILocaleService, CultureInfo>(this, MessageKeys.LanguageChanged, info);
         }
 
-        string TizenToDotnetLanguage(string androidLanguage)
+        string TizenToDotnetLanguage(string tizenLanguage)
         {
-            var netLanguage = androidLanguage;
-            //certain languages need to be converted to CultureInfo equivalent
-            switch (androidLanguage)
+            var netLanguage = tizenLanguage;
+            // Certain languages need to be converted to CultureInfo equivalent
+            switch (tizenLanguage)
             {
                 case "zh-CN":   // Chinese Simplified (People's Republic of China)
                     netLanguage = "zh-Hans"; // correct code for .NET
@@ -100,11 +98,11 @@ namespace VoiceMemo.Tizen.Wearable.Services
                 case "zh-TW":
                     netLanguage = "zh-Hant"; // correct code for .NET
                     break;
-                    //case "ar-ae":   // Arabic
-                    //    netLanguage = "ar-sa"; // closest supported for .Net : Arabic (Saudi Arabia)
-                    //    break;
-                    // add more application-specific cases here (if required)
-                    // ONLY use cultures that have been tested and known to work
+                //case "ar-ae":   // Arabic
+                //    netLanguage = "ar-sa"; // closest supported for .Net : Arabic (Saudi Arabia)
+                //    break;
+                // add more application-specific cases here (if required)
+                // ONLY use cultures that have been tested and known to work
             }
 
             Console.WriteLine(".NET Language/Locale:" + netLanguage);
