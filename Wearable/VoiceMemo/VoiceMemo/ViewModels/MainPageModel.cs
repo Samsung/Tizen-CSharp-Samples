@@ -110,7 +110,6 @@ namespace VoiceMemo.ViewModels
             {
                 var NonUItask = Task.Run(async () =>
                 {
-                    //await Task.Delay(3000);
                     // Restore recorded voice memos
                     List<Record> tmp = await App.Database.GetItemsAsync();
                     for (int i = 0; i < tmp.Count; i++)
@@ -145,7 +144,7 @@ namespace VoiceMemo.ViewModels
             UnregisterForImportantEvents();
             if (SelectedItemIndex != null)
             {
-                Console.WriteLine("### MainPageModel.Dispose()   SAVE Language : " + SelectedItemIndex.Lang);
+                Console.WriteLine("### MainPageModel.Dispose() SAVE Language : " + SelectedItemIndex.Lang);
                 _AppDataService.SetValue(LANGUAGE_FOR_STT, SelectedItemIndex.Lang);
             }
             
@@ -254,22 +253,15 @@ namespace VoiceMemo.ViewModels
                 {
                     CultureInfo cultureInfo = new CultureInfo(lang);
                     RegionInfo regionInfo = new RegionInfo(lang.Replace("_", "-"));
-                    //Console.WriteLine(" [GetSttService]  lang : " + lang + ", " + cultureInfo.DisplayName + ", " + regionInfo.EnglishName);
                     var stt = new SttLanguage(lang, cultureInfo.DisplayName, regionInfo.EnglishName);
                     Languages.Add(stt);
-                    //Languages.Add(new SttLanguage(lang, cultureInfo.DisplayName, regionInfo.EnglishName));
                     if (lang == dafaultLang)
                     {
                         stt.IsOn = true;
                         SelectedItemIndex = stt;
                     }
                 }
-#if ENABLE_DEBUG_PRINT
-                foreach (var lang in Languages)
-                {
-                    Console.WriteLine(" Languages  -- " + lang.Country + ", " + lang.Name + ", " + lang.IsOn); /*+ " vs. " + lang.isNotOn*/
-                }
-#endif
+
                 Console.WriteLine(" GetSttService()  ------------2-   " + _SttService.GetHashCode());
             }
         }
@@ -477,7 +469,6 @@ namespace VoiceMemo.ViewModels
             Console.WriteLine("   ########  DeleteRecords ");
             for (int i = Records.Count - 1; i >= 0; i--)
             {
-                //if (Records[i].ID == record.ID)
                 if (Records[i].Checked)
                 {
                     await App.Database.DeleteItemAsync(Records[i]);
