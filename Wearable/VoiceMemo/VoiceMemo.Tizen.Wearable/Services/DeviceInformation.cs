@@ -45,9 +45,9 @@ namespace VoiceMemo.Tizen.Wearable.Services
     public class DeviceInformation : IDeviceInformation
     {
         const int OneKiloBytes = 1024;
-        // indicate that speech-to-text feature is supported or not
+        // Indicate that speech-to-text feature is supported or not
         internal static bool isSpeechRecognitionSupported = false;
-        // indicate that mic is supported or not
+        // Indicate that mic is supported or not
         internal static bool isMicrophoneSupported = false;
         internal static bool isFeatureSupported = false;
 
@@ -120,7 +120,7 @@ namespace VoiceMemo.Tizen.Wearable.Services
                 }
                 else
                 {
-                    Console.WriteLine("App State : " + _context.State);
+                    Console.WriteLine("Undefined AppState: " + _context.State);
                     return AppState.Undefined;
                 }
             }
@@ -136,7 +136,7 @@ namespace VoiceMemo.Tizen.Wearable.Services
                 // Check if internal storage has sufficient storage available or not
                 Storage internalStorage = StorageManager.Storages.Where(s => s.StorageType == StorageArea.Internal).FirstOrDefault();
                 // 'AvaliableSpace' is deprecated in Tizen 5.0
-                // In Tizen 5.0, 'AvaliableSpace' is recommended instead of 'AvaliableSpace'.
+                // In Tizen 5.0, 'AvailableSpace' is recommended instead of deprecated 'AvaliableSpace'.
                 return ((internalStorage.AvaliableSpace / OneKiloBytes) > 105) ? true : false;
             }
         }
