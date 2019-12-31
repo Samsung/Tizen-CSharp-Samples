@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.Contacts.Tizen.Mobile" version="1.0.0">
+<manifest xmlns="http://tizen.org/ns/packages" api-version="5" package="org.tizen.example.Contacts.Tizen.Mobile" version="1.0.0">
 	<profile name="mobile" />
 	<ui-application appid="org.tizen.example.Contacts.Tizen.Mobile"
 					exec="Contacts.Tizen.Mobile.dll"
