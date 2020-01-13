@@ -31,7 +31,7 @@
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0-pre3" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0-r269-002" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.482894" />
   </ItemGroup>
 
 </Project>
