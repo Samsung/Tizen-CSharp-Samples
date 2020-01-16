@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:viewModels="clr-namespace:Ultraviolet.ViewModels;assembly=Ultraviolet"
+                x:Class="Ultraviolet.Tizen.Wearable.Views.InformationPage"
+                x:Name="Root">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:InformationViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Command="{Binding ShowMainPageCommand}"
+                              BackgroundColor="#2a537d"
+                              Text="OK" />
+    </cui:CirclePage.ActionButton>
+
+    <cui:CirclePage.Content>
+        <StackLayout HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Spacing="12">
+            <Label Text="Tap on the icon and learn more about the uv index"
+                   TextColor="#fafafa"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>
