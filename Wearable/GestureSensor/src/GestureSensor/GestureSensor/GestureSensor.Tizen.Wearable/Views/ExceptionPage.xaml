@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="GestureSensor.Tizen.Wearable.Views.ExceptionPage"
+                x:Name="Root">
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Command="{Binding Source={x:Reference Root}, Path=BindingContext.ExitCommand}"
+                              BackgroundColor="#2a537d"
+                              Text="EXIT" />
+    </cui:CirclePage.ActionButton>
+
+    <cui:CirclePage.Content>
+        <StackLayout>
+            <Label Text="{Binding Message}"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center" />
+        </StackLayout>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>

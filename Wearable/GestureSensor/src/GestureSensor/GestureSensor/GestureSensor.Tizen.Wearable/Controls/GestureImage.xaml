@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AbsoluteLayout xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:controls="clr-namespace:GestureSensor.Tizen.Wearable.Controls;assembly=GestureSensor.Tizen.Wearable"
+                x:Class="GestureSensor.Tizen.Wearable.Controls.GestureImage"
+                x:Name="root">
+
+    <controls:MaskedImageButton ColorMask="{Binding Source={x:Reference root}, Path=IconBackgroundColor}"
+                                Source="bg.png"
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0, 0, 1, 0.7576" />
+
+    <controls:MaskedImageButton ColorMask="{Binding Source={x:Reference root}, Path=IconColor}"
+                                Source="hand.png"
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0, 0, 1, 0.7576"
+                                Command="{Binding Source={x:Reference root}, Path=Command}"
+                                PressCommand="{Binding Source={x:Reference root}, Path=PressCommand}"
+                                ReleaseCommand="{Binding Source={x:Reference root}, Path=ReleaseCommand}" />
+
+    <Label Text="{Binding Source={x:Reference root}, Path=Text}"
+           TextColor="{Binding Source={x:Reference root}, Path=IconColor}"
+           FontSize="7"
+           HorizontalTextAlignment="Center"
+           AbsoluteLayout.LayoutFlags="All"
+           AbsoluteLayout.LayoutBounds="0, 1, 1, 0.1818" />
+
+</AbsoluteLayout>

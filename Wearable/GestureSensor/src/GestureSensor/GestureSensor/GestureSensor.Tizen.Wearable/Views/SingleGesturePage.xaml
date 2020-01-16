@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:controls="clr-namespace:GestureSensor.Tizen.Wearable.Controls"
+                xmlns:enums="clr-namespace:GestureSensor.Enums;assembly=GestureSensor"
+                xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="GestureSensor.Tizen.Wearable.Views.SingleGesturePage">
+
+    <cui:CirclePage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="WristUpBackgroundColor">#454545</Color>
+            <Color x:Key="WristUpForegroundColor">#cfc8f7</Color>
+
+            <Color x:Key="FaceDownBackgroundColor">#2b3512</Color>
+            <Color x:Key="FaceDownForegroundColor">#e9ecbd</Color>
+
+            <Color x:Key="PickUpBackgroundColor">#394b66</Color>
+            <Color x:Key="PickUpForegroundColor">#8bbeb7</Color>
+        </ResourceDictionary>
+    </cui:CirclePage.Resources>
+
+    <cui:CirclePage.Content>
+        <StackLayout>
+            <Label Text="{Binding Title}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="CenterAndExpand"
+                   HeightRequest="30"
+                   FontSize="9"
+                   Margin="0, 59, 0, 0" >
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding Type}"
+                                 Value="{x:Static enums:GestureType.WristUp}">
+                        <Setter Property="TextColor"
+                                Value="{StaticResource WristUpForegroundColor}"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding Type}"
+                                 Value="{x:Static enums:GestureType.FaceDown}">
+                        <Setter Property="TextColor"
+                                Value="{StaticResource FaceDownForegroundColor}"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding Type}"
+                                 Value="{x:Static enums:GestureType.PickUp}">
+                        <Setter Property="TextColor"
+                                Value="{StaticResource PickUpForegroundColor}"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+            <controls:GestureImage VerticalOptions="Start"
+                                   HorizontalOptions="CenterAndExpand"
+                                   Margin="0, 41, 0, 0"
+                                   MinimumHeightRequest="132"
+                                   MinimumWidthRequest="100">
+                <controls:GestureImage.Triggers>
+                    <DataTrigger TargetType="controls:GestureImage"
+                                 Binding="{Binding Type}"
+                                 Value="{x:Static enums:GestureType.WristUp}">
+                        <Setter Property="IconBackgroundColor"
+                                Value="{StaticResource WristUpBackgroundColor}" />
+                        <Setter Property="IconColor"
+                                Value="{StaticResource WristUpForegroundColor}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="controls:GestureImage"
+                                 Binding="{Binding Type}"
+                                 Value="{x:Static enums:GestureType.FaceDown}">
+                        <Setter Property="IconBackgroundColor"
+                                Value="{StaticResource FaceDownBackgroundColor}" />
+                        <Setter Property="IconColor"
+                                Value="{StaticResource FaceDownForegroundColor}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="controls:GestureImage"
+                                 Binding="{Binding Type}"
+                                 Value="{x:Static enums:GestureType.PickUp}">
+                        <Setter Property="IconBackgroundColor"
+                                Value="{StaticResource PickUpBackgroundColor}" />
+                        <Setter Property="IconColor"
+                                Value="{StaticResource PickUpForegroundColor}" />
+                    </DataTrigger>
+                </controls:GestureImage.Triggers>
+            </controls:GestureImage>
+
+            <Label VerticalOptions="Start"
+                   HorizontalOptions="CenterAndExpand"
+                   Text="{Binding Count}"
+                   FontSize="8"
+                   HeightRequest="21">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding Type}"
+                                 Value="{x:Static enums:GestureType.WristUp}">
+                        <Setter Property="TextColor"
+                                Value="{StaticResource WristUpForegroundColor}"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding Type}"
+                                 Value="{x:Static enums:GestureType.FaceDown}">
+                        <Setter Property="TextColor"
+                                Value="{StaticResource FaceDownForegroundColor}"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding Type}"
+                                 Value="{x:Static enums:GestureType.PickUp}">
+                        <Setter Property="TextColor"
+                                Value="{StaticResource PickUpForegroundColor}"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+
+        </StackLayout>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>
