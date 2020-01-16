@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns:viewModels="clr-namespace:GestureSensor.ViewModels;assembly=GestureSensor"
+                xmlns:enums="clr-namespace:GestureSensor.Enums;assembly=GestureSensor"
+                xmlns:controls="clr-namespace:GestureSensor.Tizen.Wearable.Controls;assembly=GestureSensor.Tizen.Wearable"
+                x:Class="GestureSensor.Tizen.Wearable.Views.MainPage">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:MainViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Resources>
+        <ResourceDictionary>
+            <!--WristUp Styles-->
+            <Style x:Key="WristUpNormalStyle"
+                   TargetType="controls:GestureImage">
+                <Setter Property="IconColor"
+                        Value="#d3ebf6" />
+                <Setter Property="IconBackgroundColor"
+                        Value="#616f85" />
+            </Style>
+            <Style x:Key="WristUpActiveStyle"
+                   TargetType="controls:GestureImage">
+                <Setter Property="IconColor"
+                        Value="#cfc8f7" />
+                <Setter Property="IconBackgroundColor"
+                        Value="#454545" />
+            </Style>
+            <Style x:Key="WristUpPressedStyle"
+                   TargetType="controls:GestureImage">
+                <Setter Property="IconColor"
+                        Value="#61809e" />
+                <Setter Property="IconBackgroundColor"
+                        Value="#2a2a2a" />
+            </Style>
+            <Style x:Key="WristUpDisabledStyle"
+                   TargetType="controls:GestureImage"
+                   BasedOn="{StaticResource WristUpNormalStyle}">
+                <Setter Property="Opacity"
+                        Value="0.2" />
+            </Style>
+
+            <!--FaceDown Styles-->
+            <Style x:Key="FaceDownNormalStyle"
+                   TargetType="controls:GestureImage">
+                <Setter Property="IconColor"
+                        Value="#ced2a6" />
+                <Setter Property="IconBackgroundColor"
+                        Value="#555d41" />
+            </Style>
+            <Style x:Key="FaceDownActiveStyle"
+                   TargetType="controls:GestureImage">
+                <Setter Property="IconColor"
+                        Value="#e9ecbd" />
+                <Setter Property="IconBackgroundColor"
+                        Value="#2b3512" />
+            </Style>
+            <Style x:Key="FaceDownPressedStyle"
+                   TargetType="controls:GestureImage">
+                <Setter Property="IconColor"
+                        Value="#7d8250" />
+                <Setter Property="IconBackgroundColor"
+                        Value="#555d41" />
+            </Style>
+            <Style x:Key="FaceDownDisabledStyle"
+                   TargetType="controls:GestureImage"
+                   BasedOn="{StaticResource FaceDownNormalStyle}">
+                <Setter Property="Opacity"
+                        Value="0.2" />
+            </Style>
+
+            <!--PickUp Styles-->
+            <Style x:Key="PickUpNormalStyle"
+                   TargetType="controls:GestureImage">
+                <Setter Property="IconColor"
+                        Value="#a2cbc5" />
+                <Setter Property="IconBackgroundColor"
+                        Value="#6a6a6a" />
+            </Style>
+            <Style x:Key="PickUpActiveStyle"
+                   TargetType="controls:GestureImage">
+                <Setter Property="IconColor"
+                        Value="#8bbeb7" />
+                <Setter Property="IconBackgroundColor"
+                        Value="#394b66" />
+            </Style>
+            <Style x:Key="PickUpPressedStyle"
+                   TargetType="controls:GestureImage">
+                <Setter Property="IconColor"
+                        Value="#4c6763" />
+                <Setter Property="IconBackgroundColor"
+                        Value="#354245" />
+            </Style>
+            <Style x:Key="PickUpDisabledStyle"
+                   TargetType="controls:GestureImage"
+                   BasedOn="{StaticResource PickUpNormalStyle}">
+                <Setter Property="Opacity"
+                        Value="0.2" />
+            </Style>
+        </ResourceDictionary>
+    </cui:CirclePage.Resources>
+
+    <cui:CirclePage.Content>
+        <StackLayout Orientation="Vertical">
+
+            <controls:GestureImage VerticalOptions="Center"
+                                   HorizontalOptions="CenterAndExpand"
+                                   Margin="0, 30, 0, 0"
+                                   MinimumHeightRequest="132"
+                                   MinimumWidthRequest="100"
+                                   Text="WristUp"
+                                   PressCommand="{Binding WristUpPressed}"
+                                   ReleaseCommand="{Binding WristUpReleased}"
+                                   Command="{Binding WristUpTapped}">
+                <controls:GestureImage.Triggers>
+                    <DataTrigger TargetType="controls:GestureImage"
+                                 Binding="{Binding WristUpState}"
+                                 Value="{x:Static enums:GestureState.Normal}">
+                        <Setter Property="Style"
+                                Value="{StaticResource WristUpNormalStyle}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="controls:GestureImage"
+                                 Binding="{Binding WristUpState}"
+                                 Value="{x:Static enums:GestureState.Active}">
+                        <Setter Property="Style"
+                                Value="{StaticResource WristUpActiveStyle}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="controls:GestureImage"
+                                 Binding="{Binding WristUpState}"
+                                 Value="{x:Static enums:GestureState.Pressed}">
+                        <Setter Property="Style"
+                                Value="{StaticResource WristUpPressedStyle}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="controls:GestureImage"
+                                 Binding="{Binding WristUpState}"
+                                 Value="{x:Static enums:GestureState.Disabled}">
+                        <Setter Property="Style"
+                                Value="{StaticResource WristUpDisabledStyle}" />
+                    </DataTrigger>
+                </controls:GestureImage.Triggers>
+            </controls:GestureImage>
+
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="Center"
+                         Margin="55, 0, 0, 0"
+                         Spacing="50">
+
+                <controls:GestureImage HorizontalOptions="Center"
+                                       MinimumHeightRequest="132"
+                                       MinimumWidthRequest="100"
+                                       Text="FaceDown"
+                                       PressCommand="{Binding FaceDownPressed}"
+                                       ReleaseCommand="{Binding FaceDownReleased}"
+                                       Command="{Binding FaceDownTapped}">
+                    <controls:GestureImage.Triggers>
+                        <DataTrigger TargetType="controls:GestureImage"
+                                     Binding="{Binding FaceDownState}"
+                                     Value="{x:Static enums:GestureState.Normal}">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FaceDownNormalStyle}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="controls:GestureImage"
+                                     Binding="{Binding FaceDownState}"
+                                     Value="{x:Static enums:GestureState.Active}">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FaceDownActiveStyle}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="controls:GestureImage"
+                                     Binding="{Binding FaceDownState}"
+                                     Value="{x:Static enums:GestureState.Pressed}">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FaceDownPressedStyle}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="controls:GestureImage"
+                                     Binding="{Binding FaceDownState}"
+                                     Value="{x:Static enums:GestureState.Disabled}">
+                            <Setter Property="Style"
+                                    Value="{StaticResource FaceDownDisabledStyle}" />
+                        </DataTrigger>
+                    </controls:GestureImage.Triggers>
+                </controls:GestureImage>
+
+                <controls:GestureImage HorizontalOptions="Center"
+                                       MinimumHeightRequest="132"
+                                       MinimumWidthRequest="100"
+                                       Text="PickUp"
+                                       PressCommand="{Binding PickUpPressed}"
+                                       ReleaseCommand="{Binding PickUpReleased}"
+                                       Command="{Binding PickUpTapped}">
+                    <controls:GestureImage.Triggers>
+                        <DataTrigger TargetType="controls:GestureImage"
+                                     Binding="{Binding PickUpState}"
+                                     Value="{x:Static enums:GestureState.Normal}">
+                            <Setter Property="Style"
+                                    Value="{StaticResource PickUpNormalStyle}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="controls:GestureImage"
+                                     Binding="{Binding PickUpState}"
+                                     Value="{x:Static enums:GestureState.Active}">
+                            <Setter Property="Style"
+                                    Value="{StaticResource PickUpActiveStyle}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="controls:GestureImage"
+                                     Binding="{Binding PickUpState}"
+                                     Value="{x:Static enums:GestureState.Pressed}">
+                            <Setter Property="Style"
+                                    Value="{StaticResource PickUpPressedStyle}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="controls:GestureImage"
+                                     Binding="{Binding PickUpState}"
+                                     Value="{x:Static enums:GestureState.Disabled}">
+                            <Setter Property="Style"
+                                    Value="{StaticResource PickUpDisabledStyle}" />
+                        </DataTrigger>
+                    </controls:GestureImage.Triggers>
+                </controls:GestureImage>
+
+            </StackLayout>
+        </StackLayout>
+
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>
