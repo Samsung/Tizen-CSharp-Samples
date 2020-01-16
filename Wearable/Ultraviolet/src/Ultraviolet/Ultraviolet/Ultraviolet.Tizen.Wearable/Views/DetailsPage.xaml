@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns:behaviors="clr-namespace:Ultraviolet.Tizen.Wearable.Behaviors"
+                xmlns:converters="clr-namespace:Ultraviolet.Converters;assembly=Ultraviolet"
+                x:Class="Ultraviolet.Tizen.Wearable.Views.DetailsPage"
+                x:Name="Root"
+                RotaryFocusObject="{x:Reference scrollView}">
+
+    <cui:CirclePage.Resources>
+        <ResourceDictionary>
+            <converters:UvLevelToName x:Key="ToName" />
+            <converters:UvLevelToColor x:Key="ToColor" />
+            <converters:UvLevelToDescription x:Key="ToDescription" />
+        </ResourceDictionary>
+    </cui:CirclePage.Resources>
+
+    <cui:CirclePage.Content>
+        <AbsoluteLayout>
+
+            <cui:CircleScrollView x:Name="scrollView"
+                                  AbsoluteLayout.LayoutFlags="XProportional"
+                                  AbsoluteLayout.LayoutBounds=".5, 0, 360, 360"
+                                  VerticalScrollBarVisibility="Never">
+                <cui:CircleScrollView.Content>
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                 VerticalOptions="FillAndExpand">
+                        <Label Text="{Binding BindingContext.Level, Source={x:Reference Root}, Converter={StaticResource ToName}}"
+                               TextColor="{Binding BindingContext.Level, Source={x:Reference Root}, Converter={StaticResource ToColor}}"
+                               FontSize="8"
+                               FontAttributes="Bold"
+                               Margin="0, 50, 0, 0"
+                               HorizontalTextAlignment="Center"
+                               HorizontalOptions="CenterAndExpand" />
+                        <Label Text="{Binding BindingContext.Level, Source={x:Reference Root}, Converter={StaticResource ToDescription}}"
+                               TextColor="#FFFFFF"
+                               FontSize="8"
+                               LineBreakMode="WordWrap"
+                               WidthRequest="260"
+                               Margin="0, 10, 0, 100"
+                               HorizontalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </cui:CircleScrollView.Content>
+            </cui:CircleScrollView>
+
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 360, 360"
+                   InputTransparent="True">
+                <Image.Behaviors>
+                    <behaviors:RingBehavior Level="{Binding BindingContext.Level, Source={x:Reference Root}}"
+                                            ImageSource="{Binding Source, Mode=OneWayToSource}" />
+                </Image.Behaviors>
+            </Image>
+
+        </AbsoluteLayout>
+    </cui:CirclePage.Content>
+</cui:CirclePage>

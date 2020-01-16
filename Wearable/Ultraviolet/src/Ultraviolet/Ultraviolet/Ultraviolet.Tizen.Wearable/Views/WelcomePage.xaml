@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:viewModels="clr-namespace:Ultraviolet.ViewModels;assembly=Ultraviolet"
+                x:Class="Ultraviolet.Tizen.Wearable.Views.WelcomePage">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:WelcomeViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Command="{Binding StartCommand}"
+                              BackgroundColor="#2a537d"
+                              Text="START" />
+    </cui:CirclePage.ActionButton>
+
+    <cui:CirclePage.Content>
+        <StackLayout HorizontalOptions="Center"
+                     VerticalOptions="Start"
+                     Margin="30, 33"
+                     Spacing="12">
+            <Image Source="images/icon.png" />
+            <Label Text="Welcome"
+                   TextColor="#fafafa"
+                   HorizontalOptions="Center" />
+            <Label Text="Ultraviolet app is a simple tool for measuring UV index."
+                   TextColor="#fafafa"
+                   FontSize="7"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>

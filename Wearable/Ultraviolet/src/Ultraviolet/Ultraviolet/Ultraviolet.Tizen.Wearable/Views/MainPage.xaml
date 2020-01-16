@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:viewModels="clr-namespace:Ultraviolet.ViewModels;assembly=Ultraviolet"
+                xmlns:behaviors="clr-namespace:Ultraviolet.Tizen.Wearable.Behaviors"
+                xmlns:converters="clr-namespace:Ultraviolet.Converters;assembly=Ultraviolet"
+                x:Class="Ultraviolet.Tizen.Wearable.Views.MainPage"
+                x:Name="Root">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:MainViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Resources>
+        <ResourceDictionary>
+            <converters:UvLevelToIndex x:Key="ToIndex" />
+            <converters:UvLevelToName x:Key="ToName" />
+            <converters:UvLevelToColor x:Key="ToColor" />
+        </ResourceDictionary>
+    </cui:CirclePage.Resources>
+
+    <cui:CirclePage.Content>
+        <AbsoluteLayout>
+            <Image Source="images/background.png"
+                   AbsoluteLayout.LayoutBounds="0, 0, 360, 360" />
+
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 360, 360">
+                <Image.Behaviors>
+                    <behaviors:RingBehavior Level="{Binding BindingContext.Level, Source={x:Reference Root}}"
+                                            ImageSource="{Binding Source, Mode=OneWayToSource}" />
+                </Image.Behaviors>
+            </Image>
+
+            <Label Text="{Binding BindingContext.Level, Source={x:Reference Root}, Converter={StaticResource ToName}}"
+                   TextColor="{Binding BindingContext.Level, Source={x:Reference Root}, Converter={StaticResource ToColor}}"
+                   FontSize="8"
+                   FontAttributes="Bold"
+                   AbsoluteLayout.LayoutFlags="XProportional"
+                   AbsoluteLayout.LayoutBounds=".5, 52, AutoSize, AutoSize" />
+
+            <StackLayout AbsoluteLayout.LayoutFlags="XProportional"
+                         AbsoluteLayout.LayoutBounds=".5, 82, AutoSize, AutoSize"
+                         Orientation="Horizontal">
+                <Label Text="UV index "
+                       TextColor="#fafafa"
+                       FontSize="7" />
+                <Label Text="{Binding BindingContext.Level, Source={x:Reference Root}, Converter={StaticResource ToIndex}}"
+                       TextColor="#FFFFFF"
+                       FontSize="7"
+                       FontAttributes="Bold" />
+            </StackLayout>
+
+            <Image HorizontalOptions="Center"
+                   AbsoluteLayout.LayoutFlags="XProportional"
+                   AbsoluteLayout.LayoutBounds=".5, 128, AutoSize, AutoSize">
+                <Image.Behaviors>
+                    <behaviors:IndicatorBehavior Level="{Binding BindingContext.Level, Source={x:Reference Root}}"
+                                                 ImageSource="{Binding Source, Mode=OneWayToSource}" />
+                </Image.Behaviors>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BindingContext.ShowDetailsPageCommand, Source={x:Reference Root}}" />
+                </Image.GestureRecognizers>
+            </Image>
+
+        </AbsoluteLayout>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>
