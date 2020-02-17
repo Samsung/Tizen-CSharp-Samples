@@ -1,6 +1,3 @@
-using System;
-using Xamarin.Forms;
-
 namespace DynamicListView
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
