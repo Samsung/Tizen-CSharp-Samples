@@ -1,0 +1,43 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:DynamicListView.ViewModels"
+             x:Class="DynamicListView.Views.ListViewDemoPageView">
+    <ContentPage.BindingContext>
+        <viewModel:ListViewDemoPageViewModel />
+    </ContentPage.BindingContext>
+    
+    <StackLayout BackgroundColor="White"
+               Padding="25">
+        <SearchBar Text="{Binding SearchText}" />
+        <Grid>
+            <Button Text="Sort by Name"
+                    Grid.Column="0" 
+                    Command="{Binding OnSortButtonClick}"
+                    CommandParameter="Name"/>
+            <Button Text="Sort by Age"
+                    Grid.Column="1" 
+                    Command="{Binding OnSortButtonClick}"
+                    CommandParameter="Age"/>
+            <Button Text="Sort by Location"
+                    Grid.Column="2" 
+                    Command="{Binding OnSortButtonClick}"
+                    CommandParameter="Location"/>
+        </Grid>
+        <ListView ItemsSource="{Binding Persons}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label Text="{Binding Name}" 
+                                   Grid.Column="0"/>
+                            <Label Text="{Binding Age}" 
+                                   Grid.Column="1"/>
+                            <Label Text="{Binding Location}" 
+                                   Grid.Column="2"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>            
+        </ListView>
+    </StackLayout>
+</ContentPage>
