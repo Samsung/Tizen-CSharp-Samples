@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="SmartLevel.MainPage">
+    <c:CirclePage.Content>
+        <AbsoluteLayout>
+            <Image Source="background.png"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, 360, 360" />
+            <Image Source="ball.png"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, 40, 40"
+                   x:Name="ball" />
+        </AbsoluteLayout>
+    </c:CirclePage.Content>
+</c:CirclePage>
