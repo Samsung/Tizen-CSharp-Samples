@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TextClassification.Views.UserInput"
+             Title="TextClassification .NET" >
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                <Grid Padding="100,50,100,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="80" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize = "20" Text="Enter your movie comment :" />
+                    <Entry Grid.Row="1" Grid.Column="0" Placeholder="Comment"
+                 TextChanged="UserComment"
+                 Keyboard="Default"
+                 HorizontalOptions="FillAndExpand"
+                 ClearButtonVisibility="WhileEditing"
+                 BackgroundColor="GhostWhite"/>
+                </Grid>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*" />
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="1" Grid.Column="1"
+                    Text="Get Result"
+                    Clicked="CreateClicked"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    Font="Large" />
+                </Grid>
+
+                <Label TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="  Your comment :&#10;" TextColor="Black" FontSize = "20" TextDecorations="Underline"/>
+                            <Span x:Name="InputLabel" Text="" TextColor="Black" FontSize = "20"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Text=" &#10;Result" TextColor="Black" LineBreakMode="NoWrap" FontSize = "22" />
+
+                <Label TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Used API : " FontAttributes="Bold" FontSize="20"/>
+                            <Span x:Name="API" Text="" FontSize="20" />
+                            <Span Text="&#10;Negative : " FontAttributes="Bold" FontSize="20"/>
+                            <Span x:Name="Out_neg" Text="" FontSize="20" />
+                            <Span Text="&#10;Positive : " FontAttributes="Bold" FontSize="20"/>
+                            <Span x:Name="Out_pos" Text="" FontSize="20"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+  
