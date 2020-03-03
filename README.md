@@ -3,15 +3,18 @@ Tizen C# Samples for Mobile, Wearable, and TV profiles.
 
 ## Tools for samples
 
-### Visual Studio 2017
-* [Download Visual Studio 2017](https://www.visualstudio.com/downloads/)
+### Visual Studio 2019
+* [Download Visual Studio 2019](https://www.visualstudio.com/downloads/)
 
 ### Visual Studio Tools for Tizen
 * [Download Plugin](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen)
 
 ### Reference
-* [Tizen .NET](https://developer.tizen.org/development/api-reference/.net-application)
-* [TizenFX API Reference](https://developer.tizen.org/dev-guide/csapi/index.html)
+* [Tizen .NET Application](https://docs.tizen.org/application/dotnet/index)
+* [Tizen .NET API Reference](https://docs.tizen.org/application/dotnet/api/overview)
+  - https://samsung.github.io/TizenFX/latest
+* [Tizen CircularUI](https://samsung.github.io/Tizen.CircularUI)
+* [Tizen .NET Forum](https://developer.tizen.org/forums/tizen-.net/active)
 
 ### Sample structure
 ```
@@ -31,5 +34,5 @@ Tizen C# Samples for Mobile, Wearable, and TV profiles.
 
 ### Branch policy
 
-* master: ready applications for Tizen 4.0 M2
+* master: ready applications for Tizen 5.5
 * dev: for development
