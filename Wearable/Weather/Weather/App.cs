@@ -15,6 +15,7 @@
 using Weather.Config;
 using Weather.Views;
 using Xamarin.Forms;
+using Tizen.Wearable.CircularUI.Forms;
 
 namespace Weather
 {

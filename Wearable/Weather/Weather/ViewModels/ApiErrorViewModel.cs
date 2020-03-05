@@ -38,7 +38,7 @@ namespace Weather.ViewModels
         /// <summary>
         /// Gets command that exits application.
         /// </summary>
-        public Command ExitAppCommand { get; } = new Command(() => { Xamarin.Forms.Platform.Tizen.Forms.Context.Exit();  });
+        public Command ExitAppCommand { get; } = new Command(() => { Forms.Context.Exit();  });
 
         #endregion
     }

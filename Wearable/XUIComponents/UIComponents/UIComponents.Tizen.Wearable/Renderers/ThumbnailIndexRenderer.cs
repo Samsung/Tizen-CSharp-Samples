@@ -17,9 +17,9 @@
 using System;
 using UIComponents.Extensions;
 using UIComponents.Tizen.Wearable.Renderers;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using ElmSharp;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 using System.Collections.Generic;
 
 [assembly: ExportRenderer(typeof(ThumbnailIndex), typeof(ThumbnailIndexRenderer))]
@@ -64,7 +64,7 @@ namespace UIComponents.Tizen.Wearable.Renderers
             Console.WriteLine("Initialize");
             _isFirstItem = true;
 
-            _pbox = new PaddingBox(TForms.NativeParent)
+            _pbox = new PaddingBox(Forms.NativeParent)
             {
                 Padding = new Thickness { Left = 0, Right = 0, Top = 22, Bottom = 0 },
                 HeaderSize = new ElmSharp.Size(200, 19),

@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+using System;
+using Xamarin.Forms;
+
 namespace XStopWatch
 {
     /// <summary>
@@ -24,7 +27,6 @@ namespace XStopWatch
     /// </summary>
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
-
         /// <summary>
         /// Called when this application is launched.
         /// </summary>
@@ -38,11 +40,12 @@ namespace XStopWatch
             stopwatch.AlwaysOnRequest += (s, e) => MainWindow.SetAlwaysOn(e);
         }
 
+
         static void Main(string[] args)
         {
             var app = new Program();
             // It's mandatory to initialize Xamarin.Forms
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             // It's mandatory to initialize Circular UI for using Tizen Wearable Circular UI API
             global::Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);

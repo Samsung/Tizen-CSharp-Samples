@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using Xamarin.Forms;
+
 namespace UIComponents.Tizen.Wearable
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -30,7 +32,7 @@ namespace UIComponents.Tizen.Wearable
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             // It's mandatory to initialize Circular UI for using Tizen Wearable Circular UI API
             global::Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);

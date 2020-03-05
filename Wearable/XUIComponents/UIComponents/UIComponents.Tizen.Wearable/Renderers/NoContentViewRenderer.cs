@@ -18,10 +18,10 @@ using System;
 using System.ComponentModel;
 using UIComponents.Extensions;
 using UIComponents.Tizen.Wearable.Renderers;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using ELayout = ElmSharp.Layout;
 using EBackgroundOptions = ElmSharp.BackgroundOptions;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 
 [assembly: ExportRenderer(typeof(NoContentView), typeof(NoContentViewRenderer))]
 namespace UIComponents.Tizen.Wearable.Renderers
@@ -46,7 +46,7 @@ namespace UIComponents.Tizen.Wearable.Renderers
             Console.WriteLine("OnElementChanged");
             if (Control == null)
             {
-                _layout = new ELayout(TForms.NativeParent);
+                _layout = new ELayout(Forms.NativeParent);
                 _layout.SetTheme("layout", "nocontents", "default");
                 var rect = new ElmSharp.Rectangle(_layout);
                 rect.Show();

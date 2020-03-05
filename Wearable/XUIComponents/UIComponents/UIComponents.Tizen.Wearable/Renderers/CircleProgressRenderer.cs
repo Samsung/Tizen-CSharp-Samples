@@ -18,9 +18,10 @@ using System;
 using System.ComponentModel;
 using UIComponents.Extensions;
 using UIComponents.Tizen.Wearable.Renderers;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using EProgressBar = ElmSharp.ProgressBar;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
+
 
 [assembly: ExportRenderer(typeof(CircleProgress), typeof(CircleProgressRenderer))]
 namespace UIComponents.Tizen.Wearable.Renderers
@@ -42,7 +43,7 @@ namespace UIComponents.Tizen.Wearable.Renderers
         {
             if (Control == null)
             {
-                var progressBar = new EProgressBar(TForms.NativeParent);
+                var progressBar = new EProgressBar(Forms.NativeParent);
                 SetNativeControl(progressBar);
             }
 

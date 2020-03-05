@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using Xamarin.Forms;
+
 namespace CircularUIMediaPlayer
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -28,7 +30,7 @@ namespace CircularUIMediaPlayer
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             global::Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }

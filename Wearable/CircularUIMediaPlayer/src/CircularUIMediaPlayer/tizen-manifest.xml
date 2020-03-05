@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest package="org.tizen.example.CircularUIMediaPlayer" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
     <profile name="wearable" />
-    <ui-application appid="org.tizen.example.CircularUIMediaPlayer" exec="CircularUIMediaPlayer.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
-        <label>Video Player</label>
+    <ui-application appid="org.tizen.example.CircularUIMediaPlayer" exec="CircularUIMediaPlayer.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" splash-screen-display="false" launch_mode="single">
+        <label>VideoPlayer</label>
         <icon>CircularUIMediaPlayer.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
         <splash-screens />
@@ -12,5 +12,6 @@
         <privilege>http://tizen.org/privilege/internet</privilege>
         <privilege>http://tizen.org/privilege/display</privilege>
     </privileges>
+    <dependencies />
     <provides-appdefined-privileges />
 </manifest>
