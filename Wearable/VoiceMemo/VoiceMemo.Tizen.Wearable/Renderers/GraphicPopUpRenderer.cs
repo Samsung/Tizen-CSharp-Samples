@@ -18,11 +18,10 @@ using ElmSharp;
 using System;
 using VoiceMemo.Tizen.Wearable.Renderers;
 using VoiceMemo.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
-using XForms = Xamarin.Forms;
 
-[assembly: XForms.Dependency(typeof(GraphicPopUpRenderer))]
+[assembly: Xamarin.Forms.Dependency(typeof(GraphicPopUpRenderer))]
 
 namespace VoiceMemo.Tizen.Wearable.Renderers
 {
@@ -36,14 +35,14 @@ namespace VoiceMemo.Tizen.Wearable.Renderers
         public GraphicPopUpRenderer()
         {
             Console.WriteLine("GraphicPopUpRenderer()  GetHashCode:" + this.GetHashCode());
-            _popUp = new Popup(TForms.NativeParent)
+            _popUp = new Popup(Forms.NativeParent)
             {
                 Style = "toast/circle",
                 Orientation = PopupOrientation.Center,
                 AllowEvents = true,
             };
             var path = ResourcePath.GetPath("tw_ic_popup_btn_check.png");
-            var image = new Image(_popUp);
+            var image = new ElmSharp.Image(_popUp);
             image.LoadAsync(path);
             image.Show();
             _popUp.SetPartContent("toast,icon", image);

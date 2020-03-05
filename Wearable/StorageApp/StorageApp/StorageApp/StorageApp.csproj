@@ -1,10 +1,10 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
   <PropertyGroup>
     <TargetFramework>tizen50</TargetFramework>
   </PropertyGroup>
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.2.0" />
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.4.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="MainPage.xaml">

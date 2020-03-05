@@ -17,6 +17,7 @@ using System;
 using ReverseGeocoding.Tizen.Wearable.Controls;
 using ReverseGeocoding.Tizen.Wearable.Renderers;
 using Tizen.Maps;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 
 [assembly: ExportRenderer(typeof(TizenMapView), typeof(TizenMapViewRenderer))]

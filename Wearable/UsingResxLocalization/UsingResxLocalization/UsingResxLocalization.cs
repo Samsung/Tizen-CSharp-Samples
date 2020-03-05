@@ -1,3 +1,6 @@
+
+using Xamarin.Forms;
+
 namespace UsingResxLocalization
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -15,7 +18,7 @@ namespace UsingResxLocalization
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             // Initialize to use Tizen.Wearable.CircularUI.Forms API.
             Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);

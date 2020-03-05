@@ -4,7 +4,7 @@ using UsingResxLocalization.ViewExtensions;
 using UsingResxLocalization.Renderers;
 using Xamarin.Forms.Platform.Tizen;
 using ELayout = ElmSharp.Layout;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
+using Xamarin.Forms;
 
 [assembly: ExportRenderer(typeof(NoContentView), typeof(NoContentViewRenderer))]
 
@@ -29,7 +29,7 @@ namespace UsingResxLocalization.Renderers
         {
             if (Control == null)
             {
-                _layout = new ELayout(TForms.NativeParent);
+                _layout = new ELayout(Forms.NativeParent);
                 _layout.SetTheme("layout", "nocontents", "default");
                 //var rect = new ElmSharp.Rectangle(_layout);
                 //rect.Show();

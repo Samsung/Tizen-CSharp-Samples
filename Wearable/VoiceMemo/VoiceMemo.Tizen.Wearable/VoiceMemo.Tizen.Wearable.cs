@@ -15,6 +15,7 @@
  */
 
 using System;
+using Xamarin.Forms;
 using Tizen.Applications;
 using Tizen.Wearable.CircularUI.Forms.Renderer;
 using VoiceMemo.Tizen.Wearable.Services;
@@ -49,7 +50,7 @@ namespace VoiceMemo.Tizen.Wearable
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             // It's mandatory to initialize Circular UI for using Tizen Wearable Circular UI API
             FormsCircularUI.Init();
             app.Run(args);

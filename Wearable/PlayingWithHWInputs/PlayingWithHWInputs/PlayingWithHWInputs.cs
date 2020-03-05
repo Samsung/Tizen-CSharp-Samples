@@ -1,4 +1,5 @@
 using System;
+using Xamarin.Forms;
 
 namespace PlayingWithHWInputs
 {
@@ -17,9 +18,7 @@ namespace PlayingWithHWInputs
         static void Main(string[] args)
         {
             var app = new Program();
-            //Program.WindowWidth = app.MainWindow.MinimumWidth;
-            //Program.WindowHeight = app.MainWindow.MinimumHeight;
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }

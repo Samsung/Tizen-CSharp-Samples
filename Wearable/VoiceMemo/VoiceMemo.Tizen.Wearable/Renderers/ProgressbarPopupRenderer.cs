@@ -18,10 +18,9 @@ using ElmSharp;
 using System;
 using VoiceMemo.Tizen.Wearable.Renderers;
 using VoiceMemo.Views;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
-using XForms = Xamarin.Forms;
+using Xamarin.Forms;
 
-[assembly: XForms.Dependency(typeof(ProgressbarPopupRenderer))]
+[assembly: Xamarin.Forms.Dependency(typeof(ProgressbarPopupRenderer))]
 
 namespace VoiceMemo.Tizen.Wearable.Renderers
 {
@@ -29,15 +28,15 @@ namespace VoiceMemo.Tizen.Wearable.Renderers
     {
         Popup _popUp;
         Popup _popUp2;
-        Layout _layout;
-        ProgressBar _progressbar;
+        ElmSharp.Layout _layout;
+        ElmSharp.ProgressBar _progressbar;
         bool _isDisposed = false;
         public event EventHandler BackButtonPressed;
         public event EventHandler TimedOut;
 
         public ProgressbarPopupRenderer()
         {
-            _popUp = new Popup(TForms.NativeParent)
+            _popUp = new Popup(Forms.NativeParent)
             {
                 Style = "circle",
                 Orientation = PopupOrientation.Center,
@@ -47,13 +46,13 @@ namespace VoiceMemo.Tizen.Wearable.Renderers
             _popUp.Dismissed += _popUp_Dismissed;
             _popUp.ShowAnimationFinished += _popUp_ShowAnimationFinished;
 
-            _layout = new Layout(_popUp);
+            _layout = new ElmSharp.Layout(_popUp);
             _layout.SetTheme("layout", "popup", "content/circle");
             _popUp.SetContent(_layout);
 
-            _progressbar = new ProgressBar(TForms.NativeParent)
+            _progressbar = new ElmSharp.ProgressBar(Forms.NativeParent)
             {
-                Color = Color.FromRgb(77, 207, 255),
+                Color = ElmSharp.Color.FromRgb(77, 207, 255),
                 //BackgroundColor = Color.FromRgb(100, 255, 0),
                 //SpanSize = 50,
                 Style = "process",
@@ -63,7 +62,7 @@ namespace VoiceMemo.Tizen.Wearable.Renderers
             _popUp.SetPartContent("elm.swallow.progress", _progressbar);
 
             ///////////////
-            _popUp2 = new Popup(TForms.NativeParent)
+            _popUp2 = new Popup(Forms.NativeParent)
             {
                 Style = "toast/circle/check",
                 Orientation = PopupOrientation.Bottom,

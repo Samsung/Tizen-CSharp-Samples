@@ -1,4 +1,5 @@
 using System;
+using Xamarin.Forms;
 
 namespace SampleTelephony.Tizen.Wearable
 {
@@ -13,7 +14,7 @@ namespace SampleTelephony.Tizen.Wearable
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             global::Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }

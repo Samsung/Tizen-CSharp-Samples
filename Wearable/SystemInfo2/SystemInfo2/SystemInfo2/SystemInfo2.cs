@@ -13,7 +13,7 @@
 //limitations under the License.
 
 using System;
-
+using Xamarin.Forms;
 namespace SystemInfo
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -28,7 +28,7 @@ namespace SystemInfo
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }

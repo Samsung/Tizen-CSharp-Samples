@@ -324,3 +324,4 @@ ASALocalRun/
 # Stylecop files
 Settings.StyleCop
 StyleCop.Cache
+*.lnk
