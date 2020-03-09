@@ -1,3 +1,5 @@
+using Xamarin.Forms;
+
 namespace ImageReader
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -16,7 +18,7 @@ namespace ImageReader
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             // Initialize to use Tizen.Wearable.CircularUI.Forms APIs
             Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);

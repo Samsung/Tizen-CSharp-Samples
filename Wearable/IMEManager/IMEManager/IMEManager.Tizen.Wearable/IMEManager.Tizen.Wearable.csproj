@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
 
   <!-- Property Group for Tizen50 Project -->
   <PropertyGroup>
@@ -18,19 +18,13 @@
     <Folder Include="res\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.4.0" />
+  </ItemGroup>
+
   
   <ItemGroup>
     <ProjectReference Include="..\IMEManager\IMEManager.csproj" />
   </ItemGroup>
   
-
-  <!-- Include Nuget Package for Tizen Project building -->
-  <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
-  </ItemGroup>
-
 </Project>

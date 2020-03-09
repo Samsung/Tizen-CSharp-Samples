@@ -18,7 +18,7 @@ using MediaContent.Renderers;
 using Xamarin.Forms.Platform.Tizen;
 using TizenColor = ElmSharp.Color;
 
-[assembly: ExportRenderer(typeof(ImageButton), typeof(MediaContent.Renderers.ImageButtonRenderer))]
+[assembly: Xamarin.Forms.ExportRenderer(typeof(ImageButton), typeof(MediaContent.Renderers.ImageButtonRenderer))]
 
 namespace MediaContent.Renderers
 {

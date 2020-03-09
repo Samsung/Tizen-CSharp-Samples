@@ -12,6 +12,8 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+using Xamarin.Forms;
+
 namespace MapsView
 {
     class Program : Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -26,7 +28,7 @@ namespace MapsView
         static void Main(string[] args)
         {
             var program = new Program();
-            Xamarin.Forms.Platform.Tizen.Forms.Init(program);
+            Forms.Init(program);
             // Initialize CircularUI for Tizen.Wearable in-app support
             Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             // Make sure to initialize maps before using them 

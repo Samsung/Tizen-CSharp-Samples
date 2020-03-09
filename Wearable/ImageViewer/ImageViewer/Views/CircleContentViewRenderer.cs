@@ -17,6 +17,7 @@
 using ImageViewer.Views;
 using System;
 using System.ComponentModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 
 

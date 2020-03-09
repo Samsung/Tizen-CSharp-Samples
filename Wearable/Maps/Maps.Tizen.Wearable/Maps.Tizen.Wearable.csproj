@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
 
   <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
@@ -18,12 +18,8 @@
     <Folder Include="res\" />
   </ItemGroup>
 
-  <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
+    <PackageReference Include="Tizen.NET" Version="6.0.0.14995" />
   </ItemGroup>
 
 </Project>

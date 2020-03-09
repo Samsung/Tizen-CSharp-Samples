@@ -12,6 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+using Xamarin.Forms;
 
 namespace Lescanner
 {
@@ -28,7 +29,7 @@ namespace Lescanner
         {
             var app = new Program();
 
-            Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }

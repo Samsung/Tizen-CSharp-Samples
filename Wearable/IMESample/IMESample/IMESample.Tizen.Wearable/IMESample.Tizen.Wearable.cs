@@ -15,6 +15,7 @@
  */
 
 using System;
+using Xamarin.Forms;
 using Tizen;
 using Tizen.Uix.InputMethod;
 
@@ -275,8 +276,9 @@ namespace IMESample.Tizen.Wearable
                 InputMethodEditor.Run(Create, Terminate, Show, Hide);
                 app = new Program();
                 // If there is no code below, the IME's window will be circular.
-                Xamarin.Forms.Platform.Tizen.Forms.SetFlags("LightweightPlatform_Experimental");
-                global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+                Forms.SetFlags("LightweightPlatform_Experimental");
+                Forms.Init(app);
+                global::Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
                 app.Run(args);
             }
             catch (Exception e)
