@@ -16,6 +16,7 @@
 using FindPlace.Tizen.Wearable.Controls;
 using FindPlace.Tizen.Wearable.Renderers;
 using Tizen.Maps;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 
 [assembly: ExportRenderer(typeof(TizenMapView), typeof(TizenMapViewRenderer))]

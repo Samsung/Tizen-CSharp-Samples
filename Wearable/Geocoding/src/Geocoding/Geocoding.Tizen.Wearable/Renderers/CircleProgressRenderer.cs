@@ -16,11 +16,11 @@
 using ElmSharp;
 using Geocoding.Tizen.Wearable.Controls;
 using Geocoding.Tizen.Wearable.Renderers;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using EProgressBar = ElmSharp.ProgressBar;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 
-[assembly: ExportRenderer(typeof(CircleProgress), typeof(CircleProgressRenderer))]
+[assembly: Xamarin.Forms.ExportRenderer(typeof(CircleProgress), typeof(CircleProgressRenderer))]
 namespace Geocoding.Tizen.Wearable.Renderers
 {
     /// <summary>
@@ -38,14 +38,14 @@ namespace Geocoding.Tizen.Wearable.Renderers
         {
             if (Control == null)
             {
-                var progressBar = new EProgressBar(TForms.NativeParent);
+                var progressBar = new EProgressBar(Forms.NativeParent);
                 SetNativeControl(progressBar);
             }
 
             if (e.NewElement != null)
             {
                 Control.Style = "process/popup/small";
-                Control.Color = Color.FromHex("#197847");
+                Control.Color = ElmSharp.Color.FromHex("#197847");
                 Control.Show();
                 Control.PlayPulse();
             }

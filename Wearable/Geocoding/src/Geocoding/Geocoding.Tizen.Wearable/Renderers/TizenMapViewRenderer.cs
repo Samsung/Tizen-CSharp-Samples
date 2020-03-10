@@ -17,9 +17,10 @@ using System;
 using Geocoding.Tizen.Wearable.Controls;
 using Geocoding.Tizen.Wearable.Renderers;
 using Tizen.Maps;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 
-[assembly: ExportRenderer(typeof(TizenMapView), typeof(TizenMapViewRenderer))]
+[assembly: Xamarin.Forms.ExportRenderer(typeof(TizenMapView), typeof(TizenMapViewRenderer))]
 namespace Geocoding.Tizen.Wearable.Renderers
 {
     /// <summary>

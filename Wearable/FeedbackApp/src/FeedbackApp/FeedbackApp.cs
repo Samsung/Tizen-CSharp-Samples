@@ -12,6 +12,7 @@
 //WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
+using Xamarin.Forms;
 
 namespace FeedbackApp
 {
@@ -35,7 +36,7 @@ namespace FeedbackApp
         static void Main(string[] args)
         {
             var app = new Program();
-            Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }
