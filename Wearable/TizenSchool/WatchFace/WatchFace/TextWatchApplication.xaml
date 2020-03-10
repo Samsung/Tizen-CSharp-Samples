@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WatchFace.TextWatchApplication">
+    <Application.MainPage>
+        <ContentPage>
+            <AbsoluteLayout>
+                <Image AbsoluteLayout.LayoutBounds="0, 0, 360, 360"
+                       Source="background.png" />
+
+                <Image AbsoluteLayout.LayoutBounds="0, 0, 360, 360"
+                       Source="satellite.png"
+                       Rotation="{Binding SecondsRotation}" />
+
+                <Label AbsoluteLayout.LayoutBounds="0, 0, 360, 360"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontAttributes="Bold"
+                       FontSize="24"
+                       TextColor="#FFFFFF"
+                       Text="{Binding Time, StringFormat='{}{0:HH:mm}'}" />
+
+                <Label AbsoluteLayout.LayoutBounds="150, 269, 60, 25"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontSize="6"
+                       TextColor="#C0D5F4"
+                       Text="{Binding BatteryPercent, StringFormat='{0}%'}" />
+
+                <Image AbsoluteLayout.LayoutBounds="142, 275, 10, 13"
+                       Source="charging.png"
+                       IsVisible="{Binding IsCharging}" />
+            </AbsoluteLayout>
+        </ContentPage>
+    </Application.MainPage>
+</Application>
