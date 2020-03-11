@@ -15,6 +15,7 @@
  */
 
 using System;
+using Xamarin.Forms;
 using Tizen.Applications;
 using Tizen.Wearable.CircularUI.Forms.Renderer.Watchface;
 
@@ -110,7 +111,7 @@ namespace ClassicWatch
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             // It's mandatory to initialize Circular UI for using Tizen Wearable Circular UI API
             global::Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);

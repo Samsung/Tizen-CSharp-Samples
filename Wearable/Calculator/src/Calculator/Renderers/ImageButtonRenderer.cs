@@ -17,14 +17,13 @@ using Xamarin.Forms.Platform.Tizen;
 
 using Calculator.Controls;
 using Calculator.Renderers;
-
 using ElmSharp;
 using System;
 
 using TizenColor = ElmSharp.Color;
 using ImageButtonRenderer = Calculator.Renderers.ImageButtonRenderer;
 
-[assembly: ExportRenderer(typeof(ImageButton), typeof(ImageButtonRenderer))]
+[assembly: Xamarin.Forms.ExportRenderer(typeof(ImageButton), typeof(ImageButtonRenderer))]
 namespace Calculator.Renderers
 {
     /// <summary>

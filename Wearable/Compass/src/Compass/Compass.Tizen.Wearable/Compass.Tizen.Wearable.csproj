@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -18,21 +18,15 @@
     <Folder Include="res\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.4.0" />
+  </ItemGroup>
   
   <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
     <ProjectReference Include="..\Compass\Compass.csproj" />
   </ItemGroup>
-  
 
-  <!-- Include Nuget Package for Tizen Project building -->
-  <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
-  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\CompassPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

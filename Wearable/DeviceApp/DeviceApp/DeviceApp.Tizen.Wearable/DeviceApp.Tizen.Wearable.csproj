@@ -1,4 +1,4 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
 
   <!-- Property Group for Tizen50 Project -->
   <PropertyGroup>
@@ -16,6 +16,10 @@
   <ItemGroup>
     <Folder Include="lib\" />
     <Folder Include="res\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.4.0" />
   </ItemGroup>
 
   <ItemGroup>

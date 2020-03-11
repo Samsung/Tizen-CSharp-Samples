@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.2.0" />
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.4.0" />
   </ItemGroup>
 
   <ItemGroup>
