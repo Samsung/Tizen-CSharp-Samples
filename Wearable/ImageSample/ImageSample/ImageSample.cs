@@ -18,9 +18,9 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
+using Tizen.NUI.Components;
 using Tizen;
 
 namespace ImageSample
@@ -321,7 +321,7 @@ namespace ImageSample
             for (uint i = 0; i < mCaseCount; ++i)
             {
                 // Create a button with string.
-                PushButton pushButton = CreateButton(mCaseString[i], mNeedButton[i]);
+                var pushButton = CreateButton(mCaseString[i], mNeedButton[i]);
                 // Bind PushButton's click event to ButtonClick.
                 pushButton.TouchEvent += OnButtonTouched;
                 mButtonTableView.AddChild(pushButton, new TableView.CellPosition(0, i));
@@ -351,6 +351,33 @@ namespace ImageSample
         }
 
         /// <summary>
+        /// get color for button backgrand.
+        /// </summary>
+        /// <param name="type">type of the background color,0:normal,1:selected</param>
+        /// <param name="page">index of current page</param>
+        /// <returns>return color of the button background</returns>
+        private Color GetBackgroundColor(int type, int page)
+        {
+            Color color;
+            if (page == 2)
+            {
+                color = Color.Black;
+            }
+            else
+            {
+                if (type == 0)
+                {
+                    color = new Color(0.1f, 0.1f, 0.1f, 0.9f);
+                }
+                else
+                {
+                    color = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+                }
+            }
+            return color;
+        }
+
+        /// <summary>
         /// Create an Color visual.
         /// </summary>
         /// <param name="color">The color value of the visual</param>
@@ -369,33 +396,27 @@ namespace ImageSample
         /// <param name="text">The string to use button's name and Label text</param>
         /// <param name="needButton">If this argument is false, the created button do not show any action</param>
         /// <returns>return a PushButton</returns>
-        private PushButton CreateButton(string text, bool needButton)
+        private Button CreateButton(string text, bool needButton)
         {
-            PushButton button = new PushButton();
+            var button = new Button();
             button.Name = text;
             button.Size2D = mButtonSize;
             button.ClearBackground();
 
             button.Position = new Position(50, 0, 0);
 
-            // Create text map for the selected state.
-            PropertyMap unSelectedTextMap = CreateTextVisual(text, Color.White);
-            // Create ColorVisual property for the unselected states.
-            PropertyMap unSelectedMap = CreateColorVisual(new Vector4(0.1f, 0.1f, 0.1f, 0.9f));
+            //set button text style
+            button.Text = text;
+            button.TextColor = Color.White;
+            button.PointSize = mMiddlePointSize;
+            button.FontFamily = "Samsung One 400";
+            button.TextAlignment = HorizontalAlignment.Center;
 
-            // Create ColorVisual property for the selected states
-            PropertyMap selectedMap = CreateColorVisual(new Vector4(0.5f, 0.5f, 0.5f, 1.0f));
-
-            // Set each label and text properties.
-            button.Label = unSelectedTextMap;
-            button.SelectedBackgroundVisual = selectedMap;
-            button.UnselectedBackgroundVisual = unSelectedMap;
+            //set button button background color style
+            button.BackgroundColor = GetBackgroundColor(0,1);
             if (!needButton)
             {
-                // If the case don't need button(gif case), do not make any changes.
-                PropertyMap needlessButtonMap = CreateColorVisual(Color.Black);
-                button.SelectedBackgroundVisual = needlessButtonMap;
-                button.UnselectedBackgroundVisual = needlessButtonMap;
+                button.BackgroundColor = Color.Black;
             }
 
             return button;
@@ -485,6 +506,7 @@ namespace ImageSample
                 return true;
             }
 
+            Button pushButton = source as Button;
             switch (e.Touch.GetState(0))
             {
                 // If State is Down (Touched at the inside of Button)
@@ -493,6 +515,7 @@ namespace ImageSample
                 // - Set the mTouchedInButton to true
                 case PointStateType.Down:
                 {
+                    pushButton.BackgroundColor = GetBackgroundColor(1, mCurruntCaseIndex);
                     mTouchedPosition = e.Touch.GetScreenPosition(0);
                     mTouched = true;
                     mTouchedInButton = true;
@@ -504,6 +527,7 @@ namespace ImageSample
                 // - If the amount of movement is larger than threshold, run the swipe animation(left or right).
                 case PointStateType.Motion:
                 {
+                    pushButton.BackgroundColor = GetBackgroundColor(1, mCurruntCaseIndex);
                     if (!mTouched)
                     {
                         break;
@@ -521,6 +545,7 @@ namespace ImageSample
                     // Play Negative directional animation.
                     if (displacement.X > 30)
                     {
+                        pushButton.BackgroundColor = GetBackgroundColor(0, mCurruntCaseIndex);
                         AnimateAStepNegative();
                         mTouched = false;
                     }
@@ -528,6 +553,7 @@ namespace ImageSample
                     // Play Positive directional animation.
                     if (displacement.X < -30)
                     {
+                        pushButton.BackgroundColor = GetBackgroundColor(0, mCurruntCaseIndex); ;
                         AnimateAStepPositive();
                         mTouched = false;
                     }
@@ -539,12 +565,18 @@ namespace ImageSample
                 // - Reset the mTouched flag
                 case PointStateType.Up:
                 {
+                    pushButton.BackgroundColor = GetBackgroundColor(0, mCurruntCaseIndex);
                     if (mTouched && mTouchedInButton)
                     {
                         ButtonClick(source);
                     }
 
                     mTouched = false;
+                    break;
+                }
+                case PointStateType.Leave:
+                {
+                    pushButton.BackgroundColor = GetBackgroundColor(0, mCurruntCaseIndex);
                     break;
                 }
             }
@@ -593,7 +625,7 @@ namespace ImageSample
             // If each button is clicked,
             // check what the button is clicked
             // and change the properties.
-            PushButton pushButton = source as PushButton;
+            Button pushButton = source as Button;
             if (pushButton.Name == mCaseString[0])
             {
                 Animation animation = new Animation(2000);
@@ -617,14 +649,14 @@ namespace ImageSample
                 if (((ImageView)mImagesView.GetChildAt(1)).Size2D.Width == mImageSize.Width * 4 / 3)
                 {
                     // Change the LabelText.
-                    pushButton.LabelText = "SVG, Zoom Out";
+                    pushButton.Text = "SVG, Zoom Out";
                     // Size down the SVG image.
                     ((ImageView)mImagesView.GetChildAt(1)).Size2D = mImageSize;
                 }
                 else
                 {
                     // Change the LabelText.
-                    pushButton.LabelText = "SVG, Zoom In";
+                    pushButton.Text = "SVG, Zoom In";
                     // Size up the SVG image.
                     ((ImageView)mImagesView.GetChildAt(1)).Size2D = mImageSize * 4 / 3;
                 }
@@ -635,14 +667,14 @@ namespace ImageSample
                 if (((ImageView)mImagesView.GetChildAt(3)).Size2D.Width == mImageSize.Width * 4 / 3)
                 {
                     // Change the LabelText.
-                    pushButton.LabelText = "Nine Patch, Zoom Out";
+                    pushButton.Text = "Nine Patch, Zoom Out";
                     // Size down the nine patch image.
                     ((ImageView)mImagesView.GetChildAt(3)).Size2D = mImageSize;
                 }
                 else
                 {
                     // Change the LabelText.
-                    pushButton.LabelText = "Nine Patch, Zoom In";
+                    pushButton.Text = "Nine Patch, Zoom In";
                     // Size up the nine patch image.
                     ((ImageView)mImagesView.GetChildAt(3)).Size2D = mImageSize * 4 / 3;
                 }
@@ -653,7 +685,7 @@ namespace ImageSample
                 if (mMasked)
                 {
                     // Create new PropertyMap with Image Mask off.
-                    pushButton.LabelText = "Image Mask, Off";
+                    pushButton.Text = "Image Mask, Off";
                     PropertyMap propertyMap = new PropertyMap();
                     propertyMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
                                .Add(ImageVisualProperty.URL, new PropertyValue(mMaskBackgroundImageUrl));
@@ -662,7 +694,7 @@ namespace ImageSample
                 else
                 {
                     // Create new PropertyMap with Image Mask on.
-                    pushButton.LabelText = "Image Mask, On";
+                    pushButton.Text = "Image Mask, On";
                     PropertyMap propertyMap = new PropertyMap();
                     // Set the AlphaMaskURL properties as mask image's Url
                     propertyMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
