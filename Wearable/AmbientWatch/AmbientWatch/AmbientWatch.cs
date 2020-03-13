@@ -15,6 +15,7 @@
  */
 
 using System;
+using Xamarin.Forms;
 using Tizen.Applications;
 using Tizen.Wearable.CircularUI.Forms.Renderer.Watchface;
 
@@ -90,7 +91,7 @@ namespace AmbientWatch
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }
