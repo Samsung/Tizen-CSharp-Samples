@@ -21,6 +21,7 @@
  * @version     1.0
  * @brief       This file contains Program class with Main method.
  */
+using Xamarin.Forms;
 
 namespace SecureRepository.Tizen
 {
@@ -36,7 +37,7 @@ namespace SecureRepository.Tizen
         public static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
 

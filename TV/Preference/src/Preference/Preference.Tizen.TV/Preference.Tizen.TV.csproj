@@ -1,4 +1,4 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -20,6 +20,9 @@
     <None Remove="lib\**" />
     <None Remove="res\**" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
+  </ItemGroup>
 
   <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
@@ -27,9 +30,6 @@
   </ItemGroup>
 
   <!-- Include Nuget Package for Tizen Project building -->
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
-  </ItemGroup>
   
   <ItemGroup>
     <Compile Update="Views\EditPreferences.xaml.cs">
