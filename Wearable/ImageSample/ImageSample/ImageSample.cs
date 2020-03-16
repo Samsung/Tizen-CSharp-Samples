@@ -323,7 +323,8 @@ namespace ImageSample
                 // Create a button with string.
                 var pushButton = CreateButton(mCaseString[i], mNeedButton[i]);
                 // Bind PushButton's click event to ButtonClick.
-                pushButton.TouchEvent += OnButtonTouched;
+                pushButton.ClickEvent += OnButtonClicked;
+                pushButton.StateChangedEvent += OnButtonStateChanged;
                 mButtonTableView.AddChild(pushButton, new TableView.CellPosition(0, i));
             }
         }
@@ -494,138 +495,34 @@ namespace ImageSample
         }
 
         /// <summary>
-        /// TouchEvent handling of Button
+        /// button state changed
         /// </summary>
-        /// <param name="source">The Touched button</param>
+        /// <param name="source">The StatesChanged button</param>
         /// <param name="e">event</param>
-        /// <returns>The consume flag</returns>
-        private bool OnButtonTouched(object source, View.TouchEventArgs e)
+        private void OnButtonStateChanged(object sender, Button.StateChangedEventArgs e)
         {
-            if (e.Touch.GetPointCount() < 1)
+            Button pushButton = sender as Button;
+            if (e.CurrentState == ControlStates.Pressed)
             {
-                return true;
+                pushButton.BackgroundColor = GetBackgroundColor(1, mCurruntCaseIndex);
             }
-
-            Button pushButton = source as Button;
-            switch (e.Touch.GetState(0))
+            else if (e.CurrentState == ControlStates.Normal)
             {
-                // If State is Down (Touched at the inside of Button)
-                // - Store touched position.
-                // - Set the mTouched to true
-                // - Set the mTouchedInButton to true
-                case PointStateType.Down:
-                {
-                    pushButton.BackgroundColor = GetBackgroundColor(1, mCurruntCaseIndex);
-                    mTouchedPosition = e.Touch.GetScreenPosition(0);
-                    mTouched = true;
-                    mTouchedInButton = true;
-                    break;
-                }
-                // If State is Motion
-                // - Check the touched position is in the touchable position.
-                // - Check the Motion is about Horizontal movement.
-                // - If the amount of movement is larger than threshold, run the swipe animation(left or right).
-                case PointStateType.Motion:
-                {
-                    pushButton.BackgroundColor = GetBackgroundColor(1, mCurruntCaseIndex);
-                    if (!mTouched)
-                    {
-                        break;
-                    }
-
-                    // If the vertical movement is large, the gesture is ignored.
-                    Vector2 displacement = e.Touch.GetScreenPosition(0) - mTouchedPosition;
-                    if (Math.Abs(displacement.Y) > 20)
-                    {
-                        mTouched = false;
-                        break;
-                    }
-
-                    // If displacement is larger than threshold
-                    // Play Negative directional animation.
-                    if (displacement.X > 30)
-                    {
-                        pushButton.BackgroundColor = GetBackgroundColor(0, mCurruntCaseIndex);
-                        AnimateAStepNegative();
-                        mTouched = false;
-                    }
-                    // If displacement is smaller than threshold
-                    // Play Positive directional animation.
-                    if (displacement.X < -30)
-                    {
-                        pushButton.BackgroundColor = GetBackgroundColor(0, mCurruntCaseIndex); ;
-                        AnimateAStepPositive();
-                        mTouched = false;
-                    }
-
-                    break;
-                }
-                // If State is Up
-                // - If both of mTouched and mTouchedInButton flags are true, run the ButtonClick function.
-                // - Reset the mTouched flag
-                case PointStateType.Up:
-                {
-                    pushButton.BackgroundColor = GetBackgroundColor(0, mCurruntCaseIndex);
-                    if (mTouched && mTouchedInButton)
-                    {
-                        ButtonClick(source);
-                    }
-
-                    mTouched = false;
-                    break;
-                }
-                case PointStateType.Leave:
-                {
-                    pushButton.BackgroundColor = GetBackgroundColor(0, mCurruntCaseIndex);
-                    break;
-                }
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Animate the tableView to the Negative direction
-        /// </summary>
-        private void AnimateAStepNegative()
-        {
-            // If the state is not the first one, move ImageViews and PushButton a step.
-            if (mCurruntCaseIndex > 0)
-            {
-                mCurruntCaseIndex--;
-
-                mImageTableViewAnimation[1].Play();
-                mButtonTableViewAnimation[1].Play();
+                pushButton.BackgroundColor = GetBackgroundColor(0, mCurruntCaseIndex);
             }
         }
 
         /// <summary>
-        /// Animate the tableView to the Positive direction
+        /// Clicked Event handling of Button
         /// </summary>
-        private void AnimateAStepPositive()
-        {
-
-            // If the state is not the last one, move ImageViews and PushButton a step.
-            if (mCurruntCaseIndex < mCaseCount - 1)
-            {
-                mCurruntCaseIndex++;
-
-                mImageTableViewAnimation[0].Play();
-                mButtonTableViewAnimation[0].Play();
-            }
-        }
-
-        /// <summary>
-        /// Called by buttons
-        /// </summary>
-        /// <param name="source">The Touched button</param>
-        /// <returns>The consume flag</returns>
-        private bool ButtonClick(object source)
+        /// <param name="source">The Clicked button</param>
+        /// <param name="e">event</param>
+        private void OnButtonClicked(object sender, Button.ClickEventArgs e)
         {
             // If each button is clicked,
             // check what the button is clicked
             // and change the properties.
-            Button pushButton = source as Button;
+            Button pushButton = sender as Button;
             if (pushButton.Name == mCaseString[0])
             {
                 Animation animation = new Animation(2000);
@@ -721,8 +618,37 @@ namespace ImageSample
                            .Add(ImageVisualProperty.SamplingMode, new PropertyValue((int)SamplingModeType.Box));
                 ((ImageView)mImagesView.GetChildAt(5)).Image = propertyMap;
             }
+        }
 
-            return false;
+        /// <summary>
+        /// Animate the tableView to the Negative direction
+        /// </summary>
+        private void AnimateAStepNegative()
+        {
+            // If the state is not the first one, move ImageViews and PushButton a step.
+            if (mCurruntCaseIndex > 0)
+            {
+                mCurruntCaseIndex--;
+
+                mImageTableViewAnimation[1].Play();
+                mButtonTableViewAnimation[1].Play();
+            }
+        }
+
+        /// <summary>
+        /// Animate the tableView to the Positive direction
+        /// </summary>
+        private void AnimateAStepPositive()
+        {
+
+            // If the state is not the last one, move ImageViews and PushButton a step.
+            if (mCurruntCaseIndex < mCaseCount - 1)
+            {
+                mCurruntCaseIndex++;
+
+                mImageTableViewAnimation[0].Play();
+                mButtonTableViewAnimation[0].Play();
+            }
         }
 
         /// <summary>
