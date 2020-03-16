@@ -2,7 +2,6 @@
 using CalendarComponent.Tizen.TV.Components;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 using ECalendar = ElmSharp.Calendar;
 
 [assembly: ExportRenderer(typeof(CalendarView), typeof(CalendarViewRenderer))]
@@ -35,7 +34,7 @@ namespace CalendarComponent.Tizen.TV.Renderers
         {
             if (Control == null)
             {
-                var calrendarView = new ECalendar(TForms.NativeParent);
+                var calrendarView = new ECalendar(Forms.NativeParent);
                 SetNativeControl(calrendarView);
             }
 

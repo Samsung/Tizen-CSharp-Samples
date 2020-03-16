@@ -1,4 +1,4 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -12,6 +12,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
+  </ItemGroup>
 
   <!-- If solution already has PCL project, will reference -->
   <ItemGroup>

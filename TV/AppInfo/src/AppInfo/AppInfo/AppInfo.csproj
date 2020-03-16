@@ -9,10 +9,11 @@
     <None Remove="Views\MainPage.xaml" />
   </ItemGroup>
 
-  <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
   </ItemGroup>
+
+  <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
     <Compile Update="Controls\ApplicationPropertyControl.xaml.cs">
       <SubType>Code</SubType>

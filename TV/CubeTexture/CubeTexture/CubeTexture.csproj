@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -23,7 +23,6 @@
     <PackageReference Include="Tizen.NET" Version="5.0.0.14629">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.3" />
   </ItemGroup>
 
 </Project>

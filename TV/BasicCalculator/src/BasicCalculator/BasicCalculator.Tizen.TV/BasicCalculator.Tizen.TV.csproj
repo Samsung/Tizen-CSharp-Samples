@@ -1,4 +1,4 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -24,7 +24,7 @@
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
   </ItemGroup>
 
 </Project>

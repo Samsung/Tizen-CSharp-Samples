@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-using Xamarin.Forms.Platform.Tizen;
+using Xamarin.Forms;
 
 namespace ErrorCodeConverter.Tizen.TV
 {
@@ -21,7 +21,7 @@ namespace ErrorCodeConverter.Tizen.TV
     /// Main application class.
     /// Provides application's entry point.
     /// </summary>
-    class Program : FormsApplication
+    class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
         #region methods
 

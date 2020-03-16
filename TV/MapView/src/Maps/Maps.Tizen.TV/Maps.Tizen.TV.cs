@@ -15,11 +15,11 @@
  */
 
 using Xamarin;
-using Xamarin.Forms.Platform.Tizen;
+using Xamarin.Forms;
 
 namespace Maps.Tizen.TV
 {
-    internal class Program : FormsApplication
+    class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
         #region methods
 

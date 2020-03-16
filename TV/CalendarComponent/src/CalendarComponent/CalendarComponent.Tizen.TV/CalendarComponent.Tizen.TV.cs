@@ -1,5 +1,5 @@
 using System;
-
+using Xamarin.Forms;
 namespace CalendarComponent.Tizen.TV
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -15,7 +15,7 @@ namespace CalendarComponent.Tizen.TV
         {
             var app = new Program();
 
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
     }

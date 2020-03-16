@@ -16,7 +16,7 @@
 
 using BasicCalculator.Tizen.TV.Services;
 using ElmSharp;
-using Xamarin.Forms.Platform.Tizen;
+using Xamarin.Forms;
 using BasicCalculator.ViewModels;
 
 [assembly: Xamarin.Forms.Dependency(typeof(KeyboardService))]
