@@ -16,7 +16,7 @@
 
 using Weather.Abstractions;
 using Weather.Tizen.Mobile.Services;
-using Xamarin.Forms.Platform.Tizen;
+using Xamarin.Forms;
 
 [assembly: Xamarin.Forms.Dependency(typeof(AppCycleService))]
 

@@ -23,11 +23,11 @@ using EContextPopup = ElmSharp.ContextPopup;
 using EContextPopupDirection = ElmSharp.ContextPopupDirection;
 using EContextPopupItem = ElmSharp.ContextPopupItem;
 using EIcon = ElmSharp.Icon;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
-using XForms = Xamarin.Forms;
+using Xamarin.Forms;
 using XFPlatformTizen = Xamarin.Forms.Platform.Tizen;
+using Xamarin.Forms.Platform.Tizen;
 
-[assembly: XForms.Dependency(typeof(ContextPopupRenderer))]
+[assembly: Xamarin.Forms.Dependency(typeof(ContextPopupRenderer))]
 
 namespace VoiceRecorder.Tizen.Mobile.Renderer
 {
@@ -154,7 +154,7 @@ namespace VoiceRecorder.Tizen.Mobile.Renderer
         /// </summary>
         public ContextPopupRenderer()
         {
-            _popup = new EContextPopup(TForms.NativeParent);
+            _popup = new EContextPopup(Forms.NativeParent);
 
             _popup.BackButtonPressed += (s, e) =>
             {
@@ -237,7 +237,7 @@ namespace VoiceRecorder.Tizen.Mobile.Renderer
         /// <param name="anchor">The view to which the popup should be anchored.</param>
         /// <param name="xAnchorOffset">The horizontal offset from the anchor.</param>
         /// <param name="yAnchorOffset">The vertical offset from the anchor.</param>
-        public void Show(XForms.View anchor, int xAnchorOffset, int yAnchorOffset)
+        public void Show(Xamarin.Forms.View anchor, int xAnchorOffset, int yAnchorOffset)
         {
             var geometry = XFPlatformTizen.Platform.GetRenderer(anchor).NativeView.Geometry;
             _popup.Move(geometry.X + xAnchorOffset, geometry.Y + yAnchorOffset);

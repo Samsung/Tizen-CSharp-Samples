@@ -18,7 +18,6 @@ using VoiceRecorder.Tizen.Mobile.Control;
 using VoiceRecorder.Tizen.Mobile.Renderer;
 using Xamarin.Forms;
 using EPopup = ElmSharp.Popup;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 
 [assembly: Dependency(typeof(ToastRenderer))]
 
@@ -110,7 +109,7 @@ namespace VoiceRecorder.Tizen.Mobile.Renderer
         /// </summary>
         public ToastRenderer()
         {
-            _control = new EPopup(TForms.NativeParent)
+            _control = new EPopup(Forms.NativeParent)
             {
                 Style = DefaultStyle,
                 AllowEvents = true,

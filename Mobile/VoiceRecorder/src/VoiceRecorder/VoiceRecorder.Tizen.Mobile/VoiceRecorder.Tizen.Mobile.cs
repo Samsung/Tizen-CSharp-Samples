@@ -15,6 +15,7 @@
  */
 using ElmSharp;
 using System;
+using Xamarin.Forms;
 using VoiceRecorder.Tizen.Mobile.Service.Privilege;
 
 namespace VoiceRecorder.Tizen.Mobile
@@ -53,7 +54,7 @@ namespace VoiceRecorder.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
 

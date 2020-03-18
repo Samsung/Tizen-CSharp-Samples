@@ -29,7 +29,7 @@ namespace Weather.Config
         /// <remarks>
         /// To get your API key please visit http://openweathermap.org/appid
         /// </remarks>
-        public const string API_KEY = "";
+        public const string API_KEY = "d50c1aebea607600fa00fcc5d24cea08";
 
         /// <summary>
         /// "OpenWeatherMap" current weather resource.

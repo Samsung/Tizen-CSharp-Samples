@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Tizen; 
 
 namespace VisionApplicationSamples.Barcode
 {
@@ -53,6 +54,7 @@ namespace VisionApplicationSamples.Barcode
                     }
                     catch (Exception e)
                     {
+                        Log.Info("VisionApplicationSamples", e.Message);
                         DetectionResultText = $"Failure";
                     }
                 }
