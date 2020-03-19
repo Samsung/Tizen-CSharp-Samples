@@ -15,10 +15,11 @@
  */
 
 using System;
+using Xamarin.Forms;
 
 namespace ServiceDiscovery.Tizen.Mobile
 {
-    class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
+    class Program : Xamarin.Forms.Platform.Tizen.FormsApplication
     {
         protected override void OnCreate()
         {
@@ -29,7 +30,7 @@ namespace ServiceDiscovery.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
     }

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using Xamarin.Forms;
 using SampleSync.Tizen.Port;
 using SampleSync.Utils;
 
@@ -43,8 +44,8 @@ namespace SampleSync.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.DependencyService.Register<SampleSyncPort>();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            DependencyService.Register<SampleSyncPort>();
+            Forms.Init(app);
             app.Run(args);
         }
     }

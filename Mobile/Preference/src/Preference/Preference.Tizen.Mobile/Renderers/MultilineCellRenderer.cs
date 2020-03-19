@@ -22,7 +22,6 @@ using Preference.Tizen.Mobile.Controls;
 using Preference.Tizen.Mobile.Renderers;
 
 using NImage = Xamarin.Forms.Platform.Tizen.Native.Image;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 
 [assembly: ExportCell(typeof(MultilineCell), typeof(MultilineCellRenderer))]
 
@@ -100,13 +99,13 @@ namespace Preference.Tizen.Mobile.Renderers
             MultilineCell multilineCell = (MultilineCell)cell;
             if (part == _iconPart && multilineCell.Icon != null)
             {
-                var image = new NImage(TForms.Context.MainWindow);
+                var image = new NImage(Forms.NativeParent);
                 SetUpImage(multilineCell, image);
                 return image;
             }
             else if (part == _endPart && multilineCell.IsCheckVisible)
             {
-                var check = new Check(TForms.Context.MainWindow);
+                var check = new Check(Forms.NativeParent);
                 check.SetAlignment(-1, -1);
                 check.SetWeight(1, 1);
                 check.IsChecked = multilineCell.IsChecked;

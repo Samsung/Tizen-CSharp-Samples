@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
+using Xamarin.Forms;
+
 namespace SystemInfo.Tizen.Mobile.View
 {
     /// <summary>
     /// Interaction logic for BatteryPage.xaml
     /// </summary>
-    public partial class BatteryPage
+    public partial class BatteryPage : ContentPage
     {
         /// <summary>
         /// Default class constructor.

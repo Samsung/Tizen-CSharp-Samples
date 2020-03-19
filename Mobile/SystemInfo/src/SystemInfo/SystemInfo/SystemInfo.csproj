@@ -5,30 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Control\FooterControl.xaml" />
-    <None Remove="Control\ImageIndicatorControl.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Control\FooterControl.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\ImageIndicatorControl.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <!-- Include Nuget Package for Xamarin building -->
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.4.0.269-pre2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Control\FooterControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Control\ImageIndicatorControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
   </ItemGroup>
 
 </Project>

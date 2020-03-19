@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using Xamarin.Forms;
 
 namespace SystemInfo.Tizen.Mobile.View
 {
     /// <summary>
     /// Interaction logic for SettingsPage.xaml
     /// </summary>
-    public partial class SettingsPage
+    public partial class SettingsPage : ContentPage
     {
         /// <summary>
         /// Default class constructor.

@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
+using Xamarin.Forms;
+
 namespace SystemInfo.Tizen.Mobile.View
 {
     /// <summary>
     /// Interaction logic for CapabilitiesPage.xaml
     /// </summary>
-    public partial class CapabilitiesPage
+    public partial class CapabilitiesPage : ContentPage
     {
         /// <summary>
         /// Default class constructor.

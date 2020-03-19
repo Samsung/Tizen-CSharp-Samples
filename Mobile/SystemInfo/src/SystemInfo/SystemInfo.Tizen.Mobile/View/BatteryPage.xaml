@@ -7,7 +7,6 @@
              xmlns:converter="clr-namespace:SystemInfo.Converter;assembly=SystemInfo"
              x:Class="SystemInfo.Tizen.Mobile.View.BatteryPage"
              Title="Battery">
-
     <ContentPage.BindingContext>
         <viewModel:BatteryViewModel />
     </ContentPage.BindingContext>
@@ -51,7 +50,6 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
-
     <ListView ItemTemplate="{StaticResource ListItemTemplateSelector}"
               ItemsSource="{Binding ItemList}" />
 </ContentPage>

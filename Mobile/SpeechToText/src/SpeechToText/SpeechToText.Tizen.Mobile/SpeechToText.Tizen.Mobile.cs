@@ -15,13 +15,14 @@
  */
 
 using ElmSharp;
+using Xamarin.Forms;
 
 namespace SpeechToText.Tizen.Mobile
 {
     /// <summary>
     /// SpeechToText forms application class for Tizen Mobile profile.
     /// </summary>
-    class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
+    class Program : Xamarin.Forms.Platform.Tizen.FormsApplication
     {
         #region methods
 
@@ -44,7 +45,7 @@ namespace SpeechToText.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
 

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using Xamarin.Forms;
 using System;
 using PushReceiver.Tizen.Port;
 using PushReceiver.Utils;
@@ -44,8 +45,8 @@ namespace PushReceiver.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.DependencyService.Register<PushPort>();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            DependencyService.Register<PushPort>();
+            Forms.Init(app);
             app.Run(args);
         }
     }

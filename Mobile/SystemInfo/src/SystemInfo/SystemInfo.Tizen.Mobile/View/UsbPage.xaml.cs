@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using Xamarin.Forms;
 
 namespace SystemInfo.Tizen.Mobile.View
 {
     /// <summary>
     /// Interaction logic for UsbPage.xaml
     /// </summary>
-    public partial class UsbPage
+    public partial class UsbPage : ContentPage
     {
         /// <summary>
         /// Default class constructor.

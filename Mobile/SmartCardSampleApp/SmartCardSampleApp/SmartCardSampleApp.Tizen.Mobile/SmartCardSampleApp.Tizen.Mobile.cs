@@ -15,13 +15,14 @@
  */
 
 using System;
+using Xamarin.Forms;
 
 namespace SmartCardSampleApp.Tizen.Mobile
 {
     /// <summary>
     /// The Smart card Sample application main class.
     /// </summary>
-    class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
+    class Program : Xamarin.Forms.Platform.Tizen.FormsApplication
     {
         /// <summary>
         /// Handle when your app creates.
@@ -39,7 +40,7 @@ namespace SmartCardSampleApp.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
     }

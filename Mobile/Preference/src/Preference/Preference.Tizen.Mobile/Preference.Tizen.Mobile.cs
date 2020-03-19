@@ -1,8 +1,8 @@
-using Xamarin.Forms.Platform.Tizen;
+using Xamarin.Forms;
 
 namespace Preference.Tizen.Mobile
 {
-    class Program : FormsApplication
+    class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
         protected override void OnCreate()
         {

@@ -19,7 +19,6 @@ using Preference.Tizen.Mobile.Controls;
 using Preference.Tizen.Mobile.Renderers;
 using Xamarin.Forms;
 using EPopup = ElmSharp.Popup;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 
 [assembly: Dependency(typeof(ToastRenderer))]
 
@@ -103,7 +102,7 @@ namespace Preference.Tizen.Mobile.Renderers
         /// </summary>
         public ToastRenderer()
         {
-            _control = new EPopup(TForms.Context.MainWindow)
+            _control = new EPopup(Forms.NativeParent)
             {
                 Style = DefaultStyle,
                 AllowEvents = true,
