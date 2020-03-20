@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -151,10 +151,9 @@ namespace PlayerSample
         IEnumerable<Property> GetStreamInfo();
 
         /// <summary>
-        /// Creates the view for player.
+        /// Set display view for player.
         /// </summary>
-        /// <returns>A view for display.</returns>
-        View CreateDisplayView();
+        void SetDisplay(object nativeView);
 
         /// <summary>
         /// Gets the state of player.

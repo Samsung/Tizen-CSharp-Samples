@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -38,8 +38,6 @@ namespace PlayerSample
             MediaPlayer.SetSource(uri);
 
             _timer.Elapsed += (s, e) => OnPropertyChanged(nameof(PositionText));
-
-            Display = MediaPlayer.CreateDisplayView();
 
             PlayerState = MediaPlayer.State;
 
@@ -133,7 +131,16 @@ namespace PlayerSample
             }
         }
 
-        public View Display { get; }
+        public object PlayerView
+        {
+            set
+            {
+                if (value != null)
+                {
+                    MediaPlayer?.SetDisplay(value);
+                }
+            }
+        }
 
         private IEnumerable<Property> _properties;
 

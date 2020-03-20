@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,8 +19,8 @@ using System;
 using System.Threading.Tasks;
 using Tizen.Multimedia;
 using Xamarin.Forms;
-using XamarinExt = Tizen.Xamarin.Forms.Extension;
 using System.Collections.Generic;
+using Tizen;
 
 [assembly: Dependency(typeof(MediaPlayer))]
 namespace PlayerSample.Tizen.Mobile
@@ -54,15 +54,9 @@ namespace PlayerSample.Tizen.Mobile
         public event EventHandler<BufferingEventArgs> Buffering;
         public event EventHandler<EventArgs> StateChanged;
 
-        public View CreateDisplayView()
+        public void SetDisplay(object nativeView)
         {
-            var mediaView = new XamarinExt.MediaView();
-
-            // NativeView must be created first
-            mediaView.NativeViewCreated += (s, e) =>
-                _player.Display = new Display((MediaView)mediaView.NativeView);
-
-            return mediaView;
+            _player.Display = new Display(nativeView as MediaView);
         }
 
         public IEnumerable<Property> GetStreamInfo()

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:local="clr-namespace:PlayerSample"
@@ -49,13 +49,16 @@
                                 ConverterParameter={x:Static local:MediaPlayerState.Preparing}}"/>
 
                 <Button Text="StreamInfo" Command="{Binding StreamInfoCommand}"
-                        IsVisible="true"
+                        IsVisible="True"
                         IsEnabled="{Binding IsReady}}"/>
+
             </StackLayout>
 
             <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <ContentView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"
-                             Content="{Binding Display}"/>
+                <local:VideoView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                                 IsVisible="{Binding IsStarted}"
+                                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"
+                                 NativeView="{Binding PlayerView, Mode=OneWayToSource}"/>
 
                 <Label Text="{Binding BufferingText}" TextColor="White"/>
 
