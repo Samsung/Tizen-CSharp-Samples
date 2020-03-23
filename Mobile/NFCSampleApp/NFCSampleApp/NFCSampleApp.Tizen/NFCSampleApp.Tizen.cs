@@ -15,6 +15,7 @@
  */
 
 using System;
+using Xamarin.Forms;
 
 namespace NFCSampleApp.Tizen
 {
@@ -39,7 +40,7 @@ namespace NFCSampleApp.Tizen
         static void Main(string[] arguments)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(arguments);
         }
     }

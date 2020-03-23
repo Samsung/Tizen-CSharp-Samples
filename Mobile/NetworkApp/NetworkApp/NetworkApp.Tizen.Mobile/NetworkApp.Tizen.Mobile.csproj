@@ -1,18 +1,8 @@
-﻿<Project>
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
 
-  <!-- Setting Tizen Extension Path -->
-  <PropertyGroup Label="Globals">
-    <TizenProjectExtensionsPath>$(MSBuildExtensionsPath)\Tizen\VisualStudio\</TizenProjectExtensionsPath>
-  </PropertyGroup>
-
-  <!-- Import Tizen property in Tizen.NET SDK -->
-  <Import Project="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props" Condition="Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props')" />
-
-  <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>tizen40</TargetFramework>
+    <TargetFramework>tizen60</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -27,29 +17,10 @@
     <Folder Include="res\" />
   </ItemGroup>
 
-  
-  <!-- If solution already has PCL project, will reference -->
-  <ItemGroup>
-    <ProjectReference Include="..\NetworkApp\NetworkApp.csproj">
-      <Project>{131603d6-6df1-4bd0-aaaa-5eb0362b59b9}</Project>
-      <Name>NetworkApp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  
 
-  <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="5.0.0.14629" />
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.5.1.444934" />
+    <ProjectReference Include="..\NetworkApp\NetworkApp.csproj" />
   </ItemGroup>
 
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
-  <Import Project="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets" Condition="Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets')" />
 
-  <!-- Install Check 'Visual Studio for Tizen' for developing on Visual Studio -->
-  <Target Name="TizenVsixInstallCheck" BeforeTargets="CompileDesignTime">
-    <Warning Condition="!Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props')" Text="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.props is not exist.&#xA; you need to check if 'Visual Studio for Tizen' is installed" />
-    <Warning Condition="!Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets')" Text="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets is not exist.\&#xA; you need to check if 'Visual Studio for Tizen' is installed" />
-  </Target>
 </Project>

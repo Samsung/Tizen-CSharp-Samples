@@ -19,7 +19,7 @@ namespace PlayerSample.Tizen.Mobile
         {
             if (_mediaView == null)
             {
-                _mediaView = new MediaView(Forms.Context.MainWindow);
+                _mediaView = new MediaView(Forms.NativeParent);
                 SetNativeView(_mediaView);
             }
 

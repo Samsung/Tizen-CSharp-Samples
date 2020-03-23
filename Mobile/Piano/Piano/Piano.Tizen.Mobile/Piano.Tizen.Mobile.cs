@@ -15,6 +15,7 @@
  */
 
 using ElmSharp;
+using Xamarin.Forms;
 
 namespace Piano.Tizen.Mobile
 {
@@ -30,7 +31,7 @@ namespace Piano.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
     }

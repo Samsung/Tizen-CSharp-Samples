@@ -15,12 +15,12 @@
  */
 
 using Xamarin;
-using Xamarin.Forms.Platform.Tizen;
+using Xamarin.Forms;
 using Tizen.Security;
 
 namespace Maps.Tizen.Mobile
 {
-    internal class Program : FormsApplication
+    internal class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
         #region methods
 

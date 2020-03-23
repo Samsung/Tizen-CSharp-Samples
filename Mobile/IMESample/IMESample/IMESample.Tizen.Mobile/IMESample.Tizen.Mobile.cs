@@ -17,6 +17,7 @@
 using System;
 using Tizen;
 using Tizen.Uix.InputMethod;
+using Xamarin.Forms;
 
 namespace IMESample.Tizen.Mobile
 {
@@ -309,7 +310,7 @@ namespace IMESample.Tizen.Mobile
                 // start inputmethod
                 InputMethodEditor.Run(Create, Terminate, Show, Hide);
                 app = new Program();
-                global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+                Forms.Init(app);
                 app.Run(args);
             }
             catch (Exception e)
