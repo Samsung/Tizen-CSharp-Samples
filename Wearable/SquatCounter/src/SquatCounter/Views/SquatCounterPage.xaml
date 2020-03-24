@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:viewModels="clr-namespace:SquatCounter.ViewModels;assembly=SquatCounter"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="SquatCounter.Views.SquatCounterPage"
+                NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:SquatCounterPageViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Content>
+        <AbsoluteLayout>
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 360, 360"
+                   Source="squat_background.png" />
+            <Label AbsoluteLayout.LayoutBounds="130, 28, 100, 47"
+                   TextColor="#77A6D2"
+                   FontFamily="BreezeSans"
+                   FontSize="Large"
+                   HorizontalTextAlignment="Center"
+                   Text="Squats" />
+            <Label AbsoluteLayout.LayoutBounds="118, 90, 123, 72"
+                   TextColor="#FFFEFE"
+                   FontSize="28.50"
+                   FontFamily="BreezeSans"
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding SquatsCount}" />
+            <Label AbsoluteLayout.LayoutBounds="148, 184, 64, 27"
+                   FontFamily="BreezeSans"
+                   FontSize="Small"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#77A6D2"
+                   Text="Time" />
+            <Label AbsoluteLayout.LayoutBounds="133, 228, 94, 29"
+                   TextColor="#FFFEFE"
+                   FontFamily="BreezeSans"
+                   FontSize="Large"
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding Time}" />
+            <AbsoluteLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ChangeServiceStateCommand}" />
+            </AbsoluteLayout.GestureRecognizers>
+        </AbsoluteLayout>
+    </cui:CirclePage.Content>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="RESET"
+                              BackgroundColor="#2a537d"
+                              Command="{Binding ResetCommand}"/>
+    </cui:CirclePage.ActionButton>
+
+    <cui:CirclePage.Triggers>
+        <DataTrigger TargetType="cui:CirclePage"
+                     Binding="{Binding IsCounting}"
+                     Value="True">
+            <Setter Property="ActionButton">
+                <Setter.Value>
+                    <cui:ActionButtonItem IsVisible="False" />
+                </Setter.Value>
+            </Setter>
+        </DataTrigger>
+    </cui:CirclePage.Triggers>
+
+</cui:CirclePage>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:IndexPage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+               xmlns:viewModels="clr-namespace:SquatCounter.ViewModels;assembly=SquatCounter"
+               xmlns:views="clr-namespace:SquatCounter.Views;assembly=SquatCounter"
+               x:Class="SquatCounter.Views.GuidePage"
+               NavigationPage.HasNavigationBar="False">
+
+    <cui:IndexPage.Children>
+        <views:GuideStepPage>
+            <views:GuideStepPage.BindingContext>
+                <viewModels:GuidePageViewModel ImagePath="step_1.png" />
+            </views:GuideStepPage.BindingContext>
+        </views:GuideStepPage>
+
+        <views:GuideStepPage>
+            <views:GuideStepPage.BindingContext>
+                <viewModels:GuidePageViewModel ImagePath="step_2.png" />
+            </views:GuideStepPage.BindingContext>
+        </views:GuideStepPage>
+
+        <views:GuideStepPage>
+            <views:GuideStepPage.BindingContext>
+                <viewModels:GuidePageViewModel ImagePath="step_3.png" />
+            </views:GuideStepPage.BindingContext>
+        </views:GuideStepPage>
+
+        <views:GuideClockPage>
+            <views:GuideClockPage.BindingContext>
+                <viewModels:GuidePageViewModel ImagePath="clock.png" />
+            </views:GuideClockPage.BindingContext>
+        </views:GuideClockPage>
+    </cui:IndexPage.Children>
+
+</cui:IndexPage>
