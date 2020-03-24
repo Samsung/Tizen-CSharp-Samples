@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:viewModels="clr-namespace:Level.ViewModels;assembly=Level"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="Level.Views.WelcomePage"
+                NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:WelcomePageViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <StackLayout Spacing="0"
+                 Orientation="Vertical">
+        <Image Margin="130, 35, 130, 0"
+               Source="icon.png" />
+        <Label FontFamily="BreezeSans:style=Condensed"
+               HorizontalTextAlignment="Center"
+               Margin="0, 15, 0, 0"
+               Text="Welcome"
+               TextColor="#C7D3D8" />
+        <Label FontFamily="BreezeSans:style=Condensed"
+               FontSize="7.8"
+               HorizontalTextAlignment="Center"
+               Margin="10, 12, 10, 0"
+               Text="Level App is a simple&#x0a;tool for leveling objects"
+               TextColor="#C7D3D8" />
+    </StackLayout>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="START"
+                              BackgroundColor="#2A537D"
+                              Command="{Binding StartCommand}" />
+    </cui:CirclePage.ActionButton>
+
+</cui:CirclePage>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:viewModels="clr-namespace:Level.ViewModels;assembly=Level"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="Level.Views.LevelPage"
+                NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:LevelViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <AbsoluteLayout>
+        <Image Source="bg.png"
+               AbsoluteLayout.LayoutFlags="PositionProportional"
+               AbsoluteLayout.LayoutBounds="0.5, 0.5, 344, 344" />
+        <Image Source="Ellipse.png"
+               AbsoluteLayout.LayoutFlags="PositionProportional"
+               AbsoluteLayout.LayoutBounds="{Binding PositionCoordinates}"
+               Aspect="AspectFit" />
+        <Image Source="area_1.png"
+               AbsoluteLayout.LayoutFlags="PositionProportional"
+               AbsoluteLayout.LayoutBounds="0.5, 0.5, 360, 360" />
+    </AbsoluteLayout>
+
+</cui:CirclePage>
