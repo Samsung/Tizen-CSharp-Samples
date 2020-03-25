@@ -35,8 +35,6 @@ namespace SquatCounter.Services
         private bool _valueExceededUpperThreshold;
         private bool _isServiceCalibrated;
 
-        private bool _disposed = false;
-
         public event EventHandler<int> SquatsUpdated;
 
         /// <summary>
