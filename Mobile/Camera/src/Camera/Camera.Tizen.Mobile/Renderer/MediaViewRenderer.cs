@@ -16,9 +16,9 @@
 using System;
 using Camera.Tizen.Mobile.Control;
 using Camera.Tizen.Mobile.Renderer;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using TMediaView = Tizen.Multimedia.MediaView;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 
 [assembly: ExportRenderer(typeof(MediaView), typeof(MediaViewRenderer))]
 
@@ -55,7 +55,7 @@ namespace Camera.Tizen.Mobile.Renderer
         {
             if (_control == null)
             {
-                _control = new TMediaView(TForms.NativeParent);
+                _control = new TMediaView(Forms.NativeParent);
                 SetNativeView(_control);
             }
 

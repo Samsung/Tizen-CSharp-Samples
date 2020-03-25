@@ -1,5 +1,5 @@
 using ElmSharp;
-using Xamarin.Forms.Platform.Tizen;
+using Xamarin.Forms;
 
 namespace CalendarComponent.Tizen.Mobile
 {
@@ -11,7 +11,8 @@ namespace CalendarComponent.Tizen.Mobile
         {
             base.OnCreate();
             MainWindow.StatusBarMode = StatusBarMode.Transparent;
-            Forms.Context.MainWindow.AvailableRotations = DisplayRotation.Degree_0;
+            MainWindow.AvailableRotations = DisplayRotation.Degree_0;
+            
 
             LoadApplication(new App());
         }
@@ -20,7 +21,7 @@ namespace CalendarComponent.Tizen.Mobile
         {
             var app = new Program();
 
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
 

@@ -1,4 +1,5 @@
 using System;
+using Xamarin.Forms;
 
 namespace FeedbackApp.Tizen.Mobile
 {
@@ -22,7 +23,7 @@ namespace FeedbackApp.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
     }

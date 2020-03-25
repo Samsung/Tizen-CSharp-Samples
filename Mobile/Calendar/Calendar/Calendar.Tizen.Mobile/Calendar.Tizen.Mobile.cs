@@ -1,5 +1,6 @@
 using System;
 using Calendar.Tizen.Port;
+using Xamarin.Forms;
 
 namespace Calendar.Tizen.Mobile
 {
@@ -24,9 +25,9 @@ namespace Calendar.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.DependencyService.Register<CalendarPort>();
-            global::Xamarin.Forms.DependencyService.Register<SecurityPort>();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            DependencyService.Register<CalendarPort>();
+            DependencyService.Register<SecurityPort>();
+            Forms.Init(app);
             app.Run(args);
         }
     }

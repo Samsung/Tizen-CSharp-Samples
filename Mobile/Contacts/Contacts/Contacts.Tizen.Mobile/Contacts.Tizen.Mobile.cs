@@ -1,4 +1,5 @@
 using System;
+using Xamarin.Forms;
 using Contacts.Tizen.Port;
 
 namespace Contacts.Tizen.Mobile
@@ -14,9 +15,9 @@ namespace Contacts.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.DependencyService.Register<ContactsPort>();
-            global::Xamarin.Forms.DependencyService.Register<SecurityPort>();
-            global::Xamarin.Forms.Forms.Init(app);
+            DependencyService.Register<ContactsPort>();
+            DependencyService.Register<SecurityPort>();
+            Forms.Init(app);
             app.Run(args);
         }
     }

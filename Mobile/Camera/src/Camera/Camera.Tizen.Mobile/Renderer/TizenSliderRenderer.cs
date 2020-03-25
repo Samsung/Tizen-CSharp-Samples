@@ -16,6 +16,7 @@
 using Camera.Control;
 using Camera.Tizen.Mobile.Renderer;
 using ElmSharp;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using Slider = Xamarin.Forms.Slider;
 
