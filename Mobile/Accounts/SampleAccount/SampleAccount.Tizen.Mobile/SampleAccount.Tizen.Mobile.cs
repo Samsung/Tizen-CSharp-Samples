@@ -1,5 +1,6 @@
 using System;
 using AccountManager.Tizen.Port;
+using Xamarin.Forms;
 
 namespace SampleAccount.Tizen.Mobile
 {
@@ -29,7 +30,7 @@ namespace SampleAccount.Tizen.Mobile
             global::Xamarin.Forms.DependencyService.Register<AccountManagerPort>();
 
             // Initiailize App
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
     }
