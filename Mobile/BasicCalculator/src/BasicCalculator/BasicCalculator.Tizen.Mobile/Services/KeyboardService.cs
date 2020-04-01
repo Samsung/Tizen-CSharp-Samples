@@ -16,10 +16,10 @@
 
 using BasicCalculator.Tizen.Mobile.Services;
 using ElmSharp;
-using Xamarin.Forms.Platform.Tizen;
+using Xamarin.Forms;
 using BasicCalculator.ViewModels;
 
-[assembly: Xamarin.Forms.Dependency(typeof(KeyboardService))]
+[assembly: Dependency(typeof(KeyboardService))]
 
 namespace BasicCalculator.Tizen.Mobile.Services
 {
@@ -45,7 +45,7 @@ namespace BasicCalculator.Tizen.Mobile.Services
         /// </summary>
         /// <param name="sender">Sending object's reference.</param>
         /// <param name="keyEventArgs">Key event arguments.</param>
-        private void KeyEvent(object sender, EvasKeyEventArgs keyEventArgs)
+        public void KeyEvent(object sender, EcoreKeyEventArgs keyEventArgs)
         {
             _keyPressedDelegate?.Invoke(keyEventArgs.KeyName);
         }
@@ -59,11 +59,6 @@ namespace BasicCalculator.Tizen.Mobile.Services
         public void RegisterKeys(string[] keyList, KeyPressedDelegate keyPressedDelegate)
         {
             _keyPressedDelegate += keyPressedDelegate;
-            Forms.Context.MainWindow.KeyUp += KeyEvent;
-            foreach (var key in keyList)
-            {
-                Forms.Context.MainWindow.KeyGrab(key, true);
-            }
         }
 
         #endregion methods

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using ElmSharp;
+
 namespace BasicCalculator.ViewModels
 {
     /// <summary>
@@ -21,6 +23,12 @@ namespace BasicCalculator.ViewModels
     /// </summary>
     public interface IKeyboardService
     {
+        /// <summary>
+        /// Receives keyboard events.
+        /// <param name="sender">Sender.</param>
+        /// <param name="keyEventArgs">Key events arguments.</param>
+        void KeyEvent(object sender, EcoreKeyEventArgs keyEventArgs);
+
         /// <summary>
         /// Register for keyboard events for keys from the list.
         /// </summary>

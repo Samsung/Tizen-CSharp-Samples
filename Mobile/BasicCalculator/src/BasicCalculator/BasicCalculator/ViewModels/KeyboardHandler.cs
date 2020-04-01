@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using ElmSharp;
+
 namespace BasicCalculator.ViewModels
 {
     /// <summary>

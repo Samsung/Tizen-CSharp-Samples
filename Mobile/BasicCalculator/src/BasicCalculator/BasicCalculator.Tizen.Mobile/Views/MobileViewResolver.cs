@@ -18,7 +18,7 @@ using BasicCalculator.Tizen.Mobile.Views;
 using BasicCalculator.Views;
 using Xamarin.Forms;
 
-[assembly: Xamarin.Forms.Dependency(typeof(MobileViewResolver))]
+[assembly: Dependency(typeof(MobileViewResolver))]
 
 namespace BasicCalculator.Tizen.Mobile.Views
 {

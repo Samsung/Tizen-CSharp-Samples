@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using Xamarin.Forms;
+using ElmSharp;
+using BasicCalculator.ViewModels;
 
 namespace BasicCalculator.Tizen.Mobile.Views
 {
@@ -21,6 +24,8 @@ namespace BasicCalculator.Tizen.Mobile.Views
     /// </summary>
     public partial class MobileMainView
     {
+        EcoreEvent<EcoreKeyEventArgs> _ecoreKeyUp;
+
         /// <summary>
         /// Class constructor.
         /// Initializes component (Xaml partial).
@@ -28,6 +33,16 @@ namespace BasicCalculator.Tizen.Mobile.Views
         public MobileMainView()
         {
             InitializeComponent();
+
+            _ecoreKeyUp = new EcoreEvent<EcoreKeyEventArgs>(EcoreEventType.KeyUp, EcoreKeyEventArgs.Create);
+            _ecoreKeyUp.On += _ecoreKeyUp_On;
+        }
+
+        private void _ecoreKeyUp_On(object sender, EcoreKeyEventArgs e)
+        {
+            // e.KeyName, e.KeyCode
+            DependencyService.Get<IKeyboardService>().KeyEvent(sender, e);
+            
         }
     }
 }
