@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+              xmlns:viewModels="clr-namespace:Pedometer.ViewModels;assembly=Pedometer"
+              xmlns:controls="clr-namespace:Pedometer.CustomControls;assembly=Pedometer"
+              NavigationPage.HasNavigationBar="False"
+              x:Class="Pedometer.Views.MainPage">
+
+    <c:CirclePage.BindingContext>
+        <viewModels:MainViewModel />
+    </c:CirclePage.BindingContext>
+
+    <c:CirclePage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label"
+                   x:Key="DataLabelStyle">
+                <Setter Property="TextColor"
+                        Value="#ff7f91" />
+                <Setter Property="FontSize"
+                        Value="19" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalTextAlignment"
+                        Value="Start" />
+                <Setter Property="VerticalOptions"
+                        Value="Start" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+            </Style>
+            <Style TargetType="Label"
+                   x:Key="UnitLabelStyle">
+                <Setter Property="TextColor"
+                        Value="#ff7f91" />
+                <Setter Property="FontSize"
+                        Value="5" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalTextAlignment"
+                        Value="Center" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </c:CirclePage.Resources>
+
+    <c:CirclePage.Content >
+        <AbsoluteLayout>
+            <Image Source="circle_background.png"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   AbsoluteLayout.LayoutBounds="0.6, 0.8, 262, 277" />
+            <Grid x:Name="grid"
+                  AbsoluteLayout.LayoutBounds="-118, 75, 800, 200"
+                  RowSpacing="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="84" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="38" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"
+                       Grid.Row="0"
+                       Source="fire.png" />
+                <Image Grid.Column="1"
+                       Grid.Row="0"
+                       Source="step.png" />
+                <Image Grid.Column="2"
+                       Grid.Row="0"
+                       Source="speed.png" />
+                <Image Grid.Column="3"
+                       Grid.Row="0"
+                       Source="location.png" />
+
+                <Label Grid.Column="0"
+                       Grid.Row="1"
+                       Text="{Binding Calories}"
+                       Style="{StaticResource DataLabelStyle} "/>
+                <Label Grid.Column="1"
+                       Grid.Row="1"
+                       Text="{Binding Steps}"
+                       Style="{StaticResource DataLabelStyle}" />
+                <Label Grid.Column="2"
+                       Grid.Row="1"
+                       Text="{Binding SpeedAverage}"
+                       Style="{StaticResource DataLabelStyle}" />
+                <Label Grid.Column="3"
+                       Grid.Row="1"
+                       Text="{Binding Distance}"
+                       Style="{StaticResource DataLabelStyle}" />
+
+                <Label Grid.Column="0"
+                       Grid.Row="2"
+                       Text="Kcal"
+                       Style="{StaticResource UnitLabelStyle}" />
+                <Label Grid.Column="1"
+                       Grid.Row="2"
+                       Text="Steps"
+                       Style="{StaticResource UnitLabelStyle}" />
+                <Label Grid.Column="2"
+                       Grid.Row="2"
+                       Text="Km/h"
+                       Style="{StaticResource UnitLabelStyle}" />
+                <Label Grid.Column="3"
+                       Grid.Row="2"
+                       Text="Km"
+                       Style="{StaticResource UnitLabelStyle}" />
+            </Grid>
+
+            <Image Source="main_background.png" />
+            <Image x:Name="blueShape"
+                   Source="properblob.png"
+                   Rotation="46.2" />
+            <Image Source="main-foreground.png" />
+
+            <Image x:Name="label0"
+                   Source="label1.png" />
+            <Image x:Name="label1"
+                   Source="label2.png" />
+            <Image x:Name="label2"
+                   Source="label3.png" />
+            <Image x:Name="label3"
+                   Source="label4.png" />
+
+        </AbsoluteLayout>
+    </c:CirclePage.Content>
+
+</c:CirclePage>

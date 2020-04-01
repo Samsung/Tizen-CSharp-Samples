@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:viewModels="clr-namespace:SquatCounter.ViewModels;assembly=SquatCounter"
+                xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+                x:Class="SquatCounter.Views.WelcomePage"
+                NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:WelcomePageViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Content>
+        <Grid>
+            <Image HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   Source="welcome.png" />
+            <StackLayout Spacing="0">
+                <Image Margin="130, 35, 130, 0"
+                       Source="icon.png" />
+                <Label FontFamily="BreezeSans:style=Condensed"
+                       HorizontalTextAlignment="Center"
+                       Margin="0, 15, 0, 0"
+                       Text="Welcome"
+                       TextColor="#FAFAFA" />
+                <Label FontFamily="BreezeSans:style=Condensed"
+                       FontSize="7.8"
+                       HorizontalTextAlignment="Center"
+                       Margin="10, 12, 10, 0"
+                       Text="Squat counter application shows&#x0a;how to use Tizen Sensor API"
+                       TextColor="#FAFAFA" />
+            </StackLayout>
+        </Grid>
+    </cui:CirclePage.Content>
+
+    <cui:CirclePage.ActionButton>
+        <cui:ActionButtonItem Text="START"
+                              Command="{Binding GoToGuideIndexPageCommand}"
+                              BackgroundColor="#2A537D" />
+    </cui:CirclePage.ActionButton>
+
+</cui:CirclePage>
