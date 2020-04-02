@@ -1,4 +1,4 @@
-# SpeechToText
+# SquatCounter
 SquatCounter is a sample application which demonstrates how to count squats by meassuring difference in pressure (Tizen.Sensor API)
 
 ![Welcome page](./Screenshots/Screenshot1.png)
