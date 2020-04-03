@@ -31,6 +31,6 @@ In addition, there is similar native/web sample applications.
 * [Tizen Web app version](https://docs.tizen.org/development/sample/web/Application/App_Control)
 
 
-   [AppControl]: <https://samsung.github.io/TizenFX/stable/api/Tizen.Applications.AppControlLaunchMode.html>
+   [AppControl]: <https://samsung.github.io/TizenFX/stable/api/Tizen.Applications.AppControl.html>
    [AppControlLaunchMode]: <https://samsung.github.io/TizenFX/stable/api/Tizen.Applications.AppControlLaunchMode.html>
 
