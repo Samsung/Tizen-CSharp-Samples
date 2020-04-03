@@ -7,10 +7,9 @@ Also, this sample demonstrates how you can create an application using Xamarin.F
 
 
 ### Verified Version
-* Xamarin.Forms : 3.1.0.583944
-* Tizen.Wearable.CircularUI 1.0.0-pre2-00066
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.1
+* Tizen.Wearable.CircularUI : 1.4.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
