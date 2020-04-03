@@ -27,10 +27,10 @@ This application uses Tizen.Application API.
 
 In addition, there is similar native/web sample applications.
 
-* [Tizen Native version](https://developer.tizen.org/development/sample/native/AppFW/Application_control)
-* [Tizen Web app version](https://developer.tizen.org/development/sample/web/Application/App_Control)
+* [Tizen Native version](https://docs.tizen.org/development/sample/native/AppFW/Application_control)
+* [Tizen Web app version](https://docs.tizen.org/development/sample/web/Application/App_Control)
 
 
-   [AppControl]: <https://developer.tizen.org/dev-guide/csapi/api/Tizen.Applications.AppControl.html>
-   [AppControlLaunchMode]: <https://developer.tizen.org/dev-guide/csapi/api/Tizen.Applications.AppControlLaunchMode.html>
+   [AppControl]: <https://samsung.github.io/TizenFX/stable/api/Tizen.Applications.AppControlLaunchMode.html>
+   [AppControlLaunchMode]: <https://samsung.github.io/TizenFX/stable/api/Tizen.Applications.AppControlLaunchMode.html>
 
