@@ -6,24 +6,7 @@
 
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.497661" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="BadgeCounterApp.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Controls\Counter.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Controls\ImageButton.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Controls\ToggleButton.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
   </ItemGroup>
 
 </Project>
