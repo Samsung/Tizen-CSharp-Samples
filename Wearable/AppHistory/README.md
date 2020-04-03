@@ -16,10 +16,9 @@ This sample uses XAML files for GUI.
 
 
 ### Verified Version
-* Xamarin.Forms : 3.1.0.637273
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.1
-* Tizen.Wearable.CircularUI : 1.0.0-pre2-00065
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
+* Tizen.Wearable.CircularUI (including Xamarin.Forms): 1.4.0
 
 ### Supported Profile
 * Wearable
