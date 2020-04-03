@@ -1,5 +1,5 @@
 # App Statistics
-App Statistics is a sample application that shows how to get information about applications usage using [Tizen AppHistory API](https://developer.tizen.org/dev-guide/csapi/api/Tizen.Context.AppHistory.html).
+App Statistics is a sample application that shows how to get information about applications usage using [Tizen AppHistory API](https://samsung.github.io/TizenFX/stable/api/Tizen.Context.AppHistory.html).
 
 ![WelcomePage](./Screenshots/app_statistics_welcome_page.png)
 ![MenuPage](./Screenshots/app_statistics_menu_page.png)
@@ -11,7 +11,7 @@ App Statistics is a sample application that shows how to get information about a
 
 ### Prerequisites
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Author
 * Michal Lesniak

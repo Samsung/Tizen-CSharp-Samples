@@ -8,10 +8,9 @@ This sample application includes the watch and stopwatch functionality.
 
 
 ### Verified Version
-* Xamarin.Forms : 3.5.0.129452
-* Tizen.Wearable.CircularUI 1.1.0
-* Tizen.NET : 5.0.0.14562
-* Tizen.NET.SDK : 1.0.1
+* Tizen.Wearable.CircularUI (including Xamarin.Forms) : 1.4.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile

@@ -6,10 +6,10 @@ AppInformation sample app demonstrates how to get application-specific informati
 
 This application uses Tizen.Application API.
 
-* [Class ApplicationInfo](https://developer.tizen.org/dev-guide/csapi/api/Tizen.Applications.ApplicationInfo.html)
-* [Class DirectoryInfo](https://developer.tizen.org/dev-guide/csapi/api/Tizen.Applications.DirectoryInfo.html)
+* [Class ApplicationInfo](https://samsung.github.io/TizenFX/stable/api/Tizen.Applications.ApplicationInfo.html)
+* [Class DirectoryInfo](https://samsung.github.io/TizenFX/stable/api/Tizen.Applications.DirectoryInfo.html)
 
 In addition, there is a similar native sample application.
-- [Tizen Native version](https://developer.tizen.org/development/sample/native/AppFW/App-common)
+- [Tizen Native version](https://docs.tizen.org/development/sample/native/AppFW/App-common)
 
 

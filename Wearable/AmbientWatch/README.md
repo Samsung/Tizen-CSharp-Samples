@@ -34,5 +34,5 @@ To use the ambient mode, you must enable it in Settings application.
 
 In addition, the ambient mode activates only when you are wearing a watch on your wrist.
 
-You can get details about ambient-support attribute from https://developer.tizen.org/development/tizen-studio/native-tools/configuring-your-app/manifest-text-editor
+You can get details about ambient-support attribute from https://docs.tizen.org/application/tizen-studio/native-tools/manifest-text-editor#manifest-elements
 
