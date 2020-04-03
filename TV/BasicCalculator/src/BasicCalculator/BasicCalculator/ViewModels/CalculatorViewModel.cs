@@ -367,7 +367,7 @@ namespace BasicCalculator.ViewModels
         public void AppendToExpression(object contentObject)
         {
             string contentToAppend = contentObject as string;
-            if (contentToAppend == null)
+            if (contentToAppend == null || contentToAppend.Length > 1)
             {
                 return;
             }

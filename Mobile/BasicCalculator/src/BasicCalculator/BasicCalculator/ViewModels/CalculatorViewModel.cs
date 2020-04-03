@@ -16,6 +16,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using BasicCalculator.Models;
@@ -376,7 +377,7 @@ namespace BasicCalculator.ViewModels
         public void AppendToExpression(object contentObject)
         {
             string contentToAppend = contentObject as string;
-            if (contentToAppend == null)
+            if (contentToAppend == null || contentToAppend.Length > 1)
             {
                 return;
             }
