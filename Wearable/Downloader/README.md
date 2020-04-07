@@ -7,10 +7,9 @@ This sample is mainly designed for Tizen Wearable profile.
 
 
 ### Verified Version
-* Xamarin.Forms : 3.1.0.583944
-* Tizen.Wearable.CircularUI : 1.0.0-pre2-00082
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.0
+* Tizen.Wearable.CircularUI (including Xamarin.Forms) : 1.4.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile

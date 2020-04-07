@@ -13,7 +13,7 @@ FindPlace is a sample application which demonstrates how to use Tizen.CircularUI
 
 ### Prerequisites
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Author
 * Piotr Konowrocki

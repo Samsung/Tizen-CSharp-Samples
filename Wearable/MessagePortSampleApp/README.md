@@ -32,9 +32,9 @@ This application uses Tizen.Application.Messages API.
 
 In addition, there is a similar native sample application.
 
-* [Tizen Native version](https://developer.tizen.org/development/sample/native/AppFW/%28Tutorial%29_Message_Port)
+* [Tizen Native version](https://docs.tizen.org/development/sample/native/AppFW/%28Tutorial%29_Message_Port)
 
-   [MessagePort]: <https://developer.tizen.org/dev-guide/csapi/api/Tizen.Applications.Messages.MessagePort.html>
+   [MessagePort]: <https://samsung.github.io/TizenFX/stable/api/Tizen.Applications.Messages.MessagePort.html>
 
 
 

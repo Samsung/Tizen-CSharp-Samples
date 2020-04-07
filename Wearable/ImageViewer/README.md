@@ -6,10 +6,9 @@ And demonstrates how to retrive media content information.
 
 
 ### Verified Version
-* Xamarin.Forms : 3.1.0.697729
-* Tizen.Wearable.CircularUI 1.0.0-pre2-00065
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.1
+* Tizen.Wearable.CircularUI (including Xamarin.Forms) : 1.4.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
