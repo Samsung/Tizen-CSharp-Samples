@@ -13,7 +13,7 @@ MediaContent is a sample application that demonstrates how to obtain and filter 
 
 ### Prerequisites
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/tizen-.net-preview/visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Resources
 * Icons used in this project come from [Font Awesome](https://fontawesome.com/) and were converted to .png using [fa2png](http://fa2png.io/).
