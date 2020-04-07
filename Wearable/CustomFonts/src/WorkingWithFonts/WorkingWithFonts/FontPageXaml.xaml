@@ -12,7 +12,20 @@
 
                 <StackLayout.Resources>
                     <ResourceDictionary>
-                        <Style x:Key="CustomFont" TargetType="Label">
+                        <Style x:Key="CustomLabelFont" TargetType="Label">
+                            <Setter Property="FontSize" Value="7" />
+                            <Setter Property="FontFamily">
+                                <Setter.Value>
+                                    <OnPlatform x:TypeArguments="x:String">
+                                        <On Platform="iOS" Value="MarkerFelt-Thin" />
+                                        <On Platform="Tizen" Value="Lobster" />
+                                        <On Platform="Android" Value="Lobster-Regular.ttf#Lobster-Regular" />
+                                        <On Platform="UWP" Value="Assets/Fonts/Lobster-Regular.ttf#Lobster" />
+                                    </OnPlatform>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                        <Style x:Key="CustomSpanFont" TargetType="Span">
                             <Setter Property="FontSize" Value="7" />
                             <Setter Property="FontFamily">
                                 <Setter.Value>
@@ -40,16 +53,16 @@
                 </Label>
 
                 <StackLayout Orientation="Horizontal" >
-                    <Label Text="Italics" FontAttributes="Italic" Style="{StaticResource CustomFont}" />
-                    <Label Text="Bold" FontAttributes="Bold" Style="{StaticResource CustomFont}" />
-                    <Label Text="BoldItalic" FontAttributes="Bold, Italic" Style="{StaticResource CustomFont}" />
+                    <Label Text="Italics" FontAttributes="Italic" Style="{StaticResource CustomLabelFont}" />
+                    <Label Text="Bold" FontAttributes="Bold" Style="{StaticResource CustomLabelFont}" />
+                    <Label Text="BoldItalic" FontAttributes="Bold, Italic" Style="{StaticResource CustomLabelFont}" />
                 </StackLayout>
 
-                <Label Text="Biggest NamedSize" Style="{StaticResource CustomFont}" FontSize="Large" />
+                <Label Text="Biggest NamedSize" Style="{StaticResource CustomLabelFont}" FontSize="Large" />
 
-                <Label Text="Use size 36" FontSize="36" FontAttributes="Italic" Style="{StaticResource CustomFont}" />
+                <Label Text="Use size 36" FontSize="36" FontAttributes="Italic" Style="{StaticResource CustomLabelFont}" />
 
-                <Label Text="Specify Bold Attribute and Micro Size" Style="{StaticResource CustomFont}" >
+                <Label Text="Specify Bold Attribute and Micro Size" Style="{StaticResource CustomLabelFont}" >
 		            <Label.FontAttributes>Bold</Label.FontAttributes>
 		            <Label.FontSize>Micro</Label.FontSize>
 	            </Label>
@@ -60,9 +73,9 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Red, " ForegroundColor="Red" FontAttributes="Italic" FontSize="9" Style="{StaticResource CustomFont}" />
-                                <Span Text=" blue, " ForegroundColor="Blue" FontSize="14" Style="{StaticResource CustomFont}" />
-                                <Span Text=" and green! " ForegroundColor="Green" FontSize="6" Style="{StaticResource CustomFont}" />
+                                <Span Text="Red, " ForegroundColor="Red" FontAttributes="Italic" FontSize="9" Style="{StaticResource CustomSpanFont}" />
+                                <Span Text=" blue, " ForegroundColor="Blue" FontSize="14" Style="{StaticResource CustomSpanFont}" />
+                                <Span Text=" and green! " ForegroundColor="Green" FontSize="6" Style="{StaticResource CustomSpanFont}" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>

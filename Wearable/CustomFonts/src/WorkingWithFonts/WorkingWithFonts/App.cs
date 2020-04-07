@@ -11,9 +11,9 @@ namespace WorkingWithFonts
         {
             var tabs = new IndexPage();
 
-            tabs.Children.Add(new FontPageCs { Title = "C#", Icon = "csharp.png" });
+            tabs.Children.Add(new FontPageCs { Title = "C#", IconImageSource = "csharp.png" });
 
-            tabs.Children.Add(new FontPageXaml { Title = "Xaml", Icon = "xaml.png" });
+            tabs.Children.Add(new FontPageXaml { Title = "Xaml", IconImageSource = "xaml.png" });
 
             MainPage = tabs;
         }
