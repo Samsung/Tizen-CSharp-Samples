@@ -5,7 +5,7 @@ DeviceApp is the sample application that shows how you can get the device inform
 
 
 ### Verified Version
-* Tizen.CircularUI (including Xamarin.Forms) : 1.4.0
+* Tizen.Wearable.CircularUI (including Xamarin.Forms) : 1.4.0
 * Tizen.NET : 6.0.0
 * Tizen.NET.SDK : 1.0.9
 
