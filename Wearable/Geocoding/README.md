@@ -1,5 +1,5 @@
 # Geocoding
-Geocoding is a sample application that shows how to translate an address to its geographical location using the [Tizen Maps API](https://developer.tizen.org/dev-guide/csapi/api/Tizen.Maps.html).
+Geocoding is a sample application that shows how to translate an address to its geographical location using the [Tizen Maps API](https://samsung.github.io/TizenFX/stable/api/Tizen.Maps.html).
 
 ![WelcomePage](./Screenshots/geocoding_welcome_page.png)
 ![SearchPage](./Screenshots/geocoding_search_page.png)
@@ -12,7 +12,7 @@ Geocoding is a sample application that shows how to translate an address to its 
 ### Prerequisites
 
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Author
 * Dariusz Paziewski
