@@ -13,7 +13,8 @@ MapsView is a sample application which demonstrates how to display and control M
 
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
 * [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
-* [HERE](https://www.here.com/en) - HERE mapping platform API key is required 
+* [HERE](https://www.here.com/en) - HERE mapping platform API key is required   
+ (Need to set your key to MAPS_SERVICE_KEY in config.cs)
 
 ### Author
 * @Piotr12 (port of Mobile MapsView app)
