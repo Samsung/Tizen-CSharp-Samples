@@ -1,5 +1,5 @@
 ﻿# HeartRateMonitor
-HeartRateMonitor is a sample application that demonstrates how to obtain data provided by the HRM sensor (heart rate sensor) using [Tizen Sensor API](https://developer.tizen.org/dev-guide/csapi/api/Tizen.Sensor.html).
+HeartRateMonitor is a sample application that demonstrates how to obtain data provided by the HRM sensor (heart rate sensor) using [Tizen Sensor API](https://samsung.github.io/TizenFX/stable/api/Tizen.Sensor.html).
 
 ![MainPage](./Screenshots/main_page.png)
 ![SettingsPage](./Screenshots/settings_page.png)
