@@ -12,10 +12,9 @@ PhotoWatch sample application is a Watch Face application which demonstrates how
 ![img7](./docs/7.png)
 
 ### Verified Version
-* Xamarin.Forms : 3.1.0.697729
-* Tizen.Wearable.CircularUI 1.0.0-pre2-00065
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.1
+* Tizen.Wearable.CircularUI (including Xamarin.Forms) : 1.4.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
