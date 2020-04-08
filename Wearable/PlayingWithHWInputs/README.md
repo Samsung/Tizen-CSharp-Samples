@@ -26,11 +26,11 @@ Also, you can get details about managing rotary event for Tizen native/web appli
   </tr>
   <tr>
     <td>Native</td>
-    <td><a href="https://developer.tizen.org/development/guides/native-application/user-interface/efl/hardware-input-handling/managing-rotary-events">Managing rotary events</a></td>
+    <td><a href="https://docs.tizen.org/application/native/guides/ui/efl/rotary-events">Managing rotary events</a></td>
   </tr>
   <tr>
     <td>Web</td>
-    <td><a href="https://developer.tizen.org/development/guides/web-application/user-interface/tizen-advanced-ui/applications-circular-ui/handling-rotary-events">Handling rotary events</a></td>
+    <td><a href="https://docs.tizen.org/application/web/guides/tau/tau-rotary">Handling rotary events</a></td>
   </tr>
 </table>
 
