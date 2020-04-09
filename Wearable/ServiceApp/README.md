@@ -12,7 +12,7 @@ This application uses Tizen.Application API.
 
 In addition, there is a similar native service application.
 
-* [Tizen Native Service sample app](https://developer.tizen.org/development/sample/native/AppFW/%28Tutorial%29_Service_Application)
+* [Tizen Native Service sample app](https://docs.tizen.org/development/sample/native/AppFW/%28Tutorial%29_Service_Application)
 
 
 <table>
@@ -22,15 +22,15 @@ In addition, there is a similar native service application.
   </tr>
   <tr>
     <td>Native</td>
-    <td><a href="https://developer.tizen.org/development/guides/native-application/application-management/applications/service-application">Service Application</a></td>
+    <td><a href="https://docs.tizen.org/application/native/guides/applications/service-app">Service Application</a></td>
   </tr>
   <tr>
     <td>Web</td>
-    <td><a href="https://developer.tizen.org/development/guides/web-application/application-management/applications/service-application">Service Application</a></td>
+    <td><a href="https://docs.tizen.org/application/web/guides/applications/service-app">Service Application</a></td>
   </tr>
 </table>
 
-   [ServiceApp]: <https://developer.tizen.org/dev-guide/csapi/api/Tizen.Applications.ServiceApplication.html>
+   [ServiceApp]: <https://samsung.github.io/TizenFX/stable/api/Tizen.Applications.ServiceApplication.html>
 
-   [NativeGuide]: <https://developer.tizen.org/development/guides/native-application/application-management/applications/service-application>
-   [WebGuide]: <https://developer.tizen.org/development/guides/web-application/application-management/applications/service-application>
+   [NativeGuide]: <https://docs.tizen.org/application/native/guides/applications/service-app>
+   [WebGuide]: <https://docs.tizen.org/application/web/guides/applications/service-app>
