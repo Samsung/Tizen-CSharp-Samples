@@ -2,16 +2,15 @@
 The SampleTelephony application demonstrates how to work with Telephony API in order to get call, modem, network and sim information from telephony framweork.
 SampleTelephony is mainly designed for Tizen Wearable profile and it is written in [Developer Site](https://developer.tizen.org/development/guides/.net-application/connectivity-and-wireless/telephony-information).
 
-![MainPage](./Screenshots/Tizen/SampleTelephony_1st_depth.png){:height="29%" width="29%"}
-![2ndDepthPage](./Screenshots/Tizen/SampleTelephony_network.png){:height="30%" width="30%"}
-![2ndDepthPage](./Screenshots/Tizen/SampleTelephony_SIM.png){:height="30%" width="30%"}
+![MainPage](./Screenshots/Tizen/SampleTelephony_1st_depth.png)
+![2ndDepthPage](./Screenshots/Tizen/SampleTelephony_network.png)
+![2ndDepthPage](./Screenshots/Tizen/SampleTelephony_SIM.png)
 
 
 ### Verified Version
-* Xamarin.Forms : 3.6.0.264807
 * Tizen.NET : 5.0.0.14562
-* Tizen.Wearable.CircularUI : 1.1.0
-* Tizen.NET.Sdk : 1.0.1
+* Tizen.Wearable.CircularUI (including Xamarin.Forms): 1.4.0
+* Tizen.NET.Sdk : 1.0.9
 
 
 ### Supported Profile
