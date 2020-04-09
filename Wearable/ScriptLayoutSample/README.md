@@ -1,8 +1,7 @@
 # ScriptLayoutSample
-This sample demonstrates how to use different style with different json file in Tizen.NUI.
+This sample demonstrates how to use different style with different json file in [Tizen.NUI](https://samsung.github.io/TizenFX/stable/api/Tizen.NUI.html).
 
 ![DefaultTheme](./Screenshots/defaultTheme.png)
-![CustomTheme](./Screenshots/customTheme.png)
 
 ## License
 Copyright (c) 2018 Samsung Electronics Co., Ltd.
@@ -21,7 +20,7 @@ limitations under the License.
 
 ### Verified Version
 * Tizen.NET : 5.0.0
-* Tizen.NET.SDK : 1.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
