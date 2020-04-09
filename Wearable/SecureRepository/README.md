@@ -1,7 +1,7 @@
 # SecureRepository
 ## Overview
 SecureRepository is a simple application that allows you to securely store data, certificates and cryptographic keys
-using C# [Tizen.Security.SecureRepository API](https://developer.tizen.org/dev-guide/csapi/api/Tizen.Security.SecureRepository.html).
+using C# [Tizen.Security.SecureRepository API](https://samsung.github.io/TizenFX/stable/api/Tizen.Security.SecureRepository.html).
 
 Secure Repository function is provided by [key-manager](https://wiki.tizen.org/Security/Tizen_3.X_Key_Manager) module in Tizen.
 
@@ -28,10 +28,8 @@ and the second one text before encryption and after decryption.
 to key-manager.
 
 ## Verified Version
-* [Xamarin.Forms](https://www.xamarin.com/forms) : 2.4.0.91020
-* [Xamarin.Platform.Tizen](https://www.xamarin.com/forms) : 2.4.0.91020
-* [Tizen.NET](https://www.tizen.org/) : 4.0.0
-* [Tizen.NET.SDK](https://www.tizen.org/) : 1.0.0
+* [Tizen.Wearable.CircularUI](https://github.com/Samsung/Tizen.CircularUI) (including Xamarin.Forms): 1.4.0
+* Tizen.NET.SDK : 1.0.9
 
 ## Supported Profile
 * Mobile
