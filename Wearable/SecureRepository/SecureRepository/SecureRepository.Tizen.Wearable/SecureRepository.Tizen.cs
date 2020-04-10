@@ -38,6 +38,7 @@ namespace SecureRepository.Tizen
         {
             var app = new Program();
             Forms.Init(app);
+            global::Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }
 

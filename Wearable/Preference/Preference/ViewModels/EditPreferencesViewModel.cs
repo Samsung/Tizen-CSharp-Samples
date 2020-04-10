@@ -236,9 +236,17 @@ namespace Preference.ViewModels
         public void LoadPreferences()
         {
             NameValue = _model.Get<string>("Name").ToString();
+            if (NameValue.Length == 0)
+                NameValue = "Name";
             SurnameValue = _model.Get<string>("Surname").ToString();
+            if (SurnameValue.Length == 0)
+                SurnameValue = "Surname";
             AgeValue = _model.Get<string>("Age").ToString();
+            if (AgeValue.Length == 0)
+                AgeValue = "Age";
             HeightValue = _model.Get<string>("Height").ToString();
+            if (HeightValue.Length == 0)
+                HeightValue = "Height";
             CPlusPlusValue = _model.Get<bool>("CPlusPlus") as bool?;
             CSharpValue = _model.Get<bool>("CSharp") as bool?;
             JavaValue = _model.Get<bool>("Java") as bool?;

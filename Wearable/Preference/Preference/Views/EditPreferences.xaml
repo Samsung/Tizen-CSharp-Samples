@@ -20,11 +20,11 @@
                     MinimumHeightRequest="120"/>
 
             <w:PopupEntry HorizontalTextAlignment="Center"
-                          HorizontalOptions="CenterAndExpand"
+                          HorizontalOptions="Center"
                           WidthRequest="280"
                           Placeholder="Name"
                           Text="{Binding NameValue, Mode=TwoWay}"/>
-
+            
             <w:PopupEntry HorizontalTextAlignment="Center"
                           HorizontalOptions="Center"
                           WidthRequest="280"
@@ -44,8 +44,7 @@
                           Placeholder="Height (meters)"
                           Keyboard="Numeric"
                           Text="{Binding HeightValue, Mode=TwoWay}"/>
-
-
+            
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="Center"
                          WidthRequest="280">
