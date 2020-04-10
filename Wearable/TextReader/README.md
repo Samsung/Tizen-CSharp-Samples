@@ -1,6 +1,6 @@
 # TextReader
 Text Reader is a sample application which demonstrates how to synthesize voice
-from text using [Tizen TTS API](https://developer.tizen.org/dev-guide/csapi/api/Tizen.Uix.Tts.html).
+from text using [Tizen TTS API](https://samsung.github.io/TizenFX/stable/api/Tizen.Uix.Tts.html).
 
 ![Main page](./screenshots/TextReader1.png)
 ![Menu - Play](./screenshots/TextReader2.png)
@@ -16,7 +16,7 @@ from text using [Tizen TTS API](https://developer.tizen.org/dev-guide/csapi/api/
 ### Prerequisites
 
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Author
 * Piotr Czaja
