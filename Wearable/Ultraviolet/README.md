@@ -1,5 +1,5 @@
 # Ultraviolet
-Ultraviolet is a sample application which demonstrates how to use Tizen.CircularUI NuGet package and Ultraviolet sensor class from TizenFX API.
+Ultraviolet is a sample application which demonstrates how to use [Tizen.CircularUI](https://samsung.github.io/Tizen.CircularUI/api/index.html) NuGet package and [Ultraviolet sensor](https://samsung.github.io/TizenFX/stable/api/Tizen.Sensor.UltravioletSensor.html) class from TizenFX API.
 
 ![Welcome Page / Main Page](./Screenshots/ultraviolet_welcome_screen.png)
 ![Main page](./Screenshots/ultraviolet_main_screen.png)
@@ -11,7 +11,7 @@ Ultraviolet is a sample application which demonstrates how to use Tizen.Circular
 
 ### Prerequisites
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Author
 * Piotr Konowrocki
