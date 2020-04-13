@@ -26,7 +26,7 @@ You can get detail information about Tizen .NET widget app from [here][dotnet_wi
 
     ![][remove_widget]
 
-[dotnet_widget_app]: https://developer.tizen.org/development/guides/.net-application/application-management/applications/widget-application
+[dotnet_widget_app]: https://docs.tizen.org/application/dotnet/guides/applications/widget-app
 [home_screen]: ./screenshots/home_screen.png
 [add_widget]: ./screenshots/add_widget.png
 [find_widget]: ./screenshots/find_my_widget_icon.png
