@@ -3,7 +3,7 @@
 WebWidgetHybrid sample app demonstrates how to make Tizen hybrid app which is packaged with Tizen Web and .Net applications.
 
 ### Prerequisite
- 1. [Tizen Studio](https://developer.tizen.org/development/tizen-studio/download) should be installed to build Tizen Web/Hybrid applications.
+ 1. [Tizen Studio](https://docs.tizen.org/application/tizen-studio/index) should be installed to build Tizen Web/Hybrid applications.
  2. Check the name of Certificate profile through `Tizen Certificate Manager`
    ![main page](./WebWidgetHybrid_TizenCertManager.png)
  3. Check whether Visual Studio signs the .TPK file using the profile of `Tizen Certificate Manager`.
