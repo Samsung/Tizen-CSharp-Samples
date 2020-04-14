@@ -12,6 +12,7 @@ namespace XamarinFormsAndServiceApps
     public class App : Xamarin.Forms.Application
     {
         Label label;
+        Button button;
         public App()
         {
             label = new Label
@@ -20,6 +21,14 @@ namespace XamarinFormsAndServiceApps
                 VerticalTextAlignment = TextAlignment.Center,
                 Text = "Welcome to Xamarin Forms!"
             };
+
+            button = new Button
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Text = "Start service",
+            };
+            button.Clicked += OnButtonClicked;
+
             // The root page of your application
             MainPage = new CirclePage
             {
@@ -28,10 +37,16 @@ namespace XamarinFormsAndServiceApps
                     VerticalOptions = LayoutOptions.Center,
                     Children =
                     {
-                        label
+                        label,
+                        button
                     }
                 }
             };
+        }
+
+        void OnButtonClicked(object sender, EventArgs e)
+        {
+            (sender as Button).Text = "Started";
             LaunchServiceApp();
         }
 

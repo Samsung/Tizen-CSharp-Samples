@@ -115,7 +115,7 @@ namespace VoiceMemo.Views
                 ToolbarItems.RemoveAt(2);
                 ToolbarItems.RemoveAt(1);
                 // When STT is off, Icon image & SubText should be changed.
-                sttOnOfMenu.Icon = "more_option_icon_stt_off.png";
+                sttOnOfMenu.IconImageSource = "more_option_icon_stt_off.png";
                 sttOnOfMenu.SubText = AppResources.SttOff;
                 ToolbarItems.Add(sttOnOfMenu);
             }
@@ -123,7 +123,7 @@ namespace VoiceMemo.Views
             {
                 ToolbarItems.RemoveAt(1);
                 // When STT is on, Icon image & SubText should be changed.
-                sttOnOfMenu.Icon = "more_option_icon_stt_on.png";
+                sttOnOfMenu.IconImageSource = "more_option_icon_stt_on.png";
                 sttOnOfMenu.SubText = AppResources.SttOn;
                 ToolbarItems.Add(sttOnOfMenu);
                 // When STT is on, "Language" more menu should be shown.
