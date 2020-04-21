@@ -20,9 +20,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 ### Verified Version
-* Tizen.NET : 5.0.0
-* Tizen.NET.SDK : 1.0.1
-* OpenTK.Tizen : 3.0.1
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
+* OpenTK.Tizen : 3.0.2
 
 ### Supported Profile
 * TV
