@@ -23,8 +23,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 ### Verified Version
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
