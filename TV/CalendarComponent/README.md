@@ -1,5 +1,5 @@
 # CalendarComponent
-CalendarComponent is a sample application which demonstrates how to create the similar layout for calendar. 
+CalendarComponent is a sample application which demonstrates how to use [ElmSharp.Calendar](https://samsung.github.io/TizenFX/stable/api/ElmSharp.Calendar.html). 
 
 ![Main page - overview](./Screenshots/screenshot_1.png)
 
