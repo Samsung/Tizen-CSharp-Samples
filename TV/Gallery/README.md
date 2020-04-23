@@ -7,10 +7,9 @@ Gallery sample is mainly designed for Tizen TV profile and it is written in [XAM
 
 
 ### Verified Version
-* Xamarin.Forms : 2.4.0.18342
-* Xamarin.Platform.Tizen : 2.4.0.18342
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.0
+* Xamarin.Forms : 4.5.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
