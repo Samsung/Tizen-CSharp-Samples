@@ -16,15 +16,5 @@
   <ItemGroup>
     <ProjectReference Include="..\CalendarComponent\CalendarComponent.csproj" />
   </ItemGroup>
-    <ItemGroup>
-    <Compile Update="Views\CalendarPage.xaml.cs">
-      <DependentUpon>CalendarPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <!-- Include Nuget Package for Tizen Project building -->
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
-  </ItemGroup>
 
 </Project>

@@ -12,20 +12,15 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="lib\**" />
-    <Compile Remove="Services\**" />
-    <EmbeddedResource Remove="lib\**" />
-    <EmbeddedResource Remove="Services\**" />
-    <None Remove="lib\**" />
-    <None Remove="Services\**" />
-  </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="lib\"/>
+    <Folder Include="res\"/>
+  </ItemGroup>
+  
   <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
     <ProjectReference Include="..\ErrorCodeConverter\ErrorCodeConverter.csproj" />
   </ItemGroup>
-
-  <!-- Include Nuget Package for Tizen Project building -->
 
 </Project>

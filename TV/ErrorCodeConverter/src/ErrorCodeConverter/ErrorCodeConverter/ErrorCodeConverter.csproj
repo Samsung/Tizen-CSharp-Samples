@@ -4,24 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Views\MainPage.xaml" />
-    <None Remove="Views\WelcomePage.xaml" />
-  </ItemGroup>
-
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Views\MainPage.xaml.cs">
-      <SubType>Code</SubType>
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\WelcomePage.xaml.cs">
-      <SubType>Code</SubType>
-      <DependentUpon>WelcomePage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>

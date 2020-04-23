@@ -12,13 +12,10 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
+  
   <ItemGroup>
-    <Compile Remove="lib\**" />
-    <Compile Remove="res\**" />
-    <EmbeddedResource Remove="lib\**" />
-    <EmbeddedResource Remove="res\**" />
-    <None Remove="lib\**" />
-    <None Remove="res\**" />
+    <Folder Include="lib\" />
+    <Folder Include="res\" />
   </ItemGroup>
 
   <!-- If solution already has PCL project, will reference -->

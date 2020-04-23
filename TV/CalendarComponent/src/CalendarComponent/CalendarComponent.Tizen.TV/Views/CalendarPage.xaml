@@ -14,52 +14,53 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Spacing="0" Padding="50">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.25" />
-                <ColumnDefinition Width="0.75" />
-            </Grid.ColumnDefinitions>
-            <StackLayout Grid.Column="0" HeightRequest="340"
+    <ContentPage.Content>
+        <StackLayout Spacing="0" Padding="50">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0"
                          VerticalOptions="Start">
-                <AbsoluteLayout HorizontalOptions="FillAndExpand"
-                                VerticalOptions="FillAndExpand"
-                                AbsoluteLayout.LayoutFlags="All">
-                    <Image Source="{Binding ImageFilename}"
-                           AbsoluteLayout.LayoutBounds="172, 46, 176, 194" />
-                    <Label FontSize="76"
+                    <StackLayout HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                        <Image Source="{Binding ImageFilename}" />
+                        <Label FontSize="76"
                            TextColor="#ffffff"
                            FontAttributes="Bold"
                            Text="{Binding DayName}"
                            VerticalTextAlignment="Center"
                            HorizontalTextAlignment="Center"
                            VerticalOptions="Fill"
-                           HorizontalOptions="Fill"
-                           AbsoluteLayout.LayoutBounds="111, 250, 300, 50" />
-                </AbsoluteLayout>
-            </StackLayout>
-            <StackLayout Grid.Column="1"
-                         HeightRequest="830"
+                           HorizontalOptions="Fill" />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Column="1"
                          VerticalOptions="EndAndExpand"
                          Padding="0">
-                <StackLayout x:Name="CalendarWrapper" />
-            </StackLayout>
-        </Grid>
-        <Grid Padding="24, 12, 24, 12"
+                    <StackLayout x:Name="CalendarWrapper"/>
+                </StackLayout>
+            </Grid>
+            <Grid Padding="24, 12, 24, 12"
               ColumnSpacing="24"
               VerticalOptions="EndAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="104" />
-            </Grid.RowDefinitions>
-            <Button Text="Previous Year"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Button Text="Previous Year"
                     Grid.Column="0"
                     Command="{Binding GoPrevYear}" />
-            <Button Text="Today"
+                <Button Text="Today"
                     Grid.Column="1"
                     Command="{Binding GoToday}" />
-            <Button Text="Next Year"
+                <Button Text="Next Year"
                     Grid.Column="2"
                     Command="{Binding GoNextYear}" />
-        </Grid>
-    </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
