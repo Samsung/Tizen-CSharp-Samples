@@ -4,22 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Control\FooterControl.xaml" />
-    <None Remove="Control\ImageIndicatorControl.xaml" />
-  </ItemGroup>
-
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Control\FooterControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Control\ImageIndicatorControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
 
 </Project>

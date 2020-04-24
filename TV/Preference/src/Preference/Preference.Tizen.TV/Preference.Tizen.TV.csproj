@@ -12,14 +12,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Remove="lib\**" />
-    <Compile Remove="res\**" />
-    <EmbeddedResource Remove="lib\**" />
-    <EmbeddedResource Remove="res\**" />
-    <None Remove="lib\**" />
-    <None Remove="res\**" />
+    <Folder Include="lib\" />
+    <Folder Include="res\" />
   </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
   </ItemGroup>
@@ -27,14 +25,6 @@
   <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
     <ProjectReference Include="..\Preference\Preference.csproj" />
-  </ItemGroup>
-
-  <!-- Include Nuget Package for Tizen Project building -->
-  
-  <ItemGroup>
-    <Compile Update="Views\EditPreferences.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>

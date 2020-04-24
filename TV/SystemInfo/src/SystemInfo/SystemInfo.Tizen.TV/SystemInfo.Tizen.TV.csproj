@@ -12,22 +12,10 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="View\BatteryPage.xaml" />
-    <None Remove="View\CapabilitiesPage.xaml" />
-    <None Remove="View\DisplayPage.xaml" />
-    <None Remove="View\LedPage.xaml" />
-    <None Remove="View\MainPage.xaml" />
-    <None Remove="View\OtherPage.xaml" />
-    <None Remove="View\PropertyPage.xaml" />
-    <None Remove="View\SettingsPage.xaml" />
-    <None Remove="View\UsbPage.xaml" />
-    <None Remove="View\VibratorPage.xaml" />
-    <None Remove="Control\SideStatusControl.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="lib\" />
+    <Folder Include="res\" />
   </ItemGroup>
 
   <!-- If solution already has PCL project, will reference -->
@@ -40,39 +28,4 @@
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="View\BatteryPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\CapabilitiesPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\DisplayPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\LedPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\MainPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\OtherPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\PropertyPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\SettingsPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\UsbPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\VibratorPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Control\SideStatusControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
 </Project>

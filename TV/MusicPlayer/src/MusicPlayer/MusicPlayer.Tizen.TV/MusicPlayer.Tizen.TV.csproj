@@ -18,6 +18,4 @@
     <ProjectReference Include="..\MusicPlayer\MusicPlayer.csproj" />
   </ItemGroup>
 
-  <!-- Include Nuget Package for Tizen Project building -->
-
 </Project>
