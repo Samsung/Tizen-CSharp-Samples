@@ -1,5 +1,5 @@
 # SystemInfo
-SystemInfo is a sample application that demonstrates how to obtain data provided by the system using [Tizen System API](https://developer.tizen.org/dev-guide/csapi/api/Tizen.System.html).
+SystemInfo is a sample application that demonstrates how to obtain data provided by the system using [Tizen System API](https://samsung.github.io/TizenFX/stable/api/Tizen.System.html).
 
 ![CapabilitiesPage](./Screenshots/capabilities_page.png)
 ![OthersPage](./Screenshots/others_page.png)
@@ -10,7 +10,7 @@ SystemInfo is a sample application that demonstrates how to obtain data provided
 
 ### Prerequisites
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/tizen-.net-preview/visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Author
 * Michał Kołodziejski
