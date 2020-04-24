@@ -1,0 +1,30 @@
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Tizen.NET" Version="6.0.0.14995" />
+        <PackageReference Include="Xamarin.Forms" Version="4.4.0.991477" />
+    </ItemGroup>
+
+    <!-- Include Nuget Package for Xamarin building -->
+    <ItemGroup>
+        <Compile Update="TextClassification.xaml.cs">
+            <DependentUpon>TextClassification.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\ResultPage.xaml.cs">
+            <DependentUpon>ResultPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\UserInput.xaml.cs">
+            <DependentUpon>UserInput.xaml</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Update="TextClassification.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </EmbeddedResource>
+    </ItemGroup>
+
+</Project>
