@@ -18,26 +18,10 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/tizen-.net-preview/visual-studio-tools-tizen) - Visual Studio plugin for Tizen .net app development.
-* [StyleCop](https://github.com/StyleCop/StyleCop) - Coding Rule Checker
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .net app development.
 
 ### Installing
 
 * Build SampleAccount source codes by the Visual Studio.
 * Run Tizen mobile emulator.
-* Install build output tpk file to the Tizen mobile emulator.
-
-```
-d:\> "C:\Program Files (x86)\Tizen\SDK\tools\sdb.exe" install org.tizen.example.SampleAccount.Tizen.Mobile-1.0.0.tpk
-```
-
-## Running the tests
-
-* Build source codes by Visual Studio
-* Visual Studio > Test > Run > All Tests
-
-### And coding style tests
-
-* Visual Studio > Tools > Run StyleCop
-
-## Acknowledgments
+* Run (Ctrl + F5) or Debug (F5) will install build output tpk file to the Tizen mobile emulator and launch it.
