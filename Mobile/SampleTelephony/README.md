@@ -1,6 +1,6 @@
 # Telephony
 The SampleTelephony application demonstrates how to work with Telephony API in order to get call, modem, network and sim information from telephony framweork.
-SampleTelephony is mainly designed for Tizen Mobile profile and it is written in [Developer Site](https://developer.tizen.org/development/guides/.net-application/connectivity-and-wireless/telephony-information).
+SampleTelephony is mainly designed for Tizen Mobile profile and it is written in [Developer Site](https://docs.tizen.org/application/dotnet/guides/connectivity/telephony).
 
 ![MainPage](./Screenshots/Tizen/SampleTelephony_1st_depth.png)
 ![2ndDepthPage](./Screenshots/Tizen/SampleTelephony_network.png)
@@ -8,10 +8,9 @@ SampleTelephony is mainly designed for Tizen Mobile profile and it is written in
 
 
 ### Verified Version
-* Xamarin.Forms : 2.4.0.18342
-* Xamarin.Platform.Tizen : 2.4.0.18342
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.0
+* Xamarin.Forms : 4.5.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
