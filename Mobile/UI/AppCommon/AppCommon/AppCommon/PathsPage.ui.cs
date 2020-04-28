@@ -113,7 +113,7 @@ namespace AppCommon
             list.ItemSelected += new EventHandler<SelectedItemChangedEventArgs>(OnListItemSelected);
 
             /// floatingbutton
-            var floatingButton = new ImageButton
+            var floatingButton = new AppCommon.Extensions.ImageButton
             {
                 Source = "list_top_icon.png",
                 HeightRequest = 100 * _horizontalScale,

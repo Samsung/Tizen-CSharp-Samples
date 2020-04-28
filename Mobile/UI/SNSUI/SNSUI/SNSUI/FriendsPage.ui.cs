@@ -59,7 +59,7 @@ namespace SNSUI
         /// </summary>
         void InitializeComponent()
         {
-            Icon = "00_controlbar_icon_artists.png";
+            IconImageSource = "00_controlbar_icon_artists.png";
             Title = "Friends";
 
             if (contentLoaded)

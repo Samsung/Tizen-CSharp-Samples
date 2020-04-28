@@ -153,7 +153,7 @@ namespace SNSUI.Tizen.Renderers
 
             foreach (Page child in logicalChildren)
             {
-                var toolbarItem = _tpage.Append(null, string.IsNullOrEmpty(child.Icon) ? null : ResourcePath.GetPath(child.Icon));
+                var toolbarItem = _tpage.Append(null, null);
 
                 /// To Set a backgroundcolor for every toolbar item
                 toolbarItem.SetPartColor("bg", Element.BarBackgroundColor.ToNative());

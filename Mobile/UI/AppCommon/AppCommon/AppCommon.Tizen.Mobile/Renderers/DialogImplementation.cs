@@ -19,7 +19,6 @@ using AppCommon.Extensions;
 using AppCommon.Tizen.Mobile.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 using EPopup = ElmSharp.Popup;
 
 [assembly: Dependency(typeof(DialogImplementation))]
@@ -58,7 +57,7 @@ namespace AppCommon.Tizen.Mobile.Renderers
 
         public DialogImplementation()
         {
-            _control = new EPopup(TForms.NativeParent);
+            _control = new EPopup(Forms.NativeParent);
 
             _control.ShowAnimationFinished += ShowAnimationFinishedHandler;
             _control.Dismissed += DismissedHandler;
@@ -146,16 +145,6 @@ namespace AppCommon.Tizen.Mobile.Renderers
 
         public void Show()
         {
-            if (Application.Current.Platform == null)
-            {
-                throw new Exception("When the Application's Platform is null, can not show the Dialog.");
-            }
-
-            if (_contentView.Platform == null)
-            {
-                UpdateContent();
-            }
-
             _control.Show();
         }
 
@@ -241,23 +230,16 @@ namespace AppCommon.Tizen.Mobile.Renderers
 
         void UpdateContent()
         {
-            if (Application.Current.Platform == null)
-            {
-                return;
-            }
-
             _contentView.Children.Clear();
 
             if (Content != null)
             {
                 _contentView.Children.Add(Content);
 
-                _contentView.Platform = Application.Current.Platform;
-
                 var renderer = Platform.GetOrCreateRenderer(_contentView);
                 (renderer as LayoutRenderer)?.RegisterOnLayoutUpdated();
 
-                var sizeRequest = _contentView.Measure(TForms.NativeParent.Geometry.Width, TForms.NativeParent.Geometry.Height).Request.ToPixel();
+                var sizeRequest = _contentView.Measure(Forms.NativeParent.Geometry.Width, Forms.NativeParent.Geometry.Height).Request.ToPixel();
 
                 _nativeContent = renderer.NativeView;
                 _nativeContent.MinimumHeight = sizeRequest.Height;

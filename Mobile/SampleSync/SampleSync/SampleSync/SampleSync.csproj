@@ -8,10 +8,5 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Views\SyncMainPage.xaml.cs">
-      <DependentUpon>SyncMainPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
 
 </Project>

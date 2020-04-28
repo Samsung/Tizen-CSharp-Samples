@@ -236,7 +236,7 @@ namespace ApplicationControl
                     return parent.Height * 0.2411;
                 }));
 
-            var killButton = new ImageButton
+            var killButton = new AppCommon.Extensions.ImageButton
             {
                 Source = "kill_button.jpg",
             };

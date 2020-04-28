@@ -40,7 +40,7 @@ namespace AppCommon.Tizen.Mobile
         /// <summary>
         /// An application name
         /// </summary>
-        public string Name
+        public string AppName
         {
             get
             {

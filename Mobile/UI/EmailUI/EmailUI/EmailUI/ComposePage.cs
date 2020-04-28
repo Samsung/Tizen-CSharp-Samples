@@ -45,7 +45,7 @@ namespace EmailUI
             // Add cancel button
             Button CancelBtn = new Button()
             {
-                Image = "icon_cancel.png",
+                ImageSource = "icon_cancel.png",
                 BackgroundColor = Color.Transparent,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.CenterAndExpand,
@@ -68,7 +68,7 @@ namespace EmailUI
             // Add ok button
             Button OkBtn = new Button()
             {
-                Image = "icon_done.png",
+                ImageSource = "icon_done.png",
                 BackgroundColor = Color.Transparent,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 VerticalOptions = LayoutOptions.CenterAndExpand,

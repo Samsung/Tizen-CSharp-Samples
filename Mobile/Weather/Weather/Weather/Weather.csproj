@@ -1,4 +1,4 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -14,40 +14,5 @@
     <EmbeddedResource Include="Data\city.list.json" />
     <EmbeddedResource Include="Data\country.list.json" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Update="Controls\DoubleLabel.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MainPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ForecastPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="CurrentWeatherPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ApiErrorPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\ApiErrorPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\CurrentWeatherPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\ForecastPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\MainPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\MissingKeyErrorPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\PageIndicator.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
+
 </Project>

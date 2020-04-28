@@ -39,7 +39,7 @@ namespace SNSUI
         void InitializeComponent()
         {
             Title = "News Feed";
-            Icon = "00_controlbar_icon_playlist.png";
+            IconImageSource = "00_controlbar_icon_playlist.png";
 
             if (_contentLoaded)
             {

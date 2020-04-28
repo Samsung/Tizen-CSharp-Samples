@@ -40,7 +40,7 @@ namespace SNSUI
         /// </summary>
         void InitializeComponent()
         {
-            Icon = "00_controlbar_icon_dialer.png";
+            IconImageSource = "00_controlbar_icon_dialer.png";
             Title = "Message";
 
             if (_contentLoaded)

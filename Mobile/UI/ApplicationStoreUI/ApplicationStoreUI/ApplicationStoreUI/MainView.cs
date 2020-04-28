@@ -206,7 +206,7 @@ namespace ApplicationStoreUI
         /// <param name="itemHeight">The item height</param>
         /// <returns>Return the new ImageButton</returns>
         /// <seealso cref="ImageButton">
-        private ImageButton CreateItem(string source, int itemHeight)
+        private ApplicationStoreUI.Extensions.ImageButton CreateItem(string source, int itemHeight)
         {
             int horizentalItemCount = 3;
             if (itemHeight == TOP_ITEM_HEIGHT)
@@ -216,7 +216,7 @@ namespace ApplicationStoreUI
 
             int itemWidth = (_screenWidth - 20 - horizentalItemCount * CONTENT_ITEM_COLUMN_SPACE)  / horizentalItemCount;
 
-            ImageButton item = new ImageButton
+            ApplicationStoreUI.Extensions.ImageButton item = new ApplicationStoreUI.Extensions.ImageButton
             {
                 Source = source + ".jpg",
                 MinWidth = itemWidth,

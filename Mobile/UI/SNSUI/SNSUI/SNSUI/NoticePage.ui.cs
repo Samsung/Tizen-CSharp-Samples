@@ -42,7 +42,7 @@ namespace SNSUI
         /// </summary>
         void InitializeComponent()
         {
-            Icon = "00_controlbar_icon_more.png";
+            IconImageSource = "00_controlbar_icon_more.png";
             Title = "Notice";
 
             if (contentLoaded)

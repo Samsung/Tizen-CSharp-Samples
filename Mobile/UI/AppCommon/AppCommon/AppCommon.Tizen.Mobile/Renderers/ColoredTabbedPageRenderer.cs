@@ -143,7 +143,7 @@ namespace AppCommon.Tizen.Mobile.Renderers
                     childRenderer.NativeView.Hide();
                 }
 
-                EToolbarItem toolbarItem = _tpage.Append(child.Title, string.IsNullOrEmpty(child.Icon) ? null : ResourcePath.GetPath(child.Icon));
+                EToolbarItem toolbarItem = _tpage.Append(child.Title, null);
                 toolbarItem.SetPartColor("bg", Element.BarBackgroundColor.ToNative());
 
                 _itemToItemPage.Add(toolbarItem, child);

@@ -8,16 +8,5 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Views\ListPage.xaml.cs">
-      <DependentUpon>ListPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\PlayPage.xaml.cs">
-      <DependentUpon>PlayPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
 
 </Project>

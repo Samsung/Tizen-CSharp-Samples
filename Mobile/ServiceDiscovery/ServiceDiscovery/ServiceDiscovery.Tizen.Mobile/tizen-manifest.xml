@@ -1,17 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.ServiceDiscovery.Tizen.Mobile" version="1.0.0">
-	<profile name="mobile" />
-	<ui-application appid="org.tizen.example.ServiceDiscovery.Tizen.Mobile"
-					exec="ServiceDiscovery.Tizen.Mobile.dll"
-					type="dotnet"
-					multiple="false"
-					taskmanage="true"
-					nodisplay="false"
-					launch_mode="single">
-  <label>ServiceDiscovery.Tizen.Mobile</label>
-	<icon>ServiceDiscovery.Tizen.Mobile.png</icon>
-	</ui-application>
-  <privileges>
-    <privilege>http://tizen.org/privilege/internet</privilege>
-  </privileges>
+<manifest package="org.tizen.example.ServiceDiscovery.Tizen.Mobile" version="1.0.0" api-version="5.5" xmlns="http://tizen.org/ns/packages">
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.example.ServiceDiscovery.Tizen.Mobile" exec="ServiceDiscovery.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+        <label>ServiceDiscovery.Tizen.Mobile</label>
+        <icon>ServiceDiscovery.Tizen.Mobile.png</icon>
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/internet</privilege>
+    </privileges>
+    <dependencies />
+    <provides-appdefined-privileges />
 </manifest>

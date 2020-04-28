@@ -1,10 +1,10 @@
 using System.ComponentModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using AppCommon.Extensions;
 using AppCommon.Tizen.Mobile.Renderers;
 using EBackground = ElmSharp.Background;
 using EBackgroundOptions = ElmSharp.BackgroundOptions;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 
 [assembly: ExportRenderer(typeof(Background), typeof(BackgroundRenderer))]
 
@@ -20,7 +20,7 @@ namespace AppCommon.Tizen.Mobile.Renderers
         {
             if (Control == null)
             {
-                var background = new EBackground(TForms.NativeParent);
+                var background = new EBackground(Forms.NativeParent);
                 SetNativeControl(background);
             }
 

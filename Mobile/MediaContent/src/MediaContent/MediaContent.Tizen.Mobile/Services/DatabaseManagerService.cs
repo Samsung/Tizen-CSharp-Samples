@@ -119,8 +119,6 @@ namespace MediaContent.Tizen.Mobile.Services
                 MimeType = mediaInfo.MimeType,
                 Path = mediaInfo.Path,
                 Rating = mediaInfo.Rating,
-                StorageId = mediaInfo.StorageId,
-                StorageType = mediaInfo.StorageType.ToString(),
                 ThumbnailPath = mediaInfo.ThumbnailPath,
                 Timeline = mediaInfo.Timeline,
                 Title = mediaInfo.Title

@@ -19,13 +19,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using ElmSharp;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using Xamarin.Forms.Platform.Tizen.Native;
 using ApplicationControl.Extensions;
 using ApplicationControl.Tizen.Mobile.Renderers;
 using ESize = ElmSharp.Size;
 using Size = Xamarin.Forms.Size;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 
 [assembly: ExportRenderer(typeof(RadioButton), typeof(RadioButtonRenderer))]
 
@@ -33,7 +33,7 @@ namespace ApplicationControl.Tizen.Mobile.Renderers
 {
     public class RadioButtonRenderer : ViewRenderer<RadioButton, Radio>
     {
-        readonly Span _span = new Span();
+        readonly Xamarin.Forms.Platform.Tizen.Native.Span _span = new Xamarin.Forms.Platform.Tizen.Native.Span();
 
         static Lazy<RadioGroupManager> s_GroupManager = new Lazy<RadioGroupManager>();
 
@@ -47,7 +47,7 @@ namespace ApplicationControl.Tizen.Mobile.Renderers
         {
             if (Control == null)
             {
-                var radio = new Radio(TForms.NativeParent) { StateValue = 1 };
+                var radio = new Radio(Forms.NativeParent) { StateValue = 1 };
                 SetNativeControl(radio);
             }
 

@@ -49,7 +49,7 @@ namespace AppCommon.Tizen.Mobile.Effects
         /// <param name="e">event</param>
         void SendClicked(object sender, EventArgs e)
         {
-            ((ImageButton)Element).SendClicked();
+            ((AppCommon.Extensions.ImageButton)Element).SendClicked();
         }
     }
 }

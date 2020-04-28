@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using Xamarin.Forms;
+
 namespace ThumbnailExtractorSample.Tizen.Mobile
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -29,7 +31,7 @@ namespace ThumbnailExtractorSample.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
     }
