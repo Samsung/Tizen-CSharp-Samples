@@ -11,9 +11,9 @@ The ApplicationControl application demonstrates how you can find applications su
 </table>
 
 ### Verified Version
-* Xamarin.Forms : 3.1.0.469394-pre1
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.0
+* Xamarin.Forms : 4.5.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
