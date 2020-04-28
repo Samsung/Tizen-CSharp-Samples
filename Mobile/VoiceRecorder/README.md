@@ -1,6 +1,6 @@
 # VoiceRecorder
 VoiceRecorder is a sample application which demonstrates how to control audio
-recording using [Tizen Multimedia API](https://developer.tizen.org/dev-guide/csapi/api/Tizen.Multimedia.html).
+recording using [Tizen Multimedia API](https://samsung.github.io/TizenFX/stable/api/Tizen.Multimedia.html).
 
 ![Record page](./Screenshots/record.png)
 ![Listen page](./Screenshots/listen.png)
@@ -16,7 +16,7 @@ recording using [Tizen Multimedia API](https://developer.tizen.org/dev-guide/csa
 ### Prerequisites
 
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Author
 * Mateusz Szperna
