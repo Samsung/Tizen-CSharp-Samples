@@ -7,10 +7,9 @@ The NetworkApp application demonstrates how user can get network information, co
 
 
 ### Verified Version
-* Xamarin.Forms : 2.5.0.91635
-* Xamarin.Platform.Tizen : 2.5.0.77107
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.0
+* Xamarin.Forms : 4.5.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
