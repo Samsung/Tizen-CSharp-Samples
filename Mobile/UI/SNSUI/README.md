@@ -12,9 +12,9 @@ It shows how to compose the view by using scroller, toolbar and drawer.
 </table>
 
 ### Verified Version
-* Xamarin.Forms : 3.1.0.469394-pre1
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.0
+* Xamarin.Forms : 4.5.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
