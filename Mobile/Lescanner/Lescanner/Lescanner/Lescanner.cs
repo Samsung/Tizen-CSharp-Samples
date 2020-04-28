@@ -399,10 +399,10 @@ namespace Lescanner
         {
             if (!leDevice.Equals(null))
             {
-                leDevice.GattConnectionStateChanged -= Device_GattConnectionStateChanged;
-                leDevice.GattDisconnect();
+                GattClient.ConnectionStateChanged -= Device_GattConnectionStateChanged;
+                GattClient.DisconnectAsync();
                 leDevice = null;
-                GattClient.DestroyClient();
+                GattClient.Dispose();
                 GattClient = null;
             }
 
@@ -457,9 +457,10 @@ namespace Lescanner
                 UuidPage = new NavigationPage(content);
                 await MainPage.Navigation.PushAsync(UuidPage);
 
-                device.Ledevice.GattConnectionStateChanged += Device_GattConnectionStateChanged;
-                
-                GattClient = device.Ledevice.GattConnect(false);
+                GattClient = BluetoothGattClient.CreateClient(device.Address);
+                await GattClient.ConnectAsync(false);
+                GattClient.ConnectionStateChanged += Device_GattConnectionStateChanged;
+
                 await WaitStateChangedFlag();
 
                 GattLabel.Text = "GattConnected";
