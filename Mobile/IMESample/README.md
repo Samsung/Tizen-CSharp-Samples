@@ -6,9 +6,9 @@ SampleIME is mainly designed for Tizen Mobile profile.
 
 
 ### Verified Version
-* Xamarin.Forms : 3.4.0.1008975
-* Tizen.NET : 5.0.0.14594
-* Tizen.NET.SDK : 1.0.1
+* Xamarin.Forms : 4.5.0
+* Tizen.NET : 6.0.0
+* Tizen.NET.SDK : 1.0.9
 
 
 ### Supported Profile
