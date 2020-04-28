@@ -10,7 +10,7 @@ This sample application demonstrates how to implement location.
 ### Prerequisites
 
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Installing
 
@@ -21,10 +21,4 @@ This sample application demonstrates how to implement location.
 ### Precondition
 
 * GPS should be "ON" in testing device for Location.
-
-
-## Running the tests
-
-* Build source codes by Visual Studio
-* Visual Studio > Test > Run > All Tests
 
