@@ -15,7 +15,7 @@
  */
 
 using Tizen.Applications;
-using Xamarin.Forms.Platform.Tizen.Native;
+using Xamarin.Forms;
 
 namespace Calculator.Tizen
 {
@@ -81,7 +81,7 @@ namespace Calculator.Tizen
             var program = new Program();
             // DebuggingPort is registering for the Logging and Pop up.
             global::Xamarin.Forms.DependencyService.Register<DebuggingPort>();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(program);
+            Forms.Init(program);
             program.Run(args);
         }
     }

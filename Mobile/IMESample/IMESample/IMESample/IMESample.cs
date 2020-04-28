@@ -26,18 +26,13 @@ namespace IMESample
     /// </summary>
     public class App : Application, IAppConfigurationChanged
     {
-        // Check whether current device orientation is landscape.
-        private AppOrientation IsLandscape;
-
-
         /// <summary>
         /// IMESample's constructor
         /// </summary>
         /// <param name="isLandscape"> A flag whether current display orientation is landscape or not. </param>
         public App(bool isLandscape)
         {
-            IsLandscape = AppOrientation.Portrait;
-            if (isLandscape)
+             if (isLandscape)
             {
                 // Changed the layout to landscape keyboard
                 OnOrientationChanged(AppOrientation.Landscape);
@@ -58,14 +53,12 @@ namespace IMESample
             switch (orientation)
             {
                 case AppOrientation.Landscape:
-                    IsLandscape = AppOrientation.Landscape;
                     // Load the landscape keyboard layout
                     MainPage = new IME_KEYBOARD_LAYOUT_QWERTY_LAND();
                     break;
 
                 case AppOrientation.Portrait:
                 default:
-                    IsLandscape = AppOrientation.Portrait;
                     // Load the portrait keyboard layout
                     MainPage = new IME_KEYBOARD_LAYOUT_QWERTY_PORT();
                     break;

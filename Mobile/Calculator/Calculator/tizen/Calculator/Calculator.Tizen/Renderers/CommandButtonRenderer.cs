@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 
 using Calculator.Controls;
@@ -122,11 +123,11 @@ namespace Calculator.Tizen.Renderers
         /// Set button image's blending color.
         /// It's right time after updating the button image source.
         /// </summary>
-        protected override void UpdateAfterLoading()
-        {
-            base.UpdateAfterLoading();
-            Control.Color = RegularColor;
-        }
+        //protected override void UpdateAfterLoading()
+        //{
+        //    base.UpdateAfterLoading();
+        //    Control.Color = RegularColor;
+        //}
 
         /// <summary>
         /// Cancel command executing for Tap, Long Tap

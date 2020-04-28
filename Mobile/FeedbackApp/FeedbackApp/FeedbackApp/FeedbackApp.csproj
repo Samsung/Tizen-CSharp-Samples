@@ -6,7 +6,7 @@
 
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="4.0.0" />
+    <PackageReference Include="Tizen.NET" Version="6.0.0.14995" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
   </ItemGroup>
 

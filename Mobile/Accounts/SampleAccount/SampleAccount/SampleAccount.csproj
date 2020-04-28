@@ -8,10 +8,5 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Views\AccountSignIn.xaml.cs">
-      <DependentUpon>AccountSignIn.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
 
 </Project>

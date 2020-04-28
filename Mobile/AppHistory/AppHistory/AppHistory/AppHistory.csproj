@@ -4,21 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="StyleCop.Cache" />
-  </ItemGroup>
-
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Views\AppHistoryInformationPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\AppHistoryMain.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
 
 </Project>

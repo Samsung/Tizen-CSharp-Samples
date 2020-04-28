@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 
 using Calculator.Controls;
@@ -130,12 +131,12 @@ namespace Calculator.Tizen.Renderers
         /// Set button image's blending color.
         /// It's right time after updating the button image source.
         /// </summary>
-        protected override void UpdateAfterLoading()
-        {
-            base.UpdateAfterLoading();
-            Control.Color = BlendingColor;
-            Control.BackgroundColor = GetColor(Element.BackgroundColor, 1f);
-        }
+        //protected override void UpdateAfterLoading()
+        //{
+        //    base.UpdateAfterLoading();
+        //    Control.Color = BlendingColor;
+        //    Control.BackgroundColor = GetColor(Element.BackgroundColor, 1f);
+        //}
 
         /// <summary>
         /// A Action delegate which is restore button image as default

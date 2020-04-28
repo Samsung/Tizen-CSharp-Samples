@@ -17,10 +17,8 @@
     <Folder Include="res\" />
   </ItemGroup>
 
-
   <ItemGroup>
     <ProjectReference Include="..\IMESample\IMESample.csproj" />
   </ItemGroup>
-
 
 </Project>

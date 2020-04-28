@@ -10,16 +10,4 @@
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Views\IME_KEYBOARD_LAYOUT_QWERTY_PORT.xaml.cs">
-      <DependentUpon>IME_KEYBOARD_LAYOUT_QWERTY_PORT.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\IME_KEYBOARD_LAYOUT_QWERTY_LAND.xaml.cs">
-      <DependentUpon>IME_KEYBOARD_LAYOUT_QWERTY_LAND.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-      <Folder Include="Views\" />
-  </ItemGroup>
 </Project>
