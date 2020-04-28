@@ -1,4 +1,4 @@
-# TectClassification
+# TextClassification
 This sample application provides a guide for how to use the nnstreamer single-shot API.
 
 Text classifications are classified into predefined groups based on sentences.
