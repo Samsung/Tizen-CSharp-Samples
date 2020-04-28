@@ -1,6 +1,6 @@
 # SpeechToText
 SpeechToText is a sample application which demonstrates how to record and recognize
-sound data using [Tizen STT API](https://developer.tizen.org/dev-guide/csapi/api/Tizen.Uix.Stt.html).
+sound data using [Tizen STT API](https://samsung.github.io/TizenFX/stable/api/Tizen.Uix.Stt.html).
 
 ![Main page](./Screenshots/main.png)
 ![Application settings](./Screenshots/settings.png)
@@ -16,7 +16,7 @@ sound data using [Tizen STT API](https://developer.tizen.org/dev-guide/csapi/api
 ### Prerequisites
 
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
-* [Visual Studio Tools for Tizen](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
+* [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Author
 * Piotr Górny
