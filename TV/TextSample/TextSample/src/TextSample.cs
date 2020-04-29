@@ -18,7 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -36,9 +36,9 @@ namespace TextSample
         // textLabel be used to show the effect of TextEditor.
         private TextEditor textEditor;
         // pushButton be used to trigger the effect of Text.
-        private PushButton[] pushButton;
+        private Button[] pushButton;
         // checkBoxButton be used to trigger the effect of Text.
-        private CheckBoxButton[] checkBoxButton;
+        private CheckBox[] checkBoxButton;
         // tableView be used to put pushButton and checkBoxButton.
         private TableView tableView;
         // Some kinds of LANGUAGES.
@@ -313,84 +313,84 @@ namespace TextSample
             //tableView.BackgroundColor = Color.Cyan;
             Window.Instance.GetDefaultLayer().Add(tableView);
 
-            pushButton = new PushButton[6];
+            pushButton = new Button[6];
             // Creates button[0] which control HorizontalAlignment
             pushButton[0] = CreateButton("HorizontalAlignment", "HorizontalAlignment");
             pushButton[0].SizeWidth = 400;
             // Bind pushButton's click event to ButtonClick.
-            pushButton[0].Clicked += ButtonClick;
+            pushButton[0].ClickEvent += ButtonClick;
             tableView.AddChild(pushButton[0], new TableView.CellPosition(0, 0));
 
             // Creates button[1] which control VerticalAlignment
             pushButton[1] = CreateButton("VerticalAlignment", "VerticalAlignment");
             pushButton[1].SizeWidth = 400;
             // Bind pushButton's click event to ButtonClick.
-            pushButton[1].Clicked += ButtonClick;
+            pushButton[1].ClickEvent += ButtonClick;
             tableView.AddChild(pushButton[1], new TableView.CellPosition(0, 1));
 
             // Creates button[2] which control Color
             pushButton[2] = CreateButton("Color", "Color");
             pushButton[2].SizeWidth = 400;
             // Bind pushButton's click event to ButtonClick.
-            pushButton[2].Clicked += ButtonClick;
+            pushButton[2].ClickEvent += ButtonClick;
             tableView.AddChild(pushButton[2], new TableView.CellPosition(0, 2));
 
             // Creates button[3] which control pointSize
             pushButton[3] = CreateButton("Size", "Size");
             pushButton[3].SizeWidth = 400;
             // Bind pushButton's click event to ButtonClick.
-            pushButton[3].Clicked += ButtonClick;
+            pushButton[3].ClickEvent += ButtonClick;
             tableView.AddChild(pushButton[3], new TableView.CellPosition(0, 3));
 
             // Creates button[5] which control scroll text
             pushButton[5] = CreateButton("Scroll", "Scroll");
             pushButton[5].SizeWidth = 400;
             // Bind pushButton's click event to ButtonClick.
-            pushButton[5].Clicked += ButtonClick;
+            pushButton[5].ClickEvent += ButtonClick;
             tableView.AddChild(pushButton[5], new TableView.CellPosition(1, 0));
 
             // Creates button[6] which control language
             pushButton[4] = CreateButton("Language", "Language");
             pushButton[4].SizeWidth = 400;
             // Bind pushButton's click event to ButtonClick.
-            pushButton[4].Clicked += ButtonClick;
+            pushButton[4].ClickEvent += ButtonClick;
             tableView.AddChild(pushButton[4], new TableView.CellPosition(1, 1));
 
-            checkBoxButton = new CheckBoxButton[6];
+            checkBoxButton = new CheckBox[6];
             // Creates checkBoxButton[0] which control multiline
             checkBoxButton[0] = CreateCheckBoxButton("Multiline");
             // Bind checkBoxButton's click event to CheckButtonClick.
-            checkBoxButton[0].Clicked += CheckButtonClick;
+            checkBoxButton[0].ClickEvent += CheckButtonClick;
             tableView.AddChild(checkBoxButton[0], new TableView.CellPosition(1, 2));
 
             // Creates checkBoxButton[1] which control shadow
             checkBoxButton[1] = CreateCheckBoxButton("Shadow");
             // Bind checkBoxButton's click event to CheckButtonClick.
-            checkBoxButton[1].Clicked += CheckButtonClick;
+            checkBoxButton[1].ClickEvent += CheckButtonClick;
             tableView.AddChild(checkBoxButton[1], new TableView.CellPosition(1, 3));
 
             // Creates checkBoxButton[2] which control underline
             checkBoxButton[2] = CreateCheckBoxButton("Underline");
             // Bind checkBoxButton's click event to CheckButtonClick.
-            checkBoxButton[2].Clicked += CheckButtonClick;
+            checkBoxButton[2].ClickEvent += CheckButtonClick;
             tableView.AddChild(checkBoxButton[2], new TableView.CellPosition(2, 0));
 
             // Creates checkBoxButton[3] which control ellipsis
             checkBoxButton[3] = CreateCheckBoxButton("Ellipsis");
             // Bind checkBoxButton's click event to CheckButtonClick.
-            checkBoxButton[3].Clicked += CheckButtonClick;
+            checkBoxButton[3].ClickEvent += CheckButtonClick;
             tableView.AddChild(checkBoxButton[3], new TableView.CellPosition(2, 1));
 
             // Creates checkBoxButton[4] which control bold
             checkBoxButton[4] = CreateCheckBoxButton("Bold");
             // Bind checkBoxButton's click event to CheckButtonClick.
-            checkBoxButton[4].Clicked += CheckButtonClick;
+            checkBoxButton[4].ClickEvent += CheckButtonClick;
             tableView.AddChild(checkBoxButton[4], new TableView.CellPosition(2, 2));
 
             // Creates checkBoxButton[5] which control condensed
             checkBoxButton[5] = CreateCheckBoxButton("Condensed");
             // Bind checkBoxButton's click event to CheckButtonClick.
-            checkBoxButton[5].Clicked += CheckButtonClick;
+            checkBoxButton[5].ClickEvent += CheckButtonClick;
             tableView.AddChild(checkBoxButton[5], new TableView.CellPosition(2, 3));
 
         }
@@ -401,12 +401,12 @@ namespace TextSample
         /// <param name="source">The clicked button</param>
         /// <param name="e">event</param>
         /// <returns>The consume flag</returns>
-        private bool ButtonClick(object source, EventArgs e)
+        private void ButtonClick(object source, EventArgs e)
         {
             // Get the source who trigger this event.
-            PushButton button = source as PushButton;
+            Button button = source as Button;
             // Change textLabel/textfield/textEditor's HorizontalAlignment.
-            if (button.LabelText == "HorizontalAlignment")
+            if (button.Text == "HorizontalAlignment")
             {
                 // Begin : Texts place at the begin of horizontal direction.
                 if (textLabel.HorizontalAlignment == HorizontalAlignment.Begin)
@@ -432,7 +432,7 @@ namespace TextSample
             }
             // Change textLabel/textfield's VerticalAlignment.
             // TextEditor don't have this property.
-            else if (button.LabelText == "VerticalAlignment")
+            else if (button.Text == "VerticalAlignment")
             {
                 // Top : Texts place at the top of vertical direction.
                 if (textLabel.VerticalAlignment == VerticalAlignment.Top)
@@ -454,7 +454,7 @@ namespace TextSample
                 }
             }
             // Change textLabel/textfield/textEditor's text color.
-            else if (button.LabelText == "Color")
+            else if (button.Text == "Color")
             {
                 // Judge the textColor is Black or not.
                 // It true, change text color to blue.
@@ -478,7 +478,7 @@ namespace TextSample
                 }
             }
             // Change textLabel/textfield/textEditor's text size.
-            else if (button.LabelText == "Size")
+            else if (button.Text == "Size")
             {
                 if (textLabel.PointSize == DeviceCheck.PointSize12)
                 {
@@ -520,7 +520,7 @@ namespace TextSample
             // Gap before scrolling wraps is 500.
             // The speed of scrolling in pixels per second is 500.
             // Number of complete loops when scrolling enabled is 1.
-            else if (button.LabelText == "Scroll")
+            else if (button.Text == "Scroll")
             {
                 textLabel.VerticalAlignment = VerticalAlignment.Top;
                 textLabel.EnableAutoScroll = true;
@@ -530,7 +530,7 @@ namespace TextSample
                 textLabel.AutoScrollStopMode = AutoScrollStopMode.FinishLoop;
             }
             // Change different language on textLabel/textField/textEditor.
-            else if (button.LabelText == "Language")
+            else if (button.Text == "Language")
             {
                 textLabel.Text = LANGUAGES[itemLanguage];
                 textField.Text = LANGUAGES[itemLanguage];
@@ -542,8 +542,6 @@ namespace TextSample
                     itemLanguage = 0;
                 }
             }
-
-            return true;
         }
 
         /// <summary>
@@ -552,19 +550,19 @@ namespace TextSample
         /// <param name="source">The clicked checkBoxButton</param>
         /// <param name="e">event</param>
         /// <returns>The consume flag</returns>
-        private bool CheckButtonClick(object source, EventArgs e)
+        private void CheckButtonClick(object source, EventArgs e)
         {
             // Get the source who trigger this event.
-            CheckBoxButton button = source as CheckBoxButton;
+            CheckBox button = source as CheckBox;
 
             // Set the text on textLabel show in single-line or multi-line layout option.
             // If multiline is true , the text length more than the textLabel's length and
             // textLabel's high can show multiline, text will shown in multiline.
             // If not, The more text over textLabel length, will show "...".
-            if (button.LabelText == "Multiline")
+            if (button.Text == "Multiline")
             {
                 textLabel.Text = "TextLabel : A control which renders a text string, it could be single line or multiline. You can decide that!";
-                if (button.Selected)
+                if (button.IsSelected)
                 {
                     textLabel.MultiLine = true;
                 }
@@ -574,28 +572,14 @@ namespace TextSample
                 }
             }
             // Set the text on textLabel/textfield have shadow or not.
-            else if (button.LabelText == "Shadow")
+            else if (button.Text == "Shadow")
             {
-                if (button.Selected)
-                {
-                    textLabel.ShadowOffset = new Vector2(3.0f, 3.0f);
-                    textLabel.ShadowColor = Color.Black;
-                    textField.ShadowOffset = new Vector2(3.0f, 3.0f);
-                    textField.ShadowColor = Color.Black;
-                    textField.Text = textField.Text;
-                }
-                else
-                {
-                    // The drop shadow offset 0 indicates no shadow.
-                    textLabel.ShadowOffset = new Vector2(0, 0);
-                    textField.ShadowOffset = new Vector2(0, 0);
-                    textField.Text = textField.Text;
-                }
+                textField.Text = textField.Text;
             }
             // Set the text on textLabel have Underline or not.
-            else if (button.LabelText == "Underline")
+            else if (button.Text == "Underline")
             {
-                if (button.Selected)
+                if (button.IsSelected)
                 {
                     // Show the underline.
                     PropertyMap underlineMap = new PropertyMap();
@@ -610,8 +594,6 @@ namespace TextSample
                     textLabel.Text = textLabel.Text;
                     textField.Text = textField.Text;
                     textEditor.Text = textEditor.Text;
-                    
-
                 }
                 else
                 {
@@ -626,13 +608,12 @@ namespace TextSample
                     textLabel.Text = textLabel.Text;
                     textField.Text = textField.Text;
                     textEditor.Text = textEditor.Text;
-
                 }
             }
             // Set textLabel is enable or disable the ellipsis.
-            else if (button.LabelText == "Ellipsis")
+            else if (button.Text == "Ellipsis")
             {
-                if (button.Selected)
+                if (button.IsSelected)
                 {
                     textLabel.Ellipsis = true;
                     textLabel.Text = textLabel.Text;
@@ -644,9 +625,9 @@ namespace TextSample
                 }
             }
             // Set textLabel/textfield/textEditor text is bold or not.
-            else if (button.LabelText == "Bold")
+            else if (button.Text == "Bold")
             {
-                if (button.Selected)
+                if (button.IsSelected)
                 {
                     // The weight of text is bold.
                     PropertyMap fontStyle = new PropertyMap();
@@ -670,9 +651,9 @@ namespace TextSample
                 }
             }
             // Set textLabel/textField/textEditor text is condensed or not.
-            else if (button.LabelText == "Condensed")
+            else if (button.Text == "Condensed")
             {
-                if (button.Selected)
+                if (button.IsSelected)
                 {
                     // The width of text is condensed.
                     PropertyMap fontStyle = new PropertyMap();
@@ -696,8 +677,6 @@ namespace TextSample
                 }
             }
             // Set textLabel/textField/textEditor text is italic or not.
-
-            return true;
         }
 
         /// <summary>
@@ -724,66 +703,22 @@ namespace TextSample
             return textVisual;
         }
 
-        /// <summary>
-        /// Create an Text visual.
-        /// </summary>
-        /// <param name="text">The text of the Text visual</param>
-        /// <param name="color">The color of the text</param>
-        /// <returns>return a map which contain the properties of the text</returns>
-        private PropertyMap CreateTextVisual(string text, Color color)
+        private CheckBox CreateCheckBoxButton(string text)
         {
-            PropertyMap map = new PropertyMap();
-            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            map.Add(TextVisualProperty.Text, new PropertyValue(text));
-            map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
-            map.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
-            map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
-            map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-            map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
-            return map;
-        }
-
-        private CheckBoxButton CreateCheckBoxButton(string text)
-        {
-            CheckBoxButton checkBox = new CheckBoxButton();
-
-            checkBox.Label = CreateTextVisual(text, Color.White);
-            checkBox.LabelPadding = new Vector4(20, 12, 0, 0);
+            CheckBox checkBox = new CheckBox();
+            checkBox.Text = text;
+            checkBox.TextColor = Color.White;
+            checkBox.TextPadding = new Extents(20, 12, 0, 0);
             checkBox.Size2D = new Size2D(300, 48);
             checkBox.Focusable = true;
             checkBox.ParentOrigin = ParentOrigin.TopLeft;
             checkBox.PivotPoint = PivotPoint.TopLeft;
-
-            // Create unfocused and unselected visual.
-            PropertyMap unselectedMap = CreateImageVisual(checkBoxNormalImagePath);
-
-            // Create focused and unselected visual.
-            PropertyMap focusUnselectedMap = CreateImageVisual(checkBoxFocusImagePath);
-
-            // Create unfocused and selected visual.
-            PropertyMap selectedMap = CreateImageVisual(checkBoxSelectImagePath);
-
-            // Create focused and selected visual.
-            PropertyMap focusSelectedMap = CreateImageVisual(checkBoxFocusSelectImagePath);
-
-            // Set the original visual.
-            checkBox.UnselectedVisual = unselectedMap;
-            checkBox.SelectedVisual = selectedMap;
-
-            // Change the image when focus changed.
-            checkBox.FocusGained += (obj, e) =>
+            checkBox.CheckImageURLSelector = new StringSelector()
             {
-                checkBox.SelectedVisual = focusSelectedMap;
-                checkBox.UnselectedVisual = focusUnselectedMap;
-
-            };
-
-            // Change the image when focus changed.
-            checkBox.FocusLost += (obj, e) =>
-            {
-                checkBox.UnselectedVisual = unselectedMap;
-                checkBox.SelectedVisual = selectedMap;
+                Normal = checkBoxNormalImagePath,
+                Selected = checkBoxSelectImagePath,
+                Focused = checkBoxFocusImagePath,
+                SelectedFocused = checkBoxFocusSelectImagePath
             };
 
             return checkBox;
@@ -801,43 +736,27 @@ namespace TextSample
             return map;
         }
 
-        private PushButton CreateButton(string name, string text)
+        private Button CreateButton(string name, string text)
         {
-            PushButton button = new PushButton();
+            Button button = new Button();
             button.Focusable = true;
             button.Size2D = new Size2D(400, 80);
             button.Focusable = true;
             button.Name = name;
-            // Create the label which will show when _pushbutton focused.
-            PropertyMap _focusText = CreateTextVisual(text, Color.Black);
-
-            // Create the label which will show when _pushbutton unfocused.
-            PropertyMap _unfocusText = CreateTextVisual(text, Color.White);
-            button.Label = _unfocusText;
-
-            // Create normal background visual.
-            PropertyMap normalMap = CreateImageVisual(normalImagePath);
-
-            // Create focused background visual.
-            PropertyMap focusMap = CreateImageVisual(focusImagePath);
-
-            // Create pressed background visual.
-            PropertyMap pressMap = CreateImageVisual(pressImagePath);
-            button.SelectedVisual = pressMap;
-            button.UnselectedBackgroundVisual = normalMap;
+            button.Text = text;
 
             // Chang background Visual and Label when focus gained.
             button.FocusGained += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = focusMap;
-                button.Label = _focusText;
+                button.BackgroundImage = focusImagePath;
+                button.TextColor = Color.Black;
             };
 
             // Chang background Visual and Label when focus lost.
             button.FocusLost += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = normalMap;
-                button.Label = _unfocusText;
+                button.BackgroundImage = normalImagePath;
+                button.TextColor = Color.White;
             };
 
             // Chang background Visual when pressed.
@@ -847,12 +766,12 @@ namespace TextSample
                 {
                     if (Key.StateType.Down == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = pressMap;
+                        button.BackgroundImage = pressImagePath;
                         Tizen.Log.Fatal("NUI", "Press in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                     else if (Key.StateType.Up == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = focusMap;
+                        button.BackgroundImage = focusImagePath;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
 

@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -137,11 +137,11 @@ namespace FlexContainerSample
             {
                 for (uint column = 0; column < 3; column++)
                 {
-                    PushButton button = CreateButton(btnName[row * 3 + column], btnLabel[row * 3 + column]);
+                    Button button = CreateButton(btnName[row * 3 + column], btnLabel[row * 3 + column]);
                     button.SizeWidth = 560;
                     button.SizeHeight = 80;
                     button.Focusable = true;
-                    button.Clicked += ButtonClick;
+                    button.ClickEvent += ButtonClick;
                     tableView.AddChild(button, new TableView.CellPosition(row, column));
                     if (0 == row && column == 0)
                     {
@@ -158,7 +158,7 @@ namespace FlexContainerSample
             Window.Instance.KeyEvent += AppBack;
         }
 
-        private PushButton[] buttonArray = new PushButton[6];
+        private Button[] buttonArray = new Button[6];
 
         /// <summary>
         /// The event will be triggered when pushbutton clicked
@@ -166,9 +166,9 @@ namespace FlexContainerSample
         /// <param name="source">The clicked PushButton.</param>
         /// <param name="e">event</param>
         /// <returns>the consume flag</returns>
-        private bool ButtonClick(object source, EventArgs e)
+        private void ButtonClick(object source, EventArgs e)
         {
-            PushButton button = source as PushButton;
+            Button button = source as Button;
 
             // Judge the button can change flexContainer's property of ContentDirection.
             // If true, change the value of ContentDirection circularly.
@@ -183,17 +183,17 @@ namespace FlexContainerSample
                 if (flexContainer.ContentDirection == FlexContainer.ContentDirectionType.Inherit)
                 {
                     flexContainer.ContentDirection = FlexContainer.ContentDirectionType.LTR;
-                    button.Label = CreateText("ContentDirection : LTR");
+                    button.Text = "ContentDirection : LTR";
                 }
                 else if (flexContainer.ContentDirection == FlexContainer.ContentDirectionType.LTR)
                 {
                     flexContainer.ContentDirection = FlexContainer.ContentDirectionType.RTL;
-                    button.Label = CreateText("ContentDirection : RTL");
+                    button.Text = "ContentDirection : RTL";
                 }
                 else
                 {
                     flexContainer.ContentDirection = FlexContainer.ContentDirectionType.Inherit;
-                    button.Label = CreateText("ContentDirection : Inherit");
+                    button.Text = "ContentDirection : Inherit";
                 }
             }
 
@@ -211,22 +211,22 @@ namespace FlexContainerSample
                 if (flexContainer.FlexDirection == FlexContainer.FlexDirectionType.Column)
                 {
                     flexContainer.FlexDirection = FlexContainer.FlexDirectionType.ColumnReverse;
-                    button.Label = CreateText("FlexDirection : ColumnReverse");
+                    button.Text = "FlexDirection : ColumnReverse";
                 }
                 else if (flexContainer.FlexDirection == FlexContainer.FlexDirectionType.ColumnReverse)
                 {
                     flexContainer.FlexDirection = FlexContainer.FlexDirectionType.Row;
-                    button.Label = CreateText("FlexDirection : Row");
+                    button.Text = "FlexDirection : Row";
                 }
                 else if (flexContainer.FlexDirection == FlexContainer.FlexDirectionType.Row)
                 {
                     flexContainer.FlexDirection = FlexContainer.FlexDirectionType.RowReverse;
-                    button.Label = CreateText("FlexDirection : RowReverse");
+                    button.Text = "FlexDirection : RowReverse";
                 }
                 else
                 {
                     flexContainer.FlexDirection = FlexContainer.FlexDirectionType.Column;
-                    button.Label = CreateText("FlexDirection : Column");
+                    button.Text = "FlexDirection : Column";
                 }
             }
 
@@ -241,15 +241,13 @@ namespace FlexContainerSample
                 if (flexContainer.FlexWrap == FlexContainer.WrapType.NoWrap)
                 {
                     flexContainer.FlexWrap = FlexContainer.WrapType.Wrap;
-                    button.Label = CreateText("FlexWrap : Wrap");
-
+                    button.Text = "FlexWrap : Wrap";
                     buttonArray[5].Opacity = 1.0f;
                 }
                 else
                 {
                     flexContainer.FlexWrap = FlexContainer.WrapType.NoWrap;
-                    button.Label = CreateText("FlexWrap : NoWrap");
-
+                    button.Text = "FlexWrap : NoWrap";
                     buttonArray[5].Opacity = 0.0f;
                 }
             }
@@ -269,27 +267,27 @@ namespace FlexContainerSample
                 if (flexContainer.JustifyContent == FlexContainer.Justification.JustifyCenter)
                 {
                     flexContainer.JustifyContent = FlexContainer.Justification.JustifyFlexEnd;
-                    button.Label = CreateText("JustifyContent : JustifyFlexEnd");
+                    button.Text = "JustifyContent : JustifyFlexEnd";
                 }
                 else if (flexContainer.JustifyContent == FlexContainer.Justification.JustifyFlexEnd)
                 {
                     flexContainer.JustifyContent = FlexContainer.Justification.JustifyFlexStart;
-                    button.Label = CreateText("JustifyContent : JustifyFlexStart");
+                    button.Text = "JustifyContent : JustifyFlexStart";
                 }
                 else if (flexContainer.JustifyContent == FlexContainer.Justification.JustifyFlexStart)
                 {
                     flexContainer.JustifyContent = FlexContainer.Justification.JustifySpaceAround;
-                    button.Label = CreateText("JustifyContent : JustifySpaceAround");
+                    button.Text = "JustifyContent : JustifySpaceAround";
                 }
                 else if (flexContainer.JustifyContent == FlexContainer.Justification.JustifySpaceAround)
                 {
                     flexContainer.JustifyContent = FlexContainer.Justification.JustifySpaceBetween;
-                    button.Label = CreateText("JustifyContent : JustifySpaceBetween");
+                    button.Text = "JustifyContent : JustifySpaceBetween";
                 }
                 else
                 {
                     flexContainer.JustifyContent = FlexContainer.Justification.JustifyCenter;
-                    button.Label = CreateText("JustifyContent : JustifyCenter");
+                    button.Text = "JustifyContent : JustifyCenter";
                 }
             }
 
@@ -308,27 +306,27 @@ namespace FlexContainerSample
                 if (flexContainer.AlignItems == FlexContainer.Alignment.AlignAuto)
                 {
                     flexContainer.AlignItems = FlexContainer.Alignment.AlignCenter;
-                    button.Label = CreateText("AlignItems : AlignCenter");
+                    button.Text = "AlignItems : AlignCenter";
                 }
                 else if (flexContainer.AlignItems == FlexContainer.Alignment.AlignCenter)
                 {
                     flexContainer.AlignItems = FlexContainer.Alignment.AlignFlexEnd;
-                    button.Label = CreateText("AlignItems : AlignFlexEnd");
+                    button.Text = "AlignItems : AlignFlexEnd";
                 }
                 else if (flexContainer.AlignItems == FlexContainer.Alignment.AlignFlexEnd)
                 {
                     flexContainer.AlignItems = FlexContainer.Alignment.AlignFlexStart;
-                    button.Label = CreateText("AlignItems : AlignFlexStart");
+                    button.Text = "AlignItems : AlignFlexStart";
                 }
                 else if (flexContainer.AlignItems == FlexContainer.Alignment.AlignFlexStart)
                 {
                     flexContainer.AlignItems = FlexContainer.Alignment.AlignStretch;
-                    button.Label = CreateText("AlignItems : AlignStretch");
+                    button.Text = "AlignItems : AlignStretch";
                 }
                 else
                 {
                     flexContainer.AlignItems = FlexContainer.Alignment.AlignAuto;
-                    button.Label = CreateText("AlignItems : AlignAuto");
+                    button.Text = "AlignItems : AlignAuto";
                 }
             }
 
@@ -342,36 +340,34 @@ namespace FlexContainerSample
                 if (flexContainer.AlignContent == FlexContainer.Alignment.AlignAuto)
                 {
                     flexContainer.AlignContent = FlexContainer.Alignment.AlignCenter;
-                    button.Label = CreateText("AlignContent : AlignCenter");
+                    button.Text = "AlignContent : AlignCenter";
                 }
                 else if (flexContainer.AlignContent == FlexContainer.Alignment.AlignCenter)
                 {
                     flexContainer.AlignContent = FlexContainer.Alignment.AlignFlexEnd;
-                    button.Label = CreateText("AlignContent : AlignFlexEnd");
+                    button.Text = "AlignContent : AlignFlexEnd";
                 }
                 else if (flexContainer.AlignContent == FlexContainer.Alignment.AlignFlexEnd)
                 {
                     flexContainer.AlignContent = FlexContainer.Alignment.AlignFlexStart;
-                    button.Label = CreateText("AlignContent : AlignFlexStart");
+                    button.Text = "AlignContent : AlignFlexStart";
                 }
                 else if (flexContainer.AlignContent == FlexContainer.Alignment.AlignFlexStart)
                 {
                     flexContainer.AlignContent = FlexContainer.Alignment.AlignStretch;
-                    button.Label = CreateText("AlignContent : AlignStretch");
+                    button.Text = "AlignContent : AlignStretch";
                 }
                 else
                 {
                     flexContainer.AlignContent = FlexContainer.Alignment.AlignAuto;
-                    button.Label = CreateText("AlignContent : AlignAuto");
+                    button.Text = "AlignContent : AlignAuto";
                 }
             }
-
-            return true;
         }
 
-        protected PushButton CreateButton(string name, string text, Size2D size = null)
+        protected Button CreateButton(string name, string text, Size2D size = null)
         {
-            PushButton button = new PushButton();
+            Button button = new Button();
             if (null != size)
             {
                 button.Size2D = size;
@@ -379,38 +375,21 @@ namespace FlexContainerSample
 
             button.Focusable = true;
             button.Name = name;
-            button.LabelText = text;
-            // Create the label which will show when _pushbutton focused.
-            PropertyMap _focusText = CreateTextVisual(button.LabelText, Color.Black);
-
-            // Create the label which will show when _pushbutton unfocused.
-            PropertyMap _unfocusText = CreateTextVisual(button.LabelText, Color.White);
-            button.Label = _unfocusText;
-
-            // Create normal background visual.
-            PropertyMap normalMap = CreateImageVisual(normalImagePath);
-
-            // Create focused background visual.
-            PropertyMap focusMap = CreateImageVisual(focusImagePath);
-
-            // Create pressed background visual.
-            PropertyMap pressMap = CreateImageVisual(pressImagePath);
-            button.SelectedVisual = pressMap;
-            button.UnselectedBackgroundVisual = normalMap;
+            button.Text = text;
+            button.TextColor = Color.White;
+            button.BackgroundImage = normalImagePath;
 
             button.FocusGained += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = focusMap;
-                _focusText = CreateTextVisual(button.LabelText, Color.Black);
-                button.Label = _focusText;
+                button.BackgroundImage = focusImagePath;
+                button.TextColor = Color.Black;
             };
 
             // Chang background Visual and Label when focus lost.
             button.FocusLost += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = normalMap;
-                _unfocusText = CreateTextVisual(button.LabelText, Color.White);
-                button.Label = _unfocusText;
+                button.BackgroundImage = normalImagePath;
+                button.TextColor = Color.White;
             };
 
             // Chang background Visual when pressed.
@@ -420,50 +399,20 @@ namespace FlexContainerSample
                 {
                     if (Key.StateType.Down == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = pressMap;
+                        button.BackgroundImage = pressImagePath;
                         Tizen.Log.Fatal("NUI", "Press in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                     else if (Key.StateType.Up == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = focusMap;
+                        button.BackgroundImage = focusImagePath;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
-
                 }
 
                 return false;
             };
 
             return button;
-        }
-
-
-
-        private PropertyMap CreateTextVisual(string text, Color color)
-        {
-            PropertyMap map = new PropertyMap();
-            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            map.Add(TextVisualProperty.Text, new PropertyValue(text));
-            map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            //map.Add(TextVisualProperty.PointSize, new PropertyValue(6.0f));
-            map.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize6));
-            map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
-            map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-            map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
-            return map;
-        }
-
-        /// <summary>
-        /// Create an Image visual.
-        /// </summary>
-        /// <param name="imagePath">The url of the image</param>
-        /// <returns>return a map which contains the properties of the image visual</returns>
-        private PropertyMap CreateImageVisual(string imagePath)
-        {
-            PropertyMap map = new PropertyMap();
-            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            map.Add(ImageVisualProperty.URL, new PropertyValue(imagePath));
-            return map;
         }
 
         /// <summary>

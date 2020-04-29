@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -30,7 +30,7 @@ namespace UIControlSample
     /// </summary>
     class ProgressBarSample : IExample
     {
-        private ProgressBar progressBar;
+        private Tizen.NUI.Components.Progress progressBar;
         private TextLabel guide;
         private TextLabel percentage;
         // <summary>
@@ -80,8 +80,7 @@ namespace UIControlSample
             percentage.Position2D = new Position2D(1700, 440);
             percentage.MultiLine = false;
             percentage.PointSize = DeviceCheck.PointSize10;
-            //percentage.PointSize = 10.0f;
-            percentage.Text = (progressBar.ProgressValue * 100).ToString() + "%";
+            percentage.Text = (progressBar.CurrentValue * 100).ToString() + "%";
             percentage.TextColor = Color.White;
             Window.Instance.GetDefaultLayer().Add(percentage);
 
@@ -92,18 +91,18 @@ namespace UIControlSample
             {
                 if (progressBar != null)
                 {
-                    float progress = (float)Math.Round(progressBar.ProgressValue, 2);
+                    float progress = (float)Math.Round(progressBar.CurrentValue, 2);
 
                     if (progress == 1.0f)
                     {
-                        progressBar.ProgressValue = 0.0f;
-                        percentage.Text = (progressBar.ProgressValue * 100).ToString() + "%";
+                        progressBar.CurrentValue = 0.0f;
+                        percentage.Text = (progressBar.CurrentValue * 100).ToString() + "%";
                         return false;
                     }
                     else
                     {
-                        progressBar.ProgressValue = progress + 0.01f;
-                        percentage.Text = (progressBar.ProgressValue * 100).ToString() + "%";
+                        progressBar.CurrentValue = progress + 0.01f;
+                        percentage.Text = (progressBar.CurrentValue * 100).ToString() + "%";
                         return true;
 
                     }

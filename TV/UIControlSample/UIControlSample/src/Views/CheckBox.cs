@@ -15,7 +15,7 @@
  *
  */
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace UIControlSample
 {
@@ -24,7 +24,7 @@ namespace UIControlSample
     /// </summary>
     public class CheckBox
     {
-         private CheckBoxButton _checkboxbutton;
+         private Tizen.NUI.Components.CheckBox _checkboxbutton;
          private const string resources = "/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images";
          private string normalImagePath = resources + "/CheckBox/Unselected.png";
          private string focusImagePath = resources + "/CheckBox/Focused_01.png";
@@ -46,51 +46,21 @@ namespace UIControlSample
          /// <param name="text">text</param>
          private void OnIntialize(string text)
          {
-            _checkboxbutton = new CheckBoxButton();
-            _checkboxbutton.Label = CreateLabel(text);
-            _checkboxbutton.LabelPadding = new Vector4(20, 12, 0, 0);
+            _checkboxbutton = new Tizen.NUI.Components.CheckBox();
+            _checkboxbutton.Text = text;
+            _checkboxbutton.TextColor = Color.White;
+            _checkboxbutton.PointSize = DeviceCheck.PointSize8;
+            _checkboxbutton.TextPadding = new Extents(20, 12, 0, 0);
             _checkboxbutton.Size2D = new Size2D(300, 48);
             _checkboxbutton.Focusable = true;
             _checkboxbutton.ParentOrigin = ParentOrigin.TopLeft;
             _checkboxbutton.PivotPoint = PivotPoint.TopLeft;
-
-            // Create unfocused and unselected visual.
-            PropertyMap unselectedMap = new PropertyMap();
-            unselectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            unselectedMap.Add(ImageVisualProperty.URL, new PropertyValue(normalImagePath));
-
-            // Create focused and unselected visual.
-            PropertyMap focusUnselectedMap = new PropertyMap();
-            focusUnselectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            focusUnselectedMap.Add(ImageVisualProperty.URL, new PropertyValue(focusImagePath));
-
-            // Create unfocused and selected visual.
-            PropertyMap selectedMap = new PropertyMap();
-            selectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            selectedMap.Add(ImageVisualProperty.URL, new PropertyValue(selectImagePath));
-
-            // Create focused and selected visual.
-            PropertyMap focusSelectedMap = new PropertyMap();
-            focusSelectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            focusSelectedMap.Add(ImageVisualProperty.URL, new PropertyValue(focusSelectImagePath));
-
-            // Set the original visual.
-            _checkboxbutton.UnselectedVisual = unselectedMap;
-            _checkboxbutton.SelectedVisual = selectedMap;
-
-            // Change the image when focus changed.
-            _checkboxbutton.FocusGained += (obj, e) =>
+            _checkboxbutton.CheckImageURLSelector = new StringSelector()
             {
-                _checkboxbutton.SelectedVisual = focusSelectedMap;
-                _checkboxbutton.UnselectedVisual = focusUnselectedMap;
-
-            };
-
-            // Change the image when focus changed.
-            _checkboxbutton.FocusLost  += (obj, e) =>
-            {
-                _checkboxbutton.UnselectedVisual = unselectedMap;
-                _checkboxbutton.SelectedVisual = selectedMap;
+                Normal = normalImagePath,
+                Selected = selectImagePath,
+                Focused = focusImagePath,
+                SelectedFocused = focusSelectImagePath
             };
          }
 
@@ -119,7 +89,7 @@ namespace UIControlSample
         /// <returns>
         /// The checkboxbutton which be created in this class
         /// </returns>
-        public CheckBoxButton GetCheckBoxButton()
+        public Tizen.NUI.Components.CheckBox GetCheckBoxButton()
         {
              return _checkboxbutton;
         }

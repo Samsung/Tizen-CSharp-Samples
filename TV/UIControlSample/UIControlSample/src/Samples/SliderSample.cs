@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -27,7 +27,7 @@ namespace UIControlSample
 {
     class SliderSample : IExample
     {
-        private Slider slider;
+        private Tizen.NUI.Components.Slider slider;
         private View sliderView;
         private TextLabel guide;
 

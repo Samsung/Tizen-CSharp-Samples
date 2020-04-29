@@ -18,7 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -29,7 +29,7 @@ namespace UIControlSample
     /// </summary>
     public class Button
     {
-        private PushButton _pushbutton;
+        private Tizen.NUI.Components.Button _pushbutton;
         private const string resources = "/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images";
         private string normalImagePath = resources + "/Button/btn_bg_25_25_25_95.9.png";
         private string focusImagePath = resources + "/Button/btn_bg_255_255_255_200.9.png";
@@ -49,64 +49,28 @@ namespace UIControlSample
         /// <param name="text">text</param>
         private void OnIntialize(string text)
         {
-            _pushbutton = new PushButton();
+            _pushbutton = new Tizen.NUI.Components.Button();
             _pushbutton.Focusable = true;
             _pushbutton.Size2D = new Size2D(300,80);
             _pushbutton.Focusable = true;
             _pushbutton.ParentOrigin = ParentOrigin.TopLeft;
             _pushbutton.PivotPoint = PivotPoint.TopLeft;
-
-            // Create the label which will show when _pushbutton focused.
-            PropertyMap textVisualW = new PropertyMap();
-            textVisualW.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            textVisualW.Add(TextVisualProperty.Text, new PropertyValue(text));
-            textVisualW.Add(TextVisualProperty.TextColor, new PropertyValue(Color.White));
-            //textVisualW.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
-            textVisualW.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
-            textVisualW.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
-            textVisualW.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-
-            // Create the label which will show when _pushbutton unfocused.
-            PropertyMap textVisualB = new PropertyMap();
-            textVisualB.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            textVisualB.Add(TextVisualProperty.Text, new PropertyValue(text));
-            textVisualB.Add(TextVisualProperty.TextColor, new PropertyValue(Color.Black));
-            //textVisualB.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
-            textVisualB.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
-            textVisualB.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
-            textVisualB.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-            _pushbutton.Label = textVisualW;
-
-            // Create normal background visual.
-            PropertyMap normalMap = new PropertyMap();
-            normalMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            normalMap.Add(ImageVisualProperty.URL, new PropertyValue(normalImagePath));
-
-            // Create focused background visual.
-            PropertyMap focusMap = new PropertyMap();
-            focusMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            focusMap.Add(ImageVisualProperty.URL, new PropertyValue(focusImagePath));
-
-            // Create pressed background visual.
-            PropertyMap pressMap = new PropertyMap();
-            pressMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            pressMap.Add(ImageVisualProperty.URL, new PropertyValue(pressImagePath));
-
-            _pushbutton.UnselectedBackgroundVisual = normalMap;
-            _pushbutton.SelectedVisual = pressMap;
+            _pushbutton.Text = text;
+            _pushbutton.TextColor = Color.White;
+            _pushbutton.BackgroundImage = normalImagePath;
 
             // Chang background Visual and Label when focus gained.
             _pushbutton.FocusGained += (obj, e) =>
             {
-               _pushbutton.UnselectedBackgroundVisual = focusMap;
-               _pushbutton.Label = textVisualB;
+               _pushbutton.BackgroundImage = focusImagePath;
+                _pushbutton.TextColor = Color.Black;
             };
 
             // Chang background Visual and Label when focus lost.
             _pushbutton.FocusLost += (obj, e) =>
             {
-                _pushbutton.UnselectedBackgroundVisual = normalMap;
-                _pushbutton.Label = textVisualW;
+                _pushbutton.BackgroundImage = normalImagePath;
+                _pushbutton.TextColor = Color.White;
             };
 
             // Chang background Visual when pressed.
@@ -116,12 +80,12 @@ namespace UIControlSample
                 {
                     if (Key.StateType.Down == ee.Key.State)
                     {
-                        _pushbutton.UnselectedBackgroundVisual = pressMap;
+                        _pushbutton.BackgroundImage = pressImagePath;
                         Tizen.Log.Fatal("NUI", "Press in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                     else if (Key.StateType.Up == ee.Key.State)
                     {
-                        _pushbutton.UnselectedBackgroundVisual = focusMap;
+                        _pushbutton.BackgroundImage = focusImagePath;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                 }
@@ -137,7 +101,7 @@ namespace UIControlSample
         /// <returns>
         /// The pushButton which be create in this class
         /// </returns>
-        public PushButton GetPushButton()
+        public Tizen.NUI.Components.Button GetPushButton()
         {
             return _pushbutton;
         }

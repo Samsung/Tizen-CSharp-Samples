@@ -18,7 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -29,7 +29,7 @@ namespace Tizen.NUI.MediaHub
     /// </summary>
     public class CustomButton
     {
-        private PushButton _pushbutton;
+        private Button _pushbutton;
         private string normalImagePath = CommonResource.GetLocalReosurceURL() + "/Button/btn_bg_25_25_25_95.9.png";
         private string focusImagePath = CommonResource.GetLocalReosurceURL() + "/Button/btn_bg_255_255_255_200.9.png";
         private string pressImagePath = CommonResource.GetLocalReosurceURL() + "/Button/btn_bg_0_129_198_100.9.png";
@@ -46,42 +46,36 @@ namespace Tizen.NUI.MediaHub
         /// </summary>
         private void OnIntialize()
         {
-            _pushbutton = new PushButton();
-            _pushbutton.Focusable = true;
+            _pushbutton = new Button();
             _pushbutton.Focusable = true;
             _pushbutton.ParentOrigin = ParentOrigin.TopLeft;
             _pushbutton.PivotPoint = PivotPoint.TopLeft;
-
-            // Create normal backgroud visual.
-            PropertyMap normalMap = new PropertyMap();
-            normalMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            normalMap.Add(ImageVisualProperty.URL, new PropertyValue(normalImagePath));
-
-            // Create focused backgroud visual.
-            PropertyMap focusMap = new PropertyMap();
-            focusMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            focusMap.Add(ImageVisualProperty.URL, new PropertyValue(focusImagePath));
-
-            // Create pressed backgroud visual.
-            PropertyMap pressMap = new PropertyMap();
-            pressMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            pressMap.Add(ImageVisualProperty.URL, new PropertyValue(pressImagePath));
-
-            _pushbutton.UnselectedBackgroundVisual = normalMap;
-            _pushbutton.SelectedVisual = pressMap;
+            _pushbutton.PointSize = DeviceCheck.PointSize8;
+            _pushbutton.FontFamily = "SamsungOneUI_400";
+            _pushbutton.TextAlignment = HorizontalAlignment.Center;
+            if (_pushbutton.HasFocus())
+            {
+                _pushbutton.BackgroundImage = focusImagePath;
+                _pushbutton.TextColor = Color.Black;
+            }
+            else
+            {
+                _pushbutton.BackgroundImage = normalImagePath;
+                _pushbutton.TextColor = Color.White;
+            }
 
             // Chang backgroudVisul and Label when focued gained.
             _pushbutton.FocusGained += (obj, e) =>
             {
-               _pushbutton.UnselectedBackgroundVisual = focusMap;
-                _pushbutton.Label = textVisualFocused;
+               _pushbutton.BackgroundImage = focusImagePath;
+                _pushbutton.TextColor = Color.Black;
             };
 
             // Chang backgroudVisul and Label when focued losted.
             _pushbutton.FocusLost += (obj, e) =>
             {
-                _pushbutton.UnselectedBackgroundVisual = normalMap;
-                _pushbutton.Label = textVisualNormal;
+                _pushbutton.BackgroundImage = normalImagePath;
+                _pushbutton.TextColor = Color.White;
             };
 
             // Chang backgroudVisul when pressed.
@@ -91,12 +85,12 @@ namespace Tizen.NUI.MediaHub
                 {
                     if (Key.StateType.Down == ee.Key.State)
                     {
-                        _pushbutton.UnselectedBackgroundVisual = pressMap;
+                        _pushbutton.BackgroundImage = pressImagePath;
                         Tizen.Log.Fatal("NUI", "Press in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                     else if (Key.StateType.Up == ee.Key.State)
                     {
-                        _pushbutton.UnselectedBackgroundVisual = focusMap;
+                        _pushbutton.BackgroundImage = focusImagePath;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                 }
@@ -112,37 +106,19 @@ namespace Tizen.NUI.MediaHub
         /// <param name="text">the text value of the button</param>
         public void SetText(string text)
         {
-            //Create the label which will show when _pushbutton focused.
-            textVisualNormal = new PropertyMap();
-            textVisualNormal.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            textVisualNormal.Add(TextVisualProperty.Text, new PropertyValue(text));
-            textVisualNormal.Add(TextVisualProperty.TextColor, new PropertyValue(Color.White));
-            //textVisualNormal.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
-            textVisualNormal.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
-            textVisualNormal.Add(TextVisualProperty.FontFamily, new PropertyValue("SamsungOneUI_400"));
-            textVisualNormal.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
-            textVisualNormal.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-
-            //Create the label which will show when _pushbutton unfocused.
-            textVisualFocused = new PropertyMap();
-            textVisualFocused.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            textVisualFocused.Add(TextVisualProperty.Text, new PropertyValue(text));
-            textVisualFocused.Add(TextVisualProperty.FontFamily, new PropertyValue("SamsungOneUI_400"));
-            textVisualFocused.Add(TextVisualProperty.TextColor, new PropertyValue(Color.Black));
-            //textVisualFocused.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
-            textVisualFocused.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
-            textVisualFocused.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
-            textVisualFocused.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
+            _pushbutton.Text = text;
             if (_pushbutton.HasFocus())
             {
-                _pushbutton.Label = textVisualFocused;
+                _pushbutton.BackgroundImage = focusImagePath;
+                _pushbutton.TextColor = Color.Black;
             }
             else
             {
-                _pushbutton.Label = textVisualNormal;
+                _pushbutton.BackgroundImage = normalImagePath;
+                _pushbutton.TextColor = Color.White;
             }
 
-            
+
         }
 
         /// <summary>
@@ -151,7 +127,7 @@ namespace Tizen.NUI.MediaHub
         /// <returns>
         /// The pushButton which be create in this class
         /// </returns>
-        public PushButton GetPushButton()
+        public Button GetPushButton()
         {
             return _pushbutton;
         }
@@ -175,7 +151,5 @@ namespace Tizen.NUI.MediaHub
         }
 
         private string buttonTextLabel; 
-        private PropertyMap textVisualNormal;
-        private PropertyMap textVisualFocused;
     }
 }

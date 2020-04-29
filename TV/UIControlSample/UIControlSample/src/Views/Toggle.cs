@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -32,7 +32,7 @@ namespace UIControlSample
     /// </summary>
     public class Toggle
     {
-        private CheckBoxButton _toggleButton;
+        private Tizen.NUI.Components.CheckBox _toggleButton;
         private const string resources = "/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images";
         private string normalOffImage = resources + "/Toggle/Unfocused_01.png";
         private string focusedOnImage = resources + "/Toggle/Focused_02.png";
@@ -52,41 +52,17 @@ namespace UIControlSample
         /// </summary>
         private void OnIntialize()
         {
-            _toggleButton = new CheckBoxButton();
+            _toggleButton = new Tizen.NUI.Components.CheckBox();
             _toggleButton.Focusable = true;
             _toggleButton.ParentOrigin = ParentOrigin.TopLeft;
             _toggleButton.PivotPoint = PivotPoint.TopLeft;
             _toggleButton.Size2D = new Size2D(150, 80);
-
-            PropertyMap unselectedMap = new PropertyMap();
-            unselectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            unselectedMap.Add(ImageVisualProperty.URL, new PropertyValue(normalOffImage));
-
-            PropertyMap selectedMap = new PropertyMap();
-            selectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            selectedMap.Add(ImageVisualProperty.URL, new PropertyValue(normalOnImage));
-
-            PropertyMap focusUnselectedMap = new PropertyMap();
-            focusUnselectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            focusUnselectedMap.Add(ImageVisualProperty.URL, new PropertyValue(focusedOffImage));
-
-            PropertyMap focusSelectedMap = new PropertyMap();
-            focusSelectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            focusSelectedMap.Add(ImageVisualProperty.URL, new PropertyValue(focusedOnImage));
-
-            _toggleButton.UnselectedVisual = unselectedMap;
-            _toggleButton.SelectedVisual = selectedMap;
-
-            _toggleButton.FocusGained += (obj, e) =>
+            _toggleButton.CheckImageURLSelector = new StringSelector()
             {
-                _toggleButton.UnselectedVisual = focusUnselectedMap;
-                _toggleButton.SelectedVisual = focusSelectedMap;
-            };
-
-            _toggleButton.FocusLost += (obj, e) =>
-            {
-                _toggleButton.UnselectedVisual = unselectedMap;
-                _toggleButton.SelectedVisual = selectedMap;
+                Normal = normalOffImage,
+                Selected = normalOnImage,
+                Focused = focusedOffImage,
+                SelectedFocused = focusedOnImage
             };
         }
 
@@ -96,7 +72,7 @@ namespace UIControlSample
         /// <returns>
         /// The _toggleButton which be created in this class
         /// </returns>
-        public CheckBoxButton GetToggleButton()
+        public Tizen.NUI.Components.CheckBox GetToggleButton()
         {
             return _toggleButton;
         }

@@ -18,7 +18,7 @@
 
 using System;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 
 /// <summary>
@@ -111,7 +111,7 @@ namespace Tizen.NUI.MediaHub
             }
         }
 
-        public PushButton DropDownButton
+        public Button DropDownButton
         {
             get
             {
@@ -436,7 +436,7 @@ namespace Tizen.NUI.MediaHub
             optionList.Hide();
             optionList.Focusable = true;
 
-            dropdownButton.Clicked += (obj, e) =>
+            dropdownButton.ClickEvent += (obj, e) =>
             {
                 if (optionList != null)
                 {
@@ -450,8 +450,6 @@ namespace Tizen.NUI.MediaHub
                         optionListFlag = false;
                     }
                 }
-
-                return false;
             };
             optionList.OptionListEvent += OnOptionListEvent;
             optionList.KeyEvent += OnListKeyPressed;
@@ -544,7 +542,7 @@ namespace Tizen.NUI.MediaHub
             }
         }
 
-        private PushButton dropdownButton = null;
+        private Button dropdownButton = null;
         private OptionList optionList = null;
         private bool optionListFlag = false;
 

@@ -18,7 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -52,49 +52,20 @@ namespace UIControlSample
         private void OnIntialize(string text)
         {
             _radiobutton = new RadioButton();
-            _radiobutton.Label = CreateLabel(text);
-            _radiobutton.LabelPadding = new Vector4(20, 12, 0, 0);
+            _radiobutton.Text = text;
+            _radiobutton.TextColor = Color.White;
+            _radiobutton.PointSize = DeviceCheck.PointSize8;
+            _radiobutton.TextPadding = new Extents(20, 12, 0, 0);
             _radiobutton.Size2D = new Size2D(300, 48);
             _radiobutton.Focusable = true;
             _radiobutton.ParentOrigin = ParentOrigin.TopLeft;
             _radiobutton.PivotPoint = PivotPoint.TopLeft;
-
-            // Create unfocused and unselected visual.
-            PropertyMap unselectedMap = new PropertyMap();
-            unselectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            unselectedMap.Add(ImageVisualProperty.URL, new PropertyValue(normalImagePath));
-
-            // Create focused and unselected visual.
-            PropertyMap focusUnselectedMap = new PropertyMap();
-            focusUnselectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            focusUnselectedMap.Add(ImageVisualProperty.URL, new PropertyValue(focusedImagePath));
-
-            // Create focused and selected visual.
-            PropertyMap focusSelectedMap = new PropertyMap();
-            focusSelectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            focusSelectedMap.Add(ImageVisualProperty.URL, new PropertyValue(focusedSelectImagePath));
-
-            // Create unfocused and selected visual.
-            PropertyMap selectedMap = new PropertyMap();
-            selectedMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            selectedMap.Add(ImageVisualProperty.URL, new PropertyValue(selectImagePath));
-
-            // Set the original visual.
-            _radiobutton.SelectedVisual = selectedMap;
-            _radiobutton.UnselectedVisual = unselectedMap;
-
-            // Change the image when focus changed.
-            _radiobutton.FocusGained += (obj, e) =>
+            _radiobutton.IconURLSelector = new StringSelector()
             {
-                _radiobutton.UnselectedVisual = focusUnselectedMap;
-                _radiobutton.SelectedVisual = focusSelectedMap;
-           };
-
-            // Change the image when focus changed.
-            _radiobutton.FocusLost += (obj, e) =>
-            {
-                _radiobutton.UnselectedVisual = unselectedMap;
-                _radiobutton.SelectedVisual = selectedMap;
+                Normal = normalImagePath,
+                Focused = focusedImagePath,
+                Selected = selectImagePath,
+                SelectedFocused = focusedSelectImagePath
             };
         }
 

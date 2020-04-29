@@ -32,8 +32,8 @@ namespace UIControlSample
     /// </summary>
     public class Popups
     {
-        Tizen.NUI.UIComponents.Popup _popup;
-        PushButton cancelButton, okayButton;
+        Tizen.NUI.Components.Popup _popup;
+        Tizen.NUI.Components.Button cancelButton, okayButton;
         private const string resources = "/home/owner/apps_rw/org.tizen.example.UIControlSample/res";
         private string popupBGImage = resources + "/images/Popup/bg_popup_220_220_220_100.9.png";
         private string barImage = resources + "/images/Popup/img_popup_bar_line.png";
@@ -53,9 +53,9 @@ namespace UIControlSample
         private void OnIntialize()
         {
             _popup = CreatePopup();
-            _popup.SetContent(CreateContent());
+            _popup.ContentView.Add(CreateContent());
             _popup.Focusable = (true);
-            _popup.SetDisplayState(Tizen.NUI.UIComponents.Popup.DisplayStateType.Hidden);
+            _popup.Hide();
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace UIControlSample
         /// <returns>
         /// The _popup which be created in this class
         /// </returns>
-        public Tizen.NUI.UIComponents.Popup GetPopup()
+        public Tizen.NUI.Components.Popup GetPopup()
         {
             return _popup;
         }
@@ -75,9 +75,9 @@ namespace UIControlSample
         /// <returns>
         /// The _popup which be created in this function
         /// </returns>
-        Tizen.NUI.UIComponents.Popup CreatePopup()
+        Tizen.NUI.Components.Popup CreatePopup()
         {
-            Tizen.NUI.UIComponents.Popup confirmationPopup = new Tizen.NUI.UIComponents.Popup();
+            Tizen.NUI.Components.Popup confirmationPopup = new Tizen.NUI.Components.Popup();
 
             confirmationPopup.ParentOrigin = ParentOrigin.TopLeft;
             confirmationPopup.PivotPoint = PivotPoint.TopLeft;
@@ -85,7 +85,7 @@ namespace UIControlSample
             confirmationPopup.HeightResizePolicy = ResizePolicyType.FitToChildren;
 
             confirmationPopup.Position = new Position(530, 306, 0);
-            confirmationPopup.PopupBackgroundImage = popupBGImage;
+            confirmationPopup.BackgroundImage = popupBGImage;
             return confirmationPopup;
         }
 
@@ -140,10 +140,10 @@ namespace UIControlSample
             contentLabel.PointSize = DeviceCheck.PointSize8;
             contentLabel.HorizontalAlignment = HorizontalAlignment.Center;
 
-            PushButton okButton = CreateOKButton();
+            Tizen.NUI.Components.Button okButton = CreateOKButton();
             okButton.Position = new Position(120, 316, 0); //300, 80
 
-            PushButton cancelButton = CreateCancelButton();
+            Tizen.NUI.Components.Button cancelButton = CreateCancelButton();
             cancelButton.Position = new Position(440, 316, 0); //300, 80
 
             contentView.Add(titleView);
@@ -161,17 +161,16 @@ namespace UIControlSample
         /// <returns>
         /// The created okButton.
         /// </returns>
-        PushButton CreateOKButton()
+        Tizen.NUI.Components.Button CreateOKButton()
         {
             Button okSample = new Button("OK");
             okayButton = okSample.GetPushButton();
             okayButton.Name = "OKButton";
 
             // Hide popup.
-            okayButton.Clicked += (obj, ee) =>
+            okayButton.ClickEvent += (obj, ee) =>
             {
-                _popup.SetDisplayState(Tizen.NUI.UIComponents.Popup.DisplayStateType.Hidden);
-                return false;
+                _popup.Hide();
             };
 
             // Move focus to cancelButton.
@@ -193,16 +192,15 @@ namespace UIControlSample
         /// <returns>
         /// The created okButton.
         /// </returns>
-        PushButton CreateCancelButton()
+        Tizen.NUI.Components.Button CreateCancelButton()
         {
             Button cancelSample = new Button("Cancel");
             cancelButton = cancelSample.GetPushButton();
 
             // Hide popup.
-            cancelButton.Clicked += (obj, ee) =>
+            cancelButton.ClickEvent += (obj, ee) =>
             {
-                _popup.SetDisplayState(Tizen.NUI.UIComponents.Popup.DisplayStateType.Hidden);
-                return false;
+                _popup.Hide();
             };
 
             // Move focus to okayButton.
