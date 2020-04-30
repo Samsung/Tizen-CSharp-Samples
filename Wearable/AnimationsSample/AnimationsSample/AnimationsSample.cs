@@ -16,12 +16,10 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
 using Tizen;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Constants;
 
 namespace AnimationsSample
 {
@@ -33,19 +31,21 @@ namespace AnimationsSample
         private static string mResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images";
         private static string mImageUrl = mResourceUrl + "/gallery-2.jpg";
 
+        // Main view.
+        private View root;
         private ImageView mImageView;
         // Animations that change properties.
         private Animation[] mAnimations;
         private uint mAnimationCount = 6;
-        private Size2D mImageSize = new Size2D(150, 150);
+        private Size mImageSize = new Size(150, 150);
 
         // PushButton be used to trigger the effect of Text.
-        private PushButton[] mPushButton;
+        private Button[] mButton;
         // tableView be used to put PushButton.
         private TableView mTableView;
 
         // String array of each Animations
-        private string[] mPushButtonString =
+        private string[] mButtonString =
         {
              "Position Animation",
              "Size Animation",
@@ -55,7 +55,7 @@ namespace AnimationsSample
              "PixelArea Animation",
              "Position+Size+Opacity"
         };
-        private uint mPushButtonCount = 7;
+        private uint mButtonCount = 7;
         private int mCurruntButtonIndex;
 
         // UI properties
@@ -63,7 +63,6 @@ namespace AnimationsSample
         private bool mTouched = false;
         private bool mTouchedInButton = false;
 
-        private Size2D mWindowSize;
         private float mLargePointSize = 10.0f;
         private float mMiddlePointSize = 5.0f;
         private float mSmallPointSize = 3.0f;
@@ -71,7 +70,7 @@ namespace AnimationsSample
 
         private Position mTableViewStartPosition = new Position(65, 90, 0);
         private Animation[] mTableViewAnimation;
-        private Size2D mButtonSize = new Size2D(230, 35);
+        private Size mButtonSize = new Size(230, 35);
 
         /// <summary>
         /// The constructor with null
@@ -105,9 +104,14 @@ namespace AnimationsSample
         /// </summary>
         private void Initialize()
         {
-            Window.Instance.BackgroundColor = Color.Black;
-            mWindowSize = Window.Instance.Size;
+            Window window = NUIApplication.GetDefaultWindow();
 
+            root = new View()
+            {
+                Size = new Size(window.Size.Width, window.Size.Height),
+                BackgroundColor = Color.White
+            };
+            
             TextLabel title = new TextLabel("Animation");
             title.HorizontalAlignment = HorizontalAlignment.Center;
             title.VerticalAlignment = VerticalAlignment.Center;
@@ -115,22 +119,22 @@ namespace AnimationsSample
             title.PositionUsesPivotPoint = true;
             title.ParentOrigin = ParentOrigin.TopCenter;
             title.PivotPoint = PivotPoint.TopCenter;
-            title.Position2D = new Position2D(0, mWindowSize.Height / 10);
+            title.Position = new Position(0, window.Size.Height / 10);
             title.FontFamily = "Samsung One 600";
             title.MultiLine = false;
             title.PointSize = mLargePointSize;
-            Window.Instance.GetDefaultLayer().Add(title);
+            root.Add(title);
 
             // Create the view to animate.
             mImageView = new ImageView();
-            mImageView.Size2D = mImageSize;
+            mImageView.Size = mImageSize;
             mImageView.PositionUsesPivotPoint = true;
             mImageView.PivotPoint = PivotPoint.Center;
             mImageView.ParentOrigin = ParentOrigin.Center;
             mImageView.ResourceUrl = mImageUrl;
 
             // Add view on Window.
-            Window.Instance.GetDefaultLayer().Add(mImageView);
+            root.Add(mImageView);
 
             // Create Animations
             CreateAnimations();
@@ -146,11 +150,11 @@ namespace AnimationsSample
             subTitle.PositionUsesPivotPoint = true;
             subTitle.ParentOrigin = ParentOrigin.BottomCenter;
             subTitle.PivotPoint = PivotPoint.BottomCenter;
-            subTitle.Position2D = new Position2D(0, -30);
+            subTitle.Position = new Position(0, -30);
             subTitle.FontFamily = "Samsung One 600";
             subTitle.MultiLine = false;
             subTitle.PointSize = mSmallPointSize;
-            Window.Instance.GetDefaultLayer().Add(subTitle);
+            root.Add(subTitle);
 
             // Animations for the swipe action.
             mTableViewAnimation = new Animation[2];
@@ -161,8 +165,10 @@ namespace AnimationsSample
             mTableViewAnimation[1].Duration = 100;
             mTableViewAnimation[1].AnimateBy(mTableView, "Position", new Vector3(360, 0, 0));
 
-            Window.Instance.TouchEvent += OnWindowTouched;
-            Window.Instance.KeyEvent += OnKey;
+            window.TouchEvent += OnWindowTouched;
+            window.KeyEvent += OnKey;
+
+            window.Add(root);
         }
 
         /// <summary>
@@ -254,13 +260,13 @@ namespace AnimationsSample
         private void CreateButtons()
         {
             // Create tableView used to put PushButton.
-            mTableView = new TableView(1, mPushButtonCount);
+            mTableView = new TableView(1, mButtonCount);
             // Set the position of tableView.
             mTableView.PositionUsesPivotPoint = true;
             mTableView.PivotPoint = PivotPoint.CenterLeft;
             mTableView.ParentOrigin = ParentOrigin.CenterLeft;
             mTableView.Position = mTableViewStartPosition;
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 mTableView.SetFixedWidth(i, 360);
             }
@@ -268,16 +274,16 @@ namespace AnimationsSample
             mTableView.CellHorizontalAlignment = HorizontalAlignmentType.Center;
             mTableView.CellVerticalAlignment = VerticalAlignmentType.Center;
 
-            Window.Instance.GetDefaultLayer().Add(mTableView);
+            root.Add(mTableView);
 
-            mPushButton = new PushButton[mPushButtonCount];
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            mButton = new Button[mButtonCount]; 
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 // CreateButton with string array
-                mPushButton[i] = CreateButton(mPushButtonString[i], mPushButtonString[i]);
+                mButton[i] = CreateButton(mButtonString[i], mButtonString[i]);
                 // Bind PushButton's click event to TouchEvent.
-                mPushButton[i].TouchEvent += OnButtonTouched;
-                mTableView.AddChild(mPushButton[i], new TableView.CellPosition(0, i));
+                mButton[i].TouchEvent += OnButtonTouched;
+                mTableView.AddChild(mButton[i], new TableView.CellPosition(0, i));
             }
         }
 
@@ -445,7 +451,7 @@ namespace AnimationsSample
         /// </summary>
         private void AnimateAStepPositive()
         {
-            if (mCurruntButtonIndex < mPushButtonCount - 1)
+            if (mCurruntButtonIndex < mButtonCount - 1)
             {
                 mCurruntButtonIndex++;
 
@@ -509,7 +515,6 @@ namespace AnimationsSample
                 mAnimations[0].Play();
                 mAnimations[2].Play();
                 mAnimations[4].Play();
-
             }
 
             return false;
@@ -553,27 +558,26 @@ namespace AnimationsSample
         /// <param name="name">The name of button</param>
         /// <param name="text">The string value that will be used for the label text</param>
         /// <returns>return a PushButton</returns>
-        private PushButton CreateButton(string name, string text)
+        //private PushButton CreateButton(string name, string text)
+        private Button CreateButton(string name, string text)
         {
-            PushButton button = new PushButton();
+            Button button = new Button();
             button.Name = name;
-            button.Size2D = mButtonSize;
+            button.Size = mButtonSize;
             button.ClearBackground();
-
             button.Position = new Position(50, 0, 0);
 
-            // Create text map for the selected state.
-            PropertyMap unSelectedTextMap = CreateTextVisual(text, Color.White);
-            // Create ColorVisual property for the unselected states.
-            PropertyMap unSelectedMap = CreateColorVisual(new Vector4(0.1f, 0.1f, 0.1f, 0.9f));
-
-            // Create ColorVisual property for the selected states
-            PropertyMap selectedMap = CreateColorVisual(new Vector4(0.5f, 0.5f, 0.5f, 1.0f));
-
             // Set each label and text properties.
-            button.Label = unSelectedTextMap;
-            button.SelectedBackgroundVisual = selectedMap;
-            button.UnselectedBackgroundVisual = unSelectedMap;
+            button.Text = text;
+            button.TextColor = Color.White;
+            if (button.IsSelected)
+            {
+                button.BackgroundColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+            }
+            else 
+            {
+                button.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.9f);
+            }
 
             return button;
         }

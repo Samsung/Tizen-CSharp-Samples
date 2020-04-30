@@ -19,7 +19,7 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -30,10 +30,13 @@ namespace TextEditorSample
     /// </summary>
     class TextEditorSample : NUIApplication
     {
+        // Main view.
+        private Window window;
+        private View root;
         // TextEditor be used to show the effect of TextEditor.
         private TextEditor mTextEditor;
         // PushButton be used to trigger the effect of Text.
-        private PushButton[] mPushButton;
+        private Button[] mButton;
         // tableView be used to put PushButton and mCheckBoxButton.
         private TableView mTableView;
         // Some kinds of LANGUAGES.
@@ -48,7 +51,7 @@ namespace TextEditorSample
         private int mNumLanguage = 6;
 
         // A string list of sample cases
-        private string[] mPushButtonString =
+        private string[] mButtonString =
         {
              "HorizontalAlignment",
              "Color",
@@ -58,7 +61,7 @@ namespace TextEditorSample
              "Bold",
              "Condensed"
         };
-        private uint mPushButtonCount = 7;
+        private uint mButtonCount = 7;
         private int mCurruntButtonIndex;
 
         private uint[] mButtonState;
@@ -68,7 +71,6 @@ namespace TextEditorSample
         private bool mTouched = false;
         private bool mTouchedInButton = false;
 
-        private Size2D mWindowSize;
         private float mLargePointSize = 10.0f;
         private float mMiddlePointSize = 5.0f;
         private float mSmallPointSize = 3.0f;
@@ -76,7 +78,7 @@ namespace TextEditorSample
 
         private Position mTableViewStartPosition = new Position(65, 90, 0);
         private Animation[] mTableViewAnimation;
-        private Size2D mButtonSize = new Size2D(230, 35);
+        private Size mButtonSize = new Size(230, 35);
 
         /// <summary>
         /// The constructor with null
@@ -100,8 +102,13 @@ namespace TextEditorSample
         public void Initialize()
         {
             // Set the background Color of Window.
-            Window.Instance.BackgroundColor = Color.Black;
-            mWindowSize = Window.Instance.Size;
+            window = NUIApplication.GetDefaultWindow();
+
+            root = new View()
+            {
+                Size = new Size(window.Size.Width, window.Size.Height),
+                BackgroundColor = Color.Black
+            };
 
             // Create Title TextLabel
             TextLabel Title = new TextLabel("Text Editor");
@@ -112,13 +119,13 @@ namespace TextEditorSample
             Title.PositionUsesPivotPoint = true;
             Title.ParentOrigin = ParentOrigin.TopCenter;
             Title.PivotPoint = PivotPoint.TopCenter;
-            Title.Position2D = new Position2D(0, mWindowSize.Height / 10);
+            Title.Position = new Position(0, window.Size.Height / 10);
             // Use Samsung One 600 font
             Title.FontFamily = "Samsung One 600";
             // Set MultiLine to false. 
             Title.MultiLine = false;
             Title.PointSize = mLargePointSize;
-            Window.Instance.GetDefaultLayer().Add(Title);
+            root.Add(Title);
 
             // Create TextEditor.
             CreateTextEditor();
@@ -135,13 +142,13 @@ namespace TextEditorSample
             subTitle.PositionUsesPivotPoint = true;
             subTitle.ParentOrigin = ParentOrigin.BottomCenter;
             subTitle.PivotPoint = PivotPoint.BottomCenter;
-            subTitle.Position2D = new Position2D(0, -30);
+            subTitle.Position = new Position(0, -30);
             // Use Samsung One 600 font
             subTitle.FontFamily = "Samsung One 600";
             // Set MultiLine to false. 
             subTitle.MultiLine = false;
             subTitle.PointSize = mSmallPointSize;
-            Window.Instance.GetDefaultLayer().Add(subTitle);
+            root.Add(subTitle);
 
             // Animation setting for the button animation
             mTableViewAnimation = new Animation[2];
@@ -152,9 +159,10 @@ namespace TextEditorSample
             mTableViewAnimation[1].Duration = 100;
             mTableViewAnimation[1].AnimateBy(mTableView, "Position", new Vector3(360, 0, 0));
 
+            window.Add(root);
             // Add Signal Callback functions
-            Window.Instance.TouchEvent += OnWindowTouched;
-            Window.Instance.KeyEvent += OnKey;
+            window.TouchEvent += OnWindowTouched;
+            window.KeyEvent += OnKey;
         }
 
         /// <summary>
@@ -165,7 +173,7 @@ namespace TextEditorSample
         {
             // Create main TextEditor.
             mTextEditor = new TextEditor();
-            mTextEditor.Size2D = new Size2D((int)(mWindowSize.Width * 0.8f), (int)(mWindowSize.Height * 0.4f));
+            mTextEditor.Size = new Size((int)(window.Size.Width * 0.8f), (int)(window.Size.Height * 0.4f));
             // Set the position of TextEditor.
             mTextEditor.PositionUsesPivotPoint = true;
             mTextEditor.PivotPoint = PivotPoint.Center;
@@ -180,7 +188,7 @@ namespace TextEditorSample
             // Set the kind of text is "SamsungOneUI_200"
             mTextEditor.FontFamily = "SamsungOneUI_200";
 
-            Window.Instance.GetDefaultLayer().Add(mTextEditor);
+            root.Add(mTextEditor);
         }
 
         /// <summary>
@@ -189,34 +197,34 @@ namespace TextEditorSample
         private void CreateButtons()
         {
             // Create tableView used to put PushButton.
-            mTableView = new TableView(1, mPushButtonCount);
+            mTableView = new TableView(1, mButtonCount);
             // Set the position of tableView.
             mTableView.PositionUsesPivotPoint = true;
             mTableView.PivotPoint = PivotPoint.CenterLeft;
             mTableView.ParentOrigin = ParentOrigin.CenterLeft;
             mTableView.Position = mTableViewStartPosition;
             // Width of each cell is set to window's width
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 mTableView.SetFixedWidth(i, 360);
             }
 
-            Window.Instance.GetDefaultLayer().Add(mTableView);
+            root.Add(mTableView);
 
             // Create button for the each case.
-            mPushButton = new PushButton[mPushButtonCount];
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            mButton = new Button[mButtonCount];
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 // Creates button
-                mPushButton[i] = CreateButton(mPushButtonString[i]);
+                mButton[i] = CreateButton(mButtonString[i]);
                 // Bind PushButton's click event to ButtonClick.
-                mPushButton[i].TouchEvent += OnButtonTouched;
-                mTableView.AddChild(mPushButton[i], new TableView.CellPosition(0, i));
+                mButton[i].TouchEvent += OnButtonTouched;
+                mTableView.AddChild(mButton[i], new TableView.CellPosition(0, i));
             }
 
             // Set the default state of each button property
-            mButtonState = new uint[mPushButtonCount];
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            mButtonState = new uint[mButtonCount];
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 mButtonState[i] = 0;
             }
@@ -396,7 +404,7 @@ namespace TextEditorSample
         private void AnimateAStepPositive()
         {
             // If the state is not the last one, move ImageViews and PushButton a step.
-            if (mCurruntButtonIndex < mPushButtonCount - 1)
+            if (mCurruntButtonIndex < mButtonCount - 1)
             {
                 mCurruntButtonIndex++;
 
@@ -412,9 +420,9 @@ namespace TextEditorSample
         private bool ButtonClick(object source)
         {
             // Get the source who trigger this event.
-            PushButton button = source as PushButton;
+            Button button = source as Button;
             // Change TextEditor's HorizontalAlignment.
-            if (button.LabelText == "HorizontalAlignment")
+            if (button.Text == "HorizontalAlignment")
             {
                 // Begin : Texts place at the begin of horizontal direction.
                 if (mButtonState[mCurruntButtonIndex] == 0)
@@ -436,7 +444,7 @@ namespace TextEditorSample
                 }
             }
             // Change TextEditor's text color.
-            else if (button.LabelText == "Color")
+            else if (button.Text == "Color")
             {
                 // Judge the textColor is Black or not.
                 // It true, change text color to blue.
@@ -453,7 +461,7 @@ namespace TextEditorSample
                 }
             }
             // Change TextEditor's text size.
-            else if (button.LabelText == "Size")
+            else if (button.Text == "Size")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -467,7 +475,7 @@ namespace TextEditorSample
                 }
             }
             // Change different language on TextEditor.
-            else if (button.LabelText == "Language")
+            else if (button.Text == "Language")
             {
                 mTextEditor.Text = LANGUAGES[mItemLanguage];
                 mItemLanguage++;
@@ -478,7 +486,7 @@ namespace TextEditorSample
                 }
             }
             // Set the text on TextEditor have Underline or not.
-            else if (button.LabelText == "Underline")
+            else if (button.Text == "Underline")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -507,7 +515,7 @@ namespace TextEditorSample
                 }
             }
             // Set TextEditor text is bold or not.
-            else if (button.LabelText == "Bold")
+            else if (button.Text == "Bold")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -527,7 +535,7 @@ namespace TextEditorSample
                 }
             }
             // Set TextEditor text is condensed or not.
-            else if (button.LabelText == "Condensed")
+            else if (button.Text == "Condensed")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -595,27 +603,26 @@ namespace TextEditorSample
         /// </summary>
         /// <param name="text">The string to use button's name and Label text</param>
         /// <returns>return a PushButton</returns>
-        private PushButton CreateButton(string text)
+        private Button CreateButton(string text)
         {
-            PushButton button = new PushButton();
+            Button button = new Button();
             button.Name = text;
-            button.Size2D = mButtonSize;
+            button.Size = mButtonSize;
             button.ClearBackground();
 
             button.Position = new Position(50, 0, 0);
 
-            // Create text map for the selected state.
-            PropertyMap unSelectedTextMap = CreateTextVisual(text, Color.White);
-            // Create ColorVisual property for the unselected states.
-            PropertyMap unSelectedMap = CreateColorVisual(new Vector4(0.1f, 0.1f, 0.1f, 0.9f));
-
-            // Create ColorVisual property for the selected states
-            PropertyMap selectedMap = CreateColorVisual(new Vector4(0.5f, 0.5f, 0.5f, 1.0f));
-
             // Set each label and text properties.
-            button.Label = unSelectedTextMap;
-            button.SelectedBackgroundVisual = selectedMap;
-            button.UnselectedBackgroundVisual = unSelectedMap;
+            button.Text = text;
+            button.TextColor = Color.White;
+            if (button.IsSelected)
+            {
+                button.BackgroundColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+            }
+            else
+            {
+                button.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.9f);
+            }
 
             return button;
         }

@@ -18,7 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 using Tizen;
@@ -74,23 +74,25 @@ namespace ImageSample
         private uint mCaseCount = 6;
         private int mCurruntCaseIndex;
 
+        // Main view.
+        private View root;
+
         // A View contains every ImageViews.
         private View mImagesView;
 
         // UI properties
         private Animation[] mImageTableViewAnimation;
-        private Size2D mImageSize = new Size2D(150, 150);
+        private Size mImageSize = new Size(150, 150);
 
         private TableView mButtonTableView;
 
         private Position mButtonTableViewStartPosition = new Position(65, 90, 0);
         private Animation[] mButtonTableViewAnimation;
-        private Size2D mButtonSize = new Size2D(230, 35);
+        private Size mButtonSize = new Size(230, 35);
 
         private bool mTouched = false;
         private bool mTouchedInButton = false;
 
-        private Size2D mWindowSize;
         private float mLargePointSize = 10.0f;
         private float mMiddlePointSize = 5.0f;
         private float mSmallPointSize = 3.0f;
@@ -120,8 +122,13 @@ namespace ImageSample
         /// </summary>
         public void Initialize()
         {
-            Window.Instance.BackgroundColor = Color.Black;
-            mWindowSize = Window.Instance.Size;
+            Window window = NUIApplication.GetDefaultWindow();
+
+            root = new View()
+            {
+                Size = new Size(window.Size.Width, window.Size.Height),
+                BackgroundColor = Color.White
+            };
 
             // Create title TextLabel
             TextLabel title = new TextLabel("Image");
@@ -132,13 +139,13 @@ namespace ImageSample
             title.PositionUsesPivotPoint = true;
             title.ParentOrigin = ParentOrigin.TopCenter;
             title.PivotPoint = PivotPoint.TopCenter;
-            title.Position2D = new Position2D(0, mWindowSize.Height / 10);
+            title.Position = new Position(0, window.Size.Height / 10);
             // Use Samsung One 600 font
             title.FontFamily = "Samsung One 600";
             // Not use MultiLine of TextLabel
             title.MultiLine = false;
             title.PointSize = mLargePointSize;
-            Window.Instance.GetDefaultLayer().Add(title);
+            root.Add(title);
 
             // Create subTitle TextLabel
             TextLabel subTitle = new TextLabel("Swipe and Click the button");
@@ -149,13 +156,13 @@ namespace ImageSample
             subTitle.PositionUsesPivotPoint = true;
             subTitle.ParentOrigin = ParentOrigin.BottomCenter;
             subTitle.PivotPoint = PivotPoint.BottomCenter;
-            subTitle.Position2D = new Position2D(0, -30);
+            subTitle.Position = new Position(0, -30);
             // Use Samsung One 600 font
             subTitle.FontFamily = "Samsung One 600";
             // Not use MultiLine of TextLabel
             subTitle.MultiLine = false;
             subTitle.PointSize = mSmallPointSize;
-            Window.Instance.GetDefaultLayer().Add(subTitle);
+            root.Add(subTitle);
 
             // Create each Image sample cases.
             CreateImages();
@@ -180,9 +187,11 @@ namespace ImageSample
             mButtonTableViewAnimation[1].Duration = 100;
             mButtonTableViewAnimation[1].AnimateBy(mButtonTableView, "Position", new Vector3(360, 0, 0));
 
+            window.Add(root);
+
             // Set callback functions
-            Window.Instance.TouchEvent += OnWindowTouched;
-            Window.Instance.KeyEvent += OnKey;
+            window.TouchEvent += OnWindowTouched;
+            window.KeyEvent += OnKey;
         }
 
         /// <summary>
@@ -196,8 +205,8 @@ namespace ImageSample
             mImagesView.PivotPoint = PivotPoint.CenterLeft;
             mImagesView.ParentOrigin = ParentOrigin.CenterLeft;
             // Set imageview size
-            mImagesView.Size2D = new Size2D((int)mCaseCount * 360, mImageSize.Height);
-            Window.Instance.GetDefaultLayer().Add(mImagesView);
+            mImagesView.Size = new Size((int)mCaseCount * 360, mImageSize.Height);
+            root.Add(mImagesView);
 
             Position stp = new Position(180, 0, 0);
             for (uint i = 0; i < mCaseCount; ++i)
@@ -288,7 +297,7 @@ namespace ImageSample
                 view = imageView;
             }
             // View position setting
-            view.Size2D = mImageSize;
+            view.Size = mImageSize;
             view.PositionUsesPivotPoint = true;
             view.PivotPoint = PivotPoint.Center;
             view.ParentOrigin = ParentOrigin.CenterLeft;
@@ -315,16 +324,16 @@ namespace ImageSample
                 mButtonTableView.SetFixedWidth(i, 360);
             }
 
-            Window.Instance.GetDefaultLayer().Add(mButtonTableView);
+            root.Add(mButtonTableView);
 
             // Create button for the each case.
             for (uint i = 0; i < mCaseCount; ++i)
             {
                 // Create a button with string.
-                PushButton pushButton = CreateButton(mCaseString[i], mNeedButton[i]);
+                Button mButton = CreateButton(mCaseString[i], mNeedButton[i]);
                 // Bind PushButton's click event to ButtonClick.
-                pushButton.TouchEvent += OnButtonTouched;
-                mButtonTableView.AddChild(pushButton, new TableView.CellPosition(0, i));
+                mButton.TouchEvent += OnButtonTouched;
+                mButtonTableView.AddChild(mButton, new TableView.CellPosition(0, i));
             }
         }
 
@@ -369,33 +378,25 @@ namespace ImageSample
         /// <param name="text">The string to use button's name and Label text</param>
         /// <param name="needButton">If this argument is false, the created button do not show any action</param>
         /// <returns>return a PushButton</returns>
-        private PushButton CreateButton(string text, bool needButton)
+        private Button CreateButton(string text, bool needButton)
         {
-            PushButton button = new PushButton();
+            Button button = new Button();
             button.Name = text;
-            button.Size2D = mButtonSize;
+            button.Size = mButtonSize;
             button.ClearBackground();
 
             button.Position = new Position(50, 0, 0);
 
-            // Create text map for the selected state.
-            PropertyMap unSelectedTextMap = CreateTextVisual(text, Color.White);
-            // Create ColorVisual property for the unselected states.
-            PropertyMap unSelectedMap = CreateColorVisual(new Vector4(0.1f, 0.1f, 0.1f, 0.9f));
-
-            // Create ColorVisual property for the selected states
-            PropertyMap selectedMap = CreateColorVisual(new Vector4(0.5f, 0.5f, 0.5f, 1.0f));
-
             // Set each label and text properties.
-            button.Label = unSelectedTextMap;
-            button.SelectedBackgroundVisual = selectedMap;
-            button.UnselectedBackgroundVisual = unSelectedMap;
-            if (!needButton)
+            button.Text = text;
+            button.TextColor = Color.White;
+            if (button.IsSelected)
             {
-                // If the case don't need button(gif case), do not make any changes.
-                PropertyMap needlessButtonMap = CreateColorVisual(Color.Black);
-                button.SelectedBackgroundVisual = needlessButtonMap;
-                button.UnselectedBackgroundVisual = needlessButtonMap;
+                button.BackgroundColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+            }
+            else 
+            {
+                button.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.9f);
             }
 
             return button;
@@ -593,8 +594,8 @@ namespace ImageSample
             // If each button is clicked,
             // check what the button is clicked
             // and change the properties.
-            PushButton pushButton = source as PushButton;
-            if (pushButton.Name == mCaseString[0])
+            Button button = source as Button;
+            if (button.Name == mCaseString[0])
             {
                 Animation animation = new Animation(2000);
                 for (uint i = 0; i < 2; i++)
@@ -611,49 +612,49 @@ namespace ImageSample
                 // play animation.
                 animation.Play();
             }
-            else if (pushButton.Name == mCaseString[1])
+            else if (button.Name == mCaseString[1])
             {
                 // Change the SVG image size to show the characteristics of SVG.
-                if (((ImageView)mImagesView.GetChildAt(1)).Size2D.Width == mImageSize.Width * 4 / 3)
+                if (((ImageView)mImagesView.GetChildAt(1)).Size.Width == mImageSize.Width * 4 / 3)
                 {
                     // Change the LabelText.
-                    pushButton.LabelText = "SVG, Zoom Out";
+                    button.Text = "SVG, Zoom Out";
                     // Size down the SVG image.
-                    ((ImageView)mImagesView.GetChildAt(1)).Size2D = mImageSize;
+                    ((ImageView)mImagesView.GetChildAt(1)).Size = mImageSize;
                 }
                 else
                 {
                     // Change the LabelText.
-                    pushButton.LabelText = "SVG, Zoom In";
+                    button.Text = "SVG, Zoom In";
                     // Size up the SVG image.
-                    ((ImageView)mImagesView.GetChildAt(1)).Size2D = mImageSize * 4 / 3;
+                    ((ImageView)mImagesView.GetChildAt(1)).Size = mImageSize * 4 / 3;
                 }
             }
-            else if (pushButton.Name == mCaseString[3])
+            else if (button.Name == mCaseString[3])
             {
                 // Change the nine patch image size to show the characteristics of nine patch.
-                if (((ImageView)mImagesView.GetChildAt(3)).Size2D.Width == mImageSize.Width * 4 / 3)
+                if (((ImageView)mImagesView.GetChildAt(3)).Size.Width == mImageSize.Width * 4 / 3)
                 {
                     // Change the LabelText.
-                    pushButton.LabelText = "Nine Patch, Zoom Out";
+                    button.Text = "Nine Patch, Zoom Out";
                     // Size down the nine patch image.
-                    ((ImageView)mImagesView.GetChildAt(3)).Size2D = mImageSize;
+                    ((ImageView)mImagesView.GetChildAt(3)).Size = mImageSize;
                 }
                 else
                 {
                     // Change the LabelText.
-                    pushButton.LabelText = "Nine Patch, Zoom In";
+                    button.Text = "Nine Patch, Zoom In";
                     // Size up the nine patch image.
-                    ((ImageView)mImagesView.GetChildAt(3)).Size2D = mImageSize * 4 / 3;
+                    ((ImageView)mImagesView.GetChildAt(3)).Size = mImageSize * 4 / 3;
                 }
             }
-            else if (pushButton.Name == mCaseString[4])
+            else if (button.Name == mCaseString[4])
             {
                 // Create new PropertyMap to show the change(on/off) of mask Property.
                 if (mMasked)
                 {
                     // Create new PropertyMap with Image Mask off.
-                    pushButton.LabelText = "Image Mask, Off";
+                    button.Text = "Image Mask, Off";
                     PropertyMap propertyMap = new PropertyMap();
                     propertyMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
                                .Add(ImageVisualProperty.URL, new PropertyValue(mMaskBackgroundImageUrl));
@@ -662,7 +663,7 @@ namespace ImageSample
                 else
                 {
                     // Create new PropertyMap with Image Mask on.
-                    pushButton.LabelText = "Image Mask, On";
+                    button.Text = "Image Mask, On";
                     PropertyMap propertyMap = new PropertyMap();
                     // Set the AlphaMaskURL properties as mask image's Url
                     propertyMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
@@ -673,7 +674,7 @@ namespace ImageSample
 
                 mMasked = !mMasked;
             }
-            else if (pushButton.Name == mCaseString[5])
+            else if (button.Name == mCaseString[5])
             {
                 // Create new PropertyMap that contain information of fittingMode.
                 // ShrinkToFit = 0,

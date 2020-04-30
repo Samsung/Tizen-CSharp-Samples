@@ -19,7 +19,7 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -33,7 +33,7 @@ namespace TextLabelSample
         // textLabel be used to show the effect of TextLabel.
         private TextLabel mTextLabel;
         // PushButton be used to trigger the effect of Text.
-        private PushButton[] mPushButton;
+        private Button[] mButton;
         // tableView be used to put PushButton.
         private TableView mTableView;
         // Some kinds of LANGUAGES.
@@ -48,7 +48,7 @@ namespace TextLabelSample
         private int mNumLanguage = 6;
 
         // A string list of sample cases
-        private string[] mPushButtonString =
+        private string[] mButtonString =
         {
              "HorizontalAlignment",
              "VerticalAlignment",
@@ -64,7 +64,7 @@ namespace TextLabelSample
              "Condensed"
         };
         // A number of sample cases
-        private uint mPushButtonCount = 12;
+        private uint mButtonCount = 12;
         private int mCurruntButtonIndex;
 
         // Button state
@@ -76,7 +76,7 @@ namespace TextLabelSample
         private bool mTouchedInButton = false;
 
         // Window Size
-        private Size2D mWindowSize;
+        private Size mWindowSize;
         // Text point sizes
         private float mLargePointSize = 10.0f;
         private float mMiddlePointSize = 5.0f;
@@ -85,7 +85,7 @@ namespace TextLabelSample
 
         private Position mTableViewStartPosition = new Position(65, 90, 0);
         private Animation[] mTableViewAnimation;
-        private Size2D mButtonSize = new Size2D(230, 35);
+        private Size mButtonSize = new Size(230, 35);
 
         /// <summary>
         /// The constructor with null
@@ -110,7 +110,7 @@ namespace TextLabelSample
         {
             // Set the background Color of Window.
             Window.Instance.BackgroundColor = Color.Black;
-            mWindowSize = Window.Instance.Size;
+            mWindowSize = new Size(Window.Instance.Size.Width, Window.Instance.Size.Height);
 
             // Create Title TextLabel
             TextLabel Title = new TextLabel("Text Label");
@@ -121,7 +121,7 @@ namespace TextLabelSample
             Title.PositionUsesPivotPoint = true;
             Title.ParentOrigin = ParentOrigin.TopCenter;
             Title.PivotPoint = PivotPoint.TopCenter;
-            Title.Position2D = new Position2D(0, mWindowSize.Height / 10);
+            Title.Position = new Position(0, mWindowSize.Height / 10);
             // Use Samsung One 600 font
             Title.FontFamily = "Samsung One 600";
             // Set MultiLine false
@@ -144,7 +144,7 @@ namespace TextLabelSample
             subTitle.PositionUsesPivotPoint = true;
             subTitle.ParentOrigin = ParentOrigin.BottomCenter;
             subTitle.PivotPoint = PivotPoint.BottomCenter;
-            subTitle.Position2D = new Position2D(0, -30);
+            subTitle.Position = new Position(0, -30);
             // Use Samsung One 600 font
             subTitle.FontFamily = "Samsung One 600";
             // Set MultiLine false
@@ -174,7 +174,7 @@ namespace TextLabelSample
         {
             // Create main textLabel.
             mTextLabel = new TextLabel("A control which renders a simple text string. The text could be single line or multiline. You can decide that!");
-            mTextLabel.Size2D = new Size2D((int)(mWindowSize.Width * 0.8f), (int)(mWindowSize.Height * 0.4f));
+            mTextLabel.Size = new Size((int)(mWindowSize.Width * 0.8f), (int)(mWindowSize.Height * 0.4f));
             // Set the position of textLabel.
             mTextLabel.PositionUsesPivotPoint = true;
             mTextLabel.PivotPoint = PivotPoint.Center;
@@ -194,14 +194,14 @@ namespace TextLabelSample
         private void CreateButtons()
         {
             // Create tableView used to put PushButton.
-            mTableView = new TableView(1, mPushButtonCount);
+            mTableView = new TableView(1, mButtonCount);
             // Set the position of tableView.
             mTableView.PositionUsesPivotPoint = true;
             mTableView.PivotPoint = PivotPoint.CenterLeft;
             mTableView.ParentOrigin = ParentOrigin.CenterLeft;
             mTableView.Position = mTableViewStartPosition;
             // Set the each cell
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 mTableView.SetFixedWidth(i, 360);
             }
@@ -212,19 +212,19 @@ namespace TextLabelSample
             Window.Instance.GetDefaultLayer().Add(mTableView);
 
             // Create button for the each case.
-            mPushButton = new PushButton[mPushButtonCount];
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            mButton = new Button[mButtonCount];
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 // Creates button
-                mPushButton[i] = CreateButton(mPushButtonString[i]);
+                mButton[i] = CreateButton(mButtonString[i]);
                 // Bind PushButton's click event to ButtonClick.
-                mPushButton[i].TouchEvent += OnButtonTouched;
-                mTableView.AddChild(mPushButton[i], new TableView.CellPosition(0, i));
+                mButton[i].TouchEvent += OnButtonTouched;
+                mTableView.AddChild(mButton[i], new TableView.CellPosition(0, i));
             }
 
             // Set the default state of each button property
-            mButtonState = new uint[mPushButtonCount];
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            mButtonState = new uint[mButtonCount];
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 mButtonState[i] = 0;
             }
@@ -404,7 +404,7 @@ namespace TextLabelSample
         private void AnimateAStepPositive()
         {
             // If the state is not the last one, move ImageViews and PushButton a step.
-            if (mCurruntButtonIndex < mPushButtonCount - 1)
+            if (mCurruntButtonIndex < mButtonCount - 1)
             {
                 mCurruntButtonIndex++;
 
@@ -420,9 +420,9 @@ namespace TextLabelSample
         private bool ButtonClick(object source)
         {
             // Get the source who trigger this event.
-            PushButton button = source as PushButton;
+            Button button = source as Button;
             // Change textLabel's HorizontalAlignment.
-            if (button.LabelText == "HorizontalAlignment")
+            if (button.Text == "HorizontalAlignment")
             {
                 // Begin : Texts place at the begin of horizontal direction.
                 if (mButtonState[mCurruntButtonIndex] == 0)
@@ -447,7 +447,7 @@ namespace TextLabelSample
                 }
             }
             // Change textLabel's VerticalAlignment.
-            else if (button.LabelText == "VerticalAlignment")
+            else if (button.Text == "VerticalAlignment")
             {
                 // Top : Texts place at the top of vertical direction.
                 if (mButtonState[mCurruntButtonIndex] == 0)
@@ -472,7 +472,7 @@ namespace TextLabelSample
                 }
             }
             // Change textLabel's text color.
-            else if (button.LabelText == "Color")
+            else if (button.Text == "Color")
             {
                 // Judge the textColor is Black or not.
                 // It true, change text color to blue.
@@ -491,7 +491,7 @@ namespace TextLabelSample
                 }
             }
             // Change textLabel's text size.
-            else if (button.LabelText == "Size")
+            else if (button.Text == "Size")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -511,7 +511,7 @@ namespace TextLabelSample
             // Gap before scrolling wraps is 500.
             // The speed of scrolling in pixels per second is 500.
             // Number of complete loops when scrolling enabled is 1.
-            else if (button.LabelText == "Scroll")
+            else if (button.Text == "Scroll")
             {
                 mTextLabel.VerticalAlignment = VerticalAlignment.Top;
                 mTextLabel.EnableAutoScroll = true;
@@ -521,7 +521,7 @@ namespace TextLabelSample
                 mTextLabel.AutoScrollStopMode = AutoScrollStopMode.FinishLoop;
             }
             // Change different language on textLabel.
-            else if (button.LabelText == "Language")
+            else if (button.Text == "Language")
             {
                 mTextLabel.Text = LANGUAGES[mItemLanguage];
                 mItemLanguage++;
@@ -535,7 +535,7 @@ namespace TextLabelSample
             // If multiline is true , the text length more than the textLabel's length and
             // textLabel's high can show multiline, text will shown in multiline.
             // If not, The more text over textLabel length, will show "...".
-            else if (button.LabelText == "Multiline")
+            else if (button.Text == "Multiline")
             {
                 mTextLabel.Text = "TextLabel : A control which renders a text string, it could be single line or multiline. You can decide that!";
                 if (mButtonState[mCurruntButtonIndex] == 0)
@@ -552,23 +552,23 @@ namespace TextLabelSample
                 }
             }
             // Set the text on textLabel have shadow or not.
-            else if (button.LabelText == "Shadow")
+            else if (button.Text == "Shadow")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
-                    mTextLabel.ShadowOffset = new Vector2(3.0f, 3.0f);
-                    mTextLabel.ShadowColor = Color.Black;
+                    mTextLabel.Position = new Position(3.0f, 3.0f);
+                    mTextLabel.Color = Color.Black;
                     mButtonState[mCurruntButtonIndex] = 1;
                 }
                 else
                 {
                     // The drop shadow offset 0 indicates no shadow.
-                    mTextLabel.ShadowOffset = new Vector2(0, 0);
+                    mTextLabel.Position = new Position(0, 0);
                     mButtonState[mCurruntButtonIndex] = 0;
                 }
             }
             // Set the text on textLabel have Underline or not.
-            else if (button.LabelText == "Underline")
+            else if (button.Text == "Underline")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -599,7 +599,7 @@ namespace TextLabelSample
                 }
             }
             // Set textLabel is enable or disable the ellipsis.
-            else if (button.LabelText == "Ellipsis")
+            else if (button.Text == "Ellipsis")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -617,7 +617,7 @@ namespace TextLabelSample
                 }
             }
             // Set textLabel text is bold or not.
-            else if (button.LabelText == "Bold")
+            else if (button.Text == "Bold")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -637,7 +637,7 @@ namespace TextLabelSample
                 }
             }
             // Set textLabel text is condensed or not.
-            else if (button.LabelText == "Condensed")
+            else if (button.Text == "Condensed")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -702,28 +702,27 @@ namespace TextLabelSample
         /// </summary>
         /// <param name="text">The string to use button's name and Label text</param>
         /// <returns>return a PushButton</returns>
-        private PushButton CreateButton(string text)
+        private Button CreateButton(string text)
         {
             // New PushButton
-            PushButton button = new PushButton();
+            Button button = new Button();
             button.Name = text;
-            button.Size2D = mButtonSize;
+            button.Size = mButtonSize;
             button.ClearBackground();
 
             button.Position = new Position(50, 0, 0);
 
-            // Create text map for the selected state.
-            PropertyMap unSelectedTextMap = CreateTextVisual(text, Color.White);
-            // Create ColorVisual property for the unselected states.
-            PropertyMap unSelectedMap = CreateColorVisual(new Vector4(0.1f, 0.1f, 0.1f, 0.9f));
-
-            // Create ColorVisual property for the selected states
-            PropertyMap selectedMap = CreateColorVisual(new Vector4(0.5f, 0.5f, 0.5f, 1.0f));
-
             // Set each label and text properties.
-            button.Label = unSelectedTextMap;
-            button.SelectedBackgroundVisual = selectedMap;
-            button.UnselectedBackgroundVisual = unSelectedMap;
+            button.Text = text;
+            button.TextColor = Color.White;
+            if (button.IsSelected)
+            {
+                button.BackgroundColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+            }
+            else
+            {
+                button.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.9f);
+            }
 
             return button;
         }
