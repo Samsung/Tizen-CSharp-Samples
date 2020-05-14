@@ -18,7 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 using Tizen;
@@ -48,7 +48,7 @@ namespace UIControlSample
         private Vector3 TABLE_RELATIVE_SIZE = new Vector3(0.95f, 0.9f, 0.8f);
         const int BUTTON_PRESS_ANIMATION_TIME = 350;
         private IExample currentSample;
-        private ScrollView scrollView;
+        private FlexibleView scrollView;
         private View backGroundView, mPressedView, defaultFocusIndicatorView;
         private ImageView logo;
         private View[] tile;
@@ -129,7 +129,7 @@ namespace UIControlSample
             logo.DrawMode = DrawModeType.Normal;
             backGroundView.Add(logo);
             // Scrollview occupying the majority of the screen
-            scrollView = new ScrollView();
+            scrollView = new FlexibleView();
             scrollView.PositionUsesPivotPoint = true;
             scrollView.PivotPoint = PivotPoint.BottomCenter;
             scrollView.ParentOrigin = new Vector3(0.5f, 1.0f - 0.05f, 0.5f);
@@ -138,7 +138,6 @@ namespace UIControlSample
             scrollView.SizeModeFactor = new Vector3(0.0f, 0.6f, 0.0f);
             ushort buttonsPageMargin = (ushort)((1.0f - TABLE_RELATIVE_SIZE.X) * 0.5f * Window.Instance.Size.Width);
             scrollView.Padding = new Extents(buttonsPageMargin, buttonsPageMargin, 0, 0);
-            scrollView.AxisAutoLockEnabled = true;
             backGroundView.Add(scrollView);
 
             // Add scroll view effect and setup constraints on pages.
@@ -245,13 +244,13 @@ namespace UIControlSample
             if (!CurrentView && !nextView)
             {
                 // Set the initial focus to the first tile in the current page should be focused.
-                nextView = mpages[scrollView.GetCurrentPage()].GetChildAt(new TableView.CellPosition(0, 0));
+                nextView = mpages[scrollView.FocusedItemIndex].GetChildAt(new TableView.CellPosition(0, 0));
             }
             else if (!nextView)
             {
                 // ScrollView is being focused but nothing in the current page can be focused further
                 // in the given direction. We should work out which page to scroll to next.
-                uint currentPage = scrollView.GetCurrentPage();
+                uint currentPage = (uint)scrollView.FocusedItemIndex;
                 uint newPage = currentPage;
                 if (e.Direction == View.FocusDirection.Left)
                 {
@@ -276,7 +275,7 @@ namespace UIControlSample
                 }
 
                 // Scroll to the page in the given direction
-                scrollView.ScrollTo(newPage);
+                //scrollView.ScrollTo(newPage);
 
                 if (e.Direction == View.FocusDirection.Left)
                 {
@@ -358,14 +357,6 @@ namespace UIControlSample
                     break;
                 }
             }
-
-            // Update Ruler info.
-            PropertyMap rulerMap = new PropertyMap();
-            rulerMap.Add((int)ScrollModeType.XAxisScrollEnabled, new PropertyValue(true));
-            rulerMap.Add((int)ScrollModeType.XAxisSnapToInterval, new PropertyValue(Window.Instance.Size.Width));
-            rulerMap.Add((int)ScrollModeType.XAxisScrollBoundary, new PropertyValue(Window.Instance.Size.Width * mTotalPages));
-            rulerMap.Add((int)ScrollModeType.YAxisScrollEnabled, new PropertyValue(false));
-            scrollView.ScrollMode = rulerMap;
         }
 
         /// <summary>
@@ -501,11 +492,11 @@ namespace UIControlSample
         /// </summary>
         void ApplyScrollViewEffect()
         {
-            scrollView.SetScrollSnapDuration(0.66f);
+            /*scrollView.SetScrollSnapDuration(0.66f);
             scrollView.SetScrollFlickDuration(0.5f);
             scrollView.SetScrollSnapAlphaFunction(new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut));
             scrollView.SetScrollFlickAlphaFunction(new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut));
-            scrollView.SetWrapMode(true);
+            scrollView.SetWrapMode(true);*/
         }
 
         /// <summary>
@@ -596,10 +587,10 @@ namespace UIControlSample
             Tizen.Log.Fatal("NUI", "MainSample");
             Window.Instance.GetDefaultLayer().Add(backGroundView);
             FocusManager.Instance.PreFocusChange += OnKeyboardPreFocusChange;
-            StyleManager.Get().ApplyTheme(json_file);
+            Tizen.NUI.StyleManager.Get().ApplyTheme(json_file);
             CreateFocusEffect();
             Tizen.Log.Fatal("UISample", "MainSample, currentRow: " + currentRow + " currentColumn: " + currentColumn);
-            FocusManager.Instance.SetCurrentFocusView(mpages[scrollView.GetCurrentPage()].GetChildAt(new TableView.CellPosition(currentRow, currentColumn)));
+            FocusManager.Instance.SetCurrentFocusView(mpages[scrollView.FocusedItemIndex].GetChildAt(new TableView.CellPosition(currentRow, currentColumn)));
         }
 
         /// <summary>

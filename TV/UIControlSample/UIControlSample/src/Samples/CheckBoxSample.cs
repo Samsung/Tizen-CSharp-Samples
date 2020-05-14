@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -85,12 +85,12 @@ namespace UIControlSample
 
             CheckBoxGroup checkBoxGroup = new CheckBoxGroup();
             checkBoxGroupView = checkBoxGroup.GetCheckBoxGroup();
-            CheckBoxButton checkbox1 = checkBoxGroup.GetCheckBox1();
-            CheckBoxButton checkbox2 = checkBoxGroup.GetCheckBox2();
-            CheckBoxButton checkbox3 = checkBoxGroup.GetCheckBox3();
-            checkbox1.StateChanged += CheckBoxStateChanged;
-            checkbox2.StateChanged += CheckBoxStateChanged;
-            checkbox3.StateChanged += CheckBoxStateChanged;
+            Tizen.NUI.Components.CheckBox checkbox1 = checkBoxGroup.GetCheckBox1();
+            Tizen.NUI.Components.CheckBox checkbox2 = checkBoxGroup.GetCheckBox2();
+            Tizen.NUI.Components.CheckBox checkbox3 = checkBoxGroup.GetCheckBox3();
+            checkbox1.StateChangedEvent += CheckBoxStateChanged;
+            checkbox2.StateChangedEvent += CheckBoxStateChanged;
+            checkbox3.StateChangedEvent += CheckBoxStateChanged;
             checkBoxGroupView.Position = new Position(810, 400, 0);
             Window.Instance.GetDefaultLayer().Add(checkBoxGroupView);
             FocusManager.Instance.SetCurrentFocusView(checkbox1);
@@ -121,29 +121,17 @@ namespace UIControlSample
         /// <param name="source">checkbox.</param>
         /// <param name="e">event</param>
         /// <returns>The consume flag</returns>
-        private bool CheckBoxStateChanged(object source, EventArgs e)
+        private void CheckBoxStateChanged(object source, EventArgs e)
         {
-            CheckBoxButton checkbox = source as CheckBoxButton;
+            Tizen.NUI.Components.CheckBox checkbox = source as Tizen.NUI.Components.CheckBox;
             // Show testText's shadow or not.
-            if (checkbox.LabelText == "Shadow")
+            if (checkbox.Text == "Shadow")
             {
-                if (checkbox.Selected)
-                {
-                    testText.ShadowOffset = new Vector2(3.0f, 3.0f);
-                    testText.ShadowColor = Color.Black;
-                    testText.ShadowOffset = new Vector2(3.0f, 3.0f);
-                    testText.ShadowColor = Color.Black;
-                }
-                else
-                {
-                    testText.ShadowOffset = new Vector2(0, 0);
-                    testText.ShadowOffset = new Vector2(0, 0);
-                }
             }
             // The testText auto scroll or not.
-            else if (checkbox.LabelText == "Color")
+            else if (checkbox.Text == "Color")
             {
-                if (checkbox.Selected)
+                if (checkbox.IsSelected)
                 {
                     testText.TextColor = Color.Red;
                 }
@@ -153,10 +141,10 @@ namespace UIControlSample
                 }
             }
             // Show testText's underline or not.
-            else if (checkbox.LabelText == "Underline")
+            else if (checkbox.Text == "Underline")
             {
                 PropertyMap underlineMapSet = new PropertyMap();
-                if (checkbox.Selected)
+                if (checkbox.IsSelected)
                 {
                     underlineMapSet.Add("enable", new PropertyValue("true"));
                     underlineMapSet.Add("color", new PropertyValue("black"));
@@ -169,8 +157,6 @@ namespace UIControlSample
 
                 testText.Underline = underlineMapSet;
             }
-
-            return true;
         }
 
         /// <summary>

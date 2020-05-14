@@ -554,8 +554,6 @@ namespace Tizen.NUI.MediaHub
             else if (isSelected)
             {
                 mainText.TextColor = Utility.Hex2Color(0x000000, 1.0f);
-                mainText.ShadowColor = Utility.Hex2Color(0x223036, 0.25f);
-                mainText.ShadowOffset = new Vector2(1.0f, 1.0f);
             }
             else
             {

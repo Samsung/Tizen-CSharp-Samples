@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -30,8 +30,8 @@ namespace UIControlSample
     /// </summary>
     class PopupSample : IExample
     {
-        private Popup popup;
-        private PushButton popupButton;
+        private Tizen.NUI.Components.Popup popup;
+        private Tizen.NUI.Components.Button popupButton;
         private TextLabel guide;
         private TextLabel userGuide;
         // <summary>
@@ -82,16 +82,18 @@ namespace UIControlSample
 
             Popups popupSample = new Popups();
             popup = popupSample.GetPopup();
-            popup.Shown += (obj, e) =>
+            popup.VisibilityChanged += (obj, e) =>
             {
-                Tizen.Log.Fatal("UISample", "Ungrab key: ");
-                bool flag = Window.Instance.UngrabKey(166);
-                Tizen.Log.Fatal("UISample", "Ungrab key: " + flag);
-            };
-            popup.Hidden += (obj, e) =>
-            {
-                Tizen.Log.Fatal("UISample", "Grab key: ");
-                Window.Instance.GrabKey(166, Window.KeyGrabMode.Topmost);
+                if (e.Visibility)
+                {
+                    bool flag = Window.Instance.UngrabKey(166);
+                    Tizen.Log.Fatal("UISample", "Ungrab key: " + flag);
+                }
+                else
+                {
+                    Tizen.Log.Fatal("UISample", "Grab key: ");
+                    Window.Instance.GrabKey(166, Window.KeyGrabMode.Topmost);
+                }
             };
             Window.Instance.GetDefaultLayer().Add(popup);
 
@@ -99,10 +101,13 @@ namespace UIControlSample
             popupButton = pushSample.GetPushButton();
             popupButton.Position = new Position(810, 500, 0); //300, 80
             Window.Instance.GetDefaultLayer().Add(popupButton);
-            popupButton.Released += (obj, e) =>
+            popupButton.KeyEvent += (obj, e) =>
             {
-                popup.SetDisplayState(Popup.DisplayStateType.Shown);
-                FocusManager.Instance.SetCurrentFocusView(popup.FindChildByName("OKButton"));
+                if (e.Key.State == Key.StateType.Up)
+                {
+                    popup.Show();
+                    FocusManager.Instance.SetCurrentFocusView(popup.FindChildByName("OKButton"));
+                }              
                 return true;
             };
 

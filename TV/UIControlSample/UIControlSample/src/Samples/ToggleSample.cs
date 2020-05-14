@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -30,7 +30,7 @@ namespace UIControlSample
     /// </summary>
     class ToggleSample : IExample
     {
-        private Tizen.NUI.UIComponents.Button toggle;
+        private Tizen.NUI.Components.Button toggle;
         private TextLabel guide;
         private TextLabel userGuide;
 

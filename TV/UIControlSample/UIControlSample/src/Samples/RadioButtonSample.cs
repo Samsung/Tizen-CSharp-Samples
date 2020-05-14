@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -87,9 +87,9 @@ namespace UIControlSample
             RadioButton radioButton1 = radioButtonGroup.GetRadioButton1();
             RadioButton radioButton2 = radioButtonGroup.GetRadioButton2();
             RadioButton radioButton3 = radioButtonGroup.GetRadioButton3();
-            radioButton1.StateChanged += RadioButtonStateChanged;
-            radioButton2.StateChanged += RadioButtonStateChanged;
-            radioButton3.StateChanged += RadioButtonStateChanged;
+            radioButton1.StateChangedEvent += RadioButtonStateChanged;
+            radioButton2.StateChangedEvent += RadioButtonStateChanged;
+            radioButton3.StateChangedEvent += RadioButtonStateChanged;
             radioButtonGroupView.Position = new Position(810, 400, 0);
             Window.Instance.GetDefaultLayer().Add(radioButtonGroupView);
             FocusManager.Instance.SetCurrentFocusView(radioButton1);
@@ -120,29 +120,29 @@ namespace UIControlSample
         /// <param name="source">radioButton.</param>
         /// <param name="e">event</param>
         /// <returns>The consume flag</returns>
-        private bool RadioButtonStateChanged(object source, EventArgs e)
+        private void RadioButtonStateChanged(object source, EventArgs e)
         {
             RadioButton radioButton = source as RadioButton;
             // Change the testText's textColor to red.
-            if (radioButton.LabelText == "Red")
+            if (radioButton.Text == "Red")
             {
-                if (radioButton.Selected)
+                if (radioButton.IsSelected)
                 {
                     testText.TextColor = Color.Red;
                 }
             }
             // Change the testText's textColor to green.
-            else if (radioButton.LabelText == "Green")
+            else if (radioButton.Text == "Green")
             {
-                if (radioButton.Selected)
+                if (radioButton.IsSelected)
                 {
                     testText.TextColor = Color.Green;
                 }
             }
             // Change the testText's textColor to blue.
-            else if (radioButton.LabelText == "Blue")
+            else if (radioButton.Text == "Blue")
             {
-                if (radioButton.Selected)
+                if (radioButton.IsSelected)
                 {
                     testText.TextColor = Color.Blue;
                 }
@@ -151,8 +151,6 @@ namespace UIControlSample
             {
                 testText.TextColor = Color.Black;
             }
-
-            return true;
         }
 
         /// <summary>

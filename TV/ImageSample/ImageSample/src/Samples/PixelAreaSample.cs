@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -31,7 +31,7 @@ namespace ImageSample
     class PixelAreaSample : IExample
     {
         private TextLabel guide;
-        private PushButton pushButton;
+        private Button pushButton;
         private ImageView[] imageView;
         private TableView tableView;
 
@@ -100,7 +100,7 @@ namespace ImageSample
             pushButton.PivotPoint = PivotPoint.Center;
             pushButton.ParentOrigin = ParentOrigin.TopLeft;
             pushButton.Position2D = tableView.Position2D + new Position2D((int)tableView.SizeWidth / 2 - 200, (int)tableView.SizeHeight + 60);
-            pushButton.Clicked += PixelAreaButtonClick;
+            pushButton.ClickEvent += PixelAreaButtonClick;
             pushButton.Focusable = true;
             Window.Instance.GetDefaultLayer().Add(pushButton);
             FocusManager.Instance.SetCurrentFocusView(pushButton);
@@ -113,7 +113,7 @@ namespace ImageSample
         /// <param name="source">pushButton.</param>
         /// <param name="e">event</param>
         /// <returns>the consume flag</returns>
-        private bool PixelAreaButtonClick(object source, EventArgs e)
+        private void PixelAreaButtonClick(object source, EventArgs e)
         {
             Animation animation = new Animation(10000);
             for (uint i = 0; i < 3; i++)
@@ -128,7 +128,6 @@ namespace ImageSample
             }
 
             animation.Play();
-            return true;
         }
 
 
@@ -168,43 +167,28 @@ namespace ImageSample
         /// <param name="name">the name of the button.</param>
         /// <param name="text">the text of the button</param>
         /// <returns>The consume flag</returns>
-        private PushButton CreateButton(string name, string text)
+        private Button CreateButton(string name, string text)
         {
-            PushButton button = new PushButton();
+            Button button = new Button();
             button.Focusable = true;
             button.Size2D = new Size2D(400, 80);
             button.Focusable = true;
             button.Name = name;
-            // Create the label which will show when _pushbutton focused.
-            PropertyMap _focusText = CreateTextVisual(text, Color.Black);
-
-            // Create the label which will show when _pushbutton unfocused.
-            PropertyMap _unfocusText = CreateTextVisual(text, Color.White);
-            button.Label = _unfocusText;
-
-            // Create normal background visual.
-            PropertyMap normalMap = CreateImageVisual(normalImagePath);
-
-            // Create focused background visual.
-            PropertyMap focusMap = CreateImageVisual(focusImagePath);
-
-            // Create pressed background visual.
-            PropertyMap pressMap = CreateImageVisual(pressImagePath);
-            button.SelectedVisual = pressMap;
-            button.UnselectedBackgroundVisual = normalMap;
+            button.BackgroundImage = normalImagePath;
+            button.TextColor = Color.White;
 
             // Chang background Visual and Label when focus gained.
             button.FocusGained += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = focusMap;
-                button.Label = _focusText;
+                button.BackgroundImage = focusImagePath;
+                button.TextColor = Color.Black;
             };
 
             // Chang background Visual and Label when focus lost.
             button.FocusLost += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = normalMap;
-                button.Label = _unfocusText;
+                button.BackgroundImage = normalImagePath;
+                button.TextColor = Color.White;
             };
 
             // Chang background Visual when pressed.
@@ -214,12 +198,12 @@ namespace ImageSample
                 {
                     if (Key.StateType.Down == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = pressMap;
+                        button.BackgroundImage = pressImagePath;
                         Tizen.Log.Fatal("NUI", "Press in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                     else if (Key.StateType.Up == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = focusMap;
+                        button.BackgroundImage = focusImagePath;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                 }

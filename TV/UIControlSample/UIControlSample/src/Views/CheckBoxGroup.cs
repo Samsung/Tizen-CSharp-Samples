@@ -18,7 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 //using Tizen.Applications;
@@ -37,9 +37,9 @@ namespace UIControlSample
     class CheckBoxGroup
     {
         private View checkBoxGroup;
-        private CheckBoxButton checkBox1;
-        private CheckBoxButton checkBox2;
-        private CheckBoxButton checkBox3;
+        private Tizen.NUI.Components.CheckBox checkBox1;
+        private Tizen.NUI.Components.CheckBox checkBox2;
+        private Tizen.NUI.Components.CheckBox checkBox3;
 
         /// <summary>
         /// Constructor to create new checkBoxGroup
@@ -165,7 +165,7 @@ namespace UIControlSample
         /// Get checkBox1 created in this class.
         /// </summary>
         /// <returns>The created checkBox1</returns>
-        public CheckBoxButton GetCheckBox1()
+        public Tizen.NUI.Components.CheckBox GetCheckBox1()
         {
             return checkBox1;
         }
@@ -174,7 +174,7 @@ namespace UIControlSample
         /// Get checkBox2 created in this class.
         /// </summary>
         /// <returns>The created checkBox2</returns>
-        public CheckBoxButton GetCheckBox2()
+        public Tizen.NUI.Components.CheckBox GetCheckBox2()
         {
             return checkBox2;
         }
@@ -183,7 +183,7 @@ namespace UIControlSample
         /// Get checkBox3 created in this class.
         /// </summary>
         /// <returns>The created checkBox3</returns>
-        public CheckBoxButton GetCheckBox3()
+        public Tizen.NUI.Components.CheckBox GetCheckBox3()
         {
             return checkBox3;
         }

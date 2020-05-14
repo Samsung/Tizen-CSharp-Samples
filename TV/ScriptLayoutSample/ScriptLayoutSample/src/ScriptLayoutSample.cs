@@ -18,7 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -55,14 +55,14 @@ namespace ScriptLayoutSample
         // Containe all the RadioButto.
         private RadioButton[] mRadioButtons;
         // Containe all the CheckBoxButton.
-        private CheckBoxButton[] mCheckButtons;
+        private CheckBox[] mCheckButtons;
         // Containe all the Slider
         private Slider[] mChannelSliders;
 
         //The default theme is Tizen4.0 theme
-        private PushButton defaultThemeButton;
+        private Button defaultThemeButton;
         //The custom theme is designed by apps, it could be anything if you want.
-        private PushButton customThemeButton;
+        private Button customThemeButton;
 
         /// <summary>
         /// The constructor with null
@@ -97,7 +97,8 @@ namespace ScriptLayoutSample
             // If the application theme file doesn't style all controls that the
             // application uses, then the default Toolkit theme will be used
             // instead for those controls.
-            StyleManager.Get().ApplyTheme(defaultThemePath);
+            Tizen.NUI.StyleManager.Get().ApplyTheme(defaultThemePath);
+
             //Create the title
             guide = new TextLabel();
             guide.StyleName = "Title";
@@ -161,24 +162,22 @@ namespace ScriptLayoutSample
                 content.SetCellAlignment(new TableView.CellPosition(i, 1), HorizontalAlignmentType.Left, VerticalAlignmentType.Center);
             }
 
-            mRadioButtons[0].Selected = true;
             //Set the focus to the first radioButton when the apps loaded
             FocusManager.Instance.SetCurrentFocusView(mRadioButtons[0]);
 
             string[] checkboxLabels = { "R", "G", "B" };
-            mCheckButtons = new CheckBoxButton[3];
+            mCheckButtons = new CheckBox[3];
             mChannelSliders = new Slider[3];
             for (uint i = 3; i <= 5;i++)
             {
                 mCheckButtons[i - 3] = CreateCheckBox(checkboxLabels[i - 3]);
-                mCheckButtons[i - 3].Selected = true;
                 mCheckButtons[i - 3].Name = "channelActiveCheckBox" + (i - 2).ToString();
                 mChannelSliders[i - 3] = CreateSlider();
                 mChannelSliders[i - 3].Name = "ColorSlider" + (i - 2);
                 mChannelSliders[i - 3].Size2D = new Size2D(800, 80);
                 // Set the current value of mChannelSliders;
                 mChannelSliders[i - 3].KeyEvent += ChannelSliderKeyEvent;
-                mChannelSliders[i - 3].ValueChanged += OnSliderChanged;
+                mChannelSliders[i - 3].ValueChangedEvent += OnSliderChanged;
 
                 // Set the style according to the target devices
                 if (DeviceCheck.IsSREmul())
@@ -206,11 +205,11 @@ namespace ScriptLayoutSample
 
             defaultThemeButton = CreateButton("DefaultTheme", "DefaultTheme", new Size2D(400, 80));
             defaultThemeButton.Position2D = new Position2D(373, 900);
-            defaultThemeButton.Clicked += OnThemeButtonClicked;
+            defaultThemeButton.ClickEvent += OnThemeButtonClicked;
             Window.Instance.GetDefaultLayer().Add(defaultThemeButton);
             customThemeButton = CreateButton("CustomTheme", "CustomTheme", new Size2D(400, 80));
             customThemeButton.Position2D = new Position2D(1146, 900);
-            customThemeButton.Clicked += OnThemeButtonClicked;
+            customThemeButton.ClickEvent += OnThemeButtonClicked;
             Window.Instance.GetDefaultLayer().Add(customThemeButton);
 
             if (DeviceCheck.IsSREmul())
@@ -267,11 +266,11 @@ namespace ScriptLayoutSample
                 {
                     if (e.Key.KeyPressedName == "Left")
                     {
-                        slider.Value--;
+                        slider.CurrentValue--;
                     }
                     else if (e.Key.KeyPressedName == "Right")
                     {
-                        slider.Value++;
+                        slider.CurrentValue++;
                     }
                     else if (e.Key.KeyPressedName == "Up")
                     {
@@ -314,25 +313,23 @@ namespace ScriptLayoutSample
         /// <param name="source">mRadioButton.</param>
         /// <param name="e">event</param>
         /// <returns>The consume flag</returns>
-        private bool OnButtonStateChange(object source, EventArgs e)
+        private void OnButtonStateChange(object source, EventArgs e)
         {
             if (mImagePlacement != null)
             {
-                if (mRadioButtons[0].Selected)
+                if (mRadioButtons[0].IsSelected)
                 {
                     mImagePlacement.SetImage(bigImage1);
                 }
-                else if (mRadioButtons[1].Selected)
+                else if (mRadioButtons[1].IsSelected)
                 {
                     mImagePlacement.SetImage(bigImage2);
                 }
-                else if (mRadioButtons[2].Selected)
+                else if (mRadioButtons[2].IsSelected)
                 {
                     mImagePlacement.SetImage(bigImage3);
                 }
             }
-
-            return true;
         }
 
         /// <summary>
@@ -342,14 +339,14 @@ namespace ScriptLayoutSample
         /// <param name="source">mCheckButton.</param>
         /// <param name="e">event</param>
         /// <returns>The consume flag</returns>
-        private bool OnCheckButtonChange(object source, EventArgs e)
+        private void OnCheckButtonChange(object source, EventArgs e)
         {
-            CheckBoxButton checkBoxButton = source as CheckBoxButton;
+            CheckBox checkBoxButton = source as CheckBox;
             if (checkBoxButton.Name == "channelActiveCheckBox1")
             {
-                if (mCheckButtons[0].Selected)
+                if (mCheckButtons[0].IsSelected)
                 {
-                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorRed"), new PropertyValue(mChannelSliders[0].Value / 100));
+                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorRed"), new PropertyValue(mChannelSliders[0].CurrentValue / 100));
                 }
                 else
                 {
@@ -358,9 +355,9 @@ namespace ScriptLayoutSample
             }
             else if (checkBoxButton.Name == "channelActiveCheckBox2")
             {
-                if (mCheckButtons[1].Selected)
+                if (mCheckButtons[1].IsSelected)
                 {
-                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorGreen"), new PropertyValue(mChannelSliders[1].Value / 100));
+                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorGreen"), new PropertyValue(mChannelSliders[1].CurrentValue / 100));
                 }
                 else
                 {
@@ -369,17 +366,15 @@ namespace ScriptLayoutSample
             }
             else if (checkBoxButton.Name == "channelActiveCheckBox3")
             {
-                if (mCheckButtons[2].Selected)
+                if (mCheckButtons[2].IsSelected)
                 {
-                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorBlue"), new PropertyValue(mChannelSliders[2].Value / 100));
+                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorBlue"), new PropertyValue(mChannelSliders[2].CurrentValue / 100));
                 }
                 else
                 {
                     mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorBlue"), new PropertyValue(0));
                 }
             }
-
-            return true;
         }
 
         /// <summary>
@@ -389,38 +384,36 @@ namespace ScriptLayoutSample
         /// <param name="source">slider.</param>
         /// <param name="e">event</param>
         /// <returns>The consume flag</returns>
-        private bool OnSliderChanged(object source, EventArgs e)
+        private void OnSliderChanged(object source, EventArgs e)
         {
             Slider slider = source as Slider;
             if (slider.Name == "ColorSlider1")
             {
-                if (mCheckButtons[0].Selected)
+                if (mCheckButtons[0].IsSelected)
                 {
                     // Change colorRed' value to mChannelSliders[0].value / 100.
                     // colorRed.value rang 0 - 1.
-                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorRed"), new PropertyValue(mChannelSliders[0].Value / 100));
+                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorRed"), new PropertyValue(mChannelSliders[0].CurrentValue / 100));
                 }
             }
             else if (slider.Name == "ColorSlider2")
             {
-                if (mCheckButtons[1].Selected)
+                if (mCheckButtons[1].IsSelected)
                 {
                     // Change colorGreen' value to mChannelSliders[0].value / 100.
                     // colorGreen.value rang 0 - 1.
-                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorGreen"), new PropertyValue(mChannelSliders[1].Value / 100));
+                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorGreen"), new PropertyValue(mChannelSliders[1].CurrentValue / 100));
                 }
             }
             else if (slider.Name == "ColorSlider3")
             {
-                if (mCheckButtons[2].Selected)
+                if (mCheckButtons[2].IsSelected)
                 {
                     // Change colorBlue'value to mChannelSliders[0].value / 100.
                     // colorBlue.value rang 0 - 1.
-                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorBlue"), new PropertyValue(mChannelSliders[2].Value / 100));
+                    mImagePlacement.SetProperty(mImagePlacement.GetPropertyIndex("colorBlue"), new PropertyValue(mChannelSliders[2].CurrentValue / 100));
                 }
             }
-
-            return true;
         }
 
         /// <summary>
@@ -429,29 +422,25 @@ namespace ScriptLayoutSample
         /// <param name="source">mResetButton.</param>
         /// <param name="e">event</param>
         /// <returns>The consuming flag.</returns>
-        private bool OnThemeButtonClicked(object source, EventArgs e)
+        private void OnThemeButtonClicked(object source, EventArgs e)
         {
-            PushButton button = source as PushButton;
+            Button button = source as Button;
 
             // Judge which style button is clicked.
-            if (button.LabelText == "DefaultTheme")
+            if (button.Text == "DefaultTheme")
             {
                 Tizen.Log.Fatal("NUI", "Change the theme to Default: " + defaultThemePath);
                 themePath = defaultThemePath;
             }
-            else if (button.LabelText == "CustomTheme")
+            else if (button.Text == "CustomTheme")
             {
                 Tizen.Log.Fatal("NUI", "Change the theme to Custom: " + customThemePath);
                 themePath = customThemePath;
             }
             // Change the style.
-            StyleManager.Get().ApplyTheme(themePath);
-            PropertyMap _focusText = CreateTextVisual(button.LabelText, Color.Black);
-            PropertyMap focusMap = CreateImageVisual(focusImagePath);
-            button.UnselectedBackgroundVisual = focusMap;
-            button.UnselectedVisual = focusMap;
-            button.Label = _focusText;
-            return true;
+            Tizen.NUI.StyleManager.Get().ApplyTheme(themePath);
+            button.TextColor = Color.Black;
+            button.BackgroundImage = focusImagePath;
         }
 
         /// <summary>
@@ -462,17 +451,17 @@ namespace ScriptLayoutSample
         /// <returns>The consume flag</returns>
         private bool CheckBoxStateChanged(object source, EventArgs e)
         {
-            CheckBoxButton checkbox = source as CheckBoxButton;
+            CheckBox checkbox = source as CheckBox;
             // Show testText's shadow or not.
-            if (checkbox.LabelText == "Shadow")
+            if (checkbox.Text == "Shadow")
             {
             }
             // The testText auto scroll or not.
-            else if (checkbox.LabelText == "Color")
+            else if (checkbox.Text == "Color")
             {
             }
             // Show testText's underline or not.
-            else if (checkbox.LabelText == "Underline")
+            else if (checkbox.Text == "Underline")
             {
             }
 
@@ -560,48 +549,29 @@ namespace ScriptLayoutSample
             }
         }
 
-        protected PushButton CreateButton(string name, string text, Size2D size = null)
+        protected Button CreateButton(string name, string text, Size2D size = null)
         {
-            PushButton button = new PushButton();
+            Button button = new Button();
             if (null != size)
             {
                 button.Size2D = size;
             }
-
             button.Focusable = true;
             button.Name = name;
-            // Create the label which will show when _pushbutton focused.
-            PropertyMap _focusText = CreateTextVisual(text, Color.Black);
-
-            // Create the label which will show when _pushbutton unfocused.
-            PropertyMap _unfocusText = CreateTextVisual(text, Color.White);
-            button.Label = _unfocusText;
-
-            // Create normal background visual.
-            PropertyMap normalMap = CreateImageVisual(normalImagePath);
-
-            // Create focused background visual.
-            PropertyMap focusMap = CreateImageVisual(focusImagePath);
-
-            // Create pressed background visual.
-            PropertyMap pressMap = CreateImageVisual(pressImagePath);
-            button.SelectedVisual = pressMap;
-            button.SelectedBackgroundVisual = pressMap;
-            button.UnselectedBackgroundVisual = normalMap;
+            button.BackgroundImage = normalImagePath;
+            button.TextColor = Color.White;
 
             button.FocusGained += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = focusMap;
-                button.UnselectedVisual = focusMap;
-                button.Label = _focusText;
+                button.BackgroundImage = focusImagePath;
+                button.TextColor = Color.Black;
             };
 
             // Chang background Visual and Label when focus lost.
             button.FocusLost += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = normalMap;
-                button.UnselectedVisual = normalMap;
-                button.Label = _unfocusText;
+                button.BackgroundImage = normalImagePath;
+                button.TextColor = Color.White;
             };
 
             // Chang background Visual when pressed.
@@ -611,12 +581,12 @@ namespace ScriptLayoutSample
                 {
                     if (Key.StateType.Down == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = pressMap;
+                        button.BackgroundImage = pressImagePath;
                         Tizen.Log.Fatal("NUI", "Press in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                     else if (Key.StateType.Up == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = focusMap;
+                        button.BackgroundImage = focusImagePath;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                 }
@@ -625,20 +595,6 @@ namespace ScriptLayoutSample
             };
 
             return button;
-        }
-
-        private PropertyMap CreateTextVisual(string text, Color color)
-        {
-            PropertyMap map = new PropertyMap();
-            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            map.Add(TextVisualProperty.Text, new PropertyValue(text));
-            map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
-            map.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
-            map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
-            map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-            map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
-            return map;
         }
 
         /// <summary>
@@ -663,13 +619,15 @@ namespace ScriptLayoutSample
         {
             RadioButton _radiobutton = new RadioButton();
             _radiobutton = new RadioButton();
-            _radiobutton.Label = CreateLabel(text, Color.White);
-            _radiobutton.LabelPadding = new Vector4(10, 12, 0, 0);
+            _radiobutton.TextPadding = new Extents(10, 12, 0, 0);
+            _radiobutton.PointSize = DeviceCheck.PointSize8;
+            _radiobutton.Text = text;
+            _radiobutton.TextColor = Color.White;
             _radiobutton.Size2D = new Size2D(120, 48);
             _radiobutton.Focusable = true;
             _radiobutton.ParentOrigin = ParentOrigin.TopLeft;
             _radiobutton.PivotPoint = PivotPoint.TopLeft;
-            _radiobutton.StateChanged += OnButtonStateChange;
+            _radiobutton.StateChangedEvent += OnButtonStateChange;
 
             // Create unfocused and unselected visual.
             PropertyMap unselectedMap = new PropertyMap();
@@ -712,23 +670,16 @@ namespace ScriptLayoutSample
             focusSelectedTheme2Map.Add(ImageVisualProperty.URL, new PropertyValue(focusedSelectRadioTheme2ImagePath));
             selectedTheme2Map.Add(ImageVisualProperty.URL, new PropertyValue(selectRadioTheme2ImagePath));
 
-            // Set the original visual.
-            _radiobutton.SelectedVisual = selectedMap;
-            _radiobutton.UnselectedVisual = unselectedMap;
-
             // Change the image when focus changed.
             _radiobutton.FocusGained += (obj, e) =>
             {
                 if (themePath == defaultThemePath)
                 {
-                    _radiobutton.UnselectedVisual = focusUnselectedMap;
-                    _radiobutton.SelectedVisual = focusSelectedMap;
-
+                    _radiobutton.BackgroundImage = focusedSelectRadioImagePath;
                 }
                 else if (themePath == customThemePath)
                 {
-                    _radiobutton.UnselectedVisual = focusUnselectedTheme2Map;
-                    _radiobutton.SelectedVisual = focusSelectedTheme2Map;
+                    _radiobutton.BackgroundImage = focusedSelectRadioTheme2ImagePath;
                 }
             };
 
@@ -738,41 +689,40 @@ namespace ScriptLayoutSample
 
                 if (themePath == defaultThemePath)
                 {
-                    _radiobutton.UnselectedVisual = unselectedMap;
-                    _radiobutton.SelectedVisual = selectedMap;
+                    _radiobutton.BackgroundImage = selectRadioImagePath;
 
                 }
                 else if (themePath == customThemePath)
                 {
-                    _radiobutton.UnselectedVisual = unselectedTheme2Map;
-                    _radiobutton.SelectedVisual = selectedTheme2Map;
+                    _radiobutton.BackgroundImage = selectRadioTheme2ImagePath;
                 }
             };
             return _radiobutton;
         }
 
-        private CheckBoxButton CreateCheckBox(string text)
+        private CheckBox CreateCheckBox(string text)
         {
-            CheckBoxButton _checkboxbutton = new CheckBoxButton();
+            CheckBox _checkboxbutton = new CheckBox();
+            _checkboxbutton.Text = text;
             if (text == "R")
             {
-                _checkboxbutton.Label = CreateLabel(text, Color.Red);
+                _checkboxbutton.TextColor = Color.Red;
             }
             else if (text == "G")
             {
-                _checkboxbutton.Label = CreateLabel(text, Color.Green);
+                _checkboxbutton.TextColor = Color.Green;
             }
             else if (text == "B")
             {
-                _checkboxbutton.Label = CreateLabel(text, Color.Blue);
+                _checkboxbutton.TextColor = Color.Blue;
             }
 
-            _checkboxbutton.LabelPadding = new Vector4(10, 12, 0, 0);
+            _checkboxbutton.TextPadding = new Extents(10, 12, 0, 0);
             _checkboxbutton.Size2D = new Size2D(120, 48);
             _checkboxbutton.Focusable = true;
             _checkboxbutton.ParentOrigin = ParentOrigin.TopLeft;
             _checkboxbutton.PivotPoint = PivotPoint.TopLeft;
-            _checkboxbutton.StateChanged += OnCheckButtonChange;
+            _checkboxbutton.StateChangedEvent += OnCheckButtonChange;
 
             // Create unfocused and unselected visual.
             PropertyMap unselectedMap = new PropertyMap();
@@ -811,23 +761,17 @@ namespace ScriptLayoutSample
             unselectedTheme2Map.Add(ImageVisualProperty.URL, new PropertyValue(normalCheckTheme2ImagePath));
             selectedTheme2Map.Add(ImageVisualProperty.URL, new PropertyValue(selectCheckTheme2ImagePath));
 
-            // Set the original visual.
-            _checkboxbutton.UnselectedVisual = unselectedMap;
-            _checkboxbutton.SelectedVisual = selectedMap;
-
             // Change the image when focus changed.
             _checkboxbutton.FocusGained += (obj, e) =>
             {
 
                 if (themePath == defaultThemePath)
                 {
-                    _checkboxbutton.SelectedVisual = focusSelectedMap;
-                    _checkboxbutton.UnselectedVisual = focusUnselectedMap;
+                    _checkboxbutton.BackgroundImage = focusCheckImagePath;
                 }
                 else if (themePath == customThemePath)
                 {
-                    _checkboxbutton.SelectedVisual = focusSelectedTheme2Map;
-                    _checkboxbutton.UnselectedVisual = focusUnselectedTheme2Map;
+                    _checkboxbutton.BackgroundImage = focusCheckTheme2ImagePath;
                 }
             };
 
@@ -836,13 +780,11 @@ namespace ScriptLayoutSample
             {
                 if (themePath == defaultThemePath)
                 {
-                    _checkboxbutton.UnselectedVisual = unselectedMap;
-                    _checkboxbutton.SelectedVisual = selectedMap;
+                    _checkboxbutton.BackgroundImage = selectCheckImagePath;
                 }
                 else if (themePath == customThemePath)
                 {
-                    _checkboxbutton.UnselectedVisual = unselectedTheme2Map;
-                    _checkboxbutton.SelectedVisual = selectedTheme2Map;
+                    _checkboxbutton.BackgroundImage = selectCheckTheme2ImagePath;
                 }
             };
             return _checkboxbutton;
@@ -856,81 +798,21 @@ namespace ScriptLayoutSample
             horizontalSlider.PivotPoint = PivotPoint.TopLeft;
             //horizontalSlider.Position2D = new Position2D(25, 12);
             horizontalSlider.Size2D = new Size2D(800, 80);
-            horizontalSlider.ValuePrecision = 0;
-            horizontalSlider.ShowPopup = false;
-            horizontalSlider.ShowValue = false;
-            horizontalSlider.LowerBound = 0.0f;
-            horizontalSlider.UpperBound = 100.0f;
-            horizontalSlider.Value = 100;
-
-            // Create selected handle visual.
-            PropertyMap hanldeSelectedVisualMap = new PropertyMap();
-            hanldeSelectedVisualMap.Add("visualType", new PropertyValue("IMAGE"));
-            hanldeSelectedVisualMap.Add("size", new PropertyValue(new Vector2(4, 25)));
-            hanldeSelectedVisualMap.Add("url", new PropertyValue(handleSelectedVisual));
-
-            // Create unselected handle visual.
-            PropertyMap hanldeUnSelectedVisualMap = new PropertyMap();
-            hanldeUnSelectedVisualMap.Add("visualType", new PropertyValue("IMAGE"));
-            hanldeUnSelectedVisualMap.Add("size", new PropertyValue(new Vector2(4, 25)));
-            hanldeUnSelectedVisualMap.Add("url", new PropertyValue(handleUnSelectedVisual));
-            horizontalSlider.HandleVisual = hanldeUnSelectedVisualMap;
-
-            // Create progress visual map.
-            PropertyMap progressVisualMap = new PropertyMap();
-            progressVisualMap.Add("visualType", new PropertyValue("IMAGE"));
-            progressVisualMap.Add("size", new PropertyValue(new Vector2(10, 4)));
-            progressVisualMap.Add("url", new PropertyValue(progressVisual));
-            horizontalSlider.ProgressVisual = progressVisualMap;
-
-            // Create track visual map.
-            PropertyMap trackVisualMap = new PropertyMap();
-            trackVisualMap.Add("visualType", new PropertyValue("IMAGE"));
-            trackVisualMap.Add("size", new PropertyValue(new Vector2(10, 4)));
-            trackVisualMap.Add("url", new PropertyValue(trackVisual));
-            horizontalSlider.TrackVisual = trackVisualMap;
-
-            horizontalSlider.ValueChanged += OnSliderChanged;
-
-            horizontalSlider.SlidingFinished += (obj, ee) =>
-            {
-                horizontalSlider.HandleVisual = hanldeUnSelectedVisualMap;
-                return true;
-            };
-
             horizontalSlider.Focusable = true;
-            FocusManager.Instance.SetCurrentFocusView(horizontalSlider);
-
-            horizontalSlider.FocusGained += (obj, ee) =>
+            horizontalSlider.MinValue = 0.0f;
+            horizontalSlider.MaxValue = 100.0f;
+            horizontalSlider.CurrentValue = 100;
+            horizontalSlider.ThumbImageURLSelector = new StringSelector()
             {
-                horizontalSlider.HandleVisual = hanldeSelectedVisualMap;
-                Tizen.Log.Fatal("NUI", "horizontalSlider got the focus!!!!!!!!" + handleSelectedVisual);
+                Normal = handleUnSelectedVisual,
+                Pressed = handleSelectedVisual
             };
-
-            horizontalSlider.FocusLost += (obj, ee) =>
+            horizontalSlider.ThumbImageBackgroundURLSelector = new StringSelector()
             {
-                horizontalSlider.HandleVisual = hanldeUnSelectedVisualMap;
-                Tizen.Log.Fatal("NUI", "horizontalSlider lost the focus!!!!!!!!");
+                All = trackVisual
             };
+            horizontalSlider.ValueChangedEvent += OnSliderChanged;
             return horizontalSlider;
-        }
-
-        /// <summary>
-        /// Create a PropertyMap which be used to set _checkboxbutton.Label
-        /// </summary>
-        /// <param name="text">text</param>
-        /// <param name="color">the color of the text</param>
-        /// <returns>the created PropertyMap</returns>
-        private PropertyMap CreateLabel(string text, Color color)
-        {
-            PropertyMap textVisual = new PropertyMap();
-            textVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            textVisual.Add(TextVisualProperty.Text, new PropertyValue(text));
-            textVisual.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            //textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
-            textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
-            textVisual.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("TOP"));
-            return textVisual;
         }
 
         private string normalCheckImagePath = resources + "/images/CheckBox/Unselected.png";
@@ -956,7 +838,7 @@ namespace ScriptLayoutSample
         string handleUnSelectedVisual = resources + "/images/Slider/img_slider_handler_h_unselected.png";
         string handleSelectedVisual = resources + "/images/Slider/img_slider_handler_h_selected.png";
         string trackVisual = resources + "/images/Slider/img_slider_track.png";
-        string progressVisual = resources + "/images/Slider/img_slider_progress.png";
+        //string progressVisual = resources + "/images/Slider/img_slider_progress.png";
 
         private string normalImagePath = resources + "/images/Button/btn_bg_25_25_25_95.9.png";
         private string focusImagePath = resources + "/images/Button/btn_bg_255_255_255_200.9.png";

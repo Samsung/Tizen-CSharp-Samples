@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -36,7 +36,7 @@ namespace ImageSample
         private string focusImagePath = resources + "Button/btn_bg_255_255_255_200.9.png";
         private string pressImagePath = resources + "Button/btn_bg_0_129_198_100.9.png";
         private String image_png = resources + "dali-logo.png";
-        private PushButton fittingModeButton;
+        private Button fittingModeButton;
 
         private TextLabel guide;
         private ImageView image;
@@ -103,7 +103,7 @@ namespace ImageSample
             fittingModeButton.ParentOrigin = ParentOrigin.TopLeft;
             fittingModeButton.Position2D = new Position2D(660, 700);
             //fittingModeButton.Position2D = image.Position2D + new Position2D(-150, (int)image.SizeHeight / 2 + 300);
-            fittingModeButton.Clicked += FittingModeButtonClick;
+            fittingModeButton.ClickEvent += FittingModeButtonClick;
             fittingModeButton.Focusable = true;
             Window.Instance.GetDefaultLayer().Add(fittingModeButton);
             FocusManager.Instance.SetCurrentFocusView(fittingModeButton);
@@ -148,35 +148,33 @@ namespace ImageSample
         /// <param name="source">fittingModeButton.</param>
         /// <param name="e">event</param>
         /// <returns>the consume flag</returns>
-        private bool FittingModeButtonClick(object source, EventArgs e)
+        private void FittingModeButtonClick(object source, EventArgs e)
         {
             switch (fittingMode)
             {
                 case (int)FittingModeType.FitHeight:
                     fittingMode = (int)FittingModeType.FitWidth;
                     pngImageMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.FitWidth));
-                    fittingModeButton.Label = CreateText("FittingMode : FitWidth");
+                    fittingModeButton.Text = "FittingMode : FitWidth";
                     break;
                 case (int)FittingModeType.FitWidth:
                     fittingMode = (int)FittingModeType.ScaleToFill;
                     pngImageMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.ScaleToFill));
-                    fittingModeButton.Label = CreateText("FittingMode : ScaleToFill");
+                    fittingModeButton.Text = "FittingMode : ScaleToFill";
                     break;
                 case (int)FittingModeType.ScaleToFill:
                     fittingMode = (int)FittingModeType.ShrinkToFit;
                     pngImageMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.ShrinkToFit));
-                    fittingModeButton.Label = CreateText("FittingMode : ShrinkToFit");
+                    fittingModeButton.Text = "FittingMode : ShrinkToFit";
                     break;
                 case (int)FittingModeType.ShrinkToFit:
                     fittingMode = (int)FittingModeType.FitHeight;
                     pngImageMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.FitHeight));
-                    fittingModeButton.Label = CreateText("FittingMode : FitHeight");
+                    fittingModeButton.Text = "FittingMode : FitHeight";
                     break;
             }
 
             image.Image = pngImageMap;
-
-            return true;
         }
 
         /// <summary>
@@ -240,43 +238,28 @@ namespace ImageSample
             return map;
         }
 
-        private PushButton CreateButton(string name, string text)
+        private Button CreateButton(string name, string text)
         {
-            PushButton button = new PushButton();
+            Button button = new Button();
             button.Focusable = true;
             button.Size2D = new Size2D(600, 80);
             button.Focusable = true;
             button.Name = name;
-            // Create the label which will show when _pushbutton focused.
-            PropertyMap _focusText = CreateTextVisual(text, Color.Black);
-
-            // Create the label which will show when _pushbutton unfocused.
-            PropertyMap _unfocusText = CreateTextVisual(text, Color.White);
-            button.Label = _unfocusText;
-
-            // Create normal background visual.
-            PropertyMap normalMap = CreateImageVisual(normalImagePath);
-
-            // Create focused background visual.
-            PropertyMap focusMap = CreateImageVisual(focusImagePath);
-
-            // Create pressed background visual.
-            PropertyMap pressMap = CreateImageVisual(pressImagePath);
-            button.SelectedVisual = pressMap;
-            button.UnselectedBackgroundVisual = normalMap;
+            button.TextColor = Color.White;
+            button.BackgroundImage = normalImagePath;
 
             // Chang background Visual and Label when focus gained.
             button.FocusGained += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = focusMap;
-                button.Label = _focusText;
+                button.BackgroundImage = focusImagePath;
+                button.TextColor = Color.Black;
             };
 
             // Chang background Visual and Label when focus lost.
             button.FocusLost += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = normalMap;
-                button.Label = _unfocusText;
+                button.BackgroundImage = normalImagePath;
+                button.TextColor = Color.White;
             };
 
             // Chang background Visual when pressed.
@@ -286,12 +269,12 @@ namespace ImageSample
                 {
                     if (Key.StateType.Down == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = pressMap;
+                        button.BackgroundImage = pressImagePath;
                         Tizen.Log.Fatal("NUI", "Press in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                     else if (Key.StateType.Up == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = focusMap;
+                        button.BackgroundImage = focusImagePath;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                 }

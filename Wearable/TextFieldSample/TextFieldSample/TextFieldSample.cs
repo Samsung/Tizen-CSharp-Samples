@@ -19,7 +19,7 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -30,10 +30,13 @@ namespace TextFieldSample
     /// </summary>
     class TextFieldSample : NUIApplication
     {
+        // Main view
+        private Window window;
+        private View root;
         // textField be used to show the effect of TextField.
         private TextField mTextField;
         // PushButton be used to trigger the effect of Text.
-        private PushButton[] mPushButton;
+        private Button[] mButton;
         // tableView be used to put PushButton.
         private TableView mTableView;
         // Some kinds of LANGUAGES.
@@ -48,7 +51,7 @@ namespace TextFieldSample
         private int mNumLanguage = 6;
 
         // A string list of sample cases
-        private string[] mPushButtonString =
+        private string[] mButtonString =
         {
              "HorizontalAlignment",
              "VerticalAlignment",
@@ -61,7 +64,7 @@ namespace TextFieldSample
              "Condensed"
         };
         // A number of sample cases
-        private uint mPushButtonCount = 9;
+        private uint mButtonCount = 9;
         private int mCurruntButtonIndex;
 
         // Button state
@@ -72,8 +75,6 @@ namespace TextFieldSample
         private bool mTouched = false;
         private bool mTouchedInButton = false;
 
-        // Window Size
-        private Size2D mWindowSize;
         // Text point sizes
         private float mLargePointSize = 10.0f;
         private float mMiddlePointSize = 5.0f;
@@ -82,7 +83,7 @@ namespace TextFieldSample
 
         private Position mTableViewStartPosition = new Position(65, 90, 0);
         private Animation[] mTableViewAnimation;
-        private Size2D mButtonSize = new Size2D(230, 35);
+        private Size mButtonSize = new Size(230, 35);
 
         /// <summary>
         /// The constructor with null
@@ -105,9 +106,13 @@ namespace TextFieldSample
         /// </summary>
         public void Initialize()
         {
-            // Set the background Color of Window.
-            Window.Instance.BackgroundColor = Color.Black;
-            mWindowSize = Window.Instance.Size;
+            window = NUIApplication.GetDefaultWindow();
+
+            root = new View()
+            {
+                Size = new Size(window.Size.Width, window.Size.Height),
+                BackgroundColor = Color.White
+            };
 
             // Create Title TextLabel
             TextLabel Title = new TextLabel("Text Field");
@@ -118,13 +123,13 @@ namespace TextFieldSample
             Title.PositionUsesPivotPoint = true;
             Title.ParentOrigin = ParentOrigin.TopCenter;
             Title.PivotPoint = PivotPoint.TopCenter;
-            Title.Position2D = new Position2D(0, mWindowSize.Height / 10);
+            Title.Position = new Position(0, window.Size.Height / 10);
             // Use Samsung One 600 font
             Title.FontFamily = "Samsung One 600";
             // Set MultiLine to false;
             Title.MultiLine = false;
             Title.PointSize = mLargePointSize;
-            Window.Instance.GetDefaultLayer().Add(Title);
+            root.Add(Title);
 
             // Create textField.
             CreateTextField();
@@ -141,13 +146,13 @@ namespace TextFieldSample
             subTitle.PositionUsesPivotPoint = true;
             subTitle.ParentOrigin = ParentOrigin.BottomCenter;
             subTitle.PivotPoint = PivotPoint.BottomCenter;
-            subTitle.Position2D = new Position2D(0, -30);
+            subTitle.Position = new Position(0, -30);
             // Use Samsung One 600 font
             subTitle.FontFamily = "Samsung One 600";
             // Set MultiLine to false;
             subTitle.MultiLine = false;
             subTitle.PointSize = mSmallPointSize;
-            Window.Instance.GetDefaultLayer().Add(subTitle);
+            root.Add(subTitle);
 
             // Animation setting for the button animation
             mTableViewAnimation = new Animation[2];
@@ -158,9 +163,11 @@ namespace TextFieldSample
             mTableViewAnimation[1].Duration = 100;
             mTableViewAnimation[1].AnimateBy(mTableView, "Position", new Vector3(360, 0, 0));
 
+            window.Add(root);
+
             // Add Signal Callback functions
-            Window.Instance.TouchEvent += OnWindowTouched;
-            Window.Instance.KeyEvent += OnKey;
+            window.TouchEvent += OnWindowTouched;
+            window.KeyEvent += OnKey;
         }
 
         /// <summary>
@@ -171,7 +178,7 @@ namespace TextFieldSample
         {
             // Create main textField.
             mTextField = new TextField();
-            mTextField.Size2D = new Size2D((int)(mWindowSize.Width * 0.8f), (int)(mWindowSize.Height * 0.4f));
+            mTextField.Size = new Size((int)(window.Size.Width * 0.8f), (int)(window.Size.Height * 0.4f));
             // Set the position of textField.
             mTextField.PositionUsesPivotPoint = true;
             mTextField.PivotPoint = PivotPoint.Center;
@@ -194,7 +201,7 @@ namespace TextFieldSample
             mTextField.SelectionHighlightColor = Color.Cyan;
             mTextField.EnableCursorBlink = true;
 
-            Window.Instance.GetDefaultLayer().Add(mTextField);
+            root.Add(mTextField);
         }
 
         /// <summary>
@@ -203,34 +210,34 @@ namespace TextFieldSample
         private void CreateButtons()
         {
             // Create tableView used to put PushButton.
-            mTableView = new TableView(1, mPushButtonCount);
+            mTableView = new TableView(1, mButtonCount);
             // Set the position of tableView.
             mTableView.PositionUsesPivotPoint = true;
             mTableView.PivotPoint = PivotPoint.CenterLeft;
             mTableView.ParentOrigin = ParentOrigin.CenterLeft;
             mTableView.Position = mTableViewStartPosition;
             // Set the each cell
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 mTableView.SetFixedWidth(i, 360);
             }
 
-            Window.Instance.GetDefaultLayer().Add(mTableView);
+            root.Add(mTableView);
 
             // Create button for the each case.
-            mPushButton = new PushButton[mPushButtonCount];
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            mButton = new Button[mButtonCount];
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 // Creates button
-                mPushButton[i] = CreateButton(mPushButtonString[i]);
+                mButton[i] = CreateButton(mButtonString[i]);
                 // Bind PushButton's click event to ButtonClick.
-                mPushButton[i].TouchEvent += OnButtonTouched;
-                mTableView.AddChild(mPushButton[i], new TableView.CellPosition(0, i));
+                mButton[i].TouchEvent += OnButtonTouched;
+                mTableView.AddChild(mButton[i], new TableView.CellPosition(0, i));
             }
 
             // Set the default state of each button property
-            mButtonState = new uint[mPushButtonCount];
-            for (uint i = 0; i < mPushButtonCount; ++i)
+            mButtonState = new uint[mButtonCount];
+            for (uint i = 0; i < mButtonCount; ++i)
             {
                 mButtonState[i] = 0;
             }
@@ -410,7 +417,7 @@ namespace TextFieldSample
         private void AnimateAStepPositive()
         {
             // If the state is not the last one, move ImageViews and PushButton a step.
-            if (mCurruntButtonIndex < mPushButtonCount - 1)
+            if (mCurruntButtonIndex < mButtonCount - 1)
             {
                 mCurruntButtonIndex++;
 
@@ -426,9 +433,9 @@ namespace TextFieldSample
         private bool ButtonClick(object source)
         {
             // Get the source who trigger this event.
-            PushButton button = source as PushButton;
+            Button button = source as Button;
             // Change textField's HorizontalAlignment.
-            if (button.LabelText == "HorizontalAlignment")
+            if (button.Text == "HorizontalAlignment")
             {
                 // Begin : Texts place at the begin of horizontal direction.
                 if (mButtonState[mCurruntButtonIndex] == 0)
@@ -450,7 +457,7 @@ namespace TextFieldSample
                 }
             }
             // Change textField's VerticalAlignment.
-            else if (button.LabelText == "VerticalAlignment")
+            else if (button.Text == "VerticalAlignment")
             {
                 // Top : Texts place at the top of vertical direction.
                 if (mButtonState[mCurruntButtonIndex] == 0)
@@ -472,7 +479,7 @@ namespace TextFieldSample
                 }
             }
             // Change textField's text color.
-            else if (button.LabelText == "Color")
+            else if (button.Text == "Color")
             {
                 // Judge the textColor is Black or not.
                 // It true, change text color to blue.
@@ -491,7 +498,7 @@ namespace TextFieldSample
                 }
             }
             // Change textField's text size.
-            else if (button.LabelText == "Size")
+            else if (button.Text == "Size")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -505,7 +512,7 @@ namespace TextFieldSample
                 }
             }
             // Change different language on textField.
-            else if (button.LabelText == "Language")
+            else if (button.Text == "Language")
             {
                 mTextField.Text = LANGUAGES[mItemLanguage];
                 mItemLanguage++;
@@ -516,26 +523,26 @@ namespace TextFieldSample
                 }
             }
             // Set the text on textField have shadow or not.
-            else if (button.LabelText == "Shadow")
+            else if (button.Text == "Shadow")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
                     // The drop shadow offset
-                    mTextField.ShadowOffset = new Vector2(3.0f, 3.0f);
-                    mTextField.ShadowColor = Color.Black;
+                    mTextField.Position = new Position(3.0f, 3.0f);
+                    mTextField.Color = Color.Black;
                     mTextField.Text = mTextField.Text;
                     mButtonState[mCurruntButtonIndex] = 1;
                 }
                 else
                 {
                     // The drop shadow offset 0 indicates no shadow.
-                    mTextField.ShadowOffset = new Vector2(0, 0);
+                    mTextField.Position = new Position(0, 0);
                     mTextField.Text = mTextField.Text;
                     mButtonState[mCurruntButtonIndex] = 0;
                 }
             }
             // Set the text on textField have Underline or not.
-            else if (button.LabelText == "Underline")
+            else if (button.Text == "Underline")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -566,7 +573,7 @@ namespace TextFieldSample
                 }
             }
             // Set textField text is bold or not.
-            else if (button.LabelText == "Bold")
+            else if (button.Text == "Bold")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -586,7 +593,7 @@ namespace TextFieldSample
                 }
             }
             // Set textField text is condensed or not.
-            else if (button.LabelText == "Condensed")
+            else if (button.Text == "Condensed")
             {
                 if (mButtonState[mCurruntButtonIndex] == 0)
                 {
@@ -653,28 +660,27 @@ namespace TextFieldSample
         /// </summary>
         /// <param name="text">The string to use button's name and Label text</param>
         /// <returns>return a PushButton</returns>
-        private PushButton CreateButton(string text)
+        private Button CreateButton(string text)
         {
             // New PushButton
-            PushButton button = new PushButton();
+            Button button = new Button();
             button.Name = text;
-            button.Size2D = mButtonSize;
+            button.Size = mButtonSize;
             button.ClearBackground();
 
             button.Position = new Position(50, 0, 0);
 
-            // Create text map for the selected state.
-            PropertyMap unSelectedTextMap = CreateTextVisual(text, Color.White);
-            // Create ColorVisual property for the unselected states.
-            PropertyMap unSelectedMap = CreateColorVisual(new Vector4(0.1f, 0.1f, 0.1f, 0.9f));
-
-            // Create ColorVisual property for the selected states
-            PropertyMap selectedMap = CreateColorVisual(new Vector4(0.5f, 0.5f, 0.5f, 1.0f));
-
             // Set each label and text properties.
-            button.Label = unSelectedTextMap;
-            button.SelectedBackgroundVisual = selectedMap;
-            button.UnselectedBackgroundVisual = unSelectedMap;
+            button.Text = text;
+            button.TextColor = Color.White;
+            if (button.IsSelected)
+            {
+                button.BackgroundColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+            }
+            else
+            {
+                button.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.9f);
+            }
 
             return button;
         }

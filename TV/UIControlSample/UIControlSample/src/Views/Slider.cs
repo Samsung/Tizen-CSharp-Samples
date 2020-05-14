@@ -18,7 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -30,12 +30,12 @@ namespace UIControlSample
     class Sliders
     {
         private View horizontalView;
-        Slider horizontalSlider;
+        Tizen.NUI.Components.Slider horizontalSlider;
         private const string resources = "/home/owner/apps_rw/org.tizen.example.UIControlSample/res";
         string handleUnSelectedVisual = resources + "/images/Slider/img_slider_handler_h_unselected.png";
         string handleSelectedVisual = resources + "/images/Slider/img_slider_handler_h_selected.png";
         string trackVisual = resources + "/images/Slider/img_slider_track.png";
-        string progressVisual = resources + "/images/Slider/img_slider_progress.png";
+        //string progressVisual = resources + "/images/Slider/img_slider_progress.png";
         const int sliderWidth = 392;
 
         /// <summary>
@@ -116,66 +116,35 @@ namespace UIControlSample
             horizontalView.Add(rightValueHor);
             horizontalView.Add(currentValueHor);
 
-            horizontalSlider = new Slider();
+            horizontalSlider = new Tizen.NUI.Components.Slider();
             horizontalSlider.ParentOrigin = ParentOrigin.TopLeft;
             horizontalSlider.Position2D = new Position2D(25, 12);
             horizontalSlider.Size2D = new Size2D(sliderWidth, 30);
-            horizontalSlider.ShowPopup = false;
-            horizontalSlider.ShowValue = false;
-            horizontalSlider.LowerBound = 0.0f;
-            horizontalSlider.UpperBound = 100.0f;
-            horizontalSlider.Value = 100;
-
+            horizontalSlider.MinValue = 0.0f;
+            horizontalSlider.MaxValue = 100.0f;
+            horizontalSlider.CurrentValue = 100;
             currentValueHor.Position2D = new Position2D((int)GetHorizontalSliderPosition(), currentValueHor.Position2D.Y);
-
-            // Create selected handle visual.
-            PropertyMap hanldeSelectedVisualMap = new PropertyMap();
-            hanldeSelectedVisualMap.Add("visualType", new PropertyValue("IMAGE"));
-            hanldeSelectedVisualMap.Add("size", new PropertyValue(new Vector2(4, 25)));
-            hanldeSelectedVisualMap.Add("url", new PropertyValue(handleSelectedVisual));
-
-            // Create unselected handle visual.
-            PropertyMap hanldeUnSelectedVisualMap = new PropertyMap();
-            hanldeUnSelectedVisualMap.Add("visualType", new PropertyValue("IMAGE"));
-            hanldeUnSelectedVisualMap.Add("size", new PropertyValue(new Vector2(4, 25)));
-            hanldeUnSelectedVisualMap.Add("url", new PropertyValue(handleUnSelectedVisual));
-            horizontalSlider.HandleVisual = hanldeUnSelectedVisualMap;
-
-            // Create progress visual map.
-            PropertyMap progressVisualMap = new PropertyMap();
-            progressVisualMap.Add("visualType", new PropertyValue("IMAGE"));
-            progressVisualMap.Add("size", new PropertyValue(new Vector2(10, 4)));
-            progressVisualMap.Add("url", new PropertyValue(progressVisual));
-            horizontalSlider.ProgressVisual = progressVisualMap;
-
-            // Create track visual map.
-            PropertyMap trackVisualMap = new PropertyMap();
-            trackVisualMap.Add("visualType", new PropertyValue("IMAGE"));
-            trackVisualMap.Add("size", new PropertyValue(new Vector2(10, 4)));
-            trackVisualMap.Add("url", new PropertyValue(trackVisual));
-            horizontalSlider.TrackVisual = trackVisualMap;
-
-            horizontalSlider.ValueChanged += (obj, e) =>
+            horizontalSlider.ThumbImageURLSelector = new StringSelector()
             {
-                horizontalSlider.HandleVisual = hanldeSelectedVisualMap;
-
-                float radio = horizontalSlider.Value / (horizontalSlider.UpperBound - horizontalSlider.LowerBound);
+                Normal = handleUnSelectedVisual,
+                Pressed = handleSelectedVisual
+            };
+            horizontalSlider.ThumbImageBackgroundURLSelector = new StringSelector()
+            {
+                All = trackVisual
+            };
+            horizontalSlider.ValueChangedEvent += (obj, e) =>
+            {
+                float radio = horizontalSlider.CurrentValue / (horizontalSlider.MinValue - horizontalSlider.MaxValue);
                 float positionX = GetHorizontalSliderPosition();
 
                 currentValueHor.Position2D = new Position2D((int)positionX, currentValueHor.Position2D.Y);
-                currentValueHor.Text = ((int)horizontalSlider.Value).ToString();
-                return true;
-            };
-
-            horizontalSlider.SlidingFinished += (obj, ee) =>
-            {
-                horizontalSlider.HandleVisual = hanldeUnSelectedVisualMap;
-                return true;
+                currentValueHor.Text = ((int)horizontalSlider.CurrentValue).ToString();
             };
 
 
-            leftValueHor.Text = ((int)horizontalSlider.LowerBound).ToString();
-            rightValueHor.Text = ((int)horizontalSlider.UpperBound).ToString();
+            leftValueHor.Text = ((int)horizontalSlider.MinValue).ToString();
+            rightValueHor.Text = ((int)horizontalSlider.MaxValue).ToString();
             currentValueHor.Text = "0";
             horizontalView.Add(horizontalSlider);
 
@@ -186,16 +155,16 @@ namespace UIControlSample
             {
                 if ("Left" == ee.Key.KeyPressedName && Key.StateType.Up == ee.Key.State)
                 {
-                    if (horizontalSlider.Value > 0)
+                    if (horizontalSlider.CurrentValue > 0)
                     {
-                        horizontalSlider.Value--;
+                        horizontalSlider.CurrentValue--;
                     }
                 }
                 else if ("Right" == ee.Key.KeyPressedName && Key.StateType.Up == ee.Key.State)
                 {
-                    if (horizontalSlider.Value < 100)
+                    if (horizontalSlider.CurrentValue < 100)
                     {
-                        horizontalSlider.Value++;
+                        horizontalSlider.CurrentValue++;
                     }
                 }
                 else if ("Up" == ee.Key.KeyPressedName && Key.StateType.Up == ee.Key.State)
@@ -204,18 +173,6 @@ namespace UIControlSample
                 }
 
                 return false;
-            };
-
-            horizontalSlider.FocusGained += (obj, ee) =>
-            {
-                horizontalSlider.HandleVisual = hanldeSelectedVisualMap;
-                Tizen.Log.Fatal("NUI", "horizontalSlider got the focus!!!!!!!!");
-            };
-
-            horizontalSlider.FocusLost += (obj, ee) =>
-            {
-                horizontalSlider.HandleVisual = hanldeUnSelectedVisualMap;
-                Tizen.Log.Fatal("NUI", "horizontalSlider lost the focus!!!!!!!!");
             };
         }
 
@@ -240,7 +197,7 @@ namespace UIControlSample
         /// <returns>The positionX of horizontalSlider.</retrun>
         private float GetHorizontalSliderPosition()
         {
-            float radio = horizontalSlider.Value / (horizontalSlider.UpperBound - horizontalSlider.LowerBound);
+            float radio = horizontalSlider.CurrentValue / (horizontalSlider.MaxValue - horizontalSlider.MinValue);
             float positionX = sliderWidth * radio + horizontalSlider.Position2D.X - 10.0f;
             if (radio > 0.1)
             {
@@ -267,7 +224,7 @@ namespace UIControlSample
         /// <returns>
         /// The slider which be created in this class
         /// </returns>
-        public Slider GetSlider()
+        public Tizen.NUI.Components.Slider GetSlider()
         {
             return horizontalSlider;
         }

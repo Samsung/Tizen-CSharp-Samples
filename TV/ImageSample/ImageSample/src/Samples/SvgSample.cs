@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -38,7 +38,7 @@ namespace ImageSample
         private TextLabel guide;
         private float svgScale = 1;
         private ImageView svgImage;
-        private PushButton zoomInButton, zoomOutButton;
+        private Button zoomInButton, zoomOutButton;
         // <summary>
         /// Constructor to create new RadioButtonSample
         /// </summary>
@@ -86,7 +86,7 @@ namespace ImageSample
             zoomInButton.PivotPoint = PivotPoint.TopLeft;
             zoomInButton.ParentOrigin = ParentOrigin.TopLeft;
             zoomInButton.Position2D = new Position2D(460, 900);
-            zoomInButton.Clicked += ZoomInButtonClick;
+            zoomInButton.ClickEvent += ZoomInButtonClick;
             zoomInButton.Focusable = true;
             Window.Instance.GetDefaultLayer().Add(zoomInButton);
 
@@ -96,7 +96,7 @@ namespace ImageSample
             zoomOutButton.PivotPoint = PivotPoint.TopLeft;
             zoomOutButton.ParentOrigin = ParentOrigin.TopLeft;
             zoomOutButton.Position2D = new Position2D(1060, 900);
-            zoomOutButton.Clicked += ZoomOutButtonClick;
+            zoomOutButton.ClickEvent += ZoomOutButtonClick;
             zoomOutButton.Focusable = true;
             Window.Instance.GetDefaultLayer().Add(zoomOutButton);
 
@@ -144,43 +144,28 @@ namespace ImageSample
         /// <param name="name">the name of the button.</param>
         /// <param name="text">the text of the button</param>
         /// <returns>The consume flag</returns>
-        private PushButton CreateButton(string name, string text)
+        private Button CreateButton(string name, string text)
         {
-            PushButton button = new PushButton();
+            Button button = new Button();
             button.Focusable = true;
             button.Size2D = new Size2D(400, 80);
             button.Focusable = true;
             button.Name = name;
-            // Create the label which will show when _pushbutton focused.
-            PropertyMap _focusText = CreateTextVisual(text, Color.Black);
-
-            // Create the label which will show when _pushbutton unfocused.
-            PropertyMap _unfocusText = CreateTextVisual(text, Color.White);
-            button.Label = _unfocusText;
-
-            // Create normal background visual.
-            PropertyMap normalMap = CreateImageVisual(normalImagePath);
-
-            // Create focused background visual.
-            PropertyMap focusMap = CreateImageVisual(focusImagePath);
-
-            // Create pressed background visual.
-            PropertyMap pressMap = CreateImageVisual(pressImagePath);
-            button.SelectedVisual = pressMap;
-            button.UnselectedBackgroundVisual = normalMap;
+            button.TextColor = Color.White;
+            button.BackgroundImage = normalImagePath;
 
             // Chang background Visual and Label when focus gained.
             button.FocusGained += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = focusMap;
-                button.Label = _focusText;
+                button.BackgroundImage = focusImagePath;
+                button.TextColor = Color.Black;
             };
 
             // Chang background Visual and Label when focus lost.
             button.FocusLost += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = normalMap;
-                button.Label = _unfocusText;
+                button.BackgroundImage = normalImagePath;
+                button.TextColor = Color.White;
             };
 
             // Chang background Visual when pressed.
@@ -190,12 +175,12 @@ namespace ImageSample
                 {
                     if (Key.StateType.Down == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = pressMap;
+                        button.BackgroundImage = pressImagePath;
                         Tizen.Log.Fatal("NUI", "Press in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                     else if (Key.StateType.Up == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = focusMap;
+                        button.BackgroundImage = focusImagePath;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                 }
@@ -244,7 +229,7 @@ namespace ImageSample
         /// <param name="source">zoomInButton.</param>
         /// <param name="e">event</param>
         /// <returns>the consume flag</returns>
-        private bool ZoomInButtonClick(object source, EventArgs e)
+        private void ZoomInButtonClick(object source, EventArgs e)
         {
             if (svgScale < 3.45)
             {
@@ -253,7 +238,6 @@ namespace ImageSample
             }
 
             Tizen.Log.Fatal("NUI", "Print the svgScale: " + svgScale);
-            return true;
         }
 
         /// <summary>
@@ -262,7 +246,7 @@ namespace ImageSample
         /// <param name="source">zoomOutButton.</param>
         /// <param name="e">event</param>
         /// <returns>the consume flag</returns>
-        private bool ZoomOutButtonClick(object source, EventArgs e)
+        private void ZoomOutButtonClick(object source, EventArgs e)
         {
             if (svgScale > 0.28)
             {
@@ -271,7 +255,6 @@ namespace ImageSample
             }
 
             Tizen.Log.Fatal("NUI", "Print the svgScale: " + svgScale);
-            return true;
         }
     }
 }
