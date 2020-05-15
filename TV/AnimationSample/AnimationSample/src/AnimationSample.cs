@@ -19,7 +19,7 @@ using System;
 using Tizen;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
@@ -44,13 +44,13 @@ namespace AnimationSample
         //This animation change the pixelAreal of the imageView during the animation.
         private Animation pixelArealAnimation;
         private TextLabel guide;
-        private PushButton _positionButton;
-        private PushButton _sizeButton;
-        private PushButton _scaleButton;
-        private PushButton _orientationButton;
-        private PushButton _opacityButton;
-        private PushButton _pixelAreaButton;
-        private PushButton _PositionSizeOpacity;
+        private Button _positionButton;
+        private Button _sizeButton;
+        private Button _scaleButton;
+        private Button _orientationButton;
+        private Button _opacityButton;
+        private Button _pixelAreaButton;
+        private Button _PositionSizeOpacity;
 
         private const string resources = "/home/owner/apps_rw/org.tizen.example.AnimationSample/res/images";
         private string normalImagePath = resources + "/Button/btn_bg_25_25_25_95.9.png";
@@ -105,13 +105,13 @@ namespace AnimationSample
             _PositionSizeOpacity = CreateButton("PositionSizeOpacity", "Position + Size + Opacity animation at same time!");
             _PositionSizeOpacity.Size2D = new Size2D(1400, 80);
             //Set the callback of button's clicked event
-            _positionButton.Clicked += ButtonClick;
-            _sizeButton.Clicked += ButtonClick;
-            _scaleButton.Clicked += ButtonClick;
-            _orientationButton.Clicked += ButtonClick;
-            _opacityButton.Clicked += ButtonClick;
-            _pixelAreaButton.Clicked += ButtonClick;
-            _PositionSizeOpacity.Clicked += ButtonClick;
+            _positionButton.ClickEvent += ButtonClick;
+            _sizeButton.ClickEvent += ButtonClick;
+            _scaleButton.ClickEvent += ButtonClick;
+            _orientationButton.ClickEvent += ButtonClick;
+            _opacityButton.ClickEvent += ButtonClick;
+            _pixelAreaButton.ClickEvent += ButtonClick;
+            _PositionSizeOpacity.ClickEvent += ButtonClick;
 
             //Create a tableView as the container of the pushButton.
             TableView tableView = new TableView(3, 3);
@@ -292,9 +292,9 @@ namespace AnimationSample
         /// <param name="source">The clicked button</param>
         /// <param name="e">event</param>
         /// <returns>The consume flag</returns>
-        private bool ButtonClick(object source, EventArgs e)
+        private void ButtonClick(object source, EventArgs e)
         {
-            PushButton button = source as PushButton;
+            Button button = source as Button;
             if (button.Name == "Position")
             {
                 //Stop all the animation and Play position Animation.
@@ -340,8 +340,6 @@ namespace AnimationSample
                 opacityAnimation.Play();
 
             }
-
-            return false;
         }
         /// <summary>
         /// Create an Text visual.
@@ -376,44 +374,28 @@ namespace AnimationSample
             return map;
         }
 
-        private PushButton CreateButton(string name, string text)
+        private Button CreateButton(string name, string text)
         {
-            PushButton button = new PushButton();
+            Button button = new Button();
             button.Focusable = true;
-            button.Size2D = new Size2D(400, 80);
+            button.Size = new Size(400, 80);
             button.Focusable = true;
             button.Name = name;
-            //button.LabelText = text;
-            // Create the label which will show when _pushbutton focused.
-            PropertyMap _focusText = CreateTextVisual(text, Color.Black);
-
-            // Create the label which will show when _pushbutton unfocused.
-            PropertyMap _unfocusText = CreateTextVisual(text, Color.White);
-            button.Label = _unfocusText;
-
-            // Create normal background visual.
-            PropertyMap normalMap = CreateImageVisual(normalImagePath);
-
-            // Create focused background visual.
-            PropertyMap focusMap = CreateImageVisual(focusImagePath);
-
-            // Create pressed background visual.
-            PropertyMap pressMap = CreateImageVisual(pressImagePath);
-            button.SelectedVisual = pressMap;
-            button.UnselectedBackgroundVisual = normalMap;
+            button.Text = text;
+            button.TextColor = Color.White;
 
             // Chang background Visual and Label when focus gained.
             button.FocusGained += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = focusMap;
-                button.Label = _focusText;
+                button.BackgroundImage = focusImagePath;
+                button.TextColor = Color.Black;
             };
 
             // Chang background Visual and Label when focus lost.
             button.FocusLost += (obj, e) =>
             {
-                button.UnselectedBackgroundVisual = normalMap;
-                button.Label = _unfocusText;
+                button.BackgroundImage = normalImagePath;
+                button.TextColor = Color.White;
             };
 
             // Chang background Visual when pressed.
@@ -423,12 +405,12 @@ namespace AnimationSample
                 {
                     if (Key.StateType.Down == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = pressMap;
+                        button.BackgroundImage = pressImagePath;
                         Tizen.Log.Fatal("NUI", "Press in pushButton sample!!!!!!!!!!!!!!!!");
                     }
                     else if (Key.StateType.Up == ee.Key.State)
                     {
-                        button.UnselectedBackgroundVisual = focusMap;
+                        button.BackgroundImage = focusImagePath;
                         Tizen.Log.Fatal("NUI", "Release in pushButton sample!!!!!!!!!!!!!!!!");
                     }
 

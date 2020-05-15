@@ -16,7 +16,7 @@
  */
 
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System;
 using System.Runtime.InteropServices;
@@ -79,7 +79,7 @@ namespace FirstScreen
             _menu.PivotPoint = PivotPoint.TopCenter;
             _menu.WidthResizePolicy = ResizePolicyType.FillToParent;
             _menu.HeightResizePolicy = ResizePolicyType.Fixed;
-            _menu.Size2D = new Size2D(0, height);
+            _menu.Size = new Size(0, height);
             _menu.StartActive = false;
             _menu.Gap = Constants.PostersContainerPadding;
             _menu.Margin = Constants.PostersContainerMargin;
@@ -103,8 +103,6 @@ namespace FirstScreen
                 if (menuDefinition.whiteText)
                 {
                     titleText.TextColor = Color.White;
-                    titleText.ShadowColor = Color.Black; // Note: This also enables shadows
-                    titleText.ShadowOffset = new Vector2(2.0f, 2.0f);
                 }
                 else
                 {
@@ -128,7 +126,7 @@ namespace FirstScreen
                     VisualView item = new VisualView();
                     item.WidthResizePolicy = ResizePolicyType.Fixed;
                     item.HeightResizePolicy = ResizePolicyType.Fixed;
-                    item.Size2D = new Size2D(400, 400);
+                    item.Size = new Size(400, 400);
                     item.Position = new Position(0.0f, 0.0f, 0.0f);
                     item.PositionUsesPivotPoint = true;
                     item.Focusable = true;
