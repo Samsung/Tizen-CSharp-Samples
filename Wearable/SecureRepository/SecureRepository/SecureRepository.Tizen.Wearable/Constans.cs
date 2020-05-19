@@ -30,7 +30,7 @@ namespace SecureRepository.Tizen
     public static class Constans
     {
         /// <summary>
-        /// Private Rsa Key.
+        /// Private Rsa Key. This is just a sample. It's not used to protect any secrets.
         /// </summary>
         private static string privateRsa = "-----BEGIN RSA PRIVATE KEY-----\n" +
             "MIICXAIBAAKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0FPqri0cb2JZfXJ/DgYSF6vUp\n" +
