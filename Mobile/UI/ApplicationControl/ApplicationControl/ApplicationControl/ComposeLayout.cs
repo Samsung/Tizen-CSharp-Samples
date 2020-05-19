@@ -133,7 +133,8 @@ namespace ApplicationControl
                     return parent.Height * 0.2107;
                 }));
 
-            var sendButton = new Xamarin.Forms.ImageButton
+
+            var sendButton = new CustomImageButton
             {
                 Source = "send_button.jpg",
             };
