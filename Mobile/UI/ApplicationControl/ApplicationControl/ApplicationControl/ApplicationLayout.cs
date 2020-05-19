@@ -207,7 +207,7 @@ namespace ApplicationControl
                     return parent.Height * 0.5265;
                 }));
 
-            var executeButton = new ImageButton
+            var executeButton = new Xamarin.Forms.ImageButton
             {
                 Source = "execute_button.jpg",
             };
@@ -236,7 +236,7 @@ namespace ApplicationControl
                     return parent.Height * 0.2411;
                 }));
 
-            var killButton = new AppCommon.Extensions.ImageButton
+            var killButton = new Xamarin.Forms.ImageButton
             {
                 Source = "kill_button.jpg",
             };
