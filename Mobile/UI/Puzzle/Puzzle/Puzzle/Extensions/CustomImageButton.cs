@@ -14,30 +14,14 @@
  * limitations under the License.
  */
 
-using System;
 using Xamarin.Forms;
 
 namespace Puzzle.Extensions
 {
-    /// <summary>
-    /// Arguments for the LongTapUpdated event.
-    /// </summary>
-    public class LongTapUpdatedEventArgs : EventArgs
+    public class CustomImageButton : ImageButton
     {
-        public LongTapUpdatedEventArgs(GestureStatus status, double timestamp)
+        public CustomImageButton() : base()
         {
-            Status = status;
-            TimeStamp = timestamp;
         }
-
-        /// <summary>
-        /// Gets the timestamp(millisecond).
-        /// </summary>
-        public double TimeStamp { get; }
-
-        /// <summary>
-        /// Gets the status that indicates whether the gesture started earlier has finished or got canceled.
-        /// </summary>
-        public GestureStatus Status { get; }
     }
 }
