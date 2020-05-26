@@ -37,7 +37,11 @@ namespace Contacts.Tizen.Port
         /// </summary>
         static int CBCount = 0;
 
-        public event EventHandler<EventArgs> PrivilageAccepted;
+        public event EventHandler<EventArgs> PrivilageAccepted
+        {
+            add { }
+            remove { }
+        }
 
 
         public void privilegeAccepted()
