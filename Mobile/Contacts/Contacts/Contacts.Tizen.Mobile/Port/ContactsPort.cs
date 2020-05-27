@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using TPC = Tizen.Pims.Contacts;
 using Contacts.Models;
 
@@ -32,7 +30,7 @@ namespace Contacts.Tizen.Port
         /// <summary>
         /// Contact manager.
         /// </summary>
-        private TPC.ContactsManager manager;
+        private readonly TPC.ContactsManager manager;
 
         /// <summary>
         /// Clean child record.
@@ -207,8 +205,7 @@ namespace Contacts.Tizen.Port
         {
             var itemList = new List<RecordItem>();
 
-            TPC.ContactsList list = null;
-            list = manager.Database.GetAll(Contact.Uri, 0, 0);
+            TPC.ContactsList list = manager.Database.GetAll(Contact.Uri, 0, 0);
 
             int i;
             for (i = 0; i < list.Count; i++)

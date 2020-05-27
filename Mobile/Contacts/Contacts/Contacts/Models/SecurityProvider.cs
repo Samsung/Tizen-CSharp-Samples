@@ -14,36 +14,19 @@
  * limitations under the License.
  */
 
-using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Contacts.Models
 {
-    public sealed class SecurityProvider
+    public static class SecurityProvider
     {
-        /// <summary>
-        /// Instance for lazy initialization of SecurityProvider.
-        /// </summary>
-        private static readonly Lazy<SecurityProvider> lazy = new Lazy<SecurityProvider>(() => new SecurityProvider());
-
-        /// <summary>
-        /// A Record Item Provider class instance which provides Record Items.
-        /// When it is called for the first time, SecurityProvider will be created.
-        /// </summary>
-        public static SecurityProvider Instance { get => lazy.Value; }
-
-        /// <summary>
-        /// Instance of ISecurityAPIs for get the implementation of each platform.
-        /// </summary>
-        private static ISecurityAPIs securityAPIs;
-
         /// <summary>
         /// SecurityProvider Constructor.
         /// A Constructor which will initialize the SecurityProvider instance.
-        public bool CheckContactsPrivilege()
+        public static Task<bool> CheckContactsPrivilege()
         {
-            securityAPIs = DependencyService.Get<ISecurityAPIs>();
-            return securityAPIs.CheckPrivilege();
+            return DependencyService.Get<ISecurityAPIs>().CheckPrivilege();
         }
     }
 }
