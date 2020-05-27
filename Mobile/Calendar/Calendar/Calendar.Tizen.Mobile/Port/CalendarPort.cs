@@ -582,14 +582,14 @@ namespace Calendar.Tizen.Port
             filter.AddCondition(TPC.CalendarFilter.LogicalOperator.And,
                     InstanceLocaltimeBook.Start, TPC.CalendarFilter.IntegerMatchType.LessThan, to);
             query.SetFilter(filter);
-           /* try
+            try
             {
                 list = manager.Database.GetRecordsWithQuery(query, 0, 0);
             }
             catch (Exception)
             {
 
-            }*/
+            }
             filter.Dispose();
             query.Dispose();
 
@@ -605,11 +605,11 @@ namespace Calendar.Tizen.Port
         /// </summary>
         public List<RecordItem> GetMonthRecords(DateTime dt)
         {
-            TPC.CalendarList list;
-            int i;
+           // TPC.CalendarList list;
+           // int i;
 
             var itemList = new List<RecordItem>();
-
+            /*
             list = GetAlldayInstances(dt);
             list.MoveFirst();
             for (i = 0; i < list.Count; i++)
@@ -639,7 +639,7 @@ namespace Calendar.Tizen.Port
                 list.MoveNext();
             }
             list.Dispose();
-
+            */
             return itemList;
         }
 
