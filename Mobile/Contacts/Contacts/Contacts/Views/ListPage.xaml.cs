@@ -92,46 +92,30 @@ namespace Contacts.Views
         }
 
         /// <summary>
-        /// This is invoked after the view appears on the screen.
-        /// This handler executes the update command of the ListPageViewModel.
-        /// The command is going to change the RecordList of the ListPageViewModel.
-        /// </summary>
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            bool isAccepted = SecurityProvider.Instance.CheckContactsPrivilege();
-            if (isAccepted)
-                UpdateListCommand.Execute(null);
-        }
-
-        /// <summary>
         /// A Constructor.
         /// Adds PropertyChanged event handler.
         /// Adds event handler for ListPageListView.ItemSelected to move InsertPage with selected item.
         /// </summary>
         public ListPage()
         {
-            DependencyService.Get<ISecurityAPIs>().PrivilageAccepted += ListPage_PrivilegeAccepted;
-            //SecurityProvider.Instance.CheckContactsPrivilege();
             InitializeComponent();
-            PropertyChanged += OnPropertyChanged;
-            ListPageListView.ItemSelected += async (o, e) =>
+
+            Appearing += async (s, e) =>
             {
-                RecordItem item = e.SelectedItem as RecordItem;
+                if (await SecurityProvider.CheckContactsPrivilege())
+                {
+                    UpdateListCommand.Execute(null);
+                }
+            };
+
+            PropertyChanged += OnPropertyChanged;
+            ListPageListView.ItemTapped += async (o, e) =>
+            {
+                RecordItem item = e.Item as RecordItem;
                 ItemPage itemPage = new ItemPage(item, "Update", item.Index);
                 await Navigation.PushAsync(itemPage);
             };
 
         }
-
-        /// <Summary>
-        /// This is invoked after permission to update the contacts created.
-        /// </Summary>
-        public void ListPage_PrivilegeAccepted(object sender, EventArgs e)
-        {
-            UpdateListCommand.Execute(null);
-        }
-
-
     }
 }
