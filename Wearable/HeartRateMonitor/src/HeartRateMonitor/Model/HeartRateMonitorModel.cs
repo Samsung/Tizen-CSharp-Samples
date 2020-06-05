@@ -128,7 +128,7 @@ namespace HeartRateMonitor.Model
         /// <param name="e">An instance of the HeartRateMonitorDataUpdatedEventArgs class providing detailed information about the event.</param>
         private void OnDataUpdated(object sender, HeartRateMonitorDataUpdatedEventArgs e)
         {
-            Log.Debug("HRM", $"Rate:{e.HeartRate}");
+            Log.Debug("HeartRateMonitor", $"Rate:{e.HeartRate}");
             currentHeartRate = e.HeartRate;
             HeartRateMonitorDataChanged?.Invoke(this, new EventArgs());
         }
