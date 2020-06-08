@@ -53,21 +53,19 @@ namespace Alarm
             }
 
             base.OnPause();
-
         }
 
         protected override void OnResume()
         {
             Console.WriteLine("OnResume");
             base.OnResume();
-
         }
 
         /// <summary>
         /// Called when this app control event received.
         /// </summary>
         /// <param name="e">AppControlReceivedEventArgs</param>
-        async protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        protected override async void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
             Console.WriteLine("OnAppControlReceived");
             base.OnAppControlReceived(e);

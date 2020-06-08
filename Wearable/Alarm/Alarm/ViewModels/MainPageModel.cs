@@ -16,8 +16,6 @@
 
 using Alarm.Models;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace Alarm.ViewModels
 {

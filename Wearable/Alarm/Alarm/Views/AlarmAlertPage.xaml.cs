@@ -62,12 +62,12 @@ namespace Alarm.Views
         /// </summary>
         /// <param name="sender">object</param>
         /// <param name="args">EventArgs</param>
-        void OnDismissButtonClicked(object sender, EventArgs args)
+        async void OnDismissButtonClicked(object sender, EventArgs args)
         {
             Console.WriteLine("OnDismissButtonClicked()");
 
             _viewModel.Dismiss();
-            PopAsyncAlertPage();
+            await Navigation.PopAsync();
         }
 
         /// <summary>
@@ -78,16 +78,9 @@ namespace Alarm.Views
         protected override bool OnBackButtonPressed()
         {
             Console.WriteLine("[AlarmAlertPage]  OnBackButtonPressed PopAsync");
+
             _viewModel.Dismiss();
-            PopAsyncAlertPage();
-
-            return true;
+            return base.OnBackButtonPressed();
         }
-
-        async void PopAsyncAlertPage()
-        {
-            await Navigation.PopAsync();
-        }
-
     }
 }
