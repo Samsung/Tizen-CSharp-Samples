@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OAuthExample.MainPage"
+             BackgroundColor="White"
+             Title="OAuth example">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="OAuth 2.0 Authorization"/>
+            <Button Text="Login with google" Clicked="Button_Clicked"/>
+            <StackLayout>
+                <Image x:Name="Photo"/>
+                <Label x:Name="Name"/>
+            </StackLayout>
+            <Label Text="Log : "/>
+            <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Label LineBreakMode="CharacterWrap" BackgroundColor="#eeeeee" x:Name="textBoxOutput" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
