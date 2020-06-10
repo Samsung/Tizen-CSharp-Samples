@@ -99,7 +99,7 @@ namespace Weather.Utils
 
             if (!task.IsCompleted)
             {
-                var taskAsync = ExecuteTaskAsync(task);
+                _ = ExecuteTaskAsync(task);
             }
         }
 

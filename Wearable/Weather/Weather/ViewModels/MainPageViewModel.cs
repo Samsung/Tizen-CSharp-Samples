@@ -16,6 +16,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Weather.Models.Location;
 using Weather.Service;
 using Weather.Utils;
@@ -44,9 +46,9 @@ namespace Weather.ViewModels
         private const int MAX_ITEMS_ON_LIST = 10;
 
         /// <summary>
-        /// Contains all supported cities.
+        /// Task that creates and initializes a CityProvider.
         /// </summary>
-        private CityProvider _provider;
+        private readonly Task<CityProvider> _cityProviderTask;
 
         /// <summary>
         /// Local storage of collection of displayed cities.
@@ -185,9 +187,9 @@ namespace Weather.ViewModels
         /// </summary>
         public MainPageViewModel()
         {
-            LoadCityList();
+            Cities = new ObservableCollection<City>();
+            _cityProviderTask = LoadCityList();
 
-            Cities = new ObservableCollection<City>(_provider.FindCity("", MAX_ITEMS_ON_LIST));
             CheckWeatherCommand = new Command<Page>(ExecuteCheckWeatherCommand, CanExecuteCheckWeatherCommand);
             CityEntryTextColor = Color.FromRgb(128, 128, 128);
 
@@ -198,11 +200,20 @@ namespace Weather.ViewModels
         /// <summary>
         /// Loads list of cities from JSON file.
         /// </summary>
-        private void LoadCityList()
+        private Task<CityProvider> LoadCityList()
         {
-            var jsonFileReader = new JsonFileReader<IList<City>>("Weather.Data.", "city.list.json");
-            jsonFileReader.Read();
-            _provider = new CityProvider(jsonFileReader.Result.AsQueryable());
+            var tcs = new TaskCompletionSource<CityProvider>();
+
+            Task.Run(() =>
+            {
+                var jsonFileReader = new JsonFileReader<IList<City>>("Weather.Data.", "city.list.json");
+                jsonFileReader.Read();
+                tcs.SetResult(new CityProvider(jsonFileReader.Result.AsQueryable()));
+
+                FilterCities();
+            });
+
+            return tcs.Task;
         }
 
         /// <summary>
@@ -211,7 +222,11 @@ namespace Weather.ViewModels
         private void FilterCities()
         {
             Cities.Clear();
-            _provider.FindCity(_enteredCity, _enteredCountry, MAX_ITEMS_ON_LIST).ForEach(c => Cities.Add(c));
+
+            if (_cityProviderTask.IsCompleted)
+            {
+                _cityProviderTask.Result.FindCity(_enteredCity, _enteredCountry, MAX_ITEMS_ON_LIST).ForEach(c => Cities.Add(c));
+            }
         }
 
         /// <summary>
@@ -219,7 +234,7 @@ namespace Weather.ViewModels
         /// </summary>
         private void ValidateInput()
         {
-            if (!_provider.Validate(EnteredCity))
+            if (_cityProviderTask.IsCompleted && !_cityProviderTask.Result.Validate(EnteredCity))
             {
                 SelectedCity = null;
                 CityEntryTextColor = Color.Red;
@@ -246,9 +261,9 @@ namespace Weather.ViewModels
         /// Pushes page given as command parameter to navigation stack.
         /// </summary>
         /// <param name="page">Page that will be opened.</param>
-        private void ExecuteCheckWeatherCommand(Page page)
+        private async void ExecuteCheckWeatherCommand(Page page)
         {
-            Navigation.PushAsync(page);
+            await Navigation.PushAsync(page);
         }
 
         #endregion
