@@ -34,7 +34,7 @@ namespace Calculator.Views
             InitializeComponent();
             BindingContext = MainPageViewModel.Instance;
 
-            MessagingCenter.Subscribe<MainPageViewModel, string>(this, "alert", (sender, arg) =>
+            MessagingCenter.Subscribe<MainPageViewModel, string>(this, "alert", async (sender, arg) =>
             {
                 CounterMutex.WaitOne();
                 counter++;
@@ -42,14 +42,14 @@ namespace Calculator.Views
 
                 AlertToast.IsVisible = true;
                 AlertToast.Text = arg.ToString();
-                CloseAlertToast();
+                await CloseAlertToast();
             });
         }
 
         /// <summary>
         /// This method closes alert toast after 1.5 seconds.
         /// </summary>
-        async void CloseAlertToast()
+        private async Task CloseAlertToast()
         {
             await Task.Delay(1500);
             CounterMutex.WaitOne();
