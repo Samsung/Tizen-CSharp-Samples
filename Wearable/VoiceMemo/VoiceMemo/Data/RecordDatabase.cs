@@ -28,21 +28,25 @@ namespace VoiceMemo.Data
     public class RecordDatabase
     {
         // SQLite connection
-        readonly SQLiteAsyncConnection database;
+        private readonly AsyncLazy<SQLiteAsyncConnection> database;
 
         public RecordDatabase(string dbPath)
         {
-            database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<Record>().Wait();
+            database = new AsyncLazy<SQLiteAsyncConnection>(async () =>
+            {
+                var db = new SQLiteAsyncConnection(dbPath);
+                await db.CreateTableAsync<Record>();
+                return db;
+            });
         }
 
         /// <summary>
         /// Get list or records in database
         /// </summary>
         /// <returns>Task<List<Record>></returns>
-        public Task<List<Record>> GetItemsAsync()
+        public async Task<List<Record>> GetItemsAsync()
         {
-            return database.Table<Record>().ToListAsync();
+            return await (await database).Table<Record>().ToListAsync();
         }
 
         /// <summary>
@@ -50,17 +54,17 @@ namespace VoiceMemo.Data
         /// </summary>
         /// <param name="item">Record</param>
         /// <returns>Task<int></returns>
-        public Task<int> SaveItemAsync(Record item)
+        public async Task<int> SaveItemAsync(Record item)
         {
             if (item.ID != 0)
             {
                 // in case that item already exists in database
-                return database.UpdateAsync(item);
+                return await (await database).UpdateAsync(item);
             }
             else
             {
                 // for the first time item will be added in database
-                return database.InsertAsync(item);
+                return await (await database).InsertAsync(item);
             }
         }
 
@@ -69,9 +73,9 @@ namespace VoiceMemo.Data
         /// </summary>
         /// <param name="item">Record</param>
         /// <returns>Task<int></returns>
-        public Task<int> DeleteItemAsync(Record item)
+        public async Task<int> DeleteItemAsync(Record item)
         {
-            return database.DeleteAsync(item);
+            return await (await database).DeleteAsync(item);
         }
     }
 }
