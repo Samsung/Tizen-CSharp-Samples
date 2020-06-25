@@ -385,18 +385,17 @@ namespace HeartRateMonitor.ViewModels
         /// Navigates back to the measurement page by executing NavigateBackCommand command
         /// of the PageNavigation class.
         /// </summary>
-        private void ExecuteUpdateHeartRateLimitCommand()
+        private async void ExecuteUpdateHeartRateLimitCommand()
         {
             HeartRateLimitValue = HeartRateLimitBufferValue;
-            AppPageNavigation.PopAsync();
+            await AppPageNavigation.PopAsync();
         }
 
         /// <summary>
         /// Checks whether the ShowSettingsCommand command can be executed.
         /// </summary>
-        /// <param name="arg">Command parameter.</param>
         /// <returns>Returns true if the ShowSettingsCommand can be executed, false otherwise.</returns>
-        private bool CanExecuteShowSettingsCommand(object arg)
+        private bool CanExecuteShowSettingsCommand()
         {
             return !IsMeasuring;
         }
@@ -407,11 +406,10 @@ namespace HeartRateMonitor.ViewModels
         /// Navigates to the settings page by executing NavigateToCommand command
         /// of the PageNavigation class.
         /// </summary>
-        /// <param name="obj">Command parameter.</param>
-        private void ExecuteShowSettingsCommand(object obj)
+        private async void ExecuteShowSettingsCommand()
         {
             HeartRateLimitBufferValue = HeartRateLimitValue;
-            AppPageNavigation.PushAsync(new SettingsPage(), false);
+            await AppPageNavigation.PushAsync(new SettingsPage(), false);
         }
 
         /// <summary>

@@ -32,7 +32,6 @@ namespace VoiceMemo.Tizen.Wearable.Services
         }
 
         TaskCompletionSource<bool> tcs;
-        int GrantedPermission;
 
         /// <summary>
         /// Request user permission for privacy privileges
@@ -43,7 +42,6 @@ namespace VoiceMemo.Tizen.Wearable.Services
         {
             try
             {
-                GrantedPermission = -1;
                 // Gets the status of a privacy privilege permission.
                 CheckResult result = PrivacyPrivilegeManager.CheckPermission(service);
                 switch (result)
@@ -67,12 +65,6 @@ namespace VoiceMemo.Tizen.Wearable.Services
                         }
                         // Try to get the permission for service from a user.
                         PrivacyPrivilegeManager.RequestPermission(service);
- 
-                        // Check if permission is granted or not every second
-                        Device.BeginInvokeOnMainThread(() =>
-                        {
-                            Device.StartTimer(new TimeSpan(0, 0, 0, 1, 0), CheckPermission);
-                        });
 
                         return await tcs.Task;
                     default:
@@ -86,41 +78,18 @@ namespace VoiceMemo.Tizen.Wearable.Services
             }
         }
 
-        bool CheckPermission()
-        {
-            // In case that an app user doesn't give permission yet.
-            if (GrantedPermission == -1)
-            {
-                return true;
-            }
-
-            // In case that an app user gives permission.
-            // Denied
-            if (GrantedPermission == 0)
-            {
-                tcs.SetResult(false);
-            }
-            // Allowed
-            else
-            {
-                tcs.SetResult(true);
-            }
-
-            return false;
-        }
-
         // Invoked when an app user responses for the permission request
         private void Context_ResponseFetched(object sender, RequestResponseEventArgs e)
         {
             if (e.result == RequestResult.AllowForever)
             {
                 // User allows an app to grant privacy privilege
-                GrantedPermission = 1;
+                tcs.SetResult(true);
             }
             else
             {
                 // User doesn't allow an app to grant privacy privilege
-                GrantedPermission = 0;
+                tcs.SetResult(false);
             }
         }
     }
