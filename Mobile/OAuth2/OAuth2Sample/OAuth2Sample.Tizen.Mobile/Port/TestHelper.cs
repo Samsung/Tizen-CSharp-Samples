@@ -49,8 +49,6 @@ namespace OAuth2Sample.Tizen.Mobile.Port
         internal const string GOOGLE_SCOPE = "email";
         internal const string GOOGLE_REFRESH_TOKEN_URL = "https://www.googleapis.com/oauth2/v3/token";
         internal const string GOOGLE_AUTH_GRANT_CODE = "E4Er9JK5JL9as-45re7Aq";
-        internal const string GOOGLE_CLIENT_USER_NAME = "tiztes9242@gmail.com";
-        internal const string GOOGLE_CLIENT_PASSWORD = "wlsrms12";
 
         internal const string FACEBOOK_CLIENT_ID = "dummy_client_id";
         internal const string FACEBOOK_AUTH_URL = "https://www.facebook.com/dialog/oauth";
