@@ -14,6 +14,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Weather.Models.Location;
 using Weather.Service;
 using Weather.Utils;
@@ -29,9 +30,9 @@ namespace Weather.Behaviors
         #region fields
 
         /// <summary>
-        /// Contains list of all supported countries.
+        /// Task that creates and initializes a CountryProvider.
         /// </summary>
-        private CountryProvider _provider;
+        private readonly Task<CountryProvider> _countryProviderTask;
 
         #endregion
 
@@ -51,7 +52,7 @@ namespace Weather.Behaviors
         /// </summary>
         public CountryCodeValidatorBehavior()
         {
-            LoadCountryList();
+            _countryProviderTask = LoadCountryList();
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Weather.Behaviors
         /// </summary>
         /// <param name="sender">Object that invoked event.</param>
         /// <param name="textChangedEventArgs">Event arguments.</param>
-        private void EntryTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
+        private async void EntryTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
         {
             if (!(sender is Entry entry))
             {
@@ -91,17 +92,21 @@ namespace Weather.Behaviors
                 ? textChangedEventArgs.OldTextValue.ToUpper()
                 : textChangedEventArgs.NewTextValue.ToUpper();
 
-            entry.TextColor = _provider.Validate(entry.Text) ? Color.Gray : Color.Red;
+            var provider = await _countryProviderTask;
+            entry.TextColor = provider.Validate(entry.Text) ? Color.Gray : Color.Red;
         }
 
         /// <summary>
         /// Loads supported city list from file.
         /// </summary>
-        private void LoadCountryList()
+        private Task<CountryProvider> LoadCountryList()
         {
-            var jsonFileReader = new JsonFileReader<IList<Country>>("Weather.Data.", "country.list.json");
-            jsonFileReader.Read();
-            _provider = new CountryProvider(jsonFileReader.Result.AsQueryable());
+            return Task.Run(() =>
+            {
+                var jsonFileReader = new JsonFileReader<IList<Country>>("Weather.Data.", "country.list.json");
+                jsonFileReader.Read();
+                return new CountryProvider(jsonFileReader.Result.AsQueryable());
+            });
         }
 
         #endregion

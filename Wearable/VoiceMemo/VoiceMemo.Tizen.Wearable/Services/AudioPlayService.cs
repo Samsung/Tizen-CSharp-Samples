@@ -71,10 +71,10 @@ namespace VoiceMemo.Tizen.Wearable.Services
         /// </summary>
         /// <param name="path">audio file path to play</param>
         /// <returns>Task</returns>
-        async public Task Init(string path)
+        public async Task Init(string path)
         {
             player.SetSource(new MediaUriSource(path));
-            await Task.Run(() => player.PrepareAsync());
+            await player.PrepareAsync();
             Start();
         }
 

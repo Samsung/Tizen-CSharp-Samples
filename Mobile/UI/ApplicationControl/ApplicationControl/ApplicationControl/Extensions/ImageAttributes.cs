@@ -46,7 +46,7 @@ namespace ApplicationControl.Extensions
 
         static void OnBlendColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            InternalExtension.InternalPropertyChanged(bindable, BlendColorProperty, () => (Color)newValue == Color.Default, new List<Type> { typeof(Image), typeof(ImageButton) });
+            InternalExtension.InternalPropertyChanged(bindable, BlendColorProperty, () => (Color)newValue == Color.Default, new List<Type> { typeof(Image), typeof(CustomImageButton) });
         }
     }
 }

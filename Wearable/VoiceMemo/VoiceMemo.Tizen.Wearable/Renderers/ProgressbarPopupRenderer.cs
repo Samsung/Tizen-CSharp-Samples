@@ -125,7 +125,7 @@ namespace VoiceMemo.Tizen.Wearable.Renderers
         {
             Console.WriteLine("[ProgressbarPopupRenderer.TimedOutHandler] 0");
             TimedOut?.Invoke(this, EventArgs.Empty);
-            _popUp.Dismiss();
+            _popUp2.Dismiss();
         }
 
         private void BackButtonPressedHandler(object sender, EventArgs e)
@@ -232,7 +232,7 @@ namespace VoiceMemo.Tizen.Wearable.Renderers
                     _layout.Unrealize();
                     _layout = null;
                     _popUp.BackButtonPressed -= BackButtonPressedHandler;
-                    _popUp.TimedOut -= TimedOutHandler;
+                    _popUp.TimedOut -= ProgressbarPopup_TimedOutHandler;
                     _popUp.Unrealize();
                     _popUp = null;
                 }

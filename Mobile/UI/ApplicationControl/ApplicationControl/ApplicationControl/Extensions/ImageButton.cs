@@ -23,12 +23,12 @@ namespace ApplicationControl.Extensions
     /// A class for an image enable to get click events.
     /// It can use as a button.
     /// </summary>
-    public class ImageButton : Image, IButtonController
+    public class CustomImageButton : Image, IButtonController
     {
         /// <summary>
         /// The constructor for an image button
         /// </summary>
-        public ImageButton() : base()
+        public CustomImageButton() : base()
         {
             var gestureRecognizer = new LongTapGestureRecognizer();
             //When tap event is invoked. add pressed color to image.

@@ -129,7 +129,6 @@ namespace Puzzle
             /// Level menu.
             /// </summary>
             Button levBtn = CreateMenuBtn();
-
             menuGrid.Children.Add(icon2, 1, 2, 0, 1);
             menuGrid.Children.Add(levBtn, 1, 2, 0, 1);
 
@@ -254,8 +253,8 @@ namespace Puzzle
                     square = new PuzzleSquare()
                     {
                         Source = folder + "/" + (row + 1).ToString() + "-" + (col + 1).ToString() + ".jpg",
-                        MinWidth = (720 - 2 * 2 * level) / level,
-                        MinHeight = (720 - 2 * 2 * level) / level,
+                        MinimumWidthRequest = (720 - 2 * 2 * level) / level,
+                        MinimumHeightRequest = (720 - 2 * 2 * level) / level,
                         PositionX = col,
                         PositionY = row,
                         OriginalX = col,

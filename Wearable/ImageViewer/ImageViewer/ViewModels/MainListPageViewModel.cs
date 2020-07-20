@@ -188,7 +188,7 @@ namespace MediaContent.ViewModels
             {
                 var selectArgs = new SelectArguments
                 {
-                    FilterExpression = $"MEDIA_TYPE = {(int)_mediaType} AND PATH LIKE '{path}%'"
+                    FilterExpression = $"MEDIA_TYPE = {(int)_mediaType} AND MEDIA_PATH LIKE '{path}%'"
                 };
 
                 try

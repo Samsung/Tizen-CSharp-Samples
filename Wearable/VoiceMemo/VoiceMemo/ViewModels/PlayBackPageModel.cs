@@ -71,7 +71,7 @@ namespace VoiceMemo.ViewModels
             Init(record);
         }
 
-        async public void Init(Record record)
+        public async void Init(Record record)
         {
             PlayControlImage = PLAY_ON;
             _record = record;
