@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns:e="clr-namespace:ElottieSharp.Forms;assembly=ElottieSharp.Forms"
+             x:Class="Workout.Views.Workout.CountdownPageView"
+             NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.Content>
+        <AbsoluteLayout>
+            <e:ElottieAnimationView AbsoluteLayout.LayoutFlags="All"
+                                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                    AnimationFile="animations/countdown.json"
+                                    AutoPlay="True"
+                                    AutoRepeat="False" />
+        </AbsoluteLayout>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>

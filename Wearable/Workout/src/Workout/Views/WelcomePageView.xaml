@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns:viewModels="clr-namespace:Workout.ViewModels;assembly=Workout"
+             xmlns:tizen="clr-namespace:Xamarin.Forms.PlatformConfiguration.TizenSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="Workout.Views.WelcomePageView">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:WelcomePageViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Content>
+        <AbsoluteLayout>
+            <Image Source="images/welcome_page_bg.png" />
+            <Image Source="images/welcome_page_icon.png"
+                   AbsoluteLayout.LayoutFlags="XProportional"
+                   AbsoluteLayout.LayoutBounds=".5, 41, 80, 80" />
+            <Button AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0, 1, 1, .25"
+                    Text="OK"
+                    TextColor="#1B1B7D"
+                    BackgroundColor="#AAFFCC"
+                    Command="{Binding GoToHomeCommand}"
+                    tizen:VisualElement.Style="bottom" />
+        </AbsoluteLayout>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>
