@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns:viewModels="clr-namespace:Workout.ViewModels.Workout;assembly=Workout"
+             xmlns:converters="clr-namespace:Workout.Converters;assembly=Workout"
+             xmlns:tizen="clr-namespace:Xamarin.Forms.PlatformConfiguration.TizenSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="Workout.Views.Workout.DetailsPageView"
+             RotaryFocusObject="{x:Reference listView}"
+             NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage.BindingContext>
+        <viewModels:DetailsPageViewModel />
+    </cui:CirclePage.BindingContext>
+
+    <cui:CirclePage.Resources>
+        <ResourceDictionary>
+            <converters:BpmRangeValueConverter x:Key="BpmRangeValueConverter" />
+        </ResourceDictionary>
+    </cui:CirclePage.Resources>
+
+    <cui:CirclePage.Content>
+        <AbsoluteLayout>
+            <Image Source="images/workout_details_page_bg.png" />
+            <cui:CircleListView x:Name="listView"
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                BackgroundColor="Transparent"
+                                Header="{Binding HeaderData}"
+                                ItemsSource="{Binding ItemsData}">
+                <cui:CircleListView.HeaderTemplate>
+                    <DataTemplate>
+                        <AbsoluteLayout HeightRequest="360"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand">
+                            <Label Text="{Binding LocalTime, StringFormat='{0:hh:mm}'}"
+                                   FontSize="{StaticResource FontSizeXXXS}"
+                                   TextColor="#FFF"
+                                   AbsoluteLayout.LayoutFlags="XProportional"
+                                   AbsoluteLayout.LayoutBounds=".5, 46, AutoSize, AutoSize" />
+                            <Label Text="{Binding Title}"
+                                   FontSize="{StaticResource FontSizeL}"
+                                   TextColor="#FFF"
+                                   HorizontalTextAlignment="Center"
+                                   AbsoluteLayout.LayoutFlags="XProportional"
+                                   AbsoluteLayout.LayoutBounds=".5, 111, AutoSize, AutoSize" />
+                            <Label Text="{Binding StartTime, StringFormat='{0:dd/MM/yyyy}'}"
+                                   FontSize="{StaticResource FontSizeXXXS}"
+                                   TextColor="#FFF"
+                                   AbsoluteLayout.LayoutFlags="XProportional"
+                                   AbsoluteLayout.LayoutBounds=".5, 228, AutoSize, AutoSize" />
+                        </AbsoluteLayout>
+                    </DataTemplate>
+                </cui:CircleListView.HeaderTemplate>
+                <cui:CircleListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <AbsoluteLayout HeightRequest="360"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand">
+                                <Image AbsoluteLayout.LayoutFlags="XProportional"
+                                       AbsoluteLayout.LayoutBounds=".5, 74, AutoSize, AutoSize">
+                                    <Image.Source>
+                                        <FileImageSource File="{Binding Icon}" />
+                                    </Image.Source>
+                                </Image>
+                                <Label Text="{Binding Value}"
+                                       FontSize="{StaticResource FontSizeM}"
+                                       TextColor="#FFF"
+                                       AbsoluteLayout.LayoutFlags="XProportional"
+                                       AbsoluteLayout.LayoutBounds=".5, 193, AutoSize, AutoSize"
+                                       IsVisible="False">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding IsActionButtonVisible}"
+                                                     Value="False">
+                                            <Setter Property="IsVisible"
+                                                    Value="True" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label Text="{Binding Value, Converter={StaticResource BpmRangeValueConverter}}"
+                                       FontSize="{StaticResource FontSizeM}"
+                                       TextColor="#FFF"
+                                       AbsoluteLayout.LayoutFlags="XProportional"
+                                       AbsoluteLayout.LayoutBounds=".5, 172, AutoSize, AutoSize"
+                                       IsVisible="False">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding IsActionButtonVisible}"
+                                                     Value="True">
+                                            <Setter Property="IsVisible"
+                                                    Value="True" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label Text="{Binding Name}"
+                                       FontSize="{StaticResource FontSizeXXS}"
+                                       FontAttributes="Bold"
+                                       TextColor="#AAFFCC"
+                                       AbsoluteLayout.LayoutFlags="XProportional"
+                                       AbsoluteLayout.LayoutBounds=".5, 245, AutoSize, AutoSize">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding IsActionButtonVisible}"
+                                                     Value="true">
+                                            <Setter Property="AbsoluteLayout.LayoutBounds"
+                                                    Value=".5, 224, AutoSize, AutoSize" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Button AbsoluteLayout.LayoutFlags="All"
+                                        AbsoluteLayout.LayoutBounds="0, 1, 1, .25"
+                                        Text="OK"
+                                        TextColor="#1B1B7D"
+                                        BackgroundColor="#AAFFCC"
+                                        Command="{Binding BindingContext.FinishCommand, Source={x:Reference listView}}"
+                                        IsVisible="{Binding IsActionButtonVisible}"
+                                        tizen:VisualElement.Style="bottom" />
+                            </AbsoluteLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </cui:CircleListView.ItemTemplate>
+            </cui:CircleListView>
+        </AbsoluteLayout>
+    </cui:CirclePage.Content>
+
+</cui:CirclePage>

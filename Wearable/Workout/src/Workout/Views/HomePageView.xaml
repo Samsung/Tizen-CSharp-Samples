@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cui:IndexPage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+               xmlns:e="clr-namespace:ElottieSharp.Forms;assembly=ElottieSharp.Forms"
+               x:Class="Workout.Views.HomePageView"
+               NavigationPage.HasNavigationBar="False">
+
+    <cui:CirclePage >
+        <AbsoluteLayout>
+            <Image Source="images/homepage_bg.png"
+                   AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
+
+            <e:ElottieAnimationView AbsoluteLayout.LayoutFlags="All"
+                                    AbsoluteLayout.LayoutBounds=".5, .65, .35, .36"
+                                    AnimationFile="animations/history.json"
+                                    AutoPlay="True"
+                                    AutoRepeat="False" />
+
+            <Label Text="History"
+                   FontSize="{StaticResource FontSizeS}"
+                   TextColor="#F6F6F6"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0, 0.31, 1, .1" />
+        </AbsoluteLayout>
+    </cui:CirclePage>
+
+    <cui:CirclePage>
+        <AbsoluteLayout>
+            <AbsoluteLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoToWorkoutCountdownCommand}" />
+            </AbsoluteLayout.GestureRecognizers>
+
+            <Image Source="images/homepage_bg.png"
+                   AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
+
+            <e:ElottieAnimationView AbsoluteLayout.LayoutFlags="All"
+                                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                    AnimationFile="animations/running.json"
+                                    AutoPlay="True"
+                                    AutoRepeat="False" />
+
+            <Label Text="Start running"
+                   FontSize="{StaticResource FontSizeS}"
+                   TextColor="#F6F6F6"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0, 0.31, 1, .1" />
+
+            <StackLayout BackgroundColor="#8989FB"
+                         AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0.2, .1, 1., .1"
+                         IsVisible="False">
+                <StackLayout.Triggers>
+                    <DataTrigger TargetType="StackLayout"
+                                 Binding="{Binding IsLocationDisabled}"
+                                 Value="True">
+                        <Setter Property="IsVisible"
+                                Value="True" />
+                    </DataTrigger>
+                </StackLayout.Triggers>
+
+                <Label FontSize="{StaticResource FontSizeXXXXS}"
+                       TextColor="White"
+                       Text="Enable GPS to continue"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand">
+                </Label>
+            </StackLayout>
+        </AbsoluteLayout>
+    </cui:CirclePage>
+
+    <cui:CirclePage>
+        <AbsoluteLayout>
+            <Image Source="images/homepage_bg.png"
+                   AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
+
+            <e:ElottieAnimationView AbsoluteLayout.LayoutFlags="All"
+                                    AbsoluteLayout.LayoutBounds=".5, .65, .35, .36"
+                                    AnimationFile="animations/settings.json"
+                                    AutoPlay="True"
+                                    AutoRepeat="False" />
+
+            <Label Text="Settings"
+                   FontSize="{StaticResource FontSizeS}"
+                   TextColor="#F6F6F6"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0, 0.31, 1, .1" />
+        </AbsoluteLayout>
+    </cui:CirclePage>
+
+</cui:IndexPage>
