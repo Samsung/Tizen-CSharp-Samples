@@ -20,5 +20,8 @@ Workout is a sample application which demonstrates how to build application for 
 - [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
 ### Authors
-
-- Patryk Falba, Dariusz Paziewski
+#### Designer:
+- Agnieszka Kalinowska
+#### Developers:
+- Patryk Falba
+- Dariusz Paziewski
