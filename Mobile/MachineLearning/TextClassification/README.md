@@ -14,10 +14,6 @@ The model is downloaded here : https://www.tensorflow.org/lite/models/text_class
 </tr>
 </table>
 
-### Features
-* Checking current weather in the biggset US cities.
-* Checking forecast for next 5 days.
-
 ### Prerequisites
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
 * [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/index) - Visual Studio plugin for Tizen .NET application development
