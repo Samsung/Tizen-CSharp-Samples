@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrientationDetection", "OrientationDetection\OrientationDetection\OrientationDetection.csproj", "{218D23BB-C8EB-4AA0-9BEF-274EB41DD9CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrientationDetection.Tizen.Wearable", "OrientationDetection\OrientationDetection.Tizen.Wearable\OrientationDetection.Tizen.Wearable.csproj", "{90C4F147-8D87-463D-B27C-7979707DD0AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{218D23BB-C8EB-4AA0-9BEF-274EB41DD9CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{218D23BB-C8EB-4AA0-9BEF-274EB41DD9CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{218D23BB-C8EB-4AA0-9BEF-274EB41DD9CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{218D23BB-C8EB-4AA0-9BEF-274EB41DD9CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90C4F147-8D87-463D-B27C-7979707DD0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90C4F147-8D87-463D-B27C-7979707DD0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90C4F147-8D87-463D-B27C-7979707DD0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90C4F147-8D87-463D-B27C-7979707DD0AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {41464B46-65BE-4668-92D7-241F2A58372F}
+	EndGlobalSection
+EndGlobal

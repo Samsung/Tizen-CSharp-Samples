@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="5.5" package="org.tizen.example.OrientationDetection.Tizen.Wearable" version="1.0.0">
+	<profile name="wearable" />
+	<ui-application appid="org.tizen.example.OrientationDetection.Tizen.Wearable"
+					exec="OrientationDetection.Tizen.Wearable.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single"
+					api-version="6">
+  <label>OrientationDetection.Tizen.Wearable</label>
+	<icon>OrientationDetection.Tizen.Wearable.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+	</ui-application>
+</manifest>
