@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyIP.MainPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Label Text="0.0.0.0"
+                   x:Name="myIP"
+                   FontSize="Large"
+                   AbsoluteLayout.LayoutFlags="All"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, 1.0, 0.25"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+            <Button Text="Load"
+                    Clicked="Button_Load"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.25,0.75,0.25,0.10" />
+
+            <Button Text="Reset"
+                    Clicked="Button_Reset"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0.75,0.75,0.25,0.10" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
