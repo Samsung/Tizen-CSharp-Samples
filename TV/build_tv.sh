@@ -2,7 +2,7 @@
 
 rm build_result_tv.txt
 
-for file in **/*.sln; do
+for file in $(find ./ -name "*.sln"); do
     echo "$file"
     sudo dotnet clean "./$file"
     sudo dotnet clean "---------------------------------------------------------------------------------------" >> build_result_tv.txt
