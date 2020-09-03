@@ -16,12 +16,9 @@
  */
 
 using System;
-using Tizen;
-using System.Runtime.InteropServices;
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Constants;
 
 namespace FlexContainerSample
 {
@@ -32,10 +29,11 @@ namespace FlexContainerSample
     /// </summary>
     class FlexContainerSample : NUIApplication
     {
-        private FlexContainer flexContainer;
+        private View flexContainer;
         private const int NUM_FLEX_ITEMS = 8;
         private TableView tableView;
         private TextLabel guide;
+        private FlexLayout flexlayout;
         private static string resource = "/home/owner/apps_rw/org.tizen.example.FlexContainerSample/res";
         private string normalImagePath = resource + "/images/Button/btn_bg_25_25_25_95.9.png";
         private string focusImagePath = resource + "/images/Button/btn_bg_255_255_255_200.9.png";
@@ -73,9 +71,9 @@ namespace FlexContainerSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 96);
+            guide.Size = new Size(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 94);
+            guide.Position = new Position(0, 94);
             guide.MultiLine = false;
             //guide.PointSize = 15.0f;
             guide.PointSize = DeviceCheck.PointSize15;
@@ -85,15 +83,23 @@ namespace FlexContainerSample
             Window.Instance.GetDefaultLayer().Add(guide);
 
             // Create FlexContainer
-            flexContainer = new FlexContainer();
-            flexContainer.PositionUsesPivotPoint = true;
-            flexContainer.PivotPoint = PivotPoint.TopLeft;
-            flexContainer.ParentOrigin = ParentOrigin.TopLeft;
-            flexContainer.Position = new Position(710, 275, 0);
-            flexContainer.SizeWidth = 400;
-            flexContainer.SizeHeight = 400;
-            flexContainer.BackgroundColor = Color.White;
-            flexContainer.FlexDirection = FlexContainer.FlexDirectionType.Column;
+            flexContainer = new View()
+            {
+                PositionUsesPivotPoint = true,
+                PivotPoint = PivotPoint.TopLeft,
+                ParentOrigin = ParentOrigin.TopLeft,
+                Position = new Position(710, 275, 0),
+                Size = new Size(400, 400),
+                BackgroundColor = Color.White,
+                LayoutDirection = ViewLayoutDirectionType.LTR,
+            };
+            flexContainer.Layout = new FlexLayout()
+            { 
+                Direction = FlexLayout.FlexDirection.Column,
+                Justification = FlexLayout.FlexJustification.Center,
+            };
+            flexlayout = flexContainer.Layout as FlexLayout;
+
             Window.Instance.GetDefaultLayer().Add(flexContainer);
 
             // Create flex items and add them to the container
@@ -122,7 +128,7 @@ namespace FlexContainerSample
             // Create the tableView which is the parent of the Pushbuttons
             // which can change the flexcontainer's properties
             tableView = new TableView(2, 3);
-            tableView.Position2D = new Position2D(80, 880);
+            tableView.Position = new Position(80, 880);
             tableView.SizeWidth = 1800;
             tableView.SizeHeight = 180;
             tableView.PivotPoint = PivotPoint.TopLeft;
@@ -141,7 +147,7 @@ namespace FlexContainerSample
                     button.SizeWidth = 560;
                     button.SizeHeight = 80;
                     button.Focusable = true;
-                    button.ClickEvent += ButtonClick;
+                    button.Clicked += ButtonClick;
                     tableView.AddChild(button, new TableView.CellPosition(row, column));
                     if (0 == row && column == 0)
                     {
@@ -180,20 +186,15 @@ namespace FlexContainerSample
             // Inherit : Inherits the same direction from the parent
             if (button.Name == "ContentDirection")
             {
-                if (flexContainer.ContentDirection == FlexContainer.ContentDirectionType.Inherit)
+                if (flexContainer.LayoutDirection == ViewLayoutDirectionType.LTR)
                 {
-                    flexContainer.ContentDirection = FlexContainer.ContentDirectionType.LTR;
-                    button.Text = "ContentDirection : LTR";
-                }
-                else if (flexContainer.ContentDirection == FlexContainer.ContentDirectionType.LTR)
-                {
-                    flexContainer.ContentDirection = FlexContainer.ContentDirectionType.RTL;
+                    flexContainer.LayoutDirection = ViewLayoutDirectionType.RTL;
                     button.Text = "ContentDirection : RTL";
                 }
-                else
+                else if (flexContainer.LayoutDirection == ViewLayoutDirectionType.RTL)
                 {
-                    flexContainer.ContentDirection = FlexContainer.ContentDirectionType.Inherit;
-                    button.Text = "ContentDirection : Inherit";
+                    flexContainer.LayoutDirection = ViewLayoutDirectionType.LTR;
+                    button.Text = "ContentDirection : LTR";
                 }
             }
 
@@ -208,24 +209,24 @@ namespace FlexContainerSample
             // Column : The flexible items are displayed vertically as a column
             else if (button.Name == "FlexDirection")
             {
-                if (flexContainer.FlexDirection == FlexContainer.FlexDirectionType.Column)
+                if (flexlayout.Direction == FlexLayout.FlexDirection.Column)
                 {
-                    flexContainer.FlexDirection = FlexContainer.FlexDirectionType.ColumnReverse;
+                    flexlayout.Direction = FlexLayout.FlexDirection.ColumnReverse;
                     button.Text = "FlexDirection : ColumnReverse";
                 }
-                else if (flexContainer.FlexDirection == FlexContainer.FlexDirectionType.ColumnReverse)
+                else if (flexlayout.Direction == FlexLayout.FlexDirection.ColumnReverse)
                 {
-                    flexContainer.FlexDirection = FlexContainer.FlexDirectionType.Row;
+                    flexlayout.Direction = FlexLayout.FlexDirection.Row;
                     button.Text = "FlexDirection : Row";
                 }
-                else if (flexContainer.FlexDirection == FlexContainer.FlexDirectionType.Row)
+                else if (flexlayout.Direction == FlexLayout.FlexDirection.Row)
                 {
-                    flexContainer.FlexDirection = FlexContainer.FlexDirectionType.RowReverse;
+                    flexlayout.Direction = FlexLayout.FlexDirection.RowReverse;
                     button.Text = "FlexDirection : RowReverse";
                 }
                 else
                 {
-                    flexContainer.FlexDirection = FlexContainer.FlexDirectionType.Column;
+                    flexlayout.Direction = FlexLayout.FlexDirection.Column;
                     button.Text = "FlexDirection : Column";
                 }
             }
@@ -238,15 +239,15 @@ namespace FlexContainerSample
             // NoWrap : Flex items laid out in multiple lines if needed
             else if (button.Name == "FlexWrap")
             {
-                if (flexContainer.FlexWrap == FlexContainer.WrapType.NoWrap)
+                if (flexlayout.WrapType == FlexLayout.FlexWrapType.NoWrap)
                 {
-                    flexContainer.FlexWrap = FlexContainer.WrapType.Wrap;
+                    flexlayout.WrapType = FlexLayout.FlexWrapType.Wrap;
                     button.Text = "FlexWrap : Wrap";
                     buttonArray[5].Opacity = 1.0f;
                 }
                 else
                 {
-                    flexContainer.FlexWrap = FlexContainer.WrapType.NoWrap;
+                    flexlayout.WrapType = FlexLayout.FlexWrapType.NoWrap;
                     button.Text = "FlexWrap : NoWrap";
                     buttonArray[5].Opacity = 0.0f;
                 }
@@ -264,29 +265,29 @@ namespace FlexContainerSample
             // JustifyCenter : Items are positioned at the center of the container
             else if (button.Name == "JustifyContent")
             {
-                if (flexContainer.JustifyContent == FlexContainer.Justification.JustifyCenter)
+                if (flexlayout.Justification == FlexLayout.FlexJustification.Center)
                 {
-                    flexContainer.JustifyContent = FlexContainer.Justification.JustifyFlexEnd;
+                    flexlayout.Justification = FlexLayout.FlexJustification.FlexEnd;
                     button.Text = "JustifyContent : JustifyFlexEnd";
                 }
-                else if (flexContainer.JustifyContent == FlexContainer.Justification.JustifyFlexEnd)
+                else if (flexlayout.Justification == FlexLayout.FlexJustification.FlexEnd)
                 {
-                    flexContainer.JustifyContent = FlexContainer.Justification.JustifyFlexStart;
+                    flexlayout.Justification = FlexLayout.FlexJustification.FlexStart;
                     button.Text = "JustifyContent : JustifyFlexStart";
                 }
-                else if (flexContainer.JustifyContent == FlexContainer.Justification.JustifyFlexStart)
+                else if (flexlayout.Justification == FlexLayout.FlexJustification.FlexStart)
                 {
-                    flexContainer.JustifyContent = FlexContainer.Justification.JustifySpaceAround;
+                    flexlayout.Justification = FlexLayout.FlexJustification.SpaceAround;
                     button.Text = "JustifyContent : JustifySpaceAround";
                 }
-                else if (flexContainer.JustifyContent == FlexContainer.Justification.JustifySpaceAround)
+                else if (flexlayout.Justification == FlexLayout.FlexJustification.SpaceAround)
                 {
-                    flexContainer.JustifyContent = FlexContainer.Justification.JustifySpaceBetween;
+                    flexlayout.Justification = FlexLayout.FlexJustification.SpaceBetween;
                     button.Text = "JustifyContent : JustifySpaceBetween";
                 }
                 else
                 {
-                    flexContainer.JustifyContent = FlexContainer.Justification.JustifyCenter;
+                    flexlayout.Justification = FlexLayout.FlexJustification.Center;
                     button.Text = "JustifyContent : JustifyCenter";
                 }
             }
@@ -303,29 +304,29 @@ namespace FlexContainerSample
             // AlignAuto : Inherits the same alignment from the parent
             else if (button.Name == "AlignItems")
             {
-                if (flexContainer.AlignItems == FlexContainer.Alignment.AlignAuto)
+                if (flexlayout.ItemsAlignment == FlexLayout.AlignmentType.Auto)
                 {
-                    flexContainer.AlignItems = FlexContainer.Alignment.AlignCenter;
+                    flexlayout.ItemsAlignment = FlexLayout.AlignmentType.Center;
                     button.Text = "AlignItems : AlignCenter";
                 }
-                else if (flexContainer.AlignItems == FlexContainer.Alignment.AlignCenter)
+                else if (flexlayout.ItemsAlignment == FlexLayout.AlignmentType.Center)
                 {
-                    flexContainer.AlignItems = FlexContainer.Alignment.AlignFlexEnd;
+                    flexlayout.ItemsAlignment = FlexLayout.AlignmentType.FlexEnd;
                     button.Text = "AlignItems : AlignFlexEnd";
                 }
-                else if (flexContainer.AlignItems == FlexContainer.Alignment.AlignFlexEnd)
+                else if (flexlayout.ItemsAlignment == FlexLayout.AlignmentType.FlexEnd)
                 {
-                    flexContainer.AlignItems = FlexContainer.Alignment.AlignFlexStart;
+                    flexlayout.ItemsAlignment = FlexLayout.AlignmentType.FlexStart;
                     button.Text = "AlignItems : AlignFlexStart";
                 }
-                else if (flexContainer.AlignItems == FlexContainer.Alignment.AlignFlexStart)
+                else if (flexlayout.ItemsAlignment == FlexLayout.AlignmentType.FlexStart)
                 {
-                    flexContainer.AlignItems = FlexContainer.Alignment.AlignStretch;
+                    flexlayout.ItemsAlignment = FlexLayout.AlignmentType.Stretch;
                     button.Text = "AlignItems : AlignStretch";
                 }
                 else
                 {
-                    flexContainer.AlignItems = FlexContainer.Alignment.AlignAuto;
+                    flexlayout.ItemsAlignment = FlexLayout.AlignmentType.Auto;
                     button.Text = "AlignItems : AlignAuto";
                 }
             }
@@ -337,29 +338,29 @@ namespace FlexContainerSample
             // so only works when there are multiple lines
             else if (button.Name == "AlignContent")
             {
-                if (flexContainer.AlignContent == FlexContainer.Alignment.AlignAuto)
+                if (flexlayout.Alignment == FlexLayout.AlignmentType.Auto)
                 {
-                    flexContainer.AlignContent = FlexContainer.Alignment.AlignCenter;
+                    flexlayout.Alignment = FlexLayout.AlignmentType.Center;
                     button.Text = "AlignContent : AlignCenter";
                 }
-                else if (flexContainer.AlignContent == FlexContainer.Alignment.AlignCenter)
+                else if (flexlayout.Alignment == FlexLayout.AlignmentType.Center)
                 {
-                    flexContainer.AlignContent = FlexContainer.Alignment.AlignFlexEnd;
+                    flexlayout.Alignment = FlexLayout.AlignmentType.FlexEnd;
                     button.Text = "AlignContent : AlignFlexEnd";
                 }
-                else if (flexContainer.AlignContent == FlexContainer.Alignment.AlignFlexEnd)
+                else if (flexlayout.Alignment == FlexLayout.AlignmentType.FlexEnd)
                 {
-                    flexContainer.AlignContent = FlexContainer.Alignment.AlignFlexStart;
+                    flexlayout.Alignment = FlexLayout.AlignmentType.FlexStart;
                     button.Text = "AlignContent : AlignFlexStart";
                 }
-                else if (flexContainer.AlignContent == FlexContainer.Alignment.AlignFlexStart)
+                else if (flexlayout.Alignment == FlexLayout.AlignmentType.FlexStart)
                 {
-                    flexContainer.AlignContent = FlexContainer.Alignment.AlignStretch;
+                    flexlayout.Alignment = FlexLayout.AlignmentType.Stretch;
                     button.Text = "AlignContent : AlignStretch";
                 }
                 else
                 {
-                    flexContainer.AlignContent = FlexContainer.Alignment.AlignAuto;
+                    flexlayout.Alignment = FlexLayout.AlignmentType.Auto;
                     button.Text = "AlignContent : AlignAuto";
                 }
             }
