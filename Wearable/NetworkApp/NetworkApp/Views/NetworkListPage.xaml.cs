@@ -62,9 +62,11 @@ namespace NetworkApp.Views
                 var net = wifi.ScanResult();
 
                 NetworkList.Clear();
-                foreach (var n in net)
-                {
-                    NetworkList.Add(n.Name);
+                if (net != null) {
+                    foreach (var n in net)
+                    {
+                        NetworkList.Add(n.Name);
+                    }
                 }
             }
             catch (NotSupportedException e)

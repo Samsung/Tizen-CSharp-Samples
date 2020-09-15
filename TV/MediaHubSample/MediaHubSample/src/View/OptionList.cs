@@ -175,14 +175,14 @@ namespace Tizen.NUI.MediaHub
                     return;
                 }
 
-                if (value < 0 || value >= list.NumOfItem)
-                {
-                    Tizen.Log.Fatal("NUI", "Select item index is out of range! Items count = " + list.NumOfItem + ", index = " + value);
-                    throw new IndexOutOfRangeException("Select item index is out of range! Items count = " + list.NumOfItem + ", index = " + value);
-                }
-
                 if (list != null)
                 {
+                    if (value < 0 || value >= list.NumOfItem)
+                    {
+                        Tizen.Log.Fatal("NUI", "Select item index is out of range! Items count = " + list.NumOfItem + ", index = " + value);
+                        throw new IndexOutOfRangeException("Select item index is out of range! Items count = " + list.NumOfItem + ", index = " + value);
+                    }
+
                     OptionListItemData itemData = (bridge as OptionListBridge).GetData(value) as OptionListItemData;
                     if (itemData.IsDisabled == true)
                     {
@@ -659,9 +659,9 @@ namespace Tizen.NUI.MediaHub
                 {
                     textItem.StateSelected = itemData.IsSelected;
                 }
-            }
 
-            textItem.MainText = itemData.TextString;
+                textItem.MainText = itemData.TextString;
+            }
         }
 
         /// <summary>

@@ -139,6 +139,7 @@ namespace NetworkApp.Tizen.Mobile
             if (ap == null)
             {
                 LogImplementation.DLog("Can't find AP " + essid);
+                return;
             }
 
             ap.ForgetAP();

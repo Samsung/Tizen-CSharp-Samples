@@ -71,7 +71,8 @@ namespace Compass.ViewModels
         /// </summary>
         public CompassViewModel()
         {
-            _compassModel.CompassDataUpdated += OnCompassDataUpdated;
+            if (_compassModel != null)
+                _compassModel.CompassDataUpdated += OnCompassDataUpdated;
             _compassModel?.Start();
         }
 

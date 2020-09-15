@@ -296,13 +296,15 @@ namespace ImageSample
                 imageView.Image = propertyMap;
                 view = imageView;
             }
-            // View position setting
-            view.Size = mImageSize;
-            view.PositionUsesPivotPoint = true;
-            view.PivotPoint = PivotPoint.Center;
-            view.ParentOrigin = ParentOrigin.CenterLeft;
-            view.Position = position;
 
+            if (view != null) {
+                // View position setting
+                view.Size = mImageSize;
+                view.PositionUsesPivotPoint = true;
+                view.PivotPoint = PivotPoint.Center;
+                view.ParentOrigin = ParentOrigin.CenterLeft;
+                view.Position = position;
+            }
             return view;
         }
 

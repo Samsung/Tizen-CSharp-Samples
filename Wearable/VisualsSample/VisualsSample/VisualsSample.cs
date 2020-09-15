@@ -411,15 +411,17 @@ namespace VisualsSample
                 default:
                     break;
             }
-            // Set the common properties
-            visualMap.Size = mVisualSize;
-            visualMap.Position = new Vector2(0.0f, 0.0f);
-            visualMap.PositionPolicy = VisualTransformPolicyType.Absolute;
-            visualMap.SizePolicy = VisualTransformPolicyType.Absolute;
-            visualMap.Origin = Visual.AlignType.Center;
-            visualMap.AnchorPoint = Visual.AlignType.Center;
-
-            textVisual.Position = new Vector2(0.0f, mVisualSize.Height / 2 + 25);
+            if (visualMap != null) {
+                // Set the common properties
+                visualMap.Size = mVisualSize;
+                visualMap.Position = new Vector2(0.0f, 0.0f);
+                visualMap.PositionPolicy = VisualTransformPolicyType.Absolute;
+                visualMap.SizePolicy = VisualTransformPolicyType.Absolute;
+                visualMap.Origin = Visual.AlignType.Center;
+                visualMap.AnchorPoint = Visual.AlignType.Center;
+            }
+            if (textVisual != null)
+                textVisual.Position = new Vector2(0.0f, mVisualSize.Height / 2 + 25);
 
             VisualView subVisualView = new VisualView();
 

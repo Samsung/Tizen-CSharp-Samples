@@ -53,7 +53,7 @@ namespace Ultraviolet.Tizen.Wearable.Services
         public void Start()
         {
             _ultravioletSensor.DataUpdated += OnDataUpdated;
-            _ultravioletSensor?.Start();
+            _ultravioletSensor.Start();
         }
 
         /// <summary>

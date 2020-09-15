@@ -41,10 +41,6 @@ namespace Tizen.NUI.MediaHub
                 {
                     view.GetFocusItemIndex(out groupIndex, out itemIndex);
                     item = (ContentModel)view.GetBridge().GetData(itemIndex, groupIndex);
-                    if (item == null)
-                    {
-                        return;
-                    }
                 }
                 catch (Exception e)
                 {
@@ -53,6 +49,11 @@ namespace Tizen.NUI.MediaHub
 
                 try
                 {
+                    if (item == null)
+                    {
+                        return;
+                    }
+
                     if (item.MediaItemType == ContentItemType.eItemFolder)
                     {
 

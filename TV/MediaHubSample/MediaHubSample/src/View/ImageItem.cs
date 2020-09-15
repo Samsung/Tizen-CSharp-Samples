@@ -285,14 +285,14 @@ namespace Tizen.NUI.MediaHub
                 //Dispose the main text
                 if (mainText != null)
                 {
-                    rootView.Remove(mainText);
+                    rootView?.Remove(mainText);
                     mainText.Dispose();
                     mainText = null;
                 }
                 //Dispose the main image
                 if (mainImage != null)
                 {
-                    rootView.Remove(mainImage);
+                    rootView?.Remove(mainImage);
                     mainImage.Dispose();
                     mainImage = null;
                 }
@@ -301,7 +301,7 @@ namespace Tizen.NUI.MediaHub
                 {
                     for (int i = 0; i < informationIconArray.Length; i++)
                     {
-                        rootView.Remove(informationIconArray[i]);
+                        rootView?.Remove(informationIconArray[i]);
                         informationIconArray[i].Dispose();
                         informationIconArray[i] = null;
                     }

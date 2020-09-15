@@ -480,7 +480,7 @@ namespace Tizen.NUI.MediaHub
         /// <returns>whether the key has been consumed or not</returns>
         private bool OnListKeyPressed(object source, View.KeyEventArgs e)
         {
-            if (e.Key.State == Key.StateType.Down)
+            if (e.Key.State == Key.StateType.Down && optionList != null)
             {
                 if (e.Key.KeyPressedName == "Up")
                 {
@@ -496,10 +496,7 @@ namespace Tizen.NUI.MediaHub
                 {
                     Tizen.Log.Fatal("NUI","dropdown Back before");
                     FocusManager.Instance.SetCurrentFocusView(dropdownButton);
-                    if (optionList != null)
-                    {
-                        HideList();
-                    }
+                    HideList();
                 }
                 else if (e.Key.KeyPressedName == "Return")
                 {
@@ -509,14 +506,9 @@ namespace Tizen.NUI.MediaHub
                     ItemSelectedEventArgs ev = new ItemSelectedEventArgs();
                     ev.SelectedItemIndex = optionList.SelectItemIndex;
                     ItemSelectedHandler(this, ev);
-                    if (optionList != null)
-                    {
-                        HideList();
-                    }
-
+                    HideList();
                 }
             }
-
             return true;
         }
 

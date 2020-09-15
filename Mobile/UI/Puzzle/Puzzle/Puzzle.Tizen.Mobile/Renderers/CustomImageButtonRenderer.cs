@@ -52,7 +52,8 @@ namespace Puzzle.Tizen.Mobile.Renderers
 			if (Control == null)
 			{
 				SetNativeControl(new Box(Forms.NativeParent));
-				Control.SetLayoutCallback(OnLayout);
+				if (Control != null)
+					Control.SetLayoutCallback(OnLayout);
 				_round = new Native.RoundRectangle(Forms.NativeParent);
 				_round.Show();
 				_border = new Native.BorderRectangle(Forms.NativeParent);
@@ -67,10 +68,12 @@ namespace Puzzle.Tizen.Mobile.Renderers
 				_button.Pressed += OnPressed;
 				_button.Released += OnReleased;
 				_button.Show();
-				Control.PackEnd(_round);
-				Control.PackEnd(_image);
-				Control.PackEnd(_border);
-				Control.PackEnd(_button);
+				if (Control != null) {
+					Control.PackEnd(_round);
+					Control.PackEnd(_image);
+					Control.PackEnd(_border);
+					Control.PackEnd(_button);
+				}
 			}
 			base.OnElementChanged(e);
 		}
