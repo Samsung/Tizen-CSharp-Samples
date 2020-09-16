@@ -1,5 +1,4 @@
 ﻿using System;
-using Tizen.Wearable.CircularUI.Forms;
 using Workout.Views;
 using Xamarin.Forms;
 
@@ -62,10 +61,7 @@ namespace Workout.Services
         /// </summary>
         public void GoToHomePage()
         {
-            IndexPage homePageView = new HomePageView();
-
-            //temporary solution due to the issue: https://github.com/Samsung/Tizen.CircularUI/issues/284
-            Device.BeginInvokeOnMainThread(() => homePageView.CurrentPage = homePageView.Children[1]);
+            ContentPage homePageView = new HomePageView();
 
             Application.Current.MainPage = new NavigationPage(homePageView);
         }

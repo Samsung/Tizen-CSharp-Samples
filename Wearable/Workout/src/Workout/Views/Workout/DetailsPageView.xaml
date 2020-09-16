@@ -1,33 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns:models="clr-namespace:Workout.Models.Workout;assembly=Workout"
              xmlns:viewModels="clr-namespace:Workout.ViewModels.Workout;assembly=Workout"
-             xmlns:converters="clr-namespace:Workout.Converters;assembly=Workout"
              xmlns:tizen="clr-namespace:Xamarin.Forms.PlatformConfiguration.TizenSpecific;assembly=Xamarin.Forms.Core"
              x:Class="Workout.Views.Workout.DetailsPageView"
-             RotaryFocusObject="{x:Reference listView}"
              NavigationPage.HasNavigationBar="False">
 
-    <cui:CirclePage.BindingContext>
+    <ContentPage.BindingContext>
         <viewModels:DetailsPageViewModel />
-    </cui:CirclePage.BindingContext>
+    </ContentPage.BindingContext>
 
-    <cui:CirclePage.Resources>
-        <ResourceDictionary>
-            <converters:BpmRangeValueConverter x:Key="BpmRangeValueConverter" />
-        </ResourceDictionary>
-    </cui:CirclePage.Resources>
-
-    <cui:CirclePage.Content>
+    <ContentPage.Content>
         <AbsoluteLayout>
             <Image Source="images/workout_details_page_bg.png" />
             <cui:CircleListView x:Name="listView"
                                 AbsoluteLayout.LayoutFlags="All"
                                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                                 BackgroundColor="Transparent"
-                                Header="{Binding HeaderData}"
-                                ItemsSource="{Binding ItemsData}">
+                                Header="{Binding HeaderData}">
                 <cui:CircleListView.HeaderTemplate>
                     <DataTemplate>
                         <AbsoluteLayout HeightRequest="360"
@@ -52,6 +44,51 @@
                         </AbsoluteLayout>
                     </DataTemplate>
                 </cui:CircleListView.HeaderTemplate>
+                <cui:CircleListView.ItemsSource>
+                    <x:Array Type="{x:Type models:DetailsItemData}">
+                        <models:DetailsItemData Name="time"
+                                                Value="{Binding ElapsedTime}"
+                                                Icon="images/details_time_icon.png">
+                            <models:DetailsItemData.ValueBounds>
+                                <Rectangle X=".5" Y="193" Width="-1" Height="-1" />
+                            </models:DetailsItemData.ValueBounds>
+                            <models:DetailsItemData.NameBounds>
+                                <Rectangle X=".5" Y="245" Width="-1" Height="-1" />
+                            </models:DetailsItemData.NameBounds>
+                        </models:DetailsItemData>
+                        <models:DetailsItemData Name="distance"
+                                                Value="{Binding Distance}"
+                                                Icon="images/details_distance_icon.png">
+                            <models:DetailsItemData.ValueBounds>
+                                <Rectangle X=".5" Y="193" Width="-1" Height="-1" />
+                            </models:DetailsItemData.ValueBounds>
+                            <models:DetailsItemData.NameBounds>
+                                <Rectangle X=".5" Y="245" Width="-1" Height="-1" />
+                            </models:DetailsItemData.NameBounds>
+                        </models:DetailsItemData>
+                        <models:DetailsItemData Name="average pace"
+                                                Value="{Binding AveragePace}"
+                                                Icon="images/details_average_pace_icon.png">
+                            <models:DetailsItemData.ValueBounds>
+                                <Rectangle X=".5" Y="193" Width="-1" Height="-1" />
+                            </models:DetailsItemData.ValueBounds>
+                            <models:DetailsItemData.NameBounds>
+                                <Rectangle X=".5" Y="245" Width="-1" Height="-1" />
+                            </models:DetailsItemData.NameBounds>
+                        </models:DetailsItemData>
+                        <models:DetailsItemData Name="intensity"
+                                                Value="{Binding Intensity, Converter={StaticResource BpmRangeValueConverter}}"
+                                                Icon="images/details_intensity_icon.png"
+                                                IsActionButtonVisible="True">
+                            <models:DetailsItemData.ValueBounds>
+                                <Rectangle X=".5" Y="172" Width="-1" Height="-1" />
+                            </models:DetailsItemData.ValueBounds>
+                            <models:DetailsItemData.NameBounds>
+                                <Rectangle X=".5" Y="224" Width="-1" Height="-1" />
+                            </models:DetailsItemData.NameBounds>
+                        </models:DetailsItemData>
+                    </x:Array>
+                </cui:CircleListView.ItemsSource>
                 <cui:CircleListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -68,46 +105,14 @@
                                        FontSize="{StaticResource FontSizeM}"
                                        TextColor="#FFF"
                                        AbsoluteLayout.LayoutFlags="XProportional"
-                                       AbsoluteLayout.LayoutBounds=".5, 193, AutoSize, AutoSize"
-                                       IsVisible="False">
-                                    <Label.Triggers>
-                                        <DataTrigger TargetType="Label"
-                                                     Binding="{Binding IsActionButtonVisible}"
-                                                     Value="False">
-                                            <Setter Property="IsVisible"
-                                                    Value="True" />
-                                        </DataTrigger>
-                                    </Label.Triggers>
-                                </Label>
-                                <Label Text="{Binding Value, Converter={StaticResource BpmRangeValueConverter}}"
-                                       FontSize="{StaticResource FontSizeM}"
-                                       TextColor="#FFF"
-                                       AbsoluteLayout.LayoutFlags="XProportional"
-                                       AbsoluteLayout.LayoutBounds=".5, 172, AutoSize, AutoSize"
-                                       IsVisible="False">
-                                    <Label.Triggers>
-                                        <DataTrigger TargetType="Label"
-                                                     Binding="{Binding IsActionButtonVisible}"
-                                                     Value="True">
-                                            <Setter Property="IsVisible"
-                                                    Value="True" />
-                                        </DataTrigger>
-                                    </Label.Triggers>
+                                       AbsoluteLayout.LayoutBounds="{Binding ValueBounds}">
                                 </Label>
                                 <Label Text="{Binding Name}"
                                        FontSize="{StaticResource FontSizeXXS}"
                                        FontAttributes="Bold"
                                        TextColor="#AAFFCC"
                                        AbsoluteLayout.LayoutFlags="XProportional"
-                                       AbsoluteLayout.LayoutBounds=".5, 245, AutoSize, AutoSize">
-                                    <Label.Triggers>
-                                        <DataTrigger TargetType="Label"
-                                                     Binding="{Binding IsActionButtonVisible}"
-                                                     Value="true">
-                                            <Setter Property="AbsoluteLayout.LayoutBounds"
-                                                    Value=".5, 224, AutoSize, AutoSize" />
-                                        </DataTrigger>
-                                    </Label.Triggers>
+                                       AbsoluteLayout.LayoutBounds="{Binding NameBounds}">
                                 </Label>
                                 <Button AbsoluteLayout.LayoutFlags="All"
                                         AbsoluteLayout.LayoutBounds="0, 1, 1, .25"
@@ -123,6 +128,6 @@
                 </cui:CircleListView.ItemTemplate>
             </cui:CircleListView>
         </AbsoluteLayout>
-    </cui:CirclePage.Content>
+    </ContentPage.Content>
 
-</cui:CirclePage>
+</ContentPage>

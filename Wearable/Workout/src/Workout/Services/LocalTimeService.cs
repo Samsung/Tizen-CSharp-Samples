@@ -27,25 +27,25 @@ namespace Workout.Services
         /// <summary>
         /// Event invoked when value of minutes or hours have changed since last tick.
         /// </summary>
-        public static event EventHandler<DateTime> TimeChanged;
+        public static event EventHandler<DateTime> Updated;
 
         #endregion
 
         #region methods
 
         /// <summary>
-        /// Handles timer "Elapsed" event.
-        /// Invokes TimeChanged if values of minutes have changed since last tick.
+        /// Handles "Elapsed" event of the timer.
+        /// Invokes "Updated" event if values of minutes have changed since last tick.
         /// </summary>
         /// <param name="sender">The object that raised the event.</param>
         /// <param name="args">Event arguments. Not used.</param>
-        private static void OnTimerElapsed(object sender, EventArgs args)
+        private static void OnElapsed(object sender, EventArgs args)
         {
             DateTime _now = DateTime.Now;
 
             if (_previousDateTime.Minute != _now.Minute)
             {
-                TimeChanged?.Invoke(null, _now);
+                Updated?.Invoke(null, _now);
                 _previousDateTime = _now;
             }
         }
@@ -55,7 +55,7 @@ namespace Workout.Services
         /// </summary>
         static LocalTimeService()
         {
-            _timer.Elapsed += OnTimerElapsed;
+            _timer.Elapsed += OnElapsed;
 
             _timer.Start();
         }

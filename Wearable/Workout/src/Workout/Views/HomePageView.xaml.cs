@@ -1,6 +1,6 @@
 ﻿using System;
-using Tizen.Wearable.CircularUI.Forms;
 using Workout.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Workout.Views
@@ -9,7 +9,7 @@ namespace Workout.Views
     /// Home page view.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePageView : IndexPage
+    public partial class HomePageView : ContentPage
     {
         #region methods
 
@@ -30,6 +30,8 @@ namespace Workout.Views
             base.OnAppearing();
 
             BindingContext = new HomePageViewModel();
+
+            carouselViewControl.Position = 1;
         }
 
         /// <summary>

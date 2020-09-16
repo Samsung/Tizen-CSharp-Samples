@@ -68,7 +68,7 @@ namespace Workout.Models.Workout
         /// </summary>
         private void AddEventListeners()
         {
-            LocalTimeService.TimeChanged += OnLocalTimeModelTimerElapsed;
+            LocalTimeService.Updated += OnLocalTimeServiceUpdated;
             _locationModel.Updated += OnLocationModelUpdated;
             _heartRateMonitorModel.Updated += OnHeartRateMonitorModelUpdated;
             _stopWatchService.Updated += OnStopWatchServiceUpdated;
@@ -83,12 +83,12 @@ namespace Workout.Models.Workout
         }
 
         /// <summary>
-        /// Handles "TimerElapsed" event of the LocalTimeModel object.
+        /// Handles "Updated" event of the LocalTimeService class.
         /// Updates the value of the local time property.
         /// </summary>
         /// <param name="sender">The object that raised the event.</param>
         /// <param name="localTime">Local time.</param>
-        private void OnLocalTimeModelTimerElapsed(object sender, DateTime localTime)
+        private void OnLocalTimeServiceUpdated(object sender, DateTime localTime)
         {
             WorkoutData.LocalTime = localTime;
 

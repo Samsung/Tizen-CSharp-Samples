@@ -1,6 +1,6 @@
 ﻿using System;
-using Tizen.Wearable.CircularUI.Forms;
 using Workout.ViewModels.Workout;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Workout.Views.Workout
@@ -9,7 +9,7 @@ namespace Workout.Views.Workout
     /// Workout main view.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainView : CirclePage
+    public partial class MainView : ContentPage
     {
         #region fields
 

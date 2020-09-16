@@ -1,23 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
              xmlns:viewModels="clr-namespace:Workout.ViewModels.Workout;assembly=Workout"
-             xmlns:converters="clr-namespace:Workout.Converters;assembly=Workout"
              x:Class="Workout.Views.Workout.MainView"
              NavigationPage.HasNavigationBar="False">
 
-    <cui:CirclePage.BindingContext>
+    <ContentPage.BindingContext>
         <viewModels:MainViewModel />
-    </cui:CirclePage.BindingContext>
+    </ContentPage.BindingContext>
 
-    <cui:CirclePage.Resources>
-        <ResourceDictionary>
-            <converters:BpmValueConverter x:Key="BpmValueConverter" />
-        </ResourceDictionary>
-    </cui:CirclePage.Resources>
-
-    <cui:CirclePage.Content>
+    <ContentPage.Content>
         <AbsoluteLayout BackgroundColor="#7B7BB4">
             <Image Source="{Binding HeartRateIndicatorImage}" Rotation="{Binding HeartRateIndicatorRotation}"/>
             <Image Source="images/workout_main_page_bg.png" />
@@ -85,6 +77,6 @@
                    AbsoluteLayout.LayoutFlags="XProportional"
                    AbsoluteLayout.LayoutBounds=".5, 270, AutoSize, AutoSize" />
         </AbsoluteLayout>
-    </cui:CirclePage.Content>
+    </ContentPage.Content>
 
-</cui:CirclePage>
+</ContentPage>

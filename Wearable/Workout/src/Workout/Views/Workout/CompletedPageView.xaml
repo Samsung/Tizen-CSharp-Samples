@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
              xmlns:e="clr-namespace:ElottieSharp.Forms;assembly=ElottieSharp.Forms"
              x:Class="Workout.Views.Workout.CompletedPageView"
              NavigationPage.HasNavigationBar="False">
 
-    <cui:CirclePage.Content>
+    <ContentPage.Content>
         <AbsoluteLayout>
             <Image Source="images/workout_complete_bg.png" />
             <e:ElottieAnimationView AbsoluteLayout.LayoutFlags="All"
@@ -15,6 +14,6 @@
                                     AutoPlay="True"
                                     AutoRepeat="False" />
         </AbsoluteLayout>
-    </cui:CirclePage.Content>
+    </ContentPage.Content>
 
-</cui:CirclePage>
+</ContentPage>
