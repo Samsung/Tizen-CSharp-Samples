@@ -16,12 +16,9 @@
  */
 
 using System;
-using Tizen;
-using System.Runtime.InteropServices;
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Constants;
 
 namespace AnimationSample
 {
@@ -103,22 +100,22 @@ namespace AnimationSample
             _opacityButton = CreateButton("Opacity", "OpacityAnimation");
             _pixelAreaButton = CreateButton("PixelArea", "PixelAreaAnimation");
             _PositionSizeOpacity = CreateButton("PositionSizeOpacity", "Position + Size + Opacity animation at same time!");
-            _PositionSizeOpacity.Size2D = new Size2D(1400, 80);
+            _PositionSizeOpacity.Size = new Size(1400, 80);
             //Set the callback of button's clicked event
-            _positionButton.ClickEvent += ButtonClick;
-            _sizeButton.ClickEvent += ButtonClick;
-            _scaleButton.ClickEvent += ButtonClick;
-            _orientationButton.ClickEvent += ButtonClick;
-            _opacityButton.ClickEvent += ButtonClick;
-            _pixelAreaButton.ClickEvent += ButtonClick;
-            _PositionSizeOpacity.ClickEvent += ButtonClick;
+            _positionButton.Clicked += ButtonClick;
+            _sizeButton.Clicked += ButtonClick;
+            _scaleButton.Clicked += ButtonClick;
+            _orientationButton.Clicked += ButtonClick;
+            _opacityButton.Clicked += ButtonClick;
+            _pixelAreaButton.Clicked += ButtonClick;
+            _PositionSizeOpacity.Clicked += ButtonClick;
 
             //Create a tableView as the container of the pushButton.
             TableView tableView = new TableView(3, 3);
-            tableView.Size2D = new Size2D(1500, 440);
+            tableView.Size = new Size(1500, 440);
             tableView.PivotPoint = PivotPoint.TopLeft;
             tableView.ParentOrigin = ParentOrigin.TopLeft;
-            tableView.Position2D = new Position2D(260, 630);
+            tableView.Position = new Position(260, 630);
 
             tableView.AddChild(_positionButton, new TableView.CellPosition(0, 0));
             tableView.AddChild(_sizeButton, new TableView.CellPosition(0, 1));
@@ -140,9 +137,9 @@ namespace AnimationSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 96);
+            guide.Size = new Size(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 94);
+            guide.Position = new Position(0, 94);
             guide.MultiLine = false;
             //guide.PointSize = 15.0f;
             guide.PointSize = PointSize15;
@@ -152,7 +149,7 @@ namespace AnimationSample
 
             // Create the view to animate.
             view = new ImageView();
-            view.Size2D = new Size2D(200, 200);
+            view.Size = new Size(200, 200);
             view.Position = new Position(860, 275, 0);
             view.PositionUsesPivotPoint = true;
             view.PivotPoint = PivotPoint.TopLeft;
@@ -383,6 +380,7 @@ namespace AnimationSample
             button.Name = name;
             button.Text = text;
             button.TextColor = Color.White;
+            button.BackgroundImage = normalImagePath;
 
             // Chang background Visual and Label when focus gained.
             button.FocusGained += (obj, e) =>
