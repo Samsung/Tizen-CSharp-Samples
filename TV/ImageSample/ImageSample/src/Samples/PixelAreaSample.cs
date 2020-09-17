@@ -16,12 +16,9 @@
  */
 
 using System;
-using Tizen;
-using System.Runtime.InteropServices;
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Constants;
 
 namespace ImageSample
 {
@@ -61,24 +58,22 @@ namespace ImageSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 96);
+            guide.Size = new Size(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 94);
+            guide.Position = new Position(0, 94);
             guide.MultiLine = false;
-            //guide.PointSize = 15.0f;
             guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "PixelArea Sample \n";
             guide.TextColor = Color.White;
-            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
 
             //Create one tableView as a container of all the image.
             tableView = new TableView(3, 3);
-            tableView.Size2D = new Size2D(600, 600);
+            tableView.Size = new Size(600, 600);
             tableView.PositionUsesPivotPoint = true;
             tableView.PivotPoint = PivotPoint.TopLeft;
             tableView.ParentOrigin = ParentOrigin.TopLeft;
-            tableView.Position2D = new Position2D(660, 275);
+            tableView.Position = new Position(660, 275);
             Window.Instance.GetDefaultLayer().Add(tableView);
 
             //Create p image and add them to tableView
@@ -99,8 +94,8 @@ namespace ImageSample
             pushButton = CreateButton("PixelArea", "PixelArea");
             pushButton.PivotPoint = PivotPoint.Center;
             pushButton.ParentOrigin = ParentOrigin.TopLeft;
-            pushButton.Position2D = tableView.Position2D + new Position2D((int)tableView.SizeWidth / 2 - 200, (int)tableView.SizeHeight + 60);
-            pushButton.ClickEvent += PixelAreaButtonClick;
+            pushButton.Position = tableView.Position + new Position((int)tableView.SizeWidth / 2 - 200, (int)tableView.SizeHeight + 60);
+            pushButton.Clicked += PixelAreaButtonClick;
             pushButton.Focusable = true;
             Window.Instance.GetDefaultLayer().Add(pushButton);
             FocusManager.Instance.SetCurrentFocusView(pushButton);
@@ -171,9 +166,10 @@ namespace ImageSample
         {
             Button button = new Button();
             button.Focusable = true;
-            button.Size2D = new Size2D(400, 80);
+            button.Size = new Size(400, 80);
             button.Focusable = true;
             button.Name = name;
+            button.Text = text;
             button.BackgroundImage = normalImagePath;
             button.TextColor = Color.White;
 
@@ -225,7 +221,6 @@ namespace ImageSample
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
             map.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));

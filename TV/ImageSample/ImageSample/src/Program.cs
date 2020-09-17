@@ -15,7 +15,6 @@
  *
  */
 
-using System;
 using Tizen;
 
 namespace ImageSample

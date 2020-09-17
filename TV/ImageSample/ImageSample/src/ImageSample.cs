@@ -16,11 +16,9 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Constants;
 using Tizen;
 
 namespace ImageSample
@@ -96,15 +94,13 @@ namespace ImageSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size2D = new Size2D(1920, 96);
+            guide.Size = new Size(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position2D = new Position2D(0, 94);
+            guide.Position = new Position(0, 94);
             guide.MultiLine = false;
-            //guide.PointSize = 15.0f;
             guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "Image Sample \n";
             guide.TextColor = Color.White;
-            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
 
             backGroundView.Add(guide);
             Populate();
@@ -119,21 +115,18 @@ namespace ImageSample
         private void Populate()
         {
             Vector2 stagesize = Window.Instance.Size;
-            //mTotalPages = (numOfSamples + EXAMPLES_PER_ROW * ROWS_PER_PAGE - 1) / (EXAMPLES_PER_ROW * ROWS_PER_PAGE);
             tableView = new TableView(ROWS_PER_PAGE, EXAMPLES_PER_ROW);
             buttons = new Button[numOfSamples];
 
             tableView.PositionUsesPivotPoint = true;
-            //tableView.BackgroundColor = Color.White;
-            tableView.Size2D = new Size2D(1500, 400);
+            tableView.Size = new Size(1500, 400);
             tableView.PivotPoint = PivotPoint.TopLeft;
             tableView.ParentOrigin = ParentOrigin.TopLeft;
-            tableView.Position2D = new Position2D(210, 390);
+            tableView.Position = new Position(210, 390);
+            tableView.CellPadding = new Size2D(10, 20);
 
             backGroundView.Add(tableView);
             int iter = 0;
-            ushort margin = 20;
-            ushort topmargin = 30;
             float tileParentMultiplier = 1.0f / EXAMPLES_PER_ROW;
             for (uint row = 0; row < ROWS_PER_PAGE; row++)
             {
@@ -142,7 +135,6 @@ namespace ImageSample
                     // Calculate the position of each button
                     Vector2 position = new Vector2(column / (EXAMPLES_PER_ROW - 1.0f), row / (EXAMPLES_PER_ROW - 1.0f));
                     buttons[iter] = CreateTile(samples[iter], samples[iter], new Vector3(tileParentMultiplier, tileParentMultiplier, 1.0f), position);
-                    buttons[iter].Padding = new Extents(margin, margin, topmargin, topmargin);
                     tableView.AddChild(buttons[iter], new TableView.CellPosition(row, column));
                     iter++;
                     if (iter == numOfSamples)
@@ -181,7 +173,6 @@ namespace ImageSample
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
             map.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
@@ -206,9 +197,10 @@ namespace ImageSample
         {
             Button button = new Button();
             button.Focusable = true;
-            button.Size2D = new Size2D(400, 80);
+            button.Size = new Size(400, 80);
             button.Focusable = true;
             button.Name = name;
+            button.Text = text;
             button.BackgroundImage = normalImagePath;
             button.TextColor = Color.White;
 
