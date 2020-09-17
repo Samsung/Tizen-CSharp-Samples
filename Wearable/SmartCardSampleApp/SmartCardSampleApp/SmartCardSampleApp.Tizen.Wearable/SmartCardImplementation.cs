@@ -114,8 +114,12 @@ namespace SmartCardSampleApp.Tizen.Wearable
             byte[] atrList = null;
             byte[] aid = {0xA0, 0x00, 0x00, 0x00, 0x63, 0x50, 0x4B, 0x43, 0x53, 0x2D, 0x31, 0x35};
             
+            if (String.IsNullOrEmpty(cmd)) {
+                LogImplementation.DLog("cmd should not be null or empty");
+                return "6800";
+            }
 
-            if (cmd != null && (cmd.Length % 2) != 0)
+            if ((cmd.Length % 2) != 0)
             {
                 LogImplementation.DLog("cmd should be even number");
                 return "6800";

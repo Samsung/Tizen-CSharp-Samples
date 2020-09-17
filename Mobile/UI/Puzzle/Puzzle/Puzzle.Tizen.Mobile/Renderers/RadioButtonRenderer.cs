@@ -53,12 +53,14 @@ namespace Puzzle.Tizen.Mobile.Renderers
 
             if (e.OldElement != null)
             {
-                Control.ValueChanged -= ChangedEventHandler;
+                if (Control != null)
+                    Control.ValueChanged -= ChangedEventHandler;
             }
 
             if (e.NewElement != null)
             {
-                Control.ValueChanged += ChangedEventHandler;
+                if (Control != null)
+                    Control.ValueChanged += ChangedEventHandler;
                 UpdateAll();
             }
 

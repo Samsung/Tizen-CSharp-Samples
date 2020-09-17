@@ -52,8 +52,10 @@ namespace ReverseGeocoding.Tizen.Wearable.Renderers
                 _mapView.ViewReady += OnViewReady;
 
                 SetNativeControl(_mapView);
-                Control.Resize(Element.ControlWidth, Element.ControlHeight);
-                Control.Show();
+                if (Control != null) {
+                    Control.Resize(Element.ControlWidth, Element.ControlHeight);
+                    Control.Show();
+                }
             }
 
             base.OnElementChanged(e);
