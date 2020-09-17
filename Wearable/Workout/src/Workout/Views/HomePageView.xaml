@@ -1,100 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<cui:IndexPage xmlns="http://xamarin.com/schemas/2014/forms"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:cui="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
-               xmlns:e="clr-namespace:ElottieSharp.Forms;assembly=ElottieSharp.Forms"
-               x:Class="Workout.Views.HomePageView"
-               NavigationPage.HasNavigationBar="False">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Workout.Models;assembly=Workout"
+             xmlns:e="clr-namespace:ElottieSharp.Forms;assembly=ElottieSharp.Forms"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Workout.Views.HomePageView">
 
-    <cui:CirclePage >
+    <ContentPage.Content>
         <AbsoluteLayout>
-            <Image Source="images/homepage_bg.png"
-                   AbsoluteLayout.LayoutFlags="All"
-                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
+            <CarouselView VerticalOptions="FillAndExpand"
+                          HorizontalOptions="FillAndExpand"
+                          AbsoluteLayout.LayoutFlags="All"
+                          AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                          IndicatorView="indicatorView"
+                          x:Name="carouselViewControl">
 
-            <e:ElottieAnimationView AbsoluteLayout.LayoutFlags="All"
-                                    AbsoluteLayout.LayoutBounds=".5, .65, .35, .36"
-                                    AnimationFile="animations/history.json"
+                <CarouselView.ItemsSource>
+                    <x:Array Type="{x:Type models:HomePageItemData}">
+                        <models:HomePageItemData Text="History"
+                                                 File="animations/history.json"
+                                                 Index="0">
+                            <models:HomePageItemData.Bounds>
+                                <Rectangle X=".5" Y=".65" Width=".35" Height=".36" />
+                            </models:HomePageItemData.Bounds>
+                        </models:HomePageItemData>
+
+                        <models:HomePageItemData Text="Start running"
+                                                 File="animations/running.json"
+                                                 Index="1">
+                            <models:HomePageItemData.Bounds>
+                                <Rectangle X=".5" Y=".5" Width="1" Height="1" />
+                            </models:HomePageItemData.Bounds>
+                        </models:HomePageItemData>
+
+                        <models:HomePageItemData Text="Settings"
+                                                 File="animations/settings.json"
+                                                 Index="2">
+                            <models:HomePageItemData.Bounds>
+                                <Rectangle X=".5" Y=".65" Width=".35" Height=".36" />
+                            </models:HomePageItemData.Bounds>
+                        </models:HomePageItemData>
+                    </x:Array>
+                </CarouselView.ItemsSource>
+
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <AbsoluteLayout>
+                            <AbsoluteLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ChangePage, Source={x:Reference Name=carouselViewControl}}"
+                                                      CommandParameter="{Binding Index}" />
+                            </AbsoluteLayout.GestureRecognizers>
+
+                            <Image Source="images/homepage_bg.png"
+                                   AbsoluteLayout.LayoutFlags="All"
+                                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                            </Image>
+
+                            <e:ElottieAnimationView AbsoluteLayout.LayoutFlags="All"
+                                    AbsoluteLayout.LayoutBounds="{Binding Bounds}"
+                                    AnimationFile="{Binding File}"
                                     AutoPlay="True"
                                     AutoRepeat="False" />
 
-            <Label Text="History"
-                   FontSize="{StaticResource FontSizeS}"
-                   TextColor="#F6F6F6"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand"
-                   AbsoluteLayout.LayoutFlags="All"
-                   AbsoluteLayout.LayoutBounds="0, 0.31, 1, .1" />
+                            <Label Text="{Binding Text}"
+                                   FontSize="{StaticResource FontSizeS}"
+                                   TextColor="#F6F6F6"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand"
+                                   AbsoluteLayout.LayoutFlags="All"
+                                   AbsoluteLayout.LayoutBounds="0, 0.31, 1, .1" />
+
+
+                        </AbsoluteLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <IndicatorView x:Name="indicatorView"
+                            IndicatorColor="Red"
+                            SelectedIndicatorColor="Blue"
+                            HorizontalOptions="Center"
+                            AbsoluteLayout.LayoutFlags="All"
+                            AbsoluteLayout.LayoutBounds="0, 0.1, 1, .1" />
         </AbsoluteLayout>
-    </cui:CirclePage>
+    </ContentPage.Content>
 
-    <cui:CirclePage>
-        <AbsoluteLayout>
-            <AbsoluteLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoToWorkoutCountdownCommand}" />
-            </AbsoluteLayout.GestureRecognizers>
-
-            <Image Source="images/homepage_bg.png"
-                   AbsoluteLayout.LayoutFlags="All"
-                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
-
-            <e:ElottieAnimationView AbsoluteLayout.LayoutFlags="All"
-                                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                                    AnimationFile="animations/running.json"
-                                    AutoPlay="True"
-                                    AutoRepeat="False" />
-
-            <Label Text="Start running"
-                   FontSize="{StaticResource FontSizeS}"
-                   TextColor="#F6F6F6"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand"
-                   AbsoluteLayout.LayoutFlags="All"
-                   AbsoluteLayout.LayoutBounds="0, 0.31, 1, .1" />
-
-            <StackLayout BackgroundColor="#8989FB"
-                         AbsoluteLayout.LayoutFlags="All"
-                         AbsoluteLayout.LayoutBounds="0.2, .1, 1., .1"
-                         IsVisible="False">
-                <StackLayout.Triggers>
-                    <DataTrigger TargetType="StackLayout"
-                                 Binding="{Binding IsLocationDisabled}"
-                                 Value="True">
-                        <Setter Property="IsVisible"
-                                Value="True" />
-                    </DataTrigger>
-                </StackLayout.Triggers>
-
-                <Label FontSize="{StaticResource FontSizeXXXXS}"
-                       TextColor="White"
-                       Text="Enable GPS to continue"
-                       VerticalOptions="CenterAndExpand"
-                       HorizontalOptions="CenterAndExpand">
-                </Label>
-            </StackLayout>
-        </AbsoluteLayout>
-    </cui:CirclePage>
-
-    <cui:CirclePage>
-        <AbsoluteLayout>
-            <Image Source="images/homepage_bg.png"
-                   AbsoluteLayout.LayoutFlags="All"
-                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
-
-            <e:ElottieAnimationView AbsoluteLayout.LayoutFlags="All"
-                                    AbsoluteLayout.LayoutBounds=".5, .65, .35, .36"
-                                    AnimationFile="animations/settings.json"
-                                    AutoPlay="True"
-                                    AutoRepeat="False" />
-
-            <Label Text="Settings"
-                   FontSize="{StaticResource FontSizeS}"
-                   TextColor="#F6F6F6"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand"
-                   AbsoluteLayout.LayoutFlags="All"
-                   AbsoluteLayout.LayoutBounds="0, 0.31, 1, .1" />
-        </AbsoluteLayout>
-    </cui:CirclePage>
-
-</cui:IndexPage>
+</ContentPage>

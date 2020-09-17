@@ -76,7 +76,7 @@ namespace Workout.Models
         /// </summary>
         private void InitializeBpmRangeOccurrences()
         {
-            _bpmRangeOccurrences = new int[_bpmRanges + 1];
+            _bpmRangeOccurrences = new int[_bpmRanges];
         }
 
         /// <summary>

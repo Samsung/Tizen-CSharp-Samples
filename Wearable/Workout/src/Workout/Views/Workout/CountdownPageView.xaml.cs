@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Tizen.Wearable.CircularUI.Forms;
 using Workout.Services;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Workout.Views.Workout
@@ -9,7 +9,7 @@ namespace Workout.Views.Workout
     /// Workout countdown page view.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CountdownPageView : CirclePage
+    public partial class CountdownPageView : ContentPage
     {
         #region fields
 

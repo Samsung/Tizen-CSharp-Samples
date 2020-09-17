@@ -1,6 +1,7 @@
 ﻿using System;
 using Tizen.Wearable.CircularUI.Forms;
 using Workout.Services;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Workout.Views.Workout
@@ -9,7 +10,7 @@ namespace Workout.Views.Workout
     /// Workout pause page view.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PausePageView : CirclePage
+    public partial class PausePageView : ContentPage
     {
         #region fields
 

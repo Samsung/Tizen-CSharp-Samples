@@ -1,5 +1,5 @@
-﻿using Xamarin.Forms.Xaml;
-using Tizen.Wearable.CircularUI.Forms;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Workout.Views
 {
@@ -7,7 +7,7 @@ namespace Workout.Views
     /// Privilege denied page view.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PrivilegeDeniedPageView : CirclePage
+    public partial class PrivilegeDeniedPageView : ContentPage
     {
         #region methods
 

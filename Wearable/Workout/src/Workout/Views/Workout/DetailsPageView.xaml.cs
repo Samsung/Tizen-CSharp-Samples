@@ -1,6 +1,6 @@
 ﻿using System;
-using Tizen.Wearable.CircularUI.Forms;
 using Workout.ViewModels.Workout;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Workout.Views.Workout
@@ -9,7 +9,7 @@ namespace Workout.Views.Workout
     /// Workout details page view.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DetailsPageView : CirclePage
+    public partial class DetailsPageView : ContentPage
     {
         #region fields
 
@@ -30,6 +30,11 @@ namespace Workout.Views.Workout
             InitializeComponent();
 
             _viewModel = BindingContext as DetailsPageViewModel;
+
+            foreach (BindableObject item in listView.ItemsSource)
+            {
+                item.BindingContext = _viewModel;
+            }
         }
 
         /// <summary>

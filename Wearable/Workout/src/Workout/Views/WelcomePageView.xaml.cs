@@ -1,5 +1,5 @@
-﻿using Xamarin.Forms.Xaml;
-using Tizen.Wearable.CircularUI.Forms;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Workout.Views
 {
@@ -7,7 +7,7 @@ namespace Workout.Views
     /// Welcome page view.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WelcomePageView : CirclePage
+    public partial class WelcomePageView : ContentPage
     {
         #region methods
 

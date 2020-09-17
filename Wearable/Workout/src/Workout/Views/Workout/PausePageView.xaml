@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<cui:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:cui ="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
              xmlns:viewModels="clr-namespace:Workout.ViewModels.Workout;assembly=Workout"
              xmlns:tizen="clr-namespace:Xamarin.Forms.PlatformConfiguration.TizenSpecific;assembly=Xamarin.Forms.Core"
-             x:Class="Workout.Views.Workout.PausePageView"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Workout.Views.Workout.PausePageView">
 
-    <cui:CirclePage.BindingContext>
+    <ContentPage.BindingContext>
         <viewModels:PausePageViewModel />
-    </cui:CirclePage.BindingContext>
+    </ContentPage.BindingContext>
 
-    <cui:CirclePage.Content>
+    <ContentPage.Content>
         <AbsoluteLayout>
             <Image Source="images/workout_pause_page_bg.png" />
             <Label Text="{Binding LocalTime, StringFormat='{0:hh:mm}'}"
@@ -54,6 +53,6 @@
                     Command="{Binding GoToWorkoutCompletedCommand}"
                     tizen:VisualElement.Style="bottom" />
         </AbsoluteLayout>
-    </cui:CirclePage.Content>
+    </ContentPage.Content>
 
-</cui:CirclePage>
+</ContentPage>

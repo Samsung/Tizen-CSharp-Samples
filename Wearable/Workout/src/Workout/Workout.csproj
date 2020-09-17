@@ -20,8 +20,8 @@
     <None Remove="lib\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ElottieSharp.Forms" Version="0.9.5-preview" />
-    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.4.0" />
+    <PackageReference Include="ElottieSharp.Forms" Version="0.9.6-preview" />
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.5.1" />
   </ItemGroup>
 
   <ItemGroup>

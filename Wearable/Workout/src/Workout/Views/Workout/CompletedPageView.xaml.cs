@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Tizen.Wearable.CircularUI.Forms;
 using Workout.Services;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Workout.Views.Workout
@@ -9,7 +9,7 @@ namespace Workout.Views.Workout
     /// Workout completed page view.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CompletedPageView : CirclePage
+    public partial class CompletedPageView : ContentPage
     {
         #region methods
 

@@ -81,8 +81,9 @@ namespace Workout
         {
             var app = new Program();
 
+            Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
             Xamarin.Forms.Forms.Init(app);
-            Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
+            Tizen.Wearable.CircularUI.Forms.FormsCircularUI.Init();
 
             app.Run(args);
         }

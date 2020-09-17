@@ -43,7 +43,7 @@ namespace Workout.ViewModels
         /// <summary>
         /// Navigates to workout countdown page.
         /// </summary>
-        public ICommand GoToWorkoutCountdownCommand { get; private set; }
+        public ICommand ChangePage { get; set; }
 
         #endregion
 
@@ -86,15 +86,16 @@ namespace Workout.ViewModels
         /// </summary>
         private void InitCommands()
         {
-            GoToWorkoutCountdownCommand = new Command(ExecuteGoToWorkoutCountdown);
+            ChangePage = new Command<int>(ExecuteGoToPage);
         }
 
         /// <summary>
-        /// Handles execution of "GoToWorkoutCountdownCommand".
+        /// Handles execution of "ChangePage".
+        /// <param name="index">Page index.</param>
         /// </summary>
-        private void ExecuteGoToWorkoutCountdown()
+        private void ExecuteGoToPage(int index)
         {
-            if (!_isLocationDisabled)
+            if (index == 1 && !_isLocationDisabled)
             {
                 PageNavigationService.Instance.GoToWorkoutCountdownPage();
             }

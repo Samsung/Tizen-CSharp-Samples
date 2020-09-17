@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Workout.Models.Workout;
@@ -40,9 +39,36 @@ namespace Workout.ViewModels.Workout
         }
 
         /// <summary>
-        /// Workout details items data.
+        /// Workout elapsed time.
         /// </summary>
-        public List<DetailsItemData> ItemsData
+        public string ElapsedTime
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Workout distance.
+        /// </summary>
+        public string Distance
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Workout average pace.
+        /// </summary>
+        public string AveragePace
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Workout intensity.
+        /// </summary>
+        public string Intensity
         {
             get;
             set;
@@ -121,34 +147,10 @@ namespace Workout.ViewModels.Workout
 
             int[] bpmRangeOccurrences = workoutData.BpmRangeOccurrences;
 
-            ItemsData = new List<DetailsItemData>
-            {
-                new DetailsItemData
-                {
-                    Name = "time",
-                    Value = string.Format("{0:hh\\.mm\\\'ss}", workoutData.ElapsedTime),
-                    Icon = "images/details_time_icon.png"
-                },
-                new DetailsItemData
-                {
-                    Name = "distance",
-                    Value = (workoutData.Distance / 1000).ToString("F2") + " " + SettingsService.Instance.Distance.Unit,
-                    Icon = "images/details_distance_icon.png"
-                },
-                new DetailsItemData
-                {
-                    Name = "average pace",
-                    Value = workoutData.Pace.ToString("F2") + " min/" + SettingsService.Instance.Distance.Unit,
-                    Icon = "images/details_average_pace_icon.png"
-                },
-                new DetailsItemData
-                {
-                    Name = "intensity",
-                    Value = Array.LastIndexOf(bpmRangeOccurrences, bpmRangeOccurrences.Max()).ToString(),
-                    Icon = "images/details_intensity_icon.png",
-                    IsActionButtonVisible = true
-                }
-            };
+            ElapsedTime = string.Format("{0:hh\\.mm\\\'ss}", workoutData.ElapsedTime);
+            Distance = (workoutData.Distance / 1000).ToString("F2") + " " + SettingsService.Instance.Distance.Unit;
+            AveragePace = workoutData.Pace.ToString("F2") + " min/" + SettingsService.Instance.Distance.Unit;
+            Intensity = Array.LastIndexOf(bpmRangeOccurrences, bpmRangeOccurrences.Max()).ToString();
 
             InitCommands();
             AddEventListeners();
