@@ -32,7 +32,7 @@ namespace FeedbackApp
         /// <param name="a">Event argument</param>
         private void PatternItemTapped(object sender, ItemTappedEventArgs a)
         {
-            string pattern = a.Item.ToString();
+            string pattern = a.Item?.ToString();
             Feedback feedback = new Feedback();
 
             try
