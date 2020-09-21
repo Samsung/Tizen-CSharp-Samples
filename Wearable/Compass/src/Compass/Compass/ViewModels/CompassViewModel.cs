@@ -72,7 +72,7 @@ namespace Compass.ViewModels
         public CompassViewModel()
         {
             _compassModel.CompassDataUpdated += OnCompassDataUpdated;
-            _compassModel?.Start();
+            _compassModel.Start();
         }
 
         /// <summary>
