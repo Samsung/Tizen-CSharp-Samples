@@ -62,9 +62,12 @@ namespace SquatCounter.Services
         /// </summary>
         public void Dispose()
         {
-            _pressureSensor?.Stop();
-            _pressureSensor.DataUpdated -= PressureSensorUpdated;
-            _pressureSensor?.Dispose();
+            if(_pressureSensor != null)
+            {
+                _pressureSensor.Stop();
+                _pressureSensor.DataUpdated -= PressureSensorUpdated;
+                _pressureSensor.Dispose();
+            }
         }
     }
 }
