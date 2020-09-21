@@ -92,8 +92,11 @@ namespace Ultraviolet.ViewModels
         /// </summary>
         public void Dispose()
         {
-            _ultravioletSensorService.UvLevelUpdated -= OnUvLevelUpdated;
-            _ultravioletSensorService?.Stop();
+            if(_ultravioletSensorService != null)
+            {
+                _ultravioletSensorService.UvLevelUpdated -= OnUvLevelUpdated;
+                _ultravioletSensorService.Stop();
+            }
         }
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-﻿using System;
+using System;
 using Tizen.Sensor;
 using Ultraviolet.Enums;
 using Ultraviolet.Interfaces;
@@ -52,8 +52,11 @@ namespace Ultraviolet.Tizen.Wearable.Services
         /// </summary>
         public void Start()
         {
-            _ultravioletSensor.DataUpdated += OnDataUpdated;
-            _ultravioletSensor?.Start();
+            if (_ultravioletSensor != null)
+            {
+                _ultravioletSensor.DataUpdated += OnDataUpdated;
+                _ultravioletSensor.Start();
+            }
         }
 
         /// <summary>
