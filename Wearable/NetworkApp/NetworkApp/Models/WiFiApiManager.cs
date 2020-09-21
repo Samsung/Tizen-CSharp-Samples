@@ -118,12 +118,12 @@ namespace NetworkApp.Models
             // Get a WiFiAP instance with essid from Wi-Fi AP list
             WiFiAP ap = FindAP(essid);
             // Set password
-            if (password.Length > 0)
+            if (password.Length > 0 && ap != null)
             {
                 ap.SecurityInformation.SetPassphrase(password);
             }
 
-            return ap.ConnectAsync();
+            return ap?.ConnectAsync();
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace NetworkApp.Models
         {
             Logger.Log("Disconnect() " + essid);
             // Get a WiFiAP instance with essid from Wi-Fi AP list and disconnect it by calling Tizen C# API
-            return FindAP(essid).DisconnectAsync();
+            return FindAP(essid)?.DisconnectAsync();
         }
 
         /// <summary>
