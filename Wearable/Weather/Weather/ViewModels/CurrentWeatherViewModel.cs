@@ -228,13 +228,13 @@ namespace Weather.ViewModels
             var propertyName = propertyChangedEventArgs.PropertyName;
             if (propertyName == nameof(NotificationTask<Forecast>.IsFaulted))
             {
-                if (Forecast.InnerException is HttpException exception)
+                if (Forecast?.InnerException is HttpException exception)
                 {
                     await ErrorHandler.HandleException((int)exception.StatusCode, exception.StatusCode.ToString());
                 }
             }
 
-            if (propertyName == nameof(NotificationTask<Forecast>.IsSuccessfullyCompleted))
+            if (propertyName == nameof(NotificationTask<Forecast>.IsSuccessfullyCompleted) && Forecast != null)
             {
                 foreach (var currentWeather in Forecast.Result.WeatherList)
                 {
