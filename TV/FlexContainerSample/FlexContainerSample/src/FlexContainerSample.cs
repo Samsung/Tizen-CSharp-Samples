@@ -75,6 +75,7 @@ namespace FlexContainerSample
             guide.FontFamily = "Samsung One 600";
             guide.Position = new Position(0, 94);
             guide.MultiLine = false;
+            //guide.PointSize = 15.0f;
             guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "FlexContainer Sample \n";
             guide.TextColor = Color.White;
@@ -87,7 +88,7 @@ namespace FlexContainerSample
                 PositionUsesPivotPoint = true,
                 PivotPoint = PivotPoint.TopLeft,
                 ParentOrigin = ParentOrigin.TopLeft,
-                Position = new Position(710, 275),
+                Position = new Position(710, 275, 0),
                 Size = new Size(400, 400),
                 BackgroundColor = Color.White,
                 LayoutDirection = ViewLayoutDirectionType.LTR,
@@ -110,6 +111,7 @@ namespace FlexContainerSample
                 flexItem.ParentOrigin = ParentOrigin.TopLeft;
                 // Set different background colour to help to identify different items
                 flexItem.BackgroundColor = new Vector4(((float)i) / NUM_FLEX_ITEMS, ((float)(NUM_FLEX_ITEMS - i)) / NUM_FLEX_ITEMS, 1.0f, 1.0f);
+                //flexItem.Text = i + "";
                 flexItem.Name = i + "";
                 flexItem.HorizontalAlignment = HorizontalAlignment.Center;
                 flexItem.VerticalAlignment = VerticalAlignment.Center;
@@ -131,6 +133,7 @@ namespace FlexContainerSample
             tableView.SizeHeight = 180;
             tableView.PivotPoint = PivotPoint.TopLeft;
             tableView.ParentOrigin = ParentOrigin.TopLeft;
+            //tableView.CellPadding = new Vector2(15, 10);
             Window.Instance.GetDefaultLayer().Add(tableView);
 
             string[] btnName = { "ContentDirection", "FlexDirection", "FlexWrap", "JustifyContent", "AlignItems", "AlignContent" };
@@ -424,6 +427,7 @@ namespace FlexContainerSample
             textVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             textVisual.Add(TextVisualProperty.Text, new PropertyValue(text));
             textVisual.Add(TextVisualProperty.TextColor, new PropertyValue(Color.Black));
+            //textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(7));
             textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize7));
             textVisual.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             textVisual.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));

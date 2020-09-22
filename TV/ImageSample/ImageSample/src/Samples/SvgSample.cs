@@ -16,9 +16,12 @@
  */
 
 using System;
+using Tizen;
+using System.Runtime.InteropServices;
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Constants;
 
 namespace ImageSample
 {
@@ -36,7 +39,7 @@ namespace ImageSample
         private float svgScale = 1;
         private ImageView svgImage;
         private Button zoomInButton, zoomOutButton;
-        /// <summary>
+        // <summary>
         /// Constructor to create new RadioButtonSample
         /// </summary>
         public SvgSample()
@@ -56,13 +59,15 @@ namespace ImageSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size = new Size(1920, 96);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position = new Position(0, 94);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
+            //guide.PointSize = 15.0f;
             guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "Svg Sample \n";
             guide.TextColor = Color.White;
+            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
 
             //Create an imageView to show the svg file.
@@ -72,7 +77,7 @@ namespace ImageSample
             svgImage.PositionUsesPivotPoint = true ;
             svgImage.PivotPoint = PivotPoint.TopLeft;
             svgImage.ParentOrigin = ParentOrigin.TopLeft;
-            svgImage.Position = new Position(860, 400);
+            svgImage.Position2D = new Position2D(860, 400);
             Window.Instance.GetDefaultLayer().Add(svgImage);
 
             // Create zoomInButton which can make svgImage bigger
@@ -80,8 +85,8 @@ namespace ImageSample
             zoomInButton.PositionUsesPivotPoint = true;
             zoomInButton.PivotPoint = PivotPoint.TopLeft;
             zoomInButton.ParentOrigin = ParentOrigin.TopLeft;
-            zoomInButton.Position = new Position(460, 900);
-            zoomInButton.Clicked += ZoomInButtonClick;
+            zoomInButton.Position2D = new Position2D(460, 900);
+            zoomInButton.ClickEvent += ZoomInButtonClick;
             zoomInButton.Focusable = true;
             Window.Instance.GetDefaultLayer().Add(zoomInButton);
 
@@ -90,8 +95,8 @@ namespace ImageSample
             zoomOutButton.PositionUsesPivotPoint = true;
             zoomOutButton.PivotPoint = PivotPoint.TopLeft;
             zoomOutButton.ParentOrigin = ParentOrigin.TopLeft;
-            zoomOutButton.Position = new Position(1060, 900);
-            zoomOutButton.Clicked += ZoomOutButtonClick;
+            zoomOutButton.Position2D = new Position2D(1060, 900);
+            zoomOutButton.ClickEvent += ZoomOutButtonClick;
             zoomOutButton.Focusable = true;
             Window.Instance.GetDefaultLayer().Add(zoomOutButton);
 
@@ -143,10 +148,9 @@ namespace ImageSample
         {
             Button button = new Button();
             button.Focusable = true;
-            button.Size = new Size(400, 80);
+            button.Size2D = new Size2D(400, 80);
             button.Focusable = true;
             button.Name = name;
-            button.Text = text;
             button.TextColor = Color.White;
             button.BackgroundImage = normalImagePath;
 
@@ -198,6 +202,7 @@ namespace ImageSample
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
+            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
             map.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));

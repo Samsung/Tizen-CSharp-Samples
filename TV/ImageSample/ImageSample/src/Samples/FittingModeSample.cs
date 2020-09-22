@@ -16,9 +16,12 @@
  */
 
 using System;
+using Tizen;
+using System.Runtime.InteropServices;
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Constants;
 
 namespace ImageSample
 {
@@ -61,18 +64,20 @@ namespace ImageSample
             guide.PositionUsesPivotPoint = true;
             guide.ParentOrigin = ParentOrigin.TopLeft;
             guide.PivotPoint = PivotPoint.TopLeft;
-            guide.Size = new Size(1920, 96);
+            guide.Size2D = new Size2D(1920, 96);
             guide.FontFamily = "Samsung One 600";
-            guide.Position = new Position(0, 94);
+            guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
+            //guide.PointSize = 15.0f;
             guide.PointSize = DeviceCheck.PointSize15;
             guide.Text = "FittingMode Sample \n";
             guide.TextColor = Color.White;
+            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
 
             //Create an imageView instance to show the fittingMode property.
             image = new ImageView();
-            image.Size = new Size(200, 200);
+            image.Size2D = new Size2D(200, 200);
             pngImageMap = new PropertyMap();
             pngImageMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
                        .Add(ImageVisualProperty.URL, new PropertyValue(image_png))
@@ -85,7 +90,7 @@ namespace ImageSample
             image.PositionUsesPivotPoint = true;
             image.PivotPoint = PivotPoint.TopLeft;
             image.ParentOrigin = ParentOrigin.TopLeft;
-            image.Position = new Position(860, 400);
+            image.Position2D = new Position2D(860, 400);
             //Add the imageView to window.
             Window.Instance.GetDefaultLayer().Add(image);
 
@@ -96,8 +101,9 @@ namespace ImageSample
             fittingModeButton.PositionUsesPivotPoint = true;
             fittingModeButton.PivotPoint = PivotPoint.TopLeft;
             fittingModeButton.ParentOrigin = ParentOrigin.TopLeft;
-            fittingModeButton.Position = new Position(660, 700);
-            fittingModeButton.Clicked += FittingModeButtonClick;
+            fittingModeButton.Position2D = new Position2D(660, 700);
+            //fittingModeButton.Position2D = image.Position2D + new Position2D(-150, (int)image.SizeHeight / 2 + 300);
+            fittingModeButton.ClickEvent += FittingModeButtonClick;
             fittingModeButton.Focusable = true;
             Window.Instance.GetDefaultLayer().Add(fittingModeButton);
             FocusManager.Instance.SetCurrentFocusView(fittingModeButton);
@@ -191,6 +197,7 @@ namespace ImageSample
             textVisual.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             textVisual.Add(TextVisualProperty.Text, new PropertyValue(text));
             textVisual.Add(TextVisualProperty.TextColor, new PropertyValue(Color.Black));
+            //textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(8));
             textVisual.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             textVisual.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             textVisual.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
@@ -210,6 +217,7 @@ namespace ImageSample
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
+            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
             map.Add(TextVisualProperty.PointSize, new PropertyValue(DeviceCheck.PointSize8));
             map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
@@ -234,10 +242,9 @@ namespace ImageSample
         {
             Button button = new Button();
             button.Focusable = true;
-            button.Size = new Size(600, 80);
+            button.Size2D = new Size2D(600, 80);
             button.Focusable = true;
             button.Name = name;
-            button.Text = text;
             button.TextColor = Color.White;
             button.BackgroundImage = normalImagePath;
 
