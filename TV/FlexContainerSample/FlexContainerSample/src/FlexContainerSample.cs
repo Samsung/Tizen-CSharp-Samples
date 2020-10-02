@@ -146,8 +146,7 @@ namespace FlexContainerSample
                     Button button = CreateButton(btnName[row * 3 + column], btnLabel[row * 3 + column]);
                     button.SizeWidth = 560;
                     button.SizeHeight = 80;
-                    button.Focusable = true;
-                    button.Clicked += ButtonClick;
+                    button.ClickEvent += ButtonClick;   // for API8 use Clicked
                     tableView.AddChild(button, new TableView.CellPosition(row, column));
                     if (0 == row && column == 0)
                     {
@@ -378,6 +377,7 @@ namespace FlexContainerSample
             button.Name = name;
             button.Text = text;
             button.TextColor = Color.White;
+            button.PointSize = DeviceCheck.PointSize7;
             button.BackgroundImage = normalImagePath;
 
             button.FocusGained += (obj, e) =>
