@@ -109,7 +109,7 @@ namespace AnimationsSample
             root = new View()
             {
                 Size = new Size(window.Size.Width, window.Size.Height),
-                BackgroundColor = Color.White
+                BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 1.0f)
             };
             
             TextLabel title = new TextLabel("Animation");
@@ -521,38 +521,6 @@ namespace AnimationsSample
         }
 
         /// <summary>
-        /// Create a Text visual.
-        /// </summary>
-        /// <param name="text">The text of the Text visual</param>
-        /// <param name="color">The color of the text</param>
-        /// <returns>return a map which contain the properties of the text</returns>
-        private PropertyMap CreateTextVisual(string text, Color color)
-        {
-            PropertyMap map = new PropertyMap();
-            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            map.Add(TextVisualProperty.Text, new PropertyValue(text));
-            map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            map.Add(TextVisualProperty.PointSize, new PropertyValue(mMiddlePointSize));
-            map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
-            map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-            map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
-            return map;
-        }
-
-        /// <summary>
-        /// Create a Color visual.
-        /// </summary>
-        /// <param name="color">The color value of the visual</param>
-        /// <returns>return a map which contain the properties of the color</returns>
-        private PropertyMap CreateColorVisual(Vector4 color)
-        {
-            PropertyMap map = new PropertyMap();
-            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
-            map.Add(ColorVisualProperty.MixColor, new PropertyValue(color));
-            return map;
-        }
-
-        /// <summary>
         /// Create a Button.
         /// </summary>
         /// <param name="name">The name of button</param>
@@ -570,13 +538,14 @@ namespace AnimationsSample
             // Set each label and text properties.
             button.Text = text;
             button.TextColor = Color.White;
+            button.PointSize = mMiddlePointSize;
             if (button.IsSelected)
             {
                 button.BackgroundColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
             }
             else 
             {
-                button.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.9f);
+                button.BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 1.0f);
             }
 
             return button;
