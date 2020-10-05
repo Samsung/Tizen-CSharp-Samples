@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="5.5" package="org.tizen.example.Gallery" version="1.0.0">
+  <profile name="common" />
+  <ui-application appid="org.tizen.example.Gallery"
+					exec="Gallery.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single"
+					api-version="6">
+    <label>Gallery</label>
+    <icon>Gallery.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+  </ui-application>
+</manifest>
