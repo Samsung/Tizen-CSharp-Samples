@@ -33,6 +33,4 @@ Tizen C# Samples for Mobile, Wearable, and TV profiles.
 ```
 
 ### Branch policy
-
 * master: ready applications for Tizen 5.5
-* dev: for development
