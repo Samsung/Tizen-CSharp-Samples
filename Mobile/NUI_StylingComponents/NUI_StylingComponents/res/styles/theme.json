@@ -1,0 +1,12 @@
+{
+    "styles": {
+        "CustomButton": {
+            "color": [ 1, 0, 0, 1 ]
+        },
+        "CustomLabel": {
+            "fontStyle": { "weight": "normal" },
+            "pointSize": 12,
+            "textColor": [ 1, 1, 1, 1 ]
+        }
+    }
+}
