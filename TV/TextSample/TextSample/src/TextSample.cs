@@ -102,7 +102,7 @@ namespace TextSample
             guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
             //guide.PointSize = 15.0f;
-            guide.PointSize = DeviceCheck.PointSize15;
+            guide.PointSize = DeviceCheck.PointSize8;
             guide.Text = "Text Sample";
             Window.Instance.GetDefaultLayer().Add(guide);
 
@@ -709,6 +709,7 @@ namespace TextSample
             checkBox.Text = text;
             checkBox.TextColor = Color.White;
             checkBox.TextPadding = new Extents(20, 12, 0, 0);
+            checkBox.PointSize = DeviceCheck.PointSize7;
             checkBox.Size2D = new Size2D(300, 48);
             checkBox.Focusable = true;
             checkBox.ParentOrigin = ParentOrigin.TopLeft;
@@ -744,6 +745,9 @@ namespace TextSample
             button.Focusable = true;
             button.Name = name;
             button.Text = text;
+            button.PointSize = DeviceCheck.PointSize8;
+            button.BackgroundImage = normalImagePath;
+            button.TextColor = Color.White;
 
             // Chang background Visual and Label when focus gained.
             button.FocusGained += (obj, e) =>
