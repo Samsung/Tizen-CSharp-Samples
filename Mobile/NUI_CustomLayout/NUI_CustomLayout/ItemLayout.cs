@@ -34,12 +34,12 @@ namespace SimpleLayout
 {
     internal class ItemLayout : LayoutGroup
     {
-        private static readonly int MARGIN = 5;
+        private const int MARGIN = 5;
 
-        private static readonly int TEXT_LEFT_MARGIN = 120;
-        private static readonly int TEXT_RIGTH_MARGIN = 710;
-        private static readonly int DESCRIPTION_TOP_MARGIN = 70;
-        private static readonly int TEXT_HEIGHT = 50;
+        private const int TEXT_LEFT_MARGIN = 120;
+        private const int TEXT_RIGTH_MARGIN = 710;
+        private const int DESCRIPTION_TOP_MARGIN = 70;
+        private const int TEXT_HEIGHT = 50;
 
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
@@ -53,13 +53,10 @@ namespace SimpleLayout
             {
                 if (childLayout != null)
                 {
-                    Type imageType = typeof(Tizen.NUI.BaseComponents.ImageView);
                     Type textType = typeof(Tizen.NUI.BaseComponents.TextLabel);
-                    Type childType = childLayout.Owner.GetType();
-
                     MeasureChild(childLayout, widthMeasureSpec, heightMeasureSpec);
 
-                    if (childType.Equals(textType))
+                    if (childLayout.Owner is TextLabel)
                     {
                         MeasureChild(childLayout, widthMeasureSpec, heightMeasureSpec);
                         itemHeight += childLayout.MeasuredHeight.Size;
