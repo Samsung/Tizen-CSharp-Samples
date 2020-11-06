@@ -52,8 +52,7 @@ namespace SimpleLayout
             foreach (LayoutItem childLayout in LayoutChildren)
             {
                 if (childLayout != null)
-                {
-                    Type textType = typeof(Tizen.NUI.BaseComponents.TextLabel);
+                { 
                     MeasureChild(childLayout, widthMeasureSpec, heightMeasureSpec);
 
                     if (childLayout.Owner is TextLabel)
