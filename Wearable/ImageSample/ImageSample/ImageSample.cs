@@ -335,6 +335,7 @@ namespace ImageSample
                 Button mButton = CreateButton(mCaseString[i], mNeedButton[i]);
                 // Bind PushButton's click event to ButtonClick.
                 mButton.TouchEvent += OnButtonTouched;
+                mButton.PointSize = 3;
                 mButtonTableView.AddChild(mButton, new TableView.CellPosition(0, i));
             }
         }
