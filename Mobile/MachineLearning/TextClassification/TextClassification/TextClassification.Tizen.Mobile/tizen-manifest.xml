@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.tizen.example.TextClassification.Tizen.Mobile" version="1.0.0" api-version="5.5" xmlns="http://tizen.org/ns/packages">
-  <profile name="mobile" />
-  <ui-application appid="org.tizen.example.TextClassification.Tizen.Mobile" exec="TextClassification.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" splash-screen-display="true" launch_mode="single">
-    <label>TextClassification.Tizen.Mobile</label>
-    <icon>TextClassification.Tizen.Mobile.png</icon>
-    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
-    <splash-screens />
-  </ui-application>
-  <shortcut-list />
+<manifest package="org.tizen.example.TextClassification.Tizen.Mobile" version="1.0.0" api-version="6.0.0" xmlns="http://tizen.org/ns/packages">
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.example.TextClassification.Tizen.Mobile" exec="TextClassification.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" splash-screen-display="true" launch_mode="single">
+        <label>TextClassification.Tizen.Mobile</label>
+        <icon>TextClassification.Tizen.Mobile.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <dependencies />
+    <provides-appdefined-privileges />
 </manifest>
