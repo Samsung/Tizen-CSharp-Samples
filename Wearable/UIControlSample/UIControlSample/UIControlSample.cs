@@ -16,11 +16,9 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Constants;
 using Tizen;
 
 namespace UIControlSample
@@ -33,34 +31,45 @@ namespace UIControlSample
         // Resource path Url
         private static string mResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images";
 
-        // TextLabel for checkBox
-        TextLabel mtextLabelCheckBox;
-        // TextLabel for RadioButton
-        TextLabel mtextLabelRadio;
+        // CheckBox and RadioButton texts
+        private static string[] mCheckBoxTexts = { "Background", "Color", "Underline" };
+        private static string[] mRadioButtonTexts = { "Red", "Green", "Blue" };
+
+        // Title TextLabel for checkBox
+        TextLabel mTitleLabelCheckBox;
+        // Title TextLabel for RadioButton
+        TextLabel mTitleLabelRadio;
         // Slider Control
         Slider mSlider;
+        TextLabel mSliderText;
         // ProgressBar Control
         Progress mProgress;
+        TextLabel mProgressText;
+        // Switch Control
+        TextLabel mSwitchText;
+
+        // Timer used for process indicator
+        private Timer mTimer;
 
         // A string list of sample cases
         private string[] mCaseString =
         {
-             "CheckBox Button",
+             "CheckBox",
              "Radio Button",
              "Slider",
-             "Progress Bar"
+             "Progress Bar",
+             "Switch"
         };
         // A number of sample cases
-        private uint mCaseCount = 4;
+        private uint mCaseCount = 5;
         private int mCurruntCaseIndex;
 
         // A View contains every Controls.
         private View mControlsView;
 
-        private Size mControlSize = new Size(150, 150);
+        private readonly Size mControlSize = new Size(150, 150);
 
         // UI properties
-        private Position mScreenStartPosition = new Position(0, 0, 0);
         private Animation[] mScreenAnimation;
 
         private Size mButtonSize = new Size(230, 35);
@@ -162,6 +171,22 @@ namespace UIControlSample
             mScreenAnimation[1].Duration = 100;
             mScreenAnimation[1].AnimateBy(mControlsView, "Position", new Vector3(360, 0, 0));
 
+            // Create Timer for mProgress
+            mTimer = new Timer(50);
+            // Timer Callback function
+            mTimer.Tick += (obj, e) => {
+                if (mProgress != null) {
+                    mProgress.CurrentValue += 1.0f;
+                    if (Math.Ceiling(mProgress.CurrentValue) >= 100.0f)
+                    {
+                        mProgress.CurrentValue = 0.0f;
+                    }
+                    mProgressText.Text = Math.Floor(mProgress.CurrentValue).ToString() + "%";
+                }
+                return true;
+            };
+            mTimer.Start();
+
             // Add Signal Callback functions
             Window.Instance.TouchEvent += OnWindowTouched;
             Window.Instance.KeyEvent += OnKey;
@@ -192,6 +217,20 @@ namespace UIControlSample
             }
         }
 
+        private TextLabel CreateTitleLabel(string text) {
+            TextLabel titleLabel = new TextLabel(text);
+            titleLabel.Size = new Size(250, 60);
+            titleLabel.HorizontalAlignment = HorizontalAlignment.Center;
+            titleLabel.VerticalAlignment = VerticalAlignment.Center;
+            titleLabel.PositionUsesPivotPoint = true;
+            titleLabel.PivotPoint = PivotPoint.Center;
+            titleLabel.ParentOrigin = ParentOrigin.Center;
+            titleLabel.Position = new Position(0, -55);
+            titleLabel.PointSize = mLargePointSize;
+            titleLabel.BackgroundColor = Color.White;
+            titleLabel.FontFamily = "SamsungOneUI_200";
+            return titleLabel;
+        }
         /// <summary>
         /// Create a Control
         /// </summary>
@@ -202,273 +241,151 @@ namespace UIControlSample
         {
             // A View that contain a control element
             View view = new View();
+            
+            // TextLabel for the control
+            TextLabel titleLabel = CreateTitleLabel(text);
+            view.Add(titleLabel);
+
             // CheckBox sample
             if (text == mCaseString[0])
             {
-                // TextLabel for the checkbox
-                mtextLabelCheckBox = new TextLabel("CheckBox");
-                mtextLabelCheckBox.Size = new Size(250, 60);
-                mtextLabelCheckBox.HorizontalAlignment = HorizontalAlignment.Center;
-                mtextLabelCheckBox.VerticalAlignment = VerticalAlignment.Center;
-                // Set the position of checkbox.
-                mtextLabelCheckBox.PositionUsesPivotPoint = true;
-                mtextLabelCheckBox.PivotPoint = PivotPoint.Center;
-                mtextLabelCheckBox.ParentOrigin = ParentOrigin.Center;
-                mtextLabelCheckBox.Position = new Position(0, -55, 0);
-                mtextLabelCheckBox.PointSize = mLargePointSize;
-                mtextLabelCheckBox.BackgroundColor = Color.White;
-                mtextLabelCheckBox.FontFamily = "SamsungOneUI_200";
-
-                view.Add(mtextLabelCheckBox);
-
+                // Store title label
+                mTitleLabelCheckBox = titleLabel;
                 // Create three CheckBoxs
-                Position checkBoxStartPosition = new Position(100, 0, 0);
+                Position checkBoxStartPosition = new Position(70, 0);
                 CheckBox[] checkBox = new CheckBox[3];
                 for (int i = 0; i < 3; ++i)
                 {
-                    // New CheckBox
+                    // New CheckBox with label
                     checkBox[i] = new CheckBox();
+                    checkBox[i].Text = mCheckBoxTexts[i];
                     // Set the CheckBox position
-                    checkBox[i].Position = checkBoxStartPosition + new Position(0, 40, 0) * i;
+                    checkBox[i].Position = checkBoxStartPosition + new Position(0, 40 * i);
                     checkBox[i].PositionUsesPivotPoint = true;
                     checkBox[i].PivotPoint = PivotPoint.CenterLeft;
                     checkBox[i].ParentOrigin = ParentOrigin.CenterLeft;
 
-                    if (checkBox[i].IsSelected)
-                    {
-                        // Make Image Visual for the selected checkbox visual
-                        checkBox[i].BackgroundImage = mResourceUrl + "/CheckBox/Selected.png";
-                    }
-                    else
-                    {
-                        // Make Image Visual for the unselected checkbox visual
-                        checkBox[i].BackgroundImage = mResourceUrl + "/CheckBox/Unselected.png";
-                    }
-                    
                     checkBox[i].Scale = new Vector3(0.8f, 0.8f, 0.8f);
+                    checkBox[i].Size = new Size(220, 48);
+                    checkBox[i].PointSize = mMiddlePointSize + 2;
+                    checkBox[i].TextColor = Color.White;
                     // Add a callback function for the StateChanged signal
                     checkBox[i].StateChangedEvent += OnCheckBoxChanged;
                     view.Add(checkBox[i]);
                 }
-                // Make Text Visual
-                // Set the Label of Checkbox
-                checkBox[0].Text = "Shadow";
-                checkBox[0].PointSize = mMiddlePointSize + 2;
-                checkBox[0].TextColor = Color.White;
-
-                checkBox[1].Text = "Color";
-                checkBox[1].PointSize = mMiddlePointSize + 2;
-                checkBox[1].TextColor = Color.White;
-
-                checkBox[2].Text = "Underline";
-                checkBox[2].PointSize = mMiddlePointSize + 2;
-                checkBox[2].TextColor = Color.White;
             }
             else if (text == mCaseString[1])
             {
-                // TextLabel for the RadioButton
-                mtextLabelRadio = new TextLabel("Radio Button");
-                mtextLabelRadio.Size = new Size(250, 60);
-                mtextLabelRadio.HorizontalAlignment = HorizontalAlignment.Center;
-                mtextLabelRadio.VerticalAlignment = VerticalAlignment.Center;
-                // Set the position of textLabel.
-                mtextLabelRadio.PositionUsesPivotPoint = true;
-                mtextLabelRadio.PivotPoint = PivotPoint.Center;
-                mtextLabelRadio.ParentOrigin = ParentOrigin.Center;
-                mtextLabelRadio.Position = new Position(0, -55, 0);
-                mtextLabelRadio.PointSize = mLargePointSize;
-                mtextLabelRadio.BackgroundColor = Color.White;
-                mtextLabelRadio.FontFamily = "SamsungOneUI_200";
+                // Store title label
+                mTitleLabelRadio = titleLabel;
 
-                view.Add(mtextLabelRadio);
+                // NOTE: Note NUI.Components.RadioButton are not grouped in parent view as NUI.UIComponents.RadioButton was.
+                // When radioButton is selected, other wont be unselected now.
 
                 // Create three RadioButton
-                Position checkBoxStartPosition = new Position(100, 0, 0);
+                Position checkBoxStartPosition = new Position(70, 0);
                 RadioButton[] radioButton = new RadioButton[3];
                 for (int i = 0; i < 3; ++i)
                 {
-                    // New RadioButton
+                    // New RadioButton with label
                     radioButton[i] = new RadioButton();
+                    radioButton[i].Text = mRadioButtonTexts[i];
                     // Set the RadioButton position
-                    radioButton[i].Position = checkBoxStartPosition + new Position(0, 40, 0) * i;
+                    radioButton[i].Position = checkBoxStartPosition + new Position(0, 40 * i);
                     radioButton[i].PositionUsesPivotPoint = true;
                     radioButton[i].PivotPoint = PivotPoint.CenterLeft;
                     radioButton[i].ParentOrigin = ParentOrigin.CenterLeft;
-                    if (radioButton[i].IsSelected)
-                    {
-                        // Make Image Visual for the selected RadioButton visual
-                        radioButton[i].BackgroundImage = mResourceUrl + "/RadioButton/Selected.png";
-                    }
-                    else
-                    {
-                        // Make Image Visual for the unselected RadioButton visual
-                        radioButton[i].BackgroundImage = mResourceUrl + "/RadioButton/Unselected.png";
-                    }
-                    
-                    radioButton[i].Scale = new Vector3(0.5f, 0.5f, 0.5f);
+
+                    radioButton[i].Scale = new Vector3(0.8f, 0.8f, 0.8f);
+                    radioButton[i].Size = new Size(220, 48);
+                    radioButton[i].PointSize = mMiddlePointSize + 2;
+                    radioButton[i].TextColor = Color.White;
                     // Add a callback function for the StateChanged signal
                     radioButton[i].StateChangedEvent += OnRadioButtonChanged;
                     view.Add(radioButton[i]);
                 }
-                // Make Text Visual
-                // Set the Label of RadioButton
-                radioButton[0].Text = "Red";
-                radioButton[0].PointSize = mMiddlePointSize * 2.0f;
-                radioButton[0].Color = Color.White;
-
-                radioButton[1].Text = "Green";
-                radioButton[1].PointSize = mMiddlePointSize * 2.0f;
-                radioButton[1].Color = Color.White;
-
-                radioButton[2].Text = "Blue";
-                radioButton[2].PointSize = mMiddlePointSize * 2.0f;
-                radioButton[2].Color = Color.White;
             }
             else if (text == mCaseString[2])
             {
-                // TextLabel for Slider
-                TextLabel mtextLabelSlider = new TextLabel("Slider");
-                mtextLabelSlider.Size = new Size(250, 60);
-                mtextLabelSlider.HorizontalAlignment = HorizontalAlignment.Center;
-                mtextLabelSlider.VerticalAlignment = VerticalAlignment.Center;
-                // Set the position of textLabel.
-                mtextLabelSlider.PositionUsesPivotPoint = true;
-                mtextLabelSlider.PivotPoint = PivotPoint.Center;
-                mtextLabelSlider.ParentOrigin = ParentOrigin.Center;
-                mtextLabelSlider.Position = new Position(0, -55, 0);
-                mtextLabelSlider.PointSize = mLargePointSize;
-                mtextLabelSlider.BackgroundColor = Color.White;
-                mtextLabelSlider.FontFamily = "SamsungOneUI_200";
-
-                view.Add(mtextLabelSlider);
-
                 // A new Slider
                 mSlider = new Slider();
                 // Set the Slider position
                 mSlider.PositionUsesPivotPoint = true;
                 mSlider.PivotPoint = PivotPoint.Center;
                 mSlider.ParentOrigin = ParentOrigin.Center;
-                mSlider.Size = new Size(300, 25);
+                mSlider.TrackThickness = 4;
+                mSlider.BgTrackColor = new Color(0, 0, 0, 0.1f);
+                mSlider.SlidedTrackColor = new Color(0.05f, 0.63f, 0.9f, 1);
+                mSlider.ThumbSize = new Size(60, 60);
+                mSlider.Size.Width = 300;
                 // Set the Lower Bound and Upper Bound values of the Slider
                 mSlider.MinValue = 0.0f;
                 mSlider.MaxValue = 100.0f;
                 // Set the start value
-                mSlider.CurrentValue = 50;
-
-                // Create progress visual map.
-                ImageView progressImage = new ImageView()
-                {
-                    Size = new Size(10, 4),
-                    BackgroundImage = mResourceUrl + "/Slider/img_slider_progress.png"
-                };
-                mSlider.Add(progressImage);
-
-                // Create track visual map.
-                ImageView trackImage = new ImageView()
-                {
-                    Size = new Size(10, 4),
-                    BackgroundImage = mResourceUrl + "/Slider/img_slider_track.png"
-                };
-                mSlider.Add(trackImage);
-
+                mSlider.CurrentValue = 50.0f;
+                // Add a callback function for the StateChanged signal
+                mSlider.ValueChangedEvent += OnSliderValueChanged;
                 view.Add(mSlider);
+
+                // Create TextLabel that notices current progress
+                mSliderText = new TextLabel();
+                mSliderText.PositionUsesPivotPoint = true;
+                mSliderText.HorizontalAlignment = HorizontalAlignment.Center;
+                mSliderText.VerticalAlignment = VerticalAlignment.Center;
+                mSliderText.ParentOrigin = ParentOrigin.Center;
+                mSliderText.PivotPoint = PivotPoint.Center;
+                mSliderText.FontFamily = "Samsung One 400";
+                mSliderText.Position = new Position(0, 60);
+                mSliderText.PointSize = mMiddlePointSize + 2;
+                mSliderText.TextColor = Color.White;
+                mSliderText.Text = Math.Floor(mSlider.CurrentValue).ToString() + "%";
+                view.Add(mSliderText);
             }
             else if (text == mCaseString[3])
             {
-                // TextLabel for ProgressBar
-                TextLabel mtextLabelProgressBar = new TextLabel("Progress Bar");
-                mtextLabelProgressBar.Size = new Size(250, 60);
-                mtextLabelProgressBar.HorizontalAlignment = HorizontalAlignment.Center;
-                mtextLabelProgressBar.VerticalAlignment = VerticalAlignment.Center;
-                // Set the position of textLabel.
-                mtextLabelProgressBar.PositionUsesPivotPoint = true;
-                mtextLabelProgressBar.PivotPoint = PivotPoint.Center;
-                mtextLabelProgressBar.ParentOrigin = ParentOrigin.Center;
-                mtextLabelProgressBar.Position = new Position(0, -55, 0);
-                mtextLabelProgressBar.PointSize = mLargePointSize;
-                mtextLabelProgressBar.BackgroundColor = Color.White;
-                mtextLabelProgressBar.FontFamily = "SamsungOneUI_200";
-
-                view.Add(mtextLabelProgressBar);
-
                 // A new ProgressBar
                 mProgress = new Progress();
                 // Set the Slider position
                 mProgress.PositionUsesPivotPoint = true;
                 mProgress.PivotPoint = PivotPoint.Center;
                 mProgress.ParentOrigin = ParentOrigin.Center;
-                mProgress.Size = new Size(300, 4);
-
-                // Create ProgressVisual
-                ImageView progressImage = new ImageView()
-                { 
-                    BackgroundImage = mResourceUrl + "/ProgressBar/img_viewer_progress_0_129_198_100.9.png"
-                };
-                mProgress.Add(progressImage);
-
-                // Create TrackVisual
-                ImageView trackImage = new ImageView()
-                { 
-                    BackgroundImage = mResourceUrl + "/ProgressBar/img_viewer_progress_255_255_255_100.9.png"
-                };
-                mProgress.Add(trackImage);
-
+                mProgress.Size = new Size(300, 5);
                 mProgress.MinValue = 0.0f;
                 mProgress.MaxValue = 100.0f;
-                mProgress.ProgressState = Tizen.NUI.Components.Progress.ProgressStatusType.Indeterminate;
-                mProgress.TooltipText = "progressBar";
-
+                mProgress.CurrentValue = 20.0f;
+                mProgress.TrackColor = new Color(0, 0, 0, 0.1f);
+                mProgress.ProgressColor = new Color(0.75f, 0.63f, 0.9f, 1);
                 view.Add(mProgress);
 
                 // Create TextLabel that notices current progress
-                TextLabel progressText = new TextLabel();
+                mProgressText = new TextLabel();
                 // Set TextLabel position
-                progressText.PositionUsesPivotPoint = true;
-                progressText.HorizontalAlignment = HorizontalAlignment.Center;
-                progressText.VerticalAlignment = VerticalAlignment.Center;
-                progressText.ParentOrigin = ParentOrigin.Center;
-                progressText.PivotPoint = PivotPoint.Center;
-                progressText.FontFamily = "Samsung One 400";
-                progressText.Position = new Position(150, 20);
-                progressText.PointSize = mMiddlePointSize;
+                mProgressText.PositionUsesPivotPoint = true;
+                mProgressText.HorizontalAlignment = HorizontalAlignment.Center;
+                mProgressText.VerticalAlignment = VerticalAlignment.Center;
+                mProgressText.ParentOrigin = ParentOrigin.Center;
+                mProgressText.PivotPoint = PivotPoint.Center;
+                mProgressText.FontFamily = "Samsung One 400";
+                mProgressText.Position = new Position(150, 20);
+                mProgressText.PointSize = mMiddlePointSize;
+                mProgressText.TextColor = Color.White;
                 // Set the default Text
-                progressText.Text = (mProgress.CurrentValue * 100).ToString() + "%";
-                // Set the text color
-                progressText.TextColor = Color.White;
-                view.Add(progressText);
+                mProgressText.Text = Math.Floor(mProgress.CurrentValue).ToString() + "%";
+                view.Add(mProgressText);
+            
+            }
+            else if (text == mCaseString[4])
+            {
+                // Store title label
+                mSwitchText = titleLabel;
 
-                // Create Timer to show the intermediate progress state
-                Timer timer = new Timer(50);
-                // Timer Callback function
-                timer.Tick += (obj, e) =>
-                {
-                    if (mProgress != null)
-                    {
-                        // Compute current progress
-                        float progress = (float)Math.Round(mProgress.CurrentValue, 2);
-
-                        // If the progress is complete
-                        // Reset the progressValue to 0.0f
-                        if (progress == 1.0f)
-                        {
-                            mProgress.CurrentValue = 0.0f;
-                            progressText.Text = (mProgress.CurrentValue * 100).ToString() + "%";
-                            return true;
-                        }
-                        // For the every step, add progressValue uniformly
-                        else
-                        {
-                            mProgress.CurrentValue = progress + 0.01f;
-                            progressText.Text = (mProgress.CurrentValue * 100).ToString() + "%";
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                };
-                timer.Start();
+                Switch switch_ = new Switch();
+                switch_.PositionUsesPivotPoint = true;
+                switch_.PivotPoint = PivotPoint.Center;
+                switch_.ParentOrigin = ParentOrigin.Center;
+                switch_.Position = new Position(0, 30);
+                switch_.StateChangedEvent += OnSwitchStateChanged;
+                view.Add(switch_);
             }
             // Set the common properties
             view.Size = mWindowSize;
@@ -491,20 +408,17 @@ namespace UIControlSample
             // Get the source who trigger this event.
             CheckBox checkBoxButton = source as CheckBox;
             // Change the shadow state of TextLabel
-            if (checkBoxButton.Text == "Shadow")
+            if (checkBoxButton.Text == "Background")
             {
-                // Make a shadow for the TextLabel
-                // Shadow offset is 3.0f
-                // Shadow color is Black
+                // Set the background-color of the TextLabel to Bluish
                 if (checkBoxButton.IsSelected)
                 {
-                    mtextLabelCheckBox.Position = new Position(3.0f, 3.0f);
-                    mtextLabelCheckBox.Color = Color.Black;
+                    mTitleLabelCheckBox.BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1);
                 }
+                // Set the background color of the TextLabel to White
                 else
                 {
-                    // Delete the shadow of the TextLabel
-                    mtextLabelCheckBox.Position = new Position(0, 0);
+                    mTitleLabelCheckBox.BackgroundColor = Color.White;
                 }
             }
             // Change the color of the TextLabel
@@ -513,12 +427,12 @@ namespace UIControlSample
                 // Set the color of the TextLabel to Red
                 if (checkBoxButton.IsSelected)
                 {
-                    mtextLabelCheckBox.TextColor = Color.Red;
+                    mTitleLabelCheckBox.TextColor = Color.Red;
                 }
                 // Set the color of the TextLabel to Black
                 else
                 {
-                    mtextLabelCheckBox.TextColor = Color.Black;
+                    mTitleLabelCheckBox.TextColor = Color.Black;
                 }
             }
             // Change the Underline state of the TextLabel
@@ -541,7 +455,7 @@ namespace UIControlSample
                     underlineMapSet.Add("enable", new PropertyValue("false"));
                 }
 
-                mtextLabelCheckBox.Underline = underlineMapSet;
+                mTitleLabelCheckBox.Underline = underlineMapSet;
             }
         }
 
@@ -561,7 +475,7 @@ namespace UIControlSample
             {
                 if (radioButton.IsSelected)
                 {
-                    mtextLabelRadio.TextColor = Color.Red;
+                    mTitleLabelRadio.TextColor = Color.Red;
                 }
             }
             // If the radio button is Green
@@ -570,7 +484,7 @@ namespace UIControlSample
             {
                 if (radioButton.IsSelected)
                 {
-                    mtextLabelRadio.TextColor = Color.Green;
+                    mTitleLabelRadio.TextColor = Color.Green;
                 }
             }
             // If the radio button is Blue
@@ -579,61 +493,33 @@ namespace UIControlSample
             {
                 if (radioButton.IsSelected)
                 {
-                    mtextLabelRadio.TextColor = Color.Blue;
+                    mTitleLabelRadio.TextColor = Color.Blue;
                 }
             }
         }
 
         /// <summary>
-        /// Create an Text visual.
+        /// StateChanged event handling of Slider
         /// </summary>
-        /// <param name="text">The text of the Text visual</param>
-        /// <param name="pointSize">The pointSize of the text</param>
-        /// <param name="color">The color of the text</param>
-        /// <returns>return a map which contain the properties of the text</returns>
-        private PropertyMap CreateTextVisual(string text, float pointSize, Color color)
+        /// <param name="source">Slider</param>
+        /// <param name="e">event</param>
+        private void OnSliderValueChanged(object source, EventArgs e)
         {
-            PropertyMap map = new PropertyMap();
-            // Text Visual
-            // Add each property of TextVisual
-            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-            map.Add(TextVisualProperty.Text, new PropertyValue(text));
-            // Set text color
-            map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            // Set text pointSize
-            map.Add(TextVisualProperty.PointSize, new PropertyValue(pointSize));
-            map.Add(TextVisualProperty.FontFamily, new PropertyValue("Samsung One 400"));
-            map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
-            map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
-            return map;
+            // Get the source who trigger this event.
+            Slider slider = source as Slider;
+            mSliderText.Text = Math.Floor(slider.CurrentValue).ToString() + "%";
         }
 
         /// <summary>
-        /// Create an Color visual.
+        /// StateChanged event handling of Slider
         /// </summary>
-        /// <param name="color">The color value of the visual</param>
-        /// <returns>return a map which contain the properties of the color</returns>
-        private PropertyMap CreateColorVisual(Vector4 color)
+        /// <param name="source">Slider</param>
+        /// <param name="e">event</param>
+        private void OnSwitchStateChanged(object source, EventArgs e)
         {
-            PropertyMap map = new PropertyMap();
-            // Add each property of ColorVisual
-            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
-            map.Add(ColorVisualProperty.MixColor, new PropertyValue(color));
-            return map;
-        }
-
-        /// <summary>
-        /// Create an Image visual.
-        /// </summary>
-        /// <param name="imagePath">The url of the image</param>
-        /// <returns>return a map which contain the properties of the image</returns>
-        private PropertyMap CreateImageVisual(string imagePath)
-        {
-            PropertyMap map = new PropertyMap();
-            // Add each property of ImageVisual
-            map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-            map.Add(ImageVisualProperty.URL, new PropertyValue(imagePath));
-            return map;
+            // Get the source who trigger this event.
+            Switch switch_ = source as Switch;
+            mSwitchText.BackgroundColor = switch_.IsSelected ? new Color(0.1f, 0.5f, 0.7f, 1.0f) : Color.White;
         }
 
         /// <summary>
@@ -757,7 +643,7 @@ namespace UIControlSample
         /// <param name="args">args</param>
         static void Main(string[] args)
         {
-            Log.Info("Tag", "========== Hello, UIControlSample ==========");
+            Log.Info("Tag", "========== UIControlSample ==========");
             new UIControlSample().Run(args);
         }
     }
