@@ -200,7 +200,7 @@ namespace Tizen.NUI.MediaHub
             isHomePageFlag = true;
             Window.Instance.GetDefaultLayer().Add(bgView);
             FocusManager.Instance.SetCurrentFocusView(gridView);
-            gridView.SetFoucsItemIndex(0, 3);
+            gridView.SetFocusItemIndex(0, 3);
         }
 
         /// <summary>
