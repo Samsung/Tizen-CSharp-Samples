@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.tizen.example.MetalDetector.Tizen.Wearable" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+<manifest package="org.tizen.example.MetalDetector.Tizen.Wearable" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
     <profile name="wearable" />
-    <ui-application appid="org.tizen.example.MetalDetector.Tizen.Wearable" exec="MetalDetector.Tizen.Wearable.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+    <ui-application appid="org.tizen.example.MetalDetector.Tizen.Wearable" exec="MetalDetector.Tizen.Wearable.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" splash-screen-display="true" launch_mode="single">
         <label>MetalDetector.Tizen.Wearable</label>
         <icon>MetalDetector_icon.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
         <splash-screens />
     </ui-application>
     <shortcut-list />
+    <dependencies />
     <provides-appdefined-privileges />
     <feature name="http://tizen.org/feature/sensor.magnetometer">true</feature>
 </manifest>
