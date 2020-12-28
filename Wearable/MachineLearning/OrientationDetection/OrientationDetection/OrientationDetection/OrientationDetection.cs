@@ -155,7 +155,7 @@ namespace OrientationDetection
     {
       LabelUpdateLoop();
     }
-    
+
     /**
      * @brief Handle when app sleeps
      */
