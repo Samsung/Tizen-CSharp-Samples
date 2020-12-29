@@ -57,7 +57,7 @@ namespace NUI_CheckBox
             Window.Instance.KeyEvent += Window_KeyEvent;
 
             _view = new View();
-            _view.Size = new Size2D(1, 4) * _checkBoxSize + new Size2D(100, 5 * _space);
+            _view.Size = new Size2D(_checkBoxSize.Width + 100, 4 * _checkBoxSize.Height + 5 * _space);
             _view.PivotPoint = PivotPoint.Center;
             _view.ParentOrigin = ParentOrigin.Center;
             _view.PositionUsesPivotPoint = true;
@@ -86,17 +86,17 @@ namespace NUI_CheckBox
                 Normal           = _URL + "Blue.png",
                 Selected         = _URL + "BlueCheckMark.png",
                 Pressed          = _URL + "Red.png",
-           };
-           _checkBox.IconURLSelector = _iconURL;
-           _checkBox.Icon.Size = new Size2D(160,160);
-           _checkBox.BackgroundColor = new Color(0.57f, 0.7f, 1.0f, 0.8f);
-           // CheckBox initial state set to be selected
-           _checkBox.IsSelected = true;
-           // CheckBox can be selected
-           _checkBox.IsSelectable = true;
-           // CheckBox is enabled
-           _checkBox.IsEnabled = true;
-           _view.Add(_checkBox);
+            };
+            _checkBox.IconURLSelector = _iconURL;
+            _checkBox.Icon.Size = new Size2D(160,160);
+            _checkBox.BackgroundColor = new Color(0.57f, 0.7f, 1.0f, 0.8f);
+            // CheckBox initial state set to be selected
+            _checkBox.IsSelected = true;
+            // CheckBox can be selected
+            _checkBox.IsSelectable = true;
+            // CheckBox is enabled
+            _checkBox.IsEnabled = true;
+            _view.Add(_checkBox);
 
             // Create with style - since the CheckBox inherits after the Button class, the ButtonStyle is used
             ButtonStyle _style = new ButtonStyle
@@ -173,6 +173,7 @@ namespace NUI_CheckBox
         {
             var app = new Program();
             app.Run(args);
+            app.Dispose();
         }
     }
 }
