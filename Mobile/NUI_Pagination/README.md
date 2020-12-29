@@ -1,4 +1,4 @@
-# NUI_Visuals
+# NUI_Pagination
   
 **This sample application demonstrates how to use NUI Pagination.**
 

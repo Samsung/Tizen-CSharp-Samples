@@ -37,6 +37,7 @@ namespace NUI_Pagination
         private Pagination _pagination;
         private int _winWidth;
         private int _winHeight;
+        private Position2D _winShift;
 
         protected override void OnCreate()
         {
@@ -49,6 +50,7 @@ namespace NUI_Pagination
             Window.Instance.KeyEvent += Window_KeyEvent;
             _winWidth = Window.Instance.WindowSize.Width;
             _winHeight = Window.Instance.WindowSize.Height;
+            _winShift = new Position2D(_winWidth, 0);
 
             // the view is parent for the _visualView and the _pagination
             _mainView = new View();
@@ -109,7 +111,7 @@ namespace NUI_Pagination
                 {
                     if (_pagination.SelectedIndex > 0)
                     {
-                        _visualView.Position2D = _visualView.Position2D + new Position2D(_winWidth, 0);
+                        _visualView.Position2D = _visualView.Position2D + _winShift;
                         _pagination.SelectedIndex = _pagination.SelectedIndex - 1;
                     }
                 }
@@ -117,7 +119,7 @@ namespace NUI_Pagination
                 {
                     if (_pagination.SelectedIndex < _pagination.IndicatorCount - 1)
                     {
-                        _visualView.Position2D = _visualView.Position2D - new Position2D(_winWidth, 0);
+                        _visualView.Position2D = _visualView.Position2D - _winShift;
                         _pagination.SelectedIndex = _pagination.SelectedIndex + 1;
                     }
                 }
@@ -128,6 +130,7 @@ namespace NUI_Pagination
         {
             var app = new Program();
             app.Run(args);
+            app.Dispose();
         }
     }
 }
