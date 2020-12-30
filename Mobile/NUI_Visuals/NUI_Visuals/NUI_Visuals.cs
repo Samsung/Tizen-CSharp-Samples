@@ -577,6 +577,7 @@ namespace NUI_Visuals
         {
             var app = new Program();
             app.Run(args);
+            app.Dispose();
         }
     }
 }
