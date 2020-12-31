@@ -294,6 +294,7 @@ namespace NUIView
         {
             var app = new Program();
             app.Run(args);
+            app.Dispose()
         }
     }
 }
