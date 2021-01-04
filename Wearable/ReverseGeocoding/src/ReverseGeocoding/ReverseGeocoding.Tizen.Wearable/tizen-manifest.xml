@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.tizen.example.ReverseGeocoding.Tizen.Wearable" version="1.0.0" api-version="5" xmlns="http://tizen.org/ns/packages">
+<manifest package="org.tizen.example.ReverseGeocoding.Tizen.Wearable" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
     <profile name="wearable" />
     <ui-application appid="org.tizen.example.ReverseGeocoding.Tizen.Wearable" exec="ReverseGeocoding.Tizen.Wearable.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
         <label>ReverseGeocoding.Tizen.Wearable</label>
@@ -13,5 +13,6 @@
         <privilege>http://tizen.org/privilege/network.get</privilege>
         <privilege>http://tizen.org/privilege/internet</privilege>
     </privileges>
+    <dependencies />
     <provides-appdefined-privileges />
 </manifest>
