@@ -38,13 +38,13 @@
         <AbsoluteLayout>
             <Label Text="Welcome"
                    TextColor="#4CCDFC"
-                   AbsoluteLayout.LayoutBounds="122, 62 ,118, 34"
+                   AbsoluteLayout.LayoutBounds="45, 62 ,118, 34"
                    FontFamily="BreezeSans"
                    FontSize="9.35"
                    HorizontalTextAlignment="Center"
                    IsVisible="{Binding FirstView}" />
             <Label TextColor="#CCCCCC"
-                   AbsoluteLayout.LayoutBounds="82, 108 ,197, 101"
+                   AbsoluteLayout.LayoutBounds="0, 108 ,197, 101"
                    FontFamily="BreezeSans"
                    FontSize="9.75"
                    HorizontalTextAlignment="Center"
@@ -54,7 +54,7 @@
                                  Binding="{Binding FirstView}"
                                  Value="False">
                         <Setter Property="AbsoluteLayout.LayoutBounds"
-                                Value="75, 127, 210, 108" />
+                                Value="0, 127, 210, 108" />
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
