@@ -27,7 +27,7 @@ namespace SpeechToText
         {
             var app = new Program();
             Forms.Init(app);
-            Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
+            Tizen.Wearable.CircularUI.Forms.FormsCircularUI.Init();
             app.Run(args);
         }
     }
