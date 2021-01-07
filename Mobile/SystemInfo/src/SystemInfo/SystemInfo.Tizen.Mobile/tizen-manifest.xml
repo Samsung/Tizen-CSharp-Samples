@@ -1,20 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.SystemInfo.Tizen.Mobile" version="1.0.0">
-	<profile name="mobile" />
-	<ui-application appid="org.tizen.example.SystemInfo.Tizen.Mobile"
-					exec="SystemInfo.Tizen.Mobile.dll"
-					type="dotnet"
-					multiple="false"
-					taskmanage="true"
-					nodisplay="false"
-					launch_mode="single">
-  <label>SystemInfo.Tizen.Mobile</label>
-	<icon>SystemInfo.Tizen.Mobile.png</icon>
+<manifest package="org.tizen.example.SystemInfo.Tizen.Mobile" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.example.SystemInfo.Tizen.Mobile" exec="SystemInfo.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+        <label>SystemInfo.Tizen.Mobile</label>
+        <icon>SystemInfo.Tizen.Mobile.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
-	</ui-application>
-  <privileges>
-    <privilege>http://tizen.org/privilege/display</privilege>
-    <privilege>http://tizen.org/privilege/externalstorage</privilege>
-    <privilege>http://tizen.org/privilege/mediastorage</privilege>
-  </privileges>
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/display</privilege>
+        <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        <privilege>http://tizen.org/privilege/mediastorage</privilege>
+    </privileges>
+    <dependencies />
+    <provides-appdefined-privileges />
 </manifest>
