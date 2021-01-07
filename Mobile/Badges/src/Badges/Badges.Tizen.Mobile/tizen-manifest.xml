@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest package="org.tizen.example.Badges.Tizen.Mobile"
           version="1.0.0"
-          api-version="4"
+          api-version="6"
           xmlns="http://tizen.org/ns/packages">
   <profile name="mobile" />
   <ui-application appid="org.tizen.example.Badges.Tizen.Mobile"
