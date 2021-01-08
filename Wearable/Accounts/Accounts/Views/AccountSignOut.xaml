@@ -23,7 +23,7 @@
                     WidthRequest="160"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand"
-                    Font="Large" />
+                    FontSize="Medium" />
         </StackLayout>
     </w:CirclePage.Content>
 </w:CirclePage>

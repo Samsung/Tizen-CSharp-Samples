@@ -33,7 +33,7 @@
                     WidthRequest="140"
                     Clicked="SignInClicked"
                     HorizontalOptions="CenterAndExpand"
-                    Font="Large" />
+                    FontSize="Medium" />
         </StackLayout>
     </w:CirclePage.Content>
 </w:CirclePage>
