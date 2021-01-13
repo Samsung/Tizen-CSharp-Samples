@@ -37,6 +37,7 @@ namespace FeedbackApp
         {
             var app = new Program();
             Forms.Init(app);
+            global::Tizen.Wearable.CircularUI.Forms.FormsCircularUI.Init();
             app.Run(args);
         }
     }
