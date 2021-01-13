@@ -21,6 +21,7 @@ using Tizen;
 using Tizen.Applications;
 using AppStatistics.Tizen.Wearable.Services;
 using AppStatistics.Utils;
+using Range = AppStatistics.Utils.Range;
 
 [assembly: Xamarin.Forms.Dependency(typeof(AppHistory))]
 namespace AppStatistics.Tizen.Wearable.Services

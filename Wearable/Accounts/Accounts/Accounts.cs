@@ -12,6 +12,8 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+using Xamarin.Forms;
+
 namespace Accounts
 {
     /// <summary>
@@ -37,8 +39,8 @@ namespace Accounts
         {
             var app = new Program();
 
-            Xamarin.Forms.Platform.Tizen.Forms.Init(app);
-            Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
+            Forms.Init(app);
+            Tizen.Wearable.CircularUI.Forms.FormsCircularUI.Init();
             app.Run(args);
         }
     }

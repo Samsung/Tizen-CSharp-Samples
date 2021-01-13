@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.tizen.example.FeedbackApp" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+<manifest package="org.tizen.example.FeedbackApp" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
     <profile name="wearable" />
-    <ui-application appid="org.tizen.example.FeedbackApp" exec="FeedbackApp.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+    <ui-application appid="org.tizen.example.FeedbackApp" exec="FeedbackApp.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" splash-screen-display="true" launch_mode="single">
         <label>FeedbackApp</label>
         <icon>FeedbackApp.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
@@ -11,5 +11,6 @@
     <privileges>
         <privilege>http://tizen.org/privilege/haptic</privilege>
     </privileges>
+    <dependencies />
     <provides-appdefined-privileges />
 </manifest>

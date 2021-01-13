@@ -95,9 +95,9 @@ namespace Calculator.Renderers
         /// Set button image's blending color.
         /// It's right time after updating the button image source.
         /// </summary>
-        protected override void UpdateAfterLoading()
+        protected override void UpdateAfterLoading(bool initialize)
         {
-            base.UpdateAfterLoading();
+            base.UpdateAfterLoading(initialize);
             Control.Color = RegularColor;
         }
 
