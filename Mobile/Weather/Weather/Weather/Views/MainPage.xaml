@@ -32,7 +32,7 @@
 
             <Entry BackgroundColor="White"
                    AbsoluteLayout.LayoutFlags="None"
-                   AbsoluteLayout.LayoutBounds="20, 800, 50, 50"
+                   AbsoluteLayout.LayoutBounds="20, 800, 150, 50"
                    HorizontalTextAlignment="Center"
                    Text="{Binding EnteredCountry, Mode=OneWayToSource}">
                 <Entry.Behaviors>
@@ -43,7 +43,7 @@
             <Entry x:Name="CityEntry"
                    BackgroundColor="White"
                    AbsoluteLayout.LayoutFlags="None"
-                   AbsoluteLayout.LayoutBounds="90, 800, 610, 50"
+                   AbsoluteLayout.LayoutBounds="190, 800, 510, 50"
                    Text="{Binding EnteredCity, Mode=TwoWay}">
                 <Entry.Behaviors>
                     <behaviors:CityNameValidatorBehavior

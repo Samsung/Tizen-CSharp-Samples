@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<manifest package="org.tizen.example.Weather.Tizen.Mobile" version="1.0.0" api-version="4"
+<manifest package="org.tizen.example.Weather.Tizen.Mobile" version="1.0.0" api-version="6"
           xmlns="http://tizen.org/ns/packages">
   <profile name="mobile" />
   <ui-application appid="org.tizen.example.Weather.Tizen.Mobile" exec="Weather.Tizen.Mobile.dll" multiple="false"

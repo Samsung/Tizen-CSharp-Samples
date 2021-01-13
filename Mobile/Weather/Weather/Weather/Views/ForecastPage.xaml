@@ -2,7 +2,6 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xf="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
              xmlns:controls="clr-namespace:Weather.Controls;assembly=Weather"
              xmlns:converters="clr-namespace:Weather.Converters;assembly=Weather"
              xmlns:utils="clr-namespace:Weather.Utils;assembly=Weather"
@@ -25,11 +24,11 @@
 
     <AbsoluteLayout>
 
-        <xf:CarouselView x:Name="CarouselView"
+        <CarouselView x:Name="CarouselView"
                          AbsoluteLayout.LayoutBounds="0,0,1,1"
                          AbsoluteLayout.LayoutFlags="All"
                          ItemsSource="{Binding PagesViewModels}">
-            <xf:CarouselView.ItemTemplate>
+            <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Spacing="25">
 
@@ -104,8 +103,8 @@
                         </StackLayout>
                     </StackLayout>
                 </DataTemplate>
-            </xf:CarouselView.ItemTemplate>
-        </xf:CarouselView>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
 
         <Label Text="{Binding CityName}"
                FontSize="50"
