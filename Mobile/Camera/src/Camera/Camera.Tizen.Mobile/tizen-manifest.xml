@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.tizen.example.Camera.Tizen.Mobile" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+<manifest package="org.tizen.example.Camera.Tizen.Mobile" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
     <profile name="mobile" />
-    <ui-application appid="org.tizen.example.Camera.Tizen.Mobile" exec="Camera.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+    <ui-application appid="org.tizen.example.Camera.Tizen.Mobile" exec="Camera.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" splash-screen-display="true" launch_mode="single">
         <label>Camera.Tizen.Mobile</label>
         <icon>Camera.Tizen.Mobile.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
     </ui-application>
     <shortcut-list />
     <privileges>
@@ -13,5 +14,6 @@
         <privilege>http://tizen.org/privilege/mediastorage</privilege>
         <privilege>http://tizen.org/privilege/content.write</privilege>
     </privileges>
+    <dependencies />
     <provides-appdefined-privileges />
 </manifest>
