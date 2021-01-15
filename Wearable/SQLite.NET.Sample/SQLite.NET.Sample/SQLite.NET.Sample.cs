@@ -12,8 +12,8 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-using System;
 using Xamarin.Forms;
+
 namespace SQLite.NET.Sample
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
@@ -29,7 +29,6 @@ namespace SQLite.NET.Sample
         {
             var app = new Program();
             Forms.Init(app);
-            Tizen.Wearable.CircularUI.Forms.Renderer.FormsCircularUI.Init();
             app.Run(args);
         }
     }

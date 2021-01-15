@@ -14,13 +14,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Xamarin.Forms;
-using Tizen.Wearable.CircularUI.Forms;
-using SQLite;
-using SQLitePCL;
 using System.IO;
 
 namespace SQLite.NET.Sample
@@ -71,14 +66,14 @@ namespace SQLite.NET.Sample
             }
 
             // The root page of your application
-            MainPage = new CirclePage
+            MainPage = new ContentPage
             {
                 Content = new StackLayout
                 {
                     VerticalOptions = LayoutOptions.Center,
                     Children =
                     {
-                        new CircleListView
+                        new ListView
                         {
                             ItemsSource = dbList
                         }
@@ -90,9 +85,6 @@ namespace SQLite.NET.Sample
         public void InitiateSQLite()
         {
             bool needCreateTable = false;
-            // Need to initialize SQLite
-            raw.SetProvider(new SQLite3Provider_sqlite3());
-            raw.FreezeProvider(true);
             // Get writable directory info for this app.
             string dataPath = global::Tizen.Applications.Application.Current.DirectoryInfo.Data;
             // Combine with database path and name
