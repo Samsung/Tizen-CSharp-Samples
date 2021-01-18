@@ -16,7 +16,7 @@ namespace SimpleLayout
         public static readonly string ITEM_CONTENT_NAME_ICON = "ItemIcon";
         public static readonly string ITEM_CONTENT_NAME_TITLE = "ItemTitle";
         public static readonly string ITEM_CONTENT_NAME_DESCRIPTION = "ItemDescription";
-      
+
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -141,8 +141,8 @@ namespace SimpleLayout
             {
                 switch (eventArgs.Key.KeyPressedName)
                 {
-                    case "Escape":
                     case "Back":
+                    case "XF86Back": //for emulator
                         {
                             Exit();
                         }
@@ -156,6 +156,7 @@ namespace SimpleLayout
             Log.Debug(LOG_TAG, "============================= START APP =====================================");
             SimpleLayout simpleLayout = new SimpleLayout();
             simpleLayout.Run(args);
+            simpleLayout.Dispose();
         }
     }
 }
