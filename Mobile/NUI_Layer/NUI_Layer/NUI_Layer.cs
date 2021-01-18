@@ -92,6 +92,7 @@ namespace NUILayer
                 {
                     case "Escape":
                     case "Back":
+                    case "XF86Back":
                         {
                             Exit();
                         }
@@ -130,6 +131,7 @@ namespace NUILayer
         {
             var app = new Program();
             app.Run(args);
+            app.Dispose();
         }
     }
 }
