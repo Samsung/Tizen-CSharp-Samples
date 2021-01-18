@@ -19,7 +19,6 @@ namespace NUI_CustomView
             ImageView background = new ImageView(DirectoryInfo.Resource + "/images/bg.png");
             background.Size2D = new Size2D(window.Size.Width, window.Size.Height);
             window.Add(background);
-]
             View mainView = new View();
 
             LinearLayout ly = new LinearLayout();
@@ -50,6 +49,7 @@ namespace NUI_CustomView
         {
             var app = new Program();
             app.Run(args);
+            app.Dispose();
         }
     }
 }
