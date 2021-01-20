@@ -1,13 +1,25 @@
-﻿using Tizen.NUI;
+﻿/*
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd
+ *
+ * Licensed under the Flora License, Version 1.1 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
 namespace NUILayer
 {
     class Program : NUIApplication
     {
-        private const string LOG_TAG = "NUI_LAYER";
-        private const int ANIM_TIME = 1000;
-
         private Window appWindow;
         private View menu;
         private Layer menuLayer;
@@ -36,10 +48,10 @@ namespace NUILayer
             appWindow.KeyEvent += OnKeyEvent;
             appWindow.TouchEvent += OnWindowTouched;
 
-            ImageView bg = new ImageView(DirectoryInfo.Resource + "/images/bg.png");
-            appWindow.Add(bg);
-            bg.Size2D = new Size2D(appWindow.Size.Width, appWindow.Size.Height);
-            bg.Position2D = new Position2D(0, 0);
+            ImageView background = new ImageView(DirectoryInfo.Resource + "/images/bg.png");
+            appWindow.Add(background);
+            background.Size2D = new Size2D(appWindow.Size.Width, appWindow.Size.Height);
+            background.Position2D = new Position2D(0, 0);
 
             menuLayer = new Layer();
             appWindow.AddLayer(menuLayer);
@@ -50,7 +62,7 @@ namespace NUILayer
             leftLabel.HorizontalAlignment = HorizontalAlignment.Center;
             leftLabel.VerticalAlignment = VerticalAlignment.Center;
             leftLabel.MultiLine = true;
-            bg.Add(leftLabel);
+            background.Add(leftLabel);
 
             TextLabel rightLabel = new TextLabel("Tap right side of the screen to hide menu");
             rightLabel.Size2D = new Size2D(appWindow.Size.Width / 2 - 40, appWindow.Size.Height);
@@ -58,29 +70,29 @@ namespace NUILayer
             rightLabel.HorizontalAlignment = HorizontalAlignment.Center;
             rightLabel.VerticalAlignment = VerticalAlignment.Center;
             rightLabel.MultiLine = true;
-            bg.Add(rightLabel);
+            background.Add(rightLabel);
 
             menu = new View();
-            menu.BackgroundColor = new Color(120, 120, 120, 0.5f);
+            menu.BackgroundColor = new Color(0.6f, 0.6f, 0.6f, 0.5f);
             menu.Size2D = new Size2D(100, appWindow.Size.Height);
 
             menuLayer.Add(menu);
             addIcons(menu);
         }
 
-        private void addIcons(View v)
+        private void addIcons(View view)
         {
-            LinearLayout ly = new LinearLayout();
-            ly.Padding = new Extents(10, 10, 10, 10);
-            ly.LinearOrientation = LinearLayout.Orientation.Vertical;
-            ly.CellPadding = new Size2D(20, 38);
-            v.Layout = ly;
+            LinearLayout iconLayout = new LinearLayout();
+            iconLayout.Padding = new Extents(10, 10, 10, 10);
+            iconLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
+            iconLayout.CellPadding = new Size2D(20, 38);
+            view.Layout = iconLayout;
 
             foreach (var item in icons)
             {
-                ImageView im = new ImageView(DirectoryInfo.Resource + "/images/" + item);
-                im.Size2D = new Size2D(70, 70);
-                v.Add(im);
+                ImageView image = new ImageView(DirectoryInfo.Resource + "/images/" + item);
+                image.Size2D = new Size2D(70, 70);
+                view.Add(image);
             }
         }
 
@@ -115,7 +127,8 @@ namespace NUILayer
         {
             if (args.Touch.GetState(0) == PointStateType.Down)
             {
-
+                //Verify witch side of the screen was clicked by user.
+                //Touch position is compared with half of the screen size.
                 if (args.Touch.GetLocalPosition(0).X <= appWindow.Size.Width / 2)
                 {
                     MenuShow();
