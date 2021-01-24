@@ -1,4 +1,20 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.Components;
@@ -9,349 +25,443 @@ namespace NUI_Visuals
 {
     class Program : NUIApplication
     {
-        // visual view with buttons at the bottom of the window
-        private VisualView _buttonVisualView;
-        // visual view being the main part of the window - contains all elements of the CurrentVisualView (width = 3 * _winWidth)
-        private VisualView _mainVisualView;
-        // list with visual views - the main part of the window being displaied after clicking the corresponding button
+        /// <summary>
+        /// visual view with buttons at the bottom of the window
+        /// </summary>
+        private VisualView ButtonVisualView;
+        /// <summary>
+        /// visual view being the main part of the window - contains all elements
+        /// of the CurrentVisualView (width = 3 * WindowWidth)
+        /// </summary>
+        private VisualView MainVisualView;
+        /// <summary>
+        /// list with visual views - the main part of the window being displayed
+        /// after clicking the corresponding button
+        /// </summary>
         private List<VisualView> CurrentVisualView = new List<VisualView>();
 
-        // the width of the window = _currentWidth + 2 * _frameSize
-        private int _winWidth;
-        // width of the frame around buttons and around the currently visible visual view
-        private int _frameSize = 20;
-        // _buttonVisualView height to _mainVisualView height ratio
-        private float _buttonToMainRatio = 0.1f;
-        // the width of the visual views being elements of the CurrentVisualView
-        private int _currentWidth;
-        // the height of the visual views being elements of the CurrentVisualView
-        private int _currentHeight;
+        /// <summary>
+        /// the width of the window = CurrentWidth + 2 * FrameSize
+        /// </summary>
+        private int WindowWidth;
+        /// <summary>
+        /// width of the frame around buttons and around the currently visible visual view
+        /// </summary>
+        private int FrameSize = 20;
+        /// <summary>
+        /// ButtonVisualView height to MainVisualView height ratio
+        /// </summary>
+        private float ButtonToMainRatio = 0.1f;
+        /// <summary>
+        /// the width of the visual views being elements of the CurrentVisualView
+        /// </summary>
+        private int CurrentWidth;
+        /// <summary>
+        /// the height of the visual views being elements of the CurrentVisualView
+        /// </summary>
+        private int CurrentHeight;
 
-        // array of image visuals displayed after clicking the coresponding button
-        private string[] _imageType = {"Image", "Animated", "SVG", "Mesh", "NPatch"};
-        // number of image visuals
-        private uint _numberImages = 5;
-        // path to the folder with images
-        private static string _imageUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
-        // relative width of each image (percentage part of the width of CurrentVisualView[i])
-        private float _imageRelWidth = 0.395f;
-        // relative ehight of each image (percentage part of the hight of CurrentVisualView[i])
-        private float _imageRelHeight = 0.2f;
+        /// <summary>
+        /// array of image visuals displayed after clicking the corresponding button
+        /// </summary>
+        private string[] ImageType = {"Image", "Animated", "SVG", "Mesh", "NPatch"};
+        /// <summary>
+        /// number of image visuals
+        /// </summary>
+        private uint ImageCount = 5;
+        /// <summary>
+        /// path to the folder with images
+        /// </summary>
+        private static string ImageUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
+        /// <summary>
+        /// relative width of each image (percentage part of the width of CurrentVisualView[i])
+        /// </summary>
+        private float ImageRelativeWidth = 0.395f;
+        /// <summary>
+        /// relative height of each image (percentage part of the height of CurrentVisualView[i])
+        /// </summary>
+        private float ImageRelativeHeight = 0.2f;
 
-        // array of primitive visuals displayed after clicking the corresponding button
-        private string[] _primitiveName = {"Sphere", "ConicalFrustrum", "Cone", "Cylinder", "BevelledCube", "Octahedron", "Cube"};
-        // number of primitive visuals
-        private uint _numberPrimitives = 7;
-        // relative width of each primitive (percentage part of the width of CurrentVisualView[i])
-        private float _primitiveRelWidth = 0.4f;
-        // relative height of each primitive (percentage part of the height of CurrentVisualView[i])
-        private float _primitiveRelHeight = 0.13f;
+        /// <summary>
+        /// array of primitive visuals displayed after clicking the corresponding button
+        /// </summary>
+        private string[] PrimitiveName = {"Sphere", "ConicalFrustrum", "Cone", "Cylinder", "BevelledCube", "Octahedron", "Cube"};
+        /// <summary>
+        /// number of primitive visuals
+        /// </summary>
+        private uint PrimitiveCount = 7;
+        /// <summary>
+        /// relative width of each primitive (percentage part of the width
+        /// of CurrentVisualView[i])
+        /// </summary>
+        private float PrimitiveRelativeWidth = 0.4f;
+        /// <summary>
+        /// relative height of each primitive (percentage part of the height
+        /// of CurrentVisualView[i])
+        /// </summary>
+        private float PrimitiveRelativeHeight = 0.13f;
 
-        // buttons associated with the visuals shown
-        private List<Button> _buttons = new List<Button>();
-        // color of the button, which is associated with currently visible visuals
-        private Color _activeColor = new Color(0.66f, 0.6f, 0.9f, 1);
-        // color of the rest of the buttons
-        private Color _grayColor = new Color(0.78f, 0.78f, 0.78f, 1);
+        /// <summary>
+        /// buttons associated with the visuals shown
+        /// </summary>
+        private List<Button> Buttons = new List<Button>();
+        /// <summary>
+        /// color of the button, which is associated with currently visible visuals
+        /// </summary>
+        private Color ActiveColor = new Color(0.66f, 0.6f, 0.9f, 1);
+        /// <summary>
+        /// color of the rest of the buttons
+        /// </summary>
+        private Color GrayColor = new Color(0.78f, 0.78f, 0.78f, 1);
 
-        // overriden method called when the app is launched
+        /// <summary>
+        /// overridden method called when the app is launched
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
             Initialize();
         }
 
-        // creates a text visual at a relative position 'relPos' determined as the shift of the anchor point
-        // (the visual's top center) from the origin (the parent's top begin);
-        // the text is being centered horizontally and vertically aligned to the top within its area;
-        private TextVisual CreateTextVisual(string label, float size, RelativeVector2 relPos)
+        /// <summary>
+        /// The method to create the TextVisual
+        /// </summary>
+        /// <param name="label"> The label of the Visual centered horizontally and
+        /// vertically aligned to the top within the Visual's area </param>
+        /// <param name="size"> The label's font size in points </param>
+        /// <param name="relativePosition"> The relative position of the Visual
+        /// determined as the shift of the anchor point (the visual's top center)
+        /// from the origin (the parent's top begin) </param>
+        /// <returns> TextVisual with given properties </returns>
+        private TextVisual CreateTextVisual(string label, float size, RelativeVector2 relativePosition)
         {
-            TextVisual text = new TextVisual();
-            text.Text = label;
-            text.RelativePosition = relPos;
-            text.PointSize = size;
-            text.MultiLine = true;
-            text.FontFamily = "Arial";
-            text.HorizontalAlignment = HorizontalAlignment.Center;
-            text.VerticalAlignment = VerticalAlignment.Top;
-            text.Origin = Visual.AlignType.TopBegin;
-            text.AnchorPoint = Visual.AlignType.TopCenter;
+            TextVisual LabelText = new TextVisual();
+            LabelText.Text = label;
+            LabelText.RelativePosition = relativePosition;
+            LabelText.PointSize = size;
+            LabelText.MultiLine = true;
+            LabelText.FontFamily = "Arial";
+            LabelText.HorizontalAlignment = HorizontalAlignment.Center;
+            LabelText.VerticalAlignment = VerticalAlignment.Top;
+            LabelText.Origin = Visual.AlignType.TopBegin;
+            LabelText.AnchorPoint = Visual.AlignType.TopCenter;
 
-            PropertyMap fontStyle = new PropertyMap();
-            fontStyle.Add("weight", new PropertyValue("bold"));
-            fontStyle.Add("slant", new PropertyValue("italic"));
-            text.FontStyle = fontStyle;
+            PropertyMap TextFontStyle = new PropertyMap();
+            TextFontStyle.Add("weight", new PropertyValue("bold"));
+            TextFontStyle.Add("slant", new PropertyValue("italic"));
+            LabelText.FontStyle = TextFontStyle;
 
-            return text;
+            return LabelText;
         }
 
-        // creates and sets common properties for buttons
+        /// <summary>
+        /// The method to create and set common properties for buttons
+        /// </summary>
+        /// <param name="label"> The button's label </param>
+        /// <param name="xPosition"> The horizontal position of the button
+        /// within the control </param>
+        /// <param name="buttonSize">  The button size </param>
+        /// <returns> Button with given properties </returns>
         private Button SetButton(string label, int xPosition, Size2D buttonSize)
         {
-            Button button = new Button();
+            Button ThisButton = new Button();
 
-            button.Size = buttonSize;
-            button.TextLabel.MultiLine = true;
-            button.Position2D = new Position2D(xPosition, 0);
-            button.BackgroundColor = new Color(0.78f, 0.78f, 0.78f, 1);
-            button.PointSizeSelector = new FloatSelector
+            ThisButton.Size = buttonSize;
+            ThisButton.TextLabel.MultiLine = true;
+            ThisButton.Position2D = new Position2D(xPosition, 0);
+            ThisButton.BackgroundColor = new Color(0.78f, 0.78f, 0.78f, 1);
+            ThisButton.PointSizeSelector = new FloatSelector
             {
                 Other = 8,
                 Pressed = 12
             };
-            button.TextColorSelector = new ColorSelector
+            ThisButton.TextColorSelector = new ColorSelector
             {
                 Other = new Color(0, 0, 1, 1),
                 Pressed = new Color(1, 0, 0, 1)
             };
-            button.TextSelector = new StringSelector
+            ThisButton.TextSelector = new StringSelector
             {
                 Other = label,
                 Pressed = "PRESSED"
             };
 
-            return button;
+            return ThisButton;
         }
 
-        // changes the clicked button color to _activeColor and the other buttons to gray
+        /// <summary>
+        /// The method to change the clicked button color to ActiveColor
+        /// and the other buttons to gray
+        /// </summary>
+        /// <param name="choosenButton"> The index of the active button </param>
         private void SetButtonsColors(int choosenButton)
         {
-            for (var i = 0; i < _buttons.Count; ++i)
-                _buttons[i].BackgroundColor = _grayColor;
-            _buttons[choosenButton].BackgroundColor = _activeColor;
+            for (var i = 0; i < Buttons.Count; ++i)
+            {
+                Buttons[i].BackgroundColor = GrayColor;
+            }
+            Buttons[choosenButton].BackgroundColor = ActiveColor;
         }
 
-        // called after clicking button1 - sets the visibility width of _mainVisualView from 0 to winWidth
+
+
+        /// <summary>
+        /// Callback method invoked on button1 click. The method set the visibility
+        /// width of the MainVisualView from 0 to WindowWidth
+        /// </summary>
+        /// <param name="sender">Object that invoked event</param>
+        /// <param name="e">Event arguments</param>
         private void OnClickedButton1(object sender, EventArgs e)
         {
             SetButtonsColors(0);
-            _mainVisualView.Position2D = new Position2D(0, _frameSize);
+            MainVisualView.Position2D = new Position2D(0, FrameSize);
         }
 
-        // called after clicking button1 - sets the visibility width of _mainVisualView from winWidth to 2*winWidth
+        /// <summary>
+        /// Callback method invoked on button2 click. The method set the visibility width
+        /// of the MainVisualView from WindowWidth to 2*WindowWidth
+        /// </summary>
+        /// <param name="sender">Object that invoked event</param>
+        /// <param name="e">Event arguments</param>
         private void OnClickedButton2(object sender, EventArgs e)
         {
             SetButtonsColors(1);
-            _mainVisualView.Position2D = new Position2D(-_winWidth, _frameSize);
+            MainVisualView.Position2D = new Position2D(-WindowWidth, FrameSize);
         }
 
-        // called after clicking button1 - sets the visibility width of _mainVisualView from 2*winWidth to 3*winWidth
+        /// <summary>
+        /// Callback method invoked on button3 click. The method set the visibility width
+        /// of the MainVisualView from 2*WindowWidth to 3*WindowWidth
+        /// </summary>
+        /// <param name="sender">Object that invoked event</param>
+        /// <param name="e">Event arguments</param>
         private void OnClickedButton3(object sender, EventArgs e)
         {
             SetButtonsColors(2);
-            _mainVisualView.Position2D = new Position2D(-2 * _winWidth, _frameSize);
+            MainVisualView.Position2D = new Position2D(-2 * WindowWidth, FrameSize);
         }
 
-        // fills the list of buttons;
-        // adds buttons to their view;
-        // connects buttons' clicked event with the proper function call
+        /// <summary>
+        /// The method to fill the list of buttons, to add buttons to their
+        /// view and to connect buttons' clicked event with the proper function call
+        /// </summary>
         private void InitializeButtons()
         {
-            int buttonWidth = (int)((_buttonVisualView.Size2D.Width - 2 * _frameSize) / 3);
-            int buttonHeight = _buttonVisualView.Size2D.Height;
-            Size2D buttonSize = new Size2D(buttonWidth, buttonHeight);
+            int ButtonWidth = (int)((ButtonVisualView.Size2D.Width - 2 * FrameSize) / 3);
+            int ButtonHeight = ButtonVisualView.Size2D.Height;
+            Size2D ButtonSize = new Size2D(ButtonWidth, ButtonHeight);
 
-            _buttons.Add(SetButton("Color Border Gradient", 0, buttonSize));
-            _buttons.Add(SetButton("Images", (buttonWidth + _frameSize), buttonSize));
-            _buttons.Add(SetButton("Primitives", 2 * (buttonWidth + _frameSize), buttonSize));
+            Buttons.Add(SetButton("Color Border Gradient", 0, ButtonSize));
+            Buttons.Add(SetButton("Images", (ButtonWidth + FrameSize), ButtonSize));
+            Buttons.Add(SetButton("Primitives", 2 * (ButtonWidth + FrameSize), ButtonSize));
 
-            for (var i = 0; i < _buttons.Count; i++)
-                _buttonVisualView.Add(_buttons[i]);
+            for (var i = 0; i < Buttons.Count; i++)
+            {
+                ButtonVisualView.Add(Buttons[i]);
+            }
 
-            _buttons[0].Clicked += OnClickedButton1;
-            _buttons[1].Clicked += OnClickedButton2;
-            _buttons[2].Clicked += OnClickedButton3;
+            Buttons[0].Clicked += OnClickedButton1;
+            Buttons[1].Clicked += OnClickedButton2;
+            Buttons[2].Clicked += OnClickedButton3;
         }
 
-        // creates primitive visual
-        // properties for a given primitive are set in the switch-case block
-        // properties common for all primitives are set outside the block
-        // (except MixColor property, which is set for some primitives individually)
+        /// <summary>
+        /// The method to create the PrimitiveVisual - the properties for a given
+        /// primitive are set in the switch-case block, properties common for
+        /// all primitives are set outside the block (except MixColor property,
+        /// which is set for some primitives individually)
+        /// </summary>
+        /// <param name="primitiveName"> Then name of the PrimitiveVisual </param>
+        /// <returns> The created PrimitiveVisual </returns>
         private PrimitiveVisual CreatePrimitiveVisual(string primitiveName)
         {
-            PrimitiveVisual primitiveVisual = new PrimitiveVisual();
+            PrimitiveVisual ThisPrimitiveVisual = new PrimitiveVisual();
 
-            primitiveVisual.MixColor = new Color(0.6f, 0.4f, 1.0f, 1.0f);
-            primitiveVisual.LightPosition = new Vector3(0.0f,0.0f,300.0f);
-            primitiveVisual.Slices = 100;
-            primitiveVisual.Stacks = 100;
+            ThisPrimitiveVisual.MixColor = new Color(0.6f, 0.4f, 1.0f, 1.0f);
+            ThisPrimitiveVisual.LightPosition = new Vector3(0.0f,0.0f,300.0f);
+            ThisPrimitiveVisual.Slices = 100;
+            ThisPrimitiveVisual.Stacks = 100;
 
             switch (primitiveName)
             {
                 case "Sphere":
-                    primitiveVisual.Shape = PrimitiveVisualShapeType.Sphere;
+                    ThisPrimitiveVisual.Shape = PrimitiveVisualShapeType.Sphere;
                     break;
 
                 case "ConicalFrustrum":
-                    primitiveVisual.Shape = PrimitiveVisualShapeType.ConicalFrustrum;
-                    primitiveVisual.ScaleHeight = 2.0f;
-                    primitiveVisual.ScaleTopRadius = 0.3f;
-                    primitiveVisual.ScaleBottomRadius = 1.0f;
-                    primitiveVisual.MixColor = Color.Green;
+                    ThisPrimitiveVisual.Shape = PrimitiveVisualShapeType.ConicalFrustrum;
+                    ThisPrimitiveVisual.ScaleHeight = 2.0f;
+                    ThisPrimitiveVisual.ScaleTopRadius = 0.3f;
+                    ThisPrimitiveVisual.ScaleBottomRadius = 1.0f;
+                    ThisPrimitiveVisual.MixColor = Color.Green;
                     break;
 
                 case "Cone":
-                    primitiveVisual.Shape = PrimitiveVisualShapeType.Cone;
-                    primitiveVisual.ScaleHeight = 2.0f;
-                    primitiveVisual.ScaleBottomRadius = 1.0f;
-                    primitiveVisual.MixColor = new Color(0.4f, 0.4f, 1.0f, 1.0f);
+                    ThisPrimitiveVisual.Shape = PrimitiveVisualShapeType.Cone;
+                    ThisPrimitiveVisual.ScaleHeight = 2.0f;
+                    ThisPrimitiveVisual.ScaleBottomRadius = 1.0f;
+                    ThisPrimitiveVisual.MixColor = new Color(0.4f, 0.4f, 1.0f, 1.0f);
                     break;
 
                 case "Cylinder":
-                    primitiveVisual.Shape = PrimitiveVisualShapeType.Cylinder;
-                    primitiveVisual.ScaleHeight = 1.0f;
-                    primitiveVisual.ScaleRadius = 0.5f;
+                    ThisPrimitiveVisual.Shape = PrimitiveVisualShapeType.Cylinder;
+                    ThisPrimitiveVisual.ScaleHeight = 1.0f;
+                    ThisPrimitiveVisual.ScaleRadius = 0.5f;
                     break;
 
                 case "Cube":
-                    primitiveVisual.Shape = PrimitiveVisualShapeType.Cube;
-                    primitiveVisual.ScaleDimensions = new Vector3(1.0f, 0.4f, 0.8f);
-                    primitiveVisual.MixColor = new Color(0.4f, 0.4f, 1.0f, 1.0f);
+                    ThisPrimitiveVisual.Shape = PrimitiveVisualShapeType.Cube;
+                    ThisPrimitiveVisual.ScaleDimensions = new Vector3(1.0f, 0.4f, 0.8f);
+                    ThisPrimitiveVisual.MixColor = new Color(0.4f, 0.4f, 1.0f, 1.0f);
                     break;
 
                 case "Octahedron":
-                    primitiveVisual.Shape = PrimitiveVisualShapeType.Octahedron;
-                    primitiveVisual.ScaleDimensions = new Vector3(1.0f, 0.7f, 1.0f);
-                    primitiveVisual.MixColor = Color.Green;
+                    ThisPrimitiveVisual.Shape = PrimitiveVisualShapeType.Octahedron;
+                    ThisPrimitiveVisual.ScaleDimensions = new Vector3(1.0f, 0.7f, 1.0f);
+                    ThisPrimitiveVisual.MixColor = Color.Green;
                     break;
 
                 case "BevelledCube":
-                    primitiveVisual.Shape = PrimitiveVisualShapeType.BevelledCube;
-                    primitiveVisual.ScaleDimensions = new Vector3(0.0f, 0.5f, 1.1f);
-                    primitiveVisual.BevelPercentage = 0.3f;
-                    primitiveVisual.BevelSmoothness = 0.0f;
+                    ThisPrimitiveVisual.Shape = PrimitiveVisualShapeType.BevelledCube;
+                    ThisPrimitiveVisual.ScaleDimensions = new Vector3(0.0f, 0.5f, 1.1f);
+                    ThisPrimitiveVisual.BevelPercentage = 0.3f;
+                    ThisPrimitiveVisual.BevelSmoothness = 0.0f;
                     break;
             }
 
-            return primitiveVisual;
+            return ThisPrimitiveVisual;
         }
 
-        // creates visual map for different kinds of primitives
-        private VisualMap CreateVisualMap(string visualName)
+        /// <summary>
+        /// The method to create visual map for different kinds of primitives
+        /// </summary>
+        /// <param name="visualType"> The Visual type </param>
+        /// <returns> The VisualMap to the Visual of the given type </returns>
+        private VisualMap CreateVisualMap(string visualType)
         {
-            VisualMap map = null;
+            VisualMap ThisVisualMap = null;
 
-            switch (visualName)
+            switch (visualType)
             {
                 case "Border":
-                    BorderVisual borderVisual = new BorderVisual();
-                    // obligatory properties
-                    borderVisual.Color = Color.Blue;
-                    borderVisual.BorderSize = 15.0f;
-                    map = borderVisual;
+                    BorderVisual ThisBorderVisual = new BorderVisual();
+                    /// obligatory properties
+                    ThisBorderVisual.Color = Color.Blue;
+                    ThisBorderVisual.BorderSize = 15.0f;
+                    ThisVisualMap = ThisBorderVisual;
                     break;
 
                 case "Color":
-                    ColorVisual colorVisual = new ColorVisual(); 
-                    // obligatory properties
-                    colorVisual.MixColor = new Color(0.2f, 0.0f, 1.0f, 0.7f);
-                    // optional properties
-                    colorVisual.CornerRadius = 35.0f;
-                    map = colorVisual;
+                    ColorVisual ThisColorVisual = new ColorVisual();
+                    /// obligatory properties
+                    ThisColorVisual.MixColor = new Color(0.2f, 0.0f, 1.0f, 0.7f);
+                    /// optional properties
+                    ThisColorVisual.CornerRadius = 35.0f;
+                    ThisVisualMap = ThisColorVisual;
                     break;
 
                 case "RadialGradient":
-                    GradientVisual radGradientVisual = new GradientVisual();
-                    // obligatory properties
-                    // coordinate system: top-left - (-0.5,-0.5); bottom-right - (0.5,0.5)
-                    radGradientVisual.Center = new Vector2(0.0f, 0.0f);
-                    radGradientVisual.Radius = 0.9f;
-                    // optional properties
-                    PropertyArray stopColor = new PropertyArray();
-                    stopColor.Add(new PropertyValue(Color.Yellow));
-                    stopColor.Add(new PropertyValue(Color.Blue));
-                    stopColor.Add(new PropertyValue(new Color(0.0f, 1.0f, 0.0f, 1.0f)));
-                    stopColor.Add(new PropertyValue(new Vector4(120.0f, 0.0f, 255.0f, 255.0f) / 255.0f));
-                    radGradientVisual.StopColor = stopColor;
-                    PropertyArray stopOffset = new PropertyArray();
-                    stopOffset.Add(new PropertyValue(0.0f));
-                    stopOffset.Add(new PropertyValue(0.2f));
-                    stopOffset.Add(new PropertyValue(0.4f));
-                    stopOffset.Add(new PropertyValue(0.6f));
-                    radGradientVisual.StopOffset = stopOffset;
-                    map = radGradientVisual;
+                    GradientVisual ThisRadialGradientVisual = new GradientVisual();
+                    /// obligatory properties
+                    /// coordinate system: top-left - (-0.5,-0.5); bottom-right - (0.5,0.5)
+                    ThisRadialGradientVisual.Center = new Vector2(0.0f, 0.0f);
+                    ThisRadialGradientVisual.Radius = 0.9f;
+                    /// optional properties
+                    PropertyArray ThisStopColor = new PropertyArray();
+                    ThisStopColor.Add(new PropertyValue(Color.Yellow));
+                    ThisStopColor.Add(new PropertyValue(Color.Blue));
+                    ThisStopColor.Add(new PropertyValue(new Color(0.0f, 1.0f, 0.0f, 1.0f)));
+                    ThisStopColor.Add(new PropertyValue(new Vector4(120.0f, 0.0f, 255.0f, 255.0f) / 255.0f));
+                    ThisRadialGradientVisual.StopColor = ThisStopColor;
+                    PropertyArray ThisStopOffset = new PropertyArray();
+                    ThisStopOffset.Add(new PropertyValue(0.0f));
+                    ThisStopOffset.Add(new PropertyValue(0.2f));
+                    ThisStopOffset.Add(new PropertyValue(0.4f));
+                    ThisStopOffset.Add(new PropertyValue(0.6f));
+                    ThisRadialGradientVisual.StopOffset = ThisStopOffset;
+                    ThisVisualMap = ThisRadialGradientVisual;
                     break;
 
                 case "LinearGradient":
-                    GradientVisual linGradientVisual = new GradientVisual();
-                    // obligatory properties
-                    // coordinate system: top-left - (-0.5,-0.5); bottom-right - (0.5,0.5)
-                    linGradientVisual.StartPosition = new Vector2(-0.5f, 0.5f);
-                    linGradientVisual.EndPosition = new Vector2(0.5f, -0.5f);
-                    // optional properties
-                    linGradientVisual.StopColor = new PropertyArray();
-                    linGradientVisual.StopColor.Add(new PropertyValue(Color.Green));
-                    linGradientVisual.StopColor.Add(new PropertyValue(Color.Blue));
-                    map = linGradientVisual;
+                    GradientVisual ThisLinearGradientVisual = new GradientVisual();
+                    /// obligatory properties
+                    /// coordinate system: top-left - (-0.5,-0.5); bottom-right - (0.5,0.5)
+                    ThisLinearGradientVisual.StartPosition = new Vector2(-0.5f, 0.5f);
+                    ThisLinearGradientVisual.EndPosition = new Vector2(0.5f, -0.5f);
+                    /// optional properties
+                    ThisLinearGradientVisual.StopColor = new PropertyArray();
+                    ThisLinearGradientVisual.StopColor.Add(new PropertyValue(Color.Green));
+                    ThisLinearGradientVisual.StopColor.Add(new PropertyValue(Color.Blue));
+                    ThisVisualMap = ThisLinearGradientVisual;
                     break;
 
                 case "Image":
-                    ImageVisual imageVisual = new ImageVisual();
-                    // obligatory properties
-                    imageVisual.URL = _imageUrl + "belt.jpg";
-                    // optional properties
-                    imageVisual.Origin = Visual.AlignType.TopBegin;
-                    imageVisual.AnchorPoint = Visual.AlignType.TopBegin;
-                    imageVisual.RelativePosition = new RelativeVector2(0.1f, 0.1f);
-                    map = imageVisual;
+                    ImageVisual ThisImageVisual = new ImageVisual();
+                    /// obligatory properties
+                    ThisImageVisual.URL = ImageUrl + "belt.jpg";
+                    /// optional properties
+                    ThisImageVisual.Origin = Visual.AlignType.TopBegin;
+                    ThisImageVisual.AnchorPoint = Visual.AlignType.TopBegin;
+                    ThisImageVisual.RelativePosition = new RelativeVector2(0.1f, 0.1f);
+                    ThisVisualMap = ThisImageVisual;
                     break;
 
                 case "NPatch":
-                    NPatchVisual nPatchVisual = new NPatchVisual();
-                    // obligatory properties
-                    nPatchVisual.URL = _imageUrl + "heartsframe.png";
-                    // optional properties (for all visual types)
-                    nPatchVisual.Origin = Visual.AlignType.Center;
-                    nPatchVisual.AnchorPoint = Visual.AlignType.Center;
-                    nPatchVisual.RelativePosition = new RelativeVector2(0.0f, 0.0f);
-                    map = nPatchVisual;
+                    NPatchVisual ThisNPatchVisual = new NPatchVisual();
+                    /// obligatory properties
+                    ThisNPatchVisual.URL = ImageUrl + "heartsframe.png";
+                    /// optional properties (for all visual types)
+                    ThisNPatchVisual.Origin = Visual.AlignType.Center;
+                    ThisNPatchVisual.AnchorPoint = Visual.AlignType.Center;
+                    ThisNPatchVisual.RelativePosition = new RelativeVector2(0.0f, 0.0f);
+                    ThisVisualMap = ThisNPatchVisual;
                     break;
 
                 case "SVG":
-                    SVGVisual svgVisual = new SVGVisual();
-                    // obligatory properties
-                    svgVisual.URL = _imageUrl + "tiger.svg";
-                    // optional properties (for all visual types)
-                    svgVisual.Origin = Visual.AlignType.BottomBegin;
-                    svgVisual.AnchorPoint = Visual.AlignType.BottomBegin;
-                    svgVisual.RelativePosition = new RelativeVector2(0.1f, -0.1f);
-                    map = svgVisual;
+                    SVGVisual ThisSvgVisual = new SVGVisual();
+                    /// obligatory properties
+                    ThisSvgVisual.URL = ImageUrl + "tiger.svg";
+                    /// optional properties (for all visual types)
+                    ThisSvgVisual.Origin = Visual.AlignType.BottomBegin;
+                    ThisSvgVisual.AnchorPoint = Visual.AlignType.BottomBegin;
+                    ThisSvgVisual.RelativePosition = new RelativeVector2(0.1f, -0.1f);
+                    ThisVisualMap = ThisSvgVisual;
                     break;
 
                 case "Animated":
-                    AnimatedImageVisual animatedVisual = new AnimatedImageVisual();
-                    // obligatory properties
-                    animatedVisual.URL = _imageUrl + "buble.gif";
-                    // optional properties (for all visual types)
-                    animatedVisual.Origin = Visual.AlignType.TopEnd;
-                    animatedVisual.AnchorPoint = Visual.AlignType.TopEnd;
-                    animatedVisual.RelativePosition = new RelativeVector2(-0.1f, 0.1f);
-                    map = animatedVisual;
+                    AnimatedImageVisual ThisAnimatedVisual = new AnimatedImageVisual();
+                    /// obligatory properties
+                    ThisAnimatedVisual.URL = ImageUrl + "buble.gif";
+                    /// optional properties (for all visual types)
+                    ThisAnimatedVisual.Origin = Visual.AlignType.TopEnd;
+                    ThisAnimatedVisual.AnchorPoint = Visual.AlignType.TopEnd;
+                    ThisAnimatedVisual.RelativePosition = new RelativeVector2(-0.1f, 0.1f);
+                    ThisVisualMap = ThisAnimatedVisual;
                     break;
 
                 case "Mesh":
-                    MeshVisual meshVisual = new MeshVisual();
-                    // obligatory properties
-                    meshVisual.ObjectURL = _imageUrl + "MickeyMouse.obj";
-                    // optional properties (for all visual map types)
-                    meshVisual.Origin = Visual.AlignType.BottomEnd;
-                    meshVisual.AnchorPoint = Visual.AlignType.BottomEnd;
-                    meshVisual.RelativePosition = new RelativeVector2(-0.1f, -0.1f);
-                    meshVisual.MixColor = new Color(0.52f, 0.62f, 0.96f, 0.9f);
-                    map = meshVisual;
+                    MeshVisual ThisMeshVisual = new MeshVisual();
+                    /// obligatory properties
+                    ThisMeshVisual.ObjectURL = ImageUrl + "MickeyMouse.obj";
+                    /// optional properties (for all visual map types)
+                    ThisMeshVisual.Origin = Visual.AlignType.BottomEnd;
+                    ThisMeshVisual.AnchorPoint = Visual.AlignType.BottomEnd;
+                    ThisMeshVisual.RelativePosition = new RelativeVector2(-0.1f, -0.1f);
+                    ThisMeshVisual.MixColor = new Color(0.52f, 0.62f, 0.96f, 0.9f);
+                    ThisVisualMap = ThisMeshVisual;
                     break;
             }
 
-            // properties common for visuals groups
-            switch (visualName)
+            /// properties common for visuals groups
+            switch (visualType)
             {
                 case "Border":
                 case "Color":
                 case "RadialGradient":
                 case "LinearGradient":
-                    map.RelativeSize = new RelativeVector2(0.3f, 0.2f);
-                    map.Origin = Visual.AlignType.TopBegin;
-                    map.AnchorPoint = Visual.AlignType.TopBegin;
+                    ThisVisualMap.RelativeSize = new RelativeVector2(0.3f, 0.2f);
+                    ThisVisualMap.Origin = Visual.AlignType.TopBegin;
+                    ThisVisualMap.AnchorPoint = Visual.AlignType.TopBegin;
                     break;
 
                 case "Image":
@@ -359,7 +469,7 @@ namespace NUI_Visuals
                 case "SVG":
                 case "Animated":
                 case "Mesh":
-                    map.RelativeSize = new RelativeVector2(_imageRelWidth, _imageRelHeight);
+                    ThisVisualMap.RelativeSize = new RelativeVector2(ImageRelativeWidth, ImageRelativeHeight);
                     break;
 
                 case "Sphere":
@@ -369,194 +479,212 @@ namespace NUI_Visuals
                 case "BevelledCube":
                 case "Octahedron":
                 case "Cube":
-                    map = CreatePrimitiveVisual(visualName);
-                    map.RelativeSize = new RelativeVector2(_primitiveRelWidth, _primitiveRelHeight);
-                    map.Origin = Visual.AlignType.TopCenter;
-                    map.AnchorPoint = Visual.AlignType.Center;
+                    ThisVisualMap = CreatePrimitiveVisual(visualType);
+                    ThisVisualMap.RelativeSize = new RelativeVector2(PrimitiveRelativeWidth, PrimitiveRelativeHeight);
+                    ThisVisualMap.Origin = Visual.AlignType.TopCenter;
+                    ThisVisualMap.AnchorPoint = Visual.AlignType.Center;
                     break;
             }
 
-            return map;
+            return ThisVisualMap;
         }
 
-        // sets the visual view that is visible after clicking the button1 - contains visuals text, border, color, gradient
+        /// <summary>
+        /// The method to set the visual view that is visible after clicking
+        /// the button1 - contains visuals text, border, color, gradient
+        /// </summary>
+        /// <returns> The created VisualView </returns>
         private VisualView CreateVisualView1()
         {
-            VisualView current = new VisualView();
-            current.Size2D = new Size2D(_currentWidth, _currentHeight);
-            current.ParentOrigin = ParentOrigin.TopLeft;;
-            current.PositionUsesPivotPoint = true;
-            current.PivotPoint = PivotPoint.TopLeft;
-            current.Position2D = new Position2D(_frameSize, 0);
-            current.BackgroundColor = Color.White;
+            VisualView CurrentVisualView = new VisualView();
+            CurrentVisualView.Size2D = new Size2D(CurrentWidth, CurrentHeight);
+            CurrentVisualView.ParentOrigin = ParentOrigin.TopLeft;;
+            CurrentVisualView.PositionUsesPivotPoint = true;
+            CurrentVisualView.PivotPoint = PivotPoint.TopLeft;
+            CurrentVisualView.Position2D = new Position2D(FrameSize, 0);
+            CurrentVisualView.BackgroundColor = Color.White;
 
-            VisualMap visualMap = null;
-            string visualType;
+            VisualMap ThisVisualMap = null;
+            string VisualType;
 
-            // the main title
-            visualMap = CreateTextVisual("VISUALS", 20.0f, new RelativeVector2(0.5f, 0.0f));
-            current.AddVisual("TextVisuals", visualMap);
+            /// the main title
+            ThisVisualMap = CreateTextVisual("VISUALS", 20.0f, new RelativeVector2(0.5f, 0.0f));
+            CurrentVisualView.AddVisual("TextVisuals", ThisVisualMap);
 
-            // border visual and its title
-            visualType = "Border";
-            visualMap = CreateVisualMap(visualType);
-            visualMap.RelativePosition = new RelativeVector2(0.025f, 0.2f);
-            current.AddVisual(visualType, visualMap);
+            /// border visual and its title
+            VisualType = "Border";
+            ThisVisualMap = CreateVisualMap(VisualType);
+            ThisVisualMap.RelativePosition = new RelativeVector2(0.025f, 0.2f);
+            CurrentVisualView.AddVisual(VisualType, ThisVisualMap);
 
-            visualMap = CreateTextVisual(visualType, 13.0f, new RelativeVector2(0.175f, 0.4f));
-            current.AddVisual("Text" + visualType, visualMap);
+            ThisVisualMap = CreateTextVisual(VisualType, 13.0f, new RelativeVector2(0.175f, 0.4f));
+            CurrentVisualView.AddVisual("Text" + VisualType, ThisVisualMap);
 
-            // border visual - underneath the previous one
-            BorderVisual borderVisual = (BorderVisual)CreateVisualMap(visualType);
-            borderVisual.Color = Color.Green;
-            borderVisual.RelativePosition = new RelativeVector2(0.045f, 0.18f);
-            borderVisual.DepthIndex = visualMap.DepthIndex - 1;
-            current.AddVisual(visualType + "2", borderVisual);
+            /// border visual - underneath the previous one
+            BorderVisual ThisBorderVisual = (BorderVisual)CreateVisualMap(VisualType);
+            ThisBorderVisual.Color = Color.Green;
+            ThisBorderVisual.RelativePosition = new RelativeVector2(0.045f, 0.18f);
+            ThisBorderVisual.DepthIndex = ThisVisualMap.DepthIndex - 1;
+            CurrentVisualView.AddVisual(VisualType + "2", ThisBorderVisual);
 
-            // color visual and its title
-            visualType = "Color";
-            visualMap = CreateVisualMap(visualType);
-            visualMap.RelativePosition = new RelativeVector2(0.675f, 0.2f);
-            current.AddVisual(visualType, visualMap);
+            /// color visual and its title
+            VisualType = "Color";
+            ThisVisualMap = CreateVisualMap(VisualType);
+            ThisVisualMap.RelativePosition = new RelativeVector2(0.675f, 0.2f);
+            CurrentVisualView.AddVisual(VisualType, ThisVisualMap);
 
-            visualMap = CreateTextVisual(visualType, 13.0f, new RelativeVector2(0.825f, 0.4f));
-            current.AddVisual("Text" + visualType, visualMap);
+            ThisVisualMap = CreateTextVisual(VisualType, 13.0f, new RelativeVector2(0.825f, 0.4f));
+            CurrentVisualView.AddVisual("Text" + VisualType, ThisVisualMap);
 
-            // radial gradient 1
-            visualType = "Gradient";
-            visualMap = CreateVisualMap("Radial" + visualType);
-            visualMap.RelativePosition = new RelativeVector2(0.025f, 0.6f);
-            current.AddVisual("Radial" + visualType + "1", visualMap);
+            /// radial gradient 1
+            VisualType = "Gradient";
+            ThisVisualMap = CreateVisualMap("Radial" + VisualType);
+            ThisVisualMap.RelativePosition = new RelativeVector2(0.025f, 0.6f);
+            CurrentVisualView.AddVisual("Radial" + VisualType + "1", ThisVisualMap);
 
-            // linear gradient and the title
-            visualMap = CreateVisualMap("Linear" + visualType);
-            visualMap.RelativePosition = new RelativeVector2(0.350f, 0.6f);
-            current.AddVisual("Linear" + visualType, visualMap);
+            /// linear gradient and the title
+            ThisVisualMap = CreateVisualMap("Linear" + VisualType);
+            ThisVisualMap.RelativePosition = new RelativeVector2(0.350f, 0.6f);
+            CurrentVisualView.AddVisual("Linear" + VisualType, ThisVisualMap);
 
-            visualMap = CreateTextVisual(visualType, 13.0f, new RelativeVector2(0.5f, 0.8f));
-            current.AddVisual("Text" + visualType, visualMap);
+            ThisVisualMap = CreateTextVisual(VisualType, 13.0f, new RelativeVector2(0.5f, 0.8f));
+            CurrentVisualView.AddVisual("Text" + VisualType, ThisVisualMap);
 
-            // radial gradient 2
-            GradientVisual gradientVisual = (GradientVisual)CreateVisualMap("Radial" + visualType);
-            gradientVisual.Center = new Vector2(0.2f, 0.4f);
-            gradientVisual.Radius = 0.2f;
-            gradientVisual.StopColor = new PropertyArray();
-            gradientVisual.StopColor.Add(new PropertyValue(Color.Blue));
-            gradientVisual.StopColor.Add(new PropertyValue(Color.Green));
-            gradientVisual.SpreadMethod = GradientVisualSpreadMethodType.Repeat;
-            gradientVisual.RelativePosition = new RelativeVector2(0.675f, 0.6f);
-            current.AddVisual("Radial" + visualType + "2", gradientVisual);
+            /// radial gradient 2
+            GradientVisual ThisGradientVisual = (GradientVisual)CreateVisualMap("Radial" + VisualType);
+            ThisGradientVisual.Center = new Vector2(0.2f, 0.4f);
+            ThisGradientVisual.Radius = 0.2f;
+            ThisGradientVisual.StopColor = new PropertyArray();
+            ThisGradientVisual.StopColor.Add(new PropertyValue(Color.Blue));
+            ThisGradientVisual.StopColor.Add(new PropertyValue(Color.Green));
+            ThisGradientVisual.SpreadMethod = GradientVisualSpreadMethodType.Repeat;
+            ThisGradientVisual.RelativePosition = new RelativeVector2(0.675f, 0.6f);
+            CurrentVisualView.AddVisual("Radial" + VisualType + "2", ThisGradientVisual);
 
-            // current added to the _mainVisualView
-            _mainVisualView.Add(current);
-            return current;
+            /// CurrentVisualView added to the MainVisualView
+            MainVisualView.Add(CurrentVisualView);
+            return CurrentVisualView;
         }
 
-        // sets visual view visible after clicking the button2 - contains visuals images
+        /// <summary>
+        /// The method to set visual view visible after clicking the button2
+        /// - contains visuals images
+        /// </summary>
+        /// <returns> The created VisualView </returns>
         private VisualView CreateVisualView2()
         {
-            VisualView current = new VisualView();
-            current.Size2D = new Size2D(_currentWidth, _currentHeight);
-            current.ParentOrigin = ParentOrigin.TopLeft;;
-            current.PositionUsesPivotPoint = true;
-            current.PivotPoint = PivotPoint.TopLeft;
-            current.Position2D = new Position2D(_winWidth + _frameSize, 0);
-            current.BackgroundColor = Color.White;
+            VisualView CurrentVisualView = new VisualView();
+            CurrentVisualView.Size2D = new Size2D(CurrentWidth, CurrentHeight);
+            CurrentVisualView.ParentOrigin = ParentOrigin.TopLeft;;
+            CurrentVisualView.PositionUsesPivotPoint = true;
+            CurrentVisualView.PivotPoint = PivotPoint.TopLeft;
+            CurrentVisualView.Position2D = new Position2D(WindowWidth + FrameSize, 0);
+            CurrentVisualView.BackgroundColor = Color.White;
 
-            VisualMap visualMap = null;
+            VisualMap ThisVisualMap = null;
 
-            // the main title
-            visualMap = CreateTextVisual("VISUALS", 20.0f, new RelativeVector2(0.5f, 0.0f));
-            current.AddVisual("TextVisuals", visualMap);
+            /// the main title
+            ThisVisualMap = CreateTextVisual("VISUALS", 20.0f, new RelativeVector2(0.5f, 0.0f));
+            CurrentVisualView.AddVisual("TextVisuals", ThisVisualMap);
 
-            RelativeVector2[] imageTextRelPosition = {new RelativeVector2(0.3f,0.3f),
-                                                      new RelativeVector2(0.7f,0.3f),
-                                                      new RelativeVector2(0.3f,0.9f),
-                                                      new RelativeVector2(0.7f,0.9f),
-                                                      new RelativeVector2(0.5f,0.6f)};
+            RelativeVector2[] ImageTextRelativePosition = {new RelativeVector2(0.3f,0.3f),
+                                                           new RelativeVector2(0.7f,0.3f),
+                                                           new RelativeVector2(0.3f,0.9f),
+                                                           new RelativeVector2(0.7f,0.9f),
+                                                           new RelativeVector2(0.5f,0.6f)};
 
-            for (uint i = 0; i < _numberImages; ++i)
+            for (uint i = 0; i < ImageCount; ++i)
             {
-                visualMap = CreateVisualMap(_imageType[i]);
-                // to show how nice NPatch can be stretched
-                if (_imageType[i] == "NPatch")
-                    visualMap.RelativeSize = new RelativeVector2(2 * _imageRelWidth, _imageRelHeight);
-                current.AddVisual(_imageType[i], visualMap);
-                current.AddVisual("Text" + _imageType[i], CreateTextVisual(_imageType[i], 9.0f, imageTextRelPosition[i]));
+                ThisVisualMap = CreateVisualMap(ImageType[i]);
+                /// to show how nice NPatch can be stretched
+                if (ImageType[i] == "NPatch")
+                {
+                    ThisVisualMap.RelativeSize = new RelativeVector2(2 * ImageRelativeWidth, ImageRelativeHeight);
+                }
+                CurrentVisualView.AddVisual(ImageType[i], ThisVisualMap);
+                CurrentVisualView.AddVisual("Text" + ImageType[i], CreateTextVisual(ImageType[i], 9.0f, ImageTextRelativePosition[i]));
             }
 
-            _mainVisualView.Add(current);
-            return current;
+            MainVisualView.Add(CurrentVisualView);
+            return CurrentVisualView;
         }
 
-        // setting the visual view visible after clicking the button3 - contains visuals primitives
+        /// <summary>
+        /// The method to set the visual view visible after clicking the button3
+        /// - contains visuals primitives
+        /// </summary>
+        /// <returns> The created VisualView </returns>
         private VisualView CreateVisualView3()
         {
-            VisualView current = new VisualView();
-            current.Size2D = new Size2D(_currentWidth, _currentHeight);
-            current.ParentOrigin = ParentOrigin.TopLeft;;
-            current.PositionUsesPivotPoint = true;
-            current.PivotPoint = PivotPoint.TopLeft;
-            current.Position2D = new Position2D(2 * _winWidth + _frameSize, 0);
-            current.BackgroundColor = Color.White;
+            VisualView CurrentVisualView = new VisualView();
+            CurrentVisualView.Size2D = new Size2D(CurrentWidth, CurrentHeight);
+            CurrentVisualView.ParentOrigin = ParentOrigin.TopLeft;;
+            CurrentVisualView.PositionUsesPivotPoint = true;
+            CurrentVisualView.PivotPoint = PivotPoint.TopLeft;
+            CurrentVisualView.Position2D = new Position2D(2 * WindowWidth + FrameSize, 0);
+            CurrentVisualView.BackgroundColor = Color.White;
 
-            VisualMap visualMap = null;
+            VisualMap ThisVisualMap = null;
 
-            // the main title
-            visualMap = CreateTextVisual("VISUALS", 20.0f, new RelativeVector2(0.5f, 0.0f));
-            current.AddVisual("TextVisuals", visualMap);
+            /// the main title
+            ThisVisualMap = CreateTextVisual("VISUALS", 20.0f, new RelativeVector2(0.5f, 0.0f));
+            CurrentVisualView.AddVisual("TextVisuals", ThisVisualMap);
 
-            float dw = (1.0f + _primitiveRelWidth) / 6.0f;
-            float dh = (float)((0.9f - Math.Ceiling(_numberPrimitives / 2.0f) * _primitiveRelHeight) / (1.0f + Math.Ceiling(_numberPrimitives / 2.0f)));
-            RelativeVector2 visualRelPos = new RelativeVector2(-dw, 0.1f + dh);
+            float DeltaWidth = (1.0f + PrimitiveRelativeWidth) / 6.0f;
+            float DeltaHeight = (float)((0.9f - Math.Ceiling(PrimitiveCount / 2.0f) * PrimitiveRelativeHeight) / (1.0f + Math.Ceiling(PrimitiveCount / 2.0f)));
+            RelativeVector2 VisualRelativePosition = new RelativeVector2(-DeltaWidth, 0.1f + DeltaHeight);
 
-            for (uint i = 0; i < _numberPrimitives; ++i)
+            for (uint i = 0; i < PrimitiveCount; ++i)
             {
-                visualMap = CreateVisualMap(_primitiveName[i]);
-                visualMap.RelativePosition = visualRelPos + new RelativeVector2(0, 0.06f);
-                current.AddVisual(_primitiveName[i], visualMap);
-                current.AddVisual("Text" + _primitiveName[i], CreateTextVisual(_primitiveName[i], 9.0f, visualRelPos + new RelativeVector2(0.5f, _primitiveRelHeight)));
+                ThisVisualMap = CreateVisualMap(PrimitiveName[i]);
+                ThisVisualMap.RelativePosition = VisualRelativePosition + new RelativeVector2(0, 0.06f);
+                CurrentVisualView.AddVisual(PrimitiveName[i], ThisVisualMap);
+                CurrentVisualView.AddVisual("Text" + PrimitiveName[i], CreateTextVisual(PrimitiveName[i], 9.0f, VisualRelativePosition + new RelativeVector2(0.5f, PrimitiveRelativeHeight)));
                 if (i % 2 == 0)
-                    visualRelPos += new RelativeVector2(2.0f * dw, (dh + _primitiveRelHeight) / 2.0f);
+                {
+                    VisualRelativePosition += new RelativeVector2(2.0f * DeltaWidth, (DeltaHeight + PrimitiveRelativeHeight) / 2.0f);
+                }
                 else
-                    visualRelPos += new RelativeVector2(-2.0f * dw, (dh + _primitiveRelHeight) / 2.0f);
+                {
+                    VisualRelativePosition += new RelativeVector2(-2.0f * DeltaWidth, (DeltaHeight + PrimitiveRelativeHeight) / 2.0f);
+                }
             }
 
-            _mainVisualView.Add(current);
-            return current;
+            MainVisualView.Add(CurrentVisualView);
+            return CurrentVisualView;
         }
 
         void Initialize()
         {
             Window.Instance.KeyEvent += OnKeyEvent;
             Window.Instance.BackgroundColor = Color.Blue;
-            Size2D winSize = Window.Instance.WindowSize;
-            _winWidth = winSize.Width;
-            int winHeight = winSize.Height;
+            Size2D WindowinSize = Window.Instance.WindowSize;
+            WindowWidth = WindowinSize.Width;
+            int WindowHeight = WindowinSize.Height;
 
 
-            // the buttons visual view
-            _buttonVisualView = new VisualView();
-            _buttonVisualView.Size2D = new Size2D((int)(_winWidth - 2 * _frameSize), (int)((winHeight - 3 * _frameSize) * _buttonToMainRatio));
-            _buttonVisualView.ParentOrigin = ParentOrigin.BottomLeft;
-            _buttonVisualView.PositionUsesPivotPoint = true;
-            _buttonVisualView.PivotPoint = PivotPoint.BottomLeft;
-            _buttonVisualView.Position2D = new Position2D(_frameSize, -_frameSize);
+            /// the buttons visual view
+            ButtonVisualView = new VisualView();
+            ButtonVisualView.Size2D = new Size2D((int)(WindowWidth - 2 * FrameSize), (int)((WindowHeight - 3 * FrameSize) * ButtonToMainRatio));
+            ButtonVisualView.ParentOrigin = ParentOrigin.BottomLeft;
+            ButtonVisualView.PositionUsesPivotPoint = true;
+            ButtonVisualView.PivotPoint = PivotPoint.BottomLeft;
+            ButtonVisualView.Position2D = new Position2D(FrameSize, -FrameSize);
             InitializeButtons();
-            _buttons[0].BackgroundColor = new Color(0.66f, 0.6f, 0.9f, 1);
-            Window.Instance.Add(_buttonVisualView);
+            Buttons[0].BackgroundColor = new Color(0.66f, 0.6f, 0.9f, 1);
+            Window.Instance.Add(ButtonVisualView);
 
-            // the main visual view
-            _mainVisualView = new VisualView();
-            _currentWidth = _winWidth - 2 * _frameSize;
-            _currentHeight = (int)((winHeight - 3 * _frameSize) * (1 - _buttonToMainRatio));
-            _mainVisualView.Size2D = new Size2D(3 * _winWidth, _currentHeight);
-            _mainVisualView.ParentOrigin = ParentOrigin.TopLeft;;
-            _mainVisualView.PositionUsesPivotPoint = true;
-            _mainVisualView.PivotPoint = PivotPoint.TopLeft;
-            _mainVisualView.Position2D = new Position2D(0, _frameSize);
-            _mainVisualView.BackgroundColor = Color.Blue;
-            Window.Instance.Add(_mainVisualView);
+            /// the main visual view
+            MainVisualView = new VisualView();
+            CurrentWidth = WindowWidth - 2 * FrameSize;
+            CurrentHeight = (int)((WindowHeight - 3 * FrameSize) * (1 - ButtonToMainRatio));
+            MainVisualView.Size2D = new Size2D(3 * WindowWidth, CurrentHeight);
+            MainVisualView.ParentOrigin = ParentOrigin.TopLeft;;
+            MainVisualView.PositionUsesPivotPoint = true;
+            MainVisualView.PivotPoint = PivotPoint.TopLeft;
+            MainVisualView.Position2D = new Position2D(0, FrameSize);
+            MainVisualView.BackgroundColor = Color.Blue;
+            Window.Instance.Add(MainVisualView);
 
             CurrentVisualView.Add(CreateVisualView1());
             CurrentVisualView.Add(CreateVisualView2());
@@ -564,6 +692,11 @@ namespace NUI_Visuals
 
         }
 
+        /// <summary>
+        /// The method called when key pressed down
+        /// </summary>
+        /// <param name="sender">Key instance</param>
+        /// <param name="e">Key's args</param>
         private void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "Escape" ||
@@ -575,9 +708,9 @@ namespace NUI_Visuals
 
         static void Main(string[] args)
         {
-            var app = new Program();
-            app.Run(args);
-            app.Dispose();
+            var App = new Program();
+            App.Run(args);
+            App.Dispose();
         }
     }
 }

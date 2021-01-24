@@ -11,9 +11,12 @@ To render a visual it has to be added to a control. A container class that contr
 
 In the sample application usage of all the above is presented with their main properties.
 
-The application consists of one big view (`VisualView` class), which is scrolled 
+The application consists of one big view (`VisualView` class), which is scrolled
 after the corresponding button is pressed.
 The screenshots of the app are presented below:
-| [screen1](!./../NUI_Visuals_screen1.png) | [screen2](!./../NUI_Visuals_screen2.png) | [screen3](!./../NUI_Visuals_screen3.png) |
+
+![screen1](./NUI_Visuals_screen1.png)
+![screen2](./NUI_Visuals_screen2.png)
+![screen3](./NUI_Visuals_screen3.png) |
 
 For more information about visuals see the [NUI guide](https://docs.tizen.org/application/dotnet/guides/nui/visuals/).
