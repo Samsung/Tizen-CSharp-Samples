@@ -1,4 +1,20 @@
-﻿using System;
+﻿/*
+  * Copyright (c) 2016 Samsung Electronics Co., Ltd
+  *
+  * Licensed under the Flora License, Version 1.1 (the "License");
+  * you may not use this file except in compliance with the License.
+  * You may obtain a copy of the License at
+  *
+  * http://www.apache.org/licenses/LICENSE-2.0
+  *
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+ */
+
+using System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 
@@ -7,16 +23,16 @@ namespace NUI_CustomView
     public class ContactView : CustomView
     {
         private string name;
-        private string resDir;
+        private string resourceDirectory;
 
-        private const int BASE_INDEX = 10000;
-        private const int BACKGROUND_VISUAL_INDEX = BASE_INDEX + 1;
-        private const int LABEL_VISUAL_INDEX = BASE_INDEX + 2;
-        private const int CONTACT_BG_ICON_INDEX = BASE_INDEX + 3;
-        private const int CONTACT_ICON_INDEX = BASE_INDEX + 4;
-        private const int CONTACT_EDIT_INDEX = BASE_INDEX + 5;
-        private const int CONTACT_FAVORITE_INDEX = BASE_INDEX + 6;
-        private const int CONTACT_DELETE_INDEX = BASE_INDEX + 7;
+        private const int BaseIndex = 10000;
+        private const int BackgroundVisualIndex = BaseIndex + 1;
+        private const int LabelVisualIndex = BaseIndex + 2;
+        private const int ContactBgIconIndex = BaseIndex + 3;
+        private const int ContactIconIndex = BaseIndex + 4;
+        private const int ContactEditIndex = BaseIndex + 5;
+        private const int ContactFavoriteIndex = BaseIndex + 6;
+        private const int ContactDeleteIndex = BaseIndex + 7;
 
         static ContactView()
         {
@@ -35,8 +51,8 @@ namespace NUI_CustomView
                .Add(ColorVisualProperty.MixColor, new PropertyValue(color));
 
             VisualBase background = VisualFactory.Instance.CreateVisual(map);
-            RegisterVisual(BACKGROUND_VISUAL_INDEX, background);
-            background.DepthIndex = BACKGROUND_VISUAL_INDEX;
+            RegisterVisual(BackgroundVisualIndex, background);
+            background.DepthIndex = BackgroundVisualIndex;
         }
 
         private void CreateLabel(string text)
@@ -50,8 +66,8 @@ namespace NUI_CustomView
                       .Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
 
             VisualBase label = VisualFactory.Instance.CreateVisual(textVisual);
-            RegisterVisual(LABEL_VISUAL_INDEX, label);
-            label.DepthIndex = LABEL_VISUAL_INDEX;
+            RegisterVisual(LabelVisualIndex, label);
+            label.DepthIndex = LabelVisualIndex;
 
             PropertyMap imageVisualTransform = new PropertyMap();
             imageVisualTransform.Add((int)VisualTransformPropertyType.Offset, new PropertyValue(new Vector2(30, 5)))
@@ -86,17 +102,17 @@ namespace NUI_CustomView
             icon.DepthIndex = index;
         }
 
-        public ContactView(string name, string resDir) : base(typeof(ContactView).Name, CustomViewBehaviour.ViewBehaviourDefault)
+        public ContactView(string name, string resourceDirectory) : base(typeof(ContactView).Name, CustomViewBehaviour.ViewBehaviourDefault)
         {
             this.name = name;
-            this.resDir = resDir;
+            this.resourceDirectory = resourceDirectory;
 
             CreateBackground(new Vector4(1.0f, 1.0f, 1.0f, 1.0f));
-            CreateIcon(resDir + "/images/cbg.png", 10.0f, 5.0f, 100.0f, 100.0f, CONTACT_BG_ICON_INDEX);
-            CreateIcon(resDir + "/images/contact.png", 10.0f, 5.0f, 100.0f, 100.0f, CONTACT_ICON_INDEX);
-            CreateIcon(resDir + "/images/edit.png", 130.0f, 40.0f, 50.0f, 50.0f, CONTACT_EDIT_INDEX);
-            CreateIcon(resDir + "/images/favorite.png", 180.0f, 40.0f, 50.0f, 50.0f, CONTACT_FAVORITE_INDEX);
-            CreateIcon(resDir + "/images/delete.png", 640.0f, 40.0f, 50.0f, 50.0f, CONTACT_DELETE_INDEX);
+            CreateIcon(resourceDirectory + "/images/cbg.png", 10.0f, 5.0f, 100.0f, 100.0f, ContactBgIconIndex);
+            CreateIcon(resourceDirectory + "/images/contact.png", 10.0f, 5.0f, 100.0f, 100.0f, ContactIconIndex);
+            CreateIcon(resourceDirectory + "/images/edit.png", 130.0f, 40.0f, 50.0f, 50.0f, ContactEditIndex);
+            CreateIcon(resourceDirectory + "/images/favorite.png", 180.0f, 40.0f, 50.0f, 50.0f, ContactFavoriteIndex);
+            CreateIcon(resourceDirectory + "/images/delete.png", 640.0f, 40.0f, 50.0f, 50.0f, ContactDeleteIndex);
             CreateLabel(name);
         }
     }
