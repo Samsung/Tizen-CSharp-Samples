@@ -86,7 +86,10 @@ namespace SimpleLayout
                 }
             }
 
-            if (iconHeight.AsRoundedValue() > itemHeight.AsRoundedValue()) itemHeight = iconHeight;
+            if (iconHeight.AsRoundedValue() > itemHeight.AsRoundedValue())
+            {
+                itemHeight = iconHeight;
+            }
 
             // Finally, call this method to set the dimensions we would like
             SetMeasuredDimensions(new MeasuredSize(itemWidth, MeasuredSize.StateType.MeasuredSizeOK),

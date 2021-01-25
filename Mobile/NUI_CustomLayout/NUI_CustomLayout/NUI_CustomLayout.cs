@@ -70,7 +70,8 @@ namespace SimpleLayout
             }
         };
 
-        private static readonly ListItem[] ListItems = {
+        private static readonly ListItem[] ListItems =
+        {
             new ListItem("/images/application-icon-101.png", "Gallery", "Local images viewer"),
             new ListItem("/images/application-icon-102.png", "Wifi"),
             new ListItem("/images/application-icon-103.png", "Apps", "List of available applications"),
@@ -146,10 +147,6 @@ namespace SimpleLayout
             window.Add(mainView);
         }
 
-        /// <summary>
-        /// Called when any key event is received.
-        /// Will use this to exit the application if the Back or Escape key is pressed
-        /// </summary>
         private void OnKeyEvent(object sender, Window.KeyEventArgs eventArgs)
         {
             if (eventArgs.Key.State == Key.StateType.Down)
@@ -158,9 +155,7 @@ namespace SimpleLayout
                 {
                     case "Back":
                     case "XF86Back": //for emulator
-                        {
-                            Exit();
-                        }
+                        Exit();
                         break;
                 }
             }
