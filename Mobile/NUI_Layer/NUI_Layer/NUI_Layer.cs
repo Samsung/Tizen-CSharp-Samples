@@ -21,9 +21,13 @@ namespace NUILayer
     class Program : NUIApplication
     {
         private Window appWindow;
+        //Menu component - a component for view icons
         private View menu;
+
+        //Menu layer - a layer with higher depth index to show menu on top of the application content
         private Layer menuLayer;
 
+        //Icons array. Stores icon names which will be added to the menu layer
         private static readonly string[] icons = {
             "email.png",
             "maps.png",
@@ -45,17 +49,24 @@ namespace NUILayer
 
             appWindow = Window.Instance;
             appWindow.BackgroundColor = Color.White;
+
+            //Setup event handlers.
             appWindow.KeyEvent += OnKeyEvent;
             appWindow.TouchEvent += OnWindowTouched;
 
+            //Create application background. Background image is loaded from resources directory.
             ImageView background = new ImageView(DirectoryInfo.Resource + "/images/bg.png");
             appWindow.Add(background);
+
+            //Setting the background parameters so that it occupies the entire application window
             background.Size2D = new Size2D(appWindow.Size.Width, appWindow.Size.Height);
             background.Position2D = new Position2D(0, 0);
 
+            //Create the menu layer. It will be used to show icons on top of the background content.
             menuLayer = new Layer();
             appWindow.AddLayer(menuLayer);
 
+            //Help label - describes left side of the screen action
             TextLabel leftLabel = new TextLabel("Tap left side of the screen to show menu");
             leftLabel.Size2D = new Size2D(appWindow.Size.Width / 2 - 40, appWindow.Size.Height);
             leftLabel.Position2D = new Position2D(20, 0);
@@ -64,6 +75,7 @@ namespace NUILayer
             leftLabel.MultiLine = true;
             background.Add(leftLabel);
 
+            //Help label - describes right side of the screen action
             TextLabel rightLabel = new TextLabel("Tap right side of the screen to hide menu");
             rightLabel.Size2D = new Size2D(appWindow.Size.Width / 2 - 40, appWindow.Size.Height);
             rightLabel.Position2D = new Position2D(appWindow.Size.Width / 2 + 20, 0);
@@ -72,24 +84,32 @@ namespace NUILayer
             rightLabel.MultiLine = true;
             background.Add(rightLabel);
 
+            //Creates menu component
             menu = new View();
             menu.BackgroundColor = new Color(0.6f, 0.6f, 0.6f, 0.5f);
             menu.Size2D = new Size2D(100, appWindow.Size.Height);
 
+            //Add the menu to the layer (separated from the background)
             menuLayer.Add(menu);
+
             addIcons(menu);
         }
 
         private void addIcons(View view)
         {
+            //Create vertical placeholder for icons and add it to the view. In this case a menu component.
             LinearLayout iconLayout = new LinearLayout();
+            //Setup padding for whole contents
             iconLayout.Padding = new Extents(10, 10, 10, 10);
             iconLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
+            //Setup padding for each icon stored in layout
             iconLayout.CellPadding = new Size2D(20, 38);
             view.Layout = iconLayout;
 
+            //Appends icon to the view.
             foreach (var item in icons)
             {
+                //Create image. Image absolute path is compounded from directory info and icon name.
                 ImageView image = new ImageView(DirectoryInfo.Resource + "/images/" + item);
                 image.Size2D = new Size2D(70, 70);
                 view.Add(image);
@@ -104,7 +124,7 @@ namespace NUILayer
                 {
                     case "Escape":
                     case "Back":
-                    case "XF86Back":
+                    case "XF86Back": //Handle back key for emulator
                         {
                             Exit();
                         }
@@ -115,11 +135,13 @@ namespace NUILayer
 
         public void MenuShow()
         {
+            //Hide all icons by change one flag for layer.
             menuLayer.Visibility = true;
         }
 
         public void MenuHide()
         {
+            //Show all icons by change one flag for layer.
             menuLayer.Visibility = false;
         }
 
@@ -129,6 +151,7 @@ namespace NUILayer
             {
                 //Verify witch side of the screen was clicked by user.
                 //Touch position is compared with half of the screen size.
+                //When the left side of the screen is clicked the application shows the menu, otherwise the menu is hidden
                 if (args.Touch.GetLocalPosition(0).X <= appWindow.Size.Width / 2)
                 {
                     MenuShow();
