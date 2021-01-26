@@ -24,27 +24,37 @@ namespace NUI_CustomView
         protected override void OnCreate()
         {
             base.OnCreate();
-            Initialize();
+            CreateUI();
         }
 
-        void Initialize()
+        //Function creates UI components and add it to the main application window
+        void CreateUI()
         {
             Window window = Window.Instance;
             window.KeyEvent += OnKeyEvent;
 
+            //Create application background. Background image is loaded from resources directory.
             ImageView background = new ImageView(DirectoryInfo.Resource + "/images/bg.png");
+
+            //Setting the background parameters so that it occupies the entire application window.
             background.Size2D = new Size2D(window.Size.Width, window.Size.Height);
             window.Add(background);
+
+            //Create component to store custom views.
             View mainView = new View();
 
+            //Create and setup linear layout. It defines children positions in main view.
             LinearLayout linearLayout = new LinearLayout();
             linearLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
+
+            //Setup layout elements padding and layout margins.
             linearLayout.CellPadding = new Size2D(0, 13);
             linearLayout.Padding = new Extents(10, 10, 10, 10);
 
             mainView.Layout = linearLayout;
             window.Add(mainView);
 
+            //Create and append custom views.
             for (int i = 0; i < 9; i++)
             {
                 NUI_CustomView.ContactView contactView = new ContactView("Test: " + i.ToString(), DirectoryInfo.Resource);

@@ -25,6 +25,7 @@ namespace NUI_CustomView
         private string name;
         private string resourceDirectory;
 
+        //Indexes for registering Visuals in the CustomView
         private const int BaseIndex = 10000;
         private const int BackgroundVisualIndex = BaseIndex + 1;
         private const int LabelVisualIndex = BaseIndex + 2;
@@ -36,14 +37,20 @@ namespace NUI_CustomView
 
         static ContactView()
         {
+            //Each custom view must have its static constructor to register its type.
             CustomViewRegistry.Instance.Register(CreateInstance, typeof(ContactView));
         }
 
         static CustomView CreateInstance()
         {
+            //Create and return valid custom view object. In this case ContactView is created.
             return new ContactView(null, null);
         }
 
+        /// <summary>
+        /// Creates and register background color visual.
+        /// </summary>
+        /// <param name="color">RGBA color vector</param>
         private void CreateBackground(Vector4 color)
         {
             PropertyMap map = new PropertyMap();
@@ -55,6 +62,10 @@ namespace NUI_CustomView
             background.DepthIndex = BackgroundVisualIndex;
         }
 
+        /// <summary>
+        /// Creates and register label visual.
+        /// </summary>
+        /// <param name="text">String viewed by created label</param>
         private void CreateLabel(string text)
         {
             PropertyMap textVisual = new PropertyMap();
@@ -78,6 +89,15 @@ namespace NUI_CustomView
             label.SetTransformAndSize(imageVisualTransform, new Vector2(this.SizeWidth, this.SizeHeight));
         }
 
+        /// <summary>
+        /// Creates and register icon image.
+        /// </summary>
+        /// <param name="url">Icon absolute path</param>
+        /// <param name="x">x icon position</param>
+        /// <param name="y">y icon position</param>
+        /// <param name="w">icon width</param>
+        /// <param name="h">icon height</param>
+        /// <param name="index">visuals registration index</param>
         private void CreateIcon(string url, float x, float y, float w, float h, int index)
         {
             PropertyMap map = new PropertyMap();
@@ -102,17 +122,28 @@ namespace NUI_CustomView
             icon.DepthIndex = index;
         }
 
+        /// <summary>
+        /// Contact View constructor
+        /// </summary>
+        /// <param name="name">name viewed by CustomView object</param>
+        /// <param name="resourceDirectory">resource directory path used to create absolute paths to icons</param>
+        /// <returns></returns>
         public ContactView(string name, string resourceDirectory) : base(typeof(ContactView).Name, CustomViewBehaviour.ViewBehaviourDefault)
         {
             this.name = name;
             this.resourceDirectory = resourceDirectory;
 
+            //Add background to contact view
             CreateBackground(new Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+
+            //Append icons using absolute path and icons positions parameters.
             CreateIcon(resourceDirectory + "/images/cbg.png", 10.0f, 5.0f, 100.0f, 100.0f, ContactBgIconIndex);
             CreateIcon(resourceDirectory + "/images/contact.png", 10.0f, 5.0f, 100.0f, 100.0f, ContactIconIndex);
             CreateIcon(resourceDirectory + "/images/edit.png", 130.0f, 40.0f, 50.0f, 50.0f, ContactEditIndex);
             CreateIcon(resourceDirectory + "/images/favorite.png", 180.0f, 40.0f, 50.0f, 50.0f, ContactFavoriteIndex);
             CreateIcon(resourceDirectory + "/images/delete.png", 640.0f, 40.0f, 50.0f, 50.0f, ContactDeleteIndex);
+
+            //Append title
             CreateLabel(name);
         }
     }
