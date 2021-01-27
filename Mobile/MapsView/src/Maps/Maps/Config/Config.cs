@@ -8,7 +8,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,    
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -63,7 +63,7 @@ namespace Maps
         /// <summary>
         /// Authentication token used to initialize map library.
         /// </summary>
-        public static string AuthenticationToken => _APP_ID + "/" + _APP_KEY;
+        public static string AuthenticationToken => $"{_APP_ID}/{_APP_KEY}";
 
         /// <summary>
         /// Map credentials indicator.
@@ -76,6 +76,22 @@ namespace Maps
         /// Location privilege
         /// </summary>
         public static string LocationPrivilege => _LOCATION_PRIVILEGE;
+
+        /// <summary>
+        /// Minimum map zoom.
+        /// </summary>
+        public static int MinimumMapZoom { get; } = 1;
+
+        /// <summary>
+        /// Maximum map zoom.
+        /// </summary>
+        public static int MaximumMapZoom { get; } = 18;
+
+        /// <summary>
+        /// Initial map zoom.
+        /// </summary>
+        public static int InitialMapZoom { get; } = 14;
+
 
         #endregion
     }

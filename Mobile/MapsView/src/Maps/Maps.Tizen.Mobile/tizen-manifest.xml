@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest package="org.tizen.example.Maps.Tizen.Mobile" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
     <profile name="mobile" />
-    <ui-application appid="org.tizen.example.Maps.Tizen.Mobile" exec="Maps.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+    <ui-application appid="org.tizen.example.Maps.Tizen.Mobile" exec="Maps.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" splash-screen-display="true" launch_mode="single">
         <label>Maps.Tizen.Mobile</label>
         <icon>Maps.Tizen.Mobile.png</icon>
+        <splash-screens />
     </ui-application>
     <shortcut-list />
     <privileges>
         <privilege>http://tizen.org/privilege/mapservice</privilege>
         <privilege>http://tizen.org/privilege/location</privilege>
         <privilege>http://tizen.org/privilege/internet</privilege>
+        <privilege>http://tizen.org/privilege/network.get</privilege>
     </privileges>
+    <dependencies />
     <provides-appdefined-privileges />
 </manifest>
