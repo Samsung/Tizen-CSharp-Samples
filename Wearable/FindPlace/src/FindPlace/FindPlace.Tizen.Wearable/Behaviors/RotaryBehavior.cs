@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-using ElmSharp.Wearable;
 using Tizen.Wearable.CircularUI.Forms;
 using Xamarin.Forms;
 
@@ -61,7 +60,7 @@ namespace FindPlace.Tizen.Wearable.Behaviors
         protected override void OnAttachedTo(CirclePage bindable)
         {
             base.OnAttachedTo(bindable);
-            RotaryEventManager.Rotated += OnRotated;
+            ElmSharp.Wearable.RotaryEventManager.Rotated += OnRotated;
         }
 
         /// <summary>
@@ -70,7 +69,7 @@ namespace FindPlace.Tizen.Wearable.Behaviors
         /// <param name="bindable">Bindable object.</param>
         protected override void OnDetachingFrom(CirclePage bindable)
         {
-            RotaryEventManager.Rotated -= OnRotated;
+            ElmSharp.Wearable.RotaryEventManager.Rotated -= OnRotated;
             base.OnDetachingFrom(bindable);
         }
 
