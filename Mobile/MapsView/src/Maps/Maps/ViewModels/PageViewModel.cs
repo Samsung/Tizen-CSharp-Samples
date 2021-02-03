@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-using Maps.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+
+using Maps.Models;
+
 using Xamarin.Forms;
 
 namespace Maps.ViewModels
@@ -34,7 +36,7 @@ namespace Maps.ViewModels
         /// <summary>
         /// Map zoom level.
         /// </summary>
-        private int _zoomLevel = 15;
+        private int _zoomLevel = Config.InitialMapZoom;
 
         /// <summary>
         /// GPS availability.
@@ -117,7 +119,7 @@ namespace Maps.ViewModels
         /// </summary>
         public void ZoomIn()
         {
-            if (ZoomLevel < 18)
+            if (ZoomLevel < Config.MaximumMapZoom)
             {
                 ZoomLevel++;
             }
@@ -130,7 +132,7 @@ namespace Maps.ViewModels
         /// </summary>
         private void ZoomOut()
         {
-            if (ZoomLevel > 0)
+            if (ZoomLevel > Config.MinimumMapZoom)
             {
                 ZoomLevel--;
             }

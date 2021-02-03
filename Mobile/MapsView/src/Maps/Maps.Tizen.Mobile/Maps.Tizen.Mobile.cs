@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-using Xamarin;
-using Xamarin.Forms;
 using Tizen.Security;
+
+using Xamarin.Forms;
 
 namespace Maps.Tizen.Mobile
 {
@@ -74,14 +74,14 @@ namespace Maps.Tizen.Mobile
                 switch (e.result)
                 {
                     case RequestResult.AllowForever:
-                         ViewModels.ViewModelLocator.ViewModel.IsGPSAvailable = true;
-                         break;
+                        ViewModels.ViewModelLocator.ViewModel.IsGPSAvailable = true;
+                        break;
                     case RequestResult.DenyForever:
-                         ViewModels.ViewModelLocator.ViewModel.IsGPSAvailable = false;
-                         break;
+                        ViewModels.ViewModelLocator.ViewModel.IsGPSAvailable = false;
+                        break;
                     case RequestResult.DenyOnce:
-                         ViewModels.ViewModelLocator.ViewModel.IsGPSAvailable = false;
-                         break;
+                        ViewModels.ViewModelLocator.ViewModel.IsGPSAvailable = false;
+                        break;
                 };
 
                 StartApplication();
@@ -127,7 +127,6 @@ namespace Maps.Tizen.Mobile
         /// </summary>
         private static void InitializeMap()
         {
-            FormsMaps.Init(Config.ProviderName, Config.AuthenticationToken);
             ViewModels.ViewModelLocator.ViewModel.IsMapInitialized = true;
         }
 
