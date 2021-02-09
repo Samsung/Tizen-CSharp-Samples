@@ -23,156 +23,199 @@ namespace NUILinearLayout
 {
     class Program : NUIApplication
     {
-        private View _rootView;
-        private View _view1, _view2, _view3;
-        private TextLabel _textLeft, _textRight;
-        private ImageView _img1, _img2, _img3;
-        private View _color1, _color2, _color3, _color4;
-        private static string _resourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
+        /// <summary>
+        /// View representing the root view of the application
+        /// </summary>
+        private View RootView;
+        /// <summary>
+        /// Views used in the appliaction to create layouts
+        /// </summary>
+        private View View1, View2, View3;
+        /// <summary>
+        /// Text labels used in the application
+        /// </summary>
+        private TextLabel TextLeft, TextRight;
+        /// <summary>
+        /// Images used in the application
+        /// </summary>
+        private ImageView Img1, Img2, Img3;
+        /// <summary>
+        /// Different colors used in the application
+        /// </summary>
+        private View Color1, Color2, Color3, Color4;
+        /// <summary>
+        /// String holding the location of the resource files
+        /// </summary>
+        private static string ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
 
+        /// <summary>
+        /// Overriden method that is called after app launches
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
             Initialize();
         }
 
+        /// <summary>
+        /// Method thatt initializes views
+        /// </summary>
         void Initialize()
         {
             Window.Instance.BackgroundColor = Color.Red;
-            Size2D screenSize = Window.Instance.WindowSize;
-            _rootView = new View();
-            _rootView.BackgroundColor = Color.White;
-            _rootView.Size2D = screenSize;
+            Size2D ScreenSize = Window.Instance.WindowSize;
+            RootView = new View();
+            RootView.BackgroundColor = Color.White;
+            RootView.Size2D = ScreenSize;
 
-            LinearLayout rootLayout = new LinearLayout();
-            rootLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
+            // Add linear layout that will serve as a root for other layouts
+            LinearLayout RootLayout = new LinearLayout();
+            RootLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
 
-            _rootView.Layout = rootLayout;
-            _rootView.Padding = new Extents(20, 20, 20, 20);
+            RootView.Layout = RootLayout;
+            RootView.Padding = new Extents(20, 20, 20, 20);
 
-            _view1 = new View();
-            _view1.BackgroundColor = new Color(0.8f, 0.7f, 0.3f, 1.0f);
-            _view1.WidthSpecification = LayoutParamPolicies.MatchParent;
-            _view1.Weight = 0.45f;
-            _view1.Padding = new Extents(10, 10, 10, 10);
-            _view1.Margin = new Extents(5, 5, 5, 5);
+            View1 = new View();
+            View1.BackgroundColor = new Color(0.8f, 0.7f, 0.3f, 1.0f);
+            View1.WidthSpecification = LayoutParamPolicies.MatchParent;
+            View1.Weight = 0.45f;
+            View1.Padding = new Extents(10, 10, 10, 10);
+            View1.Margin = new Extents(5, 5, 5, 5);
 
-            LinearLayout layout1 = new LinearLayout();
-            layout1.LinearAlignment = LinearLayout.Alignment.Begin;
-            layout1.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            _view1.Layout = layout1;
-            AddText(_view1);
+            LinearLayout Layout1 = new LinearLayout();
+            Layout1.LinearAlignment = LinearLayout.Alignment.Begin;
+            Layout1.LinearOrientation = LinearLayout.Orientation.Horizontal;
+            View1.Layout = Layout1;
+            AddText(View1);
 
-            _view2 = new View();
-            _view2.BackgroundColor = new Color(0.8f, 0.7f, 0.3f, 1.0f);
-            _view2.WidthSpecification = LayoutParamPolicies.MatchParent;
-            _view2.Weight = 0.25f;
-            _view2.Margin = new Extents(5, 5, 5, 5);
+            View2 = new View();
+            View2.BackgroundColor = new Color(0.8f, 0.7f, 0.3f, 1.0f);
+            View2.WidthSpecification = LayoutParamPolicies.MatchParent;
+            View2.Weight = 0.25f;
+            View2.Margin = new Extents(5, 5, 5, 5);
 
-            LinearLayout layout2 = new LinearLayout();
-            layout2.LinearAlignment = LinearLayout.Alignment.Center;
-            layout2.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            _view2.Layout = layout2;
-            AddImages(_view2);
+            LinearLayout Layout2 = new LinearLayout();
+            Layout2.LinearAlignment = LinearLayout.Alignment.Center;
+            Layout2.LinearOrientation = LinearLayout.Orientation.Horizontal;
+            View2.Layout = Layout2;
+            AddImages(View2);
 
-            _view3 = new View();
-            _view3.BackgroundColor = new Color(0.8f, 0.7f, 0.3f, 1.0f);
-            _view3.WidthSpecification = LayoutParamPolicies.MatchParent;
-            _view3.Weight = 0.3f;
-            _view3.Margin = new Extents(5, 5, 5, 5);
+            View3 = new View();
+            View3.BackgroundColor = new Color(0.8f, 0.7f, 0.3f, 1.0f);
+            View3.WidthSpecification = LayoutParamPolicies.MatchParent;
+            View3.Weight = 0.3f;
+            View3.Margin = new Extents(5, 5, 5, 5);
 
-            LinearLayout layout3 = new LinearLayout();
-            layout3.LinearAlignment = LinearLayout.Alignment.Begin;
-            layout3.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            _view3.Layout = layout3;
-            AddColors(_view3);
+            LinearLayout Layout3 = new LinearLayout();
+            Layout3.LinearAlignment = LinearLayout.Alignment.Begin;
+            Layout3.LinearOrientation = LinearLayout.Orientation.Horizontal;
+            View3.Layout = Layout3;
+            AddColors(View3);
 
-            _rootView.Add(_view1);
-            _rootView.Add(_view2);
-            _rootView.Add(_view3);
+            RootView.Add(View1);
+            RootView.Add(View2);
+            RootView.Add(View3);
 
-            Window.Instance.Add(_rootView);
+            Window.Instance.Add(RootView);
         }
 
+        /// <summary>
+        /// Method that adds text field to passed view
+        /// </summary>
+        /// <param name="view">View</param>
         private void AddText(View view)
         {
-            _textLeft = new TextLabel();
-            _textLeft.BackgroundColor = new Color(0.8f, 0.1f, 0.1f, 1.0f);
-            _textLeft.HeightSpecification = LayoutParamPolicies.MatchParent;
-            _textLeft.Weight = 0.3f;
-            _textLeft.TextColor = new Color(0.8f, 0.85f, 0.9f, 1.0f);
-            _textLeft.Text = "0.3";
-            _textLeft.HorizontalAlignment = HorizontalAlignment.Center;
-            _textLeft.VerticalAlignment = VerticalAlignment.Center;
-            _textLeft.Margin = new Extents(10, 10, 10, 10);
+            TextLeft = new TextLabel();
+            TextLeft.BackgroundColor = new Color(0.8f, 0.1f, 0.1f, 1.0f);
+            TextLeft.HeightSpecification = LayoutParamPolicies.MatchParent;
+            TextLeft.Weight = 0.3f;
+            TextLeft.TextColor = new Color(0.8f, 0.85f, 0.9f, 1.0f);
+            TextLeft.Text = "0.3";
+            TextLeft.HorizontalAlignment = HorizontalAlignment.Center;
+            TextLeft.VerticalAlignment = VerticalAlignment.Center;
+            TextLeft.Margin = new Extents(10, 10, 10, 10);
 
-            _textRight = new TextLabel();
-            _textRight.BackgroundColor = new Color(0.8f, 0.1f, 0.1f, 1.0f);
-            _textRight.HeightSpecification = LayoutParamPolicies.MatchParent;
-            _textRight.Weight = 0.7f;
-            _textRight.TextColor = new Color(0.8f, 0.85f, 0.9f, 1.0f);
-            _textRight.Text = "0.7";
-            _textRight.HorizontalAlignment = HorizontalAlignment.Center;
-            _textRight.VerticalAlignment = VerticalAlignment.Center;
-            _textRight.Margin = new Extents(10, 10, 10, 10);
+            TextRight = new TextLabel();
+            TextRight.BackgroundColor = new Color(0.8f, 0.1f, 0.1f, 1.0f);
+            TextRight.HeightSpecification = LayoutParamPolicies.MatchParent;
+            TextRight.Weight = 0.7f;
+            TextRight.TextColor = new Color(0.8f, 0.85f, 0.9f, 1.0f);
+            TextRight.Text = "0.7";
+            TextRight.HorizontalAlignment = HorizontalAlignment.Center;
+            TextRight.VerticalAlignment = VerticalAlignment.Center;
+            TextRight.Margin = new Extents(10, 10, 10, 10);
 
-            view.Add(_textLeft);
-            view.Add(_textRight);
+            view.Add(TextLeft);
+            view.Add(TextRight);
         }
 
+        /// <summary>
+        /// Method that adds images to passed view
+        /// </summary>
+        /// <param name="view">View</param>
         private void AddImages(View view)
         {
-            _img1 = new ImageView();
-            _img1.ResourceUrl = _resourceUrl + "img1.svg";
-            _img1.Size2D = new Size2D(100, 100);
-            _img1.Margin = new Extents(20, 20, 20, 20);
+            Img1 = new ImageView();
+            Img1.ResourceUrl = ResourceUrl + "img1.svg";
+            Img1.Size2D = new Size2D(100, 100);
+            Img1.Margin = new Extents(20, 20, 20, 20);
 
-            _img2 = new ImageView();
-            _img2.ResourceUrl = _resourceUrl + "img2.svg";
-            _img2.Size2D = new Size2D(100, 100);
-            _img2.Margin = new Extents(20, 20, 20, 20);
+            Img2 = new ImageView();
+            Img2.ResourceUrl = ResourceUrl + "img2.svg";
+            Img2.Size2D = new Size2D(100, 100);
+            Img2.Margin = new Extents(20, 20, 20, 20);
 
-            _img3 = new ImageView();
-            _img3.ResourceUrl = _resourceUrl + "img3.svg";
-            _img3.Size2D = new Size2D(100, 100);
-            _img3.Margin = new Extents(20, 20, 20, 20);
+            Img3 = new ImageView();
+            Img3.ResourceUrl = ResourceUrl + "img3.svg";
+            Img3.Size2D = new Size2D(100, 100);
+            Img3.Margin = new Extents(20, 20, 20, 20);
 
-            view.Add(_img1);
-            view.Add(_img2);
-            view.Add(_img3);
+            view.Add(Img1);
+            view.Add(Img2);
+            view.Add(Img3);
         }
 
+        /// <summary>
+        /// Method that adds colors to passed view
+        /// </summary>
+        /// <param name="view">View</param>
         private void AddColors(View view)
         {
-            _color1 = new View();
-            _color1.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 1.0f);
-            _color1.HeightSpecification = LayoutParamPolicies.MatchParent;
-            _color1.Weight = 0.25f;
-            _color1.Margin = new Extents(10, 10, 10, 10);
+            Color1 = new View();
+            Color1.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 1.0f);
+            Color1.HeightSpecification = LayoutParamPolicies.MatchParent;
+            Color1.Weight = 0.25f;
+            Color1.Margin = new Extents(10, 10, 10, 10);
 
-            _color2 = new View();
-            _color2.BackgroundColor = new Color(0.9f, 0.9f, 0.9f, 1.0f);
-            _color2.HeightSpecification = LayoutParamPolicies.MatchParent;
-            _color2.Weight = 0.25f;
-            _color2.Margin = new Extents(10, 10, 10, 10);
+            Color2 = new View();
+            Color2.BackgroundColor = new Color(0.9f, 0.9f, 0.9f, 1.0f);
+            Color2.HeightSpecification = LayoutParamPolicies.MatchParent;
+            Color2.Weight = 0.25f;
+            Color2.Margin = new Extents(10, 10, 10, 10);
 
-            _color3 = new View();
-            _color3.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 1.0f);
-            _color3.HeightSpecification = LayoutParamPolicies.MatchParent;
-            _color3.Weight = 0.25f;
-            _color3.Margin = new Extents(10, 10, 10, 10);
+            Color3 = new View();
+            Color3.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 1.0f);
+            Color3.HeightSpecification = LayoutParamPolicies.MatchParent;
+            Color3.Weight = 0.25f;
+            Color3.Margin = new Extents(10, 10, 10, 10);
 
-            _color4 = new View();
-            _color4.BackgroundColor = new Color(0.9f, 0.9f, 0.9f, 1.0f);
-            _color4.HeightSpecification = LayoutParamPolicies.MatchParent;
-            _color4.Weight = 0.25f;
-            _color4.Margin = new Extents(10, 10, 10, 10);
+            Color4 = new View();
+            Color4.BackgroundColor = new Color(0.9f, 0.9f, 0.9f, 1.0f);
+            Color4.HeightSpecification = LayoutParamPolicies.MatchParent;
+            Color4.Weight = 0.25f;
+            Color4.Margin = new Extents(10, 10, 10, 10);
 
-            view.Add(_color1);
-            view.Add(_color2);
-            view.Add(_color3);
-            view.Add(_color4);
+            view.Add(Color1);
+            view.Add(Color2);
+            view.Add(Color3);
+            view.Add(Color4);
         }
+
+        /// <summary>
+        /// The method called when key pressed down
+        /// </summary>
+        /// <param name="sender">Key instance</param>
+        /// <param name="e">Key's args</param>
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "Escape" || e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "BackSpace"))
