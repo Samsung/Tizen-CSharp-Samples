@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using System;
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
@@ -23,277 +22,358 @@ namespace NUIView
 {
     class Program : NUIApplication
     {
-        private static View _rootView, _mainView, _parentView, _childView;
-        private static Animation animation;
-        private Button _button;
-        private bool _viewTouched = true;
-        private static TextLabel _textLabel;
-        private int _currentView = 1;
-        public delegate void viewFunc();
+        /// <summary>
+        /// The root view of the application
+        /// </summary>
+        private static View RootView;
+        /// <summary>
+        /// The main view of the application
+        /// </summary> 
+        private static View MainView; 
+        /// <summary>
+        /// View representing parent
+        /// </summary>
+        private static View ParentView;
+        /// <summary>
+        /// View reperesenting child
+        /// </summary>
+        private static View ChildView;
+        private static Animation Animation;
+        /// <summary>
+        /// Button visible at the bottom of the screen
+        /// </summary>
+        private Button Button;
+        /// <summary>
+        /// Boolean to hold information if a view was touched
+        /// </summary>
+        private bool ViewTouched = true;
+        /// <summary>
+        /// Text with information about currently displayed views
+        /// </summary>
+        private static TextLabel TextLabel;
+        /// <summary>
+        /// Index of the current view (starting at 1)
+        /// </summary>
+        private int CurrentView = 1;
+        /// <summary>
+        /// Delegate holding the next view function
+        /// </summmary>
+        public delegate void ViewFunc();
 
+        /// <summary>
+        /// Overriden method called when the app is being launched
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
             Initialize();
         }
 
+        /// <summary>
+        /// Method that initializes views
+        /// </summary>
         void Initialize()
         {
-            Window window = Window.Instance;
-            Size2D screenSize = window.WindowSize;
+            // store window instance and size in local variables
+            Window Window = Window.Instance;
+            Size2D ScreenSize = Window.WindowSize;
 
-            _rootView = new View();
-            _rootView.PositionUsesPivotPoint = true;
-            _rootView.PivotPoint = PivotPoint.Center;
-            _rootView.ParentOrigin = ParentOrigin.Center;
-            _rootView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            _rootView.HeightResizePolicy = ResizePolicyType.FillToParent;
-            _rootView.BackgroundColor = Color.Black;
+            // create root view that will contain all other views
+            RootView = new View();
+            RootView.PositionUsesPivotPoint = true;
+            RootView.PivotPoint = PivotPoint.Center;
+            RootView.ParentOrigin = ParentOrigin.Center;
+            RootView.WidthResizePolicy = ResizePolicyType.FillToParent;
+            RootView.HeightResizePolicy = ResizePolicyType.FillToParent;
+            RootView.BackgroundColor = Color.Black;
 
-            _button = new Button();
-            _button.Text = "Next";
-            _button.PositionUsesPivotPoint = true;
-            _button.PivotPoint = PivotPoint.TopCenter;
-            _button.ParentOrigin = new Vector3(0.5f, 0.9f, 0.0f);
-            _button.WidthResizePolicy = ResizePolicyType.FillToParent;
-            _button.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _button.SetSizeModeFactor(new Vector3(0.0f, 0.1f, 0.0f));
+            // create button and place it at the bottom of the screen
+            Button = new Button();
+            Button.Text = "Next";
+            Button.PositionUsesPivotPoint = true;
+            Button.PivotPoint = PivotPoint.TopCenter;
+            Button.ParentOrigin = new Vector3(0.5f, 0.9f, 0.0f);
+            Button.WidthResizePolicy = ResizePolicyType.FillToParent;
+            Button.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
+            Button.SetSizeModeFactor(new Vector3(0.0f, 0.1f, 0.0f));
 
-            _mainView = new View();
-            _mainView.PositionUsesPivotPoint = true;
-            _mainView.PivotPoint = PivotPoint.TopCenter;
-            _mainView.ParentOrigin = new Vector3(0.5f, 0.2f, 0.0f);
-            _mainView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            _mainView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _mainView.SetSizeModeFactor(new Vector3(0.0f, 0.7f, 0.0f));
+            // create main view and place it over the button
+            MainView = new View();
+            MainView.PositionUsesPivotPoint = true;
+            MainView.PivotPoint = PivotPoint.TopCenter;
+            MainView.ParentOrigin = new Vector3(0.5f, 0.2f, 0.0f);
+            MainView.WidthResizePolicy = ResizePolicyType.FillToParent;
+            MainView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
+            MainView.SetSizeModeFactor(new Vector3(0.0f, 0.7f, 0.0f));
+            
+            // create text label that will hold text information
+            TextLabel = new TextLabel();
+            TextLabel.PositionUsesPivotPoint = true;
+            TextLabel.PivotPoint = PivotPoint.TopCenter; 
+            TextLabel.ParentOrigin = new Vector3(0.5f, 0.1f, 0.0f);
+            TextLabel.MultiLine = true;
+            TextLabel.TextColor = Color.White;
 
-            _textLabel = new TextLabel();
-            _textLabel.PositionUsesPivotPoint = true;
-            _textLabel.PivotPoint = PivotPoint.TopCenter; 
-            _textLabel.ParentOrigin = new Vector3(0.5f, 0.1f, 0.0f);
-            _textLabel.MultiLine = true;
-            _textLabel.TextColor = Color.White;
+            // add view to their parents
+            RootView.Add(TextLabel);
+            RootView.Add(MainView);
+            RootView.Add(Button);
+            Window.Add(RootView);
 
+            // create first view
+            View1();
+            CurrentView = 1;
 
-            _rootView.Add(_textLabel);
-            _rootView.Add(_mainView);
-            _rootView.Add(_button);
-            window.Add(_rootView);
-
-            view1();
-            _currentView = 1;
-
-            _button.ClickEvent += ButtonClicked;
-            window.KeyEvent += OnKeyEvent;
+            // add events to button on click and key event to window
+            Button.ClickEvent += ButtonClicked;
+            Window.KeyEvent += OnKeyEvent;
         }
 
-
+        /// <summary>
+        /// The method called when the button is clicked
+        /// </summary>
+        /// <param name="sender">Button instance</param>
+        /// <param name="e">Event arguments</param>
         private void ButtonClicked(object sender, Button.ClickEventArgs e)
         {
-            _childView.Unparent();
-            _parentView.Unparent();
-            _childView.Dispose();
-            _parentView.Dispose();
-            _childView = null;
-            _parentView = null;
+            // clear the previous view, unparent and set to null to dispose of
+            ChildView.Unparent();
+            ParentView.Unparent();
+            ChildView.Dispose();
+            ParentView.Dispose();
+            ChildView = null;
+            ParentView = null;
 
-            if (_currentView == 1){
-                view2();
-                _currentView = 2;
+            // update current view to next view
+            if (CurrentView == 1){
+                View2();
+                CurrentView = 2;
             }
-            else if(_currentView == 2){
-                view3();
-                _currentView = 3;
+            else if(CurrentView == 2){
+                View3();
+                CurrentView = 3;
             }
-            else if(_currentView == 3){
-                view4();
-                _currentView = 4;
+            else if(CurrentView == 3){
+                View4();
+                CurrentView = 4;
             }
-            else if(_currentView == 4){
-                view5();
-                _currentView = 5;
+            else if(CurrentView == 4){
+                View5();
+                CurrentView = 5;
             }
-            else if(_currentView == 5){
-                view6();
-                _currentView = 6;
+            else if(CurrentView == 5){
+                View6();
+                CurrentView = 6;
             }
-            else if(_currentView == 6){
-                view1();
-                _currentView = 1;
+            else if(CurrentView == 6){
+                View1();
+                CurrentView = 1;
             }
         
         }
 
-        private void view1(){
-            _parentView = new View();
-            _parentView.Size2D = new Size2D(600, 300);
-            _parentView.PositionUsesPivotPoint = true;
-            _parentView.PivotPoint = PivotPoint.Center;
-            _parentView.ParentOrigin = ParentOrigin.Center;
-            _parentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
+        /// <summary>
+        /// View showing simple view positionning
+        /// </summary>
+        private void View1(){
+            ParentView = new View();
+            ParentView.Size2D = new Size2D(600, 300);
+            ParentView.PositionUsesPivotPoint = true;
+            ParentView.PivotPoint = PivotPoint.Center;
+            ParentView.ParentOrigin = ParentOrigin.Center;
+            ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
 
-            _childView = new View();
-            _childView.Size2D = new Size2D(100, 100);
-            _childView.PositionUsesPivotPoint = true;
-            _childView.PivotPoint = PivotPoint.TopLeft;
-            _childView.ParentOrigin = ParentOrigin.TopLeft;
-            _childView.Position = new Position(60, 10, 0);
-            _childView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
+            ChildView = new View();
+            ChildView.Size2D = new Size2D(100, 100);
+            ChildView.PositionUsesPivotPoint = true;
+            ChildView.PivotPoint = PivotPoint.TopLeft;
+            ChildView.ParentOrigin = ParentOrigin.TopLeft;
+            ChildView.Position = new Position(60, 10, 0);
+            ChildView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
 
-            _textLabel.Text = "PivotPoint: TopLeft\nParentOrigin: TopLeft\nPosition: (60, 10)";
+            TextLabel.Text = "PivotPoint: TopLeft\nParentOrigin: TopLeft\nPosition: (60, 10)";
 
-            _parentView.Add(_childView);
-            _mainView.Add(_parentView);
+            ParentView.Add(ChildView);
+            MainView.Add(ParentView);
         }
 
-        private void view2(){
-            _parentView = new View();
-            _parentView.Size2D = new Size2D(600, 300);
-            _parentView.PositionUsesPivotPoint = true;
-            _parentView.PivotPoint = PivotPoint.Center;
-            _parentView.ParentOrigin = ParentOrigin.Center;
-            _parentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
+        /// <summary>
+        /// View showing simple view positioning with negative position values
+        /// </summary>
+        private void View2(){
+            ParentView = new View();
+            ParentView.Size2D = new Size2D(600, 300);
+            ParentView.PositionUsesPivotPoint = true;
+            ParentView.PivotPoint = PivotPoint.Center;
+            ParentView.ParentOrigin = ParentOrigin.Center;
+            ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
             
-            _childView = new View();
-            _childView.Size2D = new Size2D(100, 100);
-            _childView.PositionUsesPivotPoint = true;
-            _childView.PivotPoint = PivotPoint.BottomRight;
-            _childView.ParentOrigin = ParentOrigin.BottomRight;
-            _childView.Position = new Position(-100, -50);
-            _childView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
+            ChildView = new View();
+            ChildView.Size2D = new Size2D(100, 100);
+            ChildView.PositionUsesPivotPoint = true;
+            ChildView.PivotPoint = PivotPoint.BottomRight;
+            ChildView.ParentOrigin = ParentOrigin.BottomRight;
+            ChildView.Position = new Position(-100, -50);
+            ChildView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
 
-            _textLabel.Text = "PivotPoint: BottomRight\nParentOrigin: BottomRight\nPosition: (-100, -50)";
+            TextLabel.Text = "PivotPoint: BottomRight\nParentOrigin: BottomRight\nPosition: (-100, -50)";
 
-            _parentView.Add(_childView);
-            _mainView.Add(_parentView);
+            ParentView.Add(ChildView);
+            MainView.Add(ParentView);
         }
 
-        private void view3(){
-            _parentView = new View();
-            _parentView.Size2D = new Size2D(600, 300);
-            _parentView.PositionUsesPivotPoint = true;
-            _parentView.PivotPoint = PivotPoint.Center;
-            _parentView.ParentOrigin = ParentOrigin.Center;
-            _parentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
+        /// <summary>
+        /// View showing child scaling
+        /// Animation is added to show scaling behaviour
+        /// </summary>
+        private void View3(){
+            ParentView = new View();
+            ParentView.Size2D = new Size2D(600, 300);
+            ParentView.PositionUsesPivotPoint = true;
+            ParentView.PivotPoint = PivotPoint.Center;
+            ParentView.ParentOrigin = ParentOrigin.Center;
+            ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
 
-            _childView = new View();
-            _childView.Size2D = new Size2D(250, 200);
-            _childView.PositionUsesPivotPoint = true;
-            _childView.PivotPoint = PivotPoint.CenterRight;
-            _childView.ParentOrigin = ParentOrigin.CenterRight;
-            _childView.Position = new Position(-50, 0);
-            _childView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
-            _childView.Scale = new Vector3(1.0f, 1.0f, 1.0f);
+            ChildView = new View();
+            ChildView.Size2D = new Size2D(250, 200);
+            ChildView.PositionUsesPivotPoint = true;
+            ChildView.PivotPoint = PivotPoint.CenterRight;
+            ChildView.ParentOrigin = ParentOrigin.CenterRight;
+            ChildView.Position = new Position(-50, 0);
+            ChildView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
+            ChildView.Scale = new Vector3(1.0f, 1.0f, 1.0f);
 
-            _textLabel.Text = "PivotPoint: CenterRight\nParentOrigin: CenterRight\nPosition: (-50, 0)\nChiled View Scale: 1.0 to 2.0";
+            TextLabel.Text = "PivotPoint: CenterRight\nParentOrigin: CenterRight\nPosition: (-50, 0)\nChiled View Scale: 1.0 to 2.0";
 
-            animation = new Animation(2000);
-            animation.AnimateTo(_childView, "Scale", new Vector3(2.0f, 1.0f, 1.0f), 0, 1000);
-            animation.AnimateTo(_childView, "Scale", new Vector3(1.0f, 1.0f, 1.0f), 1000, 2000);
-            animation.Looping = true;
-            animation.Play();
+            Animation = new Animation(2000);
+            Animation.AnimateTo(ChildView, "Scale", new Vector3(2.0f, 1.0f, 1.0f), 0, 1000);
+            Animation.AnimateTo(ChildView, "Scale", new Vector3(1.0f, 1.0f, 1.0f), 1000, 2000);
+            Animation.Looping = true;
+            Animation.Play();
 
-            _parentView.Add(_childView);
-            _mainView.Add(_parentView);
+            ParentView.Add(ChildView);
+            MainView.Add(ParentView);
         }
 
-        private void view4(){
-            _parentView = new View();
-            _parentView.Size2D = new Size2D(300, 300);
-            _parentView.PositionUsesPivotPoint = true;
-            _parentView.PivotPoint = PivotPoint.Center;
-            _parentView.ParentOrigin = ParentOrigin.Center;
-            _parentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
-            _parentView.Scale = new Vector3(1.0f, 1.0f, 1.0f);
+        /// <summary>
+        /// View showing parent scaling
+        /// Animation is added to show scaling behaviour
+        /// </summary>
+        private void View4(){
+            ParentView = new View();
+            ParentView.Size2D = new Size2D(300, 300);
+            ParentView.PositionUsesPivotPoint = true;
+            ParentView.PivotPoint = PivotPoint.Center;
+            ParentView.ParentOrigin = ParentOrigin.Center;
+            ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
+            ParentView.Scale = new Vector3(1.0f, 1.0f, 1.0f);
 
-            _childView = new View();
-            _childView.Size2D = new Size2D(250, 200);
-            _childView.PositionUsesPivotPoint = true;
-            _childView.PivotPoint = PivotPoint.CenterLeft;
-            _childView.ParentOrigin = ParentOrigin.CenterLeft;
-            _childView.Position = new Position(25, 0);
-            _childView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
+            ChildView = new View();
+            ChildView.Size2D = new Size2D(250, 200);
+            ChildView.PositionUsesPivotPoint = true;
+            ChildView.PivotPoint = PivotPoint.CenterLeft;
+            ChildView.ParentOrigin = ParentOrigin.CenterLeft;
+            ChildView.Position = new Position(25, 0);
+            ChildView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
             
-            _textLabel.Text = "PivotPoint: Center\nParentOrigin: Center\nPosition: (25, 0)\nParent View Scale: 1.0 to 2.0";
+            TextLabel.Text = "PivotPoint: Center\nParentOrigin: Center\nPosition: (25, 0)\nParent View Scale: 1.0 to 2.0";
 
-            animation = new Animation(2000);
-            animation.AnimateTo(_parentView, "Scale", new Vector3(2.0f, 1.0f, 1.0f), 0, 1000);
-            animation.AnimateTo(_parentView, "Scale", new Vector3(1.0f, 1.0f, 1.0f), 1000, 2000);
-            animation.Looping = true;
-            animation.Play();
+            Animation = new Animation(2000);
+            Animation.AnimateTo(ParentView, "Scale", new Vector3(2.0f, 1.0f, 1.0f), 0, 1000);
+            Animation.AnimateTo(ParentView, "Scale", new Vector3(1.0f, 1.0f, 1.0f), 1000, 2000);
+            Animation.Looping = true;
+            Animation.Play();
 
-            _parentView.Add(_childView);
-            _mainView.Add(_parentView);
+            ParentView.Add(ChildView);
+            MainView.Add(ParentView);
         }
 
-        private void view5(){
-            _parentView = new View();
-            _parentView.Size2D = new Size2D(300, 300);
-            _parentView.PositionUsesPivotPoint = true;
-            _parentView.PivotPoint = PivotPoint.Center;
-            _parentView.ParentOrigin = ParentOrigin.Center;
-            _parentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
-            _parentView.Orientation = new Rotation(new Radian(new Degree(45.0f)), PositionAxis.Z);
+        /// <summary>
+        /// View showing changing orientation
+        /// Animation is added to show changing orientation
+        /// </summary>
+        private void View5(){
+            ParentView = new View();
+            ParentView.Size2D = new Size2D(300, 300);
+            ParentView.PositionUsesPivotPoint = true;
+            ParentView.PivotPoint = PivotPoint.Center;
+            ParentView.ParentOrigin = ParentOrigin.Center;
+            ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
+            ParentView.Orientation = new Rotation(new Radian(new Degree(45.0f)), PositionAxis.Z);
 
-            _childView = new View();
-            _childView.Size2D = new Size2D(200, 200);
-            _childView.PositionUsesPivotPoint = true;
-            _childView.PivotPoint = PivotPoint.Center;
-            _childView.ParentOrigin = ParentOrigin.Center;
-            _childView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
+            ChildView = new View();
+            ChildView.Size2D = new Size2D(200, 200);
+            ChildView.PositionUsesPivotPoint = true;
+            ChildView.PivotPoint = PivotPoint.Center;
+            ChildView.ParentOrigin = ParentOrigin.Center;
+            ChildView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
 
-            _textLabel.Text = "PivotPoint: Center\nParentOrigin: Center\nParent View Orientation: 0 to 45";
+            TextLabel.Text = "PivotPoint: Center\nParentOrigin: Center\nParent View Orientation: 0 to 45";
 
-            animation = new Animation(2000);
-            animation.AnimateTo(_parentView, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.Z), 0, 1000);
-            animation.AnimateTo(_parentView, "Orientation", new Rotation(new Radian(new Degree(45.0f)), PositionAxis.Z), 1000, 2000);
-            animation.Looping = true;
-            animation.Play();
+            Animation = new Animation(2000);
+            Animation.AnimateTo(ParentView, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.Z), 0, 1000);
+            Animation.AnimateTo(ParentView, "Orientation", new Rotation(new Radian(new Degree(45.0f)), PositionAxis.Z), 1000, 2000);
+            Animation.Looping = true;
+            Animation.Play();
 
-            _parentView.Add(_childView);
-            _mainView.Add(_parentView);
+            ParentView.Add(ChildView);
+            MainView.Add(ParentView);
         }
 
-        private void view6(){
-            _parentView = new View();
-            _parentView.Size2D = new Size2D(600, 300);
-            _parentView.PositionUsesPivotPoint = true;
-            _parentView.PivotPoint = PivotPoint.Center;
-            _parentView.ParentOrigin = ParentOrigin.Center;
-            _parentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
+        /// <summary>
+        /// View with touch event
+        /// Changes colors on click
+        /// </summary>
+        private void View6(){
+            ParentView = new View();
+            ParentView.Size2D = new Size2D(600, 300);
+            ParentView.PositionUsesPivotPoint = true;
+            ParentView.PivotPoint = PivotPoint.Center;
+            ParentView.ParentOrigin = ParentOrigin.Center;
+            ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
 
-            _childView = new View();
-            _childView.Size2D = new Size2D(200, 200);
-            _childView.PositionUsesPivotPoint = true;
-            _childView.PivotPoint = PivotPoint.Center;
-            _childView.ParentOrigin = ParentOrigin.Center;
-            _childView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
+            ChildView = new View();
+            ChildView.Size2D = new Size2D(200, 200);
+            ChildView.PositionUsesPivotPoint = true;
+            ChildView.PivotPoint = PivotPoint.Center;
+            ChildView.ParentOrigin = ParentOrigin.Center;
+            ChildView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
 
-            _textLabel.Text = "Touch event example";
+            TextLabel.Text = "Touch event example";
 
-            _parentView.TouchEvent += OnViewTouch;
+            ParentView.TouchEvent += OnViewTouch;
 
-            _parentView.Add(_childView);
-            _mainView.Add(_parentView);
+            ParentView.Add(ChildView);
+            MainView.Add(ParentView);
         }
 
+        /// <summary>
+        /// Method which is called when the view is touched
+        /// </summary>
+        /// <param name="sender">View instance</param>
+        /// <param name="e">Event arguments</param>
         private bool OnViewTouch(object sender, View.TouchEventArgs e)
         {
-            View touchedView = sender as View;
+            View TouchedView = sender as View;
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
-                if (_viewTouched)
+                if (ViewTouched)
                 {
-                    touchedView.BackgroundColor = new Color(0.8f, 0.2f, 0.1f, 1.0f);
-                    _viewTouched = false;
+                    TouchedView.BackgroundColor = new Color(0.8f, 0.2f, 0.1f, 1.0f);
+                    ViewTouched = false;
                 } else {
-                    touchedView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
-                    _viewTouched = true;
+                    TouchedView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
+                    ViewTouched = true;
                 }
             }
             return true;
         }
-
+        
+        /// <summary>
+        /// Method which is called when key event happens
+        /// </summary>
+        /// <param name="sender">Window instance</param>
+        /// <param name="e">Event arguments</param>
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))
@@ -304,9 +384,9 @@ namespace NUIView
 
         static void Main(string[] args)
         {
-            var app = new Program();
-            app.Run(args);
-            app.Dispose();
+            var App = new Program();
+            App.Run(args);
+            App.Dispose();
         }
     }
 }
