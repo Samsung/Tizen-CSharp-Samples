@@ -36,7 +36,7 @@ namespace NUIFlexLayout
         private static int ItemsCnt = 20;
 
         /// <summary>
-        /// Overriden method that is called on app creation
+        /// Overridden method that is called on app creation
         /// </summary>
         protected override void OnCreate()
         {
