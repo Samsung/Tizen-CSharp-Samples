@@ -28,7 +28,7 @@ namespace NUILinearLayout
         /// </summary>
         private View RootView;
         /// <summary>
-        /// Views used in the appliaction to create layouts
+        /// Views used in the application to create layouts
         /// </summary>
         private View View1, View2, View3;
         /// <summary>
@@ -49,7 +49,7 @@ namespace NUILinearLayout
         private static string ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
 
         /// <summary>
-        /// Overriden method that is called after app launches
+        /// Overridden method that is called after app launches
         /// </summary>
         protected override void OnCreate()
         {
@@ -58,7 +58,7 @@ namespace NUILinearLayout
         }
 
         /// <summary>
-        /// Method thatt initializes views
+        /// Method that initializes views
         /// </summary>
         void Initialize()
         {
