@@ -49,7 +49,7 @@ namespace NUIGridLayout
         private static int ColumnCnt = 5;
 
         /// <summary>
-        /// Overriden method that is called after app launch
+        /// Overridden method that is called after app launch
         /// <summary>
         protected override void OnCreate()
         {
