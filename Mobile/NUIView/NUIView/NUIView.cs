@@ -28,8 +28,8 @@ namespace NUIView
         private static View RootView;
         /// <summary>
         /// The main view of the application
-        /// </summary> 
-        private static View MainView; 
+        /// </summary>
+        private static View MainView;
         /// <summary>
         /// View representing parent
         /// </summary>
@@ -105,11 +105,11 @@ namespace NUIView
             MainView.WidthResizePolicy = ResizePolicyType.FillToParent;
             MainView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
             MainView.SetSizeModeFactor(new Vector3(0.0f, 0.7f, 0.0f));
-            
+
             // create text label that will hold text information
             TextLabel = new TextLabel();
             TextLabel.PositionUsesPivotPoint = true;
-            TextLabel.PivotPoint = PivotPoint.TopCenter; 
+            TextLabel.PivotPoint = PivotPoint.TopCenter;
             TextLabel.ParentOrigin = new Vector3(0.5f, 0.1f, 0.0f);
             TextLabel.MultiLine = true;
             TextLabel.TextColor = Color.White;
@@ -169,7 +169,7 @@ namespace NUIView
                 View1();
                 CurrentView = 1;
             }
-        
+
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace NUIView
             ParentView.PivotPoint = PivotPoint.Center;
             ParentView.ParentOrigin = ParentOrigin.Center;
             ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
-            
+
             ChildView = new View();
             ChildView.Size2D = new Size2D(100, 100);
             ChildView.PositionUsesPivotPoint = true;
@@ -275,7 +275,7 @@ namespace NUIView
             ChildView.ParentOrigin = ParentOrigin.CenterLeft;
             ChildView.Position = new Position(25, 0);
             ChildView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
-            
+
             TextLabel.Text = "PivotPoint: Center\nParentOrigin: Center\nPosition: (25, 0)\nParent View Scale: 1.0 to 2.0";
 
             Animation = new Animation(2000);
@@ -368,7 +368,7 @@ namespace NUIView
             }
             return true;
         }
-        
+
         /// <summary>
         /// Method which is called when key event happens
         /// </summary>
