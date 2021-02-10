@@ -7,17 +7,43 @@ namespace NUIGridLayout
 {
     class Program : NUIApplication
     {
-        private View _rootView, _topView, _buttonView;
-        private Button _button1, _button2;
-        private static int _itemsCnt = 40;
-        private static int _columnCnt = 5;
+        /// <summary>
+        /// View representing the root for all other views
+        /// </summary>
+        private View RootView;
+        /// <summary>
+        /// View covering upper part of the screen
+        /// </summary>
+        private View TopView;
+        /// <summary>
+        /// View covering bottom part of the screen
+        /// </summary>
+        private View ButtonView;
+        /// <summary>
+        /// Buttons to change number of columns placed at the bottom of the screen
+        /// </summary>
+        private Button Button1, Button2;
+        /// <summary>
+        /// Items in view count
+        /// </summary>
+        private static int ItemsCnt = 40;
+        /// <summary>
+        /// Items in one column count
+        /// </summary>
+        private static int ColumnCnt = 5;
 
+        /// <summary>
+        /// Overriden method that is called after app launch
+        /// <summary>
         protected override void OnCreate()
         {
             base.OnCreate();
             Initialize();
         }
 
+        /// <summary>
+        /// Initialize all views, layout and buttons
+        /// </summary>
         void Initialize()
         {
             InitViews();
@@ -25,103 +51,125 @@ namespace NUIGridLayout
             InitButtons();
         }
 
+        /// <summary>
+        /// Initialize all views
+        /// </summary>
         private void InitViews()
         {
-            Size2D screenSize = Window.Instance.WindowSize;
+            RootView = new View();
+            RootView.PositionUsesPivotPoint = true;
+            RootView.PivotPoint = PivotPoint.Center;
+            RootView.ParentOrigin = ParentOrigin.Center;
+            RootView.WidthResizePolicy = ResizePolicyType.FillToParent;
+            RootView.HeightResizePolicy = ResizePolicyType.FillToParent;
 
-            _rootView = new View();
-            _rootView.PositionUsesPivotPoint = true;
-            _rootView.PivotPoint = PivotPoint.Center;
-            _rootView.ParentOrigin = ParentOrigin.Center;
-            _rootView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            _rootView.HeightResizePolicy = ResizePolicyType.FillToParent;
+            TopView = new View();
+            TopView.PositionUsesPivotPoint = true;
+            TopView.PivotPoint = PivotPoint.TopCenter;
+            TopView.ParentOrigin = new Vector3(0.5f, 0.05f, 0.0f);
+            TopView.WidthResizePolicy = ResizePolicyType.FillToParent;
+            TopView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
+            TopView.SetSizeModeFactor(new Vector3(0.0f, 0.7f, 0.0f));
+            TopView.Padding = new Extents(20, 20, 20, 20);
 
-            _topView = new View();
-            _topView.PositionUsesPivotPoint = true;
-            _topView.PivotPoint = PivotPoint.TopCenter;
-            _topView.ParentOrigin = new Vector3(0.5f, 0.05f, 0.0f);
-            _topView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            _topView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _topView.SetSizeModeFactor(new Vector3(0.0f, 0.7f, 0.0f));
-            _topView.Padding = new Extents(20, 20, 20, 20);
-
-            GridLayout gridLayout = new GridLayout();
-            gridLayout.Columns = _columnCnt;
-            _topView.Layout = gridLayout;
+            GridLayout MyGridLayout = new GridLayout();
+            MyGridLayout.Columns = ColumnCnt;
+            TopView.Layout = MyGridLayout;
             InitGrid();
 
-            _buttonView = new View();
-            _buttonView.PositionUsesPivotPoint = true;
-            _buttonView.PivotPoint = PivotPoint.TopCenter;
-            _buttonView.ParentOrigin = new Vector3(0.5f, 0.85f, 0.0f);
-            _buttonView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            _buttonView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _buttonView.SetSizeModeFactor(new Vector3(0.0f, 0.2f, 0.0f));
-            _buttonView.Padding = new Extents(20, 20, 20, 20);
+            ButtonView = new View();
+            ButtonView.PositionUsesPivotPoint = true;
+            ButtonView.PivotPoint = PivotPoint.TopCenter;
+            ButtonView.ParentOrigin = new Vector3(0.5f, 0.85f, 0.0f);
+            ButtonView.WidthResizePolicy = ResizePolicyType.FillToParent;
+            ButtonView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
+            ButtonView.SetSizeModeFactor(new Vector3(0.0f, 0.2f, 0.0f));
+            ButtonView.Padding = new Extents(20, 20, 20, 20);
 
-            _rootView.Add(_topView);
-            _rootView.Add(_buttonView);
-            Window.Instance.Add(_rootView);
+            RootView.Add(TopView);
+            RootView.Add(ButtonView);
+            Window.Instance.Add(RootView);
             Window.Instance.KeyEvent += OnKeyEvent;
         }
 
+        /// <summary>
+        /// Initialize Grid Layout with text labels
+        /// </summary>
         private void InitGrid()
         {
-            for (int i = 0; i < _itemsCnt; i++)
+            for (int i = 0; i < ItemsCnt; i++)
             {
                 TextLabel t = new TextLabel();
                 t.Margin = new Extents(10, 10, 10, 10);
                 t.Text = "X";
                 t.BackgroundColor = new Color(0.8f, 0.2f, 0.2f, 1.0f);
-                _topView.Add(t);
+                TopView.Add(t);
             }
         }
 
+        /// <summary>
+        /// Initialize Buttons used in the application
+        /// </summary>
         private void InitButtons()
         {
-            LinearLayout buttonLayout = new LinearLayout();
-            buttonLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            _buttonView.Layout = buttonLayout;
+            LinearLayout ButtonLayout = new LinearLayout();
+            ButtonLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
+            ButtonView.Layout = ButtonLayout;
 
-            _button1 = new Button();
-            _button1.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
-            _button1.HeightResizePolicy = ResizePolicyType.FillToParent;
-            _button1.Text = "Remove";
-            _button1.TextColor = Color.White;
-            _button1.Margin = new Extents(10, 10, 10, 10);
-            _button1.Weight = 0.5f;
+            Button1 = new Button();
+            Button1.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
+            Button1.HeightResizePolicy = ResizePolicyType.FillToParent;
+            Button1.Text = "Remove";
+            Button1.TextColor = Color.White;
+            Button1.Margin = new Extents(10, 10, 10, 10);
+            Button1.Weight = 0.5f;
 
-            _button2 = new Button();
-            _button2.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
-            _button2.HeightResizePolicy = ResizePolicyType.FillToParent;
-            _button2.Text = "Add";
-            _button2.TextColor = Color.White;
-            _button2.Margin = new Extents(10, 10, 10, 10);
-            _button2.Weight = 0.5f;
+            Button2 = new Button();
+            Button2.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
+            Button2.HeightResizePolicy = ResizePolicyType.FillToParent;
+            Button2.Text = "Add";
+            Button2.TextColor = Color.White;
+            Button2.Margin = new Extents(10, 10, 10, 10);
+            Button2.Weight = 0.5f;
 
-            _buttonView.Add(_button1);
-            _buttonView.Add(_button2);
+            ButtonView.Add(Button1);
+            ButtonView.Add(Button2);
 
-            _button1.ClickEvent += Button1Clicked;
-            _button2.ClickEvent += Button2Clicked;
+            Button1.ClickEvent += Button1Clicked;
+            Button2.ClickEvent += Button2Clicked;
         }
 
+        /// <summary>
+        /// The method called when the left button is clicked
+        /// </summary>
+        /// <param name="sender">Button instance</param>
+        /// <param name="e">Event arguments</param>
         private void Button1Clicked(object sender, Button.ClickEventArgs e)
         {
-            _columnCnt = _columnCnt - 1 > 0 ? _columnCnt - 1 : 1;
-            GridLayout gridLayout = new GridLayout();
-            gridLayout.Columns = _columnCnt;
-            _topView.Layout = gridLayout;
+            ColumnCnt = ColumnCnt - 1 > 0 ? ColumnCnt - 1 : 1;
+            GridLayout MyGridLayout = new GridLayout();
+            MyGridLayout.Columns = ColumnCnt;
+            TopView.Layout = MyGridLayout;
         }
 
+        /// <summary>
+        /// The method called when the right button is clicked
+        /// </summary>
+        /// <param name="sender">Button instance</param>
+        /// <param name="e">Event arguments</param>
         private void Button2Clicked(object sender, Button.ClickEventArgs e)
         {
-            ++_columnCnt;
-            GridLayout gridLayout = new GridLayout();
-            gridLayout.Columns = _columnCnt;
-            _topView.Layout = gridLayout;
+            ++ColumnCnt;
+            GridLayout MyGridLayout = new GridLayout();
+            MyGridLayout.Columns = ColumnCnt;
+            TopView.Layout = MyGridLayout;
         }
 
+        /// <summary>
+        /// Method which is called when key event happens
+        /// </summary>
+        /// <param name="sender">Window instance</param>
+        /// <param name="e">Event arguments</param>
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))
