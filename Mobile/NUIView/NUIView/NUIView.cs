@@ -35,7 +35,7 @@ namespace NUIView
         /// </summary>
         private static View ParentView;
         /// <summary>
-        /// View reperesenting child
+        /// View representing child
         /// </summary>
         private static View ChildView;
         private static Animation Animation;
@@ -61,7 +61,7 @@ namespace NUIView
         public delegate void ViewFunc();
 
         /// <summary>
-        /// Overriden method called when the app is being launched
+        /// Overridden method called when the app is being launched
         /// </summary>
         protected override void OnCreate()
         {
@@ -173,7 +173,7 @@ namespace NUIView
         }
 
         /// <summary>
-        /// View showing simple view positionning
+        /// View showing simple view positioning
         /// </summary>
         private void View1(){
             ParentView = new View();
