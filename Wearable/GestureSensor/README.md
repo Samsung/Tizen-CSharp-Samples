@@ -15,5 +15,10 @@ GestureSensor is a sample application that shows how to use GestureAPI and detec
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
 * [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
+### Target 
+| Target Api level   | Tizen Version |
+|--------------------|---------------|
+| Tizen API level 7  | Tizen 5.5     |
+
 ### Author
 * Michal Kolodziejski

@@ -11,5 +11,10 @@ Lescanner is a sample application which demonstrates how to use [Tizen.Network.B
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
 * [Visual Studio Tools for Tizen](https://developer.tizen.org/development/visual-studio-tools-tizen/installing-visual-studio-tools-tizen) - Visual Studio plugin for Tizen .NET application development
 
+### Target 
+| Target Api level   | Tizen Version |
+|--------------------|---------------|
+| Tizen API level 7  | Tizen 5.5     |
+
 ### Author
 * The application is a port of a [mobile app](/../../tree/master/Mobile/Lescanner). The port was created by Tomasz Zalewski.
