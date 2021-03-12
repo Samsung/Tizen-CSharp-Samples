@@ -30,9 +30,9 @@ namespace Gallery.Controls
 
         public bool AllowedFocused { get; set; } = true;
 
-        public int ItemsWidth { get; set; } = 150;
+        public int ItemsWidth { get; set; } = 750;
 
-        public int ItemsHeight { get; set; } = 150;
+        public int ItemsHeight { get; set; } = 750;
 
         public double ScrollX => _scrollView.ScrollX;
 
