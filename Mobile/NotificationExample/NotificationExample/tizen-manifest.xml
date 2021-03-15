@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.NotificationExample" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="common" />
+    <ui-application appid="org.tizen.example.NotificationExample" exec="NotificationExample.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+        <label>NotificationExample</label>
+        <icon>NotificationExample.png</icon>
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/notification</privilege>
+        <privilege>http://tizen.org/privilege/window.priority.set</privilege>
+    </privileges>
+    <dependencies />
+    <provides-appdefined-privileges />
+    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920">true</feature>
+</manifest>
