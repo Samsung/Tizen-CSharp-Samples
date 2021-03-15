@@ -1,8 +1,8 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.5">
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>tizen60</TargetFramework>
+    <TargetFramework>tizen80</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -22,13 +22,21 @@
     <None Remove="Port\**" />
     <None Remove="res\**" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="tizen-manifest.xml" />
+  </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991477" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TextClassification\TextClassification.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="tizen-manifest.xml" />
   </ItemGroup>
   <!-- If solution already has PCL project, will reference -->
 </Project>

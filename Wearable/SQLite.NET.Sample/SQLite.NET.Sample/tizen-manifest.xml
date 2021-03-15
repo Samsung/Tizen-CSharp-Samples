@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.SQLite.NET.Sample" version="1.0.0">
-	<profile name="wearable" />
+	<profile name="common" />
 	<ui-application appid="org.tizen.example.SQLite.NET.Sample"
 					exec="SQLite.NET.Sample.dll"
 					type="dotnet"

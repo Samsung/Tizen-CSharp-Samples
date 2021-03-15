@@ -16,7 +16,6 @@
 using System;
 using Tizen.Wearable.CircularUI.Forms;
 using Xamarin.Forms;
-using ElmSharp.Wearable;
 
 namespace Pedometer.Views
 {
@@ -41,7 +40,7 @@ namespace Pedometer.Views
         public MainPage()
         {
             InitializeComponent();
-            RotaryEventManager.Rotated += RotaryEventManager_Rotated;
+            ElmSharp.Wearable.RotaryEventManager.Rotated += RotaryEventManager_Rotated;
             GetLabelImage(0).FadeTo(0);
             GetLabelImage(2).FadeTo(0);
             GetLabelImage(3).FadeTo(0);

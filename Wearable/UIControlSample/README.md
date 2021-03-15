@@ -1,8 +1,11 @@
 # UIControlSample
-This sample demonstrates some basic UI Control Tizen.NUI. Such as, CheckBox, RadioButton, CheckBox, Slider, and ProgressBar.
+This sample demonstrates some basics of `Tizen.NUI.Components`.
+Included components are `CheckBox`, `RadioButton`, `Slider`, `Progress Bar` and `Switch`.
 
-![MainPage](./Screenshots/UIControlMain.png)
-
+# Screenshots
+| ![CheckBox](./Screenshots/UISample1.png) | ![Radio Button](./Screenshots/UISample2.png) | ![Slider](./Screenshots/UISample3.png) | ![Progress Bar](./Screenshots/UISample4.png) | ![Switch](./Screenshots/UISample5.png) |
+|:---:|:---:|:---:|:---:|:---:|
+| CheckBox | Radio Button | Slider | Progress Bar | Switch |
 
 ## License
 Copyright (c) 2018 Samsung Electronics Co., Ltd.
@@ -20,12 +23,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 ### Verified Version
-* Tizen.NET : 6.0.0
-* Tizen.NET.SDK : 1.0.9
-
+* Tizen.NET : 8.0.0.15524
+* Tizen.NET.SDK : 1.1.2
 
 ### Supported Profile
 * Wearable
 
 ### Author
-* Feng Jin, modified by Seungho Baek for the wearable sample.
+* Primary version was created by Feng Jin, modified by Seungho Baek for the wearable sample.
+* Remastered with new features by Michal Maciola.

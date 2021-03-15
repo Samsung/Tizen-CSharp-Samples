@@ -16,7 +16,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
-using ElmSharp.Wearable;
 using Geocoding.Tizen.Wearable.Controls;
 using Geocoding.Tizen.Wearable.Services;
 using Geocoding.ViewModels;
@@ -136,7 +135,7 @@ namespace Geocoding.Tizen.Wearable.Views
 
             Content = _mapView;
 
-            RotaryEventManager.Rotated += OnRotaryChange;
+            ElmSharp.Wearable.RotaryEventManager.Rotated += OnRotaryChange;
         }
 
         /// <summary>

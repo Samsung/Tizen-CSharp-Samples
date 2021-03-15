@@ -17,6 +17,10 @@ Tizen C# Samples for Mobile, Wearable, and TV profiles.
 * [Tizen .NET Forum](https://developer.tizen.org/forums/tizen-.net/active)
 
 ### Sample structure
+
+Sample apps will be deployed for each app type.
+
+#### AS-IS
 ```
 ├── Mobile
 │   ├── A
@@ -32,7 +36,30 @@ Tizen C# Samples for Mobile, Wearable, and TV profiles.
     └── I
 ```
 
-### Branch policy
+#### TO-BE
+```
+├── Mobile
+│ ├── NUI
+│ │ └── ...
+│ ├── OpenTk
+│ │ └── ...
+│ └── Xamarin.Forms
+│ │ └── ...
+├── Wearable
+│ ├── NUI
+│ │ └── ...
+│ ├── OpenTK
+│ │ └── ...
+│ └── Xamarin.Forms
+│ │ └── ...
+└── TV
+  ├── NUI
+  │ └── ...
+  ├── OpenTK
+  │ └── ...
+  └── Xamarin.Forms
+    └── ...
+```
 
+### Branch policy
 * master: ready applications for Tizen 5.5
-* dev: for development

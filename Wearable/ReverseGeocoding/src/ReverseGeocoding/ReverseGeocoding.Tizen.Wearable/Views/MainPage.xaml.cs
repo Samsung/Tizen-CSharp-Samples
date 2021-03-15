@@ -20,7 +20,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using Xamarin.Forms.Xaml;
 using ReverseGeocoding.Common;
-using ElmSharp.Wearable;
 using ReverseGeocoding.Tizen.Wearable.Controls;
 
 namespace ReverseGeocoding.Tizen.Wearable.Views
@@ -191,7 +190,8 @@ namespace ReverseGeocoding.Tizen.Wearable.Views
                 _mapAppeared = true;
             }
 
-            RotaryEventManager.Rotated += OnRotaryChange;
+
+            ElmSharp.Wearable.RotaryEventManager.Rotated += OnRotaryChange;
             _mapView.Map.LongPressed += OnMapLongPressed;
         }
 
@@ -201,7 +201,7 @@ namespace ReverseGeocoding.Tizen.Wearable.Views
         /// </summary>
         protected override void OnDisappearing()
         {
-            RotaryEventManager.Rotated -= OnRotaryChange;
+            ElmSharp.Wearable.RotaryEventManager.Rotated -= OnRotaryChange;
             _mapView.Map.LongPressed -= OnMapLongPressed;
         }
 

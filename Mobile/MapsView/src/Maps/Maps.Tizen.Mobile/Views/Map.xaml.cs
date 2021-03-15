@@ -15,8 +15,9 @@
  */
 
 using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Maps;
+using System.Linq;
+
+using Tizen.Maps;
 
 namespace Maps.Tizen.Mobile.Views
 {
@@ -43,10 +44,16 @@ namespace Maps.Tizen.Mobile.Views
         {
             InitializeComponent();
             BindingContext = _viewModel as object;
+            MapComponent.MapInitialized += OnMapInitialized;
+        }
 
+        private void OnMapInitialized(object sender, EventArgs e)
+        {
             AddPinsToMap();
             SetMapOnFirstPin();
             AddEventHandlers();
+
+            MapComponent.MapInitialized -= OnMapInitialized;
         }
 
         /// <summary>
@@ -54,8 +61,13 @@ namespace Maps.Tizen.Mobile.Views
         /// </summary>
         private void AddEventHandlers()
         {
-            _viewModel.OnZoomChanged += (sender, args) => SetMapCenter(MapComponent.VisibleRegion.Center);
             _viewModel.OnPinRequest += SetMapToPinLocation;
+            _viewModel.OnZoomChanged += SetMapZoom;
+        }
+
+        private void SetMapZoom(object sender, EventArgs e)
+        {
+            MapComponent.Map.ZoomLevel = _viewModel.ZoomLevel;
         }
 
         /// <summary>
@@ -63,14 +75,12 @@ namespace Maps.Tizen.Mobile.Views
         /// </summary>
         private void AddPinsToMap()
         {
-            foreach (Models.Pin pin in _viewModel.PinPoints)
+            var pins = _viewModel.PinPoints.Select(pin =>
+                new Pin(new Geocoordinates(pin.Position.Latitude, pin.Position.Longitude)));
+
+            foreach (var pin in pins)
             {
-                MapComponent.Pins.Add(new Pin
-                {
-                    Type = PinType.SearchResult,
-                    Position = new Position(pin.Position.Latitude, pin.Position.Longitude),
-                    Label = pin.DisplayName
-                });
+                MapComponent.Map.Add(pin);
             }
         }
 
@@ -81,18 +91,16 @@ namespace Maps.Tizen.Mobile.Views
         /// <param name="pin">Pin.</param>
         public void SetMapToPinLocation(object sender, Models.Pin pin)
         {
-            SetMapCenter(new Position(pin.Position.Latitude, pin.Position.Longitude));
+            SetMapCenter(pin.Position.Latitude, pin.Position.Longitude);
         }
 
         /// <summary>
         /// Sets map center to provided position.
         /// </summary>
         /// <param name="position">Requested position.</param>
-        private void SetMapCenter(Position position)
+        private void SetMapCenter(double latitude, double longitude)
         {
-            double latlongdegrees = GetLatLonDegress();
-
-            MapComponent.MoveToRegion(new MapSpan(position, latlongdegrees, latlongdegrees));
+            MapComponent.Map.Center = new Geocoordinates(latitude, longitude);
         }
 
         /// <summary>
@@ -101,16 +109,7 @@ namespace Maps.Tizen.Mobile.Views
         private void SetMapOnFirstPin()
         {
             Models.Pin firstPinOnList = _viewModel.GetFirstPin();
-            SetMapCenter(new Position(firstPinOnList.Position.Latitude, firstPinOnList.Position.Longitude));
-        }
-
-        /// <summary>
-        /// Calculates degrees that map has to display.
-        /// </summary>
-        /// <returns>Calculated degrees value.</returns>
-        private double GetLatLonDegress()
-        {
-            return 360 / Math.Pow(2, _viewModel.ZoomLevel);
+            SetMapCenter(firstPinOnList.Position.Latitude, firstPinOnList.Position.Longitude);
         }
 
         #endregion

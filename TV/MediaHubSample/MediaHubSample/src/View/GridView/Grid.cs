@@ -673,7 +673,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="itemIndex">focus item index</param>
         /// <param name="groupIndex">focus group index</param>
-        public void SetFoucsItemIndex(int itemIndex, int groupIndex = 0)
+        public void SetFocusItemIndex(int itemIndex, int groupIndex = 0)
         {
             Tizen.Log.Fatal("NUI", string.Format("[GridView]Set Focus to item {0} of group {1}", itemIndex, groupIndex));
             if (!IsItemIndexValid(groupIndex, itemIndex))
@@ -2730,16 +2730,16 @@ namespace Tizen.NUI
                     {
                         if (e.param[1] > 0)
                         {
-                            SetFoucsItemIndex(e.param[1] - 1, focusGroupIndex);
+                            SetFocusItemIndex(e.param[1] - 1, focusGroupIndex);
                         }
                         else if (e.param[1] + e.param[2] < curGroup.itemList.Count)
                         {
-                            SetFoucsItemIndex(e.param[1] + e.param[2], focusGroupIndex);
+                            SetFocusItemIndex(e.param[1] + e.param[2], focusGroupIndex);
                         }
                     }
                     else if (focusItemIndex >= e.param[1] + e.param[2])
                     {
-                        SetFoucsItemIndex(focusItemIndex - e.param[2], focusGroupIndex);
+                        SetFocusItemIndex(focusItemIndex - e.param[2], focusGroupIndex);
                     }
 
                     break;
