@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.NUI_Layer" version="1.0.0" api-version="5.5" xmlns="http://tizen.org/ns/packages">
+    <description>Example shows how to use NUI layers.</description>
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.example.NUI_Layer" exec="NUI_Layer.dll" multiple="false" nodisplay="false" taskmanage="true" api-version="6" type="dotnet" launch_mode="single">
+        <label>NUI_Layer</label>
+        <icon>NUI_Layer.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <dependencies />
+    <provides-appdefined-privileges />
+</manifest>
