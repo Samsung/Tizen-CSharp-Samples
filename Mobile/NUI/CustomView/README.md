@@ -1,4 +1,4 @@
-# Maps
+# CustomView
 
 This sample application demonstrate how user can use NUI Custom View to implement own widget view. 
 
