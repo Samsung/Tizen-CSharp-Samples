@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MasterDetailPage
+<FlyoutPage
     x:Class="MusicPlayerUI.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MusicPlayerUI.Page;assembly=MusicPlayerUI"
     Title="Music Player">
 
-    <MasterDetailPage.Master>
+    <FlyoutPage.Flyout>
         <local:MenuPage />
-    </MasterDetailPage.Master>
+    </FlyoutPage.Flyout>
 
-    <MasterDetailPage.Detail>
+    <FlyoutPage.Detail>
         <local:DetailPage />
-    </MasterDetailPage.Detail>
-</MasterDetailPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>

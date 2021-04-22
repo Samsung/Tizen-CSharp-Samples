@@ -5,7 +5,7 @@ namespace MusicPlayerUI
     /// <summary>
     /// The main page of the application
     /// </summary>
-    public partial class MainPage : MasterDetailPage
+    public partial class MainPage : FlyoutPage
     {
         /// <summary>
         /// Constructor

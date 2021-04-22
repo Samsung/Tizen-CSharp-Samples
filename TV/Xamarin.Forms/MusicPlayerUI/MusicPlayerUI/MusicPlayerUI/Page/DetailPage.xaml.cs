@@ -23,7 +23,7 @@ namespace MusicPlayerUI.Page
 
 		private void OnExcuteToolbarMenu(object sender, System.EventArgs e)
 		{
-			(Parent as MasterDetailPage).IsPresented = !(Parent as MasterDetailPage).IsPresented;
+			(Parent as FlyoutPage).IsPresented = !(Parent as FlyoutPage).IsPresented;
 		}
 
 		/// <summary>
