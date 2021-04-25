@@ -1,0 +1,160 @@
+{
+  "constants":
+  {
+    "STYLE_DIR":"/home/owner/apps_rw/org.tizen.example.ScriptLayoutSample/res/"
+  },
+  "styles":
+  {
+    // Change an icon size, see if it gets properly re-sized
+    "RadioButton":{
+     "unselectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CustomeTheme/radio-button-unselected-disabled.png"
+      },
+      "selectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CustomeTheme/radio-button-selected-disabled.png"
+      },
+	  "label":
+       {
+         "visualType": "TEXT",
+         "horizontalAlignment": "CENTER",
+         "pointSize" : 8.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       }
+    },
+    "CheckBoxButton":{
+     "unselectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CustomeTheme/checkbox-unselected-disabled.png"
+      },
+      "selectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CustomeTheme/checkbox-selected-disabled.png"
+      },
+	  "label":
+       {
+         "visualType": "TEXT",
+         "horizontalAlignment": "CENTER",
+         "pointSize" : 8.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       }
+    },
+	"TVRadioButton":{
+     "unselectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CustomeTheme/radio-button-unselected-disabled.png"
+      },
+      "selectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CustomeTheme/radio-button-selected-disabled.png"
+      },
+	  "label":
+       {
+         "visualType": "TEXT",
+         "horizontalAlignment": "CENTER",
+         "pointSize" : 34.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       }
+    },
+    "TVCheckBoxButton":{
+     "unselectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CustomeTheme/checkbox-unselected-disabled.png"
+      },
+      "selectedVisual":
+      {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CustomeTheme/checkbox-selected-disabled.png"
+      },
+	  "label":
+       {
+         "visualType": "TEXT",
+         "horizontalAlignment": "CENTER",
+         "pointSize" : 34.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       }
+    },
+	"PushButton":
+    {
+      "autoRepeating":false,
+      "togglable":false,
+      "labelPadding":[ 12.0, 12.0, 12.0, 12.0 ],
+      "label":
+       {
+         "visualType": "TEXT",
+         "horizontalAlignment": "CENTER",
+         "pointSize" : 8.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       },
+      "unselectedBackgroundVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_25_25_25_95.9.png"
+       },
+	   "unselectedVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_25_25_25_95.9.png"
+       },
+       "selectedVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_0_129_198_100.9.png"
+       },
+	   "selectedBackgroundVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_0_129_198_100.9.png"
+       }
+    },
+	"TVPushButton":
+    {
+      "autoRepeating":false,
+      "togglable":false,
+      "labelPadding":[ 12.0, 12.0, 12.0, 12.0 ],
+      "label":
+       {
+         "visualType": "TEXT",
+         "horizontalAlignment": "CENTER",
+         "pointSize" : 34.0, // Point size must always be provided to Text Visual
+         "verticalAlignment": "CENTER"
+       },
+      "unselectedBackgroundVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_25_25_25_95.9.png"
+       },
+	   "unselectedVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_25_25_25_95.9.png"
+       },
+       "selectedVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_0_129_198_100.9.png"
+       },
+	   "selectedBackgroundVisual":
+       {
+         "visualType": "IMAGE",
+         "url": "{STYLE_DIR}/images/Button/btn_bg_0_129_198_100.9.png"
+       }
+    },
+	"TextLabel":
+    {
+      //"pointSize":15,
+      //"enableAutoScroll":false
+    },
+	"Title":{
+      "textColor":[ 1.0, 1.0, 1.0, 1.0]
+    }
+  }
+}

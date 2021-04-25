@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="3.0" package="org.tizen.example.FlexContainerSample" version="1.0.0">
+  <feature name="http://tizen.org/feature/screen.size.normal.1080.1920">true</feature>
+  <profile name="tv" />
+  <ui-application appid="org.tizen.example.FlexContainerSample"
+					exec="FlexContainerSample.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+    <icon>FlexContainerSample.png</icon>
+    <label>FlexContainerSample</label>
+    <metadata key="http://samsung.com/tv/metadata/mountinstall" value="true"/>
+  </ui-application>
+</manifest>

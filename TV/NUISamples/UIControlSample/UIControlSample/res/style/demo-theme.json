@@ -1,0 +1,148 @@
+/*
+ * Copyright (c) 2000-2016 Samsung Electronics Co., Ltd
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+{
+  "styles":
+  {
+    "ConfirmationPopup":{
+      "popupBackgroundImage":"/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images/00_popup_bg.9.png"
+    },
+
+    "CustomPopupStyle":{
+      "popupBackgroundImage":"/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images/popup.9.png",
+      "popupBackgroundBorder":[0,4,4,0],
+      "tailUpImage":"/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images/popup-tail-up.png",
+      "tailDownImage":"/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images/popup-tail-down.png",
+      "tailLeftImage":"/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images/popup-tail-left.png",
+      "tailRightImage":"/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images/popup-tail-right.png"
+    },
+    "DemoTile":
+    {
+      "states":
+      {
+        "NORMAL":
+        {
+          "color":[0.4, 0.6, 0.9, 0.6],
+          "visuals":
+          {
+            "image":
+            {
+              "url":"/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images/demo-tile-texture.9.png",
+              "shader":
+              {
+                "fragmentShader":[
+                  "  varying mediump vec2  vTexCoord;",
+                  "  uniform lowp    vec4  uColor;",
+                  "  uniform sampler2D     sTexture;",
+                  "  uniform mediump vec3  uCustomPosition;",
+                  "",
+                  "  void main()",
+                  "  {",
+                  "    if( texture2D( sTexture, vTexCoord ).a <= 0.0001 )",
+                  "    {",
+                  "      discard;",
+                  "    }",
+                  "",
+                  "    mediump vec2 wrapTexCoord = vec2( ( vTexCoord.x / 4.0 ) + ( uCustomPosition.x / 4.0 ) + ( uCustomPosition.z / 2.0 ), vTexCoord.y / 4.0 );",
+                  "    mediump vec4 color = texture2D( sTexture, wrapTexCoord );",
+                  "    mediump float positionWeight = ( uCustomPosition.y + 0.3 ) * color.r * 2.0;",
+                  "",
+                  "    gl_FragColor = vec4( positionWeight, positionWeight, positionWeight, 0.9 ) * uColor + vec4( uColor.xyz, 0.0 );",
+                  "  }"
+                ]
+              }
+            }
+          }
+        },
+        "FOCUSED":
+        {
+          // "color":[0.3, 0.5, 0.8, 0.5],
+          "visuals":
+          {
+            "image":
+            {
+            }
+          }
+        }
+      }
+    },
+    "DemoTileBorder":
+    {
+      "visuals":
+      {
+        "image":
+        {
+          "url":"/home/owner/apps_rw/org.tizen.example.UIControlSample/res/images/item-background.9.png" // TILE_BACKGROUND
+        }
+      }
+    },
+    "TextLabelRosemary":
+    {
+      "fontFamily":"Rosemary"
+    },
+    "TextLabel": {
+      "fontStyle": { "weight": "normal" },
+      "pointSize": 18
+    },
+
+    "LauncherLabel": {
+      "pointSize": 8
+    },
+
+    "VDLauncherLabel": {
+      "pointSize": 34
+    },
+
+    "ToolbarLabel":
+    {
+      "pointSize":18
+    },
+
+    "BuilderLabel":
+    {
+      "pointSize":13
+    },
+
+    "ScrollView":
+    {
+      "overshootEffectColor":"B018"
+    },
+
+    "ImageScalingGroupLabel":
+    {
+      "pointSize":9
+    },
+
+    "ImageScalingButton":
+    {
+      "label":{
+        "pointSize":11
+      }
+    },
+
+    "LauncherBackground":
+    {
+      "background":
+      {
+        "visualType": "GRADIENT",
+        "center": [240, 400],
+        "radius": 932,
+        "units": "USER_SPACE",
+        "stopColor": [[0.247,0.38,0.52,1.0],[0.055,0.18,0.286,1.0]]
+      }
+    }
+  }
+}
