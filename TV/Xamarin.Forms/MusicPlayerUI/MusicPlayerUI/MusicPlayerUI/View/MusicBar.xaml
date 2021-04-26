@@ -3,7 +3,6 @@
     x:Class="MusicPlayerUI.View.MusicBar"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MusicPlayerUI"
     x:Name="Control">
 
     <ContentView.Content>
@@ -30,7 +29,7 @@
                     VerticalOptions="Center" />
             </StackLayout>
 
-            <Button
+            <ImageButton
                 Margin="0,0,80,0"
                 BackgroundColor="{DynamicResource TizenDefault}"
                 Command="{Binding PlayCommand, Source={x:Reference Control}}"
@@ -38,18 +37,18 @@
                 <Button.Triggers>
                     <DataTrigger
                         Binding="{Binding Source={x:Reference Control}, Path=IsPlaying}"
-                        TargetType="Button"
+                        TargetType="ImageButton"
                         Value="False">
-                        <Setter Property="Image" Value="play.png" />
+                        <Setter Property="Source" Value="play.png" />
                     </DataTrigger>
                     <DataTrigger
                         Binding="{Binding Source={x:Reference Control}, Path=IsPlaying}"
-                        TargetType="Button"
+                        TargetType="ImageButton"
                         Value="True">
-                        <Setter Property="Image" Value="pause.png" />
+                        <Setter Property="Source" Value="pause.png" />
                     </DataTrigger>
                 </Button.Triggers>
-            </Button>
+            </ImageButton>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

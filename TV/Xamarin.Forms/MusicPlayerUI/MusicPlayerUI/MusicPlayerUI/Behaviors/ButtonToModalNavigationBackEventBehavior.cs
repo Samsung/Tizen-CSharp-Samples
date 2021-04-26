@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace MusicPlayerUI.Behaviors
 {
-	public class ButtonToModalNavigationBackEventBehavior : Behavior<Button>
+	public class ImageButtonToModalNavigationBackEventBehavior : Behavior<ImageButton>
 	{
-		public static readonly BindableProperty IsBackEventProperty = BindableProperty.Create("IsBackEvent", typeof(bool), typeof(ButtonToModalNavigationBackEventBehavior), false);
+		public static readonly BindableProperty IsBackEventProperty = BindableProperty.Create("IsBackEvent", typeof(bool), typeof(ImageButtonToModalNavigationBackEventBehavior), false);
 
 		public bool IsBackEvent
 		{
@@ -13,7 +13,7 @@ namespace MusicPlayerUI.Behaviors
 			set { SetValue(IsBackEventProperty, value); }
 		}
 
-		protected override void OnAttachedTo(Button bindable)
+		protected override void OnAttachedTo(ImageButton bindable)
 		{
 			bindable.Clicked += Bindable_Clicked;
 		}
@@ -26,7 +26,7 @@ namespace MusicPlayerUI.Behaviors
 			}
 		}
 
-		protected override void OnDetachingFrom(Button bindable)
+		protected override void OnDetachingFrom(ImageButton bindable)
 		{
 			bindable.Clicked -= Bindable_Clicked;
 		}

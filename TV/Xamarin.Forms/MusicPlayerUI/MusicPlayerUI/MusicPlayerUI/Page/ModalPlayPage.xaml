@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="clr-namespace:MusicPlayerUI.Behaviors"
-    xmlns:page="clr-namespace:MusicPlayerUI.Page;assmebly=MusicPlayerUI">
+    xmlns:page="clr-namespace:MusicPlayerUI.Page">
     <ContentPage.Content>
         <Grid
             BackgroundColor="White"
@@ -23,16 +23,16 @@
                     Text="{Binding SongTitle, Source={x:Static page:TabItemPage.MusicBar}}"
                     TextColor="White"
                     VerticalOptions="Center" />
-                <Button
+                <ImageButton
                     Margin="15,0,0,0"
                     BackgroundColor="{StaticResource TizenDefault}"
                     HorizontalOptions="Start"
-                    Image="back.png"
+                    Source="back.png"
                     Style="{StaticResource BaseSizeStyle}">
-                    <Button.Behaviors>
-                        <behaviors:ButtonToModalNavigationBackEventBehavior IsBackEvent="True" />
-                    </Button.Behaviors>
-                </Button>
+                    <ImageButton.Behaviors>
+                        <behaviors:ImageButtonToModalNavigationBackEventBehavior IsBackEvent="True" />
+                    </ImageButton.Behaviors>
+                </ImageButton>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -57,34 +57,34 @@
                     Orientation="Horizontal"
                     Spacing="50"
                     VerticalOptions="Center">
-                    <Button
+                    <ImageButton
                         BackgroundColor="{StaticResource TizenDefault}"
                         Clicked="OnSongValueInit"
-                        Image="rewind.png"
+                        Source="rewind.png"
                         Style="{StaticResource BaseSizeStyle}" />
-                    <Button
+                    <ImageButton
                         BackgroundColor="{StaticResource TizenDefault}"
                         Command="{Binding PlayCommand, Source={x:Static page:TabItemPage.MusicBar}}"
                         Style="{StaticResource BaseSizeStyle}">
-                        <Button.Triggers>
+                        <ImageButton.Triggers>
                             <DataTrigger
                                 Binding="{Binding IsPlaying, Source={x:Static page:TabItemPage.MusicBar}}"
-                                TargetType="Button"
+                                TargetType="ImageButton"
                                 Value="False">
-                                <Setter Property="Image" Value="play.png" />
+                                <Setter Property="Source" Value="play.png" />
                             </DataTrigger>
                             <DataTrigger
                                 Binding="{Binding IsPlaying, Source={x:Static page:TabItemPage.MusicBar}}"
-                                TargetType="Button"
+                                TargetType="ImageButton"
                                 Value="True">
-                                <Setter Property="Image" Value="pause.png" />
+                                <Setter Property="Source" Value="pause.png" />
                             </DataTrigger>
-                        </Button.Triggers>
-                    </Button>
-                    <Button
+                        </ImageButton.Triggers>
+                    </ImageButton>
+                    <ImageButton
                         BackgroundColor="{StaticResource TizenDefault}"
                         Clicked="OnSongValueInit"
-                        Image="fastforward.png"
+                        Source="fastforward.png"
                         Style="{StaticResource BaseSizeStyle}" />
                 </StackLayout>
             </Grid>
