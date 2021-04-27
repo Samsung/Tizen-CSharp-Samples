@@ -18,30 +18,14 @@
     <ListView
         HorizontalOptions="FillAndExpand"
         ItemsSource="{StaticResource stringArray}"
-        RowHeight="100"
+        RowHeight="50"
         SeparatorVisibility="Default"
         VerticalOptions="FillAndExpand">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <ViewCell.View>
-                        <StackLayout
-                            HorizontalOptions="FillAndExpand"
-                            Orientation="Horizontal"
-                            VerticalOptions="StartAndExpand">
-                            <Image
-                                Margin="15,0,0,0"
-                                HorizontalOptions="Start"
-                                Source="tizen.png"
-                                VerticalOptions="Center" />
-                            <Label
-                                Margin="30,0,0,0"
-                                HorizontalOptions="FillAndExpand"
-                                Text="{Binding}"
-                                VerticalOptions="Center" />
-                        </StackLayout>
-                    </ViewCell.View>
-                </ViewCell>
+                <ImageCell Text="{Binding}"
+                           ImageSource="tizen.png">
+                </ImageCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
