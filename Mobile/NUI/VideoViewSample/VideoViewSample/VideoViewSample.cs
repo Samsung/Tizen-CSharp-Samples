@@ -22,19 +22,78 @@ namespace VideoViewSample
 {
     class Program : NUIApplication
     {
+        /// <summary>
+        /// Main Application Window instance.
+        /// </summary>
+        private Window ApplicationWindow;
+
+        /// <summary>
+        /// Button names array. Used to verify wich button was pressed and control the video player actions.
+        /// </summary>
         private readonly string[] buttonNames = { "play", "pause", "stop", "forward", "backward" };
+
+        /// <summary>
+        /// Video Player Component. It is used to show video in the application window.
+        /// </summary>
         private VideoView player;
 
+        /// <summary>
+        /// OnCreate Event Handler. First function called after Application constructor.
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
             Initialize();
         }
 
+        /// <summary>
+        /// On Key Pressed Event Handler. Used to exit application when back button was pressed.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Event parameters</param>
+        public void OnKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                switch (e.Key.KeyPressedName)
+                {
+                    case "Escape":
+                    case "Back":
+                    case "XF86Back": //Handle back key for emulator
+                        {
+                            Exit();
+                        }
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Function initializes application UI.
+        /// </summary>
         void Initialize()
         {
-            Window.Instance.BackgroundColor = Color.White;
+            //Save the application window instance.
+            ApplicationWindow = Window.Instance;
+            ApplicationWindow.BackgroundColor = Color.White;
 
+            //Setup event handlers.
+            ApplicationWindow.KeyEvent += OnKeyEvent;
+
+            //Create main application view.
+            View mainView = new View();
+
+            //Setup linear layout for components stored in main view.
+            LinearLayout mainLayout = new LinearLayout()
+            {
+                LinearAlignment = LinearLayout.Alignment.Center,
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                CellPadding = new Size2D(0, 10)
+            };
+            mainView.Layout = mainLayout;
+            ApplicationWindow.Add(mainView);
+
+            //Create video view and play movie automatically.
             player = new VideoView()
             {
                 HeightResizePolicy = ResizePolicyType.SizeRelativeToParent,
@@ -43,24 +102,28 @@ namespace VideoViewSample
                 ResourceUrl = DirectoryInfo.Resource + "sample.3gp",
             };
             player.Play();
-            Window.Instance.Add(player);
+            mainView.Add(player);
 
+            //Create buttons and push them into the main view.
             for (int i = 0; i < buttonNames.Length; ++i)
             {
-                int buttonPosX = (int)player.SizeHeight + 50 + i * 102;
                 Button btn = new Button
                 {
                     ParentOrigin = ParentOrigin.Center,
                     Size2D = new Size2D(300, 100),
-                    Position2D = new Position2D(-150, buttonPosX),
-                    BackgroundColor = new Color("#00bfff"),
                     TextColor = Color.White,
                     Text = buttonNames[i],
                 };
                 btn.Clicked += OnClicked;
-                Window.Instance.Add(btn);
+                mainView.Add(btn);
             }
         }
+
+        /// <summary>
+        /// Button Clicked event handler.
+        /// </summary>
+        /// <param name="sender">event sender</param>
+        /// <param name="e">event parameters</param>
         private void OnClicked(object sender, ClickedEventArgs e)
         {
             Button button = sender as Button;
