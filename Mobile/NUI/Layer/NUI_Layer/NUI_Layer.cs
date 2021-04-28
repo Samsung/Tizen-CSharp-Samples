@@ -20,15 +20,27 @@ namespace NUILayer
 {
     class Program : NUIApplication
     {
+        /// <summary>
+        /// Application main window handle. It is used in event handlers to obtain app window size.
+        /// </summary>
         private Window appWindow;
-        //Menu component - a component for view icons
+
+        /// <summary>
+        /// Left side menu layer content placed on top of the application components stack.
+        /// </summary>
         private View menu;
 
-        //Menu layer - a layer with higher depth index to show menu on top of the application content
+
+        /// <summary>
+        /// Menu layer with higher depth index to show menu on top of the application content.
+        /// </summary>
         private Layer menuLayer;
 
-        //Icons array. Stores icon names which will be added to the menu layer
-        private static readonly string[] icons = {
+        /// <summary>
+        /// Icons array. Stores icon names which will be added to the menu layer
+        /// </summary>
+        private static readonly string[] icons =
+        {
             "email.png",
             "maps.png",
             "messages.png",
@@ -43,6 +55,10 @@ namespace NUILayer
             "voicememo.png"
         };
 
+        /// <summary>
+        /// OnCreate Function initializes all UI components. Called internally by Tizen.Nui.Application
+        /// components after Application class construction
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -92,10 +108,14 @@ namespace NUILayer
             //Add the menu to the layer (separated from the background)
             menuLayer.Add(menu);
 
-            addIcons(menu);
+            AddIcons(menu);
         }
 
-        private void addIcons(View view)
+        /// <summary>
+        /// Function use icons array to create ImageView objects stored in the Menu view.
+        /// </summary>
+        /// <param name="view">View to which icons will be added</param>
+        private void AddIcons(View view)
         {
             //Create vertical placeholder for icons and add it to the view. In this case a menu component.
             LinearLayout iconLayout = new LinearLayout();
@@ -116,6 +136,29 @@ namespace NUILayer
             }
         }
 
+        /// <summary>
+        /// Function hides Menu Layer by changing its visibility parametr.
+        /// </summary>
+        public void MenuShow()
+        {
+            //Hide all icons by change one flag for layer.
+            menuLayer.Visibility = true;
+        }
+
+        /// <summary>
+        /// Function shows Menu Layer by changing its visibility parameter.
+        /// </summary>
+        public void MenuHide()
+        {
+            //Show all icons by change one flag for layer.
+            menuLayer.Visibility = false;
+        }
+
+        /// <summary>
+        /// Key Event Handler. Used to handle application exit when back button was pressed.
+        /// </summary>
+        /// <param name="sender"> Event Sender</param>
+        /// <param name="e"> Object which holds event information, in this case key arguments</param>
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down)
@@ -125,26 +168,17 @@ namespace NUILayer
                     case "Escape":
                     case "Back":
                     case "XF86Back": //Handle back key for emulator
-                        {
-                            Exit();
-                        }
+                        Exit();
                         break;
                 }
             }
         }
 
-        public void MenuShow()
-        {
-            //Hide all icons by change one flag for layer.
-            menuLayer.Visibility = true;
-        }
-
-        public void MenuHide()
-        {
-            //Show all icons by change one flag for layer.
-            menuLayer.Visibility = false;
-        }
-
+        /// <summary>
+        /// Touch Event Handler. It is used to verify wich part of the screen was touched.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="args">Event arguments</param>
         public void OnWindowTouched(object sender, Window.TouchEventArgs args)
         {
             if (args.Touch.GetState(0) == PointStateType.Down)
