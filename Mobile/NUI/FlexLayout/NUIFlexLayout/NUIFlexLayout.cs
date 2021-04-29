@@ -49,8 +49,11 @@ namespace NUIFlexLayout
         /// </summary>
         void Initialize()
         {
+            // Initialize Views
             InitViews();
+            // Initialize Flex Layout
             InitFlex();
+            // Initialize Buttons
             InitButtons();
         }
 
@@ -59,6 +62,7 @@ namespace NUIFlexLayout
         /// </summary>
         private void InitViews()
         {
+            // Initialize Root View
             RootView = new View();
             RootView.PositionUsesPivotPoint = true;
             RootView.PivotPoint = PivotPoint.Center;
@@ -67,6 +71,7 @@ namespace NUIFlexLayout
             RootView.HeightResizePolicy = ResizePolicyType.FillToParent;
             RootView.BackgroundColor = Color.Black;
 
+            // Initialize Top View
             TopView = new View();
             TopView.PositionUsesPivotPoint = true;
             TopView.PivotPoint = PivotPoint.TopCenter;
@@ -77,6 +82,7 @@ namespace NUIFlexLayout
             TopView.Padding = new Extents(20, 20, 20, 20);
             TopView.BackgroundColor = Color.Black;
 
+            // Initialize Button View
             ButtonView = new View();
             ButtonView.PositionUsesPivotPoint = true;
             ButtonView.PivotPoint = PivotPoint.TopCenter;
@@ -87,6 +93,8 @@ namespace NUIFlexLayout
             ButtonView.Padding = new Extents(20, 20, 20, 20);
             ButtonView.BackgroundColor = Color.Black;
 
+
+            // Add child views.
             RootView.Add(TopView);
             RootView.Add(ButtonView);
             Window.Instance.Add(RootView);
@@ -98,7 +106,8 @@ namespace NUIFlexLayout
         /// Initialize flex layout and fill it with text labels
         /// </summary>
         private void InitFlex()
-        {
+        {   
+            // Initialize Flex View
             FlexView = new View();
             FlexView.PositionUsesPivotPoint = true;
             FlexView.PivotPoint = PivotPoint.Center;
@@ -109,6 +118,7 @@ namespace NUIFlexLayout
             FlexView.Layout = new FlexLayout() {WrapType = FlexLayout.FlexWrapType.Wrap};
             TopView.Add(FlexView);
 
+            // Add elements to Flex View
             for (int i = 0; i < ItemsCnt; i++)
             {
                 TextLabel t = new TextLabel();
@@ -128,6 +138,7 @@ namespace NUIFlexLayout
             ButtonLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
             ButtonView.Layout = ButtonLayout;
 
+            // Initialize Button1
             Button1 = new Button();
             Button1.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
             Button1.HeightResizePolicy = ResizePolicyType.FillToParent;
@@ -136,6 +147,7 @@ namespace NUIFlexLayout
             Button1.Margin = new Extents(10, 10, 10, 10);
             Button1.Weight = 0.25f;
 
+            // Initialize Button2
             Button2 = new Button();
             Button2.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
             Button2.HeightResizePolicy = ResizePolicyType.FillToParent;
@@ -144,6 +156,7 @@ namespace NUIFlexLayout
             Button2.Margin = new Extents(10, 10, 10, 10);
             Button2.Weight = 0.25f;
 
+            // Initialize Button3
             Button3 = new Button();
             Button3.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
             Button3.HeightResizePolicy = ResizePolicyType.FillToParent;
@@ -152,6 +165,7 @@ namespace NUIFlexLayout
             Button3.Margin = new Extents(10, 10, 10, 10);
             Button3.Weight = 0.25f;
 
+            // Initialize Button4
             Button4 = new Button();
             Button4.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
             Button4.HeightResizePolicy = ResizePolicyType.FillToParent;
@@ -160,11 +174,13 @@ namespace NUIFlexLayout
             Button4.Margin = new Extents(10, 10, 10, 10);
             Button4.Weight = 0.25f;
 
+            // Add Buttons to parent view
             ButtonView.Add(Button1);
             ButtonView.Add(Button2);
             ButtonView.Add(Button3);
             ButtonView.Add(Button4);
 
+            // Register button click events
             Button1.ClickEvent += Button1Clicked;
             Button2.ClickEvent += Button2Clicked;
             Button3.ClickEvent += Button3Clicked;
@@ -180,8 +196,9 @@ namespace NUIFlexLayout
         {
             FlexLayout Layout = (FlexLayout)FlexView.Layout;
             FlexLayout.FlexDirection newDirection = Layout.Direction + 1;
-            if (newDirection > FlexLayout.FlexDirection.RowReverse)
+            if (newDirection > FlexLayout.FlexDirection.RowReverse) {
                 newDirection = FlexLayout.FlexDirection.Column;
+            }
             Layout.Direction = newDirection;
             FlexView.Layout = Layout;
         }
@@ -195,8 +212,9 @@ namespace NUIFlexLayout
         {
             FlexLayout Layout = (FlexLayout)FlexView.Layout;
             FlexLayout.FlexJustification newJust = Layout.Justification + 1;
-            if (newJust > FlexLayout.FlexJustification.SpaceAround)
+            if (newJust > FlexLayout.FlexJustification.SpaceAround) {
                 newJust = FlexLayout.FlexJustification.FlexStart;
+            }
             Layout.Justification = newJust;
             FlexView.Layout = Layout;
         }
@@ -210,8 +228,9 @@ namespace NUIFlexLayout
         {
             FlexLayout Layout = (FlexLayout)FlexView.Layout;
             FlexLayout.AlignmentType newAlign = Layout.Alignment + 1;
-            if (newAlign > FlexLayout.AlignmentType.Stretch)
+            if (newAlign > FlexLayout.AlignmentType.Stretch) {
                 newAlign = FlexLayout.AlignmentType.Auto;
+            }
             Layout.Alignment = newAlign;
             FlexView.Layout = Layout;
         }
@@ -224,10 +243,12 @@ namespace NUIFlexLayout
         private void Button4Clicked(object sender, Button.ClickEventArgs e)
         {
             FlexLayout Layout = (FlexLayout)FlexView.Layout;
-            if (Layout.WrapType == FlexLayout.FlexWrapType.Wrap)
+            if (Layout.WrapType == FlexLayout.FlexWrapType.Wrap) {
                 Layout.WrapType = FlexLayout.FlexWrapType.NoWrap;
-            else
+            }
+            else {
                 Layout.WrapType = FlexLayout.FlexWrapType.Wrap;
+            }
             FlexView.Layout = Layout;
         }
 
