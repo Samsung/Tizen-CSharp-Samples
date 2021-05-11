@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET"  Version="8.0.0.15524">
+    <PackageReference Include="Tizen.NET" Version="8.0.0.15625">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
 	<PackageReference Include="Tizen.NET.Sdk" Version="1.1.2" />
