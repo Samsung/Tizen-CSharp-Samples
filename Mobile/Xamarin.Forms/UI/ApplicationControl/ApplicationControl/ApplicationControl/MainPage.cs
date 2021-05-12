@@ -147,7 +147,7 @@ namespace ApplicationControl
         /// </summary>
         public void ExecuteSelectedApplication()
         {
-            if (SelectedItem.Id == null || SelectedAppControlType == AppControlType.Unknown)
+            if (SelectedItem == null || SelectedItem?.Id == null || SelectedAppControlType == AppControlType.Unknown)
             {
                 return;
             }
@@ -160,7 +160,7 @@ namespace ApplicationControl
         /// </summary>
         public void KillSelectedApplication()
         {
-            if (SelectedItem.Id == null)
+            if (SelectedItem == null || SelectedItem?.Id == null)
             {
                 return;
             }
