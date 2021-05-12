@@ -147,6 +147,13 @@ namespace Alarm.Tizen.Renderers
         private void UpdateBlendColor(bool obj)
         {
             ImageButton BtnElement = Element as ImageButton;
+
+            if (BtnElement == null ||
+                Control == null)
+            {
+                return;
+            }
+
             Control.Color = BtnElement.BlendColor.ToNative();
         }
 
