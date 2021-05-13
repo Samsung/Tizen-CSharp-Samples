@@ -98,7 +98,11 @@ namespace Calculator.Renderers
         protected override void UpdateAfterLoading(bool initialize)
         {
             base.UpdateAfterLoading(initialize);
-            Control.Color = RegularColor;
+
+            if (Control != null)
+            {
+                Control.Color = RegularColor;
+            }
         }
 
         /// <summary>
@@ -106,7 +110,10 @@ namespace Calculator.Renderers
         /// </summary>
         private void KeyUp()
         {
-            Control.Color = RegularColor;
+            if (Control != null)
+            {
+                Control.Color = RegularColor;
+            }
         }
 
         /// <summary>
@@ -123,7 +130,10 @@ namespace Calculator.Renderers
         /// A Action delegate which is restore button image as pressed situation. </summary>
         private void KeyDown()
         {
-            Control.Color = PressedColor;
+            if (Control != null)
+            {
+                Control.Color = PressedColor;
+            }
         }
     }
 }
