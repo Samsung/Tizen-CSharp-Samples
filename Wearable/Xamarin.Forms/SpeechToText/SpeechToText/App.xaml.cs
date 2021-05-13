@@ -44,6 +44,11 @@ namespace SpeechToText
         {
             InitializeComponent();
 
+            if (Resources == null)
+            {
+                return;
+            }
+
             Resources.Add("TextColor", Color.FromRgba(247, 247, 247, 0.8));
             Resources.Add("TipColor", Color.FromRgba(250, 250, 250, 0.8));
             Resources.Add("TizenPointColor", Color.FromHex("#4CCFFF"));
