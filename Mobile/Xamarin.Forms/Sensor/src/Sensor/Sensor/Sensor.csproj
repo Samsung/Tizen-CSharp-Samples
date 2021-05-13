@@ -6,7 +6,8 @@
 
   <!-- Include Nuget Package for Xamarin building -->
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
+    <PackageReference Include="Tizen.NET" Version="8.0.0.15631" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Pages\SensorMain.xaml.cs">
