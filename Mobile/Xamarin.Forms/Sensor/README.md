@@ -16,10 +16,8 @@ This sample is following Portable Class Libraries (PCL) application model and us
 
 
 ### Verified Version
-* Xamarin.Forms : 2.4.0.18342
-* Xamarin.Platform.Tizen : 2.4.0.18342
-* Tizen.NET : 4.0.0
-* Tizen.NET.SDK : 1.0.0
+* Xamarin.Forms : 5.0.0.2012
+* Tizen.NET : 8.0.0.15631
 
 ### Supported Profile
 * Mobile
