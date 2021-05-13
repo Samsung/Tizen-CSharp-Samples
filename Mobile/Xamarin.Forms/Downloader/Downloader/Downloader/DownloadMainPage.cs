@@ -40,7 +40,7 @@ namespace Downloader
         }
 
         /// <summary>
-        /// Initialize main page. 
+        /// Initialize main page.
         /// Add components and events.
         /// </summary>
         private void InitializeComponent()
@@ -163,7 +163,7 @@ namespace Downloader
             DependencyService.Get<IDownload>().DownloadStateChanged += OnStateChanged;
             DependencyService.Get<IDownload>().DownloadProgress += OnProgressbarChanged;
         }
- 
+
         /// <summary>
         /// Event handler when download state is changed.
         /// </summary>
@@ -171,24 +171,25 @@ namespace Downloader
         /// <param name="e">Event arguments including download state</param>
         private void OnStateChanged(object sender, DownloadStateChangedEventArgs e)
         {
-            if (e.stateMsg.Length > 0)
-            {
-                DependencyService.Get<IDownload>().DownloadLog("State: " + e.stateMsg);
+           if (e.stateMsg.Length <= 0)
+                return;
 
-                if (e.stateMsg == "Failed")
-                {
-                    downloadButton.Text = e.stateMsg + "! Please start download again.";
-                    // If download is failed, dispose a request
-                    DependencyService.Get<IDownload>().Dispose();
-                    // Enable a donwload button
-                    downloadButton.IsEnabled = true;
-                }
-                else if (e.stateMsg != downloadButton.Text)
-                {
-                    // Update a download state
-                    downloadButton.Text = e.stateMsg;
-                }
-            }
+           DependencyService.Get<IDownload>().DownloadLog("State: " + e.stateMsg);
+           Device.BeginInvokeOnMainThread (() =>
+           {
+              if (e.stateMsg == "Failed")
+              {
+                  downloadButton.Text = e.stateMsg + "! Please start download again.";
+                  // If download is failed, dispose a request
+                  DependencyService.Get<IDownload>().Dispose();
+                  // Enable a donwload button
+                  downloadButton.IsEnabled = true;
+              }
+              else if (e.stateMsg != downloadButton.Text)
+              {
+                  downloadButton.Text = e.stateMsg;
+              }
+          });
         }
 
         /// <summary>
@@ -198,13 +199,15 @@ namespace Downloader
         /// <param name="e">Event arguments including received data size</param>
         private void OnProgressbarChanged(object sender, DownloadProgressEventArgs e)
         {
-            ulong ContentSize =  DependencyService.Get<IDownload>().GetContentSize();
+            if (e.ReceivedSize <= 0)
+                return;
 
-            if (e.ReceivedSize > 0)
+            ulong ContentSize =  DependencyService.Get<IDownload>().GetContentSize();
+            Device.BeginInvokeOnMainThread (() =>
             {
                 progressBar.Progress = (double)(e.ReceivedSize / ContentSize);
                 progressLabel.Text = e.ReceivedSize + "bytes / " + ContentSize + "bytes";
-            }
+            });
         }
 
         /// <summary>
