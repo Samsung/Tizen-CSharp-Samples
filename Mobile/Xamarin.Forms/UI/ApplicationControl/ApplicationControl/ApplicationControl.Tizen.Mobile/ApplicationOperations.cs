@@ -172,7 +172,9 @@ namespace ApplicationControl.Tizen.Mobile
         public string GetApplicationIconPath(string id)
         {
             var info = new ApplicationInfo(id);
-            return info.IconPath;
+            string iconPath = info.IconPath;
+            info.Dispose();
+            return iconPath;
         }
 
         /// <summary>

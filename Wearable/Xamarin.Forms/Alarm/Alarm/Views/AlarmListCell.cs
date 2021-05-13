@@ -104,14 +104,17 @@ namespace Alarm.Views
                 switchObj.Toggled += (s, e) =>
                 {
                     AlarmRecord am = (AlarmRecord)BindingContext;
-                    /// Modify state and re-draw it. Redraw must be called to redraw
-                    if (e.Value)
+                    if (am != null)
                     {
-                        AlarmModel.ReactivatelAlarm(am);
-                    }
-                    else
-                    {
-                        AlarmModel.DeactivatelAlarm(am);
+                        /// Modify state and re-draw it. Redraw must be called to redraw
+                        if (e.Value)
+                        {
+                            AlarmModel.ReactivatelAlarm(am);
+                        }
+                        else
+                        {
+                            AlarmModel.DeactivatelAlarm(am);
+                        }
                     }
                 };
             }

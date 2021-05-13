@@ -35,11 +35,15 @@ namespace ImageViewer.Views
             _circleImage.IsFilled = true;
             _circleImage.File = ResourcePath.GetPath("circle.png");
             _circleImage.Show();
-            _circleImage.Geometry = Control.Geometry;
-            Control.SetClip(_circleImage);
-            Control.LayoutUpdated += OnLayoutUpdated;
-            Control.Moved += Control_Moved;
-            Control.Deleted += Control_Deleted;
+
+            if (Control != null)
+            {
+                _circleImage.Geometry = Control.Geometry;
+                Control.SetClip(_circleImage);
+                Control.LayoutUpdated += OnLayoutUpdated;
+                Control.Moved += Control_Moved;
+                Control.Deleted += Control_Deleted;
+            }
         }
 
         private void Control_Deleted(object sender, EventArgs e)
@@ -49,12 +53,18 @@ namespace ImageViewer.Views
 
         private void Control_Moved(object sender, EventArgs e)
         {
-            _circleImage.Geometry = Control.Geometry;
+            if (Control != null)
+            {
+                _circleImage.Geometry = Control.Geometry;
+            }
         }
 
         private void OnLayoutUpdated(object sender, Xamarin.Forms.Platform.Tizen.Native.LayoutEventArgs e)
         {
-            _circleImage.Geometry = Control.Geometry;
+            if (Control != null)
+            {
+                _circleImage.Geometry = Control.Geometry;
+            }
         }
 
         protected override void Dispose(bool disposing)

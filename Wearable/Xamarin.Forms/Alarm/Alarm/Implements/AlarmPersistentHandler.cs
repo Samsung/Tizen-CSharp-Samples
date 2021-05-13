@@ -49,6 +49,7 @@ namespace Alarm.Implements
             {
                 var dataContractSerializer = new DataContractSerializer(typeof(Dictionary<string, AlarmRecord>));
                 Object ret1 = dataContractSerializer.ReadObject(alarmReader);
+                alarmFileStream.Dispose();
                 alarmFileStream = null;
                 return (IDictionary<string, AlarmRecord>)ret1;
             }
