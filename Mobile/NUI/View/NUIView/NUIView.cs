@@ -145,27 +145,27 @@ namespace NUIView
             ParentView = null;
 
             // update current view to next view
-            if (CurrentView == 1){
+            if (CurrentView == 1) {
                 View2();
                 CurrentView = 2;
             }
-            else if(CurrentView == 2){
+            else if(CurrentView == 2) {
                 View3();
                 CurrentView = 3;
             }
-            else if(CurrentView == 3){
+            else if(CurrentView == 3) {
                 View4();
                 CurrentView = 4;
             }
-            else if(CurrentView == 4){
+            else if(CurrentView == 4) {
                 View5();
                 CurrentView = 5;
             }
-            else if(CurrentView == 5){
+            else if(CurrentView == 5) {
                 View6();
                 CurrentView = 6;
             }
-            else if(CurrentView == 6){
+            else if(CurrentView == 6) {
                 View1();
                 CurrentView = 1;
             }
@@ -175,7 +175,8 @@ namespace NUIView
         /// <summary>
         /// View showing simple view positioning
         /// </summary>
-        private void View1(){
+        private void View1() {
+            // Prepare the ParentView
             ParentView = new View();
             ParentView.Size2D = new Size2D(600, 300);
             ParentView.PositionUsesPivotPoint = true;
@@ -183,6 +184,7 @@ namespace NUIView
             ParentView.ParentOrigin = ParentOrigin.Center;
             ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
 
+            // Prepare the ChildView
             ChildView = new View();
             ChildView.Size2D = new Size2D(100, 100);
             ChildView.PositionUsesPivotPoint = true;
@@ -193,6 +195,7 @@ namespace NUIView
 
             TextLabel.Text = "PivotPoint: TopLeft\nParentOrigin: TopLeft\nPosition: (60, 10)";
 
+            // Add children views
             ParentView.Add(ChildView);
             MainView.Add(ParentView);
         }
@@ -200,7 +203,8 @@ namespace NUIView
         /// <summary>
         /// View showing simple view positioning with negative position values
         /// </summary>
-        private void View2(){
+        private void View2() {
+            // Prepare the ParentView
             ParentView = new View();
             ParentView.Size2D = new Size2D(600, 300);
             ParentView.PositionUsesPivotPoint = true;
@@ -208,6 +212,7 @@ namespace NUIView
             ParentView.ParentOrigin = ParentOrigin.Center;
             ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
 
+            // Prepare the ChildView
             ChildView = new View();
             ChildView.Size2D = new Size2D(100, 100);
             ChildView.PositionUsesPivotPoint = true;
@@ -218,6 +223,7 @@ namespace NUIView
 
             TextLabel.Text = "PivotPoint: BottomRight\nParentOrigin: BottomRight\nPosition: (-100, -50)";
 
+            // Add children views
             ParentView.Add(ChildView);
             MainView.Add(ParentView);
         }
@@ -226,7 +232,8 @@ namespace NUIView
         /// View showing child scaling
         /// Animation is added to show scaling behaviour
         /// </summary>
-        private void View3(){
+        private void View3() {
+            // Prepare the ParentView
             ParentView = new View();
             ParentView.Size2D = new Size2D(600, 300);
             ParentView.PositionUsesPivotPoint = true;
@@ -234,6 +241,7 @@ namespace NUIView
             ParentView.ParentOrigin = ParentOrigin.Center;
             ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
 
+            // Prepare the ChildView
             ChildView = new View();
             ChildView.Size2D = new Size2D(250, 200);
             ChildView.PositionUsesPivotPoint = true;
@@ -251,6 +259,7 @@ namespace NUIView
             Animation.Looping = true;
             Animation.Play();
 
+            // Add children views
             ParentView.Add(ChildView);
             MainView.Add(ParentView);
         }
@@ -259,7 +268,8 @@ namespace NUIView
         /// View showing parent scaling
         /// Animation is added to show scaling behaviour
         /// </summary>
-        private void View4(){
+        private void View4() {
+            // Prepare the ParentView
             ParentView = new View();
             ParentView.Size2D = new Size2D(300, 300);
             ParentView.PositionUsesPivotPoint = true;
@@ -268,6 +278,7 @@ namespace NUIView
             ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
             ParentView.Scale = new Vector3(1.0f, 1.0f, 1.0f);
 
+            // Prepare the ChildView
             ChildView = new View();
             ChildView.Size2D = new Size2D(250, 200);
             ChildView.PositionUsesPivotPoint = true;
@@ -278,12 +289,14 @@ namespace NUIView
 
             TextLabel.Text = "PivotPoint: Center\nParentOrigin: Center\nPosition: (25, 0)\nParent View Scale: 1.0 to 2.0";
 
+            // Prepare the Animation
             Animation = new Animation(2000);
             Animation.AnimateTo(ParentView, "Scale", new Vector3(2.0f, 1.0f, 1.0f), 0, 1000);
             Animation.AnimateTo(ParentView, "Scale", new Vector3(1.0f, 1.0f, 1.0f), 1000, 2000);
             Animation.Looping = true;
             Animation.Play();
 
+            // Add children views
             ParentView.Add(ChildView);
             MainView.Add(ParentView);
         }
@@ -292,7 +305,8 @@ namespace NUIView
         /// View showing changing orientation
         /// Animation is added to show changing orientation
         /// </summary>
-        private void View5(){
+        private void View5() {
+            // Prepare the ParentView
             ParentView = new View();
             ParentView.Size2D = new Size2D(300, 300);
             ParentView.PositionUsesPivotPoint = true;
@@ -301,6 +315,7 @@ namespace NUIView
             ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
             ParentView.Orientation = new Rotation(new Radian(new Degree(45.0f)), PositionAxis.Z);
 
+            // Prepare the ChildView
             ChildView = new View();
             ChildView.Size2D = new Size2D(200, 200);
             ChildView.PositionUsesPivotPoint = true;
@@ -316,6 +331,7 @@ namespace NUIView
             Animation.Looping = true;
             Animation.Play();
 
+            // Add children views
             ParentView.Add(ChildView);
             MainView.Add(ParentView);
         }
@@ -324,7 +340,8 @@ namespace NUIView
         /// View with touch event
         /// Changes colors on click
         /// </summary>
-        private void View6(){
+        private void View6() {
+            // Prepare the ParentView
             ParentView = new View();
             ParentView.Size2D = new Size2D(600, 300);
             ParentView.PositionUsesPivotPoint = true;
@@ -332,6 +349,7 @@ namespace NUIView
             ParentView.ParentOrigin = ParentOrigin.Center;
             ParentView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
 
+            // Prepare the ChildView
             ChildView = new View();
             ChildView.Size2D = new Size2D(200, 200);
             ChildView.PositionUsesPivotPoint = true;
@@ -340,9 +358,11 @@ namespace NUIView
             ChildView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
 
             TextLabel.Text = "Touch event example";
-
+            
+            // Register event
             ParentView.TouchEvent += OnViewTouch;
 
+            // Add children views
             ParentView.Add(ChildView);
             MainView.Add(ParentView);
         }
@@ -359,9 +379,12 @@ namespace NUIView
             {
                 if (ViewTouched)
                 {
+                    // If the view is in ViewTouched state, change the BackgroundColor
                     TouchedView.BackgroundColor = new Color(0.8f, 0.2f, 0.1f, 1.0f);
                     ViewTouched = false;
-                } else {
+                }
+                else {
+                    // Otherwise, change back the BackgroundColor
                     TouchedView.BackgroundColor = new Color(0.26f, 0.85f, 0.95f, 1.0f);
                     ViewTouched = true;
                 }
@@ -378,6 +401,7 @@ namespace NUIView
         {
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))
             {
+                // Exit application on back or escape
                 Exit();
             }
         }
@@ -385,6 +409,7 @@ namespace NUIView
         static void Main(string[] args)
         {
             var App = new Program();
+            // Run app
             App.Run(args);
             App.Dispose();
         }
