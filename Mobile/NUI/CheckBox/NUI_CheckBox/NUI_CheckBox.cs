@@ -73,9 +73,13 @@ namespace NUI_CheckBox
         /// </summary>
         private CheckBox CustomCheckBox;
         /// <summary>
+        /// The side of the CheckBox
+        /// </summary>
+        static private int CheckBoxSide = 200;
+        /// <summary>
         /// Size of each CheckBox
         /// </summary>
-        private Size2D CheckBoxSize = new Size2D(200,200);
+        private Size2D CheckBoxSize = new Size2D(CheckBoxSide, CheckBoxSide);
         /// <summary>
         /// Space between CheckBoxes inside the MainView
         /// </summary>
@@ -92,7 +96,7 @@ namespace NUI_CheckBox
             Window.Instance.KeyEvent += WindowKeyEvent;
 
             MainView = new View();
-            MainView.Size = new Size2D(CheckBoxSize.Width + 100, 4 * CheckBoxSize.Height + 5 * Space);
+            MainView.Size = new Size2D(CheckBoxSide + 100, 4 * CheckBoxSide + 5 * Space);
             MainView.PivotPoint = PivotPoint.Center;
             MainView.ParentOrigin = ParentOrigin.Center;
             MainView.PositionUsesPivotPoint = true;
@@ -114,7 +118,7 @@ namespace NUI_CheckBox
             CheckBoxExample.ParentOrigin = ParentOrigin.Center;
             CheckBoxExample.PositionUsesPivotPoint = true;
             CheckBoxExample.PivotPoint = PivotPoint.Center;
-            CheckBoxExample.Position = new Position(0, - (CheckBoxSize.Height + Space) / 2);
+            CheckBoxExample.Position = new Position(0, - (CheckBoxSide + Space) / 2);
             // Set the icon images for different check box states
             StringSelector IconURL = new StringSelector()
             {
@@ -140,7 +144,7 @@ namespace NUI_CheckBox
                 ParentOrigin = ParentOrigin.Center,
                 PositionUsesPivotPoint = true,
                 PivotPoint = PivotPoint.Center,
-                Position = new Position(0, (CheckBoxSize.Height + Space) / 2),
+                Position = new Position(0, (CheckBoxSide + Space) / 2),
                 Size = CheckBoxSize,
                 // Gray structural background
                 BackgroundImage = ImageURL + "Struct.png",
