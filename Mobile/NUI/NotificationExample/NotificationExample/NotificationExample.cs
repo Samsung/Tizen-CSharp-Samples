@@ -57,8 +57,9 @@ namespace NotificationExample
             Rectangle PositionSize = new Rectangle(20, 0, 680, 100);
             notification.SetPositionSize(PositionSize);
 
+            // Dismiss notification window on touch if the value is true.
             bool DismissOnTouch = true;
-            notification.SetDismissOnTouch(DismissOnTouch);     // Dismiss notification window on touch if the value is true.
+            notification.SetDismissOnTouch(DismissOnTouch);     
 
             TextLabel text = new TextLabel("This is a notification sample.");
             text.HorizontalAlignment = HorizontalAlignment.Center;
@@ -81,16 +82,31 @@ namespace NotificationExample
         void Initialize()
         {
             Window window = Window.Instance;
-
-            View root = new View()
-            {
-                Size = new Size(window.Size.Width, window.Size.Height),
-                BackgroundColor = Color.Black
-            };
-
-            window.Add(root);
-
             window.KeyEvent += OnKeyEvent;
+            Size2D ScreenSize = Window.Instance.WindowSize;
+
+            //Create view for text label
+            View textView = new View();
+            textView.Size2D = ScreenSize;
+            
+            //create layout for text label
+            LinearLayout textLayout = new LinearLayout();   
+            textLayout.LinearAlignment = LinearLayout.Alignment.CenterVertical;
+            textLayout.LinearOrientation = LinearLayout.Orientation.Vertical;            
+            textView.Layout = textLayout;
+
+            //create label with information about notification
+            TextLabel t1 = new TextLabel("Notification will be displayed every 5 seconds\nTap on it to dismiss");           
+            t1.TextColor = Color.Green;
+            t1.MultiLine = true;
+            t1.EnableMarkup = true;
+            t1.WidthResizePolicy = ResizePolicyType.FillToParent;
+            t1.HorizontalAlignment = HorizontalAlignment.Center;
+            t1.VerticalAlignment = VerticalAlignment.Center;
+
+            //add components to label and window
+            textView.Add(t1);
+            window.Add(textView);
 
             //show notification each 10 seconds
             Timer timer = new Timer(10000);
@@ -117,9 +133,12 @@ namespace NotificationExample
         /// <param name="e">event</param>
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
-            if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))
+            if (e.Key.State == Key.StateType.Down)
             {
-                Exit();
+                if (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape" || e.Key.KeyPressedName == "BackSpace")
+                {
+                    Exit();
+                }
             }
         }
 
@@ -129,9 +148,10 @@ namespace NotificationExample
         /// <param name="args">args</param>
         static void Main(string[] args)
         {
-            Log.Info("Tag", "========== Hello, Notifciation Example ==========");
+            Log.Info("NotificationExample", "========== Hello, Notifciation Example ==========");
             var app = new NotificationExample();
             app.Run(args);
+            app.Dispose();
         }
     }
 }
