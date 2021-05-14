@@ -31,8 +31,13 @@ namespace ScrollableBaseExample
             Initialize();
         }
 
+        /// <summary>
+        /// ScrollableBase Simple App initializations.
+        /// </summary>
         void Initialize()
         {
+            Window window = Window.Instance;
+            window.KeyEvent += OnKeyEvent;
             ScrollableBase scrollableBase = new ScrollableBase();
             scrollableBase.Size = new Size(720, 1280);
             scrollableBase.ScrollingDirection = ScrollableBase.Direction.Vertical;
@@ -60,14 +65,21 @@ namespace ScrollableBaseExample
                 }
                 scrollableBase.Add(items[i]);
             }
-
         }
 
+        /// <summary>
+        /// This Application will be exited when back key entered.
+        /// </summary>
+        /// <param name="sender">Window.Instance</param>
+        /// <param name="e">event</param>
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
-            if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))
+            if (e.Key.State == Key.StateType.Down)
             {
-                Exit();
+                if (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape" || e.Key.KeyPressedName == "BackSpace")
+                {
+                    Exit();
+                }
             }
         }
 
@@ -81,6 +93,10 @@ namespace ScrollableBaseExample
             // Do something in response to scroll drag ended
         }
 
+        /// <summary>
+        /// The enter point of the application.
+        /// </summary>
+        /// <param name="args">args</param>
         static void Main(string[] args)
         {
             var app = new ScrollableBaseExample();
