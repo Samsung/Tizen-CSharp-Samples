@@ -247,8 +247,8 @@ namespace NUI_Visuals
         /// </summary>
         private void InitializeButtons()
         {
-            int ButtonWidth = (int)((ButtonVisualView.Size2D.Width - 2 * FrameSize) / 3);
-            int ButtonHeight = ButtonVisualView.Size2D.Height;
+            int ButtonWidth = (int)((ButtonVisualView.Size2D[0] - 2 * FrameSize) / 3);
+            int ButtonHeight = (int)ButtonVisualView.Size2D[1];
             Size2D ButtonSize = new Size2D(ButtonWidth, ButtonHeight);
 
             Buttons.Add(SetButton("Color Border Gradient", 0, ButtonSize));
@@ -442,12 +442,13 @@ namespace NUI_Visuals
                 case "Mesh":
                     MeshVisual ThisMeshVisual = new MeshVisual();
                     /// obligatory properties
-                    ThisMeshVisual.ObjectURL = ImageUrl + "MickeyMouse.obj";
+                    ThisMeshVisual.ObjectURL = ImageUrl + "Dino.obj";
+                    ThisMeshVisual.MaterialtURL = ImageUrl + "Dino.mtl";
+                    ThisMeshVisual.TexturesPath = ImageUrl + "textures/";
                     /// optional properties (for all visual map types)
                     ThisMeshVisual.Origin = Visual.AlignType.BottomEnd;
                     ThisMeshVisual.AnchorPoint = Visual.AlignType.BottomEnd;
-                    ThisMeshVisual.RelativePosition = new RelativeVector2(-0.1f, -0.1f);
-                    ThisMeshVisual.MixColor = new Color(0.52f, 0.62f, 0.96f, 0.9f);
+                    ThisMeshVisual.RelativePosition = new RelativeVector2(0, -0.03f);
                     ThisVisualMap = ThisMeshVisual;
                     break;
             }
@@ -468,8 +469,11 @@ namespace NUI_Visuals
                 case "NPatch":
                 case "SVG":
                 case "Animated":
-                case "Mesh":
                     ThisVisualMap.RelativeSize = new RelativeVector2(ImageRelativeWidth, ImageRelativeHeight);
+                    break;
+
+                case "Mesh":
+                    ThisVisualMap.RelativeSize = new RelativeVector2(2 * ImageRelativeWidth, 2 * ImageRelativeHeight);
                     break;
 
                 case "Sphere":
@@ -659,8 +663,8 @@ namespace NUI_Visuals
             Window.Instance.KeyEvent += OnKeyEvent;
             Window.Instance.BackgroundColor = Color.Blue;
             Size2D WindowinSize = Window.Instance.WindowSize;
-            WindowWidth = WindowinSize.Width;
-            int WindowHeight = WindowinSize.Height;
+            WindowWidth = (int)WindowinSize[0];
+            int WindowHeight = (int)WindowinSize[1];
 
 
             /// the buttons visual view
