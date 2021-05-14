@@ -61,9 +61,27 @@ namespace NUI_Pagination
         private View MainView;
         private VisualView MainVisualView;
         private Pagination PaginationExample;
+        /// <summary>
+        /// The width of the window.
+        /// </summary>
         private int WindowWidth;
+        /// <summary>
+        /// The height of the window.
+        /// </summary>
         private int WindowHeight;
+        /// <summary>
+        /// Vector defining the position change of the MainVisualView, as a response to the key/touch events.
+        /// </summary>
         private Position2D WindowShift;
+        /// <summary>
+        /// The coordinates of the touched place on the screen.
+        /// </summary>
+        private Vector2 TouchedPosition;
+        /// <summary>
+        /// Variable holding the information whether the screen was touched or not.
+        /// </summary>
+        private bool IfTouched = false;
+
 
         /// <summary>
         /// Handles creation phase of the forms application.
@@ -78,8 +96,9 @@ namespace NUI_Pagination
         void Initialize()
         {
             Window.Instance.KeyEvent += WindowKeyEvent;
-            WindowWidth = Window.Instance.WindowSize.Width;
-            WindowHeight = Window.Instance.WindowSize.Height;
+            Window.Instance.TouchEvent += WindowTouchEvent;
+            WindowWidth = (int)Window.Instance.WindowSize[0];
+            WindowHeight = (int)Window.Instance.WindowSize[1];
             WindowShift = new Position2D(WindowWidth, 0);
 
             // the view is parent for the MainVisualView and the PaginationExample
@@ -101,7 +120,7 @@ namespace NUI_Pagination
             for (uint i = 1; i <= 3; ++i)
             {
                 ThisImageVisual = CreateImageVisual(i);
-                ThisImageVisual.Position = new Vector2((WindowWidth - ThisImageVisual.Size.Width) / 2 + (i - 1) * WindowWidth, 50);
+                ThisImageVisual.Position = new Vector2((WindowWidth - ThisImageVisual.Size[0]) / 2 + (i - 1) * WindowWidth, 50);
                 MainVisualView.AddVisual("image" + i.ToString(), ThisImageVisual);
             }
 
@@ -133,8 +152,69 @@ namespace NUI_Pagination
         }
 
         /// <summary>
+        /// Called when the touch event is received.
+        /// Response to the touching of the screen is a change of the screen's position
+        /// and of the selected pagination's indicator.
+        /// </summary>
+        /// <param name="sender"> Event sender </param>
+        /// <param name="e"> Event argument </param>
+        private void WindowTouchEvent(object sender, Window.TouchEventArgs e)
+        {
+            if (e.Touch.GetPointCount() < 1)
+            {
+                return;
+            }
+
+            switch (e.Touch.GetState(0))
+            {
+                // The screen is touched:
+                // the position is stored
+                // the state IfTouched is changed to be true
+                case PointStateType.Down:
+                {
+                    TouchedPosition = e.Touch.GetScreenPosition(0);
+                    IfTouched = true;
+                    break;
+                }
+
+                // A new touched position is established
+                // If the horizontal part of the Shift vector is greater than the threshold value
+                // than the proper action is taken
+                case PointStateType.Motion:
+                {
+                    if (!IfTouched)
+                    {
+                        break;
+                    }
+
+                    Vector2 Shift = e.Touch.GetScreenPosition(0) - TouchedPosition;
+
+                    // If the Shift value is greater than the threshold value = 30,
+                    // the MainVisualView position the pagination selected index are changed
+                    if (Shift[0] > 30 && PaginationExample.SelectedIndex > 0)
+                    {
+                        MainVisualView.Position2D = MainVisualView.Position2D + WindowShift;
+                        PaginationExample.SelectedIndex = PaginationExample.SelectedIndex - 1;
+                        IfTouched = false;
+                    }
+
+                    // If the Shift value is smaller than the threshold value = -30,
+                    // the MainVisualView position the pagination selected index are changed
+                    if (Shift[0] < -30 && PaginationExample.SelectedIndex < PaginationExample.IndicatorCount - 1)
+                    {
+                        MainVisualView.Position2D = MainVisualView.Position2D - WindowShift;
+                        PaginationExample.SelectedIndex = PaginationExample.SelectedIndex + 1;
+                        IfTouched = false;
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
         /// Called when the chosen key event is received.
-        /// Response on the pressing the left and right arrow is defined here:
+        /// Response to the pressing the left and right arrow is defined here:
         /// switching the selected pagination's indicator.
         /// Also used to exit the application.
         /// </summary>
