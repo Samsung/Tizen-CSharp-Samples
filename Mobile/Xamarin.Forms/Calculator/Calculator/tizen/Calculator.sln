@@ -7,11 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Tizen", "Calculator\Calculator.Tizen\Calculator.Tizen.csproj", "{0004D192-AE18-45EF-98DB-270136EA7711}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorUnitTest", "CalculatorUnitTest\CalculatorUnitTest.csproj", "{890D5ACB-66F5-4816-8322-5E5AB02FDE03}"
-	ProjectSection(ProjectDependencies) = postProject
-		{07E84A80-0B76-42F5-AECE-8924BDCCE3B5} = {07E84A80-0B76-42F5-AECE-8924BDCCE3B5}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
