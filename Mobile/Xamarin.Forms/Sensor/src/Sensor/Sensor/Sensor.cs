@@ -19,43 +19,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Xamarin.Forms;
 
 namespace Sensor
 {
-    /// <summary>
-    /// Application class
-    /// </summary>
-    public class SensorApp : Application
+    public class App : Application
     {
-        /// <summary>
-        /// Initializes a new instance of the app class
-        /// </summary>
-        public SensorApp()
+        public App()
         {
             // The root page of your application
             MainPage = new NavigationPage(new SensorMain());
         }
 
-        /// <summary>
-        /// Handles when your app starts
-        /// </summary>
         protected override void OnStart()
         {
+            // Handle when your app starts
         }
 
-        /// <summary>
-        /// Handles when your app sleeps
-        /// </summary>
         protected override void OnSleep()
         {
+            // Handle when your app sleeps
         }
 
-        /// <summary>
-        /// Handles when your app resumes
-        /// </summary>
         protected override void OnResume()
         {
+            // Handle when your app resumes
         }
     }
 }

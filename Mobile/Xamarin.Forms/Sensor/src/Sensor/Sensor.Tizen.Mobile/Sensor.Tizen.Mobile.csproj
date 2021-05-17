@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.6">
 
-  <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>tizen50</TargetFramework>
+    <TargetFramework>tizen80</TargetFramework>
+      <AssemblyName>Sensor.Tizen.Mobile</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -19,20 +19,13 @@
   </ItemGroup>
 
 
-  <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
     <ProjectReference Include="..\Sensor\Sensor.csproj" />
   </ItemGroup>
 
 
-  <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
-    <PackageReference Include="Tizen.NET" Version="8.0.0.15631">
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
   </ItemGroup>
-
 </Project>
