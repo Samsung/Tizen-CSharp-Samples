@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- Include Nuget Package for Xamarin building -->
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="8.0.0.15631" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pages\SensorMain.xaml.cs">
+      <DependentUpon>SensorMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Sensors\GravitySensorPage.xaml.cs">
+      <DependentUpon>GravitySensorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Sensors\GyroscopeRotationVectorSensorPage.xaml.cs">
+      <DependentUpon>GyroscopeRotationVectorSensorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Sensors\MagnetometerRotationVectorSensorPage.xaml.cs">
+      <DependentUpon>MagnetometerRotationVectorSensorPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Property Group for Tizen40 Project -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>tizen50</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="lib\" />
+    <Folder Include="res\" />
+  </ItemGroup>
+
+
+  <!-- If solution already has PCL project, will reference -->
+  <ItemGroup>
+    <ProjectReference Include="..\Sensor\Sensor.csproj" />
+  </ItemGroup>
+
+
+  <!-- Include Nuget Package for Tizen Project building -->
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    <PackageReference Include="Tizen.NET" Version="8.0.0.15631">
+      <ExcludeAssets>Runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+  </ItemGroup>
+
+</Project>
