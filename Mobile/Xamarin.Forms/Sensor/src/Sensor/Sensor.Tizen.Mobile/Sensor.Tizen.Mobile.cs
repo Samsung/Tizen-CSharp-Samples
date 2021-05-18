@@ -13,25 +13,20 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+using System;
 using Xamarin.Forms;
 
 namespace Sensor.Tizen.Mobile
 {
     class Program : global::Xamarin.Forms.Platform.Tizen.FormsApplication
     {
-        /// <summary>
-        /// This method called when the application created.
-        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
-            LoadApplication(new SensorApp());
+
+            LoadApplication(new App());
         }
 
-        /// <summary>
-        /// The main entrance of the application.
-        /// </summary>
-        /// <param name="args">The <see cref="string"/> arguments.</param>
         static void Main(string[] args)
         {
             var app = new Program();
