@@ -39,14 +39,17 @@ namespace CalendarComponent.Tizen.Mobile.Renderers
                 SetNativeControl(calrendarView);
             }
 
-            if (e.OldElement != null)
+            if (Control != null)
             {
-                Control.DateChanged -= DateChangedHandler;
-            }
+                if (e.OldElement != null)
+                {
+                    Control.DateChanged -= DateChangedHandler;
+                }
 
-            if (e.NewElement != null)
-            {
-                Control.DateChanged += DateChangedHandler;
+                if (e.NewElement != null)
+                {
+                    Control.DateChanged += DateChangedHandler;
+                }
             }
 
             base.OnElementChanged(e);
