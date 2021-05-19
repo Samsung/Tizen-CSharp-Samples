@@ -47,6 +47,11 @@ namespace SpeechToText
         {
             InitializeComponent();
 
+            if (Resources == null)
+            {
+                return;
+            }
+
             Resources.Add("TextColor", Color.FromRgba(247, 247, 247, 0.8));
             Resources.Add("TipColor", Color.FromRgba(250, 250, 250, 0.8));
             Resources.Add("NavigationBarBackgroundColor", Color.FromRgb(87, 187, 201));
@@ -65,7 +70,7 @@ namespace SpeechToText
 
             MainPage = new NavigationPage(new MainPage())
             {
-                BarBackgroundColor = (Color)Resources["NavigationBarBackgroundColor"]
+                BarBackgroundColor = (Color)Resources?["NavigationBarBackgroundColor"]
             };
 
             AppViewModel.Navigation = MainPage.Navigation;
