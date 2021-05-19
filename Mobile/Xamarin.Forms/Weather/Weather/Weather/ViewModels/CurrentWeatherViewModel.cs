@@ -274,6 +274,11 @@ namespace Weather.ViewModels
         /// <returns>Task to be executed.</returns>
         private async Task ForecastOnPropertyChangedTask(string propertyName)
         {
+            if (Forecast == null)
+            {
+                return;
+            }
+
             if (propertyName == nameof(NotificationTask<Forecast>.IsFaulted))
             {
                 if (Forecast.InnerException is HttpException exception)
@@ -282,7 +287,7 @@ namespace Weather.ViewModels
                 }
             }
 
-            if (propertyName == nameof(NotificationTask<Forecast>.IsSuccessfullyCompleted))
+            if (propertyName == nameof(NotificationTask<Forecast>.IsSuccessfullyCompleted) && Forecast.Result != null)
             {
                 foreach (var currentWeather in Forecast.Result.WeatherList)
                 {
@@ -305,7 +310,7 @@ namespace Weather.ViewModels
         {
             if (propertyName == nameof(NotificationTask<CurrentWeather>.IsFaulted))
             {
-                if (CurrentWeather.InnerException is HttpException exception)
+                if (CurrentWeather?.InnerException is HttpException exception)
                 {
                     await ErrorHandler.HandleException((int)exception.StatusCode, exception.StatusCode.ToString());
                 }
