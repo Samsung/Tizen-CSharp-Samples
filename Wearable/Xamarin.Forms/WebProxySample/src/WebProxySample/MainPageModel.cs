@@ -34,6 +34,7 @@ namespace WebProxySample
         public const string Tizen_Emulator = "Emulator";
         string DownloadsFolder;
         string ModelName;
+        WebClient webClient;
 
         /// <summary>
         /// Constructor
@@ -113,7 +114,7 @@ namespace WebProxySample
 
             try
             {
-                WebClient webClient = new WebClient();
+                webClient = new WebClient();
 
                 ConnectionItem currentConnection = ConnectionManager.CurrentConnection;
                 Log.Info(Program.LOG_TAG, "Connection(" + currentConnection.Type + ", " + currentConnection.State + ")");
@@ -149,6 +150,10 @@ namespace WebProxySample
             catch (Exception ex)
             {
                 Log.Error(Program.LOG_TAG, "[DownloadContent] Error: " + ex.Message);
+                if (webClient != null)
+                {
+                    webClient.Dispose();
+                }
             }
         }
 
@@ -189,6 +194,7 @@ namespace WebProxySample
                 Log.Error(Program.LOG_TAG, "[WebClient_DownloadFileCompleted] Error : " + e.Error.GetType() + ", " + e.Error.Message);
                 DownloadInfo += "\n[WebClient_DownloadFileCompleted] Error : " + e.Error.GetType() + ", " + e.Error.Message;
             }
+            webClient.Dispose();
         }
 
         /// <summary>
