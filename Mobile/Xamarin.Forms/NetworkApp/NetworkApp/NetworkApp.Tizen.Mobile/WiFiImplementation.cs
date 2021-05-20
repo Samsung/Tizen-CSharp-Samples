@@ -107,6 +107,8 @@ namespace NetworkApp.Tizen.Mobile
             LogImplementation.DLog("Connect() " + essid + " " + password);
             // Get a WiFiAP instance with essid from Wi-Fi AP list
             WiFiAP ap = FindAP(essid);
+            if (ap == null)
+                return Task.FromException(new ArgumentException("Cannot find " + essid));
             // Set password
             if (password.Length > 0)
             {
@@ -125,7 +127,11 @@ namespace NetworkApp.Tizen.Mobile
         {
             LogImplementation.DLog("Disconnect() " + essid);
             // Get a WiFiAP instance with essid from Wi-Fi AP list and disconnect it by calling Tizen C# API
-            return FindAP(essid).DisconnectAsync();
+            WiFiAP ap = FindAP(essid);
+            if (ap == null)
+                return Task.FromException(new ArgumentException("Cannot find " + essid));
+
+            return ap.DisconnectAsync();
         }
 
         /// <summary>
