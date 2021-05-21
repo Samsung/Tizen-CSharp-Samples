@@ -176,7 +176,7 @@ namespace Weather.ViewModels
             {
                 foreach (CurrentWeather forecast in list)
                 {
-                    ForecastsModels.Add(forecast);
+                    ForecastsModels?.Add(forecast);
                 }
             }
 
