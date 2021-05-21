@@ -35,16 +35,19 @@ namespace Workout
                 dpi = 301;
             }
 
-            Resources["FontSizeXXXXS"] = 19 * _fontSizeMultiplier / dpi;
-            Resources["FontSizeXXXS"] = 22 * _fontSizeMultiplier / dpi;
-            Resources["FontSizeXXS"] = 24 * _fontSizeMultiplier / dpi;
-            Resources["FontSizeXS"] = 27 * _fontSizeMultiplier / dpi;
-            Resources["FontSizeS"] = 30 * _fontSizeMultiplier / dpi;
-            Resources["FontSizeM"] = 36 * _fontSizeMultiplier / dpi;
-            Resources["FontSizeL"] = 38 * _fontSizeMultiplier / dpi;
-            Resources["FontSizeXL"] = 42 * _fontSizeMultiplier / dpi;
-            Resources["FontSizeXXL"] = 46 * _fontSizeMultiplier / dpi;
-            Resources["FontSizeXXXL"] = 62 * _fontSizeMultiplier / dpi;
+            if (Resources != null)
+            {
+                Resources["FontSizeXXXXS"] = 19 * _fontSizeMultiplier / dpi;
+                Resources["FontSizeXXXS"] = 22 * _fontSizeMultiplier / dpi;
+                Resources["FontSizeXXS"] = 24 * _fontSizeMultiplier / dpi;
+                Resources["FontSizeXS"] = 27 * _fontSizeMultiplier / dpi;
+                Resources["FontSizeS"] = 30 * _fontSizeMultiplier / dpi;
+                Resources["FontSizeM"] = 36 * _fontSizeMultiplier / dpi;
+                Resources["FontSizeL"] = 38 * _fontSizeMultiplier / dpi;
+                Resources["FontSizeXL"] = 42 * _fontSizeMultiplier / dpi;
+                Resources["FontSizeXXL"] = 46 * _fontSizeMultiplier / dpi;
+                Resources["FontSizeXXXL"] = 62 * _fontSizeMultiplier / dpi;
+            }
 
             if (PrivilegeService.AllPermissionsGranted())
             {
