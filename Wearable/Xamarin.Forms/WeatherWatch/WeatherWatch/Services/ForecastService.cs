@@ -19,7 +19,6 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Tizen.Location;
-using Tizen.System;
 using WeatherWatch.PageModels;
 
 namespace WeatherWatch.Services
@@ -81,7 +80,6 @@ namespace WeatherWatch.Services
         {
             try
             {
-                HttpClient client = new HttpClient();
                 string url = WebSiteInfo.AIR_POLLUTION_URL + position.Latitude + ";" + position.Longitude + "/?token=" + WebSiteInfo.AIR_POLLUTION_API_KEY;
                 Console.WriteLine("[UpdateAQI] url : " + url);
                 dynamic result = await GetDataFromWeb(url);
@@ -117,7 +115,6 @@ namespace WeatherWatch.Services
         {
             try
             {
-                HttpClient _httpWeatherClient = new HttpClient();
                 string url = string.Format(WebSiteInfo.WEATHER_URL, location.Latitude, location.Longitude, WebSiteInfo.WEATHER_API_KEY);
                 dynamic result = await GetDataFromWeb(url);
                 if (result != null)
