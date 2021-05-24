@@ -53,7 +53,7 @@ namespace TextReader.Tizen.Wearable.Views
 
             _rootPage = new NavigationPage(main)
             {
-                BarBackgroundColor = (Color)main.Resources["MainColor"]
+                BarBackgroundColor = (Color)main.Resources?["MainColor"]
             };
 
             return _rootPage;

@@ -236,7 +236,7 @@ namespace Weather.ViewModels
 
             if (propertyName == nameof(NotificationTask<Forecast>.IsSuccessfullyCompleted))
             {
-                foreach (var currentWeather in Forecast.Result.WeatherList)
+                foreach (var currentWeather in Forecast.Result?.WeatherList)
                 {
                     if (currentWeather != null)
                     {

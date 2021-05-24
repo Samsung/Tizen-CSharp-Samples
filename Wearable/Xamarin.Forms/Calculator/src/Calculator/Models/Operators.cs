@@ -254,8 +254,9 @@ namespace Calculator.Models
             {
                 IOperator inputOper = Operators.GetOperator(addingElement);
                 expressionElements.RemoveAt(expressionElements.Count - 1);
-                if (OperandType.RIGHT == inputOper.OperandType ||
-                    OperandType.NONE == inputOper.OperandType)
+                if (inputOper != null &&
+                    (OperandType.RIGHT == inputOper.OperandType ||
+                    OperandType.NONE == inputOper.OperandType))
                 {
                     expressionElements.Add(new Multiplication());
                 }
