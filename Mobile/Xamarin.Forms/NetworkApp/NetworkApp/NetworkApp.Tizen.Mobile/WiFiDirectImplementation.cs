@@ -52,7 +52,7 @@ namespace NetworkApp.Tizen.Mobile
                 // Start to discover Wi-Fi Direct devices
                 StartDiscovery();
             }
-                    
+
         }
 
         private void StartDiscovery()
@@ -87,7 +87,7 @@ namespace NetworkApp.Tizen.Mobile
                 {
                     LogImplementation.DLog("Peer " + peer.Name);
                     // Add name of the found device to device list
-                    deviceList.Add(peer.Name);                    
+                    deviceList.Add(peer.Name);
                 }
                 // Generate the DeviceDiscovered event
                 DiscoveryEventArgs de = new DiscoveryEventArgs(deviceList);

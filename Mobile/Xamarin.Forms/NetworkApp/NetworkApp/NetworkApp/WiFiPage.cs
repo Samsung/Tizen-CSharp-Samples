@@ -25,7 +25,7 @@ namespace NetworkApp
     /// </summary>
     class WiFiPage : ContentPage
     {
-        // 
+        //
         ILog log = DependencyService.Get<ILog>();
 
         /// <summary>

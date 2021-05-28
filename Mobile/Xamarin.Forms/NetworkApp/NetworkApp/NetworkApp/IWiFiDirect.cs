@@ -29,7 +29,7 @@ namespace NetworkApp
         /// The event to deliver the Tizen.Network.WiFiDirect DiscoveryStateChanged event to application
         /// </summary>
         event EventHandler<DiscoveryEventArgs> DeviceDiscovered;
-        
+
         void StartScan();
 
         void StopScan();

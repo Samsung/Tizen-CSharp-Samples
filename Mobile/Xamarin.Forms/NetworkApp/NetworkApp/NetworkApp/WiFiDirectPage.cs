@@ -58,7 +58,7 @@ namespace NetworkApp
             scanButton = new Button()
             {
                 // Set text to be shown on Button
-                Text = "Start Scan",                
+                Text = "Start Scan",
             };
 
             // Add Clicked events
