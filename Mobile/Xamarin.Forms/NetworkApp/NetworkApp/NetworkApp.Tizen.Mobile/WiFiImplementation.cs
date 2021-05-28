@@ -97,7 +97,7 @@ namespace NetworkApp.Tizen.Mobile
         }
 
         /// <summary>
-        /// Call WiFiAP.ConnectAsync() to connect the Wi-Fi AP        
+        /// Call WiFiAP.ConnectAsync() to connect the Wi-Fi AP
         /// </summary>
         /// <param name="essid">ESSID of Wi-Fi AP to connect</param>
         /// <param name="password">password of Wi-Fi AP to connect</param>
@@ -119,7 +119,7 @@ namespace NetworkApp.Tizen.Mobile
         }
 
         /// <summary>
-        /// Call WiFiAP.DisconnectAsync() to disconnect the Wi-Fi AP        
+        /// Call WiFiAP.DisconnectAsync() to disconnect the Wi-Fi AP
         /// </summary>
         /// <param name="essid">ESSID of Wi-Fi AP to disconnect</param>
         /// <returns>Task to do DisconnectAsync</returns>
@@ -152,7 +152,7 @@ namespace NetworkApp.Tizen.Mobile
         }
 
         /// <summary>
-        /// Find a WiFiAP instance        
+        /// Find a WiFiAP instance
         /// </summary>
         /// <param name="essid">ESSID of Wi-Fi AP to find from apList</param>
         /// <returns>WiFiAP instance with the ESSID</returns>
@@ -173,7 +173,7 @@ namespace NetworkApp.Tizen.Mobile
         }
 
         /// <summary>
-        /// Check if Wi-Fi is powered on 
+        /// Check if Wi-Fi is powered on
         /// </summary>
         /// <returns>True if Wi-Fi is on. False, otherwise</returns>
         public bool IsActive()

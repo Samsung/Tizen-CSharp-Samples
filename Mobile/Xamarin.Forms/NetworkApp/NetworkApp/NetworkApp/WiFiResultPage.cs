@@ -82,7 +82,7 @@ namespace NetworkApp
                 // Tizen.Network.WiFi.WiFiAP.Forget()
                 case WiFiOperation.FORGET:
                     // Create a Layout
-                    CreateDisconnectView();                    
+                    CreateDisconnectView();
                     break;
                 // Tizen.Network.WiFi.WiFiManager.ActivateAsync()
                 case WiFiOperation.ACTIVATE:
@@ -145,7 +145,7 @@ namespace NetworkApp
                     connectButton,
                     result,
                 }
-            };            
+            };
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace NetworkApp
         private Entry CreateEntry(String text)
         {
             return new Entry()
-            {   
+            {
                 BackgroundColor = Color.White,
                 FontSize = 20,
                 Placeholder = text,
@@ -232,7 +232,7 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// Create an Editor instance 
+        /// Create an Editor instance
         /// </summary>
         /// <returns>Editor</returns>
         private Editor CreateEditor()
@@ -240,7 +240,7 @@ namespace NetworkApp
             return new Editor()
             {
                 BackgroundColor = Color.White,
-                FontSize = 20,                
+                FontSize = 20,
             };
         }
 
@@ -272,7 +272,7 @@ namespace NetworkApp
                 // Show Wi-Fi AP name and current state
                 SourceList.Add(item.Name + " (" + item.State + ")");
             }
-            
+
             // Set the ItemSource of ListView scanListView
             scanListView.ItemsSource = SourceList;
         }

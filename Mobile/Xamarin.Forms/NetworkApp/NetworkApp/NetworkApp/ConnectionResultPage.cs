@@ -70,7 +70,7 @@ namespace NetworkApp
         }
 
         /// <summary>
-        /// Create an Editor instance 
+        /// Create an Editor instance
         /// </summary>
         /// <returns>Editor</returns>
         private Label CreateLabel()

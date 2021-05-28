@@ -26,7 +26,7 @@ namespace NetworkApp
     /// Interface to call Tizen.Network.WiFi API
     /// </summary>
     public interface IWiFi
-    {        
+    {
         Task Activate();
         Task Deactivate();
         Task Scan();
