@@ -55,7 +55,7 @@ namespace Downloader
         /// A user cancels the download request.
         /// </summary>
         Canceled
-    } 
+    }
 
     /// <summary>
     /// Interface to call Tizen.Content.Download
@@ -71,7 +71,7 @@ namespace Downloader
         string GetMimeType();
         int GetDownloadState();
         string GetUrl();
-        
+
         void StartDownload(String url);
         void Dispose();
         void DownloadLog(String msg);
@@ -83,7 +83,7 @@ namespace Downloader
     public class DownloadStateChangedEventArgs : EventArgs
     {
         public String stateMsg = "";
-        
+
         public DownloadStateChangedEventArgs(String msg)
         {
             stateMsg = msg;
