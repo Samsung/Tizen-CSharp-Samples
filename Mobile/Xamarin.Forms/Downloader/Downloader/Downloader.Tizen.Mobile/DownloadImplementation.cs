@@ -32,7 +32,7 @@ namespace Downloader.Tizen.Mobile
         public event EventHandler<DownloadProgressEventArgs> DownloadProgress;
 
         private Request req;
-        
+
         // Flag to check download is started or not
         private bool is_started = false;
 
@@ -68,7 +68,7 @@ namespace Downloader.Tizen.Mobile
         }
 
         /// <summary>
-        /// Get the content name of the downloaded file 
+        /// Get the content name of the downloaded file
         /// </summary>
         /// <returns>The content name</returns>
         public string GetContentName()
@@ -108,7 +108,7 @@ namespace Downloader.Tizen.Mobile
 
             return req.DownloadedPath;
         }
-        
+
         /// <summary>
         /// Get the MIME type of the downloaded content
         /// </summary>
@@ -133,7 +133,7 @@ namespace Downloader.Tizen.Mobile
             {
                 return 0;
             }
-               
+
              return (int)req.State;
         }
 

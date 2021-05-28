@@ -17,7 +17,7 @@
 namespace Downloader
 {
     /// <summary>
-    /// An internal class to show download information list  
+    /// An internal class to show download information list
     /// </summary>
     internal class DownloadInfo
     {
