@@ -23,7 +23,7 @@ namespace EmailUI
     /// <summary>
     /// The main page of the EmailUI application.
     /// </summary>
-    public class EmailPage : MasterDetailPage
+    public class EmailPage : FlyoutPage
     {
         private MasterPageCS masterPage;
         private DetailPageCS detailPage;
@@ -34,7 +34,7 @@ namespace EmailUI
             this.IsPresentedChanged += PresentedChanged;
             this.masterPage = new MasterPageCS();
             this.masterPage.ListView.ItemTapped += this.MasterOnItemTapped;
-            this.Master = this.masterPage;
+            this.Flyout = this.masterPage;
 
             //Install the DetailPage
             this.detailPage = new DetailPageCS();
@@ -52,17 +52,17 @@ namespace EmailUI
             Action leftToolbarClick = () =>
             {
                 // set true to check current status
-                Master.IsEnabled = true;
+                Flyout.IsEnabled = true;
 
                 // check if the page exists
                 if (!IsPresented)
                 {
-                    Master.IsEnabled = true;
+                    Flyout.IsEnabled = true;
                     this.IsPresented = true;
                 }
                 else
                 {
-                    Master.IsEnabled = false;
+                    Flyout.IsEnabled = false;
                     this.IsPresented = false;
                 }
 
@@ -103,9 +103,9 @@ namespace EmailUI
                 Title = "Out Box";
             }
 
-            this.Master.IsEnabled = false;
+            this.Flyout.IsEnabled = false;
             this.IsPresented = false;
-            this.Master.IsEnabled = true;
+            this.Flyout.IsEnabled = true;
         }
 
         private void PresentedChanged(object sender, EventArgs e)

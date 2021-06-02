@@ -83,7 +83,7 @@ namespace Settings
             /// create new Label for settings menu text.
             menuLabel = new Label
             {
-                FontSize = 21,
+                FontSize = 40,
                 Text = title,
             };
 

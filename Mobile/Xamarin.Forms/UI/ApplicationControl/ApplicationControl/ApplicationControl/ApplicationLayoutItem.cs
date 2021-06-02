@@ -130,7 +130,7 @@ namespace ApplicationControl
             _caption = new Label
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
-                FontSize = 18,
+                FontSize = 35,
                 LineBreakMode = LineBreakMode.CharacterWrap,
             };
             _caption.Text = _data.Id;

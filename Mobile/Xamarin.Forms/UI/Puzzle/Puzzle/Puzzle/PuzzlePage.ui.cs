@@ -547,9 +547,9 @@ namespace Puzzle
             var radiobtn1 = CreateRadioButton("4 x 4 Puzzle");
 
             //register radio button selected event
-            radiobtn1.Selected += (s, e) =>
+            radiobtn1.CheckedChanged += (s, e) =>
             {
-                if (radiobtn1.IsSelected)
+                if (radiobtn1.IsChecked)
                 {
                     _level = PuzzleLevel.Level1;
                 }
@@ -558,9 +558,9 @@ namespace Puzzle
 
             var radiobtn2 = CreateRadioButton("5 x 5 Puzzle");
             //register radio button selected event
-            radiobtn2.Selected += (s, e) =>
+            radiobtn2.CheckedChanged += (s, e) =>
             {
-                if (radiobtn2.IsSelected)
+                if (radiobtn2.IsChecked)
                 {
                     _level = PuzzleLevel.Level2;
                 }
@@ -569,11 +569,11 @@ namespace Puzzle
 
             if (_level == PuzzleLevel.Level1)
             {
-                radiobtn1.IsSelected = true;
+                radiobtn1.IsChecked = true;
             }
             else
             {
-                radiobtn2.IsSelected = true;
+                radiobtn2.IsChecked = true;
             }
 
             var layout = new StackLayout
@@ -641,7 +641,7 @@ namespace Puzzle
         {
             return new RadioButton
             {
-                Text = name,
+                Content = name,
                 TextColor = Color.Black,
                 FontSize = 20,
                 HeightRequest = 80,

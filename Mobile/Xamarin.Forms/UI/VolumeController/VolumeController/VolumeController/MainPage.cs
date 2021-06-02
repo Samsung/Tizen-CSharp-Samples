@@ -90,7 +90,7 @@ namespace VolumeController
         {
             Label soundType = new Label();
             soundType.Text = type.ToString();
-            soundType.FontSize = 22;
+            soundType.FontSize = 40;
             soundType.TextColor = new Color(0, 0, 0);
             soundType.HorizontalOptions = LayoutOptions.StartAndExpand;
 
@@ -98,7 +98,7 @@ namespace VolumeController
 
             LableNum[(int)type] = DependencyService.Get<IAudioManager>().LevelType(type);
             soundLevel.Text = LableNum[(int)type].ToString();
-            soundLevel.FontSize = 22;
+            soundLevel.FontSize = 40;
             soundLevel.HorizontalOptions = LayoutOptions.EndAndExpand;
             soundLevel.TextColor = new Color(0, 0, 0);
             soundLevel.LineBreakMode = LineBreakMode.NoWrap;

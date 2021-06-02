@@ -177,7 +177,7 @@ namespace ApplicationControl
             _caption = new Label
             {
                 Text = _name,
-                FontSize = 18,
+                FontSize = 35,
                 HorizontalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.Center
             };
@@ -188,10 +188,10 @@ namespace ApplicationControl
                 VerticalOptions = LayoutOptions.StartAndExpand,
 
                 GroupName = "Group-Operation",
-                IsSelected = false,
+                IsChecked = false,
             };
 
-            _radioButton.Selected += (s, e) =>
+            _radioButton.CheckedChanged += (s, e) =>
             {
                 if (e.Value == false)
                 {
