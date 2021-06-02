@@ -64,7 +64,7 @@ namespace NUI_Visuals
         /// <summary>
         /// array of image visuals displayed after clicking the corresponding button
         /// </summary>
-        private string[] ImageType = {"Image", "Animated", "SVG", "Mesh", "NPatch"};
+        private string[] ImageType = { "Image", "Animated", "SVG", "Mesh", "NPatch" };
         /// <summary>
         /// number of image visuals
         /// </summary>
@@ -85,7 +85,7 @@ namespace NUI_Visuals
         /// <summary>
         /// array of primitive visuals displayed after clicking the corresponding button
         /// </summary>
-        private string[] PrimitiveName = {"Sphere", "ConicalFrustrum", "Cone", "Cylinder", "BevelledCube", "Octahedron", "Cube"};
+        private string[] PrimitiveName = { "Sphere", "ConicalFrustum", "Cone", "Cylinder", "BeveledCube", "Octahedron", "Cube" };
         /// <summary>
         /// number of primitive visuals
         /// </summary>
@@ -200,6 +200,7 @@ namespace NUI_Visuals
             {
                 Buttons[i].BackgroundColor = GrayColor;
             }
+
             Buttons[choosenButton].BackgroundColor = ActiveColor;
         }
 
@@ -278,7 +279,7 @@ namespace NUI_Visuals
             PrimitiveVisual ThisPrimitiveVisual = new PrimitiveVisual();
 
             ThisPrimitiveVisual.MixColor = new Color(0.6f, 0.4f, 1.0f, 1.0f);
-            ThisPrimitiveVisual.LightPosition = new Vector3(0.0f,0.0f,300.0f);
+            ThisPrimitiveVisual.LightPosition = new Vector3(0.0f, 0.0f, 300.0f);
             ThisPrimitiveVisual.Slices = 100;
             ThisPrimitiveVisual.Stacks = 100;
 
@@ -288,7 +289,7 @@ namespace NUI_Visuals
                     ThisPrimitiveVisual.Shape = PrimitiveVisualShapeType.Sphere;
                     break;
 
-                case "ConicalFrustrum":
+                case "ConicalFrustum":
                     ThisPrimitiveVisual.Shape = PrimitiveVisualShapeType.ConicalFrustrum;
                     ThisPrimitiveVisual.ScaleHeight = 2.0f;
                     ThisPrimitiveVisual.ScaleTopRadius = 0.3f;
@@ -321,7 +322,7 @@ namespace NUI_Visuals
                     ThisPrimitiveVisual.MixColor = Color.Green;
                     break;
 
-                case "BevelledCube":
+                case "BeveledCube":
                     ThisPrimitiveVisual.Shape = PrimitiveVisualShapeType.BevelledCube;
                     ThisPrimitiveVisual.ScaleDimensions = new Vector3(0.0f, 0.5f, 1.1f);
                     ThisPrimitiveVisual.BevelPercentage = 0.3f;
@@ -477,10 +478,10 @@ namespace NUI_Visuals
                     break;
 
                 case "Sphere":
-                case "ConicalFrustrum":
+                case "ConicalFrustum":
                 case "Cone":
                 case "Cylinder":
-                case "BevelledCube":
+                case "BeveledCube":
                 case "Octahedron":
                 case "Cube":
                     ThisVisualMap = CreatePrimitiveVisual(visualType);
@@ -502,7 +503,7 @@ namespace NUI_Visuals
         {
             VisualView CurrentVisualView = new VisualView();
             CurrentVisualView.Size2D = new Size2D(CurrentWidth, CurrentHeight);
-            CurrentVisualView.ParentOrigin = ParentOrigin.TopLeft;;
+            CurrentVisualView.ParentOrigin = ParentOrigin.TopLeft;
             CurrentVisualView.PositionUsesPivotPoint = true;
             CurrentVisualView.PivotPoint = PivotPoint.TopLeft;
             CurrentVisualView.Position2D = new Position2D(FrameSize, 0);
@@ -579,7 +580,7 @@ namespace NUI_Visuals
         {
             VisualView CurrentVisualView = new VisualView();
             CurrentVisualView.Size2D = new Size2D(CurrentWidth, CurrentHeight);
-            CurrentVisualView.ParentOrigin = ParentOrigin.TopLeft;;
+            CurrentVisualView.ParentOrigin = ParentOrigin.TopLeft;
             CurrentVisualView.PositionUsesPivotPoint = true;
             CurrentVisualView.PivotPoint = PivotPoint.TopLeft;
             CurrentVisualView.Position2D = new Position2D(WindowWidth + FrameSize, 0);
@@ -591,11 +592,14 @@ namespace NUI_Visuals
             ThisVisualMap = CreateTextVisual("VISUALS", 20.0f, new RelativeVector2(0.5f, 0.0f));
             CurrentVisualView.AddVisual("TextVisuals", ThisVisualMap);
 
-            RelativeVector2[] ImageTextRelativePosition = {new RelativeVector2(0.3f,0.3f),
-                                                           new RelativeVector2(0.7f,0.3f),
-                                                           new RelativeVector2(0.3f,0.9f),
-                                                           new RelativeVector2(0.7f,0.9f),
-                                                           new RelativeVector2(0.5f,0.6f)};
+            RelativeVector2[] ImageTextRelativePosition =
+            {
+                new RelativeVector2(0.3f,0.3f),
+                new RelativeVector2(0.7f,0.3f),
+                new RelativeVector2(0.3f,0.9f),
+                new RelativeVector2(0.7f,0.9f),
+                new RelativeVector2(0.5f,0.6f)
+            };
 
             for (uint i = 0; i < ImageCount; ++i)
             {
@@ -605,6 +609,7 @@ namespace NUI_Visuals
                 {
                     ThisVisualMap.RelativeSize = new RelativeVector2(2 * ImageRelativeWidth, ImageRelativeHeight);
                 }
+
                 CurrentVisualView.AddVisual(ImageType[i], ThisVisualMap);
                 CurrentVisualView.AddVisual("Text" + ImageType[i], CreateTextVisual(ImageType[i], 9.0f, ImageTextRelativePosition[i]));
             }
@@ -622,7 +627,7 @@ namespace NUI_Visuals
         {
             VisualView CurrentVisualView = new VisualView();
             CurrentVisualView.Size2D = new Size2D(CurrentWidth, CurrentHeight);
-            CurrentVisualView.ParentOrigin = ParentOrigin.TopLeft;;
+            CurrentVisualView.ParentOrigin = ParentOrigin.TopLeft;
             CurrentVisualView.PositionUsesPivotPoint = true;
             CurrentVisualView.PivotPoint = PivotPoint.TopLeft;
             CurrentVisualView.Position2D = new Position2D(2 * WindowWidth + FrameSize, 0);
@@ -683,7 +688,7 @@ namespace NUI_Visuals
             CurrentWidth = WindowWidth - 2 * FrameSize;
             CurrentHeight = (int)((WindowHeight - 3 * FrameSize) * (1 - ButtonToMainRatio));
             MainVisualView.Size2D = new Size2D(3 * WindowWidth, CurrentHeight);
-            MainVisualView.ParentOrigin = ParentOrigin.TopLeft;;
+            MainVisualView.ParentOrigin = ParentOrigin.TopLeft;
             MainVisualView.PositionUsesPivotPoint = true;
             MainVisualView.PivotPoint = PivotPoint.TopLeft;
             MainVisualView.Position2D = new Position2D(0, FrameSize);

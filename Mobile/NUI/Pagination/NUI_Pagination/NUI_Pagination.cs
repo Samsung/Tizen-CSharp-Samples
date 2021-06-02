@@ -171,44 +171,44 @@ namespace NUI_Pagination
                 // the position is stored
                 // the state IfTouched is changed to be true
                 case PointStateType.Down:
-                {
-                    TouchedPosition = e.Touch.GetScreenPosition(0);
-                    IfTouched = true;
-                    break;
-                }
+                    {
+                        TouchedPosition = e.Touch.GetScreenPosition(0);
+                        IfTouched = true;
+                        break;
+                    }
 
                 // A new touched position is established
                 // If the horizontal part of the Shift vector is greater than the threshold value
                 // than the proper action is taken
                 case PointStateType.Motion:
-                {
-                    if (!IfTouched)
                     {
+                        if (!IfTouched)
+                        {
+                            break;
+                        }
+
+                        Vector2 Shift = e.Touch.GetScreenPosition(0) - TouchedPosition;
+
+                        // If the Shift value is smaller than the threshold value = -30,                    
+                        // the MainVisualView position the pagination selected index are changed
+                        if (Shift[0] < -30 && PaginationExample.SelectedIndex > 0)
+                        {
+                            MainVisualView.Position2D = MainVisualView.Position2D + WindowShift;
+                            PaginationExample.SelectedIndex = PaginationExample.SelectedIndex - 1;
+                            IfTouched = false;
+                        }
+
+                        // If the Shift value is greater than the threshold value = 30,
+                        // the MainVisualView position the pagination selected index are changed
+                        if (Shift[0] > 30 && PaginationExample.SelectedIndex < PaginationExample.IndicatorCount - 1)
+                        {
+                            MainVisualView.Position2D = MainVisualView.Position2D - WindowShift;
+                            PaginationExample.SelectedIndex = PaginationExample.SelectedIndex + 1;
+                            IfTouched = false;
+                        }
+
                         break;
                     }
-
-                    Vector2 Shift = e.Touch.GetScreenPosition(0) - TouchedPosition;
-
-                    // If the Shift value is greater than the threshold value = 30,
-                    // the MainVisualView position the pagination selected index are changed
-                    if (Shift[0] > 30 && PaginationExample.SelectedIndex > 0)
-                    {
-                        MainVisualView.Position2D = MainVisualView.Position2D + WindowShift;
-                        PaginationExample.SelectedIndex = PaginationExample.SelectedIndex - 1;
-                        IfTouched = false;
-                    }
-
-                    // If the Shift value is smaller than the threshold value = -30,
-                    // the MainVisualView position the pagination selected index are changed
-                    if (Shift[0] < -30 && PaginationExample.SelectedIndex < PaginationExample.IndicatorCount - 1)
-                    {
-                        MainVisualView.Position2D = MainVisualView.Position2D - WindowShift;
-                        PaginationExample.SelectedIndex = PaginationExample.SelectedIndex + 1;
-                        IfTouched = false;
-                    }
-
-                    break;
-                }
             }
         }
 

@@ -63,6 +63,7 @@ namespace ScrollableBaseExample
                 {
                     items[i].BackgroundColor = Color.Cyan;
                 }
+
                 scrollableBase.Add(items[i]);
             }
         }
