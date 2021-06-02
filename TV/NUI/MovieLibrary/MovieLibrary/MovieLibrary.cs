@@ -1,18 +1,68 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 
+/// <summary>
+/// Namespace for movie library sample
+/// </summary>
 namespace MovieLibrary
 {
+    /// <summary>
+    /// Main class for movie library sample
+    /// </summary>
     class Program : NUIApplication
     {
+        /// <summary>
+        /// Main view rows count.
+        /// </summary>
         private readonly uint rows = 4;
+
+        /// <summary>
+        /// Main view columns count.
+        /// </summary>
         private readonly uint cols = 5;
+
+        /// <summary>
+        /// Helper for store current application resource directory path.
+        /// </summary>
         private static string resUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+
+        /// <summary>
+        /// TextLabel component which shows selected movie title on the top of the screen.
+        /// </summary>
         private TextLabel title;
+
+        /// <summary>
+        /// Image views container.
+        /// </summary>
         private TableView table;
+
+        /// <summary>
+        /// Dictionary which binds ImageView and movie title.
+        /// </summary>
         private Dictionary<ImageView, string> movies;
+
+        /// <summary>
+        /// Titles storage.
+        /// </summary>
         private string[] movieTitles =
         {
             "Funny Dog",
@@ -37,12 +87,18 @@ namespace MovieLibrary
             "Illusion",
         };
 
+        /// <summary>
+        /// OnCreate callback implementation.
+        /// </summary>
         protected override void OnCreate()
         {
             base.OnCreate();
             Initialize();
         }
 
+        /// <summary>
+        /// View Components initialization code.
+        /// </summary>
         void Initialize()
         {
             InitTitleLabel();
@@ -50,6 +106,9 @@ namespace MovieLibrary
             InitTableViewCells();
         }
 
+        /// <summary>
+        /// Create and setup TextLabel component
+        /// </summary>
         private void InitTitleLabel()
         {
             title = new TextLabel(movieTitles[0])
@@ -62,6 +121,9 @@ namespace MovieLibrary
             Window.Instance.Add(title);
         }
 
+        /// <summary>
+        /// Create and setup TableView component
+        /// </summary>
         private void InitTableView()
         {
             table = new TableView(rows, cols)
@@ -77,6 +139,9 @@ namespace MovieLibrary
             Window.Instance.Add(table);
         }
 
+        /// <summary>
+        /// Fill TableView component
+        /// </summary>
         private void InitTableViewCells()
         {
             movies = new Dictionary<ImageView, string>();
@@ -96,19 +161,25 @@ namespace MovieLibrary
                     table.AddChild(movieImage, new TableView.CellPosition(row, col));
                     movies[movieImage] = movieTitles[movieNumber - 1];
 
-                    movieImage.FocusGained += (obj, e) => 
-                    { 
+                    movieImage.FocusGained += (obj, e) =>
+                    {
                         movieImage.Opacity = 1.0f;
                         title.Text = movies[movieImage];
                     };
                     movieImage.FocusLost += (obj, e) => { movieImage.Opacity = .8f; };
 
                     if (row == 0 && col == 0)
+                    {
                         FocusManager.Instance.SetCurrentFocusView(movieImage);
+                    }
                 }
             }
         }
 
+        /// <summary>
+        /// Main function.
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             var app = new Program();
