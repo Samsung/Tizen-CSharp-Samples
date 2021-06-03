@@ -322,7 +322,7 @@ namespace Tizen.NUI.MediaHub
         /// Enable or disable OptionList item.
         /// </summary>
         /// <param name="index">OptionList item index</param>
-        /// <param name="disable">true is disable the item, false is enalbe the item</param>
+        /// <param name="disable">true is disable the item, false is enable the item</param>
         /// <exception cref="System.IndexOutOfRangeException"> Thrown when dim item index out of range[0, NumOfItem-1] </exception>
         /// <example>
         /// <code>
@@ -366,7 +366,7 @@ namespace Tizen.NUI.MediaHub
         /// }
         /// </code>
         /// </example>
-        /// <returns>the text string of the soecific index</returns>
+        /// <returns>the text string of the specific index</returns>
         public string TextString(int index)
         {
             if (index < 0 || index >= list.NumOfItem)

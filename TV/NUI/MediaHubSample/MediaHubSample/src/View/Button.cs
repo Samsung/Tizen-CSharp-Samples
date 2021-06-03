@@ -25,7 +25,7 @@ using Tizen.NUI.Constants;
 namespace Tizen.NUI.MediaHub
 {
     /// <summary>
-    /// A sampe of PushButton
+    /// A shape of PushButton
     /// </summary>
     public class CustomButton
     {
@@ -64,21 +64,21 @@ namespace Tizen.NUI.MediaHub
                 _pushbutton.TextColor = Color.White;
             }
 
-            // Chang backgroudVisul and Label when focued gained.
+            // Change backgroudVisul and Label when focus gained.
             _pushbutton.FocusGained += (obj, e) =>
             {
                _pushbutton.BackgroundImage = focusImagePath;
                 _pushbutton.TextColor = Color.Black;
             };
 
-            // Chang backgroudVisul and Label when focued losted.
+            // Change backgroudVisul and Label when focus lost.
             _pushbutton.FocusLost += (obj, e) =>
             {
                 _pushbutton.BackgroundImage = normalImagePath;
                 _pushbutton.TextColor = Color.White;
             };
 
-            // Chang backgroudVisul when pressed.
+            // Change backgroudVisul when pressed.
             _pushbutton.KeyEvent += (obj, ee) =>
             {
                 if ("Return" == ee.Key.KeyPressedName)

@@ -77,7 +77,7 @@ namespace MovieLibrary
             "Two zebras more than one",
             "Eclipse",
             "The Dancer",
-            "Depp in eye",
+            "Deep in eye",
             "Smart guy",
             "Last walk",
             "Tunnel",
@@ -101,6 +101,8 @@ namespace MovieLibrary
         /// </summary>
         void Initialize()
         {
+            // When End key, Back key input, this application is terminated.
+            Window.Instance.KeyEvent += OnKeyEvent;
             InitTitleLabel();
             InitTableView();
             InitTableViewCells();
@@ -177,9 +179,24 @@ namespace MovieLibrary
         }
 
         /// <summary>
+        /// The method called when key pressed down
+        /// </summary>
+        /// <param name="sender">Key instance</param>
+        /// <param name="e">Key's args</param>
+        private void OnKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "Escape" ||
+                e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "BackSpace"))
+            {
+                // Terminate application.
+                Exit();
+            }
+        }
+
+        /// <summary>
         /// Main function.
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">arguments of Main (entry point)</param>
         static void Main(string[] args)
         {
             var app = new Program();

@@ -98,7 +98,7 @@ namespace Tizen.NUI
     public abstract class ListBridge
     {
         /// <summary>
-        /// Construct ListAdapter with datas.
+        /// Construct ListAdapter with data.
         /// </summary>
         /// <param name="objects">data list</param>
         public ListBridge(List<object> objects)

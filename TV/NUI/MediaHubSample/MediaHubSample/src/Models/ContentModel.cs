@@ -63,7 +63,7 @@ namespace Tizen.NUI.MediaHub
         /// Compare with another ContentModel instance.
         /// </summary>
         /// <param name="other">another ContentModel instance</param>
-        /// <returns>If this ContentModel's sieze is greater than other's, than return 1, else return 0</returns>
+        /// <returns>If this ContentModel's size is greater than other's, than return 1, else return 0</returns>
         public int CompareTo(ContentModel other)
         {
             if (null == other)

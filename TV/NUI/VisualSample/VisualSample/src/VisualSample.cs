@@ -177,7 +177,7 @@ namespace VisualSample
             // primitive visual: Cone
             // Renders a simple 3D shape, such as a cube or sphere. Scaled to fit the control.
             // The shapes are generated with clockwise winding and backface culling on by default.
-            // Cone : Equivalent to a conical frustrum with the top radius of zero
+            // Cone : Equivalent to a conical frustum with the top radius of zero
             Tizen.NUI.PrimitiveVisual cone = CreatePrimitiveVisual(PrimitiveVisualShapeType.Cone, new Vector2(860, 400));
             Tizen.NUI.TextVisual coneText = CreateTextVisual("Cone", new Vector2(860, 300.0f));
             _visualView.AddVisual("coneText", coneText);
@@ -191,22 +191,22 @@ namespace VisualSample
             _visualView.AddVisual("sphere", sphere);
 
             // primitive visual: Cylinder
-            // Cylinder : Equivalent to a conical frustrum with the top radius of zero
+            // Cylinder : Equivalent to a conical frustum with the top radius of zero
             Tizen.NUI.PrimitiveVisual cylinder = CreatePrimitiveVisual(PrimitiveVisualShapeType.Cylinder, new Vector2(1660, 400.0f));
             Tizen.NUI.TextVisual cylinderText = CreateTextVisual("Cylinder", new Vector2(1660, 300.0f));
             _visualView.AddVisual("cylinderText", cylinderText);
             _visualView.AddVisual("cylinder", cylinder);
 
-            // primitive visual: ConicalFrustrum
-            // ConicalFrustrum : Equivalent to a conical frustrum with
+            // primitive visual: ConicalFrustum
+            // ConicalFrustum : Equivalent to a conical frustum with
             // equal radii for the top and bottom circles.
-            Tizen.NUI.PrimitiveVisual conicalFrustrum = CreatePrimitiveVisual(PrimitiveVisualShapeType.ConicalFrustrum, new Vector2(60.0f, 700));
-            Tizen.NUI.TextVisual conicalFrustrumText = CreateTextVisual("ConicalFrustrum", new Vector2(60.0f, 600.0f));
-            _visualView.AddVisual("conicalFrustrumText", conicalFrustrumText);
-            _visualView.AddVisual("conicalFrustrum", conicalFrustrum);
+            Tizen.NUI.PrimitiveVisual conicalFrustum = CreatePrimitiveVisual(PrimitiveVisualShapeType.ConicalFrustrum, new Vector2(60.0f, 700));
+            Tizen.NUI.TextVisual conicalFrustumText = CreateTextVisual("ConicalFrustum", new Vector2(60.0f, 600.0f));
+            _visualView.AddVisual("conicalFrustumText", conicalFrustumText);
+            _visualView.AddVisual("conicalFrustum", conicalFrustum);
 
             // primitive visual: Cube
-            // Cube : Equivalent to a conical frustrum with equal radii for the top and bottom
+            // Cube : Equivalent to a conical frustum with equal radii for the top and bottom
             //     circles.
             Tizen.NUI.PrimitiveVisual cube = CreatePrimitiveVisual(PrimitiveVisualShapeType.Cube, new Vector2(460.0f, 700.0f));
             Tizen.NUI.TextVisual cubeText = CreateTextVisual("Cube", new Vector2(460.0f, 600.0f));

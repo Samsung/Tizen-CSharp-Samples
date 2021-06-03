@@ -38,7 +38,7 @@ namespace Tizen.NUI.MediaHub
         {
             int widthDpi = (int)Window.Instance.Dpi.Width;
             int heightDpi = (int)Window.Instance.Dpi.Height;
-            if(widthDpi == 314 && heightDpi == 314)
+            if (widthDpi == 314 && heightDpi == 314)
             {
                 return true;
             }
@@ -109,7 +109,7 @@ namespace Tizen.NUI.MediaHub
         {
             get
             {
-                if(IsSREmul())
+                if (IsSREmul())
                 {
                     return 8.0f;
                 }

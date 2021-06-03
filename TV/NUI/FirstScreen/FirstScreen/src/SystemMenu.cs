@@ -37,7 +37,6 @@ namespace FirstScreen
         private float _systemIconSeparation;
         private Color[] _systemSelectorColors;
         private VisualView _systemSelector;
-        //todor del?
         private View _systemSelectorClippingBox;
         private ColorVisual _systemSelectorColor;
         private View _menu;
@@ -191,7 +190,6 @@ namespace FirstScreen
             stencilIconContainer.PivotPoint = PivotPoint.BottomLeft;
             stencilIconContainer.PositionUsesPivotPoint = true;
 
-            // todor
             stencilIconContainer.InheritPosition = false;
 
             //TODO: DALi: Because we cannot use parent origin with "Inherit Position = false", this menu now needs to know the window/stage size - which it should not have to care about.
@@ -269,7 +267,6 @@ namespace FirstScreen
 
                 if (show)
                 {
-                    //todor comment
                     targetPosition.X += ((((Constants.SystemMenuWidth * scaleDelta) / 2.0f) - (Constants.SystemMenuWidth / 2.0f)) / scaleDelta);
                 }
 

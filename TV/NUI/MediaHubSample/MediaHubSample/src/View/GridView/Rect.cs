@@ -212,7 +212,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="a">the left rect object</param>
         /// <param name="b">the right rect object</param>
-        /// <returns>return the two Rect object matchs or not</returns>
+        /// <returns>return the two Rect object matches or not</returns>
         public static bool operator ==(Rect a, Rect b)
         {
             // If both are null, or both are same instance, return true.
