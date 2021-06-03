@@ -38,7 +38,7 @@ namespace ChannelList
         {
             int widthDpi = (int)Window.Instance.Dpi.Width;
             int heightDpi = (int)Window.Instance.Dpi.Height;
-            if(widthDpi == 314 && heightDpi == 314)
+            if (widthDpi == 314 && heightDpi == 314)
             {
                 return true;
             }
@@ -73,7 +73,7 @@ namespace ChannelList
         {
             get
             {
-                if(IsSREmul())
+                if (IsSREmul())
                 {
                     return 8.0f;
                 }

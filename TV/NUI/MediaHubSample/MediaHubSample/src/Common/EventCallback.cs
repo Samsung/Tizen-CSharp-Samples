@@ -22,7 +22,7 @@ using System.Collections.Generic;
 namespace Tizen.NUI.MediaHub
 {
     /// <summary>
-    /// Call back for GridView Item press, Item Slected.
+    /// Call back for GridView Item press, Item Selected.
     /// </summary>
     public class EventCallBack
     {

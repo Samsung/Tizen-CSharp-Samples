@@ -524,7 +524,7 @@ namespace Tizen.NUI.MediaHub
             {
                 return;
             }
-            //Set this accroding to the ImageItemStyle(should be "C_ImageItem_WhiteSingleline01" style)
+            //Set this according to the ImageItemStyle(should be "C_ImageItem_WhiteSingleline01" style)
             float rootWidth = Size2D.Width;
             float rootHeight = Size2D.Height;
             float left = 0;
@@ -726,7 +726,7 @@ namespace Tizen.NUI.MediaHub
         }
 
         /// <summary>
-        /// play focued animation
+        /// play focused animation
         /// </summary>
         private void PlayFocosedAnimation()
         {

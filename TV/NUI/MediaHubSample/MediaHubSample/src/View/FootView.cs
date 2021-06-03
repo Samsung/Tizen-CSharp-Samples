@@ -75,7 +75,7 @@ namespace Tizen.NUI.MediaHub
         }
 
         /// <summary>
-        /// Update footview display infor
+        /// Update footview display information
         /// </summary>
         /// <param name="footModel">FootModel class, include the foot view  display info</param>
         public void Update(FootModel footModel)

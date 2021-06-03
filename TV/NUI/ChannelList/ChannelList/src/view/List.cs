@@ -1048,7 +1048,7 @@ namespace ChannelList
         /// update list in memory.
         /// </summary>
         /// <param name="groupRect">the group rect</param>
-        /// <param name="flagFocusAni">the falg of focus animation</param>
+        /// <param name="flagFocusAni">the flag of focus animation</param>
         private void UpdateInMemoryItems(Rect groupRect, bool flagFocusAni = false)
         {
             Tizen.Log.Fatal("NUI.List", "UpdateInMemoryItems...flagFocusAni: " + flagFocusAni);
@@ -1753,7 +1753,7 @@ namespace ChannelList
         }
 
         /// <summary>
-        /// Calculate item group position accroding to focus item index.
+        /// Calculate item group position according to focus item index.
         /// </summary>
         /// <param name="focusIndex">the index of the focused item</param>
         /// <param name="itemGroupPos">the item group position</param>
@@ -1790,7 +1790,7 @@ namespace ChannelList
         /// <summary>
         /// Get page number.
         /// </summary>
-        /// <returns>return the number of the oage item</returns>
+        /// <returns>return the number of the page item</returns>
         private int PageItemNum()
         {
             //check current focus item index is valid

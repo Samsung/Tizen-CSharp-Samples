@@ -221,7 +221,7 @@ namespace Tizen.NUI.MediaHub
                 if (value == null)
                 {
                     Tizen.Log.Fatal("NUI", "Set null value to the size of the list!");
-                    throw new InvalidOperationException("Wrong size value of the list. It shoud be a not-null value!");
+                    throw new InvalidOperationException("Wrong size value of the list. It should be a not-null value!");
                 }
 
                 if (optionList != null)
@@ -509,6 +509,7 @@ namespace Tizen.NUI.MediaHub
                     HideList();
                 }
             }
+
             return true;
         }
 

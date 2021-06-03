@@ -76,7 +76,7 @@ namespace Tizen.NUI.MediaHub
         /// <param name="groupIndex">The index of the group</param>
         /// <param name="itemIndex">The index of the item</param>
         /// <param name="view">the item</param>
-        /// <param name="FlagFocused">The falg to tell user it is focusGained or focusLost</param>
+        /// <param name="FlagFocused">The flag to tell user it is focusGained or focusLost</param>
         /// <param name="bSelected">It is selected or not</param>
         public override void FocusChange(int groupIndex, int itemIndex, View view, bool FlagFocused, bool bSelected = false)
         {   

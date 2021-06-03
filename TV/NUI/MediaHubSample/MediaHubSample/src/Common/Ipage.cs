@@ -42,7 +42,7 @@ namespace Tizen.NUI.MediaHub
         /// </summary>
         public const int eItemMusic = 2;
         /// <summary>
-        /// eItemFolder, for floder
+        /// eItemFolder, for folder
         /// </summary>
         public const int eItemFolder = 3;
         /// <summary>

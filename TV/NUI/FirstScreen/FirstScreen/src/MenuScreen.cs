@@ -96,7 +96,6 @@ namespace FirstScreen
             OnInitialize();
         }
 
-        //todor comment
         /// <summary>
         /// Creates and initializes a new instance of MenuScreen class.
         /// </summary>
@@ -481,7 +480,7 @@ namespace FirstScreen
             // Initialize PreFocusChange event of KeyboardFocusManager
             _keyboardFocusManager = FocusManager.Instance;
             _keyboardFocusManager.PreFocusChange += OnKeyboardPreFocusChangeSignal;
-            _keyboardFocusManager.FocusIndicator = new View(); //todor
+            _keyboardFocusManager.FocusIndicator = new View(); //todo
             _keyboardFocusManager.SetAsFocusGroup(_systemMenu.GetView(), true);
             _keyboardFocusManager.SetAsFocusGroup(_menu.ScrollMenu(), true);
             for (int i = 0; i < _posterMenus.Count; ++i)
@@ -501,7 +500,6 @@ namespace FirstScreen
                 _automation.Start();
             }
 
-            //todor comment
             _actionReminder = new ActionReminder(_posterMenuContainer);
             _actionReminder.GetView().ParentOrigin = new Position(0.07f, -0.25f, 0.5f);
             _actionReminderTickCounter = 0;

@@ -29,7 +29,7 @@ using ListSample;
 namespace ListSample
 {
     /// <summary>
-    /// Program stucture.
+    /// Program structure.
     /// </summary>
     struct Program
     {
@@ -43,7 +43,7 @@ namespace ListSample
         public bool favorite; 
 
         /// <summary>
-        /// The constuctor with parameters.
+        /// The constructor with parameters.
         /// </summary>
         /// <param name="programIndex">the program index</param>
         /// <param name="program">the name of the program</param>
@@ -71,7 +71,7 @@ namespace ListSample
         public string text; 
 
         /// <summary>
-        /// The constuctor with parameters.
+        /// The constructor with parameters.
         /// </summary>
         /// <param name="iconN">the path of the normal icon image</param>
         /// <param name="iconS">the path of the select icon image</param>
@@ -93,7 +93,7 @@ namespace ListSample
         public int num; //favorite num
 
         /// <summary>
-        /// The constuctor with parameters.
+        /// The constructor with parameters.
         /// </summary>
         /// <param name="name">the favorite name</param>
         /// <param name="num">the favorite num</param>

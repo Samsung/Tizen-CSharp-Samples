@@ -43,7 +43,7 @@ namespace Tizen.NUI.MediaHub
         private List<ContentModel> sortedVideoList;
         //the list which includes musics for all resources and the items are sorted by size
         private List<ContentModel> sortedMusicList;
-        //the random instance to create randon data.
+        //the random instance to create random data.
         private Random myRandom;
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Tizen.NUI.MediaHub
         }
 
         /// <summary>
-        /// The method to creat the data
+        /// The method to create the data
         /// </summary>
         private void Initialize()
         {

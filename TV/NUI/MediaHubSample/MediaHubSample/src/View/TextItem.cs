@@ -330,7 +330,7 @@ namespace Tizen.NUI.MediaHub
         }
 
         /// <summary>
-        /// The mathod to initialize the main text.
+        /// The method to initialize the main text.
         /// </summary>
         private void InitializeMainText()
         {
@@ -377,37 +377,37 @@ namespace Tizen.NUI.MediaHub
         {
             if (focusInAni == null)
             {
-                //Create focus in aniamtion
+                //Create focus in animation
                 focusInAni = new Animation();
             }
 
             if (focusOutAni == null)
             {
-                //Create focus out aniamtion
+                //Create focus out animation
                 focusOutAni = new Animation();
             }
 
             if (dimInAni == null)
             {
-                //Create dim in aniamtion
+                //Create dim in animation
                 dimInAni = new Animation();
             }
 
             if (dimOutAni == null)
             {
-                //Create dim out aniamtion
+                //Create dim out animation
                 dimOutAni = new Animation();
             }
 
             if (selectedInAni == null)
             {
-                //Create selected in aniamtion
+                //Create selected in animation
                 selectedInAni = new Animation();
             }
 
             if (selectedOutAni == null)
             {
-                //Create selected out aniamtion
+                //Create selected out animation
                 selectedOutAni = new Animation();
             }
         }

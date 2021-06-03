@@ -971,7 +971,7 @@ namespace Tizen.NUI
         {
             gridWidth = this.SizeWidth;
             gridHeight = this.SizeHeight;
-            Tizen.Log.Fatal("NUI", "...OnRelayoutUpdateOnRelayoutUpdateOnRelayoutUpdateOnRelayoutUpdate...");
+            Tizen.Log.Fatal("NUI", "OnRelayoutUpdate()");
             if (gridBridge != null)
             {
                 Load();
@@ -1032,7 +1032,7 @@ namespace Tizen.NUI
 
         private void Load()
         {
-            Tizen.Log.Fatal("NUI", "...lOAD...");
+            Tizen.Log.Fatal("NUI", "...LOAD...");
             int groupCount = groupList.Count;
             if (groupCount == 0)
             {
@@ -1801,7 +1801,7 @@ namespace Tizen.NUI
                     else
                     {
                         Cell nextCell = null;
-                        while(destCellIndex < focusedColumn.cellList.Count)
+                        while (destCellIndex < focusedColumn.cellList.Count)
                         {
                             nextCell = focusedColumn.cellList.ElementAt(destCellIndex);
                             {
@@ -3433,7 +3433,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor to create a grid view bridge with multi-groups.
         /// </summary>
-        /// <param name="objects">Data list of differet groups.</param>
+        /// <param name="objects">Data list of different groups.</param>
         public GridBridge(List<List<object>> objects)
         {
             gridData = objects;
@@ -3712,7 +3712,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Reset bridge, and Update LinearView with new bridge data.
         /// </summary>
-        /// <param name="objects">Data list of differet groups.</param>
+        /// <param name="objects">Data list of different groups.</param>
         /// <param name="sendEvent">Notify list to remove item or not.</param>
         public void Reset(List<List<object>> objects, bool sendEvent = true)
         {

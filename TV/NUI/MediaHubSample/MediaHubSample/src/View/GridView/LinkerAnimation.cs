@@ -98,7 +98,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set next destination for the aniamtion.
+        /// Set next destination for the animation.
         /// </summary>
         /// <param name="property">Property name which need animate.</param>
         /// <param name="destValue">Destination value.</param>
@@ -154,7 +154,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Check whehter animation is playing.
+        /// Check whether animation is playing.
         /// </summary>
         /// <returns>Playing or not.</returns>
         public bool IsPlaying()

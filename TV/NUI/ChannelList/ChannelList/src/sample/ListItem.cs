@@ -28,7 +28,7 @@ namespace ChannelList
     public class ListItem : View
     {
         /// <summary>
-        /// The Constuctor.
+        /// The Constructor.
         /// </summary>
         public ListItem()
         {
@@ -451,7 +451,7 @@ namespace ChannelList
     public class SelectListItem : View
     {
         /// <summary>
-        /// The Constuctor
+        /// The Constructor
         /// </summary>
         public SelectListItem()
         {
