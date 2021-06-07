@@ -1,11 +1,11 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.5">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
   </ItemGroup>
 
 </Project>
