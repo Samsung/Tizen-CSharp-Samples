@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedbackApp", "FeedbackApp\FeedbackApp\FeedbackApp.csproj", "{1450947D-B35B-48D0-B580-EAB2AB54EA25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeedbackApp", "FeedbackApp\FeedbackApp\FeedbackApp.csproj", "{1450947D-B35B-48D0-B580-EAB2AB54EA25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedbackApp.Tizen.Mobile", "FeedbackApp\FeedbackApp.Tizen.Mobile\FeedbackApp.Tizen.Mobile.csproj", "{C373C356-EDCC-4E0A-92AA-C17C66AABE0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeedbackApp.Tizen.Mobile", "FeedbackApp\FeedbackApp.Tizen.Mobile\FeedbackApp.Tizen.Mobile.csproj", "{C373C356-EDCC-4E0A-92AA-C17C66AABE0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
