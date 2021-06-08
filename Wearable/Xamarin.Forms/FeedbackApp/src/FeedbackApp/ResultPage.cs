@@ -21,7 +21,7 @@ namespace FeedbackApp
     /// <summary>
     /// Result page of Feedback application
     /// </summary>
-    class ResultPage : CirclePage
+    class ResultPage : ContentPage
     {
         /// <summary>
         /// Create a Label instance

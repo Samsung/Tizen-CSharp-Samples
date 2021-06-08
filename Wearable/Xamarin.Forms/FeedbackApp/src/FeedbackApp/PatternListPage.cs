@@ -23,7 +23,7 @@ using Tizen.System;
 
 namespace FeedbackApp
 {
-    class PatternListPage : CirclePage
+    class PatternListPage : ContentPage
     {
         /// <summary>
         /// Method is executed after ListView item has been tapped
