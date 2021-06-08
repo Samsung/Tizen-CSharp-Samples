@@ -45,6 +45,7 @@ namespace HeartRateMonitor
         {
             MeasurementPage appMeasurementPage = new MeasurementPage();
             AppMainViewModel = new MainViewModel(Properties, new PageNavigation(appMeasurementPage.Navigation));
+            appMeasurementPage.BindingContext = AppMainViewModel;
 
             MainPage = new NavigationPage(appMeasurementPage)
             {
