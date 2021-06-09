@@ -40,9 +40,9 @@ When the application receives push notification, it shows the message like below
 
 
 ### Verified Version
-* Xamarin.Forms : 4.5.0
+* Xamarin.Forms : 5.0.0.2012
 * Tizen.NET : 6.0.0
-* Tizen.NET.SDK : 1.0.9
+* Tizen.NET.SDK : 1.1.6
 
 
 
