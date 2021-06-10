@@ -1,4 +1,4 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.6">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -16,9 +16,9 @@
     <Folder Include="lib\" />
     <Folder Include="res\" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
   </ItemGroup>
 
   <ItemGroup>

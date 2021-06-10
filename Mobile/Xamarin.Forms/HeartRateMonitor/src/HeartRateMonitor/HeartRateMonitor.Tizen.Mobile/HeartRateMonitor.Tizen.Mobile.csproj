@@ -1,4 +1,4 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.1.5">
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.6">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -16,7 +16,6 @@
     <Folder Include="lib\" />
     <Folder Include="res\" />
   </ItemGroup>
-
 
   <ItemGroup>
     <ProjectReference Include="..\HeartRateMonitor\HeartRateMonitor.csproj" />
