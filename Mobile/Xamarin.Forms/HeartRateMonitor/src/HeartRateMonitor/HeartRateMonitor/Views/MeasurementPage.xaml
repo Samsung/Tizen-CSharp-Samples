@@ -6,7 +6,6 @@
              xmlns:views="clr-namespace:HeartRateMonitor.Views"
              x:Class="HeartRateMonitor.Views.MeasurementPage"
              Title="Heart Rate Monitor"
-             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppMainViewModel}"
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="{Binding IsStarted}">
 
