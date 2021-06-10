@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -17,20 +17,19 @@
     <Folder Include="lib\" />
   </ItemGroup>
 
-  
+
   <!-- If solution already has PCL project, will reference -->
   <ItemGroup>
     <ProjectReference Include="..\ScreenMirroringSample\ScreenMirroringSample.csproj" />
   </ItemGroup>
-  
+
 
   <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="4.0.0">
+    <PackageReference Include="Tizen.NET" Version="4.0.1.14165">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
-    <PackageReference Include="Tizen.Xamarin.Forms.Extension" Version="2.4.0-v00014" />
     <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0.91020" />
   </ItemGroup>
 
