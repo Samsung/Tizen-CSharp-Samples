@@ -71,6 +71,8 @@ namespace VisualSample
             View focusIndicator = new View();
             FocusManager.Instance.FocusIndicator = focusIndicator;
             Window.Instance.BackgroundColor = Color.Black;
+
+            //Create the text of guide.
             guide = new TextLabel();
             guide.HorizontalAlignment = HorizontalAlignment.Center;
             guide.VerticalAlignment = VerticalAlignment.Center;
@@ -81,13 +83,12 @@ namespace VisualSample
             guide.FontFamily = "Samsung One 600";
             guide.Position2D = new Position2D(0, 94);
             guide.MultiLine = false;
-            //guide.PointSize = 15.0f;
             guide.PointSize = PointSize15;
             guide.Text = "Visual Sample \n";
             guide.TextColor = Color.White;
-            //guide.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             Window.Instance.GetDefaultLayer().Add(guide);
             
+            //Create the visual view for example.
             _visualView = new VisualView();
             _visualView.PositionUsesPivotPoint = true;
             _visualView.ParentOrigin = ParentOrigin.TopLeft;
@@ -111,6 +112,7 @@ namespace VisualSample
             {
                 if (e.Key.KeyPressedName == "XF86Back")
                 {
+                    //When receive back key, exit the app.
                     this.Exit();
                 }
             }
@@ -122,22 +124,26 @@ namespace VisualSample
         private void Populate()
         {
             Vector2 stagesize = Window.Instance.Size;
-
+            
+            //Create the image visual.
             Tizen.NUI.VisualMap imageVisual = CreateVisualMap("Image", new Vector2(60, 100.0f), image_jpg);
             Tizen.NUI.TextVisual imageText = CreateTextVisual("ImageVisual", new Vector2(60, 0.0f));
             _visualView.AddVisual("imageVisual", imageVisual);
             _visualView.AddVisual("imageText", imageText);
 
+            //Create the gif visual.
             Tizen.NUI.VisualMap gifVisual = CreateVisualMap("Animated", new Vector2(460, 100.0f), image_gif);
             Tizen.NUI.TextVisual gifText = CreateTextVisual("AnimatedImageVisual", new Vector2(460, 0.0f));
             _visualView.AddVisual("gifVisual", gifVisual);
             _visualView.AddVisual("gifText", gifText);
 
+            //Create the color visual.
             Tizen.NUI.VisualMap colorVisual = CreateVisualMap("Color", new Vector2(860, 100.0f), image_gif);
             Tizen.NUI.TextVisual colorText = CreateTextVisual("ColorVisual", new Vector2(860, 0.0f));
             _visualView.AddVisual("colorVisual", colorVisual);
             _visualView.AddVisual("colorText", colorText);
 
+            //Create the svg visual view.
             VisualView svgView = new VisualView();
             svgView.PositionUsesPivotPoint = true;
             svgView.ParentOrigin = ParentOrigin.TopLeft;
@@ -146,16 +152,19 @@ namespace VisualSample
             svgView.Size2D = new Size2D(200, 200);
             _visualView.Add(svgView);
 
+            //Add svg visual map and svg text visual to svg visual view.
             Tizen.NUI.VisualMap svgVisual = CreateVisualMap("SVG", new Vector2(0, 0.0f), image_svg);
             Tizen.NUI.TextVisual svgText = CreateTextVisual("SVGVisual", new Vector2(1260, 0.0f));
             svgView.AddVisual("svgVisual", svgVisual);
             _visualView.AddVisual("svgText", svgText);
 
+            //Add nPatch visual-map and nPatch visual-text to visual view.
             Tizen.NUI.VisualMap nPatchVisual = CreateVisualMap("NPatch", new Vector2(1660, 100.0f), image_9patch);
             Tizen.NUI.TextVisual nPatchText = CreateTextVisual("NPatchVisual", new Vector2(1660, 0.0f));
             _visualView.AddVisual("nPatchVisual", nPatchVisual);
             _visualView.AddVisual("nPatchText", nPatchText);
 
+            //Create border visual view and add it to root.
             VisualView borderView = new VisualView();
             borderView.BackgroundColor = new Color(43.0f / 255.0f, 145.0f / 255.0f, 175.0f / 255.0f, 1.0f);
             borderView.PositionUsesPivotPoint = true;
@@ -164,11 +173,14 @@ namespace VisualSample
             borderView.Position2D = new Position2D(80, 400);
             borderView.Size2D = new Size2D(200, 200);
             _visualView.Add(borderView);
+
+            //Create and add the visual of border to border view.
             Tizen.NUI.VisualMap borderVisual = CreateVisualMap("Border", new Vector2(0, 0.0f), image_9patch);
             Tizen.NUI.TextVisual borderText = CreateTextVisual("BorderVisual", new Vector2(60, 300.0f));
             borderView.AddVisual("borderVisual", borderVisual);
             _visualView.AddVisual("borderText", borderText);
 
+            //Create and add the visual of gradient to root visual view.
             Tizen.NUI.VisualMap gradientVisual = CreateVisualMap("Gradient", new Vector2(460, 400.0f), image_9patch);
             Tizen.NUI.TextVisual gradientText = CreateTextVisual("GradientVisual", new Vector2(460, 300.0f));
             _visualView.AddVisual("gradientVisual", gradientVisual);
@@ -238,6 +250,7 @@ namespace VisualSample
         /// <returns>return a primitiveVisual</returns>
         private Tizen.NUI.PrimitiveVisual CreatePrimitiveVisual(PrimitiveVisualShapeType type, Vector2 position)
         {
+            //Create the primitive visual.
             Tizen.NUI.PrimitiveVisual primitiveVisual = new Tizen.NUI.PrimitiveVisual();
             primitiveVisual.Shape = type;
             primitiveVisual.BevelPercentage = 0.3f;
@@ -256,6 +269,7 @@ namespace VisualSample
 
         private Tizen.NUI.VisualMap CreateVisualMap(string type, Vector2 position, string url)
         {
+            //Create the visual map with position and url.
             VisualMap visualMap = null;
             Tizen.NUI.ImageVisual imageVisual = null;
             Tizen.NUI.ColorVisual colorVisual = null;
@@ -350,9 +364,9 @@ namespace VisualSample
         /// <returns>return a text visual</returns>
         private Tizen.NUI.TextVisual CreateTextVisual(string text, Vector2 position)
         {
+            //Create the text visual with position.
             Tizen.NUI.TextVisual textVisual = new Tizen.NUI.TextVisual();
             textVisual.Text = text;
-            //textVisual.PointSize = 8.0f;
             textVisual.PointSize = PointSize8;
             textVisual.FontFamily = "Samsung One 400";
             textVisual.Size = new Vector2(400.0f, 100.0f);
@@ -375,11 +389,11 @@ namespace VisualSample
         /// <returns>return a map which contain the properties of the text visual</returns>
         private PropertyMap CreateTextVisual(string text, Color color)
         {
+            //Create the text visual with color.
             PropertyMap map = new PropertyMap();
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
             map.Add(TextVisualProperty.Text, new PropertyValue(text));
             map.Add(TextVisualProperty.TextColor, new PropertyValue(color));
-            //map.Add(TextVisualProperty.PointSize, new PropertyValue(8.0f));
             map.Add(TextVisualProperty.PointSize, new PropertyValue(PointSize8));
             map.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue("CENTER"));
             map.Add(TextVisualProperty.VerticalAlignment, new PropertyValue("CENTER"));
@@ -394,6 +408,7 @@ namespace VisualSample
         /// <returns>return a map which contain the properties of the image visual</returns>
         private PropertyMap CreateImageVisual(string imagePath)
         {
+            //Create the image visual with url.
             PropertyMap map = new PropertyMap();
             map.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
             map.Add(ImageVisualProperty.URL, new PropertyValue(imagePath));
@@ -402,6 +417,7 @@ namespace VisualSample
 
         private Button CreateButton(string name, string text)
         {
+            //Create the Button with name and text.
             Button button = new Button();
             button.Focusable = true;
             button.Size2D = new Size2D(440, 80);
@@ -452,6 +468,7 @@ namespace VisualSample
         /// <returns>background view</returns>
         private View CreateBackGroundView()
         {
+            //Create the back ground view.
             View view = new View();
             view.Name = "background";
             view.PositionUsesPivotPoint = true;
@@ -468,6 +485,7 @@ namespace VisualSample
         /// <returns>If it is a SR emul, then return true</returns>
         public bool IsSREmul()
         {
+            //Judge weather is SRE mul.
             int widthDpi = (int)Window.Instance.Dpi.Width;
             int heightDpi = (int)Window.Instance.Dpi.Height;
             if (widthDpi == 314 && heightDpi == 314)
