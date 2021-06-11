@@ -19,6 +19,7 @@ using SystemInfo.Model.Capability;
 using SystemInfo.Tizen.Mobile.Service;
 using Tizen;
 using SystemSettings = Tizen.System.SystemSettings;
+using SystemInformation = Tizen.System.Information;
 
 [assembly: Xamarin.Forms.Dependency(typeof(CapabilityService))]
 
@@ -29,6 +30,8 @@ namespace SystemInfo.Tizen.Mobile.Service
     /// </summary>
     public class CapabilityService : ICapability
     {
+        private const string NetworkWifiFeatureKey = "http://tizen.org/feature/network.wifi";
+
         #region properties
 
         /// <summary>
@@ -40,7 +43,6 @@ namespace SystemInfo.Tizen.Mobile.Service
             {
                 try
                 {
-                    
                     return SystemSettings.Data3GNetworkEnabled;
                 }
                 catch (NotSupportedException e)
@@ -60,7 +62,14 @@ namespace SystemInfo.Tizen.Mobile.Service
             {
                 try
                 {
-                    return SystemSettings.NetworkWifiNotificationEnabled;
+                    if (SystemInformation.TryGetValue<bool>(NetworkWifiFeatureKey, out bool isSupported) && isSupported)
+                    {
+                        return SystemSettings.NetworkWifiNotificationEnabled;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 catch (NotSupportedException e)
                 {
@@ -128,8 +137,11 @@ namespace SystemInfo.Tizen.Mobile.Service
 
             try
             {
-                SystemSettings.NetworkWifiNotificationSettingChanged +=
-                    (s, e) => { WifiNotificationChanged?.Invoke(s, new CapabilityChangedEventArgs(e.Value)); };
+                if (SystemInformation.TryGetValue<bool>(NetworkWifiFeatureKey, out bool isSupported) && isSupported)
+                {
+                    SystemSettings.NetworkWifiNotificationSettingChanged +=
+                        (s, e) => { WifiNotificationChanged?.Invoke(s, new CapabilityChangedEventArgs(e.Value)); };
+                }
             }
             catch (NotSupportedException e)
             {

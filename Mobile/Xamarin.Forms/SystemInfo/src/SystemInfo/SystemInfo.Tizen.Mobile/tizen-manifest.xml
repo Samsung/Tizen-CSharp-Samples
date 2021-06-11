@@ -12,6 +12,7 @@
         <privilege>http://tizen.org/privilege/display</privilege>
         <privilege>http://tizen.org/privilege/externalstorage</privilege>
         <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        <privilege>http://tizen.org/privilege/haptic</privilege>
     </privileges>
     <dependencies />
     <provides-appdefined-privileges />
