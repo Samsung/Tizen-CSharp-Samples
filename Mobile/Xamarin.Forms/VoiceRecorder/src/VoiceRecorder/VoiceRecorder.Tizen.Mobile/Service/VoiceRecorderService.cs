@@ -150,12 +150,15 @@ namespace VoiceRecorder.Tizen.Mobile.Service
         /// </summary>
         public void Init()
         {
+            var bitrateType = AudioBitRateType.Medium;
+            var fileFormat = FileFormatType.MP4;
             try
             {
                 Directory.CreateDirectory(PATH_TO_RECORDINGS);
-                _recorder = new AudioRecorder(RecorderAudioCodec.Pcm, RecorderFileFormat.Wav)
+                var formatCodec = FILE_FORMATS_DICTIONARY[fileFormat];
+                _recorder = new AudioRecorder(formatCodec.Item2, formatCodec.Item1)
                 {
-                    AudioBitRate = RECORDING_QUALITY_DICTIONARY[AudioBitRateType.High],
+                    AudioBitRate = RECORDING_QUALITY_DICTIONARY[bitrateType],
                     AudioChannels = (int)AudioChannelType.Stereo
                 };
                 _recorder.Prepare();
@@ -166,8 +169,8 @@ namespace VoiceRecorder.Tizen.Mobile.Service
                 return;
             }
 
-            FileFormatUpdated?.Invoke(this, FileFormatType.WAV);
-            RecordingQualityUpdated?.Invoke(this, AudioBitRateType.High);
+            FileFormatUpdated?.Invoke(this, fileFormat);
+            RecordingQualityUpdated?.Invoke(this, bitrateType);
         }
 
         /// <summary>
