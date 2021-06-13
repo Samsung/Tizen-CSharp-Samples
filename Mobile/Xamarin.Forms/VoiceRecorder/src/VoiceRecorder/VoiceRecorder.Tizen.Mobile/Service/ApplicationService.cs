@@ -39,7 +39,7 @@ namespace VoiceRecorder.Tizen.Mobile.Service
             }
             catch (Exception)
             {
-                global::Tizen.Log.Error("VoiceRecorder", "Unable to close the application");
+                global::Tizen.Log.Error(Program.LogTag, "Unable to close the application");
             }
         }
 

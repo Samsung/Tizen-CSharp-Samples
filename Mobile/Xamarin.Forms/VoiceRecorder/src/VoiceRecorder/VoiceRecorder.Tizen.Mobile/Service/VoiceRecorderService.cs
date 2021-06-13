@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using Tizen.Multimedia;
 using Tizen.Security;
 using VoiceRecorder.Model;
@@ -24,7 +25,7 @@ using VoiceRecorder.Tizen.Mobile.Service;
 using VoiceRecorder.Utils;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(VoiceRecorderService))]
+[assembly: Xamarin.Forms.Dependency(typeof(VoiceRecorderService))]
 
 namespace VoiceRecorder.Tizen.Mobile.Service
 {
@@ -378,8 +379,9 @@ namespace VoiceRecorder.Tizen.Mobile.Service
         /// Invokes "ErrorOccurred" to other application's modules.
         /// </summary>
         /// <param name="errorMessage">Message of a thrown error.</param>
-        private void ErrorHandler(string errorMessage)
+        private void ErrorHandler(string errorMessage, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
+            global::Tizen.Log.Error(Program.LogTag, errorMessage, file, func, line);
             ErrorOccurred?.Invoke(this, errorMessage);
         }
 
