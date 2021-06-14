@@ -13,13 +13,10 @@
   <ItemGroup>
     <Compile Remove="lib\**" />
     <Compile Remove="Port\**" />
-    <Compile Remove="res\**" />
     <EmbeddedResource Remove="lib\**" />
     <EmbeddedResource Remove="Port\**" />
-    <EmbeddedResource Remove="res\**" />
     <None Remove="lib\**" />
     <None Remove="Port\**" />
-    <None Remove="res\**" />
   </ItemGroup>
 
   <ItemGroup>
