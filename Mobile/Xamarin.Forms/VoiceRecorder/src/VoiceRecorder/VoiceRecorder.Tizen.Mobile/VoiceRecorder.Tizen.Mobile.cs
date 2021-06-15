@@ -25,6 +25,11 @@ namespace VoiceRecorder.Tizen.Mobile
         #region
 
         /// <summary>
+        /// Tag used for Tizen.Log entries.
+        /// </summary>
+        internal static String LogTag = "VoiceRecorder";
+
+        /// <summary>
         /// Stores <see cref="PrivilegeManager" /> class instance.
         /// </summary>
         private PrivilegeManager _privilegeManager = PrivilegeManager.Instance;

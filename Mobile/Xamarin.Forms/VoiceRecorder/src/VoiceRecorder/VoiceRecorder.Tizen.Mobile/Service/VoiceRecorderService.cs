@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using Tizen.Multimedia;
 using Tizen.Security;
 using VoiceRecorder.Model;
@@ -24,7 +25,7 @@ using VoiceRecorder.Tizen.Mobile.Service;
 using VoiceRecorder.Utils;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(VoiceRecorderService))]
+[assembly: Xamarin.Forms.Dependency(typeof(VoiceRecorderService))]
 
 namespace VoiceRecorder.Tizen.Mobile.Service
 {
@@ -149,12 +150,15 @@ namespace VoiceRecorder.Tizen.Mobile.Service
         /// </summary>
         public void Init()
         {
+            var bitrateType = AudioBitRateType.Medium;
+            var fileFormat = FileFormatType.MP4;
             try
             {
                 Directory.CreateDirectory(PATH_TO_RECORDINGS);
-                _recorder = new AudioRecorder(RecorderAudioCodec.Pcm, RecorderFileFormat.Wav)
+                var formatCodec = FILE_FORMATS_DICTIONARY[fileFormat];
+                _recorder = new AudioRecorder(formatCodec.Item2, formatCodec.Item1)
                 {
-                    AudioBitRate = RECORDING_QUALITY_DICTIONARY[AudioBitRateType.High],
+                    AudioBitRate = RECORDING_QUALITY_DICTIONARY[bitrateType],
                     AudioChannels = (int)AudioChannelType.Stereo
                 };
                 _recorder.Prepare();
@@ -165,8 +169,8 @@ namespace VoiceRecorder.Tizen.Mobile.Service
                 return;
             }
 
-            FileFormatUpdated?.Invoke(this, FileFormatType.WAV);
-            RecordingQualityUpdated?.Invoke(this, AudioBitRateType.High);
+            FileFormatUpdated?.Invoke(this, fileFormat);
+            RecordingQualityUpdated?.Invoke(this, bitrateType);
         }
 
         /// <summary>
@@ -378,8 +382,9 @@ namespace VoiceRecorder.Tizen.Mobile.Service
         /// Invokes "ErrorOccurred" to other application's modules.
         /// </summary>
         /// <param name="errorMessage">Message of a thrown error.</param>
-        private void ErrorHandler(string errorMessage)
+        private void ErrorHandler(string errorMessage, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
         {
+            global::Tizen.Log.Error(Program.LogTag, errorMessage, file, func, line);
             ErrorOccurred?.Invoke(this, errorMessage);
         }
 
