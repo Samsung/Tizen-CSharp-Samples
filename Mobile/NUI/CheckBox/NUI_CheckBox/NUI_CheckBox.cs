@@ -59,7 +59,7 @@ namespace NUI_CheckBox
         /// <summary>
         /// Path to the directory with images
         /// </summary>
-        static string ImageURL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
+        string ImageURL;
         /// <summary>
         /// View with all CheckBoxes
         /// </summary>
@@ -94,6 +94,7 @@ namespace NUI_CheckBox
         void Initialize()
         {
             Window.Instance.KeyEvent += WindowKeyEvent;
+            ImageURL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
 
             MainView = new View();
             MainView.Size = new Size2D(CheckBoxSide + 100, 4 * CheckBoxSide + 5 * Space);
