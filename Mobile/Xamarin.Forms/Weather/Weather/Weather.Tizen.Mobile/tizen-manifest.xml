@@ -12,5 +12,6 @@
   <shortcut-list />
   <privileges>
     <privilege>http://tizen.org/privilege/internet</privilege>
+    <privilege>http://tizen.org/privilege/haptic</privilege>
   </privileges>
 </manifest>
