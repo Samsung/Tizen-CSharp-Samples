@@ -39,7 +39,7 @@ namespace SNSUI
         {
             Title = "MainPage";
 
-            var tabbedPage = new CustomTabbedPage
+            var tabbedPage = new TabbedPage
             {
                 Children =
                 {
