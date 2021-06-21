@@ -8,7 +8,7 @@ Weather is a sample application that demonstrates how to obtain data provided by
 ![AppiErrorPage](./Screenshots/api_error_page.png)
 
 ### Features
-* Checking current weather in the biggset US cities.
+* Checking current weather in the biggest US cities (only US country code is acceptable to display list of cities).
 * Checking forecast for next 5 days.
 
 ### Prerequisites
