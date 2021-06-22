@@ -431,6 +431,7 @@ namespace SampleSync.Tizen.Port
                 case CheckResult.Ask:
                     // User permission request required
                     AskPrivacyPrivilege("http://tizen.org/privilege/calendar.read");
+		    PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/contact.read");
                     break;
                 default:
                     break;
