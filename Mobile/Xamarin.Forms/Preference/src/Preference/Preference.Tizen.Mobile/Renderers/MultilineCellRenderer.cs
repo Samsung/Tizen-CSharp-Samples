@@ -109,10 +109,6 @@ namespace Preference.Tizen.Mobile.Renderers
                 check.SetAlignment(-1, -1);
                 check.SetWeight(1, 1);
                 check.IsChecked = multilineCell.IsChecked;
-                check.StateChanged += (sender, e) =>
-                {
-                    multilineCell.IsChecked = e.NewState;
-                };
 
                 //It is a temporary way to prevent that the check of the Cell gets focus until the UX about views in the Cell for TV is defined.
                 if (Device.Idiom == TargetIdiom.TV)
