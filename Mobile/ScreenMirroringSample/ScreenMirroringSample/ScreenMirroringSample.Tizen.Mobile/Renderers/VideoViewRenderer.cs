@@ -21,9 +21,9 @@ namespace ScreenMirroringSample.Tizen.Mobile
             Log.Error(LogTag, "start OnElementChanged");
             if (_mediaView == null | _display == null)
             {
-                _mediaView = new MediaView(Forms.Context.MainWindow);
+                _mediaView = new MediaView(Forms.NativeParent);
                 SetNativeView(_mediaView);
-                _display = new Display(Forms.Context.MainWindow);
+                _display = new Display(Forms.NativeParent as MediaView);
                 Log.Error(LogTag, "OnElementChanged is called.");
                 ScreenMirroringController.Display = _display;
             }
