@@ -313,10 +313,17 @@ namespace SpeechToText.Tizen.Mobile.Services
         /// <param name="errorOccurredEventArgs">Event arguments.</param>
         private void ClientOnErrorOccurred(object sender, Stt.ErrorOccurredEventArgs errorOccurredEventArgs)
         {
-            RecognitionActive = _client.CurrentState == Stt.State.Recording ||
-                                _client.CurrentState == Stt.State.Processing;
-            ServiceError?.Invoke(this, new ServiceErrorEventArgs(
-                errorOccurredEventArgs.ErrorValue.ToPortableSttError()));
+            if (errorOccurredEventArgs.ErrorValue == Stt.Error.OperationFailed)
+            {
+                Log.Info("STT", $"SttClient error occurred. Error value: {errorOccurredEventArgs.ErrorValue}. Error message: {errorOccurredEventArgs.ErrorMessage}.");
+            }
+            else
+            {
+                RecognitionActive = _client.CurrentState == Stt.State.Recording ||
+                                    _client.CurrentState == Stt.State.Processing;
+                ServiceError?.Invoke(this, new ServiceErrorEventArgs(
+                    errorOccurredEventArgs.ErrorValue.ToPortableSttError()));
+            }
         }
 
         /// <summary>
@@ -376,7 +383,7 @@ namespace SpeechToText.Tizen.Mobile.Services
                 _initTask.SetResult(null);
             }
 
-            if (stateChangedEventArgs.Previous == Stt.State.Processing && RecognitionActive)
+            if (RecognitionActive)
             {
                 _client.Start(_lastUsedLanguage, _lastUsedRecognitionType);
             }
@@ -519,12 +526,12 @@ namespace SpeechToText.Tizen.Mobile.Services
         /// </summary>
         public void Stop()
         {
+            RecognitionActive = false;
+
             if (_client.CurrentState == Stt.State.Recording)
             {
                 _client.Stop();
             }
-
-            RecognitionActive = false;
         }
 
         /// <summary>
