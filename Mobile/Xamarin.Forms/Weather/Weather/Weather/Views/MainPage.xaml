@@ -44,6 +44,7 @@
                    BackgroundColor="White"
                    AbsoluteLayout.LayoutFlags="None"
                    AbsoluteLayout.LayoutBounds="190, 800, 510, 50"
+                   IsVisible="{Binding IsCityEntryVisible, Mode=OneWay}"
                    Text="{Binding EnteredCity, Mode=TwoWay}">
                 <Entry.Behaviors>
                     <behaviors:CityNameValidatorBehavior

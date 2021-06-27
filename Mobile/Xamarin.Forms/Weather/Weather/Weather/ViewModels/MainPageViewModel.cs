@@ -78,9 +78,23 @@ namespace Weather.ViewModels
         /// </summary>
         private Command _onCityEnteredCommand;
 
+        /// <summary>
+        /// Local storage flag indicating if city entry is visible.
+        /// </summary>
+        private bool _isCityEntryVisible;
+
         #endregion
 
         #region properties
+
+        /// <summary>
+        /// Gets or sets flag indicating if city entry is visible.
+        /// </summary>
+        public bool IsCityEntryVisible
+        {
+            get => _isCityEntryVisible;
+            private set => SetProperty(ref _isCityEntryVisible, value);
+        }
 
         /// <summary>
         /// Gets or sets collection of available cities.
@@ -88,7 +102,11 @@ namespace Weather.ViewModels
         public ObservableCollection<City> Cities
         {
             get => _cities;
-            set => SetProperty(ref _cities, value);
+            set
+            {
+                IsCityEntryVisible = value.Any()  || !string.IsNullOrEmpty(EnteredCity);
+                SetProperty(ref _cities, value);
+            }
         }
 
         /// <summary>
