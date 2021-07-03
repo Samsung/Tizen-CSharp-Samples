@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.WebRTCAnswerClient" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
+    <profile name="common" />
+    <ui-application appid="org.tizen.example.WebRTCAnswerClient" exec="WebRTCAnswerClient.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+        <label>WebRTCAnswerClient</label>
+        <icon>WebRTCAnswerClient.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/camera</privilege>
+        <privilege>http://tizen.org/privilege/recorder</privilege>
+        <privilege>http://tizen.org/privilege/internet</privilege>
+        <privilege>http://tizen.org/privilege/microphone</privilege>
+        <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        <privilege>http://tizen.org/privilege/externalstorage</privilege>
+    </privileges>
+    <dependencies />
+    <provides-appdefined-privileges />
+</manifest>

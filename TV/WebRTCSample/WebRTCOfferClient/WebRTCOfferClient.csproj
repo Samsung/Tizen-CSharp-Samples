@@ -1,0 +1,38 @@
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.6">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>tizen90</TargetFramework>
+    <AssemblyName>WebRTCOfferClient</AssemblyName>
+    <DisableImplicitFrameworkReferences>True</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="lib\"/>
+    <Folder Include="res\"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="res\layout\*.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="9.0.0.16385" />
+    <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.12" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <NeedInjection>True</NeedInjection>
+  </PropertyGroup>
+
+</Project>
+
