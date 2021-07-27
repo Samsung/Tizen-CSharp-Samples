@@ -126,6 +126,8 @@ namespace XStopWatch
                 BlueBar.IsVisible = true;
             }
 
+            LapPressed?.Invoke(this, (_mainStopWatch.Elapsed, _subStopWatch.IsRunning ? _subStopWatch.Elapsed : _mainStopWatch.Elapsed));
+
             _subStopWatch.Reset();
             _subStopWatch.Start();
             BlueBar.Rotation = 0;
@@ -134,8 +136,6 @@ namespace XStopWatch
             {
                 DoShowCueButton();
             }
-
-            LapPressed?.Invoke(this, (_mainStopWatch.Elapsed, _subStopWatch.IsRunning ? _subStopWatch.Elapsed : _mainStopWatch.Elapsed));
         }
 
         /// <summary>
