@@ -1,42 +1,18 @@
-For NUI sample application
+# NUI Samples and API Reference (Mobile)
 
-#### AS-IS
-```
-├── Mobile
-│   ├── A
-│   ├── B
-│   └── C
-├── Wearable
-│   ├── D
-│   ├── E
-│   └── F
-└── TV
-    ├── G
-    ├── H
-    └── I
-```
+| Name | Sample | API Reference |
+|:---|:---|:---|
+|CheckBox|The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/CheckBox) demonstrates how to use CheckBox | [Tizen.NUI.Components.CheckBox](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.Components.CheckBox.html) |
+|CustomLayout|The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/CustomLayout) demonstrates how to create a custom layout using LayoutGroup | [Tizen.NUI.LayoutGroup](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.LayoutGroup.html) |
+|CustomView|The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/CustomView) demonstrates how to use View | [Tizen.NUI.BaseComponents.View](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.BaseComponents.View.html)|
+|FlexLayout|The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/FlexLayout) demonstrates how to use FlexLayout | [Tizen.NUI.FlexLayout](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.FlexLayout.html) |
+|GridLayout |The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/GridLayout) demonstrates how to use GridLayout.  | [Tizen.NUI.GridLayout](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.GridLayout.html) |
+|Layer |The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/Layer) demonstrates how to use Layer | [Tizen.NUI.Layer](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.Layer.html) |
+|LinearLayout|The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/LinearLayout) demonstrates how to use LinearLayout | [Tizen.NUI.LinearLayout](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.LinearLayout.html) |
+|Notification |The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/NotificationExample) demonstrates how to use Notification | [Tizen.NUI.Components.Notification](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.Components.Notification.html) |
+|Pagination |The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/Pagination) demonstrates how to use Pagination | [Tizen.NUI.Components.Pagination](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.Components.Pagination.html) |
+|ScrollableBase|The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/ScrollableBaseExample) demonstrates how to use ScrollableBase | [Tizen.NUI.Components.ScrollableBase](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.Components.ScrollableBase.html) |
+|VideoView |The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/VideoViewSample) demonstrates how to use VideoView. It performs several functionalities like forward, backward, play, pause, or stop a video | [Tizen.NUI.BaseComponents.VideoView](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.BaseComponents.VideoView.html) |
+|View |The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/View) demonstrates how to use View | [Tizen.NUI.BaseComponents.View](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.BaseComponents.View.html) |
+|Visuals |The [sample](https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Mobile/NUI/Visuals) demonstrates how to use various visuals using BorderVisual, ImageVisual, or TextVisual | [Tizen.NUI.ImageVisual](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.ImageVisual.html)  [Tizen.NUI.BorderVisual](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.BorderVisual.html)  [Tizen.NUI.TextVisual](https://samsung.github.io/TizenFX/latest/api/Tizen.NUI.TextVisual.html) |
 
-#### TO-BE
-```
-├── Mobile
-│ ├── NUI
-│ │ └── ...
-│ ├── OpenTk
-│ │ └── ...
-│ └── Xamarin.Forms
-│ │ └── ...
-├── Wearable
-│ ├── NUI
-│ │ └── ...
-│ ├── OpenTK
-│ │ └── ...
-│ └── Xamarin.Forms
-│ │ └── ...
-└── TV
-  ├── NUI
-  │ └── ...
-  ├── OpenTK
-  │ └── ...
-  └── Xamarin.Forms
-    └── ...
-```
