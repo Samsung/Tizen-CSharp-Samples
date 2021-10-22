@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Tizen_NUI_SampleAccount.AccountSignOut"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+             BackgroundColor="White">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <!-- Setting Backgound color for appbar-->
+        <AppBar
+            BackgroundColor="Blue">
+            <AppBar.TitleContent>
+                <!-- TextLabel setting title for appbar-->
+                <TextLabel WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+
+                      HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+
+                      HorizontalAlignment="End"
+
+                      VerticalAlignment="Center"
+
+                      BackgroundColor="Blue"
+
+                      TextColor="White"
+
+                      PointSize="12"
+
+                      Text="Sample Account">
+                    <!-- Setting font stye for TextLabel-->
+                    <TextLabel.FontStyle>
+
+                        <PropertyMap>
+
+                            <KeyValue Key="width" Value="expanded"/>
+
+                            <KeyValue Key="weight" Value="medium"/>
+
+                            <KeyValue Key="slant" Value="italic"/>
+
+                        </PropertyMap>
+
+                    </TextLabel.FontStyle>
+
+                </TextLabel>
+
+            </AppBar.TitleContent>
+
+        </AppBar>
+
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. It contains two TextLabels, and Button -->
+    <ContentPage.Content>
+        <b:View Name="AccountSignOutView"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+            HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+            <!-- Setting View layout to linear-->
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="100,10"/>
+            </View.Layout>
+            <!--View contains account ID-->
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Begin"/>
+                </View.Layout>
+
+                <b:TextLabel
+                x:Name="AccountLabel"
+                TextColor="Black" 
+                PointSize = "10" 
+                Text=""/>
+
+            </View>
+            <!--View contains Sample Account ID Label-->
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Begin"/>
+                </View.Layout>
+
+                <b:TextLabel
+                x:Name="SampleAccountIDLable"
+                TextColor="Black" 
+                PointSize = "7" 
+                Text="Sample Account ID"/>
+
+            </View>
+
+            <!--View contains sign out button-->
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                <!--Specifying View layout-->
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="Bottom" Margin="0, 0, 570, 0"/>
+                </View.Layout>
+
+                <!-- Sign Out button, take user back to Sign In page-->
+                <Button 
+                x:Name="SignOutButton"
+                Text="SIGN OUT"
+                PointSize="10"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+
+            </View>
+        </b:View>
+    </ContentPage.Content>
+</ContentPage>
