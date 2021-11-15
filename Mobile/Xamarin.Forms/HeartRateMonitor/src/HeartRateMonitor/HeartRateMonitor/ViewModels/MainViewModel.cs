@@ -429,10 +429,10 @@ namespace HeartRateMonitor.ViewModels
         /// </summary>
         /// <param name="properties">View model instance properties.</param>
         /// <param name="pageNavigation">Page navigation object.</param>
-        public MainViewModel(IDictionary<string, object> properties, PageNavigation pageMavigation)
+        public MainViewModel(IDictionary<string, object> properties, PageNavigation pageNavigation)
         {
             _properties = properties;
-            AppPageNavigation = pageMavigation;
+            AppPageNavigation = pageNavigation;
 
             GetStartedCommand = new Command(ExecuteGetStartedCommand);
             ToggleMeasurementCommand = new Command(ExecuteToggleMeasurementCommand);
