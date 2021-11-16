@@ -1,4 +1,4 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.1.6">
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.7">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -18,11 +18,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TextReader\TextReader.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Tizen.NET" Version="9.0.0.16760">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
