@@ -51,9 +51,19 @@ namespace TextReader.Tizen.Mobile.Views
 
             MainPage main = new MainPage();
 
+            object color;
+            if (main.Resources == null)
+            {
+                color = Color.White;
+            }
+            else
+            {
+                color = main.Resources["MainColor"];
+            }
+
             _rootPage = new NavigationPage(main)
             {
-                BarBackgroundColor = (Color)main.Resources["MainColor"]
+                BarBackgroundColor = (Color)color
             };
 
             return _rootPage;
