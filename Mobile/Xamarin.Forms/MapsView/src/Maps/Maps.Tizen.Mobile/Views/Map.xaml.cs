@@ -97,7 +97,8 @@ namespace Maps.Tizen.Mobile.Views
         /// <summary>
         /// Sets map center to provided position.
         /// </summary>
-        /// <param name="position">Requested position.</param>
+        /// <param name="latitude">Latitude value.</param>
+        /// <param name="longitude">Longitude value.</param>
         private void SetMapCenter(double latitude, double longitude)
         {
             MapComponent.Map.Center = new Geocoordinates(latitude, longitude);
