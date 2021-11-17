@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Tizen_NUI_SampleAccount.AccountSignIn"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+             BackgroundColor="White">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. -->
+    <ContentPage.AppBar>
+        <AppBar
+            Name="appBar"
+            Title="Sample Account"
+            BackgroundColor="Blue">
+            <AppBar.TitleContent>
+                <!-- TextLabel holding Appbar title -->
+                <TextLabel WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+
+                      HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+
+                      HorizontalAlignment="End"
+
+                      VerticalAlignment="Center"
+
+                      BackgroundColor="Blue"
+
+                      TextColor="White"
+
+                      PointSize="12"
+
+                      Text="Sample Account">
+
+                    <TextLabel.FontStyle>
+                        <!-- PropertyMap holding font style for TextLabel -->
+                        <PropertyMap>
+
+                            <KeyValue Key="width" Value="expanded"/>
+
+                            <KeyValue Key="weight" Value="medium"/>
+
+                            <KeyValue Key="slant" Value="italic"/>
+
+                        </PropertyMap>
+
+                    </TextLabel.FontStyle>
+
+                </TextLabel>
+
+            </AppBar.TitleContent>
+
+        </AppBar>
+
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. It contains two TextLabels, two TextFields and Button -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+            HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+            BackgroundColor="White"
+            PositionUsesPivotPoint="True"
+            ParentOrigin="ParentOrigin.Center"
+            PivotPoint="PivotPoint.Center">
+
+            <b:View.Layout >
+                <GridLayout Columns="1" Rows="7" GridOrientation="Vertical" ColumnSpacing="1" RowSpacing="50" Padding="150,150,25,0"/>
+            </b:View.Layout>
+
+            <View 
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                GridLayout.Column="0"
+                GridLayout.Row="0"
+                GridLayout.RowSpan="2">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="Bottom" Margin="0, 0, 0, 0"/>
+                </View.Layout>
+
+                <b:TextLabel
+                x:Name="ID_TextLabel"
+                TextColor="Black" 
+                PointSize = "5" 
+                Text="ID"/>
+
+                <b:TextField
+                x:Name="ID_TextField" 
+                PlaceholderText="ID"
+                BackgroundColor="#f8f8ff"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+
+            </View>
+
+            <View 
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                GridLayout.Column="0"
+                GridLayout.Row="2"
+                GridLayout.RowSpan="2">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="Bottom" Margin="0, 0, 0, 0"/>
+                </View.Layout>
+
+                <b:TextLabel
+                x:Name="PASSWORD_TextLabel"
+                TextColor="Black" 
+                PointSize = "5" 
+                Text="PASS"/>
+
+                <b:TextField 
+                x:Name="PASSWORD_TextField" 
+                PlaceholderText="PASSWORD"
+                BackgroundColor="#f8f8ff"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+
+            </View>
+
+            <Button 
+            x:Name="Submit"
+            Text="SIGN IN"
+            PointSize="10"
+            GridLayout.Column="0"
+            GridLayout.Row="6"
+            GridLayout.RowSpan="1"
+            GridLayout.VerticalStretch="Expand"
+            GridLayout.HorizontalStretch="None"
+            GridLayout.HorizontalAlignment="Center"
+            GridLayout.VerticalAlignment="Center"/>
+        </View>
+    </ContentPage.Content>
+</ContentPage>
