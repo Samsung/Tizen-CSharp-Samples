@@ -45,8 +45,6 @@ namespace IMESample
         /// </summary>
         /// <param name="styleSheet"> A style sheet of IMESample. </param>
         /// <param name="windowMode"> A NUI window mode of IMESample. </param>
-        /// <param name="windowSize"> A window size of IMESample. </param>
-        /// <param name="windowPosition"> A window position of IMESample. </param>
         /// <param name="type"> A window type of IMESample. </param>
         public IMESample(string styleSheet, WindowMode windowMode, WindowType type) : base(styleSheet, windowMode, type)
         {
@@ -69,6 +67,8 @@ namespace IMESample
         /// <summary>
         /// Handle when window is resized
         /// </summary>
+        /// <param name="sender">Window instance</param>
+        /// <param name="e">Event arguments</param>
         private void OnResized(object sender, Window.ResizedEventArgs e)
         {
             Window.WindowOrientation windowOrientation = Window.Instance.GetCurrentOrientation();
@@ -79,6 +79,8 @@ namespace IMESample
         /// <summary>
         /// Handle when key event is occurred
         /// </summary>
+        /// <param name="sender">Window instance</param>
+        /// <param name="e">Event arguments</param>
         private void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))

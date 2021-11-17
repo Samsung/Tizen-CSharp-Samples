@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="9.0.0.16751">
+    <PackageReference Include="Tizen.NET" Version="9.0.0.16761">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.32" />
