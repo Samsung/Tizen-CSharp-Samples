@@ -55,6 +55,8 @@ namespace Maps.Tizen.Mobile.Renderers
 
                         SetNativeControl(control);
                     }
+
+                    mapService?.Dispose();
                 }
 
                 Control.Resized += OnMapViewResized;
