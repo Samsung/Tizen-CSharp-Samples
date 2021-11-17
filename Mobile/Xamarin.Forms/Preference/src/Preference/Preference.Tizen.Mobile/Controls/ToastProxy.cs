@@ -58,7 +58,7 @@ namespace Preference.Tizen.Mobile.Controls
         #region methods
 
         /// <summary>
-        /// Class contructor.
+        /// Class constructor.
         /// Creates internal instance of toast proxy.
         /// </summary>
         public ToastProxy()
