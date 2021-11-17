@@ -129,7 +129,7 @@ namespace Preference.Tizen.Mobile.Renderers
         /// <param name="cell">Actual multiline cell.</param>
         /// <param name="property">Property name.</param>
         /// <param name="realizedView">Set of corresponding properties names and Evas Objects.</param>
-        /// <returns>False if propertiy has been changed. True otherwise.</returns>
+        /// <returns>False if property has been changed. True otherwise.</returns>
         protected override bool OnCellPropertyChanged(Cell cell, string property, Dictionary<string, EvasObject> realizedView)
         {
             MultilineCell multilineCell = (MultilineCell)cell;
