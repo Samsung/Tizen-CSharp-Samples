@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImageGallery.Tizen.Mobile.Controls.MediaItemControl"
+             xmlns:controls="clr-namespace:ImageGallery.Tizen.Mobile.Controls;assembly=ImageGallery.Tizen.Mobile"
+             x:Name="Root">
+
+    <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                    AbsoluteLayout.LayoutFlags="All">
+
+        <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+               AbsoluteLayout.LayoutFlags="All"
+               Aspect="AspectFill"
+               Source="{Binding Source={x:Reference Name='Root'}, Path=ThumbnailPath}" />
+
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     IsVisible="False"
+                     Padding="9">
+            <StackLayout.Triggers>
+                <MultiTrigger TargetType="StackLayout">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding Source={x:Reference Name='Root'}, Path=Favorite, StringFormat='{0}'}"
+                                          Value="True" />
+                        <BindingCondition Binding="{Binding Source={x:Reference Name='Root'}, Path=SelectMode, StringFormat='{0}'}"
+                                          Value="False" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="IsVisible"
+                            Value="True" />
+                </MultiTrigger>
+            </StackLayout.Triggers>
+
+            <Image WidthRequest="50"
+                   Source="favorite_on.png"
+                   HorizontalOptions="End">
+            </Image>
+        </StackLayout>
+
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     IsVisible="{Binding Source={x:Reference Name='Root'}, Path=SelectMode}"
+                     Padding="9">
+
+            <controls:TizenCheckBox x:Name="Checkbox"
+                                     HorizontalOptions="End"
+                                     IsToggled="{Binding Source={x:Reference Name='Root'}, Path=Selected}" />
+        </StackLayout>
+
+        <StackLayout x:Name="Overlay"
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All" />
+    </AbsoluteLayout>
+</ContentView>

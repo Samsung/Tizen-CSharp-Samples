@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImageGallery.Tizen.Mobile.Views.TimelinePage"
+             xmlns:constants="clr-namespace:ImageGallery.Tizen.Mobile.Constants"
+             xmlns:controls="clr-namespace:ImageGallery.Tizen.Mobile.Controls"
+             xmlns:converters="clr-namespace:ImageGallery.Converters;assembly=ImageGallery"
+             Title="ImageGallery"
+             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppMainViewModel}"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="{Binding IsStarted}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseLabel"
+                   TargetType="Label">
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+            <Style x:Key="TitleWelcomeLabel"
+                   BasedOn="{StaticResource BaseLabel}"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.TITLE_LABEL_FONT_SIZE}" />
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.WELCOME_TEXT_COLOR}" />
+            </Style>
+            <Style x:Key="EmptyListLabel"
+                   BasedOn="{StaticResource BaseLabel}"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.MESSAGE_LABEL_FONT_SIZE}" />
+            </Style>
+            <Style x:Key="MessageWelcomeLabel"
+                   BasedOn="{StaticResource TitleWelcomeLabel}"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.MESSAGE_LABEL_FONT_SIZE}" />
+            </Style>
+            <Style x:Key="SelectAllLabel"
+                   BasedOn="{StaticResource BaseLabel}"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{x:Static constants:FontSizeConstants.SELECT_ALL_TEXT_FONT_SIZE}" />
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.SELECT_ALL_TEXT_COLOR}" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="{x:Static constants:ColorConstants.BUTTON_BACKGROUND_NORMAL_COLOR}" />
+                <Setter Property="TextColor"
+                        Value="{x:Static constants:ColorConstants.BUTTON_TEXT_COLOR}" />
+            </Style>
+            <converters:DateConverter x:Key="dateConverter" />
+            <Style x:Key="DayLabel"
+                       TargetType="Label">
+                <Setter Property="FontSize"
+                            Value="{x:Static constants:FontSizeConstants.DAY_LABEL_FONT_SIZE}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <AbsoluteLayout BackgroundColor="{x:Static constants:ColorConstants.PAGE_BACKGROUND_DEFAULT_COLOR}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        IsVisible="False">
+
+            <AbsoluteLayout.Triggers>
+                <DataTrigger Binding="{Binding IsStarted, StringFormat='{0}'}"
+                             TargetType="AbsoluteLayout"
+                             Value="True">
+                    <Setter Property="IsVisible"
+                            Value="True" />
+                </DataTrigger>
+            </AbsoluteLayout.Triggers>
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All"
+                         Spacing="0">
+
+                <AbsoluteLayout x:Name="SelectAll"
+                                IsVisible="False"
+                                HeightRequest="120"
+                                HorizontalOptions="FillAndExpand">
+                    <AbsoluteLayout.Triggers>
+                        <DataTrigger Binding="{Binding IsDeleteState, StringFormat='{0}'}"
+                                     TargetType="AbsoluteLayout"
+                                     Value="True">
+                            <Setter Property="IsVisible"
+                                    Value="True" />
+                        </DataTrigger>
+                    </AbsoluteLayout.Triggers>
+
+                    <Label AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                           AbsoluteLayout.LayoutFlags="All"
+                           HorizontalOptions="StartAndExpand"
+                           Margin="20, 0, 0, 0"
+                           Style="{StaticResource SelectAllLabel}"
+                           Text="Select All"
+                           VerticalOptions="CenterAndExpand" />
+                    <controls:TizenCheckBox AbsoluteLayout.LayoutBounds="1, .5, AutoSize, AutoSize"
+                                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                                            HorizontalOptions="EndAndExpand"
+                                            IsToggled="{Binding IsSelectAll}"
+                                            Margin="0, 0, 20, 0" />
+                    <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                 AbsoluteLayout.LayoutFlags="All">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleSelectAllCommand}" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </AbsoluteLayout>
+
+                <controls:StackListControl ItemsSource="{Binding DayCollection}">
+                    <controls:StackListControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <StackLayout Padding="26, 0, 0, 0">
+                                    <Label HeightRequest="62"
+                                            Style="{StaticResource DayLabel}"
+                                            Text="{Binding Date, Converter={StaticResource dateConverter}}"
+                                            VerticalTextAlignment="Center" />
+                                </StackLayout>
+
+                                <controls:DataGridControl Cols="4"
+                                                          ItemsSource="{Binding Images}">
+                                    <controls:DataGridControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <controls:MediaItemControl Favorite="{Binding IsFavorite}"
+                                                                       ThumbnailPath="{Binding ThumbnailPath}"
+                                                                       SelectMode="{Binding Source={x:Static Application.Current}, Path=AppMainViewModel.IsDeleteState}"
+                                                                       Selected="{Binding IsSelected}"
+                                                                       Command="{Binding ShowDetailsCommand}" />
+                                        </DataTemplate>
+                                    </controls:DataGridControl.ItemTemplate>
+                                </controls:DataGridControl>
+                            </StackLayout>
+                        </DataTemplate>
+                    </controls:StackListControl.ItemTemplate>
+                </controls:StackListControl>
+            </StackLayout>
+        </AbsoluteLayout>
+
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        AbsoluteLayout.LayoutFlags="All">
+
+            <AbsoluteLayout.Triggers>
+                <DataTrigger Binding="{Binding IsDayCollectionEmpty, StringFormat='{0}'}"
+                             TargetType="AbsoluteLayout"
+                             Value="False">
+                    <Setter Property="IsVisible"
+                            Value="False" />
+                </DataTrigger>
+            </AbsoluteLayout.Triggers>
+
+            <Label AbsoluteLayout.LayoutBounds="50, 481, 620, 180"
+                   Style="{StaticResource EmptyListLabel}"
+                   Text="No items&#10;&#10;After you take pictures, they will be shown here." />
+        </AbsoluteLayout>
+
+        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        AbsoluteLayout.LayoutFlags="All">
+
+            <AbsoluteLayout.Triggers>
+                <DataTrigger Binding="{Binding IsStarted, StringFormat='{0}'}"
+                             TargetType="AbsoluteLayout"
+                             Value="True">
+                    <Setter Property="IsVisible"
+                            Value="False" />
+                </DataTrigger>
+            </AbsoluteLayout.Triggers>
+
+            <Image AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Source="bg.png"
+                   Aspect="AspectFill" />
+            <Image AbsoluteLayout.LayoutBounds=".5, 286, 160, 160"
+                   AbsoluteLayout.LayoutFlags="XProportional"
+                   Source="application_icon.png" />
+            <Label AbsoluteLayout.LayoutBounds="0, 446, 720, 67"
+                   Style="{StaticResource TitleWelcomeLabel}"
+                   Text="Welcome" />
+            <Label AbsoluteLayout.LayoutBounds="0, 571, 720, 160"
+                   Style="{StaticResource MessageWelcomeLabel}"
+                   Text="ImageGallery is a sample application&#10;made to demonstrate an arrangement&#10;of the screen by grid layout." />
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 1, 720, AutoSize"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         Padding="112, 0, 112, 34">
+                <Button Command="{Binding StartApplicationCommand}"
+                        FontSize="25"
+                        Text="Get started">
+                    <Button.Triggers>
+                        <DataTrigger Binding="{Binding IsStarted, StringFormat='{0}'}"
+                                     TargetType="Button"
+                                     Value="True">
+                            <Setter Property="IsEnabled"
+                                    Value="False" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
+        </AbsoluteLayout>
+    </AbsoluteLayout>
+</ContentPage>
