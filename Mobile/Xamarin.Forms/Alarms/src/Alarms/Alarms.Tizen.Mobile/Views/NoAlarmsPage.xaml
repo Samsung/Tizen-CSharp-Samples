@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Alarms.Tizen.Mobile.Views.NoAlarmsPage"
+             BackgroundColor="#3DB9CC">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="No Alarms"
+                   FontSize="30"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 272, 0, 0" />
+            <Label Text="There are no alarms set at the moment."
+                   FontSize="22"
+                   HorizontalTextAlignment="Center"
+                   Margin="5, 50, 5, 0"
+                   TextColor="#99FFFFFF" />
+            <StackLayout Padding="112, 0, 112, 34"
+                         VerticalOptions="FillAndExpand">
+                <Button Clicked="AddNewAlarm"
+                        FontSize="25"
+                        Text="Add alarm"
+                        VerticalOptions="EndAndExpand" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarms", "Alarms\Alarms\Alarms.csproj", "{D44CA25E-B1ED-4153-BE88-E937C0B763A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarms.Tizen.Mobile", "Alarms\Alarms.Tizen.Mobile\Alarms.Tizen.Mobile.csproj", "{62E41C54-429F-47D7-89A2-D9D15ACB2193}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D44CA25E-B1ED-4153-BE88-E937C0B763A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D44CA25E-B1ED-4153-BE88-E937C0B763A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D44CA25E-B1ED-4153-BE88-E937C0B763A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D44CA25E-B1ED-4153-BE88-E937C0B763A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E41C54-429F-47D7-89A2-D9D15ACB2193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62E41C54-429F-47D7-89A2-D9D15ACB2193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62E41C54-429F-47D7-89A2-D9D15ACB2193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E41C54-429F-47D7-89A2-D9D15ACB2193}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BDAA2A26-00DA-4EF6-AEB9-629A91922E44}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Alarms.ViewModels;assembly=Alarms"
+             xmlns:converters="clr-namespace:Alarms.Converters;assembly=Alarms"
+             xmlns:controls="clr-namespace:Alarms.Controls;assembly=Alarms"
+             x:Class="Alarms.Tizen.Mobile.Views.AlarmListPage"
+             Title="Alarm list">
+
+    <ContentPage.BindingContext>
+        <viewModels:AlarmListViewModel x:Name="ViewModel" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AlarmInfoToDescriptionConverter x:Key="AlarmInfoToDescriptionConverter" />
+
+            <controls:DialogYesNo x:Key="DeleteDialog"
+                                  Title="Delete confirmation"
+                                  Message="Are you sure you want to delete selected alarms?"
+                                  ExecuteCommand="{Binding Source={x:Reference Name=ViewModel}, Path=YesNoDialogCommand}"
+                                  Result="{Binding  Source={x:Reference Name=ViewModel}, Path=DialogResult}"
+                                  ResultReceived="{Binding  Source={x:Reference Name=ViewModel}, Path=OnResultReceivedCommand}" />
+
+            <controls:DialogOK x:Key="NoSelectionDialog"
+                               Title="Nothing selected"
+                               Message="Please select alarm(s) to delete."
+                               ExecuteCommand="{Binding Source={x:Reference Name=ViewModel}, Path=OKDialogCommand}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="DELETE"
+                     Command="{Binding DeleteAlarmsCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <ListView ItemsSource="{Binding AlarmListItems}"
+                      SelectedItem="{Binding SelectedAlarm, Mode=TwoWay}">
+
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="25, 20, 25, 20"
+                                 MinimumHeightRequest="150">
+                        <Label Text="Select all"
+                               TextColor="#5EC4D4"
+                               FontSize="25"
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="Center" />
+                        <controls:CheckBox HorizontalOptions="End"
+                                           IsToggled="{Binding SelectAllState, Mode=TwoWay}" />
+                    </StackLayout>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"
+                                         HorizontalOptions="StartAndExpand"
+                                         VerticalOptions="Center"
+                                         Padding="25, 20, 25, 20"
+                                         MinimumHeightRequest="150">
+                                <StackLayout HorizontalOptions="StartAndExpand"
+                                             VerticalOptions="Center">
+                                    <Label Text="{Binding AppInfo.AppName}"
+                                           FontSize="25"
+                                           LineBreakMode="TailTruncation"
+                                           WidthRequest="600" />
+                                    <Label Text="{Binding ., Converter={StaticResource AlarmInfoToDescriptionConverter}}"
+                                           FontSize="21"
+                                           TextColor="DarkGray"
+                                           LineBreakMode="TailTruncation"
+                                           WidthRequest="600" />
+                                </StackLayout>
+                                <controls:CheckBox HorizontalOptions="End"
+                                                   IsToggled="{Binding IsSelected, Mode=TwoWay}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout BackgroundColor="#FFFFFF"
+                         Padding="112, 34, 112, 34">
+                <Button Command="{Binding AddNewAlarmCommand}"
+                        FontSize="25"
+                        Text="Add alarm" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

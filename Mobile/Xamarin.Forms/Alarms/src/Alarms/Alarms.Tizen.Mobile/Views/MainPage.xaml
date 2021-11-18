@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Alarms.ViewModels;assembly=Alarms"
+             xmlns:views="clr-namespace:Alarms.Tizen.Mobile.Views;assembly=Alarms.Tizen.Mobile"
+             x:Class="Alarms.Tizen.Mobile.Views.MainPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <viewModels:WelcomePageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="icon.png"
+                   Margin="0, 272, 0, 0" />
+            <Label Text="Welcome"
+                   FontSize="32"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 3, 0, 0" />
+            <Label Text="Alarms sample application demonstrates how to schedule start of application at specified date and time or after delay."
+                   FontSize="24"
+                   HorizontalTextAlignment="Center"
+                   Margin="35, 50, 35, 0"
+                   TextColor="White" />
+            <StackLayout Padding="112, 0, 112, 34"
+                         VerticalOptions="FillAndExpand">
+                <Button Command="{Binding AddNewAlarmCommand}"
+                        FontSize="25"
+                        Text="Set the alarm"
+                        VerticalOptions="EndAndExpand" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

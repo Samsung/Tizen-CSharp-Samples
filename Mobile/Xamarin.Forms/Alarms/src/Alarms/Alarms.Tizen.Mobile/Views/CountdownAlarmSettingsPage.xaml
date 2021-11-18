@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Alarms.Tizen.Mobile.Views.CountdownAlarmSettingsPage"
+             xmlns:controls="clr-namespace:Alarms.Controls;assembly=Alarms"
+             Title="Alarm details">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <controls:DialogOK x:Key="IncorrectDelayValue"
+                               Title="Incorrect delay value"
+                               Message="Please set value greater than zero."
+                               ExecuteCommand="{Binding OKDialogCommand}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="DONE"
+                     Command="{Binding SaveAlarmCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="32, 32, 32, 32"
+                     BackgroundColor="White">
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <controls:VerticalStepper Value="{Binding AlarmDelayHours}"
+                                          Maximum="23" />
+                <Label FontSize="46"
+                       VerticalOptions="Center"
+                       Text=":" />
+            <controls:VerticalStepper Value="{Binding AlarmDelayMinutes}"
+                                          Maximum="59" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
