@@ -163,7 +163,10 @@ namespace Weather.ViewModels
                 OnPropertyChanged(nameof(InitializationCompleted));
 
                 CityTimeZone = new NotificationTask<Models.Location.TimeZone>(InitializeTimeZone());
-                CityTimeZone.PropertyChanged += CityTimeZoneOnPropertyChanged;
+                if (CityTimeZone != null)
+                {
+                    CityTimeZone.PropertyChanged += CityTimeZoneOnPropertyChanged;
+                }
             });
 
             CheckForecastCommand = new Command(CheckForecast);
@@ -241,8 +244,14 @@ namespace Weather.ViewModels
                 CurrentWeather = new NotificationTask<CurrentWeather>(InitializeWeather());
                 Forecast = new NotificationTask<Forecast>(InitializeForecast());
 
-                CurrentWeather.PropertyChanged += CurrentWeatherOnPropertyChanged;
-                Forecast.PropertyChanged += ForecastOnPropertyChanged;
+                if (CurrentWeather != null)
+                {
+                    CurrentWeather.PropertyChanged += CurrentWeatherOnPropertyChanged;
+                }
+                if (Forecast != null)
+                {
+                    Forecast.PropertyChanged += ForecastOnPropertyChanged;
+                }
             }
         }
 
