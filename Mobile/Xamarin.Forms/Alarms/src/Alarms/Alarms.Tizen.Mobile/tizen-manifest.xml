@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="4" package="org.tizen.example.Alarms.Tizen.Mobile" version="1.0.0">
+  <profile name="mobile" />
+  <ui-application appid="org.tizen.example.Alarms.Tizen.Mobile"
+					exec="Alarms.Tizen.Mobile.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+    <label>Alarms.Tizen.Mobile</label>
+    <icon>Alarms.Tizen.Mobile.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+  </ui-application>
+  <privileges>
+    <privilege>http://tizen.org/privilege/alarm.get</privilege>
+    <privilege>http://tizen.org/privilege/alarm.set</privilege>
+    <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+    <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+  </privileges>
+</manifest>

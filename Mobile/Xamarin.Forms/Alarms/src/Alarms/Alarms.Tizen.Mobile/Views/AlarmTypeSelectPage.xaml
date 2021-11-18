@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Alarms.ViewModels;assembly=Alarms"
+             x:Class="Alarms.Tizen.Mobile.Views.AlarmTypeSelectPage"
+             Title="Select alarm type">
+
+    <!-- Binding context should be passed from parent page -->
+
+    <ContentPage.Content>
+        <ListView SelectedItem="{Binding SelectedAlarmType, Mode=TwoWay}">
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:Static Member="viewModels:NewAlarmViewModel.ALARM_TYPE_AFTER_DELAY" />
+                    <x:Static Member="viewModels:NewAlarmViewModel.ALARM_TYPE_AT_DATE" />
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="30, 40, 30, 40">
+                            <Label Text="{Binding .}"
+                                   FontSize="25" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
