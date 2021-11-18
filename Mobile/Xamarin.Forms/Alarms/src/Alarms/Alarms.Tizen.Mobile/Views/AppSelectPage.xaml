@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Alarms.ViewModels;assembly=Alarms"
+             x:Class="Alarms.Tizen.Mobile.Views.AppSelectPage"
+             Title="Choose application">
+
+    <ContentPage.BindingContext>
+        <viewModels:NewAlarmViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding AppListItems}"
+                  SelectedItem="{Binding SelectedApplication, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="30, 40, 30, 40">
+                            <Label Text="{Binding AppName}"
+                                   FontSize="25" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
