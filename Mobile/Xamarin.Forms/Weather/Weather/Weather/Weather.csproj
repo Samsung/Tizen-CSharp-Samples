@@ -7,7 +7,8 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Tizen.NET" Version="9.0.0.16760" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />
   </ItemGroup>
 
   <ItemGroup>
