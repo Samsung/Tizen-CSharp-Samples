@@ -79,8 +79,8 @@ namespace Weather.Controls
         /// <summary>
         /// Updates images source on position changes.
         /// </summary>
-        /// <param name="oldPosition"></param>
-        /// <param name="newPosition"></param>
+        /// <param name="oldPosition">The old position.</param>
+        /// <param name="newPosition">The new position.</param>
         public void UpdateIndicators(int oldPosition, int newPosition)
         {
             _dots[oldPosition].Source = DOT_EMPTY;
