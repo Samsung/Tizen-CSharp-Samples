@@ -31,6 +31,8 @@ namespace Tizen_NUI_SampleAccount
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountSignOut"/> class.
         /// </summary>
+        /// <param name="accountId"> Parameter contains ID of user account</param>
+        /// <param name="userId"> User ID witch user log in with</param>
         public AccountSignOut(int accountId, string userId)
         {
             InitializeComponent();

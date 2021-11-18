@@ -57,7 +57,7 @@ namespace Tizen_NUI_SampleAccount
         /// Event when "SIGN IN" button is clicked.
         /// </summary>
         /// <param name="sender"> Parameter about which object is invoked the current event. </param>
-        /// <param name="args"> Event arguments</param>
+        /// <param name="e"> Event arguments</param>
         private void OnClicked(object sender, ClickedEventArgs e)
         {
             int id = 0;
