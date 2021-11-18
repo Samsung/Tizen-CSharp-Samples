@@ -144,6 +144,7 @@ namespace Weather.ViewModels
                 {
                     dictionary.Add(day, new List<CurrentWeather>());
                 }
+
                 dictionary[day].Add(weather);
             }
 

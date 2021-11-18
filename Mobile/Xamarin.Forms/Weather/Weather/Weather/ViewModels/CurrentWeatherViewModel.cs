@@ -248,6 +248,7 @@ namespace Weather.ViewModels
                 {
                     CurrentWeather.PropertyChanged += CurrentWeatherOnPropertyChanged;
                 }
+
                 if (Forecast != null)
                 {
                     Forecast.PropertyChanged += ForecastOnPropertyChanged;
