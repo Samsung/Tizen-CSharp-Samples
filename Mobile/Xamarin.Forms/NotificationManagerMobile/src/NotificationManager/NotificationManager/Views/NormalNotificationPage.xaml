@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotificationManager.Views.NormalNotificationPage"
+             xmlns:models="clr-namespace:NotificationManager.Models;assembly=NotificationManager"
+             xmlns:views="clr-namespace:NotificationManager.Views;assembly=NotificationManager"
+             xmlns:menuItem="clr-namespace:NotificationManager.Controls.MenuItem;assembly=NotificationManager"
+             xmlns:converters="clr-namespace:NotificationManager.Converters;assembly=NotificationManager"
+             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppNotificationManagerViewModel}"
+             Title="Create">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="SEND"
+                     Order="Primary"
+                     Command="{Binding PostNormalNotificationCommand}" />
+        <ToolbarItem Text="BACK"
+                     Order="Secondary"
+                     Command="{Binding NavigateBackCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:PathLengthShortenerConverter x:Key="PathLengthShortenerConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout BackgroundColor="White">
+        <TableView Intent="Menu"
+                   HasUnevenRows="True">
+            <TableRoot>
+                <TableSection>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout BackgroundColor="White">
+                                <Entry Placeholder="Title"
+                                       FontFamily="BreezeSans Regular"
+                                       FontSize="26"
+                                       Margin="35, 36, 35, 0"
+                                       Text="{Binding TitleText, Mode=OneWayToSource}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout BackgroundColor="White">
+                                <Entry Placeholder="Content"
+                                       FontFamily="BreezeSans Regular"
+                                       FontSize="26"
+                                       Margin="35, 58, 30, 23"
+                                       Text="{Binding ContentText, Mode=OneWayToSource}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                    <menuItem:MenuTextStatusItem Text="Background image"
+                                                 Status="{Binding BackgroundPath, Converter={StaticResource PathLengthShortenerConverter}}"
+                                                 Command="{Binding LaunchMyFileCommand}"
+                                                 CommandParameter="{x:Static models:PathCategory.Background}" />
+                    <menuItem:MenuTextStatusItem Text="Icon"
+                                                 Status="{Binding IconPath, Converter={StaticResource PathLengthShortenerConverter}}"
+                                                 Command="{Binding LaunchMyFileCommand}"
+                                                 CommandParameter="{x:Static models:PathCategory.Icon}" />
+                    <menuItem:MenuTextStatusSwitchItem Text="Led"
+                                                       StatusOn="{Binding LedOn, Mode=TwoWay}"
+                                                       IsEnabled="{Binding IsLedAvailable}" />
+                    <menuItem:MenuTextStatusImageItem Text="Led settings"
+                                                      Status="{Binding LedOnOffStatus}"
+                                                      ImagePath="led_icon.png"
+                                                      ImageColor="{Binding ImageColor}"
+                                                      Command="{Binding NavigateToCommand}"
+                                                      CommandParameter="{x:Type views:LedSettingsPage}"
+                                                      IsEnabled="{Binding IsLedAvailable}" />
+                    <menuItem:MenuTextStatusSwitchItem Text="Sound"
+                                                       StatusOn="{Binding SoundOn, Mode=TwoWay}" />
+                    <menuItem:MenuTextStatusItem Text="Sound path"
+                                                 Status="{Binding SoundPath, Converter={StaticResource PathLengthShortenerConverter}}"
+                                                 Command="{Binding LaunchMyFileCommand}"
+                                                 CommandParameter="{x:Static models:PathCategory.Sound}" />
+                    <menuItem:MenuTextStatusItem Text="Thumbnail"
+                                                 Status="{Binding ThumbnailPath, Converter={StaticResource PathLengthShortenerConverter}}"
+                                                 Command="{Binding LaunchMyFileCommand}"
+                                                 CommandParameter="{x:Static models:PathCategory.Thumbnail}" />
+                    <menuItem:MenuTextStatusSwitchItem Text="Vibration"
+                                                       StatusOn="{Binding VibrationOn, Mode=TwoWay}" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </StackLayout>
+</ContentPage>

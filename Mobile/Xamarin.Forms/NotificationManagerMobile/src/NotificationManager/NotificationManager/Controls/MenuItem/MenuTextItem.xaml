@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="NotificationManager.Controls.MenuItem.MenuTextItem">
+
+    <StackLayout Padding="20"
+                 HeightRequest="100"
+                 BackgroundColor="White">
+
+        <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer x:Name="GestureRecognizer" />
+        </StackLayout.GestureRecognizers>
+
+        <Label x:Name="TextLabel"
+               VerticalOptions="CenterAndExpand"
+               FontFamily="BreezeSans Regular"
+               FontSize="27"
+               Margin="12, 0, 12, 0" />
+
+    </StackLayout>
+</ViewCell>

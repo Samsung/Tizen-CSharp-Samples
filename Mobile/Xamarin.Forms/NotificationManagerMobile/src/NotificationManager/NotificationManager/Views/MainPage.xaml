@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotificationManager.Views.MainPage"
+             xmlns:menuItemControls="clr-namespace:NotificationManager.Controls.MenuItem;assembly=NotificationManager"
+             xmlns:views="clr-namespace:NotificationManager.Views;assembly=NotificationManager"
+             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppNotificationManagerViewModel}"
+             NavigationPage.HasBackButton="False"
+             x:Name="mainPage"
+             Title="Notification Manager"
+             BackgroundColor="White">
+
+    <TableView Intent="Menu">
+        <TableRoot>
+            <TableSection>
+                <menuItemControls:MenuTextItem Text="Create normal notification"
+                                               Command="{Binding NavigateToCommand}"
+                                               CommandParameter="{x:Type views:NormalNotificationPage}" />
+                <menuItemControls:MenuTextItem Text="Create ongoing notification"
+                                               Command="{Binding NavigateToCommand}"
+                                               CommandParameter="{x:Type views:OngoingNotificationPage}" />
+                <menuItemControls:MenuTextItem Text="Clear all notifications"
+                                               Tapped="ClearNotificationsAlertAsync" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>

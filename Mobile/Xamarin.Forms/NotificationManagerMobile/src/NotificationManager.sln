@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationManager", "NotificationManager\NotificationManager\NotificationManager.csproj", "{94420E46-533E-483F-845F-046380E2FF18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationManager.Tizen.Mobile", "NotificationManager\NotificationManager.Tizen.Mobile\NotificationManager.Tizen.Mobile.csproj", "{5D160CCD-418C-44B3-94E3-E1E5C552AF48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94420E46-533E-483F-845F-046380E2FF18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94420E46-533E-483F-845F-046380E2FF18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94420E46-533E-483F-845F-046380E2FF18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94420E46-533E-483F-845F-046380E2FF18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D160CCD-418C-44B3-94E3-E1E5C552AF48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D160CCD-418C-44B3-94E3-E1E5C552AF48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D160CCD-418C-44B3-94E3-E1E5C552AF48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D160CCD-418C-44B3-94E3-E1E5C552AF48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8F7FD8C-81B9-4E25-8AF6-6D8F59BBF829}
+	EndGlobalSection
+EndGlobal

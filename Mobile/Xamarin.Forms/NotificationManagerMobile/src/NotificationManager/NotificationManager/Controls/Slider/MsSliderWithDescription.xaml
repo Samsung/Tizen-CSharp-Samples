@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<AbsoluteLayout xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:converters="clr-namespace:NotificationManager.Converters;assembly=NotificationManager"
+                x:Class="NotificationManager.Controls.Slider.MsSliderWithDescription">
+
+    <AbsoluteLayout.Resources>
+        <ResourceDictionary>
+            <converters:SliderValueToMsConverter x:Key="SliderValueToMsConverter" />
+        </ResourceDictionary>
+    </AbsoluteLayout.Resources>
+
+    <StackLayout BackgroundColor="White"
+                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                 AbsoluteLayout.LayoutFlags="SizeProportional">
+
+        <Grid Margin="35,0,35,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="TitleLabel"
+                   FontFamily="BreezeSans Regular"
+                   FontSize="26"
+                   Grid.Column="0" />
+
+            <Label x:Name="StatusLabel"
+                   FontFamily="BreezeSans Regular"
+                   FontSize="21"
+                   TextColor="#737373"
+                   Grid.Column="2"
+                   Text="{Binding Source={x:Reference ValueSlider},
+                                  Path=Value,
+                                  Converter={x:StaticResource SliderValueToMsConverter}}" />
+
+        </Grid>
+
+        <Slider x:Name="ValueSlider" />
+    </StackLayout>
+
+</AbsoluteLayout>

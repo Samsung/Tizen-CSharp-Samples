@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sliderControls="clr-namespace:NotificationManager.Controls.Slider;assembly=NotificationManager"
+             xmlns:converters="clr-namespace:NotificationManager.Converters;assembly=NotificationManager"
+             BindingContext="{Binding Source={x:Static Application.Current}, Path=AppNotificationManagerViewModel}"
+             x:Class="NotificationManager.Views.LedSettingsPage"
+             Title="Led Settings">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:SliderValueConverter x:Key="SliderValueConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="DONE"
+                     Order="Primary"
+                     Command="{Binding NavigateBackCommand}" />
+        <ToolbarItem Text="CANCEL"
+                     Order="Secondary"
+                     Command="{Binding NavigateBackCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout BackgroundColor="White">
+        <ColorSelector Margin="0, 2, 0, 0"
+                                  SelectedColor="{Binding ImageColor, Mode=TwoWay}" />
+
+        <sliderControls:MsSliderWithDescription TitleLabelText="On time of led"
+                                                TitleLabelMargin="0, 13, 0, 0"
+                                                StatusLabelMargin="0, 20, 0, 0"
+                                                ValueSliderMargin="30, 1, 30, 0"
+                                                SliderValue="{Binding LedOnValue, Mode=TwoWay,
+                                                              Converter={StaticResource SliderValueConverter},
+                                                              ConverterParameter=5000}" />
+
+        <sliderControls:MsSliderWithDescription TitleLabelText="Off time of led"
+                                                TitleLabelMargin="0, 47, 0, 0"
+                                                StatusLabelMargin="0, 54, 0, 0"
+                                                ValueSliderMargin="30, 0, 30, 0"
+                                                SliderValue="{Binding LedOffValue, Mode=TwoWay,
+                                                              Converter={StaticResource SliderValueConverter},
+                                                              ConverterParameter=5000}" />
+    </StackLayout>
+
+</ContentPage>

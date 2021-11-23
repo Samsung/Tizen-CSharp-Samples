@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="NotificationManager.Controls.MenuItem.MenuTextStatusItem">
+
+    <StackLayout Padding="20"
+                 Spacing="0"
+                 BackgroundColor="White">
+
+        <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer x:Name="GestureRecognizer" />
+        </StackLayout.GestureRecognizers>
+
+        <Label x:Name="TextLabel"
+               VerticalOptions="Center"
+               FontFamily="BreezeSans Regular"
+               FontSize="26"
+               Margin="12, 0, 12, 0" />
+
+        <Label x:Name="StatusLabel"
+               VerticalOptions="Center"
+               FontFamily="BreezeSans Regular"
+               FontSize="21"
+               Margin="12, 0, 12, 0"
+               TextColor="#737373"
+               LineBreakMode="CharacterWrap" />
+    </StackLayout>
+</ViewCell>
