@@ -18,7 +18,6 @@ using ImageGallery.Tizen.Mobile.Renderers;
 using System;
 using Xamarin.Forms;
 using EPopup = ElmSharp.Popup;
-using TForms = Xamarin.Forms.Platform.Tizen.Forms;
 
 [assembly: Dependency(typeof(ToastRenderer))]
 namespace ImageGallery.Tizen.Mobile.Renderers
@@ -101,7 +100,7 @@ namespace ImageGallery.Tizen.Mobile.Renderers
         /// </summary>
         public ToastRenderer()
         {
-            _control = new EPopup(TForms.NativeParent)
+            _control = new EPopup(Forms.NativeParent)
             {
                 Style = DefaultStyle,
                 AllowEvents = true,

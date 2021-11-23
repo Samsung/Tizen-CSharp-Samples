@@ -15,6 +15,7 @@
  */
 using ImageGallery.Models;
 using Tizen.Security;
+using Xamarin.Forms;
 
 namespace ImageGallery.Tizen.Mobile
 {
@@ -60,7 +61,7 @@ namespace ImageGallery.Tizen.Mobile
         static void Main(string[] args)
         {
             var app = new Program();
-            global::Xamarin.Forms.Platform.Tizen.Forms.Init(app);
+            Forms.Init(app);
             app.Run(args);
         }
 

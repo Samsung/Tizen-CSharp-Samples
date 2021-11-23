@@ -130,7 +130,7 @@ namespace ImageGallery.Tizen.Mobile.Views
             var toolbarItem = new ToolbarItem()
             {
                 Order = ToolbarItemOrder.Primary,
-                Icon = AppMainViewModel.CurrentImageIsFavorite ? FAVORITE_ON : FAVORITE_OFF
+                IconImageSource = AppMainViewModel.CurrentImageIsFavorite ? FAVORITE_ON : FAVORITE_OFF
             };
 
             toolbarItem.SetBinding(MenuItem.CommandProperty, new Binding("ToggleIsFavoriteCommand"));

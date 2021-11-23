@@ -15,6 +15,7 @@
  */
 using System;
 using ElmSharp;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 
 namespace ImageGallery.Tizen.Mobile.Controls.PopupView

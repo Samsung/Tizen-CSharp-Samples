@@ -15,6 +15,7 @@
  */
 using ElmSharp;
 using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 
 namespace ImageGallery.Tizen.Mobile.Services
