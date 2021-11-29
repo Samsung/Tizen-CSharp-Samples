@@ -119,8 +119,8 @@ namespace Calendar.ViewModels
         private void UpdateList()
         {
             MonthDateTime = CacheData.CurrentDateTime;
-            RecordItemProvider.Instance.GetMonthRecords(MonthDateTime);
-            RecordList = RecordItemProvider.Instance.ItemList;
+            //RecordItemProvider.Instance.GetMonthRecords(MonthDateTime);
+            //RecordList = RecordItemProvider.Instance.ItemList;
         }
 
         /// <summary>
