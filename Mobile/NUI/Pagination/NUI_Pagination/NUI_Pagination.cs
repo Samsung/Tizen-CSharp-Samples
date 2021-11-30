@@ -40,7 +40,6 @@ namespace NUI_Pagination
                     Normal = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/gray.png",
                     Selected = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/blue.png"
                 },
-                Name = "Pagination",
                 /// size of the pagination box
                 Size = new Size(500, 200),
                 BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f),
