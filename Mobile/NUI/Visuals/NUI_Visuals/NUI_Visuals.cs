@@ -357,7 +357,6 @@ namespace NUI_Visuals
                     /// obligatory properties
                     ThisColorVisual.MixColor = new Color(0.2f, 0.0f, 1.0f, 0.7f);
                     /// optional properties
-                    ThisColorVisual.CornerRadius = 35.0f;
                     ThisVisualMap = ThisColorVisual;
                     break;
 
