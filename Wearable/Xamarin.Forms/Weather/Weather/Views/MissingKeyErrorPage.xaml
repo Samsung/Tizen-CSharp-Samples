@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
              xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
              x:Class="Weather.Views.MissingKeyErrorPage"
              NavigationPage.HasNavigationBar="False">
 
-    <w:CirclePage.BindingContext>
+    <ContentPage.BindingContext>
         <viewModels:ApiErrorViewModel />
-    </w:CirclePage.BindingContext>
+    </ContentPage.BindingContext>
 
-    <w:CirclePage.ActionButton>
+    <!--<ContentPage.ActionButton>
         <w:ActionButtonItem Command="{Binding ExitAppCommand}" Text="Exit app" />
-    </w:CirclePage.ActionButton>
-    
-    <w:CirclePage.Content>
+    </ContentPage.ActionButton>-->
+
+    <ContentPage.Content>
         <StackLayout 
             VerticalOptions="CenterAndExpand"
             HorizontalOptions="CenterAndExpand"
@@ -32,6 +32,6 @@
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center" />
         </StackLayout>
-    </w:CirclePage.Content>
+    </ContentPage.Content>
 
-</w:CirclePage>
+</ContentPage>
