@@ -200,6 +200,7 @@ namespace Weather.ViewModels
         /// <summary>
         /// Loads list of cities from JSON file.
         /// </summary>
+        /// <returns>Task with supported city list.</returns>
         private Task<CityProvider> LoadCityList()
         {
             var tcs = new TaskCompletionSource<CityProvider>();
