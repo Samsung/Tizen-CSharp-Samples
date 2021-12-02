@@ -52,6 +52,7 @@ namespace Weather
             {
                 root = new MissingKeyErrorPage();
             }
+
             MainPage = new NavigationPage(root);
         }
 
