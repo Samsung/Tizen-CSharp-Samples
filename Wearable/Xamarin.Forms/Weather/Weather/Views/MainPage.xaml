@@ -26,14 +26,14 @@
             Spacing="5">
 
             <Label Text="Weather App"
-                   FontSize="12"
+                   FontSize="36"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="End" 
                    HeightRequest="120"
                    MinimumHeightRequest="120"/>
 
             <Label Text="Country code:"
-                   FontSize="8"  
+                   FontSize="24"  
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center" />
 
@@ -48,7 +48,7 @@
             </w:PopupEntry>
 
             <Label Text="City:"
-                   FontSize="8"
+                   FontSize="24"
                    HorizontalOptions="Fill"
                    VerticalOptions="Fill"
                    HorizontalTextAlignment="Center"
@@ -65,7 +65,7 @@
 
 
             <Label Text="Matching Cities:"
-                   FontSize="6"
+                   FontSize="18"
                    HorizontalOptions="Fill"
                    VerticalOptions="Fill"
                    HorizontalTextAlignment="Center"
@@ -84,7 +84,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <Label Text="{Binding Name}"
-                                   FontSize="10"
+                                   FontSize="30"
                                    HeightRequest="50"
                                    HorizontalTextAlignment="Center"
                                    VerticalTextAlignment="Center"
