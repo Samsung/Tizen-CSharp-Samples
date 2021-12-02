@@ -2,7 +2,7 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             xmlns:tizen="clr-namespace:Xamarin.Forms.PlatformConfiguration.TizenSpecific;assembly=Xamarin.Forms.Core"
              xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
              x:Class="Weather.Views.MissingKeyErrorPage"
              NavigationPage.HasNavigationBar="False">
@@ -11,13 +11,9 @@
         <viewModels:ApiErrorViewModel />
     </ContentPage.BindingContext>
 
-    <!--<ContentPage.ActionButton>
-        <w:ActionButtonItem Command="{Binding ExitAppCommand}" Text="Exit app" />
-    </ContentPage.ActionButton>-->
-
     <ContentPage.Content>
         <StackLayout 
-            VerticalOptions="CenterAndExpand"
+            VerticalOptions="EndAndExpand"
             HorizontalOptions="CenterAndExpand"
             Orientation="Vertical">
             <Label
@@ -28,9 +24,15 @@
                 TextColor="OrangeRed"/>
             <Label
                 Text="API key is not set. Please, define the key in &quot;ApiConfig.cs&quot; file and rebuild application."
-                FontSize="8"              
+                FontSize="24"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center" />
+            <Button
+                Margin="0,20"
+                Text="Exit app"
+                Command="{Binding ExitAppCommand}"
+                tizen:VisualElement.Style="bottom">
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 
