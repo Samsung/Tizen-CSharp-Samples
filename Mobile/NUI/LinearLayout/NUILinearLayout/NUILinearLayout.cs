@@ -81,6 +81,7 @@ namespace NUILinearLayout
             View1 = new View();
             View1.BackgroundColor = new Color(0.8f, 0.7f, 0.3f, 1.0f);
             View1.WidthSpecification = LayoutParamPolicies.MatchParent;
+            View1.HeightSpecification = LayoutParamPolicies.MatchParent;
             View1.Weight = 0.45f;
             View1.Padding = new Extents(10, 10, 10, 10);
             View1.Margin = new Extents(5, 5, 5, 5);
@@ -96,6 +97,7 @@ namespace NUILinearLayout
             View2 = new View();
             View2.BackgroundColor = new Color(0.8f, 0.7f, 0.3f, 1.0f);
             View2.WidthSpecification = LayoutParamPolicies.MatchParent;
+            View2.HeightSpecification = LayoutParamPolicies.MatchParent;
             View2.Weight = 0.25f;
             View2.Margin = new Extents(5, 5, 5, 5);
 
@@ -110,6 +112,7 @@ namespace NUILinearLayout
             View3 = new View();
             View3.BackgroundColor = new Color(0.8f, 0.7f, 0.3f, 1.0f);
             View3.WidthSpecification = LayoutParamPolicies.MatchParent;
+            View3.HeightSpecification = LayoutParamPolicies.MatchParent;
             View3.Weight = 0.3f;
             View3.Margin = new Extents(5, 5, 5, 5);
 
@@ -139,6 +142,7 @@ namespace NUILinearLayout
             // Add text on the left side
             TextLeft = new TextLabel();
             TextLeft.BackgroundColor = new Color(0.8f, 0.1f, 0.1f, 1.0f);
+            TextLeft.WidthSpecification = LayoutParamPolicies.MatchParent;
             TextLeft.HeightSpecification = LayoutParamPolicies.MatchParent;
             TextLeft.Weight = 0.3f;
             TextLeft.TextColor = new Color(0.8f, 0.85f, 0.9f, 1.0f);
@@ -150,6 +154,7 @@ namespace NUILinearLayout
             // Add text on the right side
             TextRight = new TextLabel();
             TextRight.BackgroundColor = new Color(0.8f, 0.1f, 0.1f, 1.0f);
+            TextRight.WidthSpecification = LayoutParamPolicies.MatchParent;
             TextRight.HeightSpecification = LayoutParamPolicies.MatchParent;
             TextRight.Weight = 0.7f;
             TextRight.TextColor = new Color(0.8f, 0.85f, 0.9f, 1.0f);
@@ -201,24 +206,28 @@ namespace NUILinearLayout
         {
             Color1 = new View();
             Color1.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 1.0f);
+            Color1.WidthSpecification = LayoutParamPolicies.MatchParent;
             Color1.HeightSpecification = LayoutParamPolicies.MatchParent;
             Color1.Weight = 0.25f;
             Color1.Margin = new Extents(10, 10, 10, 10);
 
             Color2 = new View();
             Color2.BackgroundColor = new Color(0.9f, 0.9f, 0.9f, 1.0f);
+            Color2.WidthSpecification = LayoutParamPolicies.MatchParent;
             Color2.HeightSpecification = LayoutParamPolicies.MatchParent;
             Color2.Weight = 0.25f;
             Color2.Margin = new Extents(10, 10, 10, 10);
 
             Color3 = new View();
             Color3.BackgroundColor = new Color(0.1f, 0.1f, 0.1f, 1.0f);
+            Color3.WidthSpecification = LayoutParamPolicies.MatchParent;
             Color3.HeightSpecification = LayoutParamPolicies.MatchParent;
             Color3.Weight = 0.25f;
             Color3.Margin = new Extents(10, 10, 10, 10);
 
             Color4 = new View();
             Color4.BackgroundColor = new Color(0.9f, 0.9f, 0.9f, 1.0f);
+            Color4.WidthSpecification = LayoutParamPolicies.MatchParent;
             Color4.HeightSpecification = LayoutParamPolicies.MatchParent;
             Color4.Weight = 0.25f;
             Color4.Margin = new Extents(10, 10, 10, 10);
