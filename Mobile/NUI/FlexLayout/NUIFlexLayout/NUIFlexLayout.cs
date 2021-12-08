@@ -63,36 +63,34 @@ namespace NUIFlexLayout
         private void InitViews()
         {
             // Initialize Root View
-            RootView = new View();
-            RootView.PositionUsesPivotPoint = true;
-            RootView.PivotPoint = PivotPoint.Center;
-            RootView.ParentOrigin = ParentOrigin.Center;
-            RootView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            RootView.HeightResizePolicy = ResizePolicyType.FillToParent;
-            RootView.BackgroundColor = Color.Black;
+            RootView = new View()
+            {
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                },
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+                BackgroundColor = Color.Black,
+            };
 
             // Initialize Top View
-            TopView = new View();
-            TopView.PositionUsesPivotPoint = true;
-            TopView.PivotPoint = PivotPoint.TopCenter;
-            TopView.ParentOrigin = new Vector3(0.5f, 0.05f, 0.0f);
-            TopView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            TopView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            TopView.SetSizeModeFactor(new Vector3(0.0f, 0.7f, 0.0f));
-            TopView.Padding = new Extents(20, 20, 20, 20);
-            TopView.BackgroundColor = Color.Black;
+            TopView = new View()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+                Padding = new Extents(20, 20, 20, 20),
+                BackgroundColor = Color.Black,
+            };
 
             // Initialize Button View
-            ButtonView = new View();
-            ButtonView.PositionUsesPivotPoint = true;
-            ButtonView.PivotPoint = PivotPoint.TopCenter;
-            ButtonView.ParentOrigin = new Vector3(0.5f, 0.85f, 0.0f);
-            ButtonView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            ButtonView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            ButtonView.SetSizeModeFactor(new Vector3(0.0f, 0.2f, 0.0f));
-            ButtonView.Padding = new Extents(20, 20, 20, 20);
-            ButtonView.BackgroundColor = Color.Black;
-
+            ButtonView = new View()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Padding = new Extents(20, 20, 20, 20),
+                BackgroundColor = Color.Black,
+            };
 
             // Add child views.
             RootView.Add(TopView);
@@ -108,14 +106,17 @@ namespace NUIFlexLayout
         private void InitFlex()
         {   
             // Initialize Flex View
-            FlexView = new View();
-            FlexView.PositionUsesPivotPoint = true;
-            FlexView.PivotPoint = PivotPoint.Center;
-            FlexView.ParentOrigin = ParentOrigin.Center;
-            FlexView.HeightSpecification = LayoutParamPolicies.MatchParent;
-            FlexView.WidthSpecification = LayoutParamPolicies.MatchParent;
-            FlexView.BackgroundColor = Color.Black;
-            FlexView.Layout = new FlexLayout() {WrapType = FlexLayout.FlexWrapType.Wrap};
+            FlexView = new View()
+            {
+                Layout = new FlexLayout()
+                {
+                    WrapType = FlexLayout.FlexWrapType.Wrap
+                },
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                BackgroundColor = Color.Black,
+            };
+            
             TopView.Add(FlexView);
 
             // Add elements to Flex View
@@ -139,40 +140,48 @@ namespace NUIFlexLayout
             ButtonView.Layout = ButtonLayout;
 
             // Initialize Button1
-            Button1 = new Button();
-            Button1.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
-            Button1.HeightResizePolicy = ResizePolicyType.FillToParent;
-            Button1.Text = "Dir";
-            Button1.TextColor = Color.White;
-            Button1.Margin = new Extents(10, 10, 10, 10);
-            Button1.Weight = 0.25f;
+            Button1 = new Button()
+            {
+                BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f),
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Text = "Dir",
+                TextColor = Color.White,
+                Margin = new Extents(10, 10, 10, 10),
+            };
 
             // Initialize Button2
-            Button2 = new Button();
-            Button2.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
-            Button2.HeightResizePolicy = ResizePolicyType.FillToParent;
-            Button2.Text = "Just";
-            Button2.TextColor = Color.White;
-            Button2.Margin = new Extents(10, 10, 10, 10);
-            Button2.Weight = 0.25f;
+            Button2 = new Button()
+            {
+                BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f),
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Text = "Just",
+                TextColor = Color.White,
+                Margin = new Extents(10, 10, 10, 10),
+            };
 
             // Initialize Button3
-            Button3 = new Button();
-            Button3.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
-            Button3.HeightResizePolicy = ResizePolicyType.FillToParent;
-            Button3.Text = "Align";
-            Button3.TextColor = Color.White;
-            Button3.Margin = new Extents(10, 10, 10, 10);
-            Button3.Weight = 0.25f;
+            Button3 = new Button()
+            {
+                BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f),
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Text = "Align",
+                TextColor = Color.White,
+                Margin = new Extents(10, 10, 10, 10),
+            };
 
             // Initialize Button4
-            Button4 = new Button();
-            Button4.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
-            Button4.HeightResizePolicy = ResizePolicyType.FillToParent;
-            Button4.Text = "Wrap";
-            Button4.TextColor = Color.White;
-            Button4.Margin = new Extents(10, 10, 10, 10);
-            Button4.Weight = 0.25f;
+            Button4 = new Button()
+            {
+                BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f),
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Text = "Wrap",
+                TextColor = Color.White,
+                Margin = new Extents(10, 10, 10, 10),
+            };
 
             // Add Buttons to parent view
             ButtonView.Add(Button1);
