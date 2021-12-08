@@ -72,35 +72,35 @@ namespace NUIGridLayout
         /// </summary>
         private void InitViews()
         {
-            RootView = new View();
-            RootView.PositionUsesPivotPoint = true;
-            RootView.PivotPoint = PivotPoint.Center;
-            RootView.ParentOrigin = ParentOrigin.Center;
-            RootView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            RootView.HeightResizePolicy = ResizePolicyType.FillToParent;
+            RootView = new View()
+            {
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                },
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+            };
 
-            TopView = new View();
-            TopView.PositionUsesPivotPoint = true;
-            TopView.PivotPoint = PivotPoint.TopCenter;
-            TopView.ParentOrigin = new Vector3(0.5f, 0.05f, 0.0f);
-            TopView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            TopView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            TopView.SetSizeModeFactor(new Vector3(0.0f, 0.7f, 0.0f));
-            TopView.Padding = new Extents(20, 20, 20, 20);
+            TopView = new View()
+            {
+                Layout = new GridLayout()
+                {
+                    Columns = ColumnCnt,
+                },
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+                Padding = new Extents(20, 20, 20, 20),
+            };
 
-            GridLayout MyGridLayout = new GridLayout();
-            MyGridLayout.Columns = ColumnCnt;
-            TopView.Layout = MyGridLayout;
             InitGrid();
 
-            ButtonView = new View();
-            ButtonView.PositionUsesPivotPoint = true;
-            ButtonView.PivotPoint = PivotPoint.TopCenter;
-            ButtonView.ParentOrigin = new Vector3(0.5f, 0.85f, 0.0f);
-            ButtonView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            ButtonView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            ButtonView.SetSizeModeFactor(new Vector3(0.0f, 0.2f, 0.0f));
-            ButtonView.Padding = new Extents(20, 20, 20, 20);
+            ButtonView = new View()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Padding = new Extents(20, 20, 20, 20),
+            };
 
             RootView.Add(TopView);
             RootView.Add(ButtonView);
@@ -132,21 +132,25 @@ namespace NUIGridLayout
             ButtonLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
             ButtonView.Layout = ButtonLayout;
 
-            Button1 = new Button();
-            Button1.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
-            Button1.HeightResizePolicy = ResizePolicyType.FillToParent;
-            Button1.Text = "Remove";
-            Button1.TextColor = Color.White;
-            Button1.Margin = new Extents(10, 10, 10, 10);
-            Button1.Weight = 0.5f;
+            Button1 = new Button()
+            {
+                BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f),
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Text = "Remove",
+                TextColor = Color.White,
+                Margin = new Extents(10, 10, 10, 10),
+            };
 
-            Button2 = new Button();
-            Button2.BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f);
-            Button2.HeightResizePolicy = ResizePolicyType.FillToParent;
-            Button2.Text = "Add";
-            Button2.TextColor = Color.White;
-            Button2.Margin = new Extents(10, 10, 10, 10);
-            Button2.Weight = 0.5f;
+            Button2 = new Button()
+            {
+                BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f),
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Text = "Add",
+                TextColor = Color.White,
+                Margin = new Extents(10, 10, 10, 10),
+            };
 
             ButtonView.Add(Button1);
             ButtonView.Add(Button2);
@@ -163,9 +167,8 @@ namespace NUIGridLayout
         private void Button1Clicked(object sender, Button.ClickEventArgs e)
         {
             ColumnCnt = ColumnCnt - 1 > 0 ? ColumnCnt - 1 : 1;
-            GridLayout MyGridLayout = new GridLayout();
+            var MyGridLayout = TopView.Layout as GridLayout;
             MyGridLayout.Columns = ColumnCnt;
-            TopView.Layout = MyGridLayout;
         }
 
         /// <summary>
@@ -176,9 +179,8 @@ namespace NUIGridLayout
         private void Button2Clicked(object sender, Button.ClickEventArgs e)
         {
             ++ColumnCnt;
-            GridLayout MyGridLayout = new GridLayout();
+            var MyGridLayout = TopView.Layout as GridLayout;
             MyGridLayout.Columns = ColumnCnt;
-            TopView.Layout = MyGridLayout;
         }
 
         /// <summary>
