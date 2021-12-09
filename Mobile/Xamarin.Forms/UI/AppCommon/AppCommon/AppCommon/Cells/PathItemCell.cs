@@ -66,7 +66,7 @@ namespace AppCommon.Cells
                 Text = "Description",
                 HorizontalOptions = LayoutOptions.StartAndExpand,
                 VerticalOptions = LayoutOptions.EndAndExpand,
-                FontSize = 30 * 72 * 2.6 / 316,
+                FontSize = 30,
                 FontAttributes = FontAttributes.Bold,
             };
             descriptionLabel.SetBinding(Label.TextProperty, "Title");
@@ -76,7 +76,7 @@ namespace AppCommon.Cells
                 Text = "Path",
                 HorizontalOptions = LayoutOptions.StartAndExpand,
                 VerticalOptions = LayoutOptions.StartAndExpand,
-                FontSize = 26 * 72 * 2.6 / 316,
+                FontSize = 25,
                 TextColor = Color.FromRgb(146, 146, 146),
                 LineBreakMode = LineBreakMode.CharacterWrap
             };

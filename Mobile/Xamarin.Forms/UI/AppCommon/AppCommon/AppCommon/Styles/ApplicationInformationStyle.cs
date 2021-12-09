@@ -11,7 +11,7 @@ namespace AppCommon.Styles
         {
             Setters  =
             {
-                new Setter { Property = Label.FontSizeProperty, Value = 25 * 72 * 2.6 / 316 },
+                new Setter { Property = Label.FontSizeProperty, Value = 25 },
                 new Setter { Property = Label.TextColorProperty, Value = Color.FromRgb(146, 146, 146) },
                 new Setter { Property = Label.TextColorProperty, Value = Color.FromRgb(146, 146, 146) },
                 new Setter { Property = Label.LineBreakModeProperty , Value = LineBreakMode.CharacterWrap },
@@ -23,7 +23,7 @@ namespace AppCommon.Styles
         {
             Setters  =
             {
-                new Setter { Property = Label.FontSizeProperty, Value = 132 * 72 * 2.6 / 316 },
+                new Setter { Property = Label.FontSizeProperty, Value = 130 },
                 new Setter { Property = Label.TextColorProperty, Value = Color.FromRgb(0, 0, 0) },
                 new Setter { Property = Label.HorizontalOptionsProperty, Value = LayoutOptions.StartAndExpand },
                 new Setter { Property = Label.VerticalOptionsProperty, Value = LayoutOptions.StartAndExpand },
