@@ -40,7 +40,7 @@ namespace ApplicationControl
         void OnItemSelected(object s, EventArgs e)
         {
             var item = (OperationItem)s;
-            if(item.Type != ((MainViewModel)BindingContext).SelectedAppControlType)
+            if (item.Type != ((MainViewModel)BindingContext).SelectedAppControlType)
             {
                 ((MainViewModel)BindingContext).SelectedItem.Id = null;
             }
