@@ -59,6 +59,8 @@ namespace AppCommon
     /// </summary>
     public class ApplicationInformationViewModel : INotifyPropertyChanged
     {
+        private readonly string degree ="\u00B0";
+
         private Color _LowBatteryLEDColor;
         private Color _LowMemoryLEDColor;
         private string _deviceOrientation;
@@ -306,28 +308,28 @@ namespace AppCommon
                 case DeviceOrientationStatus.Orientation_0:
                     {
                         DeviceOrientation = "Natural position";
-                        RotationDegree = "0¡Æ";
+                        RotationDegree = "0" + degree;
                         return;
                     }
 
                 case DeviceOrientationStatus.Orientation_90:
                     {
                         DeviceOrientation = "Right-side up";
-                        RotationDegree = "90¡Æ";
+                        RotationDegree = "90" + degree;
                         return;
                     }
 
                 case DeviceOrientationStatus.Orientation_180:
                     {
                         DeviceOrientation = "Up-side down";
-                        RotationDegree = "180¡Æ";
+                        RotationDegree = "180" + degree;
                         return;
                     }
 
                 case DeviceOrientationStatus.Orientation_270:
                     {
                         DeviceOrientation = "Left-side up";
-                        RotationDegree = "270¡Æ";
+                        RotationDegree = "270" + degree;
                         return;
                     }
             }
@@ -369,7 +371,7 @@ namespace AppCommon
             RegionFormat = systemSettings.Language;
 
             DeviceOrientation = "Natural position";
-            RotationDegree = "0¡Æ";
+            RotationDegree = "0" + degree;
         }
     }
 }
