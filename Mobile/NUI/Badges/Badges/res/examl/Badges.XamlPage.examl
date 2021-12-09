@@ -1,0 +1,49 @@
+<
+"Badges, "
+"Tizen.NUI, "
+>
+<
+("0" "Badges.XamlPage")
+("1" "Tizen.NUI.BaseComponents.TextLabel")
+("1" "Tizen.NUI.BaseComponents.View")
+("1" "Tizen.NUI.Binding.PositionTypeConverter")
+("1" "Tizen.NUI.Position")
+("1" "Tizen.NUI.Binding.SizeTypeConverter")
+("1" "Tizen.NUI.Size")
+("1" "Tizen.NUI.Binding.ColorTypeConverter")
+("1" "Tizen.NUI.Color")
+>
+<
+("1" "Text")
+("2" "PositionUsesPivotPoint")
+("2" "ParentOrigin")
+("2" "PivotPoint")
+("2" "Size")
+("1" "PointSize")
+("1" "TextColor")
+>
+<
+>
+<
+("2" "Add" (d2d  ))
+>
+<
+>
+{d0d }
+{d1d }
+&(a1a  "text")&
+[(a1a  d0d  "Hello, NUI XAML APP!" )]
+[(a1a  d1d  mTruem )]
+{d3d }
+@q(a2a  "Center" )q@
+[(a1a  d2d  a3a )]
+@q(a2a  "Center" )q@
+[(a1a  d3d  a4a )]
+{d5d }
+@q(a5a  "700,300,0" )q@
+[(a1a  d4d  a6a )]
+[(a1a  d5d  j17j )]
+{d7d }
+@q(a7a  "Yellow" )q@
+[(a1a  d6d  a8a )]
+^(a0a  a1a  d0d)^
