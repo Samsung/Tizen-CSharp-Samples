@@ -82,12 +82,6 @@ namespace AppCommon
 
             Paths.Add(new PathInformation
             {
-                Title = "Resource",
-                Path = _appInfo.ResourcePath
-            });
-
-            Paths.Add(new PathInformation
-            {
                 Title = "Shared Data",
                 Path = _appInfo.SharedDataPath
             });

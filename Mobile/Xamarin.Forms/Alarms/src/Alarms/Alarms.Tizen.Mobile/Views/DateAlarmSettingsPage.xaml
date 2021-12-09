@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Alarms.Controls;assembly=Alarms"
+             x:Class="Alarms.Tizen.Mobile.Views.DateAlarmSettingsPage"
+             Title="Alarm details">
+
+    <!-- Binding context should be passed from parent page -->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <controls:DialogOK x:Key="IncorrectDelayValue"
+                               Title="Incorrect date/time value"
+                               Message="Please select future date/time."
+                               ExecuteCommand="{Binding OKDialogCommand}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="DONE"
+                     Command="{Binding SaveAlarmCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="32, 32, 32, 32"
+                     BackgroundColor="White">
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <Button Text="Today"
+                        Command="{Binding SetCurrentDateCommand}"
+                        WidthRequest="320"
+                        Margin="0, 0, 6, 0"
+                        FontSize="25" />
+                <Button Text="Current time"
+                        Command="{Binding SetCurrentTimeCommand}"
+                        WidthRequest="320"
+                        Margin="6, 0, 0, 0"
+                        FontSize="25" />
+            </StackLayout>
+
+            <DatePicker Date="{Binding AlarmDate, Mode=TwoWay}" />
+
+            <TimePicker Time="{Binding AlarmTime, Mode=TwoWay}" />
+
+            <StackLayout Orientation="Horizontal"
+                         Padding="32, 20, 32, 20">
+                <Label Text="Repeat"
+                       FontSize="25"
+                       VerticalOptions="Center"
+                       HorizontalOptions="StartAndExpand" />
+                <Switch HorizontalOptions="End"
+                        IsToggled="{Binding IsRepeatEnabled, Mode=TwoWay}" />
+            </StackLayout>
+
+            <Grid Margin="32"
+                  RowSpacing="32"
+                  ColumnSpacing="16"
+                  IsVisible="{Binding IsRepeatEnabled, Mode=OneWay}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <controls:SwitchButton Text="Mon"
+                                       IsPressed="{Binding SelectedDays.Monday, Mode=TwoWay}"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       FontSize="25" />
+                <controls:SwitchButton Text="Tue"
+                                       IsPressed="{Binding SelectedDays.Tuesday, Mode=TwoWay}"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       FontSize="25" />
+                <controls:SwitchButton Text="Wed"
+                                       IsPressed="{Binding SelectedDays.Wednesday, Mode=TwoWay}"
+                                       Grid.Row="0"
+                                       Grid.Column="2"
+                                       FontSize="25" />
+                <controls:SwitchButton Text="Thu"
+                                       IsPressed="{Binding SelectedDays.Thursday, Mode=TwoWay}"
+                                       Grid.Row="1"
+                                       Grid.Column="0"
+                                       FontSize="25" />
+                <controls:SwitchButton Text="Fri"
+                                       IsPressed="{Binding SelectedDays.Friday, Mode=TwoWay}"
+                                       Grid.Row="1"
+                                       Grid.Column="1"
+                                       FontSize="25" />
+                <controls:SwitchButton Text="Sat"
+                                       IsPressed="{Binding SelectedDays.Saturday, Mode=TwoWay}"
+                                       Grid.Row="1"
+                                       Grid.Column="2"
+                                       FontSize="25" />
+                <controls:SwitchButton Text="Sun"
+                                       IsPressed="{Binding SelectedDays.Sunday, Mode=TwoWay}"
+                                       Grid.Row="2"
+                                       Grid.Column="0"
+                                       FontSize="25" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

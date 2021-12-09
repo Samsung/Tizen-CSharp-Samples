@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.IMESample" version="1.0.0" api-version="6.5" xmlns="http://tizen.org/ns/packages">
+    <profile name="common" />
+    <ui-application appid="org.tizen.IMESample"
+                    exec="IMESample.dll"
+                    type="dotnet"
+                    multiple="false"
+                    taskmanage="false"
+                    nodisplay="true"
+                    launch_mode="single">
+        <label>IMESample</label>
+        <icon>IMESample.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <category name="http://tizen.org/category/ime" />
+    </ui-application>
+    <privileges>
+        <privilege>http://tizen.org/privilege/ime</privilege>
+        <privilege>http://tizen.org/privilege/haptic</privilege>
+    </privileges>
+</manifest>

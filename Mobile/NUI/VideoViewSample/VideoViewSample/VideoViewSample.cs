@@ -89,34 +89,53 @@ namespace VideoViewSample
             {
                 LinearAlignment = LinearLayout.Alignment.Center,
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                CellPadding = new Size2D(0, 10)
+                CellPadding = new Size2D(0, 10),
+                Padding = new Extents(10, 10, 10, 10),
             };
+            mainView.WidthResizePolicy = ResizePolicyType.FillToParent;
+            mainView.HeightResizePolicy = ResizePolicyType.FillToParent;
             mainView.Layout = mainLayout;
             ApplicationWindow.Add(mainView);
 
             //Create video view and play movie automatically.
             player = new VideoView()
             {
-                HeightResizePolicy = ResizePolicyType.SizeRelativeToParent,
-                WidthResizePolicy = ResizePolicyType.SizeRelativeToParent,
-                SizeModeFactor = new Vector3(1.0f, 0.5f, 1.0f),
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
                 ResourceUrl = DirectoryInfo.Resource + "sample.3gp",
+                Weight = 0.5f,
             };
             player.Play();
             mainView.Add(player);
 
-            //Create buttons and push them into the main view.
+            //Create button container layout.
+            View buttonContainer = new View()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+                BackgroundColor = Color.Gainsboro,
+                Weight = 0.5f,
+            };
+            LinearLayout buttonLayout = new LinearLayout()
+            {
+                LinearAlignment = LinearLayout.Alignment.Center,
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                CellPadding = new Size2D(0, 10),
+            };
+            buttonContainer.Layout = buttonLayout;
+            mainView.Add(buttonContainer);
+
+            //Create buttons and push them into the button container.
             for (int i = 0; i < buttonNames.Length; ++i)
             {
                 Button btn = new Button
                 {
-                    ParentOrigin = ParentOrigin.Center,
                     Size2D = new Size2D(300, 100),
                     TextColor = Color.White,
                     Text = buttonNames[i],
                 };
                 btn.Clicked += OnClicked;
-                mainView.Add(btn);
+                buttonContainer.Add(btn);
             }
         }
 

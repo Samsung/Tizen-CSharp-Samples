@@ -15,13 +15,14 @@
 using System.Linq;
 using Weather.Utils;
 using Tizen.Wearable.CircularUI.Forms;
+using Xamarin.Forms;
 
 namespace Weather.Views
 {
     /// <summary>
     /// Interaction logic for ForecastPage.xaml.
     /// </summary>
-    public partial class ForecastPage : CirclePage, IRotaryEventReceiver
+    public partial class ForecastPage : ContentPage, IRotaryEventReceiver
     {
         #region fields
         private bool _rotating = false;

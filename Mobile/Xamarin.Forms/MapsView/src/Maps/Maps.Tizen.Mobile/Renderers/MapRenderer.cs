@@ -31,7 +31,7 @@ namespace Maps.Tizen.Mobile.Renderers
     {
         protected override async void OnElementChanged(ElementChangedEventArgs<MapComponent> e)
         {
-            if (e.OldElement is object)
+            if (e.OldElement is object && Control != null)
             {
                 Control.Resized -= OnMapViewResized;
             }
@@ -55,9 +55,15 @@ namespace Maps.Tizen.Mobile.Renderers
 
                         SetNativeControl(control);
                     }
+
+                    mapService?.Dispose();
                 }
 
-                Control.Resized += OnMapViewResized;
+                if (Control != null)
+                {
+                    Control.Resized += OnMapViewResized;
+                }
+
                 Element.Map = Control;
                 Element.InvokeMapInitialized();
             }

@@ -8,11 +8,11 @@
              HorizontalOptions="CenterAndExpand">
 
     <Label Text="{Binding Source={x:Reference Name=Root}, Path=MainText}"
-           FontSize="8"
+           FontSize="24"
            HorizontalTextAlignment="Center" />
     <Label Text="{Binding Source={x:Reference Name=Root}, Path=SubText}"
            HorizontalTextAlignment="Center"
            TextColor="LightSlateGray"
-           FontSize="6" />
+           FontSize="18" />
 
 </StackLayout>

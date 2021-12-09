@@ -1,8 +1,8 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.1.5">
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.7">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>tizen80</TargetFramework>
+    <TargetFramework>tizen90</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -33,7 +33,8 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.5.2" />
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.5.4" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />
   </ItemGroup>
 
 </Project>

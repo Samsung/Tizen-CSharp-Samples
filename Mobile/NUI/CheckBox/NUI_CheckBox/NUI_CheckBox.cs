@@ -46,9 +46,9 @@ namespace NUI_CheckBox
                     /// Round shadow, but the area connected with click event remains square
                     ImageShadow = new ImageShadow(ImageURL + "RoundShadow.png"),
                 },
-                ParentOrigin = ParentOrigin.BottomCenter,
+                ParentOrigin = ParentOrigin.Center,
                 PositionUsesPivotPoint = true,
-                PivotPoint = PivotPoint.BottomCenter
+                PivotPoint = PivotPoint.Center
             };
             return Style;
         }
@@ -106,16 +106,17 @@ namespace NUI_CheckBox
 
             // Default CheckBox
             CheckBoxExample = new CheckBox();
-            CheckBoxExample.Size = CheckBoxSize;
-            CheckBoxExample.ParentOrigin = ParentOrigin.TopCenter;
+            CheckBoxExample.IconSize = CheckBoxSize;
+            CheckBoxExample.PivotPoint = PivotPoint.Center;
             CheckBoxExample.PositionUsesPivotPoint = true;
-            CheckBoxExample.PivotPoint = PivotPoint.TopCenter;
-            CheckBoxExample.Position = new Position(0, Space);
+            CheckBoxExample.ParentOrigin = ParentOrigin.Center;
+            CheckBoxExample.Position = new Position(0, - (3 * CheckBoxSide + 3 * Space) / 2);
             MainView.Add(CheckBoxExample);
 
             // Create with properties
             CheckBoxExample = new CheckBox();
             CheckBoxExample.Size = CheckBoxSize;
+            CheckBoxExample.ItemAlignment = LinearLayout.Alignment.Center;
             CheckBoxExample.ParentOrigin = ParentOrigin.Center;
             CheckBoxExample.PositionUsesPivotPoint = true;
             CheckBoxExample.PivotPoint = PivotPoint.Center;
@@ -126,6 +127,7 @@ namespace NUI_CheckBox
                 Normal           = ImageURL + "Blue.png",
                 Selected         = ImageURL + "BlueCheckMark.png",
                 Pressed          = ImageURL + "Red.png",
+                SelectedPressed  = ImageURL + "RedCheckMark.png",
             };
             CheckBoxExample.IconURLSelector = IconURL;
             CheckBoxExample.Icon.Size = new Size2D(160,160);
@@ -152,7 +154,18 @@ namespace NUI_CheckBox
                 // Image overlaid on the background
                 Icon = new ImageViewStyle
                 {
-                    Size =  CheckBoxSize,
+                    Size = CheckBoxSize,
+                    ResourceUrl = new Selector<string>
+                    {
+                        Pressed = ImageURL + "Red.png",
+                        Other = ImageURL + "LightBlue.png"
+                    },
+                    Opacity = new Selector<float?> { Pressed = 0.3f, Other = 1.0f }
+                },
+                // Style of the overlay image
+                Overlay = new ImageViewStyle()
+                {
+                    Size = CheckBoxSize,
                     // Different icon used depending on the status
                     ResourceUrl = new Selector<string>
                     {
@@ -163,16 +176,6 @@ namespace NUI_CheckBox
                     Opacity = 0.8f,
                     // Shadow visible for all states
                     ImageShadow = new ImageShadow(ImageURL + "Shadow.png")
-                },
-                // Style of the overlay image
-                Overlay = new ImageViewStyle()
-                {
-                    ResourceUrl = new Selector<string>
-                    {
-                        Pressed = ImageURL + "Red.png",
-                        Other   = ImageURL + "LightBlue.png"
-                    },
-                    Opacity = new Selector<float?> {Pressed = 0.3f, Other = 1.0f}
                 }
             };
             CheckBoxExample = new CheckBox(Style);
@@ -182,7 +185,7 @@ namespace NUI_CheckBox
             // Custom style registration
             Tizen.NUI.Components.StyleManager.Instance.RegisterStyle("_CustomCheckBoxStyle", null, typeof(NUI_CheckBox.CustomCheckBoxStyle));
             CustomCheckBox = new CheckBox("_CustomCheckBoxStyle");
-            CustomCheckBox.Position = new Position(0, -Space);
+            CustomCheckBox.Position = new Position(0, (3 * CheckBoxSide + 3 * Space) / 2);
             // Click event handle
             CustomCheckBox.Clicked += OnClicked;
             MainView.Add(CustomCheckBox);

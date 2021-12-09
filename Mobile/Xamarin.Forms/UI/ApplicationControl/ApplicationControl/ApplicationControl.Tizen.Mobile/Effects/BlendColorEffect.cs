@@ -78,7 +78,6 @@ namespace ApplicationControl.Tizen.Mobile
         void UpdateBlendColor()
         {
             var blendColor = (Color)Element.GetValue(ImageAttributes.BlendColorProperty);
-            Console.WriteLine($"UpdateBlendColor() blendColor{blendColor}");
             if (Control is EImage image)
             {
                 image.Color = blendColor == Color.Default ? DefaultBlendColor : blendColor.ToNative();
