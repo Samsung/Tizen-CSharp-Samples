@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
              xmlns:behaviors="clr-namespace:Weather.Behaviors;assembly=Weather"
@@ -12,10 +12,9 @@
              x:Class="Weather.Views.ForecastPage"
              x:Name="ForecastCirclePage"
              NavigationPage.HasNavigationBar="False"
-             RotaryFocusObject="{x:Reference ForecastCirclePage}"
              Title="Weather Forecast">
 
-    <w:CirclePage.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary>
             <converters:TimeStampToDateConverter x:Key="TimeStampToDateConverter" />
             <converters:TimeStampToTimeConverter x:Key="TimeStampToTimeConverter" />
@@ -23,7 +22,7 @@
             <converters:ImageSourceConverter x:Key="ImageSourceConverter" />
             <converters:MeasurementSystemConverter x:Key="MeasurementSystemConverter" />
         </ResourceDictionary>
-    </w:CirclePage.Resources>
+    </ContentPage.Resources>
 
     <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" >
 
@@ -70,4 +69,4 @@
                         SubText="Wind direction" />
         </StackLayout>
     </StackLayout>
-</w:CirclePage>
+</ContentPage>

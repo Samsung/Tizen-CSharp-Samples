@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
              xmlns:behaviors="clr-namespace:Weather.Behaviors;assembly=Weather"
@@ -8,15 +8,14 @@
              xmlns:views="clr-namespace:Weather.Views;assembly=Weather"
              x:Class="Weather.Views.MainPage"
              x:Name="Root"
-             NavigationPage.HasNavigationBar="False"
-             RotaryFocusObject="{x:Reference myscroller}">
+             NavigationPage.HasNavigationBar="False">
 
 
-    <w:CirclePage.BindingContext>
+    <ContentPage.BindingContext>
         <viewModels:MainPageViewModel 
             x:Name="ViewModel"              
             Navigation="{Binding Source={x:Reference Name=Root}, Path=Navigation}" />
-    </w:CirclePage.BindingContext>
+    </ContentPage.BindingContext>
 
 
     <w:CircleScrollView  x:Name="myscroller">
@@ -27,14 +26,14 @@
             Spacing="5">
 
             <Label Text="Weather App"
-                   FontSize="12"
+                   FontSize="36"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="End" 
                    HeightRequest="120"
                    MinimumHeightRequest="120"/>
 
             <Label Text="Country code:"
-                   FontSize="8"  
+                   FontSize="24"  
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center" />
 
@@ -49,7 +48,7 @@
             </w:PopupEntry>
 
             <Label Text="City:"
-                   FontSize="8"
+                   FontSize="24"
                    HorizontalOptions="Fill"
                    VerticalOptions="Fill"
                    HorizontalTextAlignment="Center"
@@ -66,7 +65,7 @@
 
 
             <Label Text="Matching Cities:"
-                   FontSize="6"
+                   FontSize="18"
                    HorizontalOptions="Fill"
                    VerticalOptions="Fill"
                    HorizontalTextAlignment="Center"
@@ -85,7 +84,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <Label Text="{Binding Name}"
-                                   FontSize="10"
+                                   FontSize="30"
                                    HeightRequest="50"
                                    HorizontalTextAlignment="Center"
                                    VerticalTextAlignment="Center"
@@ -111,4 +110,4 @@
 
         </StackLayout>
     </w:CircleScrollView>
-</w:CirclePage>
+</ContentPage>

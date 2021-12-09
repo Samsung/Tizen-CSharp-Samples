@@ -97,8 +97,9 @@ namespace Weather.Behaviors
         }
 
         /// <summary>
-        /// Loads supported city list from file.
+        /// Loads supported country list from file.
         /// </summary>
+        /// <returns>Task with supported country list.</returns>
         private Task<CountryProvider> LoadCountryList()
         {
             return Task.Run(() =>

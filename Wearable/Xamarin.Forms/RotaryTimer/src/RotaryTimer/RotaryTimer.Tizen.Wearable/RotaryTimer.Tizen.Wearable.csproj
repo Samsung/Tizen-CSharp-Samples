@@ -1,4 +1,4 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.1.5">
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.7">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -18,11 +18,18 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.5.2" />
+    <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.5.4" />
   </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\RotaryTimer\RotaryTimer.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Update="Tizen.NET" Version="9.0.0.16760">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

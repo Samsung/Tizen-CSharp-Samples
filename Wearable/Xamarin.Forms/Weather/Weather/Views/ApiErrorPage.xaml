@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<w:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tizen="clr-namespace:Xamarin.Forms.PlatformConfiguration.TizenSpecific;assembly=Xamarin.Forms.Core"
              xmlns:viewModels="clr-namespace:Weather.ViewModels;assembly=Weather"
              xmlns:converters="clr-namespace:Weather.Converters;assembly=Weather"
              x:Class="Weather.Views.ApiErrorPage"
@@ -21,24 +22,26 @@
     </ContentPage.Resources>
     <w:CircleStackLayout Orientation="Vertical" Spacing="10">
         <Label Text="Error"
-               FontSize="12"
+               FontSize="36"
                TextColor="OrangeRed"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"/>
         <Label Text="Error occurred while trying to get response from API."
-               FontSize="8" 
+               FontSize="24"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center" />
         <Label Text="{Binding Code, StringFormat='HTTP status code: {0}'}"   
-               FontSize="6" 
+               FontSize="18"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center" />
         <Label Text="{Binding Message}"
-               FontSize="6" 
+               FontSize="18"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center" />
+        <Button
+                Text="Exit"
+                Command="{Binding ExitAppCommand}"
+                tizen:VisualElement.Style="bottom">
+        </Button>
     </w:CircleStackLayout>
-    <w:CirclePage.ActionButton>
-        <w:ActionButtonItem Command="{Binding ExitAppCommand}" Text="Exit" />
-    </w:CirclePage.ActionButton>
-</w:CirclePage>
+</ContentPage>

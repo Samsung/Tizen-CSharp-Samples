@@ -1,0 +1,29 @@
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.6">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>tizen90</TargetFramework>
+    <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="res\layout\IME_KEYBOARD_LAYOUT_QWERTY_PORT.xaml" />
+    <EmbeddedResource Include="res\layout\IME_KEYBOARD_LAYOUT_QWERTY_LAND.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="9.0.0.16761">
+      <ExcludeAssets>Runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.32" />
+  </ItemGroup>
+
+</Project>
+

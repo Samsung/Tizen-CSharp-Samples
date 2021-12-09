@@ -13,13 +13,14 @@
 //limitations under the License.
 
 using Tizen.Wearable.CircularUI.Forms;
+using Xamarin.Forms;
 
 namespace Weather.Views
 {
     /// <summary>
     /// Interaction logic for MissingKeyErrorPage.xaml
     /// </summary>
-    public partial class MissingKeyErrorPage : CirclePage
+    public partial class MissingKeyErrorPage : ContentPage
     {
         #region methods
 

@@ -252,7 +252,7 @@ namespace NUI_Visuals
             int ButtonHeight = (int)ButtonVisualView.Size2D[1];
             Size2D ButtonSize = new Size2D(ButtonWidth, ButtonHeight);
 
-            Buttons.Add(SetButton("Color Border Gradient", 0, ButtonSize));
+            Buttons.Add(SetButton("Color Border\nGradient", 0, ButtonSize));
             Buttons.Add(SetButton("Images", (ButtonWidth + FrameSize), ButtonSize));
             Buttons.Add(SetButton("Primitives", 2 * (ButtonWidth + FrameSize), ButtonSize));
 
@@ -357,7 +357,6 @@ namespace NUI_Visuals
                     /// obligatory properties
                     ThisColorVisual.MixColor = new Color(0.2f, 0.0f, 1.0f, 0.7f);
                     /// optional properties
-                    ThisColorVisual.CornerRadius = 35.0f;
                     ThisVisualMap = ThisColorVisual;
                     break;
 

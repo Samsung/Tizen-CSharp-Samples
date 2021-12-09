@@ -1,7 +1,7 @@
 ﻿/*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd. All rights reserved.
  *
- * Licensed under the Flora License, Version 1.1 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -163,7 +163,10 @@ namespace Weather.ViewModels
                 OnPropertyChanged(nameof(InitializationCompleted));
 
                 CityTimeZone = new NotificationTask<Models.Location.TimeZone>(InitializeTimeZone());
-                CityTimeZone.PropertyChanged += CityTimeZoneOnPropertyChanged;
+                if (CityTimeZone != null)
+                {
+                    CityTimeZone.PropertyChanged += CityTimeZoneOnPropertyChanged;
+                }
             });
 
             CheckForecastCommand = new Command(CheckForecast);
@@ -241,8 +244,15 @@ namespace Weather.ViewModels
                 CurrentWeather = new NotificationTask<CurrentWeather>(InitializeWeather());
                 Forecast = new NotificationTask<Forecast>(InitializeForecast());
 
-                CurrentWeather.PropertyChanged += CurrentWeatherOnPropertyChanged;
-                Forecast.PropertyChanged += ForecastOnPropertyChanged;
+                if (CurrentWeather != null)
+                {
+                    CurrentWeather.PropertyChanged += CurrentWeatherOnPropertyChanged;
+                }
+
+                if (Forecast != null)
+                {
+                    Forecast.PropertyChanged += ForecastOnPropertyChanged;
+                }
             }
         }
 

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Xamarin.Forms;
@@ -152,6 +153,7 @@ namespace ApplicationControl
                 return;
             }
 
+            Console.WriteLine($"Execute id:{SelectedItem.Id}, type:{SelectedAppControlType}");
             ApplicationControlHelper.ExecuteApplication(SelectedAppControlType, SelectedItem.Id);
         }
 

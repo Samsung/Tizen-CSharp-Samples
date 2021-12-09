@@ -12,4 +12,6 @@ The animation illustrating the app behavior is as follows:
 ![screen1](./NUI_CheckBox_screen1.png)
 ![screen2](./NUI_CheckBox_screen2.png)
 
-For more information about the checkbox see the [NUI guide](https://docs.tizen.org/application/dotnet/guides/nui/nui-components/CheckBox/).
+For more information about the checkbox see the [NUI guide (Tizen.NET.API8 version)](https://docs.tizen.org/application/dotnet/guides/nui/nui-components/CheckBox/).
+
+This sample will works Tizen.NET.API9 verson 9.0.0.16813 or bigger.
