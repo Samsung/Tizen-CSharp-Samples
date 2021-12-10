@@ -26,7 +26,11 @@ namespace NUIFlexLayout
         /// <summary>
         /// All views present in the application
         /// </summary>
-        private View RootView, TopView, ButtonView, FlexView;
+        private View RootView, TopView, ButtonView, FlexView, Description;
+        /// <summary>
+        /// Labels corresponding to the properties changed with a given button
+        /// </summary>
+        private TextLabel Label1, Label2, Label3, Label4;
         /// <summary>
         /// Buttons used to change properties of flex view
         /// </summary>
@@ -92,19 +96,51 @@ namespace NUIFlexLayout
                 BackgroundColor = Color.Black,
             };
 
+            // Initialize Description View
+            Label1 = InitLabel(0.0f);
+            Label2 = InitLabel(0.25f);
+            Label3 = InitLabel(0.5f);
+            Label4 = InitLabel(0.75f);
+            Description = new View()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = 200,
+            };
+            Description.Add(Label1);
+            Description.Add(Label2);
+            Description.Add(Label3);
+            Description.Add(Label4);
+
             // Add child views.
             RootView.Add(TopView);
             RootView.Add(ButtonView);
+            RootView.Add(Description);
             Window.Instance.Add(RootView);
             InitFlex();
             Window.Instance.KeyEvent += OnKeyEvent;
         }
 
         /// <summary>
+        /// Initialize a label and put it on the given coordinate inside a parent
+        /// </summary>
+        /// <param name="y">A vertical coordinate of the ParentOrigin</param>
+        private TextLabel InitLabel(float y)
+        {
+            TextLabel Label = new TextLabel()
+            {
+                PositionUsesPivotPoint = true,
+                PivotPoint = PivotPoint.TopCenter,
+                ParentOrigin = new Vector3(0.5f, y, 0.0f),
+                TextColor = Color.White,
+            };
+            return Label;
+        }
+
+        /// <summary>
         /// Initialize flex layout and fill it with text labels
         /// </summary>
         private void InitFlex()
-        {   
+        {
             // Initialize Flex View
             FlexView = new View()
             {
@@ -116,7 +152,11 @@ namespace NUIFlexLayout
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = Color.Black,
             };
-            
+            Label1.Text = "Direction type: " + ((FlexLayout)FlexView.Layout).Direction;
+            Label2.Text = "Justification type: " + ((FlexLayout)FlexView.Layout).Justification;
+            Label3.Text = "Alignment type: " + ((FlexLayout)FlexView.Layout).Alignment;
+            Label4.Text = "Wrap type: " + ((FlexLayout)FlexView.Layout).WrapType;
+
             TopView.Add(FlexView);
 
             // Add elements to Flex View
@@ -190,10 +230,10 @@ namespace NUIFlexLayout
             ButtonView.Add(Button4);
 
             // Register button click events
-            Button1.ClickEvent += Button1Clicked;
-            Button2.ClickEvent += Button2Clicked;
-            Button3.ClickEvent += Button3Clicked;
-            Button4.ClickEvent += Button4Clicked;
+            Button1.Clicked += Button1Clicked;
+            Button2.Clicked += Button2Clicked;
+            Button3.Clicked += Button3Clicked;
+            Button4.Clicked += Button4Clicked;
         }
 
         /// <summary>
@@ -201,13 +241,14 @@ namespace NUIFlexLayout
         /// </summary>
         /// <param name="sender">Button instance</param>
         /// <param name="e">Event arguments</param>
-        private void Button1Clicked(object sender, Button.ClickEventArgs e)
+        private void Button1Clicked(object sender, ClickedEventArgs e)
         {
             FlexLayout Layout = (FlexLayout)FlexView.Layout;
             FlexLayout.FlexDirection newDirection = Layout.Direction + 1;
             if (newDirection > FlexLayout.FlexDirection.RowReverse) {
                 newDirection = FlexLayout.FlexDirection.Column;
             }
+            Label1.Text = "Direction type: " + newDirection;
             Layout.Direction = newDirection;
             FlexView.Layout = Layout;
         }
@@ -217,13 +258,14 @@ namespace NUIFlexLayout
         /// </summary>
         /// <param name="sender">Button instance</param>
         /// <param name="e">Event arguments</param>
-        private void Button2Clicked(object sender, Button.ClickEventArgs e)
+        private void Button2Clicked(object sender, ClickedEventArgs e)
         {
             FlexLayout Layout = (FlexLayout)FlexView.Layout;
             FlexLayout.FlexJustification newJust = Layout.Justification + 1;
-            if (newJust > FlexLayout.FlexJustification.SpaceAround) {
+            if (newJust > FlexLayout.FlexJustification.SpaceEvenly) {
                 newJust = FlexLayout.FlexJustification.FlexStart;
             }
+            Label2.Text = "Justification type: " + newJust;
             Layout.Justification = newJust;
             FlexView.Layout = Layout;
         }
@@ -233,13 +275,14 @@ namespace NUIFlexLayout
         /// </summary>
         /// <param name="sender">Button instance</param>
         /// <param name="e">Event arguments</param>
-        private void Button3Clicked(object sender, Button.ClickEventArgs e)
+        private void Button3Clicked(object sender, ClickedEventArgs e)
         {
             FlexLayout Layout = (FlexLayout)FlexView.Layout;
             FlexLayout.AlignmentType newAlign = Layout.Alignment + 1;
             if (newAlign > FlexLayout.AlignmentType.Stretch) {
                 newAlign = FlexLayout.AlignmentType.Auto;
             }
+            Label3.Text = "Alignment type: " + newAlign;
             Layout.Alignment = newAlign;
             FlexView.Layout = Layout;
         }
@@ -249,7 +292,7 @@ namespace NUIFlexLayout
         /// </summary>
         /// <param name="sender">Button instance</param>
         /// <param name="e">Event arguments</param>
-        private void Button4Clicked(object sender, Button.ClickEventArgs e)
+        private void Button4Clicked(object sender, ClickedEventArgs e)
         {
             FlexLayout Layout = (FlexLayout)FlexView.Layout;
             if (Layout.WrapType == FlexLayout.FlexWrapType.Wrap) {
@@ -258,6 +301,7 @@ namespace NUIFlexLayout
             else {
                 Layout.WrapType = FlexLayout.FlexWrapType.Wrap;
             }
+            Label4.Text = "Wrap type: " + Layout.WrapType;
             FlexView.Layout = Layout;
         }
 
