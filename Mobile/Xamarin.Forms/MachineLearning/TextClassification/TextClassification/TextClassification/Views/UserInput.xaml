@@ -16,7 +16,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize = "20" Text="Enter your movie comment :" />
+                    <Label Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize = "32" Text="Enter your movie comment :" />
  
                     <Entry x:Name="UserCommentEntry" Grid.Row="1" Grid.Column="0"
                     Keyboard="Default"
@@ -47,23 +47,23 @@
                 <Label TextColor="Black">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="  Your comment :&#10;" TextColor="Black" FontSize = "20" TextDecorations="Underline"/>
-                            <Span x:Name="InputLabel" Text="" TextColor="Black" FontSize = "20"/>
+                            <Span Text="  Your comment :&#10;" TextColor="Black" FontSize = "32" TextDecorations="Underline"/>
+                            <Span x:Name="InputLabel" Text="" TextColor="Black" FontSize = "32"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
 
-                <Label Text=" &#10;Result" TextColor="Black" LineBreakMode="NoWrap" FontSize = "22" />
+                <Label Text=" &#10;Result" TextColor="Black" LineBreakMode="NoWrap" FontSize = "35" />
 
                 <Label TextColor="Black">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Used API : " FontAttributes="Bold" FontSize="20"/>
-                            <Span x:Name="API" Text="" FontSize="20" />
-                            <Span Text="&#10;Negative : " FontAttributes="Bold" FontSize="20"/>
-                            <Span x:Name="Out_neg" Text="" FontSize="20" />
-                            <Span Text="&#10;Positive : " FontAttributes="Bold" FontSize="20"/>
-                            <Span x:Name="Out_pos" Text="" FontSize="20"/>
+                            <Span Text="Used API : " FontAttributes="Bold" FontSize="32"/>
+                            <Span x:Name="API" Text="" FontSize="32" />
+                            <Span Text="&#10;Negative : " FontAttributes="Bold" FontSize="32"/>
+                            <Span x:Name="Out_neg" Text="" FontSize="32" />
+                            <Span Text="&#10;Positive : " FontAttributes="Bold" FontSize="32"/>
+                            <Span x:Name="Out_pos" Text="" FontSize="32"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>

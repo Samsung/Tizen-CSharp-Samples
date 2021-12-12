@@ -16,3 +16,8 @@ Camera is a sample application that demonstrates how to how to take a picture us
 
 ### Author
 * Mateusz Szperna
+
+### Instruction
+When the app is run, it checks for permissions. Please allow the application to use files and camera.
+The big circle is not a shutter but a slider knob to set delay.
+To take the picture, please click "Start" button on the bottom of the screen.
