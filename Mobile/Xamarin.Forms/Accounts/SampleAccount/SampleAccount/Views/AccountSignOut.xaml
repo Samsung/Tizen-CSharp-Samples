@@ -5,8 +5,8 @@
              Title="Sample Account">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White">
-            <Label x:Name="AccountLabel" Text="" TextColor="Black" LineBreakMode="CharacterWrap" FontSize = "20"/>
-            <Label Text="Sample Account ID" TextColor="Black" LineBreakMode="WordWrap" FontSize = "15"/>
+            <Label x:Name="AccountLabel" Text="" TextColor="Black" LineBreakMode="CharacterWrap" FontSize = "40"/>
+            <Label Text="Sample Account ID" TextColor="Black" LineBreakMode="WordWrap" FontSize = "30"/>
             <Button Text="SIGN OUT"
                     Clicked="SignOutClicked"
                     HorizontalOptions="Fill"
