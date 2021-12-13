@@ -101,6 +101,7 @@ namespace Badges.Tizen.Mobile
         {
             try
             {
+                BadgeControl.Remove(appId);
                 BadgeControl.Add(new Badge(appId, badgeCount, true));
             }
             catch (Exception e)
