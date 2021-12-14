@@ -52,7 +52,7 @@ namespace MediaContent.Tizen.Mobile.Services
         /// Directory condition template.
         /// </summary>
         private const string DIRECTORY_CONDITION =
-            " AND PATH LIKE '{0}%'";
+            " AND {0} LIKE '{1}%'";
 
         /// <summary>
         /// An instance of MediaDatabase class.
@@ -143,7 +143,7 @@ namespace MediaContent.Tizen.Mobile.Services
             {
                 var selectArgs = new SelectArguments
                 {
-                    FilterExpression = stringBuilder.ToString() + String.Format(DIRECTORY_CONDITION, storageId)
+                    FilterExpression = stringBuilder.ToString() + String.Format(DIRECTORY_CONDITION, MediaInfoColumns.Path, storageId)
                 };
 
                 try
