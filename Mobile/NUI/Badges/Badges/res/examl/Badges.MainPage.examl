@@ -1,7 +1,7 @@
 (d0d  ("Badges, " ))
 (d0d  ("Tizen.NUI, " ))
 (d0d  ("Tizen.NUI.Components, " ))
-(d1d  (d0d "Badges.XamlPage"))
+(d1d  (d0d "Badges.MainPage"))
 (d1d  (d1d "Tizen.NUI.BaseComponents.View"))
 (d1d  (d2d "Tizen.NUI.Components.ContentPage"))
 (d1d  (d1d "Tizen.NUI.BaseComponents.LayoutParamPolicies"))

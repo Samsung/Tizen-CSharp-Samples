@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage x:Class="Badges.XamlPage"
+<ContentPage x:Class="Badges.MainPage"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  xmlns:vm="clr-namespace:Badges.ViewModels"
   WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
   HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
   BackgroundColor="White">
@@ -59,11 +58,6 @@
             HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
             BackgroundColor="White">
 
-            <!-- Bind SourceData to BindingContext of this View. -->
-            <View.BindingContext>
-                <vm:ViewModel x:Name="context"/>
-            </View.BindingContext>
-            
             <View.Layout>
                 <FlexLayout Direction="Column" Justification="SpaceAround"/>
             </View.Layout>

@@ -15,11 +15,10 @@
 
   <ItemGroup>
     <Folder Include="lib\" />
-    <Folder Include="res\" />
   </ItemGroup>
   
     <ItemGroup>
-    <EmbeddedResource Include="res\layout\XamlPage.xaml">
+    <EmbeddedResource Include="res\layout\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
