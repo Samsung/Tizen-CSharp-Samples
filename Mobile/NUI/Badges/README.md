@@ -2,7 +2,7 @@
 Badges is a sample application which demonstrates how to manage applications badge
 counter using [Tizen Applications API](https://samsung.github.io/TizenFX/stable/api/Tizen.Applications.html).
 
-![Main page](Screenshots/main.png)
+![Main page](./Screenshots/main.PNG)
 
 ### Features
 * List of changeable applications (with current badge value)
