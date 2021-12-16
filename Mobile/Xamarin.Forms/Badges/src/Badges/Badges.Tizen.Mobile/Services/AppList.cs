@@ -101,7 +101,10 @@ namespace Badges.Tizen.Mobile
         {
             try
             {
-                BadgeControl.Remove(appId);
+                if(IsBadgeAdded(appId))
+                {
+                    BadgeControl.Remove(appId);
+                }
                 BadgeControl.Add(new Badge(appId, badgeCount, true));
             }
             catch (Exception e)
@@ -110,6 +113,19 @@ namespace Badges.Tizen.Mobile
             }
         }
 
+        private bool IsBadgeAdded(string appId)
+        {
+            try
+            {
+                BadgeControl.Find(appId);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error getting badge information for {appId}: {e.Message}");
+                return false;
+            }
+            return true;
+        }
         #endregion methods
     }
 }
