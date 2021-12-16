@@ -21,6 +21,7 @@ using Tizen.Applications;
 using Badges.Interfaces;
 using Badges.Models;
 using Badges.Tizen.Mobile;
+using System.Linq;
 
 [assembly: Xamarin.Forms.Dependency(typeof(AppList))]
 
@@ -31,6 +32,7 @@ namespace Badges.Tizen.Mobile
     /// </summary>
     internal class AppList : IAppListService
     {
+        private const string notificationPrivilege = "http://tizen.org/privilege/notification";
         #region methods
 
         /// <summary>
@@ -40,8 +42,6 @@ namespace Badges.Tizen.Mobile
         /// <param name="applicationListCb">Delegate to call on every application retrieval.</param>
         public async void GetAppList(AddAppToListDelegate applicationListCb)
         {
-            var myCert = PackageManager.GetPackage(Application.Current.ApplicationInfo.PackageId)?
-                .Certificates[CertificateType.Author].Signer;
             IEnumerable<ApplicationInfo> installedApplications =
                 await ApplicationManager.GetInstalledApplicationsAsync();
 
@@ -52,28 +52,20 @@ namespace Badges.Tizen.Mobile
                     continue;
                 }
 
-                Package pkg;
+                bool isChangable;
                 try
                 {
-                    pkg = PackageManager.GetPackage(tizenAppInfo.PackageId);
+                    isChangable = IsChangeable(tizenAppInfo);
                 }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error getting application {tizenAppInfo.ApplicationId} information: {e.Message}");
-                    continue;
-                }
-
-                var appSignerCert = pkg?.Certificates[CertificateType.Author].Signer;
-                if (appSignerCert == null)
+                catch
                 {
                     continue;
                 }
 
-                bool isEnabled = appSignerCert.Equals(myCert);
                 var appInfo = new AppInfo(
                     appName: tizenAppInfo.Label,
                     appId: tizenAppInfo.ApplicationId,
-                    isAvailable: isEnabled,
+                    isAvailable: isChangable,
                     badgeCounter: 0);
                 try
                 {
@@ -103,9 +95,14 @@ namespace Badges.Tizen.Mobile
             {
                 if(IsBadgeAdded(appId))
                 {
-                    BadgeControl.Remove(appId);
+                    Badge badge = BadgeControl.Find(appId);
+                    badge.Count = badgeCount;
+                    BadgeControl.Update(badge);
                 }
-                BadgeControl.Add(new Badge(appId, badgeCount, true));
+                else
+                {
+                    BadgeControl.Add(new Badge(appId, badgeCount, true));
+                }
             }
             catch (Exception e)
             {
@@ -126,6 +123,27 @@ namespace Badges.Tizen.Mobile
             }
             return true;
         }
+
+        private bool IsChangeable(ApplicationInfo tizenAppInfo)
+        {
+            Package pkg;
+            try
+            {
+                pkg = PackageManager.GetPackage(tizenAppInfo.PackageId);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error getting application {tizenAppInfo.ApplicationId} information: {e.Message}");
+                throw;
+            }
+
+            string applicationId = Application.Current.ApplicationInfo.ApplicationId;
+            CertCompareResultType certCompareResultType = PackageManager.CompareCertInfoByApplicationId(applicationId, tizenAppInfo.ApplicationId);
+            bool isCertMatch = certCompareResultType == CertCompareResultType.Match ? true : false;
+
+            return isCertMatch && pkg.Privileges.Contains(notificationPrivilege);
+        }
+
         #endregion methods
     }
 }
