@@ -52,10 +52,10 @@ namespace Badges.Tizen.Mobile
                     continue;
                 }
 
-                bool isChangable;
+                bool isChangeable;
                 try
                 {
-                    isChangable = IsChangeable(tizenAppInfo);
+                    isChangeable = IsChangeable(tizenAppInfo);
                 }
                 catch
                 {
@@ -65,7 +65,7 @@ namespace Badges.Tizen.Mobile
                 var appInfo = new AppInfo(
                     appName: tizenAppInfo.Label,
                     appId: tizenAppInfo.ApplicationId,
-                    isAvailable: isChangable,
+                    isAvailable: isChangeable,
                     badgeCounter: 0);
                 try
                 {
