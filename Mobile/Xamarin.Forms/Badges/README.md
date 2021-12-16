@@ -13,9 +13,6 @@ counter using [Tizen Applications API](https://samsung.github.io/TizenFX/stable/
 
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
 * [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
-* To avoid signing application's tpk file by default cerificate and get proper list of badge changable applications go to:\
-Tools -> Options... -> Tizen -> Certification\
-and mark option "Sign the .TPK file using the following option."
 
 ### Author
 * Bartłomiej Uliasz
