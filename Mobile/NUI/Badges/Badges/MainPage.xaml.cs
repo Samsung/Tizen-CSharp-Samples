@@ -46,7 +46,7 @@ namespace Badges
         AppInfo selectedIteam;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XamlPage"/> class.
+        /// Initializes a new instance of the <see cref="MainPage"/> class.
         /// </summary>
         public MainPage()
         {
