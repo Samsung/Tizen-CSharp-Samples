@@ -88,31 +88,42 @@ namespace NUIView
             RootView.BackgroundColor = Color.Black;
 
             // create button and place it at the bottom of the screen
-            Button = new Button();
-            Button.Text = "Next";
-            Button.PositionUsesPivotPoint = true;
-            Button.PivotPoint = PivotPoint.TopCenter;
-            Button.ParentOrigin = new Vector3(0.5f, 0.9f, 0.0f);
-            Button.WidthResizePolicy = ResizePolicyType.FillToParent;
-            Button.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            Button.SetSizeModeFactor(new Vector3(0.0f, 0.1f, 0.0f));
+            Button = new Button()
+            {
+                Text = "Next",
+                TextColor = new Color(0.25f, 0.25f, 0.25f, 1.0f),
+                PointSize = 12,
+                PositionUsesPivotPoint = true,
+                PivotPoint = PivotPoint.BottomCenter,
+                ParentOrigin = ParentOrigin.BottomCenter,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                BackgroundColor = new Color(0.6f, 0.6f, 0.6f, 1.0f),
+            };
 
             // create main view and place it over the button
-            MainView = new View();
-            MainView.PositionUsesPivotPoint = true;
-            MainView.PivotPoint = PivotPoint.TopCenter;
-            MainView.ParentOrigin = new Vector3(0.5f, 0.2f, 0.0f);
-            MainView.WidthResizePolicy = ResizePolicyType.FillToParent;
-            MainView.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            MainView.SetSizeModeFactor(new Vector3(0.0f, 0.7f, 0.0f));
+            MainView = new View()
+            {
+                PositionUsesPivotPoint = true,
+                PivotPoint = PivotPoint.Center,
+                ParentOrigin = ParentOrigin.Center,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+            };
 
             // create text label that will hold text information
-            TextLabel = new TextLabel();
-            TextLabel.PositionUsesPivotPoint = true;
-            TextLabel.PivotPoint = PivotPoint.TopCenter;
-            TextLabel.ParentOrigin = new Vector3(0.5f, 0.1f, 0.0f);
-            TextLabel.MultiLine = true;
-            TextLabel.TextColor = Color.White;
+            TextLabel = new TextLabel()
+            {
+                PositionUsesPivotPoint = true,
+                PivotPoint = PivotPoint.TopCenter,
+                ParentOrigin = new Vector3(0.5f, 0.1f, 0.0f),
+                WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                MultiLine = true,
+                TextColor = Color.White,
+                PointSize = 10,
+                FontFamily = "Arial",
+            };
 
             // add view to their parents
             RootView.Add(TextLabel);
@@ -125,7 +136,7 @@ namespace NUIView
             CurrentView = 1;
 
             // add events to button on click and key event to window
-            Button.ClickEvent += ButtonClicked;
+            Button.Clicked += ButtonClicked;
             Window.KeyEvent += OnKeyEvent;
         }
 
@@ -134,14 +145,22 @@ namespace NUIView
         /// </summary>
         /// <param name="sender">Button instance</param>
         /// <param name="e">Event arguments</param>
-        private void ButtonClicked(object sender, Button.ClickEventArgs e)
+        private void ButtonClicked(object sender, ClickedEventArgs e)
         {
+            // clear the animation
+            if (Animation) Animation.Clear();
+            Animation = null;
             // clear the previous view, unparent and set to null to dispose of
-            ChildView.Unparent();
-            ParentView.Unparent();
-            ChildView.Dispose();
-            ParentView.Dispose();
+            if (ChildView) {
+                ChildView.Unparent();
+                ChildView.Dispose();
+            }
             ChildView = null;
+            // clear the previous view, unparent and set to null to dispose of
+            if (ParentView) {
+                ParentView.Unparent();
+                ParentView.Dispose();
+            }
             ParentView = null;
 
             // update current view to next view
@@ -358,7 +377,7 @@ namespace NUIView
             ChildView.BackgroundColor = new Color(1.0f, 0.41f, 0.47f, 1.0f);
 
             TextLabel.Text = "Touch event example";
-            
+
             // Register event
             ParentView.TouchEvent += OnViewTouch;
 
