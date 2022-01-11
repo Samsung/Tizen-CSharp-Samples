@@ -14,4 +14,4 @@ The animation illustrating the app behavior is as follows:
 
 For more information about the checkbox see the [NUI guide (Tizen.NET.API8 version)](https://docs.tizen.org/application/dotnet/guides/nui/nui-components/CheckBox/).
 
-This sample will works Tizen.NET.API9 verson 9.0.0.16813 or bigger.
+This sample works Tizen.NET.API9 verson 9.0.0.16813 or bigger.
