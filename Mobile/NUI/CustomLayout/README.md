@@ -37,7 +37,7 @@ protected override void onLayout(bool changed, LayoutLength left, LayoutLength t
 
 This sample app demonstrates how to create list items as it is depicted below. Example shows two different list items, with title and description and only with title. The second one has different width. 
 
-[screenshot](!./../NUI_Custom_Layut.png)
+![screenshot](./NUI_Custom_Layout.png)
 
 ### Prerequisites
 

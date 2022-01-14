@@ -159,10 +159,10 @@ namespace VideoViewSample
                     player.Stop();
                     break;
                 case "forward":
-                    player.Forward(1000); // +1 sec
+                    player.Forward(2500); // +2.5 sec
                     break;
                 case "backward":
-                    player.Backward(1000); // -1 sec
+                    player.Backward(2500); // -2.5 sec
                     break;
             }
         }

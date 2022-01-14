@@ -122,13 +122,14 @@ namespace SimpleLayout
                 itemView.Add(icon);
 
                 PropertyMap titleStyle = new PropertyMap();
-                titleStyle.Add("weight", new PropertyValue(600));
+                titleStyle.Add("weight", new PropertyValue("semiBold"));
 
                 //Create item title
                 TextLabel title = new TextLabel(ListItems[i].GetLabel());
-                title.Size2D = new Size2D(400, 50);
+                title.Size2D = new Size2D(400, 60);
                 title.FontStyle = titleStyle;
                 title.Name = ItemContentNameTitle;
+                title.PixelSize = 38.0f;
                 itemView.Add(title);
 
                 string strDescription = ListItems[i].GetDescription();
@@ -137,8 +138,12 @@ namespace SimpleLayout
                     TextLabel description = new TextLabel(strDescription);
                     description.Size2D = new Size2D(500, 50);
                     description.Name = ItemContentNameDescription;
-                    description.PixelSize = 24.0f;
+                    description.PixelSize = 28.0f;
                     itemView.Add(description);
+                }
+                else
+                {
+                    title.Size2D = new Size2D(400, 110);
                 }
 
                 mainView.Add(itemView);

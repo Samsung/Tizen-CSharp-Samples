@@ -42,11 +42,33 @@ namespace NUIGridLayout
         /// <summary>
         /// Items in view count
         /// </summary>
-        private static int ItemsCnt = 40;
+        private static int ItemsCnt = 55;
         /// <summary>
         /// Items in one column count
         /// </summary>
-        private static int ColumnCnt = 5;
+        private static int ColumnCnt = 6;
+        /// <summary>
+        /// Width/Height of the single item
+        /// </summary>
+        private static int ItemSide = 55;
+        /// <summary>
+        /// Right/Left/Top/Bottom single item margin
+        /// </summary>
+        private static ushort ItemMargin = 10;
+
+        /// <summary>
+        /// Custom style for a button
+        /// <summary>
+        ButtonStyle Style = new ButtonStyle
+        {
+            Size = new Size(300, 100),
+            CornerRadius = 28.0f,
+            BackgroundColor = new Selector<Color>()
+            {
+                Other = new Color(0.25f, 0.25f, 0.25f, 1.0f),
+                Disabled = new Color(0.8f, 0.8f, 0.8f, 1.0f),
+            },
+        };
 
         /// <summary>
         /// Overridden method that is called after app launch
@@ -93,8 +115,6 @@ namespace NUIGridLayout
                 Padding = new Extents(20, 20, 20, 20),
             };
 
-            InitGrid();
-
             ButtonView = new View()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
@@ -116,8 +136,11 @@ namespace NUIGridLayout
             for (int i = 0; i < ItemsCnt; i++)
             {
                 TextLabel t = new TextLabel();
-                t.Margin = new Extents(10, 10, 10, 10);
+                t.Margin = new Extents(ItemMargin, ItemMargin, ItemMargin, ItemMargin);
                 t.Text = "X";
+                t.HorizontalAlignment = HorizontalAlignment.Center;
+                t.VerticalAlignment = VerticalAlignment.Center;
+                t.Size2D = new Size2D(ItemSide, ItemSide);
                 t.BackgroundColor = new Color(0.8f, 0.2f, 0.2f, 1.0f);
                 TopView.Add(t);
             }
@@ -132,55 +155,80 @@ namespace NUIGridLayout
             ButtonLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
             ButtonView.Layout = ButtonLayout;
 
-            Button1 = new Button()
+            Button1 = new Button(Style)
             {
-                BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f),
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 Text = "Remove",
                 TextColor = Color.White,
+                TextAlignment = HorizontalAlignment.Center,
                 Margin = new Extents(10, 10, 10, 10),
             };
 
-            Button2 = new Button()
+            Button2 = new Button(Style)
             {
-                BackgroundColor = new Color(0.25f, 0.25f, 0.25f, 1.0f),
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 Text = "Add",
                 TextColor = Color.White,
+                TextAlignment = HorizontalAlignment.Center,
                 Margin = new Extents(10, 10, 10, 10),
             };
 
             ButtonView.Add(Button1);
             ButtonView.Add(Button2);
 
-            Button1.ClickEvent += Button1Clicked;
-            Button2.ClickEvent += Button2Clicked;
+            Button1.Clicked += Button1Clicked;
+            Button2.Clicked += Button2Clicked;
         }
 
         /// <summary>
         /// The method called when the left button is clicked
+        /// It dos not allow to go outside the window boundaries - disables the left button
         /// </summary>
         /// <param name="sender">Button instance</param>
         /// <param name="e">Event arguments</param>
-        private void Button1Clicked(object sender, Button.ClickEventArgs e)
+        private void Button1Clicked(object sender, ClickedEventArgs e)
         {
             ColumnCnt = ColumnCnt - 1 > 0 ? ColumnCnt - 1 : 1;
             var MyGridLayout = TopView.Layout as GridLayout;
             MyGridLayout.Columns = ColumnCnt;
+
+            if (!Button2.IsEnabled)
+            {
+                Button2.IsEnabled = true;
+            }
+
+            var RowCnt = Math.Ceiling((double)(ItemsCnt) / (MyGridLayout.Columns - 1));
+            int NextItemsHeight = (int)((ItemSide + 2 * ItemMargin) * RowCnt + TopView.Padding.Top + TopView.Padding.Bottom);
+            if (NextItemsHeight > TopView.SizeHeight)
+            {
+                Button1.IsEnabled = false;
+            }
         }
 
         /// <summary>
-        /// The method called when the right button is clicked
+        /// The method called when the right button is clicked.
+        /// It dos not allow to go outside the window boundaries - disables the right button
         /// </summary>
         /// <param name="sender">Button instance</param>
         /// <param name="e">Event arguments</param>
-        private void Button2Clicked(object sender, Button.ClickEventArgs e)
+        private void Button2Clicked(object sender, ClickedEventArgs e)
         {
             ++ColumnCnt;
             var MyGridLayout = TopView.Layout as GridLayout;
             MyGridLayout.Columns = ColumnCnt;
+
+            if (!Button1.IsEnabled)
+            {
+                Button1.IsEnabled = true;
+            }
+
+            int NextItemsWidth = (int)((ItemSide + 2 * ItemMargin) * (ColumnCnt + 1) + TopView.Padding.Start + TopView.Padding.End);
+            if (NextItemsWidth > TopView.SizeWidth)
+            {
+                Button2.IsEnabled = false;
+            }
         }
 
         /// <summary>
