@@ -1,0 +1,42 @@
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.6">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netstandard2.0</TargetFramework>
+      <AssemblyName>AppHistory</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="res\layout\AppHistoryInformationPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="lib\" />
+  </ItemGroup>
+  
+    <ItemGroup>
+    <EmbeddedResource Include="res\layout\AppHistoryInformationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Tizen.NET" Version="9.0.0.16760" />
+		<PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.32" />
+	</ItemGroup>
+
+  <PropertyGroup>
+    <NeedInjection>True</NeedInjection>
+  </PropertyGroup>
+
+</Project>
