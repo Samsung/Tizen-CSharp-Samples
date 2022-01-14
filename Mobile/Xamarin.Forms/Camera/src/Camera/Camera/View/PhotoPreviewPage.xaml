@@ -26,7 +26,7 @@
                         BackgroundColor="White"
                         IsVisible="{Binding IsConfirmPopup}">
             <Label AbsoluteLayout.LayoutBounds="0, 35, 586, 35"
-                   FontSize="17"
+                   FontSize="27"
                    HorizontalTextAlignment="Center"
                    Text="Are you sure you want to delete this photo?"
                    VerticalTextAlignment="End" />
