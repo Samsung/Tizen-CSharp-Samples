@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Alarms.ChooseAppPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+  BackgroundColor="White">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. -->
+    <ContentPage.AppBar>
+        <AppBar
+            Name="appBar"
+            Title="Alarms"
+            BackgroundColor="#00a9bf">
+            <AppBar.TitleContent>
+                <!-- TextLabel holding Appbar title -->
+                <TextLabel WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+
+                      HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+
+                      HorizontalAlignment="End"
+
+                      VerticalAlignment="Center"
+
+                      TextColor="White"
+
+                      PointSize="12"
+
+                      Text="Alarms">
+
+                    <TextLabel.FontStyle>
+                        <!-- PropertyMap holding font style for TextLabel -->
+                        <PropertyMap>
+
+                            <KeyValue Key="width" Value="expanded"/>
+
+                            <KeyValue Key="weight" Value="medium"/>
+
+                            <KeyValue Key="slant" Value="italic"/>
+
+                        </PropertyMap>
+
+                    </TextLabel.FontStyle>
+
+                </TextLabel>
+
+            </AppBar.TitleContent>
+
+        </AppBar>
+
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage -->
+    <ContentPage.Content>
+        <View
+            x:Name="MainView"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+            HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <FlexLayout Direction="Column" Justification="SpaceAround" ItemsAlignment="Center"/>
+            </View.Layout>
+
+            <View
+                x:Name="ScrollerView"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                <ScrollableBase
+                    x:Name="Scroller"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                    <ScrollableBase.Layout>
+                        <FlexLayout Justification="SpaceBetween" Direction="Column"/>
+                    </ScrollableBase.Layout>
+                    
+                </ScrollableBase>
+
+            </View>
+        </View>
+    </ContentPage.Content>
+</ContentPage>
+
