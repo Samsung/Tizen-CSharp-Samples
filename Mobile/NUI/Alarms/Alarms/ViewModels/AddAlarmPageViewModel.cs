@@ -28,7 +28,6 @@ namespace Alarms.ViewModels
         private string date;
         private string time;
         private DateTime localDate;
-
         public ICommand DateMonthUp { get; private set; }
         public ICommand DateDayUp { get; private set; }
         public ICommand DateYearUp { get; private set; }

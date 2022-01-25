@@ -1,5 +1,21 @@
-﻿using System;
+﻿/* 
+  * Copyright (c) 2022 Samsung Electronics Co., Ltd 
+  * 
+  * Licensed under the Flora License, Version 1.1 (the "License"); 
+  * you may not use this file except in compliance with the License. 
+  * You may obtain a copy of the License at 
+  * 
+  * http://www.apache.org/licenses/LICENSE-2.0 
+  * 
+  * Unless required by applicable law or agreed to in writing, software 
+  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+  * See the License for the specific language governing permissions and 
+  * limitations under the License. 
+  */
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using Tizen.Applications;
@@ -8,9 +24,9 @@ namespace Alarms.Services
 {
     public static class AlarmListService
     {
-        public static List<string> GetAlarmList()
+        public static List<Alarm> GetAlarmList()
         {
-            List<string> alarmList = new List<string>();
+            List<Alarm> alarmList = new List<Alarm>();
             IEnumerable<Alarm> systemAlarmList;
             try
             {
@@ -21,13 +37,15 @@ namespace Alarms.Services
                 Debug.WriteLine("Cannot list scheduled alarms. Exception message: " + e.Message);
                 return alarmList;
             }
+
             if (systemAlarmList == null)
             {
                 return alarmList;
             }
+
             foreach (var alarm in systemAlarmList)
             {
-                if(alarm != null)
+                if (alarm != null)
                 {
                     int delay = 0;
                     if (alarm.WeekFlag == 0 && alarm.Period != 0)
@@ -41,10 +59,28 @@ namespace Alarms.Services
                             continue;
                         }
                     }
-                    alarmList.Add(alarm.ToString());
+
+                    alarmList.Add(alarm);
                 }
             }
+
             return alarmList;
+        }
+
+        /// <summary>
+        /// Remove alarm passed in object reference.
+        /// </summary>
+        /// <param name="alarmReference">Alarm object.</param>
+        static public void RemoveAlarm(object alarmReference)
+        {
+            try
+            {
+                ((Alarm)alarmReference)?.Cancel();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Cannot remove alarm. Exception message: " + e.Message);
+            }
         }
     }
 }

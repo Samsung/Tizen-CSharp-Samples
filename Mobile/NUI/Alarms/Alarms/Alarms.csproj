@@ -14,8 +14,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="res\layout\AddAlarmPage.xaml" />
-    <None Remove="res\layout\ChooseAlarmTypePage.xaml" />
-    <None Remove="res\layout\ChooseAppPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,14 +22,6 @@
   
     <ItemGroup>
     <EmbeddedResource Include="res\layout\AddAlarmPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="res\layout\ChooseAlarmTypePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="res\layout\ChooseAppPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

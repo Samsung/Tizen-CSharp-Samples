@@ -13,6 +13,7 @@
         <privilege>http://tizen.org/privilege/alarm.set</privilege>
         <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+        <privilege>http://tizen.org/privilege/notification</privilege>
     </privileges>
     <dependencies />
     <provides-appdefined-privileges />

@@ -71,6 +71,10 @@
                     x:Name="Scroller"
                     WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
                     HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                    <Scrollable.Layout>
+                        <FlexLayout Direction="Column" Justification="SpaceAround" ItemsAlignment="Center"/>
+                    </Scrollable.Layout>
                     
                 </ScrollableBase>
                 
@@ -91,7 +95,8 @@
 
                 <Button
                     x:Name="RemoveAlaramButton"
-                    Text="Remove the alarm"/>
+                    Text="Remove the alarm"
+                    IsEnabled="False"/>
             </View>
 
         </View>
