@@ -1,7 +1,6 @@
 # AppHistory
 
 The AppHistory sample application demonstrates how you can retrieve the user's application usage patterns.
-This sample is following Portable Class Libraries (PCL) application model and using some Xamarin.Forms features such as XAML files for GUI, and subsystem ports by using the Dependency Service.
 
 <table>
 <tr>
@@ -16,9 +15,9 @@ This sample is following Portable Class Libraries (PCL) application model and us
 
 
 ### Verified Version
-* Xamarin.Forms : 4.5.0
-* Tizen.NET : 6.0.0
-* Tizen.NET.SDK : 1.0.9
+* Tizen.NUI.XamlBuild : 1.0.32
+* Tizen.NET : 9.0.0
+* Tizen.NET.SDK : 1.1.6
 
 
 ### Supported Profile
@@ -26,4 +25,4 @@ This sample is following Portable Class Libraries (PCL) application model and us
 
 
 ### Author
-* Somin Kim
+* Bartosz Chreścionko
