@@ -24,7 +24,7 @@ namespace AppHistory
     /// <summary>
     /// Implementation class of IAppHistoryAPIs interface
     /// </summary>
-    static public class AppHistoryImplementation
+    public static class AppHistoryImplementation
     {
         /// <summary>
         /// Query top 5 recently used applications during the last 5 hours
