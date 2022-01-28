@@ -13,26 +13,32 @@
     <DebugType>None</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="res\layout\InsertInfoPage.xaml" />
     <None Remove="res\layout\SelectIDPage.xaml" />
   </ItemGroup>
 
-    <ItemGroup>
-	    <Folder Include="lib\" />
-    </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
+  </ItemGroup>
   
     <ItemGroup>
+    <EmbeddedResource Include="res\layout\SelectIDPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\InsertInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="res\layout\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="res\layout\SelectIDPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Tizen.NET" Version="9.0.0.16760" />
-		<PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.32" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="9.0.0.16760" />
+    <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.32" />
+  </ItemGroup>
 
   <PropertyGroup>
     <NeedInjection>True</NeedInjection>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage x:Class="Geofence.SelectIDPage"
+<ContentPage x:Class="Geofence.InsertInfoPage"
     xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
     xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -62,19 +62,40 @@
                 <FlexLayout Direction="Column" Justification="FlexStart"/>
             </View.Layout>
 
-            <CollectionView
-                x:Name="ColView"
+            <View
+                x:Name="TextFieldView"
                 WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
                 HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
-                SelectionMode="Single"
-                ScrollingDirection="Vertical"
-                ItemsSource="{Binding Source}">
+                FlexLayout.FlexAlignmentSelf="Center">
+                <View.Layout>
+                    <FlexLayout Direction="Column" Justification="SpaceAround" ItemsAlignment="Center"/>
+                </View.Layout>
 
-                <CollectionView.ItemsLayouter>
-                    <LinearLayouter />
-                </CollectionView.ItemsLayouter>
+                <TextField
+                    x:Name="PalceNameTextFiled"
+                    PlaceholderText="Place Name"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+            </View>
 
-            </CollectionView>
+            <View
+                x:Name="ButtonView"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                FlexLayout.FlexAlignmentSelf="Center">
+
+                <View.Layout>
+                    <FlexLayout Alignment="Center" Direction="Row" ItemsAlignment="Center" Justification="SpaceAround"/>
+                </View.Layout>
+
+                <Button
+                    x:Name="CancelButton"
+                    Text="Cancel"
+                    BackgroundColor="#00a9bf"/>
+                <Button
+                    x:Name="DoneButton"
+                    Text="Done"
+                    BackgroundColor="#00a9bf"/>
+            </View>
         </View>
     </ContentPage.Content>
 

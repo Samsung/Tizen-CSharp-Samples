@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Tizen.Location.Geofence;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
@@ -13,29 +12,68 @@ namespace Geofence
         /// <summary>
         /// GeofenceManager object.
         /// </summary>
-        static GeofenceManager geofence;
+        static GeofenceManager geofence = null;
 
         /// <summary>
         /// VirtualPerimeter object.
         /// </summary>
-        static VirtualPerimeter perimeter;
+        static VirtualPerimeter perimeter = null;
 
-        static MainPage page;
-        Navigator navigator;
+        /// <summary>
+        /// A navigation page.
+        /// </summary>
+        MainPage page = null;
 
         protected override void OnCreate()
         {
             base.OnCreate();
             Window window = Window.Instance;
-            window.BackgroundColor = Color.Blue;
             window.KeyEvent += OnKeyEvent;
 
-            navigator = window.GetDefaultNavigator();
+            Navigator navigator = window.GetDefaultNavigator();
 
-            page = new MainPage();
+            if (geofence == null)
+            {
+                // Create the GeofenceManager object
+                geofence = new GeofenceManager();
+                // Create the VirtualPerimeter object
+                perimeter = new VirtualPerimeter(geofence);
+            }
+
+            page = new MainPage(perimeter);
             navigator.Push(page);
 
+            // Check the privilege
             PrivilegeCheck();
+        }
+
+        /// <summary>
+		/// Permission check 
+		/// </summary>
+		private void PrivilegeCheck()
+        {
+            try
+            {
+                /// Check location permission
+                CheckResult result = PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location");
+
+                switch (result)
+                {
+                    case CheckResult.Allow:
+                        break;
+                    case CheckResult.Deny:
+                        break;
+                    case CheckResult.Ask:
+                        /// Request to privacy popup
+                        PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/location");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                /// Exception handling
+                page.GetInfoLabelList[1].Text = "[Status] Privilege : " + ex.Message;
+            }
         }
 
         /// <summary>
@@ -64,8 +102,8 @@ namespace Geofence
             geofence = null;
 
             // Set the value to the labels
-            page.FirstTextLabel.Text = "GeofenceManager.Dispose";
-            page.SecondTextLabel.Text = "Success";
+            page.GetInfoLabelList[0].Text = "GeofenceManager.Dispose";
+            page.GetInfoLabelList[1].Text = "Success";
         }
 
         /// <summary>
@@ -74,7 +112,7 @@ namespace Geofence
         protected override void OnResume()
         {
             /// Set the value to label
-            page.FirstTextLabel.Text = "new GeofenceManager and VirtualPerimeter";
+            page.GetInfoLabelList[0].Text = "new GeofenceManager and VirtualPerimeter";
             try
             {
                 if (geofence == null)
@@ -86,7 +124,7 @@ namespace Geofence
                 }
 
                 // Set the value to label
-                page.SecondTextLabel.Text = "Success";
+                page.GetInfoLabelList[1].Text = "Success";
 
                 // Check the permission for location privilege
                 if (PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location") == CheckResult.Allow)
@@ -102,7 +140,7 @@ namespace Geofence
             catch (Exception e)
             {
                 // Set the value to label about occured exception
-                page.SecondTextLabel.Text = e.Message;
+                page.GetInfoLabelList[1].Text = e.Message;
             }
         }
 
@@ -114,54 +152,54 @@ namespace Geofence
         public void GeofenceEventChanged(object sender, GeofenceResponseEventArgs args)
         {
             // Set the value to label about an occured event
-            page.FirstTextLabel.Text = args.EventType.ToString();
+            page.GetInfoLabelList[0].Text = args.EventType.ToString();
             // Set the value to label about an occured error
             switch (args.ErrorCode)
             {
                 case GeofenceError.None:
-                    page.SecondTextLabel.Text = "None";
+                    page.GetInfoLabelList[1].Text = "None";
                     break;
                 case GeofenceError.OutOfMemory:
-                    page.SecondTextLabel.Text = "OutOfMemory";
+                    page.GetInfoLabelList[1].Text = "OutOfMemory";
                     break;
                 case GeofenceError.InvalidParameter:
-                    page.SecondTextLabel.Text = "InvalidParameter";
+                    page.GetInfoLabelList[1].Text = "InvalidParameter";
                     break;
                 case GeofenceError.PermissionDenied:
-                    page.SecondTextLabel.Text = "PermissionDenied";
+                    page.GetInfoLabelList[1].Text = "PermissionDenied";
                     break;
                 case GeofenceError.NotSupported:
-                    page.SecondTextLabel.Text = "NotSupported";
+                    page.GetInfoLabelList[1].Text = "NotSupported";
                     break;
                 case GeofenceError.NotInitialized:
-                    page.SecondTextLabel.Text = "NotInitialized";
+                    page.GetInfoLabelList[1].Text = "NotInitialized";
                     break;
                 case GeofenceError.InvalidID:
-                    page.SecondTextLabel.Text = "InvalidID";
+                    page.GetInfoLabelList[1].Text = "InvalidID";
                     break;
                 case GeofenceError.Exception:
-                    page.SecondTextLabel.Text = "Exception";
+                    page.GetInfoLabelList[1].Text = "Exception";
                     break;
                 case GeofenceError.AlreadyStarted:
-                    page.SecondTextLabel.Text = "AlreadyStarted";
+                    page.GetInfoLabelList[1].Text = "AlreadyStarted";
                     break;
                 case GeofenceError.TooManyGeofence:
-                    page.SecondTextLabel.Text = "TooManyGeofence";
+                    page.GetInfoLabelList[1].Text = "TooManyGeofence";
                     break;
                 case GeofenceError.IPC:
-                    page.SecondTextLabel.Text = "IPC Error";
+                    page.GetInfoLabelList[1].Text = "IPC Error";
                     break;
                 case GeofenceError.DBFailed:
-                    page.SecondTextLabel.Text = "DBFailed";
+                    page.GetInfoLabelList[1].Text = "DBFailed";
                     break;
                 case GeofenceError.PlaceAccessDenied:
-                    page.SecondTextLabel.Text = "PlaceAccessDenied";
+                    page.GetInfoLabelList[1].Text = "PlaceAccessDenied";
                     break;
                 case GeofenceError.GeofenceAccessDenied:
-                    page.SecondTextLabel.Text = "GeofenceAccessDenied";
+                    page.GetInfoLabelList[1].Text = "GeofenceAccessDenied";
                     break;
                 default:
-                    page.SecondTextLabel.Text = "Unknown Error";
+                    page.GetInfoLabelList[1].Text = "Unknown Error";
                     break;
             }
         }
@@ -174,17 +212,17 @@ namespace Geofence
         public void StateChanged(object sender, GeofenceStateEventArgs args)
         {
             // Set the value to label about a changed geofence state
-            page.ThirdTextLabel.Text = "FenceID: " + args.GeofenceId.ToString() + ", GeofenceState: ";
+            page.GetInfoLabelList[2].Text = "FenceID: " + args.GeofenceId.ToString() + ", GeofenceState: ";
             switch (args.State)
             {
                 case GeofenceState.In:
-                    page.ThirdTextLabel.Text += "In";
+                    page.GetInfoLabelList[2].Text += "In";
                     break;
                 case GeofenceState.Out:
-                    page.ThirdTextLabel.Text += "Out";
+                    page.GetInfoLabelList[2].Text += "Out";
                     break;
                 default:
-                    page.ThirdTextLabel.Text += "Uncertain";
+                    page.GetInfoLabelList[2].Text += "Uncertain";
                     break;
             }
         }
@@ -197,202 +235,21 @@ namespace Geofence
         public void ProximityChanged(object sender, ProximityStateEventArgs args)
         {
             // Set the value to label about a changed proximity state
-            page.FourthTextLabel.Text = "FenceID: " + args.GeofenceId.ToString() + ", ProximityState: ";
+            page.GetInfoLabelList[3].Text = "FenceID: " + args.GeofenceId.ToString() + ", ProximityState: ";
             switch (args.State)
             {
                 case ProximityState.Immediate:
-                    page.FourthTextLabel.Text += "Immediate";
+                    page.GetInfoLabelList[3].Text += "Immediate";
                     break;
                 case ProximityState.Near:
-                    page.FourthTextLabel.Text += "Near";
+                    page.GetInfoLabelList[3].Text += "Near";
                     break;
                 case ProximityState.Far:
-                    page.FourthTextLabel.Text += "Far";
+                    page.GetInfoLabelList[3].Text += "Far";
                     break;
                 default:
-                    page.FourthTextLabel.Text += "Uncertain";
+                    page.GetInfoLabelList[3].Text += "Uncertain";
                     break;
-            }
-        }
-
-        /// <summary>
-		/// Permission check 
-		/// </summary>
-		private void PrivilegeCheck()
-        {
-            try
-            {
-                /// Check location permission
-                CheckResult result = PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location");
-
-                switch (result)
-                {
-                    case CheckResult.Allow:
-                        break;
-                    case CheckResult.Deny:
-                        break;
-                    case CheckResult.Ask:
-                        /// Request to privacy popup
-                        PrivacyPrivilegeManager.RequestPermission("http://tizen.org/privilege/location");
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                /// Exception handling
-                page.SecondTextLabel.Text = "[Status] Privilege : " + ex.Message;
-            }
-        }
-
-        /// <summary>
-        /// Geofence application sub class.
-        /// </summary>
-        private class SelectIDPage : ContentPage
-        {
-            /// <summary>
-            /// Display a list for selecting place or fence.
-            /// </summary>
-            /// <param name="sender">Specifies the object of selected button in main page</param>
-            public SelectIDPage(object sender)
-            {
-                if (PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location") != CheckResult.Allow)
-                {
-                    var button = new Button()
-                    {
-                        Text = "OK",
-                    };
-                    button.Clicked += (object s, ClickedEventArgs a) =>
-                    {
-                        Navigator?.Pop();
-                    };
-                    DialogPage.ShowAlertDialog("Alert", "NoPermission", button);
-                    return;
-                }
-
-                // Clear some labels if button4 is selected.
-                if (sender != page.StartButton)
-                {
-                    page.ThirdTextLabel.Text = "";
-                    page.FourthTextLabel.Text = "";
-                }
-
-                // Set a title of this page
-                this.AppBar.Title = ((Button)sender).Text;
-
-                // Create a list for the places or geofences
-                List<string> myList = new List<string>();
-                if (sender == page.RemovePlaceButton || sender == page.AddFenceButton || sender == page.UpdatePlaceButton)
-                {
-                    // Get the information for all the places
-                    foreach (PlaceData data in perimeter.GetPlaceDataList())
-                    {
-                        // Add the place id to the list
-                        myList.Add(data.PlaceId.ToString());
-                    }
-                }
-                else if (sender == page.RemoveFenceButton || sender == page.StartButton || sender == page.StopButton || sender == page.FenceStatusButton)
-                {
-                    // Get the information for all the fences
-                    foreach (FenceData data in perimeter.GetFenceDataList())
-                    {
-                        // Add the geofence id to the list
-                        myList.Add(data.GeofenceId.ToString());
-                    }
-                }
-
-                // Create a list view
-                var listView = new Menu
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Items = myList
-                };
-
-                // Add a handler for list view
-                listView.ItemSelected += async (o, e) =>
-                {
-                    if (sender == ButtonList[1])
-                    {
-                            // Remove a selected place
-                            perimeter.RemovePlace(int.Parse(e.SelectedItem.ToString()));
-                    }
-                    else if (sender == ButtonList[2])
-                    {
-                            // Display a page for selecting a fence type
-                            await Navigation.PushAsync(new SelectFenceTypePage(int.Parse(e.SelectedItem.ToString()), sender));
-                    }
-                    else if (sender == ButtonList[3])
-                    {
-                            // Remove a selected fence
-                            perimeter.RemoveGeofence(int.Parse(e.SelectedItem.ToString()));
-                    }
-                    else if (sender == ButtonList[4])
-                    {
-                            // Start a selected fence
-                            geofence.Start(int.Parse(e.SelectedItem.ToString()));
-                    }
-                    else if (sender == ButtonList[5])
-                    {
-                            // Stop a selected fence
-                            geofence.Stop(int.Parse(e.SelectedItem.ToString()));
-                    }
-                    else if (sender == ButtonList[6])
-                    {
-                            // Display a page for inserting information
-                            await Navigation.PushAsync(new InsertInfoPage(int.Parse(e.SelectedItem.ToString()), sender));
-                    }
-                    else if (sender == ButtonList[7])
-                    {
-                            // Create a fence status for sthe elected fence
-                            FenceStatus status = new FenceStatus(int.Parse(e.SelectedItem.ToString()));
-
-                            // Set the value to label about the fence status
-                            InfoLabelList[2].Text = "Fence ID: " + int.Parse(e.SelectedItem.ToString()) + ", GeofenceState: ";
-                        switch (status.State)
-                        {
-                            case GeofenceState.In:
-                                InfoLabelList[2].Text += "In";
-                                break;
-                            case GeofenceState.Out:
-                                InfoLabelList[2].Text += "Out";
-                                break;
-                            default:
-                                InfoLabelList[2].Text += "Uncertain";
-                                break;
-                        }
-
-                            // Add the duration to the label
-                            InfoLabelList[2].Text += ", Duration: " + status.Duration.ToString();
-                    }
-
-                    if (sender != ButtonList[2] && sender != ButtonList[6])
-                    {
-                            // Move to the main page
-                            await Navigation.PopToRootAsync();
-                    }
-                };
-
-                // Create a layout for this page
-                Content = new StackLayout
-                {
-                    Children = { listView },
-                    // Set the margin of the layout
-                    Margin = 10
-                };
-
-                // Check the count of the list is empty
-                if (myList.Count < 1)
-                {
-                    // Displace an alert
-                    var button = new Button()
-                    {
-                        Text = "OK",
-                    };
-                    button.Clicked += (object s, ClickedEventArgs a) =>
-                    {
-                        Navigator?.Pop();
-                    };
-                    DialogPage.ShowAlertDialog("Alert", "Empty", button);
-                }
             }
         }
 

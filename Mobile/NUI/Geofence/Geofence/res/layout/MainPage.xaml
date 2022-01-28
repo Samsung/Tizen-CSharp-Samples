@@ -3,7 +3,6 @@
     xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
     xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:Geofence.ViewModels"
     WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
     HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
     BackgroundColor="White">
@@ -12,7 +11,7 @@
     <ContentPage.AppBar>
         <AppBar
             Name="appBar"
-            Title="Badges"
+            Title="Geofence"
             BackgroundColor="#00a9bf">
             <AppBar.TitleContent>
                 <!-- TextLabel holding Appbar title -->
@@ -60,13 +59,8 @@
             BackgroundColor="White">
 
             <View.Layout>
-                <FlexLayout Direction="Column" Justification="SpaceAround"/>
+                <FlexLayout Direction="Column" Justification="Center"/>
             </View.Layout>
-
-            <!--Bind SourceData to BindingContext of this View.-->
-            <View.BindingContext>
-                <vm:MainPageViewModel x:Name="context"/>
-            </View.BindingContext>
 
             <View
                 x:Name="TextView"
@@ -76,108 +70,103 @@
                 </View.Layout>
 
                 <TextLabel
-                    BindingContext="{Binding Source={x:Reference context}"
                     x:Name="FirstTextLabel"
-                    Text="{Binding FirstTextLabel}"
                     WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
 
                 <TextLabel
-                    BindingContext="{Binding Source={x:Reference context}"
                     x:Name="SecondTextLabel"
-                    Text="{Binding SecondTextLabel}"
                     WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
 
                 <TextLabel
-                    BindingContext="{Binding Source={x:Reference context}"
                     x:Name="ThirdTextLabel"
-                    Text="{Binding ThirdTextLabel}"
                     WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
 
                 <TextLabel
-                    BindingContext="{Binding Source={x:Reference context}"
                     x:Name="FourthTextLabel"
-                    Text="{Binding FourthTextLabel}"
                     WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
             </View>
 
             <View
                 x:Name="ButtonView"
-                WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
-                
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                FlexLayout.FlexAlignmentSelf="Center">
+
                 <View.Layout>
-                    <FlexLayout Direction="Column" Justification="SpaceAround"/>
+                    <GridLayout Columns="2" Rows="4" GridOrientation="Vertical" ColumnSpacing="10"/>
                 </View.Layout>
-                
-                <View
-                    x:Name="ButtonViewFirstRow"
-                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
-                    
-                    <View.Layout>
-                        <FlexLayout Direction="Row" ItemsAlignment="Center" Justification="SpaceAround"/>
-                    </View.Layout>
-                    
-                    <Button
-                        x:Name="AddPlaceButton"
-                        Text="Add Place"
-                        BackgroundColor="#00a9bf"/>
-                    
-                    <Button
-                        x:Name="RemovePlaceButton"
-                        Text="Remove Place"
-                        BackgroundColor="#00a9bf"/>
-                </View>
 
-                <View
-                    x:Name="ButtonViewSecondRow"
-                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
-                    <View.Layout>
-                        <FlexLayout Direction="Row" ItemsAlignment="Center" Justification="SpaceAround"/>
-                    </View.Layout>
-                    <Button
-                        x:Name="AddFenceButton"
-                        Text="Add Fence"
-                        BackgroundColor="#00a9bf"/>
-                    <Button
-                        x:Name="RemoveFenceButton" 
-                        Text="Remove Fence"
-                        BackgroundColor="#00a9bf"/>
-                </View>
-
-                <View
-                    x:Name="ButtonViewThirdRow"
-                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
-                    <View.Layout>
-                        <FlexLayout Direction="Row" ItemsAlignment="Center" Justification="SpaceAround"/>
-                    </View.Layout>
-                    <Button
-                        x:Name="StartButton"
-                        Text="Start"
-                        BackgroundColor="#00a9bf"/>
-                    <Button
-                        x:Name="StopButton"
-                        Text="Stop"
-                        BackgroundColor="#00a9bf"/>
-                </View>
-
-                <View
-                    x:Name="ButtonViewFourthRow"
-                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
-                    <View.Layout>
-                        <FlexLayout Direction="Row" ItemsAlignment="Center" Justification="SpaceAround"/>
-                    </View.Layout>
-                    <Button
-                        x:Name="UpdatePlaceButton"
-                        Text="Update Place"
-                        BackgroundColor="#00a9bf"/>
-                    <Button
-                        x:Name="FenceStatusButton"
-                        Text="Fence Status"
-                        BackgroundColor="#00a9bf"/>
-                </View>
-
+                <Button
+                    x:Name="AddPlaceButton"
+                    Text="Add Place"
+                    BackgroundColor="#00a9bf"
+                    GridLayout.Column="0"
+                    GridLayout.Row="0"
+                    GridLayout.HorizontalAlignment="Center"
+                    GridLayout.VerticalAlignment="Center"
+                    GridLayout.HorizontalStretch="Expand"
+                    GridLayout.VerticalStretch="Expand"/>
+                <Button
+                    x:Name="RemovePlaceButton"
+                    Text="Remove Place"
+                    BackgroundColor="#00a9bf"
+                    GridLayout.Column="1"
+                    GridLayout.Row="0"
+                    GridLayout.HorizontalAlignment="Center"
+                    GridLayout.VerticalAlignment="Center"
+                    GridLayout.HorizontalStretch="Expand"
+                    GridLayout.VerticalStretch="Expand"/>
+                <Button
+                    x:Name="AddFenceButton"
+                    Text="Add Fence"
+                    BackgroundColor="#00a9bf"
+                    GridLayout.Column="0"
+                    GridLayout.Row="1"
+                    GridLayout.HorizontalAlignment="Center"
+                    GridLayout.VerticalAlignment="Center"/>
+                <Button
+                    x:Name="RemoveFenceButton" 
+                    Text="Remove Fence"
+                    BackgroundColor="#00a9bf"
+                    GridLayout.Column="1"
+                    GridLayout.Row="1"
+                    GridLayout.HorizontalAlignment="Center"
+                    GridLayout.VerticalAlignment="Center"/>
+                <Button
+                    x:Name="StartButton"
+                    Text="Start"
+                    BackgroundColor="#00a9bf"
+                    GridLayout.Column="0"
+                    GridLayout.Row="2"
+                    GridLayout.HorizontalAlignment="Center"
+                    GridLayout.VerticalAlignment="Center"/>
+                <Button
+                    x:Name="StopButton"
+                    Text="Stop"
+                    BackgroundColor="#00a9bf"
+                    GridLayout.Column="1"
+                    GridLayout.Row="2"
+                    GridLayout.HorizontalAlignment="Center"
+                    GridLayout.VerticalAlignment="Center"/>
+                <Button
+                    x:Name="UpdatePlaceButton"
+                    Text="Update Place"
+                    BackgroundColor="#00a9bf"
+                    GridLayout.Column="0"
+                    GridLayout.Row="3"
+                    GridLayout.HorizontalAlignment="Center"
+                    GridLayout.VerticalAlignment="Center"/>
+                <Button
+                    x:Name="FenceStatusButton"
+                    Text="Fence Status"
+                    BackgroundColor="#00a9bf"
+                    GridLayout.Column="1"
+                    GridLayout.Row="3"
+                    GridLayout.HorizontalAlignment="Center"
+                    GridLayout.VerticalAlignment="Center"/>
             </View>
-            
         </View>
     </ContentPage.Content>
 
 </ContentPage>
+
