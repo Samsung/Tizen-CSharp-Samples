@@ -2,7 +2,7 @@
 
 This sample application demonstrates how user can manage geofence.
 
-![Main page - overview](./Geofence.png)
+![Main page - overview](./Geofence.PNG)
 
 
 ### Features
