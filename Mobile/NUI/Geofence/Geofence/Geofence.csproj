@@ -13,7 +13,9 @@
     <DebugType>None</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="res\layout\InsertFencePage.xaml" />
     <None Remove="res\layout\InsertInfoPage.xaml" />
+    <None Remove="res\layout\SelectFenceTypePage.xaml" />
     <None Remove="res\layout\SelectIDPage.xaml" />
   </ItemGroup>
 
@@ -22,6 +24,14 @@
   </ItemGroup>
   
     <ItemGroup>
+    <EmbeddedResource Include="res\layout\InsertFencePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\SelectFenceTypePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="res\layout\SelectIDPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

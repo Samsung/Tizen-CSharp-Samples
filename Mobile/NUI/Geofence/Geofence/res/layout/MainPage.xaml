@@ -59,12 +59,13 @@
             BackgroundColor="White">
 
             <View.Layout>
-                <FlexLayout Direction="Column" Justification="Center"/>
+                <FlexLayout Direction="Column" Justification="FlexStart" Alignment="Center" ItemsAlignment="FlexStart"/>
             </View.Layout>
 
             <View
                 x:Name="TextView"
-                WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
                 <View.Layout>
                     <FlexLayout Direction="Column" Justification="SpaceAround"/>
                 </View.Layout>
@@ -86,84 +87,74 @@
                     WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
             </View>
 
+            
             <View
                 x:Name="ButtonView"
                 WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
                 HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
-                FlexLayout.FlexAlignmentSelf="Center">
+                BackgroundColor="White">
 
                 <View.Layout>
-                    <GridLayout Columns="2" Rows="4" GridOrientation="Vertical" ColumnSpacing="10"/>
+                    <GridLayout Columns="2" Rows="4" GridOrientation="Horizontal" RowSpacing="10" />
                 </View.Layout>
 
                 <Button
                     x:Name="AddPlaceButton"
                     Text="Add Place"
                     BackgroundColor="#00a9bf"
-                    GridLayout.Column="0"
-                    GridLayout.Row="0"
+                    SizeHeight="75"
                     GridLayout.HorizontalAlignment="Center"
-                    GridLayout.VerticalAlignment="Center"
-                    GridLayout.HorizontalStretch="Expand"
-                    GridLayout.VerticalStretch="Expand"/>
+                    GridLayout.HorizontalStretch="Expand"/>
                 <Button
                     x:Name="RemovePlaceButton"
                     Text="Remove Place"
                     BackgroundColor="#00a9bf"
-                    GridLayout.Column="1"
-                    GridLayout.Row="0"
+                    SizeHeight="75"
                     GridLayout.HorizontalAlignment="Center"
-                    GridLayout.VerticalAlignment="Center"
-                    GridLayout.HorizontalStretch="Expand"
-                    GridLayout.VerticalStretch="Expand"/>
+                    GridLayout.HorizontalStretch="Expand"/>
                 <Button
                     x:Name="AddFenceButton"
                     Text="Add Fence"
                     BackgroundColor="#00a9bf"
-                    GridLayout.Column="0"
-                    GridLayout.Row="1"
+                    SizeHeight="75"
                     GridLayout.HorizontalAlignment="Center"
-                    GridLayout.VerticalAlignment="Center"/>
+                    GridLayout.HorizontalStretch="Expand"/>
                 <Button
                     x:Name="RemoveFenceButton" 
                     Text="Remove Fence"
                     BackgroundColor="#00a9bf"
-                    GridLayout.Column="1"
-                    GridLayout.Row="1"
+                    SizeHeight="75"
                     GridLayout.HorizontalAlignment="Center"
-                    GridLayout.VerticalAlignment="Center"/>
+                    GridLayout.HorizontalStretch="Expand"/>
                 <Button
                     x:Name="StartButton"
                     Text="Start"
                     BackgroundColor="#00a9bf"
-                    GridLayout.Column="0"
-                    GridLayout.Row="2"
+                    SizeHeight="75"
                     GridLayout.HorizontalAlignment="Center"
-                    GridLayout.VerticalAlignment="Center"/>
+                    GridLayout.HorizontalStretch="Expand"/>
                 <Button
                     x:Name="StopButton"
                     Text="Stop"
+                    IsEnabled="False"
                     BackgroundColor="#00a9bf"
-                    GridLayout.Column="1"
-                    GridLayout.Row="2"
+                    SizeHeight="75"
                     GridLayout.HorizontalAlignment="Center"
-                    GridLayout.VerticalAlignment="Center"/>
+                    GridLayout.HorizontalStretch="Expand"/>
                 <Button
                     x:Name="UpdatePlaceButton"
                     Text="Update Place"
                     BackgroundColor="#00a9bf"
-                    GridLayout.Column="0"
-                    GridLayout.Row="3"
+                    SizeHeight="75"
                     GridLayout.HorizontalAlignment="Center"
-                    GridLayout.VerticalAlignment="Center"/>
+                    GridLayout.HorizontalStretch="Expand"/>
                 <Button
                     x:Name="FenceStatusButton"
                     Text="Fence Status"
                     BackgroundColor="#00a9bf"
-                    GridLayout.Column="1"
-                    GridLayout.Row="3"
+                    SizeHeight="75"
                     GridLayout.HorizontalAlignment="Center"
-                    GridLayout.VerticalAlignment="Center"/>
+                    GridLayout.HorizontalStretch="Expand"/>
             </View>
         </View>
     </ContentPage.Content>

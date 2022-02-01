@@ -1,4 +1,19 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2022 Samsung Electronics Co., Ltd. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+using System;
 using Tizen.Location.Geofence;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
@@ -7,17 +22,20 @@ using Tizen.Security;
 
 namespace Geofence
 {
+    /// <summary>
+    /// Represents NUI forms of tizen platform app
+    /// </summary>
     public class Program : NUIApplication
     {
         /// <summary>
         /// GeofenceManager object.
         /// </summary>
-        static GeofenceManager geofence = null;
+        public static GeofenceManager Geofence { get; private set; } = null;
 
         /// <summary>
         /// VirtualPerimeter object.
         /// </summary>
-        static VirtualPerimeter perimeter = null;
+        public static VirtualPerimeter Perimeter { get; private set; } = null;
 
         /// <summary>
         /// A navigation page.
@@ -32,15 +50,15 @@ namespace Geofence
 
             Navigator navigator = window.GetDefaultNavigator();
 
-            if (geofence == null)
+            if (Geofence == null)
             {
                 // Create the GeofenceManager object
-                geofence = new GeofenceManager();
+                Geofence = new GeofenceManager();
                 // Create the VirtualPerimeter object
-                perimeter = new VirtualPerimeter(geofence);
+                Perimeter = new VirtualPerimeter(Geofence);
             }
 
-            page = new MainPage(perimeter);
+            page = new MainPage();
             navigator.Push(page);
 
             // Check the privilege
@@ -85,21 +103,21 @@ namespace Geofence
             if (PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location") == CheckResult.Allow)
             {
                 // Remove the handle for GeofenceEventChanged
-                geofence.GeofenceEventChanged -= GeofenceEventChanged;
+                Geofence.GeofenceEventChanged -= GeofenceEventChanged;
                 // Remove the handle for StateChanged
-                geofence.StateChanged -= StateChanged;
+                Geofence.StateChanged -= StateChanged;
                 // Remove the handle for ProximityChanged
-                geofence.ProximityChanged -= ProximityChanged;
+                Geofence.ProximityChanged -= ProximityChanged;
             }
 
             // Dispose the GeofenceManager object
-            if (geofence != null)
+            if (Geofence != null)
             {
-                geofence.Dispose();
+                Geofence.Dispose();
             }
 
-            perimeter = null;
-            geofence = null;
+            Perimeter = null;
+            Geofence = null;
 
             // Set the value to the labels
             page.GetInfoLabelList[0].Text = "GeofenceManager.Dispose";
@@ -115,12 +133,12 @@ namespace Geofence
             page.GetInfoLabelList[0].Text = "new GeofenceManager and VirtualPerimeter";
             try
             {
-                if (geofence == null)
+                if (Geofence == null)
                 {
                     // Create the GeofenceManager object
-                    geofence = new GeofenceManager();
+                    Geofence = new GeofenceManager();
                     // Create the VirtualPerimeter object
-                    perimeter = new VirtualPerimeter(geofence);
+                    Perimeter = new VirtualPerimeter(Geofence);
                 }
 
                 // Set the value to label
@@ -130,11 +148,11 @@ namespace Geofence
                 if (PrivacyPrivilegeManager.CheckPermission("http://tizen.org/privilege/location") == CheckResult.Allow)
                 {
                     // Add a handle for GeofenceEventChanged
-                    geofence.GeofenceEventChanged += GeofenceEventChanged;
+                    Geofence.GeofenceEventChanged += GeofenceEventChanged;
                     // Add a handle for StateChanged
-                    geofence.StateChanged += StateChanged;
+                    Geofence.StateChanged += StateChanged;
                     // Add a handle for ProximityChanged
-                    geofence.ProximityChanged += ProximityChanged;
+                    Geofence.ProximityChanged += ProximityChanged;
                 }
             }
             catch (Exception e)

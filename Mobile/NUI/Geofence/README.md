@@ -1,11 +1,12 @@
-# Location
-This sample application demonstrates how to implement location.
+# Geofence
 
-![Main page](./Screenshots/main.PNG)
+This sample application demonstrates how user can manage geofence.
+
+![Main page - overview](./Geofence.png)
 
 
 ### Features
-* Location information of a place with additional navigation.
+* Geofence information of a geographical place.
 
 ### Prerequisites
 
@@ -14,5 +15,4 @@ This sample application demonstrates how to implement location.
 
 ### Precondition
 
-* GPS should be "ON" in testing device for Location.
-
+* GPS should be "ON" in the Tizen mobile emulator/ Mobile.

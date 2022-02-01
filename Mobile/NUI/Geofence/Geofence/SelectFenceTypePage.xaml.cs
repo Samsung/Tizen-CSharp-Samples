@@ -13,69 +13,80 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using Tizen.Location.Geofence;
 using Tizen.NUI;
+using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
+using Geofence.ViewModels;
 using static Tizen.NUI.BaseComponents.TextField;
+using System.Linq;
 
 namespace Geofence
 {
     /// <summary>
-    /// Class representing Inert Info Page
+    /// Class representing Select Fence Type Page
     /// </summary>
-    public partial class InsertInfoPage : ContentPage
+    public partial class SelectFenceTypePage : ContentPage
     {
         /// <summary>
-        /// Place Name
+        /// VirtualPerimeter object.
         /// </summary>
-        private string placeName = "";
+        private int placeID = 0;
 
-        public InsertInfoPage(string title, int placeID)
+        public SelectFenceTypePage(string title, int _placeID)
         {
             InitializeComponent();
 
+            BindingContext = new SelectFenceTypeViewModel();
+
             AppBar.Title = title;
 
-            PalceNameTextFiled.TextChanged += PlaceName_TextChanged;
-            CancelButton.Clicked += (o, e) => Navigator?.Pop();
-            DoneButton.Clicked += (o, e) =>
-            {
-                if (!placeName.Equals(""))
-                {
-                    if (placeID == -1)
-                    {
-                        Program.Perimeter.AddPlaceName(placeName);
-                    }
-                    else
-                    {
-                        Program.Perimeter.UpdatePlace(placeID, placeName);
-                        Navigator?.RemoveAt(Navigator.PageCount - 2);
-                    }
+            placeID = _placeID;
 
-                    Navigator?.Pop();
-                }
-                else
+            ColView.ItemTemplate = new Tizen.NUI.Binding.DataTemplate(() =>
+            {
+                var item = new RecyclerViewItem()
                 {
-                    // Check wrong Input parameter
-                    var button = new Button()
-                    {
-                        Text = "OK",
-                    };
-                    button.Clicked += (object s, ClickedEventArgs a) =>
-                    {
-                        Navigator?.Pop();
-                    };
-                    DialogPage.ShowAlertDialog("Error!", "Please Input Place Name Correctly", button);
-                }
-            };
+                    WidthSpecification = LayoutParamPolicies.MatchParent,
+                };
+
+                item.Clicked += OnClicked;
+
+                var label = new TextLabel()
+                {
+                    WidthSpecification = LayoutParamPolicies.MatchParent,
+                };
+                label.SetBinding(TextLabel.TextProperty, "Type");
+                item.Add(label);
+                return item;
+            });
+            
         }
 
         /// <summary>
-        /// Set user id received user input
+        /// Event for selecting item from list
         /// </summary>
         /// <param name="sender"> Parameter about which object is invoked the current event. </param>
-        /// <param name="e"> Event data of ID text changed </param>
-        private void PlaceName_TextChanged(object sender, TextChangedEventArgs e) => placeName = e.TextField.Text;
+        /// <param name="e"> Event arguments</param>
+        private void OnClicked(object sender, ClickedEventArgs e)
+        {
+            FenceType fenceType = FenceType.GeoPoint;
+            switch (((sender as RecyclerViewItem).Children.First() as TextLabel).Text)
+            {
+                case "GeoPoint":
+                    fenceType = FenceType.GeoPoint;
+                    break;
+                case "Wifi":
+                    fenceType = FenceType.Wifi;
+                    break;
+                case "Bluetooth":
+                    fenceType = FenceType.Bluetooth;
+                    break;
+            }
+
+            Navigator?.PushWithTransition(new InsertFencePage(AppBar.Title, placeID, fenceType));
+        }
 
         protected override void Dispose(DisposeTypes type)
         {

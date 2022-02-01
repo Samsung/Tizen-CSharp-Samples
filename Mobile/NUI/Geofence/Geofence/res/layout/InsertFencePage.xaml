@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage x:Class="Alarms.MainPage"
-  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
-  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
-  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-  HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
-  BackgroundColor="White">
+<ContentPage x:Class="Geofence.InsertFencePage"
+    xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+    xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+    BackgroundColor="White">
 
     <!-- AppBar is top-side bar with navigation content, title, and action. -->
     <ContentPage.AppBar>
         <AppBar
             Name="appBar"
-            Title="Alarms"
+            Title="Geofence"
             BackgroundColor="#00a9bf">
             <AppBar.TitleContent>
                 <!-- TextLabel holding Appbar title -->
@@ -27,7 +27,7 @@
 
                       PointSize="12"
 
-                      Text="Alarms">
+                      Text="Geofence">
 
                     <TextLabel.FontStyle>
                         <!-- PropertyMap holding font style for TextLabel -->
@@ -53,53 +53,55 @@
 
     <!-- Content is main placdeholder of ContentPage -->
     <ContentPage.Content>
-        <View
-            x:Name="MainView"
+        <View x:Name="MainView"
             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-            HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+            HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+            BackgroundColor="White">
 
             <View.Layout>
-                <FlexLayout Direction="Column" Justification="SpaceAround" ItemsAlignment="Center"/>
+                <FlexLayout Direction="Column" Justification="FlexStart"/>
             </View.Layout>
 
             <View
-                x:Name="ScrollerView"
+                x:Name="TextFieldView"
                 WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-                HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                FlexLayout.FlexAlignmentSelf="Center">
+                <View.Layout>
+                    <FlexLayout Direction="Column" Justification="SpaceAround" ItemsAlignment="Center"/>
+                </View.Layout>
 
-                <ScrollableBase
-                    x:Name="Scroller"
-                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+                <TextField
+                    x:Name="LatitudeTextFiled"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
 
-                    <Scrollable.Layout>
-                        <FlexLayout Direction="Column" Justification="SpaceAround" ItemsAlignment="Center"/>
-                    </Scrollable.Layout>
-                    
-                </ScrollableBase>
-                
+                <TextField
+                    x:Name="LongitudeTextFiled"
+                    PlaceholderText="Longitude"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
             </View>
 
             <View
                 x:Name="ButtonView"
                 WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-                HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                FlexLayout.FlexAlignmentSelf="Center">
 
                 <View.Layout>
-                    <FlexLayout Direction="Row" Justification="SpaceAround" ItemsAlignment="Center"/>
+                    <FlexLayout Alignment="Center" Direction="Row" ItemsAlignment="Center" Justification="SpaceAround"/>
                 </View.Layout>
 
                 <Button
-                    x:Name="SetAlaramButton"
-                    Text="Set the alarm"/>
-
+                    x:Name="CancelButton"
+                    Text="Cancel"
+                    BackgroundColor="#00a9bf"/>
                 <Button
-                    x:Name="RemoveAlaramButton"
-                    Text="Remove the alarm"
-                    IsEnabled="False"/>
+                    x:Name="DoneButton"
+                    Text="Done"
+                    BackgroundColor="#00a9bf"/>
             </View>
-
         </View>
     </ContentPage.Content>
+
 </ContentPage>
 
