@@ -9,3 +9,5 @@ NUIView is a very simple app written to show the basic [NUI View](https://docs.t
 
 ### Author
 * Mateusz Palkowski
+
+This sample works for Tizen.NET.API9 version 9.0.0.16813 or higher.

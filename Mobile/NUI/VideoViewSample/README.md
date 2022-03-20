@@ -7,4 +7,5 @@ This sample application demonstrates how to use NUI [VideoView](https://samsung.
 * [Visual Studio](https://www.visualstudio.com/) - Buildtool, IDE
 * [Visual Studio Tools for Tizen](https://docs.tizen.org/application/vstools/install) - Visual Studio plugin for Tizen .NET application development
 
-This sample will works Tizen.NET.API9 verson 9.0.0.16813 or higher.
+This sample works for Tizen.NET.API9 version 9.0.0.16813 or higher.
+

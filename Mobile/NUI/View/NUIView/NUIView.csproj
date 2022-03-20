@@ -5,4 +5,8 @@
     <TargetFramework>tizen60</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET.API9" Version="9.0.0.16813" />
+  </ItemGroup>
+
 </Project>
