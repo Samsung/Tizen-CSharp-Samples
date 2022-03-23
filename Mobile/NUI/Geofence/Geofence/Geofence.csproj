@@ -47,7 +47,7 @@
 
   <ItemGroup>
     <PackageReference Include="Tizen.NET" Version="9.0.0.16760" />
-    <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.32" />
+    <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.34" />
   </ItemGroup>
 
   <PropertyGroup>
