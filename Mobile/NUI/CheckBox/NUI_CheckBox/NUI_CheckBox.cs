@@ -116,7 +116,7 @@ namespace NUI_CheckBox
             // Create with properties
             CheckBoxExample = new CheckBox();
             CheckBoxExample.Size = CheckBoxSize;
-            CheckBoxExample.ItemAlignment = LinearLayout.Alignment.Center;
+            (CheckBoxExample.Layout as LinearLayout).HorizontalAlignment = HorizontalAlignment.Center;
             CheckBoxExample.ParentOrigin = ParentOrigin.Center;
             CheckBoxExample.PositionUsesPivotPoint = true;
             CheckBoxExample.PivotPoint = PivotPoint.Center;
