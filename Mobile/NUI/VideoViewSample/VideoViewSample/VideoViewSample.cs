@@ -87,7 +87,8 @@ namespace VideoViewSample
             //Setup linear layout for components stored in main view.
             LinearLayout mainLayout = new LinearLayout()
             {
-                LinearAlignment = LinearLayout.Alignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
                 LinearOrientation = LinearLayout.Orientation.Vertical,
                 CellPadding = new Size2D(0, 10),
                 Padding = new Extents(10, 10, 10, 10),
@@ -118,7 +119,8 @@ namespace VideoViewSample
             };
             LinearLayout buttonLayout = new LinearLayout()
             {
-                LinearAlignment = LinearLayout.Alignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
                 LinearOrientation = LinearLayout.Orientation.Vertical,
                 CellPadding = new Size2D(0, 10),
             };
