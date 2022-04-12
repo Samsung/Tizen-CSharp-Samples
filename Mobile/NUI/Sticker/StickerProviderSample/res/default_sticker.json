@@ -1,0 +1,85 @@
+{
+	"sticker":
+	[
+		{
+			"type" : 1,
+			"uri" : "/res/face/slightly_smiling_face.png",
+			"keyword" : ["face", "smile"],
+			"group" : "face",
+			"thumbnail" : "",
+			"description" : "A yellow face with simple, open eyes and a thin, closed smile."
+		},
+		{
+			"type" : 1,
+			"uri" : "/res/face/astonished_face.png",
+			"keyword" : ["face", "surprise", "shock"],
+			"group" : "face",
+			"thumbnail" : "",
+			"description" : "A yellow face with open eyes, raised eyebrows, and an open mouth, as if gasping in shock or surprise."
+		},
+		{
+			"type" : 1,
+			"uri" : "/res/face/heart_eyes.png",
+			"keyword" : ["face", "love", "adoration"],
+			"group" : "face",
+			"thumbnail" : "",
+			"description" : "A yellow face with an open smile, sometimes showing teeth, and red, cartoon-styled hearts for eyes."
+		},
+		{
+			"type" : 1,
+			"uri" : "/res/face/sleeping_face.png",
+			"keyword" : ["face", "Zzz", "sleep"],
+			"group" : "face",
+			"thumbnail" : "",
+			"description" : "A yellow face with eyes closed and mouth letting out three, cartoon-styled Zzz’s overhead to indicate it's sound asleep."
+		},
+		{
+			"type" : 1,
+			"uri" : "/res/symbols/blue_heart.png",
+			"keyword" : ["heart", "blue heart"],
+			"group" : "heart",
+			"thumbnail" : "",
+			"description" : "A blue heart emoji."
+		},
+		{
+			"type" : 1,
+			"uri" : "/res/symbols/two_hearts.png",
+			"keyword" : ["heart", "pink heart"],
+			"group" : "heart",
+			"thumbnail" : "",
+			"description" : "Two pink love hearts."
+		},
+		{
+			"type" : 1,
+			"uri" : "/res/animals/tiger_face.png",
+			"keyword" : ["face", "animal", "tiger"],
+			"group" : "animal",
+			"thumbnail" : "",
+			"description" : "A friendly, cartoon-styled face of a tiger looking straight ahead."
+		},
+		{
+			"type" : 1,
+			"uri" : "/res/animals/dog.png",
+			"keyword" : ["animal", "dog"],
+			"group" : "animal",
+			"thumbnail" : "",
+			"description" : "A dog, a faithful, beloved pet canine."
+		},
+		{
+			"type" : 1,
+			"uri" : "/res/animals/cat.png",
+			"keyword" : ["animal", "cat"],
+			"group" : "animal",
+			"thumbnail" : "",
+			"description" : "A domestic cat, beloved as a pet."
+		},
+		{
+			"type" : 1,
+			"uri" : "/res/animals/whale.png",
+			"keyword" : ["animal", "whale"],
+			"group" : "animal",
+			"thumbnail" : "",
+			"description" : "A whale, the massive marine mammal."
+		}
+	]
+}

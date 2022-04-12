@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="7" package="org.tizen.StickerProviderSample" version="1.0.0">
+  <profile name="common" />
+  <ui-application appid="org.tizen.StickerProviderSample"
+					exec="StickerProviderSample.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="true"
+					launch_mode="single"
+          >
+    <label>StickerProviderSample</label>
+    <icon>StickerProviderSample.png</icon>
+    <category name="http://tizen.org/category/sticker"/>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+    <metadata key="http://tizen.org/metadata/sticker" value="/res/default_sticker.json"/>
+  </ui-application>
+</manifest>
