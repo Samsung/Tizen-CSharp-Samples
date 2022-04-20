@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.7">
 
   <!-- Property Group for Tizen40 Project -->
   <PropertyGroup>
@@ -18,17 +18,8 @@
     <Folder Include="res\" />
   </ItemGroup>
 
-  
   <ItemGroup>
     <ProjectReference Include="..\GoogleAPIExample\GoogleAPIExample.csproj" />
   </ItemGroup>
-  
 
-  <!-- Include Nuget Package for Tizen Project building -->
-  <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="4.0.0" >
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
-  </ItemGroup>
 </Project>
