@@ -1,0 +1,88 @@
+#  Enable auto build file generation
+auto_gen_build_files: true
+#  Workspace type, [native/web/dotnet]
+type: hybrid
+#  Package ID for the Tizen package
+package_id: 
+#  version for the Tizen package
+version: 
+#  Default profile
+profile: mobile
+#  Tizen API version
+api_version: 6.5
+#  Path of profiles.xml, containing the signing profiles 
+ # If value is empty, the profiles.xml in the data_path specified in tizen-studio/tools/tizen-core/config.yaml will be used
+profiles_xml_path: C:/tizen-studio-data/profile/profiles.xml
+#  Signing profile to be used for Tizen package signing 
+ # If value is empty, active signing profile will be used
+signing_profile: .
+#  Build type [debug/ release/ test]
+build_type: debug
+#  Rootstrap for compiling native app
+rootstrap: public
+#  Default compiler for native app compilation
+compiler: llvm
+#  Default path for dotnet-cli
+dotnet_cli_path: C:/Program Files/dotnet/dotnet.exe
+#  Default path for msbuild
+msbuild_path: C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe
+#  Default tool for dotnet build [dotnet-cli/ msbuild]
+dotnet_build_tool: dotnet-cli
+#  Default nuget version for Tizen.Net
+tizen_net_version: 9.0.0.16760
+#  Default nuget version for Xamarin.Forms
+tizen_net_sdk_verison: 1.1.7
+#  Default nuget version for MSBuild.Tasks
+xamarin_forms_version: 5.0.0.2083
+#  Default nuget version for Tizen.Wearable.CircleUI
+msbuild_tasks_version: 1.5.0.235
+#  Default nuget version for Tizen.Wearable.CircleUI
+tizen_wearable_circleui_version: 1.5.0
+#  Default nuget version for Tizen.OpenTK
+tizen_opentk_version: 3.0.2
+#  Default nuget version for Tizen.NUI.Xaml
+tizen_nuixaml_version: 1.0.32
+#  Default nuget version for Tizen.HotReload
+tizen_hotreload_version: 1.0.1
+#  Working folder for dotnet & web workspace, paths to csproj or sln or config.xml, if empty all projects will be build
+working_folder: C:\Users\b.chrescionk\source\repos\Tizen-CSharp-Samples\Mobile\NUI\Alarms\Alarms
+#  Default path for Google Chrome
+chrome_path: C:/Program Files (x86)/Google/Chrome/Application/chrome.exe
+#  Default options to be passed to Chrome when running web simulator
+chrome_simulator_options:
+- --allow-file-access-from-files
+- --disable-web-security
+- --proxy-auto-detect
+#  Default path for Web Simulator data
+chrome_simulator_data_path: C:\tizen-studio\tools\websimulator\sdk-profile-data
+#  Default path for Samsung Tizen TV Simulator
+tv_simulator_path: C:\tizen-studio\tools\sec-tv-simulator\simulator.exe
+#  Default options to be passed to Chrome when running web inspector
+chrome_inspector_options:
+- --no-first-run
+- --activate-on-launch
+- --no-default-browser-check
+- --allow-file-access-from-files
+- --disable-web-security
+- --disable-translate
+- --proxy-auto-detect
+- --proxy-bypass-list=127.0.0.1
+- --enable-blink-features=ShadowDOMV0
+- --enable-blink-features=CustomElementsV0
+#  Default path for Web Inspector data
+chrome_inspector_data_path: C:\tizen-studio-data\chrome-user-data
+#  default arch for build, [x86/ x86_64/ arm/ aarch64]
+arch: x86
+#  Enable size optimization of wgt for web workspace
+opt: false
+#  Source files matching these pattern will always be excluded from build
+src_file_patterns:
+- _exclude*
+#  Source files matching these patterns will only be included while building in test mode
+test_file_patterns:
+- _test*
+#  List of projects in the workspace and their dependencies
+projects:
+  Alarms: []
+#  Skip generating files needed for VS
+skip_vs_files: false
