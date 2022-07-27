@@ -50,7 +50,7 @@ namespace WebRTCOfferClient
                 UIParam.PreviewResolution.Width, UIParam.PreviewResolution.Height);
 
             //FIXME:need to change this to user input
-            connectionManager.SetMediaSourceType(SourceType.MediaPacket);
+            connectionManager.SetMediaSourceType(SourceType.VideoTest);
             connectionManager.TransceiverDirection = Tizen.Multimedia.Remoting.TransceiverDirection.SendRecv;
 
             Window window = Window.Instance;

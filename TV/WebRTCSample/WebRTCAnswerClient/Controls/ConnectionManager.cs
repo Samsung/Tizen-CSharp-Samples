@@ -45,7 +45,7 @@ namespace WebRTCAnswerClient
     internal class ConnectionManager : IDisposable
     {
         private const string stunServerUrl = "stun://stun.l.google.com:19302";
-        private const string externalSignalingServerUrl = "wss://www.testbed.ga:8443";
+        private const string externalSignalingServerUrl = "wss://www.testbd.ga:8443";
 
         private WebSocketClient webSocketClient;
 
@@ -79,7 +79,7 @@ namespace WebRTCAnswerClient
             iceCandidatesRemote = new List<string>();
         }
 
-        internal TransceiverDirection TransceiverDirection {get; set;} = TransceiverDirection.SendOnly;
+        internal TransceiverDirection TransceiverDirection {get; set;} = TransceiverDirection.SendRecv;
 
         internal void SetRemoteView(Tizen.NUI.Window window) =>
             remoteView = window;
@@ -219,7 +219,7 @@ namespace WebRTCAnswerClient
                         }
 
                         Log.Info(WebRTCLog.Tag, "webRtcClient.CreateAnswer");
-                        answer = webRtcClient.CreateAnswer();
+                        answer = await webRtcClient.CreateAnswerAsync();
 
                         webRtcClient.SetLocalDescription(answer);
 
@@ -279,20 +279,20 @@ namespace WebRTCAnswerClient
             Log.Info(WebRTCLog.Tag, $"NegotiationNeeded");
         }
 
-        async void WebRTCIceCandidate(object s, WebRTCIceCandicateEventArgs e)
+        async void WebRTCIceCandidate(object s, WebRTCIceCandidateEventArgs e)
         {
-            if (e.ICECandicate != null)
+            if (e.ICECandidate != null)
             {
                 Log.Info(WebRTCLog.Tag, $"Local IceCandidate : {e}");
-                await webSocketClient.SendAsync(e.ICECandicate);
+                await webSocketClient.SendAsync(e.ICECandidate);
             }
         }
 
         void WebRTCTrackAdded(object s, WebRTCTrackAddedEventArgs e)
         {
-            if (e.Type == MediaType.Video && remoteView != null)
+            if (e.MediaStreamTrack.Type == MediaType.Video && remoteView != null)
             {
-                webRtcClient.Display = new Display(remoteView);
+                e.MediaStreamTrack.Display = new Display(remoteView);
             }
         }
 

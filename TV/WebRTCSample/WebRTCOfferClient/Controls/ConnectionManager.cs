@@ -46,7 +46,7 @@ namespace WebRTCOfferClient
     internal class ConnectionManager : IDisposable
     {
         private const string stunServerUrl = "stun://stun.l.google.com:19302";
-        private const string externalSignalingServerUrl = "wss://www.testbed.ga:8443";
+        private const string externalSignalingServerUrl = "wss://www.testbd.ga:8443";
 
         private WebSocketClient webSocketClient;
 
@@ -100,7 +100,7 @@ namespace WebRTCOfferClient
             set => cameraController.PreviewResolution = value;
         }
 
-        internal TransceiverDirection TransceiverDirection {get; set;} = TransceiverDirection.SendOnly;
+        internal TransceiverDirection TransceiverDirection {get; set;} = TransceiverDirection.SendRecv;
 
         internal IntPtr GetCameraHandle() => cameraController.GetCameraHandle();
 
@@ -177,7 +177,7 @@ namespace WebRTCOfferClient
                     mediaSource = new MediaCameraSource();
                     break;
                 case SourceType.Mic:
-                    mediaSource = new MediaMicSource();
+                    mediaSource = new MediaMicrophoneSource();
                     break;
                 case SourceType.AudioTest:
                     mediaSource = new MediaTestSource(MediaType.Audio);
@@ -227,7 +227,8 @@ namespace WebRTCOfferClient
             readyToPushMediaPacket = true;
 
             Log.Info(WebRTCLog.Tag, "6. Create and set offer");
-            var offer = webRtcClient.CreateSetOffer();
+            var offer = await webRtcClient.CreateOfferAsync();
+            webRtcClient.SetLocalDescription(offer);
 
             Log.Info(WebRTCLog.Tag, "7. Send offer to remote");
             await webSocketClient.SendAsync(offer);
@@ -327,20 +328,20 @@ namespace WebRTCOfferClient
             Log.Info(WebRTCLog.Tag, $"NegotiationNeeded");
         }
 
-        async void WebRTCIceCandidate(object s, WebRTCIceCandicateEventArgs e)
+        async void WebRTCIceCandidate(object s, WebRTCIceCandidateEventArgs e)
         {
-            if (e.ICECandicate != null)
+            if (e.ICECandidate != null)
             {
                 Log.Info(WebRTCLog.Tag, $"Local IceCandidate : {e}");
-                await webSocketClient.SendAsync(e.ICECandicate);
+                await webSocketClient.SendAsync(e.ICECandidate);
             }
         }
 
         void WebRTCTrackAdded(object s, WebRTCTrackAddedEventArgs e)
         {
-            if (e.Type == MediaType.Video && remoteView != null)
+            if (e.MediaStreamTrack.Type == MediaType.Video && remoteView != null)
             {
-                webRtcClient.Display = new Display(remoteView);
+                e.MediaStreamTrack.Display = new Display(remoteView);
             }
         }
 
