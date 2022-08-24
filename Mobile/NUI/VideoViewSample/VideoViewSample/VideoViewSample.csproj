@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET.API9" Version="9.0.0.16813" />
+    <PackageReference Include="Tizen.NET.API9" Version="9.0.0.16902" />
   </ItemGroup>
 
 </Project>
