@@ -16,7 +16,6 @@
  */
 
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
 using Tizen.NUI.BaseComponents;
 using System;
 using System.Runtime.InteropServices;
