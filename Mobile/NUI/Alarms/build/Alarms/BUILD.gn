@@ -1,0 +1,18 @@
+import("$tizen_core/build/dotnet/project.gni")
+
+dotnet_project("Alarms") {
+  
+   
+  csprojpath = "Alarms.csproj"
+  is_dep = false
+  files = [
+      "Alarms.csproj",
+      "Alarms.cs",
+      "tizen-manifest.xml",
+      "MainPage.xaml.cs",
+      "res/layout/MainPage.xaml",
+      "shared/res/Alarms.png",
+  ]
+  deps = [
+  ]
+}

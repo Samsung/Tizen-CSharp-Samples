@@ -1,0 +1,11 @@
+# csproj file path
+csproj_file: Alarms.csproj
+
+# files monitored for dirty/modified status
+files:
+  - Alarms.csproj
+  - Alarms.cs
+  - tizen-manifest.xml
+  - MainPage.xaml.cs
+  - res/layout/MainPage.xaml
+  - shared/res/Alarms.png
