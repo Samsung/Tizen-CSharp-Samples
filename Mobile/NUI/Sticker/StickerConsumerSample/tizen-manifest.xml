@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="7" package="org.tizen.StickerConsumerSample" version="1.0.0">
+  <profile name="common" />
+  <ui-application appid="org.tizen.StickerConsumerSample"
+					exec="StickerConsumerSample.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single"
+          >
+    <label>StickerConsumerSample</label>
+    <icon>StickerConsumerSample.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+  </ui-application>
+  <privileges>
+    <privilege>http://tizen.org/privilege/mediastorage</privilege>
+  </privileges>
+</manifest>
