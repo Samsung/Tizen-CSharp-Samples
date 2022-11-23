@@ -17,7 +17,6 @@
 
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 using System;
 
 namespace Tizen.NUI.MediaHub
