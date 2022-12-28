@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-tizen</TargetFramework>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="res\images\switch\controller_switch_bg_off.png" />
+    <Content Include="res\images\switch\controller_switch_bg_off_dim.png" />
+    <Content Include="res\images\switch\controller_switch_bg_on.png" />
+    <Content Include="res\images\switch\controller_switch_bg_on_dim.png" />
+    <Content Include="res\images\switch\controller_switch_handler.png" />
+    <Content Include="res\images\switch\controller_switch_handler_dim.png" />
+  </ItemGroup>
+</Project>
