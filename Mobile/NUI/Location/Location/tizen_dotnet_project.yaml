@@ -1,0 +1,12 @@
+# csproj file path
+csproj_file: Location.csproj
+
+# files monitored for dirty/modified status
+files:
+  - Location.csproj
+  - Location.cs
+  - tizen-manifest.xml
+  - MainPage.xaml.cs
+  - res/layout/MainPage.xaml
+  - shared/res/Location.png
+  - ViewModel/MainPageViewModel.cs
