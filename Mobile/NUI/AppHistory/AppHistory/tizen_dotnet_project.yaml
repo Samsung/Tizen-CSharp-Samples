@@ -1,0 +1,13 @@
+# csproj file path
+csproj_file: AppHistory.csproj
+
+# files monitored for dirty/modified status
+files:
+  - AppHistory.csproj
+  - AppHistory.cs
+  - tizen-manifest.xml
+  - MainPage.xaml.cs
+  - res/layout/MainPage.xaml
+  - shared/res/AppHistory.png
+  - res/layout/AppInfoPage.xaml
+  - AppInfoPage.xaml.cs
