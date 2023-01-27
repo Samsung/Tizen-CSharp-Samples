@@ -1,0 +1,25 @@
+import("$tizen_core/build/workspace.gni")
+
+tizen_workspace("${hyb_final_pkg_id}") {
+
+    package_file = "$root_out_dir/${hyb_final_pkg}"
+
+    
+    projects = []
+    manifests = []
+    
+
+    executables = []
+        projects += [
+            "//AppHistory",
+        ]
+        
+        # fill executables with the package_names of the tpk paths, for launch cmd
+        executables += [
+            "org.tizen.example.AppHistory",
+        ]
+
+    if (test_build) {
+    }
+   
+}

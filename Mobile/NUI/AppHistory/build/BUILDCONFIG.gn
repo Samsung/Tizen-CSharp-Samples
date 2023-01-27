@@ -1,0 +1,133 @@
+declare_args() {
+    # Default Tizen profile for the build
+    profile = "mobile"
+
+    # Default Tizen version for the build
+    api_version = "7.0"
+
+    # Default build type [debug/ release/ test]
+    build_type = "debug"
+
+    ws_path = "C:\Users\b.chrescionk\source\repos\Tizen-CSharp-Samples\Mobile\NUI\AppHistory"
+
+    # Build with debug info
+    debug_build = true
+
+    # Build with tests
+    test_build = false
+}
+
+contains_native_proj = false
+#Skip dotnet/msbuild for dotnet build
+skip_dotnet_build = true
+
+# Default path for dotnet-cli
+dotnet_cli_path = "C:/Program Files/dotnet/dotnet.exe"
+
+# Default path for msbuild
+msbuild_path = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe"
+
+# Default tool for dotnet build [dotnet-cli/ msbuild]
+dotnet_build_tool = "dotnet-cli"
+
+# Working folder for dotnet workspace, paths to csproj or sln
+working_folder= ""
+
+target_os = "linux"
+
+
+# hybrid ws
+hyb_web_pkg = ""
+hyb_native_pkg = ""
+hyb_native_pkg_id = ""
+hyb_native_pkg_ver = ""
+hyb_dotnet_pkg = "C:\Users\b.chrescionk\source\repos\Tizen-CSharp-Samples\Mobile\NUI\AppHistory\AppHistory\bin\Debug\tizen10.0\org.tizen.example.AppHistory-1.0.0.tpk"
+hyb_dotnet_dep_pkgs = ""
+hyb_resource_pkg = ""
+hyb_base_pkg = "C:\Users\b.chrescionk\source\repos\Tizen-CSharp-Samples\Mobile\NUI\AppHistory\AppHistory\bin\Debug\tizen10.0\org.tizen.example.AppHistory-1.0.0.tpk"
+hyb_final_pkg = "org.tizen.example.AppHistory-1.0.0.tpk"
+hyb_final_pkg_id = "org.tizen.example.AppHistory"
+hyb_final_app_id = "org.tizen.example.AppHistory"
+hyb_final_pkg_type = "dotnet"
+hyb_web_widget_id = ""
+utc_bin_path = ""
+native_test_path = ""
+hyb_action_code = ""
+unity_pkg = ""
+hyb_pack_check = true
+contains_ime_category = false
+widget_app = false
+
+native_projects_path = [
+]
+
+profiles_path = "C:/tizen-studio-data/profile/profiles.xml"
+signing_profile = "."
+# set opt if non empty web projects
+if (hyb_web_pkg != ""){
+    opt = false
+}
+
+# using native toolchain for hybrid build,
+rootstrap = "public"
+compiler = "llvm"
+arch = "x86"
+verbose_build = false
+strip_debug_info = false
+
+
+# Use default signing profile for packaging
+default_signing_profile = "true"
+
+# Author certificate for package signing
+author_cert = ""
+
+# Distributor certificate for package signing
+distributor_cert = ""
+
+# Distributor2 certificate for package signing
+distributor2_cert = ""
+
+# Author profile item password attr 
+author_pass_attr = ""
+
+# Distributor profile item password attr 
+distributor_pass_attr = ""
+
+# Distributor2 profile item password attr 
+distributor2_pass_attr = ""
+
+# Tizen Studio path
+tizen_studio = "C:/tizen-studio"
+
+# Tizen core path
+tizen_core = "C:/tizen-studio/tools/tizen-core"
+
+# Out directory for native package file
+native_out_dir = "tpk"
+
+web_out_dir = "wgt"
+
+resource_out_dir = "rpk"
+
+
+# Source path filter patterns
+exclude_patterns = [
+    "_exclude*",
+]
+
+# Test source path pattern
+test_src_patterns = [
+    "_test*",
+]
+
+if (!test_build) {
+    exclude_patterns += test_src_patterns
+}
+
+set_sources_assignment_filter(exclude_patterns)
+if (contains_native_proj){
+    set_default_toolchain(":${arch}_${compiler}")
+} else {
+    set_default_toolchain("${tizen_core}/dotnet/toolchains:dotnet_builder")
+}
