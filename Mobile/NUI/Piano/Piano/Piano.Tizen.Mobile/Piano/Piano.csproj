@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Controls\Key.xaml" />
+    <None Remove="Views\MainPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\Key.xaml" />
+    <EmbeddedResource Include="Views\MainPage.xaml" />
+  </ItemGroup>
+
+  <!-- Include Nuget Package for Xamarin building -->
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="11.0.0.17614" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.7">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <XamlOptimization>1</XamlOptimization>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="lib\**" />
+    <EmbeddedResource Remove="lib\**" />
+    <None Remove="lib\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Piano\Controls\Key.xaml" />
+    <None Remove="Piano\Views\MainPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Piano\Controls\Key.xaml" />
+    <EmbeddedResource Include="Piano\Views\MainPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="res\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="10.0.0.17606" />
+  </ItemGroup>
+
+
+</Project>

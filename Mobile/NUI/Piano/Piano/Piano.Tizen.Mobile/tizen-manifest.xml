@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<manifest package="org.tizen.example.Piano.Tizen.Mobile" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.example.Piano.Tizen.Mobile" exec="Piano.Tizen.Mobile.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+        <label>Piano.Tizen.Mobile</label>
+        <icon>Piano.Tizen.Mobile.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <dependencies />
+    <provides-appdefined-privileges />
+</manifest>
