@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<View xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+      xmlns:l="clr-namespace:BasicCalculator.Tizen.Mobile.Views"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:viewModels="clr-namespace:BasicCalculator.ViewModels;assembly=BasicCalculator.Tizen.Mobile"
+      x:Class="BasicCalculator.Tizen.Mobile.Views.MobileMainView">
+
+    <View.XamlResources>
+        <XamlStyle x:Key="BaseButton" TargetType="Button">
+            <Setter Property="TextColor" Value="White"></Setter>
+            <Setter Property="CornerRadius" Value="30"></Setter>
+            <Setter Property="SizeWidth" Value="150"></Setter>
+            <Setter Property="SizeHeight" Value="100"></Setter>
+            <Setter Property="PointSize" Value="10"></Setter>
+            <Setter Property="FontFamily" Value="BreezeSans:style=Regular"></Setter>
+        </XamlStyle>
+        <XamlStyle x:Key="ClearButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="BackgroundColor" Value="#2564A4"></Setter>
+        </XamlStyle>
+        <XamlStyle x:Key="PlaceholderButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="BackgroundColor" Value="White"></Setter>
+        </XamlStyle>
+        <XamlStyle x:Key="FunctionButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="BackgroundColor" Value="#3BC3B5"></Setter>
+        </XamlStyle>
+        <XamlStyle x:Key="NumberButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="BackgroundColor" Value="#3DB9CC"></Setter>
+        </XamlStyle>
+    </View.XamlResources>
+
+    <View x:Name="contentView"
+          BackgroundColor="White"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+        <View.BindingContext>
+            <viewModels:CalculatorViewModel />
+        </View.BindingContext>
+
+        <View.Layout>
+            <AbsoluteLayout />
+        </View.Layout>
+
+        <View x:Name="stageArea" BackgroundImage="*Resource*/bg_01.png" Position="0,0" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="512" >
+            <TextLabel x:Name="expression"
+                Text="{Binding EnteredExpression}"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                SizeHeight="340"
+                LineWrapMode="Character"
+                HorizontalAlignment="End"
+                VerticalAlignment="Bottom"
+                TextColor="White"
+                PointSize="18"
+                FontFamily="BreezeSans:style=Light" />
+            <TextLabel x:Name="result"
+                Position="0, 288"
+                Text="{Binding CurrentResult}"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                SizeHeight="112"
+                HorizontalAlignment="End"
+                VerticalAlignment="Bottom"
+                TextColor="Black"
+                PointSize="12"
+                FontFamily="BreezeSans:style=Regular" />
+        </View>
+
+        <View x:Name="keyboardArea" Position="0,460" WidthSpecification="{Static LayoutParamPolicies.MatchParent}" HeightSpecification="{Static LayoutParamPolicies.MatchParent}" CellHorizontalAlignment="Center" CellVerticalAlignment="Center" >
+            <View.Layout>
+                <GridLayout GridOrientation="Horizontal" Columns="4" ColumnSpacing="24" RowSpacing="32" />
+            </View.Layout>
+            <Button Text="C"
+                    CellIndex="0,0"
+                    XamlStyle="{StaticResource ClearButton}"
+                    Command="{Binding ClearInputCommand}"/>
+            <Button x:Name="placeholder" IsSelectable="False"
+                    XamlStyle="{StaticResource PlaceholderButton}"
+                    Opacity="0.0" />
+            <Button Text="+/-"
+                    CellIndex="1,0"
+                    XamlStyle="{StaticResource FunctionButton}"
+                    Command="{Binding ChangeSignCommand}"/>
+            <Button Text="%"
+                    CellIndex="1,1"
+                    XamlStyle="{StaticResource FunctionButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="%"/>
+            <Button Text="( )"
+                    CellIndex="1,2"
+                    XamlStyle="{StaticResource FunctionButton}"
+                    Command="{Binding BracketCommand}"/>
+            <Button Text="DEL"
+                    CellIndex="1,3"
+                    XamlStyle="{StaticResource FunctionButton}"
+                    Command="{Binding DeleteCommand}" />
+            <Button Text="7"
+                    CellIndex="2,0"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="7"/>
+            <Button Text="8"
+                    CellIndex="2,1"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="8"/>
+            <Button Text="9"
+                    CellIndex="2,2"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="9"/>
+            <Button Text="÷"
+                    CellIndex="2,3"
+                    XamlStyle="{StaticResource FunctionButton}"
+                    Command="{Binding AppendOperatorCommand}"
+                    CommandParameter="÷" />
+            <Button Text="4"
+                    CellIndex="3,0"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="4" />
+            <Button Text="5"
+                    CellIndex="3,1"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="5" />
+            <Button Text="6"
+                    CellIndex="3,2"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="6" />
+            <Button Text="×"
+                    CellIndex="3,3"
+                    XamlStyle="{StaticResource FunctionButton}"
+                    Command="{Binding AppendOperatorCommand}"
+                    CommandParameter="×" />
+            <Button Text="1"
+                    CellIndex="4,0"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="1" />
+            <Button Text="2"
+                    CellIndex="4,1"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="2" />
+            <Button Text="3"
+                    CellIndex="4,2"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="3" />
+            <Button Text="-"
+                    CellIndex="4,3"
+                    XamlStyle="{StaticResource FunctionButton}"
+                    Command="{Binding AppendOperatorCommand}"
+                    CommandParameter="-" />
+            <Button Text="."
+                    CellIndex="5,0"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendDecimalPointCommand}" />
+            <Button Text="0"
+                    CellIndex="5,1"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding AppendToExpressionCommand}"
+                    CommandParameter="0" />
+            <Button Text="="
+                    CellIndex="5,2"
+                    XamlStyle="{StaticResource NumberButton}"
+                    Command="{Binding EvaluateExpressionCommand}" />
+            <Button Text="+"
+                    CellIndex="5,3"
+                    XamlStyle="{StaticResource FunctionButton}"
+                    Command="{Binding AppendOperatorCommand}"
+                    CommandParameter="+" />
+        </View>
+    </View>
+</View>
