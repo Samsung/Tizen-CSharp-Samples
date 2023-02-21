@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sensor.Pages.SensorMain" >
+
+    <ContentPage.Content>
+        
+        <View>
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" />
+            </View.Layout>
+
+            <TextLabel Text="Supported Sensor List"
+                Margin="10,10,10,10"
+                PointSize="32"
+                TextColor="White"/>
+
+            <CollectionView x:Name="MyListView"
+                ItemsSource="{Binding Items}"
+                SelectionChanged="OnItemSelected" >
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <TextLabel Text="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </View>
+        
+    </ContentPage.Content>
+    
+</ContentPage>

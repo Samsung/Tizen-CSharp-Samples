@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Sensor.Pages.PedometerPage"
+         xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+         xmlns:local="clr-namespace:Sensor.Models;assembly=Sensor"
+         xmlns:views="clr-namespace:Sensor.Pages.Views;assembly=Sensor">
+
+    <ContentPage.Content>
+
+        <View>
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" />
+            </View.Layout>
+
+            <views:SensorInfoView x:Name="SensorInfo" BindingContext="info"/>
+            
+            <View>
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" />
+                </View.Layout>
+
+                <View>
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" />
+                    </View.Layout>
+
+                    <TextLabel Text="Step Count : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End"/>
+                    <TextLabel Text="{Binding Path=StepCount}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin"/>
+                </View>
+
+                <View>
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" />
+                    </View.Layout>
+
+                    <TextLabel Text="Walk Step Count : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End"/>
+                    <TextLabel Text="{Binding Path=WalkStepCount}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin"/>
+                </View>
+
+                <View>
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" />
+                    </View.Layout>
+
+                    <TextLabel Text="Run Step Count : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End"/>
+                    <TextLabel Text="{Binding Path=RunStepCount}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin"/>
+                </View>
+
+                <View>
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" />
+                    </View.Layout>
+
+                    <TextLabel Text="Moving Distance : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End"/>
+                    <TextLabel Text="{Binding Path=MovingDistance}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin"/>
+                </View>
+
+                <View>
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" />
+                    </View.Layout>
+
+                    <TextLabel Text="Last Speed : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End"/>
+                    <TextLabel Text="{Binding Path=LastSpeed}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin"/>
+                </View>
+
+                <View>
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" />
+                    </View.Layout>
+
+                    <TextLabel Text="Last Stepping Frequency : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End"/>
+                    <TextLabel Text="{Binding Path=LastSteppingFrequency}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin"/>
+                </View>
+
+                <View>
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" />
+                    </View.Layout>
+
+                    <TextLabel Text="Last Step Status : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End"/>
+                    <TextLabel Text="{Binding Path=LastStepStatus}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin"/>
+                </View>
+
+                <View>
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" />
+                    </View.Layout>
+
+                    <Button Text="Start"
+                            Clicked="StartClicked"
+                            ItemVerticalAlignment="Center"
+                            ItemHorizontalAlignment="Center"
+                            PointSize="16" />
+                    <Button Text="Stop"
+                            Clicked="StopClicked"
+                            ItemVerticalAlignment="Center"
+                            ItemHorizontalAlignment="Center"
+                            PointSize="16" />
+                </View>
+            </View>
+        </View>
+        
+    </ContentPage.Content>
+
+</ContentPage>
