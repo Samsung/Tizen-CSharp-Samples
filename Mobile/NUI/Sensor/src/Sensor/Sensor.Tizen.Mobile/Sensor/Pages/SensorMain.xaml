@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sensor.Pages.SensorMain"
+             WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+             HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+             BackgroundImage="*Resource*/bg_01.png" >
+
+    <ContentPage.Content>
+
+        <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+              HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" />
+            </View.Layout>
+
+            <TextLabel Text="Sensor"
+                Margin="10,10,10,10"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                PointSize="15"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                TextColor="White"/>
+            
+            <TextLabel Text="Supported Sensor List"
+                Margin="10,10,10,10"
+                PointSize="12"
+                TextColor="White"/>
+
+            <CollectionView BackgroundColor="White" 
+                x:Name="MyListView"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                ItemsSource="{Binding Items}"
+                SelectionChanged="OnItemSelected"
+                SelectionMode="Single"
+                ScrollEnabled="True"
+                ScrollingDirection="Vertical" >
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <DefaultLinearItem WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+                                           HeightSpecification="120" 
+                                           BackgroundColor="{Binding BgColor}"
+                                           Text="{Binding Text}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.ItemsLayouter>
+                    <LinearLayouter />
+                </CollectionView.ItemsLayouter>
+
+            </CollectionView>
+        </View>
+        
+    </ContentPage.Content>
+    
+</ContentPage>

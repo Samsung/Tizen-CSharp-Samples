@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Sensor.Pages.FaceDownGestureDetectorPage"
+         xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+         xmlns:local="clr-namespace:Sensor.Models;assembly=Sensor"
+         xmlns:views="clr-namespace:Sensor.Pages.Views;assembly=Sensor">
+
+    <ContentPage.Content>
+
+        <View>
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" />
+            </View.Layout>
+
+            <views:SensorInfoView x:Name="SensorInfo" BindingContext="info"/>
+
+            <View>
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" />
+                </View.Layout>
+
+                <View>
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" />
+                    </View.Layout>
+
+                    <TextLabel Text="State : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End"/>
+                    <TextLabel Text="{Binding Path=State}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin"/>
+                </View>
+
+                <View>
+                    <View.Layout>
+                        <LinearLayout LinearOrientation="Horizontal" />
+                    </View.Layout>
+
+                    <Button Text="Start"
+                            Clicked="StartClicked"
+                            ItemVerticalAlignment="Center"
+                            ItemHorizontalAlignment="Center"
+                            PointSize="16" />
+                    <Button Text="Stop"
+                            Clicked="StopClicked"
+                            ItemVerticalAlignment="Center"
+                            ItemHorizontalAlignment="Center"
+                            PointSize="16" />
+                </View>
+            </View>
+        </View>
+
+    </ContentPage.Content>
+
+</ContentPage>

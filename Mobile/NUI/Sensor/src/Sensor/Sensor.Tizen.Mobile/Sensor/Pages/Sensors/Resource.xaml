@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" >
+    <XamlStyle x:Key="startButton" TargetType="Button">
+        <Setter Property="CornerRadius" Value="80,80,80,80"/>
+        <Setter Property="PointSize" Value="12.0"/>
+        <Setter Property="WidthSpecification" Value="360"/>
+        <Setter Property="HeightSpecification" Value="120"/>
+        <Setter Property="BackgroundColor" Value="Cyan"/>
+    </XamlStyle>
+
+    <XamlStyle x:Key="stopButton" TargetType="Button" BasedOn="{StaticResource startButton}">
+        <Setter Property="Margin" Value="5,0,0,0" />
+    </XamlStyle>
+
+    <XamlStyle x:Key="titleLable" TargetType="TextLabel" >
+        <Setter Property="PointSize" Value="10.0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="End" />
+    </XamlStyle>
+
+    <XamlStyle x:Key="descriptionLabel" TargetType="TextLabel" BasedOn="{StaticResource titleLable}">
+        <Setter Property="Margin" Value="20,0,0,0" />
+        <Setter Property="HorizontalAlignment" Value="Begin" />
+    </XamlStyle>
+
+</ResourceDictionary>
+

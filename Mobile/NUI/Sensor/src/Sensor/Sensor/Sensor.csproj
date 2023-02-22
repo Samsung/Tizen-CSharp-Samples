@@ -1,0 +1,89 @@
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.6">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\SensorMain.xaml" />
+    <None Remove="Pages\Sensors\AccelerometerPage.xaml" />
+    <None Remove="Pages\Sensors\FaceDownGestureDetectorPage.xaml" />
+    <None Remove="Pages\Sensors\GravitySensorPage.xaml" />
+    <None Remove="Pages\Sensors\GyroscopePage.xaml" />
+    <None Remove="Pages\Sensors\GyroscopeRotationVectorSensorPage.xaml" />
+    <None Remove="Pages\Sensors\HeartRateMonitorPage.xaml" />
+    <None Remove="Pages\Sensors\HumiditySensorPage.xaml" />
+    <None Remove="Pages\Sensors\InVehicleActivityDetectorPage.xaml" />
+    <None Remove="Pages\Sensors\LightSensorPage.xaml" />
+    <None Remove="Pages\Sensors\LinearAccelerationSensorPage.xaml" />
+    <None Remove="Pages\Sensors\MagnetometerPage.xaml" />
+    <None Remove="Pages\Sensors\MagnetometerRotationVectorSensorPage.xaml" />
+    <None Remove="Pages\Sensors\OrientationSensorPage.xaml" />
+    <None Remove="Pages\Sensors\PedometerPage.xaml" />
+    <None Remove="Pages\Sensors\PickUpGestureDetectorPage.xaml" />
+    <None Remove="Pages\Sensors\PressureSensorPage.xaml" />
+    <None Remove="Pages\Sensors\ProximitySensorPage.xaml" />
+    <None Remove="Pages\Sensors\RotationVectorSensorPage.xaml" />
+    <None Remove="Pages\Sensors\RunningActivityDetectorPage.xaml" />
+    <None Remove="Pages\Sensors\SleepMonitorPage.xaml" />
+    <None Remove="Pages\Sensors\StationaryActivityDetectorPage.xaml" />
+    <None Remove="Pages\Sensors\TemperatureSensorPage.xaml" />
+    <None Remove="Pages\Sensors\UltravioletSensorPage.xaml" />
+    <None Remove="Pages\Sensors\UncalibratedGyroscopePage.xaml" />
+    <None Remove="Pages\Sensors\UncalibratedMagnetometerPage.xaml" />
+    <None Remove="Pages\Sensors\WalkingActivityDetectorPage.xaml" />
+    <None Remove="Pages\Sensors\WristUpGestureDetectorPage.xaml" />
+    <None Remove="Pages\Views\SensorInfoView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\SensorMain.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\AccelerometerPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\FaceDownGestureDetectorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\GravitySensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\GyroscopePage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\GyroscopeRotationVectorSensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\HeartRateMonitorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\HumiditySensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\InVehicleActivityDetectorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\LightSensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\LinearAccelerationSensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\MagnetometerPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\MagnetometerRotationVectorSensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\OrientationSensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\PedometerPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\PickUpGestureDetectorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\PressureSensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\ProximitySensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\RotationVectorSensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\RunningActivityDetectorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\SleepMonitorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\StationaryActivityDetectorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\TemperatureSensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\UltravioletSensorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\UncalibratedGyroscopePage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\UncalibratedMagnetometerPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\WalkingActivityDetectorPage.xaml" />
+    <EmbeddedResource Include="Pages\Sensors\WristUpGestureDetectorPage.xaml" />
+    <EmbeddedResource Include="Pages\Views\SensorInfoView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="11.0.0.17614" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Pages\SensorMain.xaml.cs">
+      <DependentUpon>SensorMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Sensors\GravitySensorPage.xaml.cs">
+      <DependentUpon>GravitySensorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Sensors\GyroscopeRotationVectorSensorPage.xaml.cs">
+      <DependentUpon>GyroscopeRotationVectorSensorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Sensors\MagnetometerRotationVectorSensorPage.xaml.cs">
+      <DependentUpon>MagnetometerRotationVectorSensorPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>
