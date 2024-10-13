@@ -1,4 +1,4 @@
-# Tizen-CSharp-Samples
+# Tizen-CSharp-Samples (Deprecated)
 Tizen C# Samples for Mobile, Wearable, and TV profiles.
 
 Since 7.0, Xamarin samples are deprecated and .NET Multi-platform App UI (.NET MAUI) samples are supported by Tizen Platform.
