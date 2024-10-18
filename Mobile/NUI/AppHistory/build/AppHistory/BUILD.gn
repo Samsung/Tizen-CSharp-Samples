@@ -1,0 +1,20 @@
+import("$tizen_core/build/dotnet/project.gni")
+
+dotnet_project("AppHistory") {
+  
+   
+  csprojpath = "AppHistory.csproj"
+  is_dep = false
+  files = [
+      "AppHistory.csproj",
+      "AppHistory.cs",
+      "tizen-manifest.xml",
+      "MainPage.xaml.cs",
+      "res/layout/MainPage.xaml",
+      "shared/res/AppHistory.png",
+      "res/layout/AppInfoPage.xaml",
+      "AppInfoPage.xaml.cs",
+  ]
+  deps = [
+  ]
+}
