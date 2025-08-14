@@ -1,0 +1,19 @@
+import("$tizen_core/build/dotnet/project.gni")
+
+dotnet_project("Location") {
+  
+   
+  csprojpath = "Location.csproj"
+  is_dep = false
+  files = [
+      "Location.csproj",
+      "Location.cs",
+      "tizen-manifest.xml",
+      "MainPage.xaml.cs",
+      "res/layout/MainPage.xaml",
+      "shared/res/Location.png",
+      "ViewModel/MainPageViewModel.cs",
+  ]
+  deps = [
+  ]
+}

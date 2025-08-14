@@ -1,0 +1,21 @@
+<!--
+***********************************************************************************************
+<Build.Directory.targets>
+WARNING:  DO NOT MODIFY this file. Incorrect changes to this file will make it
+          impossible to load or build your projects from the IDE.
+
+***********************************************************************************************
+-->
+
+<Project>    
+	<Target Name="BuildDotnet" AfterTargets="TizenPackage" >
+        <Message Text="Tizen Build starts here ------------" Importance="high"/>
+        <Message Text="$(MSBuildProjectDirectory)" Importance="high"/>
+        <PropertyGroup>
+            <WorkspaceFolder>$([System.IO.Path]::GetDirectoryName($(MSBuildProjectDirectory)))</WorkspaceFolder>
+        </PropertyGroup>
+        <Message Text="Workspace: '$(WorkspaceFolder)'"  Importance="high" />
+
+		<Exec Command="C:\tizen-studio\tools\tizen-core\tz.exe pack  -S $(ProjectDir) $(WorkspaceFolder)"> </Exec>
+    </Target>
+</Project>

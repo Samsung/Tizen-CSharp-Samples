@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Location.MainPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:vm="clr-namespace:Location.ViewModel"
+  xmlns:behaviors="clr-namespace:Location.Behaviors"
+  PositionUsesPivotPoint="True"
+  ParentOrigin="Center"
+  PivotPoint="Center">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. -->
+    <ContentPage.AppBar>
+        <AppBar
+            Name="appBar"
+            Title="Location"
+            BackgroundColor="#00a9bf">
+            <AppBar.TitleContent>
+                <!-- TextLabel holding Appbar title -->
+                <TextLabel WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+
+                      HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+
+                      HorizontalAlignment="End"
+
+                      VerticalAlignment="Center"
+
+                      TextColor="White"
+
+                      PointSize="12"
+
+                      Text="Sample Account">
+
+                    <TextLabel.FontStyle>
+                        <!-- PropertyMap holding font style for TextLabel -->
+                        <PropertyMap>
+
+                            <KeyValue Key="width" Value="expanded"/>
+
+                            <KeyValue Key="weight" Value="medium"/>
+
+                            <KeyValue Key="slant" Value="italic"/>
+
+                        </PropertyMap>
+
+                    </TextLabel.FontStyle>
+
+                </TextLabel>
+
+            </AppBar.TitleContent>
+
+        </AppBar>
+
+    </ContentPage.AppBar>
+
+    <ContentPage.Content>
+
+            <!--Main View of application holding two views, one for menu buttons and other for text labels displaying informations-->
+            <View
+                x:Name="MainView"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <FlexLayout Direction="Column"/>
+            </View.Layout>
+
+            <!--Bind SourceData to BindingContext of this View.-->
+            <View.BindingContext>
+                <vm:MainPageViewModel x:Name="context"/>
+            </View.BindingContext>
+
+            <!--Button View holds buttons from application menu-->
+                <View
+                    x:Name="ButtonView"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                    <View.Layout>
+                        <FlexLayout Direction="Column" Justification="SpaceAround"/>
+                    </View.Layout>
+
+                    <Button
+                        BindingContext="{Binding Source={x:Reference context}"
+                        x:Name="StartLocationServiceButton"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        Text="Start location service"
+                        TextColor="White"
+                        Command ="{Binding StartLocationService}"
+                        IsEnabled="{Binding StartLocationServiceButtonEnabled}"
+                        BackgroundColor="#00a9bf"/>
+
+                    <Button
+                        BindingContext="{Binding Source={x:Reference context}"
+                        x:Name="GetLocationButton"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        Text="Get Location"
+                        TextColor="White"
+                        Command ="{Binding GetLocation}"
+                        IsEnabled="{Binding GetLocationButtonEnabled}"
+                        BackgroundColor="#00a9bf"/>
+
+                    <Button
+                        BindingContext="{Binding Source={x:Reference context}"
+                        x:Name="LocationBoundaryButton"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        behaviors:TextSetter.Text="{Binding LocationBoundaryButtonLabel}"
+                        TextColor="White"
+                        IsEnabled="{Binding LocationBoundaryButtonEnabled}"
+                        Command="{Binding LocationBoundary}"
+                        BackgroundColor="#00a9bf"/>
+
+                    <Button
+                        BindingContext="{Binding Source={x:Reference context}"
+                        x:Name="TrackTheRouteButton"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        behaviors:TextSetter.Text="{Binding TrackTheRouteButtonLabel}"
+                        TextColor="White"
+                        IsEnabled="{Binding TrackTheRouteButtonEnabled}"
+                        Command="{Binding TrackTheRoute}"
+                        BackgroundColor="#00a9bf"/>
+
+                    <Button
+                        BindingContext="{Binding Source={x:Reference context}"
+                        x:Name="SatelliteInformationButton"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        behaviors:TextSetter.Text="{Binding SatelliteInformationButtonLabel}"
+                        TextColor="White"
+                        Command="{Binding SatelliteInformation}"
+                        IsEnabled="{Binding SatelliteInformationButtonEnabled}"
+                        BackgroundColor="#00a9bf"/>
+
+                    <Button
+                        BindingContext="{Binding Source={x:Reference context}"
+                        x:Name="StopLocationServiceButton"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        Text="Stop location service"
+                        TextColor="White"
+                        IsEnabled="{Binding StopLocationServiceButtonEnabled}"
+                        Command="{Binding StopLocationService}"
+                        BackgroundColor="#00a9bf"/>
+
+            </View>
+
+                <!--Text Label View holds text labels thats displaying informations about location-->
+                <View
+                    x:Name="TextLabelView"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                    <View.Layout>
+                        <FlexLayout Direction="Column"/>
+                    </View.Layout>
+
+                    <TextLabel
+                        BindingContext="{Binding Source={x:Reference context}"
+                        x:Name="TextStatusLabel"
+                        Text="{Binding TextStatus}"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+
+                    <TextLabel
+                        BindingContext="{Binding Source={x:Reference context}"
+                        x:Name="TextTrackLabel"
+                        Text="{Binding TextTrack}"/>
+
+                    <TextLabel
+                        BindingContext="{Binding Source={x:Reference context}"
+                        x:Name="TextMessageLabel"
+                        Text="{Binding TextMessage}"/>
+
+                </View>
+
+            </View>
+
+    </ContentPage.Content>
+
+</ContentPage>
