@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ImageView xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:viewModels="clr-namespace:Piano.ViewModels;assembly=Piano.Tizen.Mobile"
+           x:Class="Piano.Controls.Key" 
+           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+           HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+           x:Name="Root" 
+           AdjustViewSize="true" >
+
+    <ImageView.BindingContext>
+        <viewModels:KeyViewModel SoundNumber="{Binding Source={x:Reference Name='Root'}, Path=SoundNumber}"
+                                 PlaySoundCommand="{Binding Source={x:Reference Name='Root'}, Path=OnClickedCommand, Mode=OneWayToSource}" />
+    </ImageView.BindingContext>
+    
+</ImageView>

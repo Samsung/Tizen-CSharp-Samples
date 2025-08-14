@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:Piano.Controls;assembly=Piano.Tizen.Mobile"
+             x:Class="Piano.Views.MainPage"
+             WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+             HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <ContentPage.XamlResources>
+
+        <XamlStyle x:Key="whiteKeyStyle" TargetType="control:Key">
+            <Setter Property="UnPressedImageSource" Value="*Resource*/white.png" />
+            <Setter Property="PressedImageSource" Value="*Resource*/white_pressed.png" />
+        </XamlStyle>
+        <XamlStyle x:Key="blackKeyStyle" TargetType="control:Key">
+            <Setter Property="UnPressedImageSource" Value="*Resource*/black.png" />
+            <Setter Property="PressedImageSource" Value="*Resource*/black_pressed.png" />
+        </XamlStyle>
+
+    </ContentPage.XamlResources>
+
+    <ContentPage.Content>
+        
+        <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" 
+              HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+            
+            <View.Layout>
+                <AbsoluteLayout />
+            </View.Layout>
+            
+            <control:Key SoundNumber="0"
+                         LayoutBounds="0.0,0.0,0.125,1.0"
+                         XamlStyle="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="2"
+                         LayoutBounds="0.125,0.0,0.125,1.0"
+                         XamlStyle="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="4"
+                         LayoutBounds="0.250,0.0,0.125,1.0"
+                         XamlStyle="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="5"
+                         LayoutBounds="0.375,0.0,0.125,1.0"
+                         XamlStyle="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="7"
+                         LayoutBounds="0.500,0.0,0.125,1.0"
+                         XamlStyle="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="9"
+                         LayoutBounds="0.625,0.0,0.125,1.0"
+                         XamlStyle="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="11"
+                         LayoutBounds="0.750,0.0,0.125,1.0"
+                         XamlStyle="{StaticResource whiteKeyStyle}" />
+            <control:Key SoundNumber="12"
+                         LayoutBounds="0.875,0.0,0.125,1.0"
+                         XamlStyle="{StaticResource whiteKeyStyle}" />
+
+            <control:Key SoundNumber="1"
+                         LayoutBounds="0.09,0,0.075,0.6694"
+                         XamlStyle="{StaticResource blackKeyStyle}" />
+            <control:Key SoundNumber="3"
+                         LayoutBounds="0.215,0,0.075,0.6694"
+                         XamlStyle="{StaticResource blackKeyStyle}" />
+            <control:Key SoundNumber="6"
+                         LayoutBounds="0.465,0,0.075,0.6694"
+                         XamlStyle="{StaticResource blackKeyStyle}" />
+            <control:Key SoundNumber="8"
+                         LayoutBounds="0.59,0,0.075,0.6694"
+                         XamlStyle="{StaticResource blackKeyStyle}" />
+            <control:Key SoundNumber="10"
+                         LayoutBounds="0.715,0,0.075,0.6694"
+                         XamlStyle="{StaticResource blackKeyStyle}" />
+            <control:Key SoundNumber="13"
+                         LayoutBounds="0.965,0,0.075,0.6694"
+                         XamlStyle="{StaticResource blackKeyStyle}" />
+        
+        </View>
+        
+    </ContentPage.Content>
+
+</ContentPage>
