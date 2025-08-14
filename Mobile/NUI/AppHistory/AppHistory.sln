@@ -1,0 +1,27 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHistory", "AppHistory\AppHistory.csproj", "{5e07eb0b-d8d8-4a68-a9f8-60eed77e6f3f}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{d18319e3-b056-4369-9933-afae8a659515}"
+	ProjectSection(SolutionItems) = preProject
+		tizen_workspace.yaml = tizen_workspace.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5e07eb0b-d8d8-4a68-a9f8-60eed77e6f3f}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5e07eb0b-d8d8-4a68-a9f8-60eed77e6f3f}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5e07eb0b-d8d8-4a68-a9f8-60eed77e6f3f}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5e07eb0b-d8d8-4a68-a9f8-60eed77e6f3f}.Release|Any CPU.Build.0 = Release|Any CPU
+
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
