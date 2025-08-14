@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sensor.Pages.Views.SensorInfoView">
+
+    <ContentPage.Content>
+
+        <View>
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="5,5" />
+            </View.Layout>
+
+            <View Padding="5,5,5,5">
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" />
+                </View.Layout>
+
+                <TextLabel Text="Type : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End" />
+                <TextLabel Text="{Binding Path=Type}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin" />
+            </View>
+
+            <View Padding="5,5,5,5">
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" />
+                </View.Layout>
+
+                <TextLabel Text="Name : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End" />
+                <TextLabel Text="{Binding Path=Name}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin" />
+            </View>
+
+            <View Padding="5,5,5,5">
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" />
+                </View.Layout>
+
+                <TextLabel Text="Vendor : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End" />
+                <TextLabel Text="{Binding Path=Vendor}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin" />
+            </View>
+
+            <View Padding="5,5,5,5">
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" />
+                </View.Layout>
+
+                <TextLabel Text="Minimum Range : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End" />
+                <TextLabel Text="{Binding Path=MinRange}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin" />
+            </View>
+
+            <View Padding="5,5,5,5">
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" />
+                </View.Layout>
+
+                <TextLabel Text="Maximum Range : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End" />
+                <TextLabel Text="{Binding Path=MaxRange}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin" />
+            </View>
+
+            <View Padding="5,5,5,5">
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" />
+                </View.Layout>
+
+                <TextLabel Text="Resolution : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End" />
+                <TextLabel Text="{Binding Path=Resolution}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin" />
+            </View>
+
+            <View Padding="5,5,5,5">
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" />
+                </View.Layout>
+
+                <TextLabel Text="Minimum Interval : "
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="End" />
+                <TextLabel Text="{Binding Path=MinInterval}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Begin" />
+            </View>
+
+        </View>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,168 @@
+﻿<Project Sdk="Tizen.NET.Sdk/1.1.7">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Sensor.Tizen.Mobile</AssemblyName>
+    <XamlOptimization>1</XamlOptimization>
+	<XFKeepXamlResources>true</XFKeepXamlResources>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Sensor\Pages\SensorMain.xaml" />
+    <None Remove="Sensor\Pages\Sensors\AccelerometerPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\FaceDownGestureDetectorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\GravitySensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\GyroscopePage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\GyroscopeRotationVectorSensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\HeartRateMonitorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\HumiditySensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\InVehicleActivityDetectorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\LightSensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\LinearAccelerationSensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\MagnetometerPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\MagnetometerRotationVectorSensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\OrientationSensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\PedometerPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\PickUpGestureDetectorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\PressureSensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\ProximitySensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\Resource.xaml" />
+    <None Remove="Sensor\Pages\Sensors\RotationVectorSensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\RunningActivityDetectorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\SleepMonitorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\StationaryActivityDetectorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\TemperatureSensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\UltravioletSensorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\UncalibratedGyroscopePage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\UncalibratedMagnetometerPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\WalkingActivityDetectorPage.xaml" />
+    <None Remove="Sensor\Pages\Sensors\WristUpGestureDetectorPage.xaml" />
+    <None Remove="Sensor\Pages\Views\SensorInfoView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sensor\Pages\SensorMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\AccelerometerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\FaceDownGestureDetectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\GravitySensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\GyroscopePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\GyroscopeRotationVectorSensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\HeartRateMonitorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\HumiditySensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\InVehicleActivityDetectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\LightSensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\LinearAccelerationSensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\MagnetometerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\MagnetometerRotationVectorSensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\OrientationSensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\PedometerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\PickUpGestureDetectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\PressureSensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\ProximitySensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\Resource.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\RotationVectorSensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\RunningActivityDetectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\SleepMonitorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\StationaryActivityDetectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\TemperatureSensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\UltravioletSensorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\UncalibratedGyroscopePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\UncalibratedMagnetometerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\WalkingActivityDetectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Sensors\WristUpGestureDetectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor\Pages\Views\SensorInfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="lib\" />
+    <Folder Include="res\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    <PackageReference Include="Tizen.NET" Version="11.0.0.17614" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Sensor\Pages\SensorMain.xaml.cs">
+      <DependentUpon>SensorMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Sensor\Pages\Sensors\GravitySensorPage.xaml.cs">
+      <DependentUpon>GravitySensorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Sensor\Pages\Sensors\GyroscopeRotationVectorSensorPage.xaml.cs">
+      <DependentUpon>GyroscopeRotationVectorSensorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Sensor\Pages\Sensors\MagnetometerRotationVectorSensorPage.xaml.cs">
+      <DependentUpon>MagnetometerRotationVectorSensorPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>
