@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-tizen10.0</TargetFramework>
+  </PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Tizen.NET.API13" Version="13.0.0.19106" />
+	</ItemGroup>
+
+</Project>
