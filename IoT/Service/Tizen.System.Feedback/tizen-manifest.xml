@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="10.0" package="org.tizen.example.FeedbackSample" version="1.0.0">
+  <profile name="common" />
+  <service-application appid="org.tizen.example.FeedbackSample"
+					exec="FeedbackSample.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="false"
+					nodisplay="true"
+                    api-version="12">
+    <label>FeedbackSample</label>
+    <icon>FeedbackSample.png</icon>
+  </service-application>
+
+  <!-- Feedback API Privileges -->
+  <privileges>
+    <privilege>http://tizen.org/privilege/haptic</privilege>
+  </privileges>
+</manifest>
