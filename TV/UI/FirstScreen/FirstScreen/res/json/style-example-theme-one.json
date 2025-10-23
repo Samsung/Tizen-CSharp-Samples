@@ -1,0 +1,407 @@
+{
+  "constants": {
+    "STYLE_DIR": "{APPLICATION_RESOURCE_PATH}/style"
+  },
+  "styles": {
+    "Title": {
+      "textColor": "#0000ff",
+      "background": {
+        "visualType": "COLOR",
+        "mixColor": [1.0, 1.0, 1.0, 1.0]
+      }
+    },
+    "TableView": {
+      "background": {
+        "visualType": "COLOR",
+        "mixColor": [1.0, 1.0, 1.0, 0.03]
+      }
+    },
+    "FlexContainer": {
+      "background": {
+        "visualType": "COLOR",
+        "mixColor": [1.0, 1.0, 1.0, 0.1]
+      }
+    },
+    "RadioButton": {
+      "label": {
+        "textColor": [1, 1, 1, 1]
+      }
+    },
+    "CheckBoxButton": {
+      "label": {
+        "textColor": [1, 1, 1, 1]
+      }
+    },
+    "ColorLabel1": {
+      "textColor": [1, 0, 0, 1]
+    },
+    "ColorLabel2": {
+      "textColor": [0, 1, 0, 1]
+    },
+    "ColorLabel3": {
+      "textColor": [0.3, 0.3, 1, 1]
+    },
+    "ThemeLabel": {
+      "textColor": [0, 1, 1, 1]
+    },
+    "PopupTitle": {
+      "textColor": [1, 1, 1, 1]
+    },
+    "PopupBody": {
+      "textColor": [1, 1, 0, 1]
+    },
+    "TextLabel": {
+      "textColor": [0, 0, 0, 1]
+    },
+    "ColorSlider1": {
+      "styles": ["Slider"]
+    },
+    "ColorSlider2": {
+      "styles": ["slider"]
+    },
+    "ColorSlider3": {
+      "styles": ["slider"]
+    },
+    "ImageChannelControl": {
+      "enableVisibilityTransition": [
+        {
+          "target": "imageVisual",
+          "property": "opacity",
+          "initialValue": 0,
+          "targetValue": 1,
+          "animator": {
+            "alphaFunction": "EASE_IN_OUT",
+            "timePeriod": {
+              "duration": 0.25,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "imageVisual",
+          "property": "size",
+          "targetValue": [1, 1]
+        }
+    ],
+      "disableVisibilityTransition": [
+        {
+          "target": "imageVisual",
+          "property": "opacity",
+          "targetValue": 0,
+          "animator": {
+            "alphaFunction": "EASE_IN_OUT",
+            "timePeriod": {
+              "duration": 0.25,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "imageVisual",
+          "property": "size",
+          "targetValue": [1, 1, 1]
+        }
+    ]
+    },
+    "ShadowButton": {
+      "backgroundVisual": {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/shadowButtonBg.9.png",
+        "mixColor": [1, 1, 1, 0]
+      },
+      "checkboxBgVisual": {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/CheckBg.png",
+        "transform": {
+          "size": [0.09, 0.28],
+          "offset": [30, 0],
+          "offsetSizeMode": [1, 1, 0, 0],
+          "origin": "CENTER_BEGIN",
+          "anchorPoint": "CENTER_BEGIN"
+        }
+      },
+      "checkboxFgVisual": {
+        "visualType": "IMAGE",
+        "url": "{STYLE_DIR}/images/Tick.png",
+        "transform": {
+          "size": [0.09, 0.28],
+          "offset": [30, 0],
+          "offsetSizeMode": [1, 1, 0, 0],
+          "origin": "CENTER_BEGIN",
+          "anchorPoint": "CENTER_BEGIN"
+        }
+      },
+      "labelVisual": {
+        "visualType": "TEXT",
+        "text": "Don't show again",
+        "pointSize": 20,
+        "horizontalAlignment": "END",
+        "verticalAlignment": "CENTER",
+        "textColor": [1, 1, 1, 1],
+        "mixColor": [0.3, 0.3, 0.3, 1],
+        "transform": {
+          "size": [0.9, 0.9],
+          "offset": [-30, 0],
+          "offsetSizeMode": [1, 1, 0, 0],
+          "origin": "CENTER_END",
+          "anchorPoint": "CENTER_END"
+        }
+      },
+      "activeTransition": [
+        {
+          "target": "checkboxBgVisual",
+          "property": "size",
+          "initialValue": [0.09, 0.28],
+          "targetValue": [0.12, 0.37],
+          "animator": {
+            "alphaFunction": "EASE_OUT_BACK",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "backgroundVisual",
+          "property": "mixColor",
+          "initialValue": [1, 1, 1, 0],
+          "targetValue": [1, 1, 1, 1],
+          "animator": {
+            "alphaFunction": "EASE_OUT_BACK",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "backgroundVisual",
+          "property": "size",
+          "initialValue": [0.9, 0.9],
+          "targetValue": [1, 1],
+          "animator": {
+            "alphaFunction": "EASE_OUT_BACK",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "checkboxFgVisual",
+          "property": "size",
+          "initialValue": [0.09, 0.28],
+          "targetValue": [0.12, 0.37],
+          "animator": {
+            "alphaFunction": "EASE_OUT_BACK",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "labelVisual",
+          "property": "mixColor",
+          "initialValue": [0.2, 0.2, 0.2, 1.0],
+          "targetValue": [0, 0, 0, 1],
+          "animator": {
+            "alphaFunction": "EASE_OUT_BACK",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        }
+    ],
+      "inactiveTransition": [
+        {
+          "target": "checkboxBgVisual",
+          "property": "size",
+          "initialValue": [0.12, 0.37],
+          "targetValue": [0.09, 0.28],
+          "animator": {
+            "alphaFunction": "EASE_OUT_BACK",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "backgroundVisual",
+          "property": "mixColor",
+          "targetValue": [1, 1, 1, 0],
+          "animator": {
+            "alphaFunction": "EASE_OUT_BACK",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "checkboxFgVisual",
+          "property": "size",
+          "initialValue": [0.12, 0.37],
+          "targetValue": [0.09, 0.28],
+          "animator": {
+            "alphaFunction": "EASE_OUT_BACK",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "labelVisual",
+          "property": "mixColor",
+          "targetValue": [0.4, 0.4, 0.4, 1.0],
+          "animator": {
+            "alphaFunction": "EASE_OUT_BACK",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "backgroundVisual",
+          "property": "size",
+          "targetValue": [0.9, 0.9],
+          "animator": {
+            "alphaFunction": "EASE_OUT_BACK",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        }
+    ],
+      "checkTransition": [
+        {
+          "target": "checkboxFgVisual",
+          "property": "pixelArea",
+          "initialValue": [0.0, 0.0, 0.0, 1.0],
+          "targetValue": [0.0, 0.0, 1.0, 1.0],
+          "animator": {
+            "alphaFunction": "EASE_IN",
+            "timePeriod": {
+              "duration": 0.4,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "checkboxFgVisual",
+          "property": "size",
+          "initialValue": [0.0, 0.37],
+          "targetValue": [0.12, 0.37],
+          "animator": {
+            "alphaFunction": "EASE_IN",
+            "timePeriod": {
+              "duration": 0.4,
+              "delay": 0
+            }
+          }
+        }
+    ],
+      "uncheckTransition": [
+        {
+          "target": "checkboxFgVisual",
+          "property": "pixelArea",
+          "initialValue": [0.0, 0.0, 1.0, 1.0],
+          "targetValue": [0.0, 0.0, 0.0, 1.0],
+          "animator": {
+            "alphaFunction": "EASE_OUT",
+            "timePeriod": {
+              "duration": 0.4,
+              "delay": 0
+            }
+          }
+        },
+        {
+          "target": "checkboxFgVisual",
+          "property": "size",
+          "targetValue": [0.0, 0.37],
+          "animator": {
+            "alphaFunction": "EASE_OUT",
+            "timePeriod": {
+              "duration": 0.4,
+              "delay": 0
+            }
+          }
+        }
+    ]
+    },
+    "BeatControl": {
+      "beatVisual": {
+        "visualType": "IMAGE",
+        "url": "{APPLICATION_RESOURCE_PATH}/images/Logo-for-demo.png"
+      },
+
+      "bounceTransition": [
+        {
+          "target": "beatVisual",
+          "property": "size",
+          "initialValue": [0.5, 0.5],
+          "targetValue": [0.75, 0.75],
+          "animator": {
+            "alphaFunction": "BOUNCE",
+            "timePeriod": {
+              "duration": 0.5,
+              "delay": 0
+            }
+          }
+        }
+    ],
+
+      "leftTransition": [
+        {
+          "target": "beatVisual",
+          "property": "offset",
+          "initialValue": [0, 0],
+          "targetValue": [0.25, 0],
+          "animator": {
+            "alphaFunction": "BOUNCE",
+            "timePeriod": {
+              "duration": 0.5,
+              "delay": 0
+            }
+          }
+        }
+    ],
+
+      "upTransition": [
+        {
+          "target": "beatVisual",
+          "property": "offset",
+          "initialValue": [0, 0],
+          "targetValue": [0, 0.25],
+          "animator": {
+            "alphaFunction": "BOUNCE",
+            "timePeriod": {
+              "duration": 0.5,
+              "delay": 0
+            }
+          }
+        }
+    ],
+
+      "fadeTransition": [
+        {
+          "target": "beatVisual",
+          "property": "opacity",
+          "targetValue": 0,
+          "animator": {
+            "alphaFunction": "BOUNCE",
+            "timePeriod": {
+              "duration": 0.8,
+              "delay": 0
+            }
+          }
+        }
+    ]
+    }
+  }
+}
