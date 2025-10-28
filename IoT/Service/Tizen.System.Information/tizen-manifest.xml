@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="10.0" package="org.tizen.example.InformationSample" version="1.0.0">
+  <profile name="common" />
+  <service-application appid="org.tizen.example.InformationSample"
+					exec="InformationSample.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="false"
+					nodisplay="true"
+                    api-version="13">
+    <label>InformationSample</label>
+    <icon>InformationSample.png</icon>
+  </service-application>
+  <privileges>
+    <privilege>http://tizen.org/privilege/systemmonitor</privilege>
+  </privileges>
+</manifest>
