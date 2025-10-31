@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="10.0" package="org.tizen.example.DeviceSample" version="1.0.0">
+  <profile name="common" />
+  <service-application appid="org.tizen.example.DeviceSample"
+					exec="DeviceSample.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="false"
+					nodisplay="true"
+                    api-version="13">
+    <label>DeviceSample</label>
+    <icon>DeviceSample.png</icon>
+    <privileges>
+      <privilege>http://tizen.org/privilege/use_ir</privilege>
+      <privilege>http://tizen.org/privilege/display</privilege>
+      <privilege>http://tizen.org/privilege/haptic</privilege>
+      <privilege>http://tizen.org/privilege/led</privilege>
+      <privilege>http://tizen.org/privilege/display.state</privilege>
+    </privileges>
+  </service-application>
+</manifest>
