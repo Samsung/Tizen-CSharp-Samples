@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="10.0" package="org.tizen.samples.usbhost" version="1.0.0">
+	<profile name="common" />
+	<service-application appid="org.tizen.example.usbhost"
+	                      exec="usb-host-sample.dll"
+	                      type="dotnet"
+	                  multiple="false"
+	                taskmanage="false"
+	                 nodisplay="true"
+	               api-version="13">
+	<label>usb-host-sample</label>
+	<icon>usb-host-sample.png</icon>
+	</service-application>
+	<feature name="http://tizen.org/feature/usb.host"/>
+</manifest>
