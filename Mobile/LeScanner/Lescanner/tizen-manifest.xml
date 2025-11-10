@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.Lescanner" version="1.0.0" api-version="9.0" xmlns="http://tizen.org/ns/packages">
+    <profile name="common" />
+    <ui-application appid="org.tizen.example.Lescanner" exec="Lescanner.dll" multiple="false" nodisplay="false" taskmanage="true" api-version="12" type="dotnet-nui" launch_mode="single">
+        <label>Lescanner</label>
+        <icon>Lescanner.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+    </privileges>
+    <dependencies />
+    <provides-appdefined-privileges />
+</manifest>
