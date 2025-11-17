@@ -26,6 +26,9 @@ namespace Downloader
         public static readonly Color WarningColor = new Color(1.0f, 0.6f, 0.0f, 1.0f); // #FF9800
         public static readonly Color BorderColor = new Color(0.88f, 0.88f, 0.88f, 1.0f); // #E0E0E0
         public static readonly Color ShadowColor = new Color(0.0f, 0.0f, 0.0f, 0.1f); // Subtle shadow
+        public static readonly Color WhiteColor = Color.White;
+        public static readonly Color TrackColor = new Color(0.9f, 0.9f, 0.9f, 1.0f);
+        public static readonly Color TransparentColor = Color.Transparent;
 
         // Common Sizes
         public const float TextSizeTitle = 28.0f;
@@ -40,6 +43,19 @@ namespace Downloader
         public const int SpacingMedium = 16;
         public const int SpacingLarge = 24;
         public const int SpacingExtraLarge = 32;
+
+        // Component Heights
+        public const int ButtonHeight = 56;
+        public const int TextFieldHeight = 56;
+        public const int ProgressBarHeight = 8;
+        public const int TableHeight = 200;
+
+        // Component Widths
+        public const int NameLabelWidth = 200;
+
+        // Layout Spacing for specific components
+        public static readonly Size2D ItemLayoutSpacing = new Size2D(16, 0);
+        public static readonly Size2D ZeroSpacing = new Size2D(0, 0);
 
         // Border Radius
         public static readonly Vector4 CornerRadiusSmall = new Vector4(4, 4, 4, 4);
@@ -76,5 +92,7 @@ namespace Downloader
         public static readonly Extents FormPadding = new Extents(SpacingLarge, SpacingLarge, SpacingMedium, SpacingMedium);
         public static readonly Extents CardPadding = new Extents(SpacingMedium, SpacingMedium, SpacingMedium, SpacingMedium);
         public static readonly Extents SectionPadding = new Extents(SpacingSmall, SpacingSmall, SpacingSmall, SpacingSmall);
+        public static readonly Extents TextFieldPadding = new Extents(16, 16, 12, 12);
+        public static readonly Extents AppBarButtonPadding = new Extents(40, 40, 8, 8);
     }
 }

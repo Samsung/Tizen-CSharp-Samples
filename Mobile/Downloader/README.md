@@ -1,8 +1,8 @@
 # Downloader
 The Downloader application demonstrates how user can download contents and get the download information.
 
-![MainPage](./Screenshots/Tizen/DownloadMainPage.jpg)
-![DownloadInfoPage](./Screenshots/Tizen/DownloadInfoPage.jpg)
+![MainPage](./Screenshots/Tizen/DownloadMainPage.png)
+![DownloadInfoPage](./Screenshots/Tizen/DownloadInfoPage.png)
 
 
 ### Verified Version

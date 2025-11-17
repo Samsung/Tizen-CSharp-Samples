@@ -31,7 +31,7 @@ namespace Downloader
         private Request req;
 
         // Flag to check download is started or not
-        private bool is_started = false;
+        private bool isStarted = false;
 
         /// <summary>
         /// Register event handler and call Request.Start() to start download
@@ -45,7 +45,7 @@ namespace Downloader
             req.StateChanged += StateChanged;
             // Register progress changed event handler
             req.ProgressChanged += ProgressChanged;
-            is_started = true;
+            isStarted = true;
             // Start download content
             req.Start();
         }
@@ -56,7 +56,7 @@ namespace Downloader
         /// <returns>The URL</returns>
         public string GetUrl()
         {
-            if (!is_started)
+            if (!isStarted)
             {
                 return "";
             }
@@ -70,7 +70,7 @@ namespace Downloader
         /// <returns>The content name</returns>
         public string GetContentName()
         {
-            if (!is_started)
+            if (!isStarted)
             {
                 return "";
             }
@@ -84,7 +84,7 @@ namespace Downloader
         /// <returns>The content size</returns>
         public ulong GetContentSize()
         {
-            if (!is_started)
+            if (!isStarted)
             {
                 return 0;
             }
@@ -98,7 +98,7 @@ namespace Downloader
         /// <returns>The downloaded path</returns>
         public string GetDownloadedPath()
         {
-            if (!is_started)
+            if (!isStarted)
             {
                 return "";
             }
@@ -112,7 +112,7 @@ namespace Downloader
         /// <returns>The MIME type</returns>
         public string GetMimeType()
         {
-            if (!is_started)
+            if (!isStarted)
             {
                 return "";
             }
@@ -126,7 +126,7 @@ namespace Downloader
         /// <returns>The download state</returns>
         public int GetDownloadState()
         {
-            if (!is_started)
+            if (!isStarted)
             {
                 return 0;
             }
@@ -139,10 +139,10 @@ namespace Downloader
         /// </summary>
         public void Dispose()
         {
-            if (is_started)
+            if (isStarted)
             {
                 req.Dispose();
-                is_started = false;
+                isStarted = false;
             }
         }
 
@@ -182,6 +182,18 @@ namespace Downloader
                 /// Download is failed.
                 case DownloadState.Failed:
                     stateMsg = "Failed";
+                    break;
+                /// Download is Paused.
+                case DownloadState.Paused:
+                    stateMsg = "Paused";
+                    break;
+                /// Download is Queued.
+                case DownloadState.Queued:
+                    stateMsg = "Queued";
+                    break;
+                /// Download is Canceled.
+                case DownloadState.Canceled:
+                    stateMsg = "Canceled";
                     break;
                 default:
                     stateMsg = "";

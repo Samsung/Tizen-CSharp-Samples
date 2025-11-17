@@ -12,8 +12,8 @@ namespace Downloader
     public class DownloadMainPage : ContentPage
     {
         private TextField urlTextField;
-        private Tizen.NUI.Components.Button downloadButton;
-        private Tizen.NUI.Components.Button goToInfoPageButton; // Button to navigate to info page
+        private Button downloadButton;
+        private Button goToInfoPageButton;
         private Progress progressBar;
         private TextLabel progressLabel;
         private string downloadUrl;
@@ -48,18 +48,18 @@ namespace Downloader
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     LinearAlignment = LinearLayout.Alignment.Center,
-                    CellPadding = new Size2D(0, 0)
+                    CellPadding = Resources.ZeroSpacing
                 },
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
-                Padding = new Extents(40, 40, 8, 8),
-                BackgroundColor = Color.Transparent
+                Padding = Resources.AppBarButtonPadding,
+                BackgroundColor = Resources.TransparentColor
             };
             
             var infoButtonText = new TextLabel
             {
                 Text = "Info",
-                TextColor = Color.White,
+                TextColor = Resources.WhiteColor,
                 PointSize = Resources.TextSizeMedium,
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
@@ -76,8 +76,8 @@ namespace Downloader
                 }
                 return true;
             };
-            
-            goToInfoPageButton = null; // Not using Button anymore
+
+            goToInfoPageButton = null;
             AppBar.Actions = new View[] { infoButtonContainer };
 
             var mainLayout = new View
@@ -154,14 +154,14 @@ namespace Downloader
             {
                 PlaceholderText = "Enter URL to download...",
                 WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = 56,
+                HeightSpecification = Resources.TextFieldHeight,
                 MaxLength = int.MaxValue,
                 BackgroundColor = Resources.SurfaceColor,
                 TextColor = Resources.TextColor,
                 PlaceholderTextColor = Resources.TextColorSecondary,
                 PointSize = Resources.TextSizeMedium,
                 CornerRadius = Resources.CornerRadiusSmall,
-                Padding = new Extents(16, 16, 12, 12)
+                Padding = Resources.TextFieldPadding
             };
             section.Add(urlTextField);
 
@@ -172,15 +172,15 @@ namespace Downloader
         /// Create a new Button to start download.
         /// </summary>
         /// <returns>Button</returns>
-        private Tizen.NUI.Components.Button CreateDownloadButton()
+        private Button CreateDownloadButton()
         {
-            var button = new Tizen.NUI.Components.Button(Resources.PrimaryButtonStyle)
+            var button = new Button(Resources.PrimaryButtonStyle)
             {
                 Text = "Start Download",
                 WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = 56,
+                HeightSpecification = Resources.ButtonHeight,
                 BackgroundColor = Resources.PrimaryColor,
-                TextColor = Color.White,
+                TextColor = Resources.WhiteColor,
                 PointSize = Resources.TextSizeMedium,
                 CornerRadius = Resources.CornerRadiusMedium
             };
@@ -235,8 +235,8 @@ namespace Downloader
                 MaxValue = 100.0f,
                 MinValue = 0.0f,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = 8,
-                TrackColor = new Tizen.NUI.Color(0.9f, 0.9f, 0.9f, 1.0f),
+                HeightSpecification = Resources.ProgressBarHeight,
+                TrackColor = Resources.TrackColor,
                 ProgressColor = Resources.PrimaryColor,
                 CornerRadius = Resources.CornerRadiusSmall
             };

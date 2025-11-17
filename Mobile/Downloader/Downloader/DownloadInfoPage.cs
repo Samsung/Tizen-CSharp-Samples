@@ -16,7 +16,7 @@ namespace Downloader
         private CollectionView downloadInfoListView;
         private List<DownloadInfo> downloadInfoList = new List<DownloadInfo>();
         private bool isUpdatedInfoList;
-        private Tizen.NUI.Components.Button goToMainPageButton; // Button to navigate to main page
+        private Button goToMainPageButton;
         private IDownload downloadService;
 
         /// <summary>
@@ -66,18 +66,18 @@ namespace Downloader
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     LinearAlignment = LinearLayout.Alignment.Center,
-                    CellPadding = new Size2D(0, 0)
+                    CellPadding = Resources.ZeroSpacing
                 },
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
-                Padding = new Extents(40, 40, 8, 8),
-                BackgroundColor = Color.Transparent
+                Padding = Resources.AppBarButtonPadding,
+                BackgroundColor = Resources.TransparentColor
             };
             
             var mainButtonText = new TextLabel
             {
                 Text = "Main",
-                TextColor = Color.White,
+                TextColor = Resources.WhiteColor,
                 PointSize = Resources.TextSizeMedium,
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
@@ -95,7 +95,7 @@ namespace Downloader
                 return true;
             };
             
-            goToMainPageButton = null; // Not using Button anymore
+            goToMainPageButton = null;
             AppBar.Actions = new View[] { mainButtonContainer };
 
             downloadInfoLabel = CreateDownloadInfoLabel();
@@ -247,7 +247,7 @@ namespace Downloader
                     Layout = new LinearLayout
                     {
                         LinearOrientation = LinearLayout.Orientation.Horizontal,
-                        CellPadding = new Size2D(16, 0) // Add horizontal spacing between name and value
+                        CellPadding = Resources.ItemLayoutSpacing
                     },
                     WidthSpecification = LayoutParamPolicies.MatchParent,
                     HeightSpecification = LayoutParamPolicies.WrapContent
@@ -256,7 +256,7 @@ namespace Downloader
                 // Name label
                 var nameLabel = new TextLabel
                 {
-                    WidthSpecification = 200, // Fixed width for name column
+                    WidthSpecification = Resources.NameLabelWidth,
                     HeightSpecification = LayoutParamPolicies.WrapContent,
                     PointSize = Resources.TextSizeMedium,
                     TextColor = Resources.TextColor
