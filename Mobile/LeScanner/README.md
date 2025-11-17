@@ -1,8 +1,8 @@
 # LeScanner
 The bluetooth allows you to connect BT devices, and exchange data with the remote BT devices. 
 
-![MainPage](./Screenshots/Tizen/MainPage.jpg)
-![DeviceListPage](./Screenshots/Tizen/DeviceListPage.jpg)
+![MainPage](./Screenshots/Tizen/MainPage.png)
+![DeviceListPage](./Screenshots/Tizen/DeviceListPage.png)
 
 
 ### Verified Version

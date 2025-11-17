@@ -1,9 +1,9 @@
 # NetworkApp
 The NetworkApp application demonstrates how user can get network information, connect Wi-Fi APs and scan Wi-Fi Direct peer devices.
 
-![ConnectionPage](./Screenshots/Tizen/NetworkApp-Connection.jpg)
-![WiFiPage](./Screenshots/Tizen/NetworkApp-WiFi.jpg)
-![WiFiDirectPage](./Screenshots/Tizen/NetworkApp-WiFiDirect.jpg)
+![ConnectionPage](./Screenshots/Tizen/NetworkApp-Connection.png)
+![WiFiPage](./Screenshots/Tizen/NetworkApp-WiFi.png)
+![WiFiDirectPage](./Screenshots/Tizen/NetworkApp-WiFiDirect.png)
 
 
 ### Verified Version

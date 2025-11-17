@@ -59,12 +59,12 @@ namespace Lescanner
                 {
                     _bleService.GattConnectionStateChanged -= OnGattConnectionStateChanged;
                     _bleService.ServicesDiscovered -= OnServicesDiscovered;
-                    Tizen.Log.Info("LescannerUuidListPage", "Unsubscribed from BLE service events.");
+                    Tizen.Log.Info(Constants.LOG_TAG, "Unsubscribed from BLE service events.");
                 }
             }
             catch (Exception ex)
             {
-                Tizen.Log.Error("LescannerUuidListPage", $"Error unsubscribing from BLE service events: {ex.Message}");
+                Tizen.Log.Error(Constants.LOG_TAG, $"Error unsubscribing from BLE service events: {ex.Message}");
             }
             
             base.Dispose(type);
@@ -110,12 +110,12 @@ namespace Lescanner
                 if (e.IsConnected)
                 {
                     _statusLabel.Text = $"Connected to {_deviceDisplayName}. Fetching services..."; // Use display name
-                    Tizen.Log.Info("LescannerUuidListPage", $"GATT connected to {_deviceAddress} ({_deviceDisplayName}).");
+                    Tizen.Log.Info(Constants.LOG_TAG, $"GATT connected to {_deviceAddress} ({_deviceDisplayName}).");
                 }
                 else
                 {
                     _statusLabel.Text = $"Disconnected from {_deviceDisplayName}."; // Use display name
-                    Tizen.Log.Warn("LescannerUuidListPage", $"GATT disconnected from {_deviceAddress} ({_deviceDisplayName}).");
+                    Tizen.Log.Warn(Constants.LOG_TAG, $"GATT disconnected from {_deviceAddress} ({_deviceDisplayName}).");
                     // Optionally, navigate back or show an error.
                 }
             }, null); // Added null for state parameter
@@ -129,7 +129,7 @@ namespace Lescanner
             // Ensure UI updates happen on the main thread
             _uiContext.Post(_ => // Changed from NUIApplication.GetDefaultWindow().Post
             {
-                Tizen.Log.Info("LescannerUuidListPage", $"Services discovered event received for {_deviceDisplayName}. Count: {uuids?.Count() ?? 0}");
+                Tizen.Log.Info(Constants.LOG_TAG, $"Services discovered event received for {_deviceDisplayName}. Count: {uuids?.Count() ?? 0}");
                 ClearUuidList();
                 if (uuids != null && uuids.Any())
                 {
@@ -178,14 +178,14 @@ namespace Lescanner
                 
                 if (!string.IsNullOrEmpty(currentConnectedAddress) && currentConnectedAddress == _deviceAddress)
                 {
-                    Tizen.Log.Info("LescannerUuidListPage", $"Already connected to {_deviceAddress}. Checking for existing services.");
+                    Tizen.Log.Info(Constants.LOG_TAG, $"Already connected to {_deviceAddress}. Checking for existing services.");
                     
                     // Get current services
                     var existingServices = _bleService.GetCurrentServices();
                     
                     if (existingServices != null && existingServices.Any())
                     {
-                        Tizen.Log.Info("LescannerUuidListPage", $"Found {existingServices.Count()} existing services for {_deviceAddress}.");
+                        Tizen.Log.Info(Constants.LOG_TAG, $"Found {existingServices.Count()} existing services for {_deviceAddress}.");
                         _uiContext.Post(_ => 
                         {
                             ClearUuidList();
@@ -198,7 +198,7 @@ namespace Lescanner
                     }
                     else
                     {
-                        Tizen.Log.Info("LescannerUuidListPage", $"No existing services found for {_deviceAddress}. Waiting for service discovery.");
+                        Tizen.Log.Info(Constants.LOG_TAG, $"No existing services found for {_deviceAddress}. Waiting for service discovery.");
                         _uiContext.Post(_ => 
                         {
                             _statusLabel.Text = $"Connected to {_deviceDisplayName}. Discovering services...";
@@ -207,7 +207,7 @@ namespace Lescanner
                 }
                 else
                 {
-                    Tizen.Log.Info("LescannerUuidListPage", $"Not connected to {_deviceAddress} or connected to different device. Current: {currentConnectedAddress}");
+                    Tizen.Log.Info(Constants.LOG_TAG, $"Not connected to {_deviceAddress} or connected to different device. Current: {currentConnectedAddress}");
                     _uiContext.Post(_ => 
                     {
                         _statusLabel.Text = $"Connecting to {_deviceDisplayName}...";
@@ -216,7 +216,7 @@ namespace Lescanner
             }
             catch (Exception ex)
             {
-                Tizen.Log.Error("LescannerUuidListPage", $"Error checking existing connection: {ex.Message}");
+                Tizen.Log.Error(Constants.LOG_TAG, $"Error checking existing connection: {ex.Message}");
                 _uiContext.Post(_ => 
                 {
                     _statusLabel.Text = $"Error checking connection status.";

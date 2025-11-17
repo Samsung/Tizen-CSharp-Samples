@@ -56,7 +56,7 @@ namespace Lescanner
         /// <param name="e">The event arguments.</param>
         private void OnScanButtonClicked(object sender, ClickedEventArgs e)
         {
-            Tizen.Log.Info("LescannerHomePage", "BLE Scan button clicked.");
+            Tizen.Log.Info(Constants.LOG_TAG, "BLE Scan button clicked.");
             if (_bleService.IsBluetoothEnabled())
             {
                 _statusLabel.Text = "Tap 'BLE Scan' to start.";
@@ -67,7 +67,7 @@ namespace Lescanner
             {
                 _statusLabel.Text = "Please turn on Bluetooth.";
                 // Optionally, show a more persistent message or a Toast.
-                Tizen.Log.Warn("LescannerHomePage", "Bluetooth is not enabled.");
+                Tizen.Log.Warn(Constants.LOG_TAG, "Bluetooth is not enabled.");
             }
         }
     }

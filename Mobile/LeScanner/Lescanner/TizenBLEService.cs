@@ -67,7 +67,7 @@ namespace Lescanner
             }
             catch (Exception ex)
             {
-                Tizen.Log.Error("LescannerBLE", $"Error getting current services: {ex.Message}");
+                Tizen.Log.Error(Constants.LOG_TAG, $"Error getting current services: {ex.Message}");
             }
 
             return new List<string>();
@@ -89,7 +89,7 @@ namespace Lescanner
             }
             catch (Exception ex)
             {
-                Tizen.Log.Error("LescannerBLE", $"Error checking Bluetooth status: {ex.Message}");
+                Tizen.Log.Error(Constants.LOG_TAG, $"Error checking Bluetooth status: {ex.Message}");
                 return false;
             }
         }
@@ -101,13 +101,13 @@ namespace Lescanner
         {
             if (_isScanning)
             {
-                Tizen.Log.Info("LescannerBLE", "Already scanning.");
+                Tizen.Log.Info(Constants.LOG_TAG, "Already scanning.");
                 return;
             }
 
             if (!IsBluetoothEnabled())
             {
-                Tizen.Log.Warn("LescannerBLE", "Bluetooth is not enabled. Cannot start scan.");
+                Tizen.Log.Warn(Constants.LOG_TAG, "Bluetooth is not enabled. Cannot start scan.");
                 return;
             }
 
@@ -116,11 +116,11 @@ namespace Lescanner
                 _isScanning = true;
                 BluetoothAdapter.ScanResultChanged += OnScanResultChanged;
                 BluetoothAdapter.StartLeScan();
-                Tizen.Log.Info("LescannerBLE", "LE Scan started.");
+                Tizen.Log.Info(Constants.LOG_TAG, "LE Scan started.");
             }
             catch (Exception ex)
             {
-                Tizen.Log.Error("LescannerBLE", $"Error starting LE scan: {ex.Message}. The Bluetooth adapter may be in a bad state. Please try restarting Bluetooth or the device.");
+                Tizen.Log.Error(Constants.LOG_TAG, $"Error starting LE scan: {ex.Message}. The Bluetooth adapter may be in a bad state. Please try restarting Bluetooth or the device.");
                 _isScanning = false;
                 BluetoothAdapter.ScanResultChanged -= OnScanResultChanged;
             }
@@ -133,18 +133,18 @@ namespace Lescanner
         {
             if (!_isScanning)
             {
-                Tizen.Log.Info("LescannerBLE", "Not currently scanning.");
+                Tizen.Log.Info(Constants.LOG_TAG, "Not currently scanning.");
                 return;
             }
 
             try
             {
                 BluetoothAdapter.StopLeScan();
-                Tizen.Log.Info("LescannerBLE", "LE Scan stopped.");
+                Tizen.Log.Info(Constants.LOG_TAG, "LE Scan stopped.");
             }
             catch (Exception ex)
             {
-                Tizen.Log.Error("LescannerBLE", $"Error stopping LE scan: {ex.Message}");
+                Tizen.Log.Error(Constants.LOG_TAG, $"Error stopping LE scan: {ex.Message}");
             }
             finally
             {
@@ -172,13 +172,13 @@ namespace Lescanner
         {
             if (_isConnecting)
             {
-                Tizen.Log.Warn("LescannerBLE", "Connection already in progress. Please wait.");
+                Tizen.Log.Warn(Constants.LOG_TAG, "Connection already in progress. Please wait.");
                 return false;
             }
 
             if (_gattClient != null)
             {
-                Tizen.Log.Warn("LescannerBLE", "A GATT client already exists. Disconnecting first.");
+                Tizen.Log.Warn(Constants.LOG_TAG, "A GATT client already exists. Disconnecting first.");
                 await DisconnectGattAsync();
                 
                 // Add a small delay to ensure the disconnect is fully processed
@@ -192,21 +192,21 @@ namespace Lescanner
                 _gattClient = BluetoothGattClient.CreateClient(deviceAddress);
                 if (_gattClient == null)
                 {
-                    Tizen.Log.Error("LescannerBLE", "Failed to create GATT client.");
+                    Tizen.Log.Error(Constants.LOG_TAG, "Failed to create GATT client.");
                     _currentConnectedDeviceAddress = null;
                     _isConnecting = false;
                     return false;
                 }
                 _gattClient.ConnectionStateChanged += OnGattConnectionStateChanged;
                 await _gattClient.ConnectAsync(false); // false for direct connection
-                Tizen.Log.Info("LescannerBLE", $"GATT connection initiated to {deviceAddress}.");
+                Tizen.Log.Info(Constants.LOG_TAG, $"GATT connection initiated to {deviceAddress}.");
                 return true;
             }
             catch (InvalidOperationException ex) when (ex.Message.Contains("Operation now in progress"))
             {
                 // This specific error often means a connection attempt is already underway.
                 // Do not dispose of the client yet, let the ConnectionStateChanged event determine the final state.
-                Tizen.Log.Warn("LescannerBLE", $"GATT connection to {deviceAddress} reported 'Operation now in progress'. Awaiting ConnectionStateChanged event. Message: {ex.Message}");
+                Tizen.Log.Warn(Constants.LOG_TAG, $"GATT connection to {deviceAddress} reported 'Operation now in progress'. Awaiting ConnectionStateChanged event. Message: {ex.Message}");
                 // The client might still be valid, so we don't dispose it here.
                 // Return false to indicate the ConnectAsync call itself had issues.
                 _isConnecting = false;
@@ -214,13 +214,13 @@ namespace Lescanner
             }
             catch (InvalidOperationException ex) when (ex.Message.Contains("Operation already done"))
             {
-                Tizen.Log.Warn("LescannerBLE", $"GATT connection to {deviceAddress} reported 'Operation already done'. The connection might already be established. Message: {ex.Message}");
+                Tizen.Log.Warn(Constants.LOG_TAG, $"GATT connection to {deviceAddress} reported 'Operation already done'. The connection might already be established. Message: {ex.Message}");
                 _isConnecting = false;
                 return false;
             }
             catch (Exception ex)
             {
-                Tizen.Log.Error("LescannerBLE", $"Error connecting GATT to {deviceAddress}: {ex.Message}");
+                Tizen.Log.Error(Constants.LOG_TAG, $"Error connecting GATT to {deviceAddress}: {ex.Message}");
                 _gattClient?.Dispose();
                 _gattClient = null;
                 _currentConnectedDeviceAddress = null;
@@ -238,7 +238,7 @@ namespace Lescanner
         {
             if (_gattClient == null)
             {
-                Tizen.Log.Info("LescannerBLE", "No GATT client to disconnect.");
+                Tizen.Log.Info(Constants.LOG_TAG, "No GATT client to disconnect.");
                 return;
             }
 
@@ -253,23 +253,23 @@ namespace Lescanner
                 // Unsubscribe first to prevent this handler from being called with a disposed object later,
                 // and to avoid issues when creating a new client.
                 clientToDispose.ConnectionStateChanged -= OnGattConnectionStateChanged;
-                Tizen.Log.Info("LescannerBLE", "Unsubscribed from ConnectionStateChanged event. Proceeding with disconnect.");
+                Tizen.Log.Info(Constants.LOG_TAG, "Unsubscribed from ConnectionStateChanged event. Proceeding with disconnect.");
 
                 var disconnectTask = clientToDispose.DisconnectAsync();
                 var timeoutTask = Task.Delay(3000); // Reduced to 3 seconds
 
                 if (await Task.WhenAny(disconnectTask, timeoutTask) == timeoutTask)
                 {
-                    Tizen.Log.Warn("LescannerBLE", "GATT disconnect timed out after 3 seconds. Forcing disposal.");
+                    Tizen.Log.Warn(Constants.LOG_TAG, "GATT disconnect timed out after 3 seconds. Forcing disposal.");
                 }
                 else
                 {
-                    Tizen.Log.Info("LescannerBLE", "GATT disconnected.");
+                    Tizen.Log.Info(Constants.LOG_TAG, "GATT disconnected.");
                 }
             }
             catch (Exception ex)
             {
-                Tizen.Log.Error("LescannerBLE", $"Error during GATT disconnect: {ex.Message}");
+                Tizen.Log.Error(Constants.LOG_TAG, $"Error during GATT disconnect: {ex.Message}");
             }
             finally
             {
@@ -279,7 +279,7 @@ namespace Lescanner
                 }
                 catch (Exception ex)
                 {
-                    Tizen.Log.Error("LescannerBLE", $"Error disposing GATT client: {ex.Message}");
+                    Tizen.Log.Error(Constants.LOG_TAG, $"Error disposing GATT client: {ex.Message}");
                 }
             }
         }
@@ -293,31 +293,31 @@ namespace Lescanner
             // This prevents processing stale events from a client that was just disposed.
             if (_gattClient == null || sender != _gattClient)
             {
-                Tizen.Log.Warn("LescannerBLE", "Received ConnectionStateChanged event for a stale or null client. Ignoring.");
+                Tizen.Log.Warn(Constants.LOG_TAG, "Received ConnectionStateChanged event for a stale or null client. Ignoring.");
                 return;
             }
 
             // Robustness check: Ensure event args are valid.
             if (e == null)
             {
-                Tizen.Log.Warn("LescannerBLE", "ConnectionStateChanged event received with null args. Ignoring.");
+                Tizen.Log.Warn(Constants.LOG_TAG, "ConnectionStateChanged event received with null args. Ignoring.");
                 return;
             }
 
-            Tizen.Log.Info("LescannerBLE", $"ConnectionStateChanged: IsConnected = {e.IsConnected}, RemoteAddress = {_gattClient.RemoteAddress}");
+            Tizen.Log.Info(Constants.LOG_TAG, $"ConnectionStateChanged: IsConnected = {e.IsConnected}, RemoteAddress = {_gattClient.RemoteAddress}");
             GattConnectionStateChanged?.Invoke(this, e);
 
             if (e.IsConnected)
             {
                 _currentConnectedDeviceAddress = _gattClient.RemoteAddress; // Update address on successful connection
                 _isConnecting = false; // Clear connecting flag on successful connection
-                Tizen.Log.Info("LescannerBLE", "GATT connected. Discovering services and fetching name.");
+                Tizen.Log.Info(Constants.LOG_TAG, "GATT connected. Discovering services and fetching name.");
                 DiscoverServices();
                 _ = FetchDeviceNameAsync(); // Fire and forget
             }
             else
             {
-                Tizen.Log.Info("LescannerBLE", "GATT disconnected.");
+                Tizen.Log.Info(Constants.LOG_TAG, "GATT disconnected.");
                 _isConnecting = false; // Clear connecting flag on disconnect
                 // Do not set _gattClient to null here, DisconnectGattAsync handles it.
                 // Only clear the connected address.
@@ -334,7 +334,7 @@ namespace Lescanner
         {
             if (_gattClient == null || string.IsNullOrEmpty(_currentConnectedDeviceAddress))
             {
-                Tizen.Log.Warn("LescannerBLE", "GATT client or device address is null. Cannot fetch name.");
+                Tizen.Log.Warn(Constants.LOG_TAG, "GATT client or device address is null. Cannot fetch name.");
                 return;
             }
 
@@ -343,51 +343,51 @@ namespace Lescanner
                 BluetoothGattService genericAccessService = _gattClient.GetService(GENERIC_ACCESS_SERVICE_UUID);
                 if (genericAccessService != null)
                 {
-                    Tizen.Log.Info("LescannerBLE", "Found Generic Access service.");
+                    Tizen.Log.Info(Constants.LOG_TAG, "Found Generic Access service.");
                     BluetoothGattCharacteristic deviceNameCharacteristic = genericAccessService.GetCharacteristic(DEVICE_NAME_CHARACTERISTIC_UUID);
                     if (deviceNameCharacteristic != null)
                     {
-                        Tizen.Log.Info("LescannerBLE", "Found Device Name characteristic. Initiating read...");
+                        Tizen.Log.Info(Constants.LOG_TAG, "Found Device Name characteristic. Initiating read...");
                         // The ReadValueAsync method will complete when the read operation is done.
                         // The value of the characteristic will be updated internally.
                         bool readSuccess = await _gattClient.ReadValueAsync(deviceNameCharacteristic);
 
                         if (readSuccess)
                         {
-                            Tizen.Log.Info("LescannerBLE", "ReadValueAsync reported success. Checking characteristic value.");
+                            Tizen.Log.Info(Constants.LOG_TAG, "ReadValueAsync reported success. Checking characteristic value.");
                             if (deviceNameCharacteristic.Value != null)
                             {
                                 string deviceName = Encoding.UTF8.GetString(deviceNameCharacteristic.Value).TrimEnd('\0');
-                                Tizen.Log.Info("LescannerBLE", $"Successfully fetched device name: {deviceName}");
+                                Tizen.Log.Info(Constants.LOG_TAG, $"Successfully fetched device name: {deviceName}");
                                 DeviceNameRetrieved?.Invoke(this, new DeviceNameEventArgs(_currentConnectedDeviceAddress, deviceName));
                             }
                             else
                             {
-                                Tizen.Log.Warn("LescannerBLE", "ReadValueAsync reported success, but characteristic value is null.");
+                                Tizen.Log.Warn(Constants.LOG_TAG, "ReadValueAsync reported success, but characteristic value is null.");
                                 DeviceNameRetrieved?.Invoke(this, new DeviceNameEventArgs(_currentConnectedDeviceAddress, null));
                             }
                         }
                         else
                         {
-                            Tizen.Log.Error("LescannerBLE", "ReadValueAsync failed to read the Device Name characteristic.");
+                            Tizen.Log.Error(Constants.LOG_TAG, "ReadValueAsync failed to read the Device Name characteristic.");
                             DeviceNameRetrieved?.Invoke(this, new DeviceNameEventArgs(_currentConnectedDeviceAddress, null));
                         }
                     }
                     else
                     {
-                        Tizen.Log.Warn("LescannerBLE", "Device Name characteristic not found.");
+                        Tizen.Log.Warn(Constants.LOG_TAG, "Device Name characteristic not found.");
                         DeviceNameRetrieved?.Invoke(this, new DeviceNameEventArgs(_currentConnectedDeviceAddress, null));
                     }
                 }
                 else
                 {
-                    Tizen.Log.Warn("LescannerBLE", "Generic Access service not found.");
+                    Tizen.Log.Warn(Constants.LOG_TAG, "Generic Access service not found.");
                     DeviceNameRetrieved?.Invoke(this, new DeviceNameEventArgs(_currentConnectedDeviceAddress, null));
                 }
             }
             catch (Exception ex)
             {
-                Tizen.Log.Error("LescannerBLE", $"Error fetching device name: {ex.Message}");
+                Tizen.Log.Error(Constants.LOG_TAG, $"Error fetching device name: {ex.Message}");
                 DeviceNameRetrieved?.Invoke(this, new DeviceNameEventArgs(_currentConnectedDeviceAddress, null));
             }
         }
@@ -400,7 +400,7 @@ namespace Lescanner
         {
             if (_gattClient == null)
             {
-                Tizen.Log.Warn("LescannerBLE", "GATT client is null. Cannot discover services.");
+                Tizen.Log.Warn(Constants.LOG_TAG, "GATT client is null. Cannot discover services.");
                 return;
             }
 
@@ -413,14 +413,14 @@ namespace Lescanner
                     foreach (var service in services)
                     {
                         uuids.Add(service.Uuid);
-                        Tizen.Log.Info("LescannerBLE", $"Discovered service UUID: {service.Uuid}");
+                        Tizen.Log.Info(Constants.LOG_TAG, $"Discovered service UUID: {service.Uuid}");
                     }
                 }
                 ServicesDiscovered?.Invoke(this, uuids);
             }
             catch (Exception ex)
             {
-                Tizen.Log.Error("LescannerBLE", $"Error discovering services: {ex.Message}");
+                Tizen.Log.Error(Constants.LOG_TAG, $"Error discovering services: {ex.Message}");
                 ServicesDiscovered?.Invoke(this, new List<string>()); // Notify with empty list on error
             }
         }
