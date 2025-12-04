@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.AppCommon" version="1.0.0" api-version="10" xmlns="http://tizen.org/ns/packages">
+    <profile name="common" />
+    <ui-application appid="org.tizen.example.AppCommon" exec="AppCommon.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet-nui" launch_mode="single">
+        <label>AppCommon</label>
+        <icon>AppCommon.png</icon>
+    </ui-application>
+</manifest>
