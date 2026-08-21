@@ -38,8 +38,8 @@ namespace GoogleAPIExample
             // You should register a new client id and issue a client secret
             var clientSecrets = new ClientSecrets
             {
-                ClientId = "581786658708-elflankerquo1a6vsckabbhn25hclla0.apps.googleusercontent.com",
-                ClientSecret = "3f6NggMbPtrmIBpgx-MK2xXK"
+                ClientId = "YOUR_GOOGLE_CLIENT_ID",
+                ClientSecret = "YOUR_GOOGLE_CLIENT_SECRET"
             };
 
             // It is a web browser, it is integrated in this app.

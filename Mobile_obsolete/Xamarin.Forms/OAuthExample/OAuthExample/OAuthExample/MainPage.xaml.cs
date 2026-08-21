@@ -34,8 +34,8 @@ namespace OAuthExample
     public partial class MainPage : ContentPage
     {
         // client configuration
-        const string clientID = "581786658708-elflankerquo1a6vsckabbhn25hclla0.apps.googleusercontent.com";
-        const string clientSecret = "3f6NggMbPtrmIBpgx-MK2xXK";
+        const string clientID = "YOUR_CLIENT_ID";
+        const string clientSecret = "YOUR_CLIENT_SECRET";
         const string authorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
         const string tokenEndpoint = "https://www.googleapis.com/oauth2/v4/token";
         const string userInfoEndpoint = "https://www.googleapis.com/oauth2/v3/userinfo";
