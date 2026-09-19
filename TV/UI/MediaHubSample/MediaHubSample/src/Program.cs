@@ -101,7 +101,7 @@ namespace Tizen.NUI.MediaHub
             bgView.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
             bgView.Position = new Position(0, 0, 0);
 
-            //string mcBgPath = CommonResource.GetLocalReosurceURL() + "bg/mc_main_bg.png";
+            //string mcBgPath = CommonResource.GetLocalResourceURL() + "bg/mc_main_bg.png";
             //ImageView bgImage = new ImageView(mcBgPath);
             //bgImage.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
             //bgImage.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
@@ -215,8 +215,8 @@ namespace Tizen.NUI.MediaHub
         /// <summary>
         /// Callback when have key pressed.
         /// </summary>
-        /// <param name = "sender" > sender.</ param >
-        /// < param name="e">event</param>
+        /// <param name="sender">sender.</param>
+        /// <param name="e">event</param>
         private void InstanceKey(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down)
