@@ -186,7 +186,7 @@ namespace TizenTVHttpSample
             }
             catch (Exception e)
             {
-                InfoText += "An error occurs : " + e.GetType() + " , " + e.Message;
+                InfoText += "An error occurred : " + e.GetType() + " , " + e.Message;
             }
         }
 

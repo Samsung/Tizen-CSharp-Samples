@@ -137,20 +137,20 @@ namespace NUILayer
         }
 
         /// <summary>
-        /// Function hides Menu Layer by changing its visibility parametr.
+        /// Function shows Menu Layer by changing its visibility parameter.
         /// </summary>
         public void MenuShow()
         {
-            //Hide all icons by change one flag for layer.
+            //Hide all icons by changing one flag for layer.
             menuLayer.Visibility = true;
         }
 
         /// <summary>
-        /// Function shows Menu Layer by changing its visibility parameter.
+        /// Function hides Menu Layer by changing its visibility parameter.
         /// </summary>
         public void MenuHide()
         {
-            //Show all icons by change one flag for layer.
+            //Show all icons by changing one flag for layer.
             menuLayer.Visibility = false;
         }
 
@@ -175,7 +175,7 @@ namespace NUILayer
         }
 
         /// <summary>
-        /// Touch Event Handler. It is used to verify wich part of the screen was touched.
+        /// Touch Event Handler. It is used to verify which part of the screen was touched.
         /// </summary>
         /// <param name="sender">Event sender</param>
         /// <param name="args">Event arguments</param>
@@ -183,7 +183,7 @@ namespace NUILayer
         {
             if (args.Touch.GetState(0) == PointStateType.Down)
             {
-                //Verify witch side of the screen was clicked by user.
+                //Verify which side of the screen was clicked by user.
                 //Touch position is compared with half of the screen size.
                 //When the left side of the screen is clicked the application shows the menu, otherwise the menu is hidden
                 if (args.Touch.GetLocalPosition(0).X <= appWindow.Size.Width / 2)
